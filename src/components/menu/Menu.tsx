@@ -74,9 +74,9 @@ export default function Menu() {
           style={{ position: "static", margin: -10 }}
         >
           {isOpen ? (
-            <X size={32} color="#32BDCA" />
+            <X size={32} color="#00AFDD" />
           ) : (
-            <AlignJustify size={32} color="#32BDCA" />
+            <AlignJustify size={32} color="#00AFDD" />
           )}
         </StyledFloatButton>
       </div>

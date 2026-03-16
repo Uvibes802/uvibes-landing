@@ -4,10 +4,11 @@ import { BenefitsHomeItem } from "./benefitsHomeItem";
 
 export function BenefitsHomeSection() {
   return (
-    <section className="benefices-home-section-container">
+    <section className="container-orange">
+    <div className="benefices-home-section-container">
       <div className="benefices-home-header-and-data">
-        <h2 className="title-h2-orange">
-          <span id="benefices-home-title-word">Transformez</span> le quotidien
+        <h2 className="title-h2-white">
+          Transformez le quotidien
         </h2>
 
         <div className="benefices-home-data-container">
@@ -20,6 +21,7 @@ export function BenefitsHomeSection() {
       </div>
 
       
+    </div>
     </section>
   );
 }

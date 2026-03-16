@@ -3,7 +3,14 @@ import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Roboto } from "next/font/google";
 import "./globals.css";
+
+const roboto = Roboto({
+  weight: ["400", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -52,7 +59,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className={roboto.variable}>
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
             <CookieConsent />

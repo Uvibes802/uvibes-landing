@@ -1,4 +1,5 @@
 import Resize from "@/services/resize/resize";
+import { ReactNode } from "react";
 
 export default function VideoCard({
   videoSrcDdesktop,
@@ -7,7 +8,7 @@ export default function VideoCard({
 }: {
   videoSrcDdesktop: string | MediaSource;
   videoSrcMobile: string | MediaSource;
-  title?: string;
+  title?: ReactNode;
 }) {
   const { isMobile } = Resize();
   return (
@@ -40,7 +41,7 @@ export default function VideoCard({
           justifySelf: "center",
           marginBottom: 40,
           borderRadius: 8,
-          boxShadow: "0px 0px 0 18px rgba(0, 177, 221, 0.46)",
+          boxShadow: "0px 0px 0 18px #00AFDD",
         }}
       ></video>
     </div>

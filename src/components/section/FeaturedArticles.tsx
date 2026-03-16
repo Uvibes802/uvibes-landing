@@ -44,7 +44,7 @@ export default function FeaturedArticles() {
   return (
     <section className="article-section featured-articles" style={{ padding: "50px 0" }}>
       <h2 className="title-section">
-        Article mis en avant
+        Nos article mis en avant
       </h2>
       <div className="article-container">
       {articles.map((article) => (

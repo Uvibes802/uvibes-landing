@@ -71,7 +71,7 @@ export function HeroBanner({
           alt={alt}
           className="hero-banner-image"
           width={400}
-          height={400}
+          height={300}
           priority
         />
       </figure>
@@ -80,8 +80,8 @@ export function HeroBanner({
           src="/images/Vibration-right.svg"
           alt={alt}
           className="hero-vibration-right"
-          width={800}
-          height={900}
+          width={1000}
+          height={1100}
           priority
         />
       </figure>

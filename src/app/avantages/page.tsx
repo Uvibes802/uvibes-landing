@@ -24,14 +24,14 @@ export default function Avantages() {
       <HeroBanner
         subtitle=""
         title="Uvibes, moteur d'une dynamique positive"
-        description="L'application qui répond aux objectifs de votre organisation"
+        description="À la clé, une source intarissable de données stratégiques"
         image={mockupAvantages}
         alt="Fonctionnalités de l'application"
       />
       <nav>
         <FloatingMenu />
       </nav>
-      <main>
+      <main style={{backgroundColor: "#FDF5FD"}}>
         {isMobile ? <AvantagesContent /> : <AvantagesContentDesktop />}
         <div
           style={{

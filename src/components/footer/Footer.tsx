@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <h4>
-          <Link href="#top">Uvibes</Link>
+          <Link href="#top">Uvibes. Activez les bonnes ondes.</Link>
         </h4>
       </div>
       <div className="footer-links">

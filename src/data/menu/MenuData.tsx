@@ -18,9 +18,9 @@ export const Items = [
     },
     {
         id: 3,
-        icon: <ListCheck size={32} color="#32BDCA"/>,
+        icon: <ListCheck size={32} color="#00AFDD"/>,
         label: "Avantages",
-        color: "#32BDCA",
+        color: "#00AFDD",
         link: "/avantages",
     },
     {

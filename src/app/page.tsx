@@ -56,32 +56,52 @@ export default function Home() {
 
       <UserNumberCard />
       <VideoCard
-        title="Bien-être collectif : elles y trouvent de la bonne humeur"
+        title={
+          <>
+            Bien-être collectif : <span className="text-bold">elles y trouvent de la bonne humeur</span>
+          </>
+        }
         videoSrcDdesktop={"/videos/Lisa-desktop.mp4"}
         videoSrcMobile={"/videos/Lisa-mobile.mp4"}
       />
       <PartnerCarousel />
 
       <VideoCard
-        title="Développement professionnel : ils partagent leurs points de vue"
+        title={
+          <>
+            Développement professionnel : <span className="text-bold">ils partagent leurs points de vue</span>
+          </>
+        }
         videoSrcDdesktop={"/videos/Pierre-desktop.mp4"}
         videoSrcMobile={"/videos/Pierre-mobile.mp4"}
       />
       <InspirationSection />
       <VideoCard
-        title="Bien-être collectif : ils créent du lien"
+        title={
+          <>
+            Bien-être collectif : <span className="text-bold">ils créent du lien</span>
+          </>
+        }
         videoSrcDdesktop={"/videos/Colette-desktop.mp4"}
         videoSrcMobile={"/videos/Colette-mobile.mp4"}
       />
       <Testimony />
       <VideoCard
-        title="Outil pédagogique : ils y trouvent de nouvelles idées"
+        title={
+          <>
+            Outil pédagogique : <span className="text-bold">ils y trouvent de nouvelles idées</span>
+          </>
+        }
         videoSrcDdesktop={"/videos/Delphine-desktop.mp4"}
         videoSrcMobile={"/videos/Delphine-mobile.mp4"}
       />
       <FunctSection />
       <VideoCard
-        title="Développement professionnel : ils élargissent leurs horizons"
+        title={
+          <>
+            Développement professionnel : <span className="text-bold">ils élargissent leurs horizons</span>
+          </>
+        }
         videoSrcDdesktop={"/videos/Nadine-desktop.mp4"}
         videoSrcMobile={"/videos/Nadine-mobile.mp4"}
       />
@@ -92,7 +112,11 @@ export default function Home() {
       <FeaturedArticles />
 
       <VideoCard
-        title="Outil pédagogique : ils se nourrissent d'expériences"
+        title={
+          <>
+            Outil pédagogique : <span className="text-bold">ils se nourrissent d&apos;expériences</span>
+          </>
+        }
         videoSrcDdesktop={"/videos/arjun-desktop.mp4"}
         videoSrcMobile={"/videos/arjun-mobile.mp4"}
       />

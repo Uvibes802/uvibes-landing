@@ -6,11 +6,11 @@ export default function WhyUvibes() {
       <div className="why-uvibes-container">
         <div className="why-uvibes-text-container">
           <h2 className="title-h2-orange uvibes-title">
-            Pourquoi « Uvibes » ?
+            Pourquoi « <span className="text-bold">Uvibes</span> » ?
           </h2>
           <article className="why-uvibes-article">
             <p className="text-regular why-uvibes-text">
-              Uvibes est né pour activer la richesse des échanges humains au
+              Uvibes active la richesse des échanges humains au
               sein des collectifs, en y faisant naître des rencontres
               inattendues.
             </p>

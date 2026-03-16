@@ -1,22 +1,3 @@
-@font-face {
-  font-family: "Bevellier";
-  src: url("/fonts/Bevellier-Black.woff2") format("woff2"),
-    url("/fonts/Bevellier-Black.woff") format("woff"),
-    url("/fonts/Bevellier-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Bevellier-regular";
-  src: url("/fonts/Bevellier-Regular.woff2") format("woff2"),
-    url("/fonts/Bevellier-Regular.woff") format("woff"),
-    url("/fonts/Bevellier-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
 
 @font-face {
   font-family: "Supreme-Light";
@@ -38,7 +19,6 @@
 }
 
 :root {
-  --title-font: "Bevellier";
   --text-font: "Supreme-Light";
   --text-font-bold: "Supreme-Bold";
   --button-font: "Bevellier-regular";
@@ -46,7 +26,7 @@
   --mainColor: #fd6e00;
   --yellowUvibes: #feb000;
   --greenUvibes: #78c751;
-  --blueUvibes: #00afdd;
+  --blueUvibes: #00AFDD;
   --pinkUvibes: #d90a5c;
   --purpleUvibes: #800080;
   --mainColor-opacity: #fd6e0075;
@@ -87,6 +67,7 @@
 }
 
 body {
+  --title-font: var(--font-roboto), sans-serif;
   background: var(--bckgColor);
 }
 
@@ -98,6 +79,7 @@ h1,
 h2,
 h3 {
   font-family: var(--title-font);
+  font-weight: 700;
 }
 
 h1 {
@@ -121,6 +103,10 @@ h5 {
   font-family: var(--text-font);
 }
 
+.text-bold {
+  font-weight: bolder;
+}
+
 .title-h1 {
   font-size: var(--font-size-h1);
   font-family: var(--title-font);
@@ -131,7 +117,7 @@ h5 {
 }
 
 .title-h2-orange {
-  font-size: calc(var(--font-size-h2) * 1.2);
+  font-size: calc(var(--font-size-h2));
   font-family: var(--title-font);
   color: var(--mainColor);
   text-align: left;
@@ -265,3 +251,10 @@ h5 {
   min-width: var(--icon-min-size);
   min-height: var(--icon-min-size);
 }
+
+.container-orange {
+  background-image: var(--gradientColor-card);
+  width: 100%;
+  height: 450px;
+}
+

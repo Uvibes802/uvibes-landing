@@ -1,5 +1,6 @@
 .avantages-desktop-container {
   padding-top: calc(var(--spacing-ref) * 2);
+  
 
   & h3:first-of-type {
     text-align: left;
@@ -21,6 +22,7 @@
 
 .avantages-button {
   padding: calc(var(--spacing-ref) * 2);
+  background-color: rgba(253, 110, 0, 0.178);
   margin: 0 auto;
   width: 50%;
   border: 1px solid var(--mainColor);
