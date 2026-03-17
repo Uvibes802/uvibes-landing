@@ -128,10 +128,10 @@
     min-height: 100dvh;
   }
   .hero-banner-container {
-    padding-top: 1rem;
+    padding-top: 8rem;
     min-height: 100dvh;
     gap: 2rem;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
 
@@ -143,7 +143,7 @@
 
   .hero-banner-header-top {
     position: absolute;
-    top: 2rem;
+    top: 4rem;
     left: 2rem;
     padding-top: 0;
   }
