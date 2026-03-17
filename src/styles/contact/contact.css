@@ -1,5 +1,5 @@
 .contact-section {
-  padding: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
   background: var(--gradientColor-card);
   color: white;
 

@@ -19,6 +19,7 @@ export default function Footer() {
         <Link href="/politique-de-confidentialite">
           Politique de confidentialité
         </Link>
+        <Link href="/politique-cookies">Politique des cookies</Link>
       </div>
       <div className="footer-buttons">
         <div className="footer-icons">

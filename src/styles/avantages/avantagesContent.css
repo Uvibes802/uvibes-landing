@@ -1,8 +1,7 @@
 .avantage-button-container {
   width: 100%;
   margin: 0 auto;
-  background-color: rgba(253, 110, 0, 0.178);
-  padding: var(--spacing-ref) 0;
+  padding: var(--section-padding-v) var(--section-padding-h);
   & .avantages-card-container:nth-child(odd) {
     & h5 {
       color: var(--mainColor);

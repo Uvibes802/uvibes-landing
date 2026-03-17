@@ -1,3 +1,4 @@
+import { getVideoUrl } from "@/utils/videoUrl";
 import "../../styles/section/whyUvibes.css";
 
 export default function WhyUvibes() {
@@ -6,7 +7,7 @@ export default function WhyUvibes() {
       <div className="why-uvibes-container">
         <div className="why-uvibes-text-container">
           <h2 className="title-h2-orange uvibes-title">
-            Pourquoi « <span className="text-bold">Uvibes</span> » ?
+            Pourquoi <br className="mobile-only" /> « <span className="text-bold">Uvibes</span> » ?
           </h2>
           <article className="why-uvibes-article">
             <p className="text-regular why-uvibes-text">
@@ -30,7 +31,7 @@ export default function WhyUvibes() {
         </div>
       </div>
       <video
-        src="/videos/Isaline-desktop.mp4"
+        src={getVideoUrl("/videos/Isaline-desktop.mp4")}
         muted
         autoPlay
         loop

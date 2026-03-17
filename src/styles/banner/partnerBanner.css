@@ -8,7 +8,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--spacing-ref);
-  padding: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
   width: 100%;
   height: 100%;
 }

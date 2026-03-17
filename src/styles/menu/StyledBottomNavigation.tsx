@@ -23,7 +23,15 @@ export const StyledBottomNavigation = styled(BottomNavigation)(({ theme }) => ({
   padding: "calc(var(--spacing-ref) * 2)",
 
   [theme.breakpoints.down(768)]: {
-    display: "none",
-    width: "100%",
+    display: "flex", // Ensure it's visible on mobile as per Menu.tsx usage
+    width: "auto",
+    gap: "0.75rem",
+    padding: "0.5rem 1rem",
+    height: "auto",
+    minHeight: "60px",
   },
+  [theme.breakpoints.down(400)]: {
+    gap: "0.5rem",
+    padding: "0.4rem 0.8rem",
+  }
 }));

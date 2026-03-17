@@ -4,41 +4,35 @@
   border: 1px solid transparent;
   background: linear-gradient(white, white) padding-box,
     var(--gradientColor) border-box;
-  padding: calc(var(--spacing-ref) * 0.5);
+  padding: calc(var(--spacing-ref) * 2);
 
   & h5 {
     color: var(--secondaryColor);
     font-size: calc(var(--font-size-title-text) * 0.8);
     text-align: left;
-    padding-bottom: calc(var(--spacing-ref) * 0.5);
     padding-left: calc(var(--spacing-ref) * 0.5);
   }
 
-  & p:nth-child(2) {
+  & p {
     color: #212121;
     letter-spacing: 0.5px;
-    padding-top: calc(var(--spacing-ref) * 1);
     font-size: calc(var(--font-size-text) * 1);
     text-align: left;
   }
 
-  & div:first-of-type {
+  .avantages-card-title {
     display: flex;
-    align-items: start;
-    justify-content: start;
+    align-items: flex-start;
+    padding-bottom: var(--spacing-ref);
   }
 
-  & .avantages-card-content-container {
-    margin-top: calc(var(--spacing-ref) * 1);
-    border-radius: var(--border-radius);
-    background: linear-gradient(white, white) padding-box,
-      var(--gradientColor) border-box;
-    border: 1px solid transparent;
-    padding: calc(var(--spacing-ref) * 1);
+  & p:nth-child(2) {
+    padding-top: calc(var(--spacing-ref) * 1);
+  }
 
-    & p {
-      font-weight: bold;
-    }
+  & p:last-child {
+    font-weight: bold;
+    margin-top: calc(var(--spacing-ref) * 1);
   }
 
   &:nth-child(even) {
@@ -47,6 +41,34 @@
 
   &:nth-child(odd) {
     color: var(--mainColor);
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: var(--spacing-ref);
+    margin-top: var(--spacing-ref);
+
+    & h5 {
+      font-size: calc(var(--font-size-title-text) * 0.65);
+      padding-left: 0;
+    }
+
+    & p {
+      font-size: calc(var(--font-size-text) * 0.85);
+    }
+
+    .avantages-card-title {
+      gap: 0.5rem;
+      align-items: center;
+
+      & svg {
+        width: 35px !important;
+        height: 35px !important;
+      }
+    }
+
+    & p:last-child {
+      font-size: calc(var(--font-size-text) * 0.9);
+    }
   }
 }
 

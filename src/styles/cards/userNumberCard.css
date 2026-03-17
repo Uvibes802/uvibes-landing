@@ -1,6 +1,6 @@
 .user-number-wrapper {
   background-image: var(--gradientColor-card);
-  padding: calc(var(--spacing-ref) * 4) 0;
+  padding: var(--section-padding-v) 0;
   justify-items: center;
   margin-top: 2rem;
   width: 100%;
@@ -37,6 +37,18 @@
   text-align: center;
   font-weight: bold;
   width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  .user-number {
+    font-size: calc(var(--font-size-title-text) * 2.2);
+    overflow-wrap: break-word;
+    word-break: break-word; /* Safety for very long words/numbers */
+  }
+
+  .user-number-card h2 {
+    font-size: calc(var(--font-size-h2) * 0.7);
+  }
 }
 
 @media screen and (min-width: 1024px) {

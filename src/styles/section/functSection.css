@@ -2,8 +2,7 @@
   & h2 {
     color: white;
     text-align: center;
-    padding: calc(var(--spacing-ref) * 2) 0 calc(var(--spacing-ref) * 2)
-      calc(var(--spacing-ref) * 2);
+    padding-bottom: var(--section-padding-h);
   }
 }
 
@@ -13,11 +12,48 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 calc(var(--spacing-ref) * 2) calc(var(--spacing-ref) * 2)
-    calc(var(--spacing-ref) * 2);
   gap: calc(var(--spacing-ref) * 2);
 }
 
+.funct-swiper {
+  width: 100%;
+  padding-bottom: 3rem !important; /* Space for pagination */
+}
+
+.funct-swiper .swiper-button-next,
+.funct-swiper .swiper-button-prev {
+  color: white; 
+  background-color: rgba(217, 10, 92, 0.8); /* Uvibes pink/red with opacity */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%; 
+  transform: translateY(-50%);
+  &::after {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+
+.funct-swiper .swiper-button-prev {
+  left: 0;
+}
+
+.funct-swiper .swiper-button-next {
+  right: 0;
+}
+
+.funct-swiper .swiper-pagination {
+  bottom: 0px !important;
+}
+
+.funct-swiper .swiper-pagination-bullet {
+  background: white;
+}
+
+.funct-swiper .swiper-pagination-bullet-active {
+  background: var(--primaryColor);
+}
 
 @media screen and (min-width: 768px) {
   .funct-container {

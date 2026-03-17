@@ -57,6 +57,12 @@
   --icon-min-size: 50px;
   --icon-max-size: 100px;
   --icon-size: 12vw;
+  --section-padding-v: 4.5rem;
+  --section-padding-h: 2rem;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 * {
@@ -69,6 +75,20 @@
 body {
   --title-font: var(--font-roboto), sans-serif;
   background: var(--bckgColor);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .desktop-only {
+    display: none !important;
+  }
 }
 
 p {
@@ -255,6 +275,11 @@ h5 {
 .container-orange {
   background-image: var(--gradientColor-card);
   width: 100%;
-  height: 450px;
+  min-height: 450px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--section-padding-v) var(--section-padding-h);
 }
 

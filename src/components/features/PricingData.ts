@@ -1,7 +1,7 @@
 export const features = [
   { name: "Objectif", type: "text" },
-  { name: "Prix hors taxes (frais de mise en place inclus)", type: "price" },
-  { name: "Expériences interactives ( 1000 x 10mn / mois )", type: "boolean" },
+  { name: "Prix hors taxes", type: "price" },
+  { name: "Expériences interactives", type: "boolean" },
   { name: "Sondages", type: "boolean" },
   { name: "Baromètre bien-être", type: "boolean" },
   { name: "Statistiques & pilotage", type: "boolean" },

@@ -28,6 +28,25 @@
 
 @media screen and (max-width: 768px) {
   .items-link {
-    transform: scale(2);
+    transform: scale(1.5); /* Reduced from scale(2) to save space */
+    gap: 0.5rem;
   }
+
+  .menu-items-bottom-nav .items-label {
+    display: none; /* Hide labels on mobile bottom nav */
+  }
+
+  .menu-items-bottom-nav.items-link {
+    transform: scale(1.2); /* Even smaller for bottom nav items */
+  }
+}
+
+@media screen and (max-width: 480px) {
+    .items-link {
+        transform: scale(1.2);
+    }
+    
+    .menu-items-bottom-nav.items-link {
+        transform: scale(1);
+    }
 }

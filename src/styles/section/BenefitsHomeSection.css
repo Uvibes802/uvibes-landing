@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding: calc(var(--spacing-ref) * 2);
 }
 
 .benefices-home-header-and-data {
@@ -22,6 +21,8 @@
 
 .benefices-home-data {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: calc(var(--spacing-ref) * 2);
 }
 

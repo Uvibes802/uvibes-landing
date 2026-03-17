@@ -55,7 +55,9 @@ export function PartnerCarousel() {
         centeredSlides={true}
         slidesPerView={3}
         breakpoints={{
-          400: { slidesPerView: 3 },
+          320: { slidesPerView: 1.1 },
+          480: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
           1024: { slidesPerView: 3 },
         }}
       >

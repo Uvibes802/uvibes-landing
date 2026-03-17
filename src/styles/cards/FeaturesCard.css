@@ -1,5 +1,5 @@
 .features-card-container {
-  padding: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
   display: flex;
   flex-direction: column;
   justify-content: center;

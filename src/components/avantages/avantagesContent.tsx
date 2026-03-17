@@ -4,11 +4,10 @@ import {
   CircleGauge,
   DotIcon,
   Handshake,
-  Heart,
   Home,
   School,
   Smile,
-  UsersIcon,
+  UsersIcon
 } from "lucide-react";
 import "../../styles/avantages/avantagesContent.css";
 import { DropdownButton } from "../button/DropdownButton";
@@ -126,7 +125,7 @@ export default function AvantagesContent() {
       <DropdownButton
         title="Collectif"
         subtitle="Dans la sphère du prendre soin, Uvibes est une nouvelle respiration "
-        icon={<Heart size={80} />}
+        icon={<Handshake size={80} />}
       >
         <AvantagesCard
           icone={

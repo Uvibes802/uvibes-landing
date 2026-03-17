@@ -9,12 +9,11 @@ export default function AvantagesCard({
 }: AvantagesCardProps) {
   return (
     <article className="avantages-card-container">
-      <div>
-        {icone}
-        <h5>{title}</h5>
+      <div className="avantages-card-title">
+        {icone} <h5>{title}</h5>
       </div>
-      <p>{stats}</p>
-      <div className="avantages-card-content-container">
+      <div>
+        <p>{stats}</p>
         <p>{content}</p>
       </div>
     </article>

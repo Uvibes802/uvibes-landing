@@ -1,11 +1,13 @@
 .partner-carousel {
-  padding: calc(var(--spacing-ref) * 2) 0;
+  padding: var(--section-padding-v) var(--section-padding-h);
   position: relative;
   padding-bottom: 60px;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+
   @media (min-width: 1024px) {
-    padding: calc(var(--spacing-ref) * 2) 0;
-    width: 100%;
-    max-width: 100vw;
+    padding: var(--section-padding-v) var(--section-padding-h);
   }
 }
 
@@ -14,6 +16,11 @@
   padding-left: calc(var(--spacing-ref) * 2);
   text-align: center;
   color: white;
+
+  @media screen and (max-width: 480px) {
+    padding-left: var(--spacing-ref);
+    padding-bottom: var(--spacing-ref);
+  }
 }
 
 .swiper-slide {

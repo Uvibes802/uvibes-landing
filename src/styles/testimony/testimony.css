@@ -3,7 +3,6 @@
   flex-direction: column;
 
   & h2 {
-    padding: calc(var(--spacing-ref) * 2);
     color: white;
   }
 }

@@ -107,6 +107,42 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc(var(--spacing-ref) * 2);
+    padding: var(--spacing-ref);
+  }
+
+  .footer h4 {
+    font-size: calc(var(--font-size-ref) * 2);
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .footer-icons img {
+    min-width: 60px !important;
+    width: 60px;
+    height: auto;
+  }
+
+  .footer-buttons {
+    width: 100%;
+  }
+
+  .footer-content, .footer-links, .footer-buttons {
+    grid-column: span 3;
+    width: 100%;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .footer {
     align-items: center;

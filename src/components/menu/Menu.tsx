@@ -89,6 +89,7 @@ export default function Menu() {
 
 
       <div
+        className="bottom-nav-wrapper"
         style={{
           position: "fixed",
           bottom: "var(--spacing-ref)",
@@ -121,18 +122,19 @@ export default function Menu() {
         <div
           style={{
             height: "90px",
+            minHeight: "90px",
             backgroundColor: "var(--background-paper, #fff)",
             boxShadow:
               "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
             borderRadius: "calc(var(--border-radius) * 2.5)",
-            padding: "calc(var(--spacing-ref) * 2)",
+            padding: "0.5rem 1rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             transform:
               isActive && !isAtBottom
                 ? "translateX(0px)"
-                : "translateX(1000px)",
+                : "translateY(200px)", // Changed from 1000px to translateY for safety
             opacity: isActive && !isAtBottom ? 1 : 0,
             transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out",
           }}

@@ -5,12 +5,13 @@ import "../../styles/features/PricingMobile.css";
 import { features, plans } from "./PricingData";
 
 // Swiper imports
-import { Pagination } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 export default function PricingMobile() {
   const pricingData = usePricing();
@@ -24,14 +25,18 @@ export default function PricingMobile() {
 
   return (
     <div className="pricing-mobile-container">
+      <h2 className="title-h2-white" style={{ textAlign: "center", marginBottom: "2rem" }}>
+        Nos Offres
+      </h2>
       <Swiper
-        modules={[Pagination]}
-        spaceBetween={15}
-        slidesPerView={1.25}
+        modules={[Pagination, Navigation]}
+        spaceBetween={10}
+        slidesPerView={1.15}
         centeredSlides={true}
         initialSlide={1}
         grabCursor={true}
         pagination={{ clickable: true }}
+        navigation={true}
         className="pricing-swiper"
       >
         {mergedPlans.map((plan, planIndex) => (
