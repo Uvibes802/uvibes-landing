@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <h4>
-          <Link href="#top">Uvibes</Link>
+          <Link href="#top">Uvibes. Activez les bonnes ondes.</Link>
         </h4>
       </div>
       <div className="footer-links">
@@ -19,6 +19,7 @@ export default function Footer() {
         <Link href="/politique-de-confidentialite">
           Politique de confidentialité
         </Link>
+        <Link href="/politique-cookies">Politique des cookies</Link>
       </div>
       <div className="footer-buttons">
         <div className="footer-icons">

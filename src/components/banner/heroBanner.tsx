@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo_uVibesDesktop from "../../../public/images/Logo UVIBES.png";
-import Logo_uVibes from "../../../public/images/Logo VI blanc.png";
 import "../../styles/banner/heroBanner.css";
 import type { HeroBannerProps } from "../../types/banner/heroBanner";
+const Logo_uVibesDesktop = "/images/Logo UVIBES.png";
+const Logo_uVibes = "/images/Logo VI blanc.png";
 
 export function HeroBanner({
   title,
@@ -11,9 +11,10 @@ export function HeroBanner({
   description,
   image,
   alt,
+  className,
 }: HeroBannerProps) {
   return (
-    <header className="hero-banner-wrapper">
+    <header className={`hero-banner-wrapper ${className || ""}`}>
       <figure>
         <Image
           src="/images/Vibration-white.svg"
@@ -31,13 +32,17 @@ export function HeroBanner({
               src={Logo_uVibes}
               alt="Logo uVibes"
               width={80}
+              height={80}
               className="logo_mobile"
+              style={{ height: "auto" }}
             />
             <Image
               src={Logo_uVibesDesktop}
               alt="Logo uVibes desktop"
               width={400}
+              height={100}
               className="logo_desktop"
+              style={{ height: "auto" }}
             />
           </Link>
         </div>
@@ -61,27 +66,26 @@ export function HeroBanner({
               priority
             />
           </figure>
+          {/* image identique, affichée uniquement en mobile */}
+          <figure className="hero-banner-image-container hero-mobile-only">
+            <Image
+              src={image}
+              alt={alt}
+              className="hero-banner-image"
+              width={400}
+              height={300}
+              priority
+            />
+          </figure>
         </div>
       </div>
-
-      {/* image identique, affichée uniquement en mobile */}
-      <figure className="hero-banner-image-container mobile-only">
-        <Image
-          src={image}
-          alt={alt}
-          className="hero-banner-image"
-          width={400}
-          height={400}
-          priority
-        />
-      </figure>
       <figure>
         <Image
           src="/images/Vibration-right.svg"
           alt={alt}
           className="hero-vibration-right"
-          width={800}
-          height={900}
+          width={1000}
+          height={1100}
           priority
         />
       </figure>

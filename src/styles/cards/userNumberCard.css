@@ -1,8 +1,9 @@
 .user-number-wrapper {
   background-image: var(--gradientColor-card);
-  padding: calc(var(--spacing-ref) * 4) 0;
+  padding: var(--section-padding-v) 0;
   justify-items: center;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .user-number-card-container {
@@ -11,20 +12,16 @@
   align-items: center;
   justify-content: center;
   padding: calc(var(--spacing-ref) * 2);
-  width: 100%;
 }
 
 .user-number-card {
-  border: 1px solid var(--mainColor);
-  border-radius: var(--border-radius);
-  padding: calc(var(--spacing-ref) * 2);
-  background-color: var(--cardsOpacity);
 
   & h2 {
-    color: var(--mainColor);
+    color: white;
     font-size: var(--font-size-h2);
     font-family: var(--title-font);
-    text-align: left;
+    font-weight: lighter;
+    text-align: center;
     letter-spacing: var(--spacing-letter);
     line-height: 1;
     padding-bottom: var(--spacing-ref);
@@ -33,12 +30,25 @@
 }
 
 .user-number {
-  color: var(--secondaryColor);
-  font-size: calc(var(--font-size-title-text) * 1.5);
+  color: white;
+  font-size: calc(var(--font-size-title-text) * 3);
   font-family: var(--text-font);
   line-height: 1.2;
   text-align: center;
+  font-weight: bold;
   width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  .user-number {
+    font-size: calc(var(--font-size-title-text) * 2.2);
+    overflow-wrap: break-word;
+    word-break: break-word; /* Safety for very long words/numbers */
+  }
+
+  .user-number-card h2 {
+    font-size: calc(var(--font-size-h2) * 0.7);
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -47,7 +57,6 @@
     padding: 0;
   }
   .user-number-card {
-    background-color: var(--cardsOpacity);
     width: 100%;
   }
 }

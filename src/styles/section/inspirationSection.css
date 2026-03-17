@@ -8,7 +8,7 @@
 
 .inspiration-section {
   background: var(--gradientColor-card);
-  padding: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
   color: white;
   gap: calc(var(--spacing-ref) * 2);
 

@@ -2,8 +2,15 @@ import CookieConsent from "@/components/cookieConsent";
 import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+
+const roboto = Roboto({
+  weight: ["400", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +20,9 @@ export const metadata: Metadata = {
     //prettier-ignore
     "L’outil numérique pour apprendre, progresser et renforcer le bien-être au sein des collectifs.",
   icons: {
-    icon: "/images/favicon.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -27,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        {/* ... scripts ... */}
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -44,15 +52,14 @@ export default function RootLayout({
                 'analytics_storage': 'denied'
               });
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                page_path: window.location.pathname,
-                debug_mode: true
+                page_path: window.location.pathname
               });
               console.log('Google Analytics initialized with denied consent');
             `,
           }}
         />
       </head>
-      <body>
+      <body className={roboto.variable}>
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
             <CookieConsent />

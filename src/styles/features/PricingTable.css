@@ -6,12 +6,35 @@
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  /* Gradient border effect via padding and background */
   padding: 32px;
-  background-image: var(--gradientColor); /* Using horizontal gradient as per image frame look */
+  background-image: var(--gradientColor);
 }
 
-/* Inner white container for the table */
+.pricing-top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  background-color: transparent; /* Changed to match container background */
+  padding: 20px 20px 0 20px; /* Reduced bottom padding */
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.blue-note {
+  color: #38b6ff; /* Light blue from screenshot */
+  font-family: var(--text-font);
+  font-weight: bold;
+  font-size: 1.25em; /* Larger as in screenshot */
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
+
+  & span {
+    font-size: 1.1em;
+  }
+}
+
 .pricing-table-wrapper {
   background-color: white;
   border-radius: calc(var(--border-radius) - 2px);
@@ -23,96 +46,78 @@
   width: 100%;
   border-collapse: collapse;
   min-width: 800px;
-}
-
-@media (max-width: 900px) {
-  .pricing-table-wrapper {
-    display: none;
-  }
+  table-layout: fixed; /* Better control over column widths */
 }
 
 .plan-header {
   font-family: var(--title-font);
-  font-weight: 900; /* Bevellier Black */
+  font-weight: 900;
   text-transform: uppercase;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
-  font-size: 2em;
   border-bottom: 1px solid #eee;
+  width: 23%; /* Distribute columns better */
+}
+
+.plan-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.plan-name {
+  font-size: 1.6em;
+}
+
+.plan-description-header {
+  font-family: var(--text-font);
+  font-weight: normal;
+  text-transform: none;
+  font-size: 1.1em; /* Much larger for prominent visibility */
+  line-height: 1.2;
+  color: #666;
+  max-width: 32ch;
 }
 
 .feature-header {
-  border-bottom: 1px solid #eee; /* Continue line under empty cell */
-  padding: 15px;
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  width: 31%;
 }
 
 .feature-name {
   font-family: var(--text-font);
   font-weight: bold;
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #eee; /* Light gray lines as in image */
-  color: black;
-  width: 30%;
-}
-
-.small-text {
-  font-family: var(--text-font);
-  font-weight: normal;
-  font-size: 0.8em;
-  color: #666;
-  font-style: italic;
-}
-
-.plan-text, .plan-price, .plan-value {
-  padding: 15px;
+  padding: 8px 15px; /* Reduced interligne */
   text-align: left;
   border-bottom: 1px solid #eee;
-  font-family: var(--text-font);
+  color: black;
+  font-size: 0.9em;
 }
 
-.plan-text {
-  font-size: 0.9em;
-  line-height: 1.4;
-  color: #444;
+.non-bold {
+  font-weight: normal;
+}
+
+.plan-price, .plan-value {
+  padding: 8px 10px; /* Reduced interligne */
   text-align: center;
+  border-bottom: 1px solid #eee;
+  font-family: var(--text-font);
 }
 
 .plan-price {
   font-family: var(--text-font-bold);
   font-weight: bold;
-  text-align: center;
   font-size: 1.1em;
   color: black;
 }
 
-.plan-value {
-  text-align: center;
-}
-
-.row-even {
-  background-color: white; /* Image shows mostly white backgrounds, maybe minimal keys */
-}
-
-/* Icons */
-.icon-check {
-  color: var(--greenUvibes); /* #78c751 */
-}
-
-.icon-cross {
-  color: #F62570; /* Red/Pink from gradient or close to Cross color in image */
-}
-
-/* CTA Banner - The bottom section inside the orange/pink frame */
-.pricing-cta-banner {
-  background: var(--pinkUvibes);
-  /* The image shows a gradient or solid pink/red bottom section. 
-     Global pink is #d90a5c. The image looks a bit like the gradient end color.
-     Let's use the gradient or specific pink. */
-  background: var(--gradientColor-card); /* Vertical gradient matches the heavy footer look maybe? Or just pink. */
-  color: white;
-  padding: 30px;
-  text-align: center;
+.cta-content {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3); 
 }
 
 .cta-content h3 {
@@ -120,7 +125,7 @@
   font-size: 1.5rem;
   font-family: var(--title-font);
   font-weight: 900;
-  color: white; /* Ensure title is white */
+  color: white;
 }
 
 .cta-buttons {
@@ -132,6 +137,7 @@
 
 .btn-cta {
   padding: 12px 30px;
+  text-align: center;
   border-radius: 50px;
   border: none;
   font-family: var(--text-font);
@@ -162,20 +168,16 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .pricing-container {
-    padding: 5px; /* Thinner border on mobile */
+    padding: 1rem;
+    margin: 1rem;
   }
   
-  .pricing-table-wrapper {
-    padding: 0;
+  .pricing-table-wrapper, .pricing-top-section {
+    display: none !important;
   }
   
-  .feature-name, .plan-header, .plan-text, .plan-price, .plan-value {
-    padding: 10px;
-    font-size: 0.85em;
-  }
-
   .cta-content h3 {
     font-size: 1.2em;
   }

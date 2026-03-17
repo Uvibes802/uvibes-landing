@@ -47,7 +47,7 @@ export default function MaintenanceScreen() {
       </p>
       <div style={{ display: "flex", gap: "20px" }}>
         <Link
-          href="mailto:contactuvibes@gmail.com"
+          href="mailto:contact@uvibes.fr"
           style={{
              padding: "10px 20px",
              backgroundColor: "var(--mainColor)",

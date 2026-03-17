@@ -40,8 +40,7 @@ export default function CookieConsent() {
       });
       // Force a new config signal to ensure the page view is registered with the new consent
       window.gtag("config", GA_ID, {
-         page_path: window.location.pathname,
-         debug_mode: true
+         page_path: window.location.pathname
       });
       console.log("Cookie consent accepted: GA granted");
     }
@@ -67,7 +66,10 @@ export default function CookieConsent() {
         <p className="cookie-text">
           Nous utilisons des cookies pour améliorer votre expérience sur notre
           site. En continuant à naviguer, vous acceptez notre utilisation des
-          cookies.
+          cookies.{" "}
+          <a href="/politique-cookies" style={{ textDecoration: "underline", color: "inherit" }}>
+            En savoir plus
+          </a>
         </p>
         <div className="cookie-buttons">
           <button onClick={acceptCookies} className="accept-button">

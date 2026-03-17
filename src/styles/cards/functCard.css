@@ -9,22 +9,22 @@
   justify-content: center;
   align-items: center;
   gap: var(--spacing-ref);
-  border: 1px solid var(--mainColor-opacity);
+  border: 1px solid var(--pinkUvibes);
   border-radius: var(--border-radius);
-  background: var(--gradientColor-white);
+  background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   width: 100%;
   transition: transform 0.3s ease;
 
   & h3 {
-    color: var(--mainColor);
+    color: var(--pinkUvibes);
     font-family: var(--text-font);
     font-size: var(--font-size-h3);
     letter-spacing: var(--spacing-letter);
     line-height: 1.5;
   }
   & p {
-    color: var(--mainColor);
+    color: var(--pinkUvibes);
     font-size: var(--font-size-text);
     font-family: var(--text-font);
     line-height: 1.2;
@@ -32,7 +32,7 @@
     text-align: center;
   }
   & a {
-    color: var(--secondaryColor);
+    color: var(--pinkUvibes);
     text-decoration: none;
     position: relative;
 

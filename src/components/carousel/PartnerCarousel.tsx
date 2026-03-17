@@ -38,7 +38,8 @@ export function PartnerCarousel() {
   }, []);
 
   return (
-    <section className="partner-carousel">
+    <section className="container-orange">
+    <div className="partner-carousel">
       <h2 className="title-h2-orange partner-carousel-title">
         Nos Partenaires
       </h2>
@@ -54,7 +55,9 @@ export function PartnerCarousel() {
         centeredSlides={true}
         slidesPerView={3}
         breakpoints={{
-          400: { slidesPerView: 3 },
+          320: { slidesPerView: 1.1 },
+          480: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
           1024: { slidesPerView: 3 },
         }}
       >
@@ -76,6 +79,7 @@ export function PartnerCarousel() {
       {/* If fetched logos are just a few, Swiper might bug with loop=true. 
           Usually usually needs at least slidesPerView * 2 slides. 
           For now assuming client will add enough or it just duplicates. */}
+    </div>
     </section>
   );
 }

@@ -26,7 +26,7 @@ export default function FunctOrganisation() {
       </h2>
 
       <article className="funct-orga-card">
-        <h3 className="title-text">Vous définissez</h3>
+        <h3 className="title-text">Vous définissez :</h3>
 
         <div className="funct-orga-section">
           <div
@@ -46,26 +46,12 @@ export default function FunctOrganisation() {
               Les thématiques abordées par votre collectif
             </p>
             {showThemes ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyItems: "center",
-                  alignItems: "center",
-                  gap: "4px",
-                }}
-              >
+              <div className="funct-orga-toggle">
                 <span className="text" style={{color: "var(--pinkUvibes)"}}>voir moins</span>
                 <ChevronUp size={24} style={{ color: "var(--mainColor)" }} />
               </div>
             ) : (
-              <div
-                style={{
-                  display: "flex",
-                  justifyItems: "center",
-                  alignItems: "center",
-                  gap: "4px",
-                }}
-              >
+              <div className="funct-orga-toggle">
                 <span className="text" style={{color: "var(--pinkUvibes)"}}>voir plus</span>
                 <ChevronDown size={24} style={{ color: "var(--mainColor)" }} />
               </div>

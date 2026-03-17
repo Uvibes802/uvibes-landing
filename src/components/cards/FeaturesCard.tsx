@@ -1,5 +1,6 @@
 "use client";
 
+import { getVideoUrl } from "@/utils/videoUrl";
 import { FeaturesData } from "@/data/features/featuresData";
 import { CircleCheckBig, CirclePlay, PauseCircle } from "lucide-react";
 import { useRef, useState } from "react";
@@ -66,11 +67,11 @@ export function FeaturesCard() {
               ref={(el) => {
                 videoRefs.current[feature.id] = el;
               }}
-              src={feature.video}
+              src={getVideoUrl(feature.video)}
               playsInline
               onPause={() => handlePause(feature.id)}
             >
-              <source src={feature.video} type="video/mp4" />
+              <source src={getVideoUrl(feature.video)} type="video/mp4" />
               <track
                 kind="captions"
                 src="/videos/test-temoignage.vtt"

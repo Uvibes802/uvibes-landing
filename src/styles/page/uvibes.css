@@ -1,16 +1,17 @@
 .uvibes-container {
-  padding: 0 calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
   & ul {
     padding-top: var(--spacing-ref);
   }
 }
 .uvibes-title {
-  padding: var(--spacing-ref) 0;
+  padding-bottom: var(--spacing-ref);
 }
 
 .uvibes-list {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: calc(var(--spacing-ref) / 2);
   list-style: none;
 }
@@ -20,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) 0;
 }
 
 .uvibes-eclatens-card {
@@ -29,25 +30,27 @@
   justify-content: center;
   align-items: center;
   gap: calc(var(--spacing-ref) * 0.5);
-  padding: var(--spacing-ref);
+  padding: calc(var(--spacing-ref) * 2);
   border-radius: var(--border-radius);
   border: 1px solid var(--mainColor);
-  width: 80%;
+  width: 100%;
+  max-width: 600px;
 }
 
 .uvibes-eclatens-logo {
-  width: 40%;
+  width: 180px;
   height: auto;
 }
 
 .uvibes-contact-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: var(--spacing-ref);
   background: var(--gradientColor-card);
-  padding: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
+  text-align: center;
 }
 
 .uvibes-contact-button-container {
@@ -55,8 +58,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: calc(var(--spacing-ref) * 2);
-  padding: calc(var(--spacing-ref) * 2);
+  gap: 1.5rem;
+  padding-top: 2rem;
   width: 100%;
 }
 .uvibes-contact-button {
@@ -68,50 +71,71 @@
   border: 1px solid var(--bckgColor);
   border-radius: calc(var(--border-radius) * 3);
   padding: var(--spacing-ref);
-  width: 15rem;
+  width: 100%;
+  max-width: 280px;
   cursor: pointer;
-  height: 3rem;
+  height: 3.5rem;
   font-family: var(--title-font);
-  font-size: calc(var(--font-size-ref) * 1);
+  font-size: calc(var(--font-size-ref) * 1.1);
   letter-spacing: var(--spacing-letter);
   text-decoration: none;
   transition: all 0.4s ease-in-out;
-  box-shadow: 0px 2px 2px 0px #0000006b;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
 }
 
 .uvibes-contact-button:hover {
   background: var(--bckgColor);
   color: var(--secondaryColor);
   border: 1px solid var(--bckgColor);
-  -webkit-text-fill-color: initial;
+  transform: translateY(-2px);
+}
+
+.uvibes-team-sub-section {
+  padding-top: calc(var(--section-padding-v) * 1.5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-ref);
+}
+
+.uvibes-outro-text {
+  padding-top: 1rem;
+}
+
+.uvibes-ethical-list {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {
-  .uvibes-container {
-    gap: calc(var(--spacing-ref) * 2);
-  }
-
-  .uvibes-title {
-    padding: calc(var(--spacing-ref) * 2) 0;
-  }
-
-  .uvibes-eclatens-card {
-    padding: calc(var(--spacing-ref) * 2);
-  }
-
   .uvibes-contact-container {
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: calc(var(--spacing-ref) * 2);
+    text-align: left;
   }
 
   .uvibes-contact-text {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     gap: var(--spacing-ref);
+  }
+
+  .uvibes-contact-button-container {
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding-top: 0;
+  }
+
+  .uvibes-contact-button {
+    width: auto;
+    padding: 0 2rem;
   }
 }

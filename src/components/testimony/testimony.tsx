@@ -11,7 +11,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export default function Testimony() {
   const testimonies = FetchTestimony();
   return (
-    <section className="testimony">
+    <section className="container-orange">
+    <div className="testimony">
       <h2 style={{ textAlign: "center" }}>Ils parlent de nous</h2>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
@@ -33,6 +34,7 @@ export default function Testimony() {
           </SwiperSlide>
         ))}
       </Swiper>
+    </div>
     </section>
   );
 }

@@ -9,9 +9,9 @@ import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
 import Resize from "@/services/resize/resize";
 import { DotIcon } from "lucide-react";
 import Image from "next/image";
-import logoUvibes from "../../../public/images/Logo VI blanc.png";
-import logoEclatense from "../../../public/images/LogoEclatens.png";
-import uvibesTeam from "../../../public/images/TeamUvibes.jpg";
+const logoUvibes = "/images/Logo VI blanc.png";
+const logoEclatense = "/images/LogoEclatens.png";
+const uvibesTeam = "/images/TeamUvibes.jpg";
 import "../../styles/page/uvibes.css";
 
 export default function uvibes() {
@@ -59,7 +59,7 @@ export default function uvibes() {
               <li className="text">Et à la richesse des visions nouvelles.</li>
             </div>
           </ul>
-          <p className="text" style={{ paddingTop: 10 }}>
+          <p className="text uvibes-intro-text">
             Au sein d’une université, d’une entreprise, ou de tout autre
             collectif, beaucoup aimeraient échanger ainsi, mais n’osent pas.{" "}
             <br />
@@ -71,28 +71,28 @@ export default function uvibes() {
             belles conversations.
           </p>
 
-          <section className="uvibes-container">
+          <section className="uvibes-team-sub-section">
             <h2 className="title-h2-orange uvibes-title">Sa concrétisation</h2>
             <TeamSection />
           </section>
           <h2 className="title-h2-orange uvibes-title">
             Notre engagement éthique
           </h2>
-          <ul style={{ paddingLeft: 20 }}>
-            <li className="text" style={{ paddingBottom: 5 }}>
+          <ul className="uvibes-ethical-list">
+            <li className="text">
               Un service digital respectueux, pensé pour la qualité des
               discussions, l’inclusion et la confidentialité des données.
             </li>
-            <li className="text" style={{ paddingBottom: 5 }}>
+            <li className="text">
               Une conduite de projet alignée avec nos valeurs, basée sur
               l’écoute, la collaboration, et la responsabilité environnementale.
             </li>
-            <li className="text" style={{ paddingBottom: 5 }}>
+            <li className="text">
               Des partenariats responsables, choisis pour leur transparence,
               leur impact positif et leur engagement sociétal.
             </li>
           </ul>
-          <p className="text" style={{ paddingTop: 5 }}>
+          <p className="text uvibes-outro-text">
             Explorez la rubrique « Uvibes » de notre blog pour en savoir plus
             sur nos principes éthiques et leur mise en œuvre concrète.
           </p>
@@ -117,6 +117,32 @@ export default function uvibes() {
             </article>
           </div>
         </section>
+         <section className="uvibes-contact-container">
+          <div className="uvibes-contact-text">
+            <h2 className="title-h2-white uvibes-title">
+              Rejoignez l&apos;aventure Uvibes
+            </h2>
+            <p className="text-white">
+              Prenez part à une dynamique qui réinvente nos façons d’interagir
+              en ouvrant notre esprit à des visions nouvelles
+            </p>
+          </div>
+          <div className="uvibes-contact-button-container">
+            <a
+              href="mailto:contact@uvibes.fr"
+              className="uvibes-contact-button"
+            >
+              Nous contacter
+            </a>
+            <a
+              href="mailto:contact@uvibes.fr"
+              className="uvibes-contact-button"
+            >
+              Devenir partenaire
+            </a>
+            <HelloAssoDon />
+          </div>
+        </section>
         <div
           style={{
             position: "relative",
@@ -135,33 +161,6 @@ export default function uvibes() {
             loading="lazy"
           />
         </div>
-
-        <section className="uvibes-contact-container">
-          <div className="uvibes-contact-text">
-            <h2 className="title-h2-white uvibes-title">
-              Rejoignez l&apos;aventure Uvibes
-            </h2>
-            <p className="text-white">
-              Prenez part à une dynamique qui réinvente nos façons d’interagir
-              en ouvrant notre esprit à des visions nouvelles
-            </p>
-          </div>
-          <div className="uvibes-contact-button-container">
-            <a
-              href="mailto:contactuvibes@gmail.com"
-              className="uvibes-contact-button"
-            >
-              Nous contacter
-            </a>
-            <a
-              href="mailto:contactuvibes@gmail.com"
-              className="uvibes-contact-button"
-            >
-              Devenir partenaire
-            </a>
-            <HelloAssoDon />
-          </div>
-        </section>
         <AppointmentSection />
       </main>
       <Footer />

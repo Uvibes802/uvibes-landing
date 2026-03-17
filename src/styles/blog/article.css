@@ -3,15 +3,18 @@
   & h1 {
     color: var(--mainColor);
     padding-bottom: calc(var(--spacing-ref) * 2);
+    font-weight: normal;
   }
 
   & h2 {
     color: var(--mainColor);
     padding-bottom: calc(var(--spacing-ref) * 2);
+    font-weight: normal;
   }
 
   & h3 {
     color: var(--mainColor);
+    font-weight: normal;
   }
 
   & img {
@@ -33,7 +36,7 @@
   font-size: calc(var(--font-size-h3) * 1.5);
   font-family: var(--title-font);
   padding-bottom: calc(var(--spacing-ref) * 2);
-  color: var(--pinkUvibes);
+  color: var(--mainColor);
 }
 
 .article-content {
