@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "En savoir plus sur Uvibes",
+  title: "Qui sommes nous ?",
   description:
-    "Découvrez toutes les informations sur Uvibes, rencontrez l'équipe et découvrez comment nous pouvons vous aider à atteindre vos objectifs",
+    "Un projet à impact sociétal porté par une association.",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

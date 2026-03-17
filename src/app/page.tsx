@@ -13,8 +13,8 @@ import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
 import InspirationSection from "@/components/section/inspirationSection";
 import WhyUvibes from "@/components/section/WhyUvibes";
 import Testimony from "@/components/testimony/testimony";
-const mockupHome = "/images/mochupHome.png";
 import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
+const mockupHome = "/images/mochupHome.png";
 
 import { sanitizeText } from "@/services/blog/sanitize";
 import { fetchHomeContent } from "@/services/home/fetchHomeContent";
@@ -24,7 +24,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [heroContent, setHeroContent] = useState({
     title: "(Re)Donnez vie à votre collectif",
-    description: "Progrès et mieux-être réunis grâce à l'innovation socio-digitale",
+    description: "",
   });
 
   useEffect(() => {
