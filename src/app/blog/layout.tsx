@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Le blog de Uvibes",
+  title: "Blog",
   description:
-    "Le blog de Uvibes pour se tenir informé et développer ses compétences",
+    "L’inattendu commence ici.",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

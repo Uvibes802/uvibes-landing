@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Les avantages de Uvibes",
+  title: "Les avantages",
   description:
-    "Uvibes, moteur d'une dynamique positive, répond aux objectifs de votre organisation tout en vous permettant de développer vos compétences",
+    "Une dynamique positive et des données stratégiques",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

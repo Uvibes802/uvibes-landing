@@ -15,10 +15,10 @@ const roboto = Roboto({
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Uvibes",
+  title: "Bienvenue sur Uvibes",
   description:
     //prettier-ignore
-    "L’outil numérique pour apprendre, progresser et renforcer le bien-être au sein des collectifs.",
+    "L’outil pour déclencher les conversations qui manquaient.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
