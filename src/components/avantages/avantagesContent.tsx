@@ -7,7 +7,7 @@ import {
   Home,
   School,
   Smile,
-  UsersIcon
+  UsersIcon,
 } from "lucide-react";
 import "../../styles/avantages/avantagesContent.css";
 import { DropdownButton } from "../button/DropdownButton";
@@ -26,8 +26,7 @@ export default function AvantagesContent() {
             <CircleGauge style={{ color: "var(--secondaryColor)" }} size={50} />
           }
           title="Performance : améliorer sa prise de décision et renforcer l’engagement"
-          stats="42% des employés admettent ne faire que le strict minimum (Etude 2023 Observatoire 
-						de la société et de la consommation)."
+          stats="En France, 93 % des salariés sont non engagés ou activement désengagés (Etude Gallup mars 2025)"
           content="Uvibes stimule la réflexion, offre une meilleure connaissance de son collectif et suscite l’adhésion collective"
         />
         <AvantagesCard

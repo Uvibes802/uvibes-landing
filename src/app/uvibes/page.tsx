@@ -9,10 +9,10 @@ import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
 import Resize from "@/services/resize/resize";
 import { DotIcon } from "lucide-react";
 import Image from "next/image";
+import "../../styles/page/uvibes.css";
 const logoUvibes = "/images/Logo VI blanc.png";
 const logoEclatense = "/images/LogoEclatens.png";
 const uvibesTeam = "/images/TeamUvibes.jpg";
-import "../../styles/page/uvibes.css";
 
 export default function uvibes() {
   const { isMobile } = Resize();
@@ -20,10 +20,11 @@ export default function uvibes() {
     <>
       <HeroBanner
         subtitle=""
-        title="Qui sommes-nous ?"
-        description="Découvrez l'histoire de Uvibes, notre vision et les personnes qui donnent vie à cette dynamique innovante de renouveau relationnel"
+        title={"Qui\u00A0donne vie \nà Uvibes ?"}
+        description="Découvrez les personnes et les idées qui font grandir Uvibes"
         image={logoUvibes}
         alt="Fonctionnalités de l'application"
+        className="uvibes-hero"
       />
       <nav>
         <FloatingMenu />
@@ -75,7 +76,7 @@ export default function uvibes() {
             <h2 className="title-h2-orange uvibes-title">Sa concrétisation</h2>
             <TeamSection />
           </section>
-          <h2 className="title-h2-orange uvibes-title">
+          <h2 className="title-h2-orange uvibes-title ethical-title">
             Notre engagement éthique
           </h2>
           <ul className="uvibes-ethical-list">
@@ -97,8 +98,8 @@ export default function uvibes() {
             sur nos principes éthiques et leur mise en œuvre concrète.
           </p>
         </section>
-        <section className="uvibes-container ">
-          <h2 className="title-h2-orange uvibes-title">Le portage du projet</h2>
+        <section className="uvibes-container uvibes-portage-section portage-section">
+          <h2 className="title-h2-orange uvibes-title portage-title">Le portage du projet</h2>
           <div className="uvibes-portage">
             <article className="uvibes-eclatens-card">
               <Image
@@ -117,7 +118,7 @@ export default function uvibes() {
             </article>
           </div>
         </section>
-         <section className="uvibes-contact-container">
+        <section className="uvibes-contact-container">
           <div className="uvibes-contact-text">
             <h2 className="title-h2-white uvibes-title">
               Rejoignez l&apos;aventure Uvibes

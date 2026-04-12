@@ -23,8 +23,8 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [heroContent, setHeroContent] = useState({
-    title: "(Re)Donnez vie à votre collectif",
-    description: "",
+    title: "Activez \nla puissance \nde votre collectif",
+    description: "Et si les conversations clés arrivaient enfin ? \nL’outil digital qui les déclenche, au bon moment",
   });
 
   useEffect(() => {
@@ -50,6 +50,7 @@ export default function Home() {
         description={heroContent.description}
         image={mockupHome}
         alt="visuel application"
+        className="home-hero"
       />
             
       <WhyUvibes />

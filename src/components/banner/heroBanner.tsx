@@ -15,16 +15,7 @@ export function HeroBanner({
 }: HeroBannerProps) {
   return (
     <header className={`hero-banner-wrapper ${className || ""}`}>
-      <figure>
-        <Image
-          src="/images/Vibration-white.svg"
-          alt={alt}
-          className="hero-vibration"
-          width={800}
-          height={900}
-          priority
-        />
-      </figure>
+
       <div className="hero-banner-container">
         <div className="hero-banner-header-top">
           <Link href="/" passHref>

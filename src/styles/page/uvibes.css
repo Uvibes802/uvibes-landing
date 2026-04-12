@@ -1,17 +1,21 @@
 .uvibes-container {
   padding: var(--section-padding-v) var(--section-padding-h);
+  text-align: center;
   & ul {
     padding-top: var(--spacing-ref);
   }
 }
+
 .uvibes-title {
   padding-bottom: var(--spacing-ref);
+  text-align: center;
 }
 
 .uvibes-list {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: calc(var(--spacing-ref) / 2);
   list-style: none;
 }
@@ -21,7 +25,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: var(--section-padding-v) 0;
+  padding: calc(var(--section-padding-v) / 2) 0;
 }
 
 .uvibes-eclatens-card {
@@ -102,11 +106,44 @@
   padding-top: 1rem;
 }
 
+.ethical-title {
+  padding-top: calc(var(--section-padding-v) * 1.5);
+}
+
 .uvibes-ethical-list {
-  padding-left: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  align-items: center;
+  padding-left: 0;
+  list-style: none;
+}
+
+.portage-section {
+    padding-top: calc(var(--section-padding-v) / 2);
+}
+
+.uvibes-team-sub-section .uvibes-teamSection-container {
+    text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+  .uvibes-team-sub-section {
+    padding-top: 2rem;
+  }
+
+  .ethical-title {
+    padding-top: 6rem;
+  }
+
+  .portage-section {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .uvibes-portage {
+    padding: 0.5rem 0;
+  }
 }
 
 @media screen and (min-width: 768px) {

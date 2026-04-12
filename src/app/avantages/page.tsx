@@ -1,6 +1,5 @@
 "use client";
 
-import { getVideoUrl } from "@/utils/videoUrl";
 import AvantagesContent from "@/components/avantages/avantagesContent";
 import AvantagesContentDesktop from "@/components/avantages/avantagesContentDesktop";
 import { HeroBanner } from "@/components/banner/heroBanner";
@@ -9,12 +8,13 @@ import Footer from "@/components/footer/Footer";
 import FloatingMenu from "@/components/menu/Menu";
 import { AppointmentSection } from "@/components/section/appointmentSection";
 import Resize from "@/services/resize/resize";
-import Link from "next/link";
+import { getVideoUrl } from "@/utils/videoUrl";
 import { Play } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { PopupButton } from "react-calendly";
-const mockupAvantages = "/images/MockupAvantage.png";
 import "../../styles/features/PricingTable.css";
+const mockupAvantages = "/images/MockupAvantage.png";
 
 export default function Avantages() {
   const { isMobile, mounted } = Resize();
@@ -41,21 +41,19 @@ export default function Avantages() {
     return null;
   }
 
-  
-
   return (
     <>
       <HeroBanner
         subtitle=""
-        title="Uvibes, moteur d'une dynamique positive"
-        description="À la clé, une source intarissable de données stratégiques"
+        title={"Des\u00A0conversations\ndevenues\nstratégiques"}
+        description="Transformez vos missions en actions concrètes et en données exploitables"
         image={mockupAvantages}
         alt="Fonctionnalités de l'application"
       />
       <nav>
         <FloatingMenu />
       </nav>
-      <main>
+      <main id="top">
         {isMobile ? <AvantagesContent /> : <AvantagesContentDesktop />}
         <div
           style={{
@@ -70,7 +68,11 @@ export default function Avantages() {
           <video
             ref={videoRef}
             key={isMobile ? "mobile" : "desktop"}
-            src={getVideoUrl(isMobile ? "/videos/avantage-mobile.mp4" : "/videos/avantage-desktop.mp4")}
+            src={getVideoUrl(
+              isMobile
+                ? "/videos/avantage-mobile.mp4"
+                : "/videos/avantage-desktop.mp4",
+            )}
             playsInline
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
@@ -103,23 +105,33 @@ export default function Avantages() {
               }}
               className="video-play-button"
             >
-              <Play fill="white" color="white" size={45} style={{ marginLeft: "6px" }} />
+              <Play
+                fill="white"
+                color="white"
+                size={45}
+                style={{ marginLeft: "6px" }}
+              />
             </div>
           )}
         </div>
-        <div className="cta-buttons" style={{ padding: "var(--section-padding-v) var(--section-padding-h)" }}>
-            {rootElement && (
-                <PopupButton
-                    url="https://calendly.com/uvibescommunication/30min"
-                    rootElement={rootElement}
-                    text="Prendre RDV"
-                    className="btn-cta secondary"
-                />
-            )}
-            <button  className="btn-cta primary">
-              <Link href="/#contact">NOUS CONTACTER</Link>
-            </button>
-          </div>
+        <div
+          className="cta-buttons"
+          style={{
+            padding: "var(--section-padding-v) var(--section-padding-h)",
+          }}
+        >
+          {rootElement && (
+            <PopupButton
+              url="https://calendly.com/uvibescommunication/30min"
+              rootElement={rootElement}
+              text="Prendre RDV"
+              className="btn-cta secondary"
+            />
+          )}
+          <Link href="/#contact" className="btn-cta primary">
+            NOUS CONTACTER
+          </Link>
+        </div>
         <PartnerBanner />
         <AppointmentSection />
         <Footer />

@@ -8,5 +8,17 @@ export const StyledFloatButton = styled(Fab)(({ theme }) => ({
   margin: 16,
   zIndex: 1000,
   backgroundColor: theme.palette.background.paper,
-  dropshadow: theme.shadows[4],
+  boxShadow: theme.shadows[4],
+  outline: "none",
+  WebkitTapHighlightColor: "transparent",
+  "&:hover": {
+    backgroundColor: theme.palette.background.paper,
+  },
+  "&:focus, &:active": {
+    outline: "none",
+    boxShadow: "none",
+  },
+  "& .MuiTouchRipple-root": {
+    display: "none", // Optional: completely remove ripple if that's what's "bizarre"
+  },
 }));
