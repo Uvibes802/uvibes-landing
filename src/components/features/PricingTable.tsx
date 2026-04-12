@@ -39,6 +39,7 @@ export default function PricingTable() {
   return (
     <div className="pricing-container">
       <PricingMobile />
+      <h2 className="pricing-title-desktop">Nos offres vibes</h2>
       <div className="pricing-top-section">
         <div className="cta-buttons">
           {rootElement && (

@@ -1,7 +1,9 @@
 .user-number-wrapper {
   background-image: var(--gradientColor-card);
   padding: var(--section-padding-v) 0;
-  justify-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 2rem;
   width: 100%;
 }
@@ -15,7 +17,6 @@
 }
 
 .user-number-card {
-
   & h2 {
     color: white;
     font-size: var(--font-size-h2);

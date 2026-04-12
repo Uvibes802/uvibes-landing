@@ -10,8 +10,8 @@ export default function BlogPage() {
     <>
       <HeroBanner
         subtitle=""
-        title="Explorez des contenus inspirants"
-        description="Une sélection d'actualités et de publications enrichissantes"
+        title={"Explorez\ndes\u00A0contenus\ninspirants"}
+        description="Pour enrichir vos échanges, vos idées et vos réflexions"
         image={mockupBlog}
         alt="Fonctionnalités de l'application"
         className="blog-hero"

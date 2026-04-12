@@ -5,17 +5,19 @@ import { StyledBottomNavigation } from "@/styles/menu/StyledBottomNavigation";
 import { StyledFloatButton } from "@/styles/menu/styledFloatingMenu";
 import { AlignJustify, X } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Items } from "../../data/menu/MenuData";
 import "../../styles/menu/Menu.css";
 import MenuList from "./MenuList";
 
 export default function Menu() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
-  const {isDesktop} = Resize();
+  const { isDesktop } = Resize();
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -49,13 +51,19 @@ export default function Menu() {
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#contact");
     }
   };
 
   return (
     <>
       <div className="floating-menu-container">
-        <div style={{ cursor: "pointer" }} onClick={scrollToContact} className="megaphone-container" >
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={scrollToContact}
+          className="megaphone-container"
+        >
           <Image
             src={
               isDesktop
@@ -86,7 +94,6 @@ export default function Menu() {
           <MenuList className="menu-items" />
         </nav>
       )}
-
 
       <div
         className="bottom-nav-wrapper"
@@ -132,9 +139,7 @@ export default function Menu() {
             alignItems: "center",
             justifyContent: "center",
             transform:
-              isActive && !isAtBottom
-                ? "translateX(0px)"
-                : "translateY(200px)", // Changed from 1000px to translateY for safety
+              isActive && !isAtBottom ? "translateX(0px)" : "translateY(200px)", // Changed from 1000px to translateY for safety
             opacity: isActive && !isAtBottom ? 1 : 0,
             transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out",
           }}

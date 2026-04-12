@@ -8,7 +8,7 @@ import {
   Home,
   School,
   Smile,
-  UsersIcon
+  UsersIcon,
 } from "lucide-react";
 import { useState } from "react";
 import AvantagesCard from "../cards/avantagesCard";
@@ -16,7 +16,7 @@ import LastAvantagesCard from "../cards/LastAvantagesCard";
 
 export default function AvantagesContentDesktop() {
   const [openTab, setOpenTab] = useState<"entreprise" | "ecole" | "collectif">(
-    "entreprise"
+    "entreprise",
   );
 
   return (

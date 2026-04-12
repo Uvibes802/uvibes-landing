@@ -15,10 +15,8 @@ export default function FeaturesPage() {
       <main>
         <HeroBanner
           subtitle=""
-          title="Uvibes transforme le quotidien des échanges"
-          description="Au sein de tous les collectifs : étudiants,
-          salariés, seniors, voisins, demandeurs d’emploi, parents isolés, aidants familiaux, personnes en
-          parcours de soin ..."
+          title={"Des\u00A0conversations \nqui font avancer \nvotre collectif"}
+          description="Découvrez nos fonctionnalités et choisissez l’offre adaptée à vos besoins"
           image={mockupFeature}
           alt="Fonctionnalités de l'application"
         />

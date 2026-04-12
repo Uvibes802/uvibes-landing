@@ -10,8 +10,8 @@ export async function fetchHomeContent() {
   const titleTagId = titleTags[0]?.id;
   const subtitleTagId = subtitleTags[0]?.id;
 
-  let title = "(Re)Donnez vie à votre collectif";
-  let description = "La première innovation socio-digitale";
+  let title = "Activez \nla puissance \nde votre collectif";
+  let description = "Et si les conversations clés arrivaient enfin ? \nL’outil digital qui les déclenche, au bon moment";
 
   if (titleTagId) {
     const postsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/posts?tags=${titleTagId}&per_page=1`);

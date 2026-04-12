@@ -1,6 +1,8 @@
 .hero-banner-wrapper {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
   background: var(--gradientColor-card);
@@ -40,6 +42,10 @@
   gap: 1.5rem;
 }
 
+.title-h1, .title-text-light {
+  white-space: pre-line;
+}
+
 .hero-banner-image-container {
   width: 100%;
   margin: 0 auto;
@@ -57,13 +63,7 @@
 }
 
 .hero-vibration {
-  position: absolute;
-  top: -50px;
-  left: -50px;
-  width: 750px;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 1;
+  display: none;
 }
 
 .hero-vibration-right {
@@ -112,14 +112,7 @@
 
 @media screen and (max-width: 768px) {
   .hero-vibration {
-    position: absolute;
-    top: -300px;
-    left: -50px;
-    width: 450px;
-    rotate: 180deg; 
-    opacity: 0.7;
-    pointer-events: none;
-    z-index: 1;
+    display: none;
   }
 }
 
@@ -128,10 +121,10 @@
     min-height: 100dvh;
   }
   .hero-banner-container {
-    padding-top: 8rem;
+    padding-top: 2rem;
     min-height: 100dvh;
-    gap: 2rem;
-    justify-content: flex-start;
+    gap: 1.5rem;
+    justify-content: center;
     align-items: center;
   }
 
@@ -142,10 +135,11 @@
   }
 
   .hero-banner-header-top {
-    position: absolute;
-    top: 4rem;
-    left: 2rem;
-    padding-top: 0;
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .hero-banner-content h1,
@@ -155,6 +149,7 @@
   .hero-banner-content .title-text,
   .hero-banner-content .title-text-light {
     text-align: center !important;
+    white-space: pre-line;
   }
 
   .hero-banner-content h1 {
@@ -168,32 +163,36 @@
 
   .logo_mobile {
     width: 50px;
-    transform: translateX(20px);
+  }
+
+  .home-hero .hero-banner-image {
+    max-width: 70%;
+  }
+
+  .blog-hero .hero-banner-image {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0%;
+  }
+
+  .blog-hero .hero-mobile-only {
+    padding-top: 0;
+    margin-top: -2rem;
+  }
+
+  .home-hero .hero-banner-container {
+    padding-top: 4rem;
   }
 
   .hero-vibration {
-    position: absolute;
-    top: -300px;
-    left: -50px;
-    width: 450px;
-    rotate: 180deg; 
-    opacity: 0.7;
-    pointer-events: none;
-    z-index: 1;
+    display: none;
   }
 
 }
 
 @media screen and (max-width: 320px) {
   .hero-vibration {
-    position: absolute;
-    top: -300px;
-    rotate: 180deg;
-    left: -50px;
-    width: 350px;
-    opacity: 0.7;
-    pointer-events: none;
-    z-index: 0;
+    display: none;
   }
 
     .hero-vibration-right {
@@ -211,28 +210,36 @@
     margin: 0;
     position: relative;
     z-index: 10;
-    gap: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    padding-top: 2rem; /* Reference position for logo, image and button */
   }
 
   .hero-banner-header-top {
-    padding-top: 6rem;
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 0;
+    z-index: 20;
   }
 
   .hero-banner-body {
-    flex-direction: row;
-    align-items: center;
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
     gap: var(--spacing-ref);
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-between;
   }
 
+
   .hero-banner-content {
-    width: 50%;
+    grid-column: 1;
     padding: 0;
-    justify-content: center;
+    padding-top: 8rem; /* Space to avoid covering the logo on desktop grid */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .hero-banner-content .title-h1 {
@@ -244,15 +251,8 @@
     font-size: clamp(1.4rem, 1.8vw, 2.2rem);
   }
 
-   .hero-vibration {
-    position: absolute;
-    top: -200px;
-    left: -100px;
-    rotate: 180deg;
-    width: 800px;
-    opacity: 0.7;
-    pointer-events: none;
-    z-index: 1;
+  .hero-vibration {
+    display: none;
   }
 
   .hero-vibration-right {
@@ -266,12 +266,19 @@
   }
 
   .hero-banner-image-container {
+    grid-column: 2;
+    grid-row: 1 / span 2;
     position: relative;
-    left: auto;
-    bottom: auto;
-    transform: none;
-    width: 80%;
+    width: 100%;
+    display: flex;
     justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 4rem;
+  }
+
+  .blog-hero .hero-banner-image-container {
+    padding-top: 0rem;
+    margin-top: -3rem;
   }
 
   .logo_mobile {
@@ -282,7 +289,6 @@
     display: block;
     width: 240px;
     height: auto;
-    padding-top: 6rem;
   }
   .hero-mobile-only {
     display: none;
@@ -297,15 +303,27 @@
   }
 
   .hero-banner-image-desktop {
-    width: 800px;
-    max-height: 650px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    max-height: 85vh;
     object-fit: contain;
     overflow: hidden;
     z-index: 10;
   }
 
   .blog-hero .hero-banner-image-desktop {
-    width: 1200px;
-    max-height: 900px;
+    width: 1400px;
+    max-width: none;
+    max-height: 1000px;
+  }
+
+  .uvibes-hero .hero-banner-image-desktop {
+    width: 900px;
+    max-height: 500px;
+  }
+
+  .uvibes-hero .hero-banner-content {
+    padding-top: 14rem;
   }
 }
