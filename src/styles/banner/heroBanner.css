@@ -188,6 +188,11 @@
     display: none;
   }
 
+  /* Specific padding for Avantages and Features pages on mobile */
+  .avantages-hero .hero-banner-container,
+  .features-hero .hero-banner-container {
+    padding-top: 4rem;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -325,5 +330,16 @@
 
   .uvibes-hero .hero-banner-content {
     padding-top: 14rem;
+  }
+
+  /* Specific padding for Avantages and Features pages on desktop */
+  .avantages-hero .hero-banner-content,
+  .features-hero .hero-banner-content {
+    padding-top: 12rem;
+  }
+
+  .avantages-hero .hero-banner-image-container,
+  .features-hero .hero-banner-image-container {
+    padding-top: 8rem;
   }
 }
