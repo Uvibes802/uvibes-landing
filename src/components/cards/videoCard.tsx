@@ -1,5 +1,5 @@
-import { getVideoUrl } from "@/utils/videoUrl";
 import Resize from "@/services/resize/resize";
+import { getVideoUrl } from "@/utils/videoUrl";
 import { ReactNode } from "react";
 
 export default function VideoCard({

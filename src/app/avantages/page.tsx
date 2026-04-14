@@ -67,6 +67,7 @@ export default function Avantages() {
         >
           <video
             ref={videoRef}
+            controls
             key={isMobile ? "mobile" : "desktop"}
             src={getVideoUrl(
               isMobile
