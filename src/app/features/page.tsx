@@ -19,6 +19,7 @@ export default function FeaturesPage() {
           description="Découvrez nos fonctionnalités et choisissez l’offre adaptée à vos besoins"
           image={mockupFeature}
           alt="Fonctionnalités de l'application"
+          className="features-hero"
         />
         <nav>
           <FloatingMenu />

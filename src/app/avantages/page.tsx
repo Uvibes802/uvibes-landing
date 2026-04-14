@@ -49,6 +49,7 @@ export default function Avantages() {
         description="Transformez vos missions en actions concrètes et en données exploitables"
         image={mockupAvantages}
         alt="Fonctionnalités de l'application"
+        className="avantages-hero"
       />
       <nav>
         <FloatingMenu />
