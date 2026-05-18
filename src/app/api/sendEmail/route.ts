@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Rate limiting : max 5 requêtes par minute par IP pour éviter le spam
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT = 5;
 const WINDOW_MS = 60 * 1000;
@@ -9,6 +10,7 @@ function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const entry = rateLimitMap.get(ip);
 
+  // Première requête ou fenêtre expirée : on repart de zéro
   if (!entry || now > entry.resetTime) {
     rateLimitMap.set(ip, { count: 1, resetTime: now + WINDOW_MS });
     return true;
@@ -32,6 +34,7 @@ export async function POST(req: Request) {
   const { lastname, firstname, email, message, newsletter, share } =
     await req.json();
 
+  // Authentification Gmail via OAuth2 — credentials dans .env.local
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

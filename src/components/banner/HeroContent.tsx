@@ -1,5 +1,6 @@
 "use client";
 
+// Applique la sanitisation côté client (DOMPurify nécessite le DOM du navigateur)
 import { sanitizeText } from "@/services/blog/sanitize";
 import { HeroBanner } from "./heroBanner";
 
