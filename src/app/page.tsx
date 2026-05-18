@@ -17,7 +17,7 @@ const mockupHome = "/images/mochupHome.png";
 
 import { fetchHomeContent } from "@/services/home/fetchHomeContent";
 
-
+// Server Component — le fetch WordPress se fait côté serveur, le HTML est pré-rempli pour le SEO
 export default async function Home() {
   const { title, description } = await fetchHomeContent();
 
