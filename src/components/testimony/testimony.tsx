@@ -1,3 +1,5 @@
+"use client";
+
 import FetchTestimony from "@/services/testimony/testimony";
 import "@/styles/testimony/testimony.css";
 import TestimonyCard from "../cards/testimonyCard";

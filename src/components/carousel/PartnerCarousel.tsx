@@ -1,3 +1,5 @@
+"use client";
+
 import { fetchPartners, PartnerLogo } from "@/services/home/fetchPartners";
 import Image from "next/image";
 import { useEffect, useState } from "react";

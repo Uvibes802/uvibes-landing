@@ -1,5 +1,4 @@
-"use client";
-import { HeroBanner } from "@/components/banner/heroBanner";
+import HeroContent from "@/components/banner/HeroContent";
 import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/Footer";
 import FloatingMenu from "@/components/menu/Menu";
@@ -16,41 +15,18 @@ import Testimony from "@/components/testimony/testimony";
 import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
 const mockupHome = "/images/mochupHome.png";
 
-import { sanitizeText } from "@/services/blog/sanitize";
 import { fetchHomeContent } from "@/services/home/fetchHomeContent";
-import { useEffect, useState } from "react";
 
 
-export default function Home() {
-  const [heroContent, setHeroContent] = useState({
-    title: "Activez \nla puissance \nde votre collectif",
-    description: "Et si les conversations clés arrivaient enfin ? \nL’outil digital qui les déclenche, au bon moment",
-  });
-
-  useEffect(() => {
-    const loadContent = async () => {
-      try {
-        const { title, description } = await fetchHomeContent();
-        setHeroContent({
-          title: sanitizeText(title),
-          description: sanitizeText(description),
-        });
-      } catch (error) {
-        console.error("Failed to load home content", error);
-      }
-    };
-    loadContent();
-  }, []);
+export default async function Home() {
+  const { title, description } = await fetchHomeContent();
 
   return (
     <main>
-      <HeroBanner
-        subtitle=""
-        title={heroContent.title}
-        description={heroContent.description}
+      <HeroContent
+        title={title}
+        description={description}
         image={mockupHome}
-        alt="visuel application"
-        className="home-hero"
       />
             
       <WhyUvibes />

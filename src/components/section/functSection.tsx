@@ -1,3 +1,5 @@
+"use client";
+
 import { BookOpenText, MessagesSquare, SmilePlus } from "lucide-react";
 import "../../styles/section/functSection.css";
 import FunctCards from "../cards/functCards";

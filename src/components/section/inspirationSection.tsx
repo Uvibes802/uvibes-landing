@@ -1,3 +1,5 @@
+"use client";
+
 import FetchCitation from "@/services/citation/citation";
 import Link from "next/link";
 import "../../styles/section/inspirationSection.css";

@@ -1,3 +1,5 @@
+"use client";
+
 import { fetchFeaturedArticles } from "@/services/blog/featuredArticles";
 import { getExcerpt } from "@/services/blog/getExcerpt";
 import { sanitizeText } from "@/services/blog/sanitize";

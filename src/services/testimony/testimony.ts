@@ -1,3 +1,5 @@
+"use client";
+
 import { TestimonyCardProps } from "@/components/cards/testimonyCard";
 import { useEffect, useState } from "react";
 import { fetchPostsByTagSlug } from "../blog/article";

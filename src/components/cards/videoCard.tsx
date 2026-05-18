@@ -1,3 +1,5 @@
+"use client";
+
 import Resize from "@/services/resize/resize";
 import { getVideoUrl } from "@/utils/videoUrl";
 import { ReactNode } from "react";

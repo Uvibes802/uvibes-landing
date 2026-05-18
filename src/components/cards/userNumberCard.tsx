@@ -1,3 +1,5 @@
+"use client";
+
 import FetchCitation from "@/services/citation/citation";
 import "../../styles/cards/userNumberCard.css";
 
