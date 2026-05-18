@@ -12,8 +12,6 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Bienvenue sur Uvibes",
   description:
