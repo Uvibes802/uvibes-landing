@@ -23,13 +23,26 @@ export default function AdminPage() {
     checkStatus();
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "uvibes-admin-maintenance") {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/maintenance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password, maintenanceMode: false }),
+      });
+      if (res.ok) {
         setIsAuthenticated(true);
         setMessage("");
-    } else {
+        await checkStatus();
+      } else {
         setMessage("Mot de passe incorrect");
+      }
+    } catch {
+      setMessage("Erreur de connexion");
+    } finally {
+      setLoading(false);
     }
   };
 

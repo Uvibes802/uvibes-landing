@@ -1,7 +1,7 @@
 import { getMaintenanceStatus, setMaintenanceStatus } from "@/lib/maintenanceState";
 import { NextResponse } from "next/server";
 
-const ADMIN_PASSWORD = "uvibes-admin-maintenance"; // Simple hardcoded password
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 export async function GET() {
   const status = getMaintenanceStatus();
