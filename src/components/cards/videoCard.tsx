@@ -2,7 +2,7 @@
 
 import Resize from "@/services/resize/resize";
 import { getVideoUrl } from "@/utils/videoUrl";
-import { ReactNode } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 
 export default function VideoCard({
   videoSrcDdesktop,
@@ -16,8 +16,30 @@ export default function VideoCard({
   paddingTop?: string;
 }) {
   const { isMobile } = Resize();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Contrôle si la vidéo a été chargée — reste false tant qu'elle n'est pas visible
+  const [isVisible, setIsVisible] = useState(false);
 
   const currentVideoSrc = isMobile ? videoSrcMobile : videoSrcDdesktop;
+
+  // Intersection Observer : déclenche le chargement quand la vidéo entre dans le viewport
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Plus besoin d'observer une fois chargée
+        }
+      },
+      { rootMargin: "200px" } // Commence à charger 200px avant que la vidéo soit visible
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
@@ -36,7 +58,8 @@ export default function VideoCard({
         {title}
       </h2>
       <video
-        src={getVideoUrl(currentVideoSrc)}
+        ref={videoRef}
+        src={isVisible ? getVideoUrl(currentVideoSrc) : undefined}
         muted
         autoPlay
         loop
@@ -49,7 +72,7 @@ export default function VideoCard({
           borderRadius: 8,
           boxShadow: `0px 0px 0 ${isMobile ? "8px" : "18px"} #00AFDD`,
         }}
-      ></video>
+      />
     </div>
   );
 }
