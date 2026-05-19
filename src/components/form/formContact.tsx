@@ -1,12 +1,11 @@
 "use client";
 
-import Button from "../button/Button";
-import Input from "../input/Input";
-
 import type { FormData } from "@/types/form/form";
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import "../../styles/form/formContact.css";
+import Button from "../button/Button";
+import Input from "../input/Input";
 
 export default function FormContact() {
   const {
@@ -15,24 +14,32 @@ export default function FormContact() {
     reset,
     formState: { errors },
   } = useForm<FormData>();
-  const [isValid, setIsValid] = useState(false);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
   const onSubmitHandler: SubmitHandler<FormData> = async (data) => {
+    setIsSubmitting(true);
+    setSubmitError(false);
+    setSubmitSuccess(false);
     try {
       const response = await fetch("api/sendEmail", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (response.ok) {
         reset();
-        setTimeout(() => {
-          setIsValid(true);
-        }, 1000);
+        setSubmitSuccess(true);
+      } else {
+        setSubmitError(true);
       }
     } catch (error) {
+      setSubmitError(true);
       console.error("Erreur lors de l'envoi de l'email:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -44,31 +51,42 @@ export default function FormContact() {
           type="text"
           placeholder="Nom"
           htmlFor="lastname"
-          {...register("lastname", { required: true })}
+          {...register("lastname", { required: "Le nom est requis" })}
         />
+        {errors.lastname && (
+          <p className="form-error">{errors.lastname.message}</p>
+        )}
         <Input
           label="Prénom"
           type="text"
           placeholder="Prénom"
           htmlFor="firstname"
-          {...register("firstname", { required: true })}
+          {...register("firstname", { required: "Le prénom est requis" })}
         />
+        {errors.firstname && (
+          <p className="form-error">{errors.firstname.message}</p>
+        )}
       </fieldset>
       <Input
         label="Email"
         htmlFor="email"
         type="email"
         placeholder="Email"
-        {...register("email", { required: true })}
+        {...register("email", { required: "L'email est requis" })}
       />
+      {errors.email && (
+        <p className="form-error">{errors.email.message}</p>
+      )}
       <Input
         label="Message"
         type="textarea"
         placeholder="Votre message"
-        {...register("message", { required: true })}
         htmlFor="message"
+        {...register("message", { required: "Le message est requis" })}
       />
-      {isValid && <p>Message envoyé avec succès</p>}
+      {errors.message && (
+        <p className="form-error">{errors.message.message}</p>
+      )}
       <div className="checkbox-container">
         <label className="checkbox-label">
           Je souhaite partager mes informations avec Uvibes
@@ -80,13 +98,20 @@ export default function FormContact() {
         </label>
       </div>
       <div className="button-container">
-        <Button title="Envoyer" type="submit" />
+        <Button
+          title={isSubmitting ? "Envoi en cours..." : "Envoyer"}
+          type="submit"
+          disabled={isSubmitting}
+        />
       </div>
-
-      {errors.lastname && <p>Nom est requis</p>}
-      {errors.firstname && <p>Prénom est requis</p>}
-      {errors.email && <p>Email est requis</p>}
-      {errors.message && <p>Message est requis</p>}
+      {submitSuccess && (
+        <p className="form-success">Message envoyé avec succès !</p>
+      )}
+      {submitError && (
+        <p className="form-error">
+          Une erreur est survenue, veuillez réessayer.
+        </p>
+      )}
     </form>
   );
 }
