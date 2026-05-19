@@ -1,26 +1,50 @@
-"use client";
-
 import { HeroBanner } from "@/components/banner/heroBanner";
 import Footer from "@/components/footer/Footer";
+import JsonLd from "@/components/JsonLd";
 import FloatingMenu from "@/components/menu/Menu";
 import { AppointmentSection } from "@/components/section/appointmentSection";
 import TeamSection from "@/components/section/TeamSection";
 import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
-import Resize from "@/services/resize/resize";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
 import { DotIcon } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import "../../styles/page/uvibes.css";
+
+export const metadata: Metadata = buildMetadata("uvibes");
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Uvibes",
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/Logo UVIBES.png`,
+  description:
+    "Uvibes est une innovation socio-digitale qui active les conversations positives au sein des collectifs pour renforcer le lien social, le bien-être et l'engagement humain.",
+  foundingDate: "2022",
+  sameAs: [
+    "https://www.linkedin.com/company/uvibes",
+    "https://www.instagram.com/uvibes_app",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "contact@uvibes.fr",
+    contactType: "customer service",
+    availableLanguage: "French",
+  },
+};
+
 const logoUvibes = "/images/Logo VI blanc.png";
 const logoEclatense = "/images/LogoEclatens.png";
 const uvibesTeam = "/images/TeamUvibes.jpg";
 
-export default function uvibes() {
-  const { isMobile } = Resize();
+export default function Uvibes() {
   return (
     <>
+      <JsonLd data={organizationJsonLd} />
       <HeroBanner
         subtitle=""
-        title={"Qui\u00A0donne vie \nà Uvibes ?"}
+        title={"Qui donne vie \nà Uvibes ?"}
         description="Découvrez les personnes et les idées qui font grandir Uvibes"
         image={logoUvibes}
         alt="Fonctionnalités de l'application"
@@ -32,7 +56,7 @@ export default function uvibes() {
       <main>
         <section className="uvibes-aboutUs uvibes-container">
           <h2 className="title-h2-orange uvibes-title">
-            La naissance de l’idée
+            La naissance de l&apos;idée
           </h2>
           <p className="text">
             Et si on se parlait vraiment ? <br />
@@ -41,7 +65,7 @@ export default function uvibes() {
             relations est le premier facteur de bonheur (Vaillant, 2002). Sur
             les réseaux sociaux traditionnels, les algorithmes nous relient à
             ceux qui pensent comme nous. Dans la vraie vie, on reste entre
-            groupes familiers, on commente plus qu’on ne dialogue, et petit à
+            groupes familiers, on commente plus qu&apos;on ne dialogue, et petit à
             petit... on perd la richesse de la diversité humaine. <br />
             <br />
             Chez Uvibes, nous croyons à :
@@ -61,14 +85,14 @@ export default function uvibes() {
             </div>
           </ul>
           <p className="text uvibes-intro-text">
-            Au sein d’une université, d’une entreprise, ou de tout autre
-            collectif, beaucoup aimeraient échanger ainsi, mais n’osent pas.{" "}
+            Au sein d&apos;une université, d&apos;une entreprise, ou de tout autre
+            collectif, beaucoup aimeraient échanger ainsi, mais n&apos;osent pas.{" "}
             <br />
             Uvibes facilite ces rencontres inattendues, par un jeu de questions
             ouvertes et positives.
             <br />
             <br />
-            Parce que c’est en allant vers l’inconnu que naissent les plus
+            Parce que c&apos;est en allant vers l&apos;inconnu que naissent les plus
             belles conversations.
           </p>
 
@@ -82,11 +106,11 @@ export default function uvibes() {
           <ul className="uvibes-ethical-list">
             <li className="text">
               Un service digital respectueux, pensé pour la qualité des
-              discussions, l’inclusion et la confidentialité des données.
+              discussions, l&apos;inclusion et la confidentialité des données.
             </li>
             <li className="text">
               Une conduite de projet alignée avec nos valeurs, basée sur
-              l’écoute, la collaboration, et la responsabilité environnementale.
+              l&apos;écoute, la collaboration, et la responsabilité environnementale.
             </li>
             <li className="text">
               Des partenariats responsables, choisis pour leur transparence,
@@ -104,7 +128,7 @@ export default function uvibes() {
             <article className="uvibes-eclatens-card">
               <Image
                 src={logoEclatense}
-                alt="team-staff"
+                alt="Logo de l'association Éclatens, porteuse du projet Uvibes"
                 width={500}
                 height={500}
                 className="uvibes-eclatens-logo"
@@ -112,7 +136,7 @@ export default function uvibes() {
               <h3 className="title-h3 uvibes-title">Un modèle non lucratif</h3>
               <p className="text">
                 Tous les bénéfices générés par Uvibes sont réinvestis dans le
-                projet ou dans d’autres initiatives portées par
+                projet ou dans d&apos;autres initiatives portées par
                 l&apos;association
               </p>
             </article>
@@ -124,7 +148,7 @@ export default function uvibes() {
               Rejoignez l&apos;aventure Uvibes
             </h2>
             <p className="text-white">
-              Prenez part à une dynamique qui réinvente nos façons d’interagir
+              Prenez part à une dynamique qui réinvente nos façons d&apos;interagir
               en ouvrant notre esprit à des visions nouvelles
             </p>
           </div>
@@ -144,16 +168,10 @@ export default function uvibes() {
             <HelloAssoDon />
           </div>
         </section>
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: isMobile ? "30dvh" : "60vh",
-          }}
-        >
+        <div className="uvibes-team-image">
           <Image
-            src={isMobile ? uvibesTeam : uvibesTeam}
-            alt="visuel équipe Uvibes"
+            src={uvibesTeam}
+            alt="L'équipe Uvibes réunie"
             fill
             style={{
               objectFit: "cover",

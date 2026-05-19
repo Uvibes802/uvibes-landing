@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/banner/partnerBanner.css";
 
 import PartnerGroup from "./PartnerGroup";

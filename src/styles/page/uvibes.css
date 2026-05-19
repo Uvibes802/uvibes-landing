@@ -127,7 +127,17 @@
     text-align: left;
 }
 
+.uvibes-team-image {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+}
+
 @media screen and (max-width: 768px) {
+  .uvibes-team-image {
+    height: 30dvh;
+  }
+
   .uvibes-team-sub-section {
     padding-top: 2rem;
   }

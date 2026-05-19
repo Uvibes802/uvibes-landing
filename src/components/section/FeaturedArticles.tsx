@@ -70,7 +70,7 @@ export default function FeaturedArticles() {
                 <p><strong>{article.acf.auteur_custom}</strong></p>
             )}
             <p>{article.date.toLocaleDateString()}</p>
-            <Link href={`/blog/${article.slug}`}>Lire la suite</Link>
+            <Link href={`/blog/${article.slug}`}>{`Lire l'article : ${article.title.rendered}`}</Link>
           </div>
         </article>
       ))}
