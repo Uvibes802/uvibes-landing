@@ -59,11 +59,16 @@ export default function Menu() {
   return (
     <>
       <div className="floating-menu-container">
+        {/* Bouton "Nous Contacter" — role+tabIndex+onKeyDown pour la navigation clavier */}
         <div
+          role="button"
+          tabIndex={0}
           style={{ cursor: "pointer" }}
           onClick={scrollToContact}
+          onKeyDown={(e) => e.key === "Enter" && scrollToContact()}
           className="megaphone-container"
         >
+          {/* alt vide : le texte visible "Nous Contacter" suffit pour les lecteurs d'écran */}
           <Image
             src={
               isDesktop
@@ -72,13 +77,15 @@ export default function Menu() {
             }
             width={40}
             height={40}
-            alt="Fonctionnalités de l'application"
+            alt=""
           />
           {isDesktop && <p>Nous Contacter</p>}
         </div>
+        {/* aria-label dynamique : indique l'état ouvert/fermé aux lecteurs d'écran */}
         <StyledFloatButton
           onClick={handleClick}
           onKeyDown={(e) => e.key === "Enter" && handleClick()}
+          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           style={{ position: "static", margin: -10 }}
         >
           {isOpen ? (
@@ -89,8 +96,9 @@ export default function Menu() {
         </StyledFloatButton>
       </div>
 
+      {/* aria-label nécessaire si plusieurs <nav> sur la page — distingue ce menu des autres */}
       {isOpen && (
-        <nav className="menu-items-container">
+        <nav aria-label="Navigation principale" className="menu-items-container">
           <MenuList className="menu-items" />
         </nav>
       )}
