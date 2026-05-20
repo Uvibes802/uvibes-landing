@@ -1,3 +1,11 @@
+/* Animation flottante — organique, 3 points avec légère rotation */
+@keyframes hero-float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  30%  { transform: translateY(-14px) rotate(-0.6deg); }
+  60%  { transform: translateY(-7px) rotate(0.4deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
 .hero-banner-wrapper {
   width: 100%;
   min-height: 100vh;
@@ -374,6 +382,7 @@
     object-fit: contain;
     overflow: hidden;
     z-index: 10;
+    animation: hero-float 7s ease-in-out infinite;
   }
 
   .blog-hero .hero-banner-image-desktop {
