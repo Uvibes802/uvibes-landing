@@ -300,7 +300,7 @@
   .hero-banner-content {
     grid-column: 1;
     padding: 0;
-    padding-top: 5rem; /* Réduit depuis 8rem — le logo est masqué, la navbar prend 64px */
+    padding-top: 8rem; /* Espace pour le logo hero (menu en bas, plus de top navbar) */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;

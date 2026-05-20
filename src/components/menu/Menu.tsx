@@ -1,10 +1,10 @@
 "use client";
-import Resize from "@/services/resize/resize";
-import { AlignJustify, X } from "lucide-react";
+
+import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PopupButton } from "react-calendly";
 import { Items } from "../../data/menu/MenuData";
 import "../../styles/menu/Menu.css";
@@ -12,147 +12,94 @@ import "../../styles/menu/Menu.css";
 const navItems = Items.filter((item) => item.id !== 6 && item.id !== 7);
 
 export default function Menu() {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
-  const { isDesktop } = Resize();
+  const [isDark, setIsDark] = useState(false);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     setIsClient(true);
+    const saved = localStorage.getItem("uvibes-theme");
+    if (saved === "dark") {
+      setIsDark(true);
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
   }, []);
+
+  const updateIndicator = useCallback(() => {
+    const activeIndex = navItems.findIndex((item) => item.link === pathname);
+    const el = activeIndex >= 0 ? itemRefs.current[activeIndex] : null;
+    if (el) {
+      setIndicator({ left: el.offsetLeft, width: el.offsetWidth, opacity: 1 });
+    } else {
+      setIndicator((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [pathname]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [updateIndicator]);
 
-  const scrollToContact = () => {
-    const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      router.push("/#contact");
-    }
-    setIsOpen(false);
+  const toggleDark = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.setAttribute("data-theme", next ? "dark" : "light");
+    localStorage.setItem("uvibes-theme", next ? "dark" : "light");
   };
 
   return (
-    <>
-      <nav
-        className={`site-navbar${scrolled ? " site-navbar--scrolled" : ""}`}
-        aria-label="Navigation principale"
-      >
-        <Link href="/" className="navbar-logo" aria-label="Accueil Uvibes">
-          <Image
-            src={scrolled || !isDesktop ? "/images/Logo UVIBES.png" : "/images/Logo VI blanc.png"}
-            alt="Uvibes"
-            width={120}
-            height={40}
-            style={{ height: "auto", width: "auto", maxHeight: "36px" }}
-            priority
-          />
-        </Link>
+    <div className="bottom-menu-wrapper">
 
-        {isDesktop && (
-          <div className="navbar-links">
-            {navItems.map((item) => (
-              <Link key={item.id} href={item.link} className="navbar-link">
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        )}
+      {/* Carré gauche — logo mark Uvibes */}
+      <Link href="/" className="bottom-menu-logo" aria-label="Retour à l'accueil Uvibes">
+        <Image
+          src="/images/Logo VI blanc.png"
+          alt="Uvibes"
+          width={26}
+          height={26}
+          style={{ height: "26px", width: "auto", objectFit: "contain" }}
+        />
+      </Link>
 
-        {isDesktop && (
-          <div className="navbar-actions">
-            <button className="navbar-btn-contact" onClick={scrollToContact}>
-              Nous contacter
-            </button>
-            {isClient ? (
-              <PopupButton
-                url="https://calendly.com/uvibescommunication/30min"
-                rootElement={document.body}
-                text="Prendre RDV"
-                className="navbar-btn-rdv"
-              />
-            ) : (
-              <span className="navbar-btn-rdv">Prendre RDV</span>
-            )}
-            <Link
-              href="https://app.uvibes.fr/welcome"
-              className="navbar-btn-connexion"
-              aria-label="Se connecter à l'application Uvibes"
-            >
-              <Image
-                src="/images/icone-connexion.svg"
-                width={20}
-                height={20}
-                alt=""
-              />
-              <span>Se connecter</span>
-            </Link>
-          </div>
-        )}
-
-        {!isDesktop && (
-          <button
-            className="navbar-hamburger"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+      {/* Pilule de navigation centrale */}
+      <nav className="bottom-menu-nav" aria-label="Navigation principale">
+        <div
+          className="bottom-menu-indicator"
+          style={{ left: indicator.left, width: indicator.width, opacity: indicator.opacity }}
+        />
+        {navItems.map((item, index) => (
+          <Link
+            key={item.id}
+            href={item.link}
+            ref={(el) => { itemRefs.current[index] = el; }}
+            className={`bottom-menu-item${pathname === item.link ? " --active" : ""}`}
           >
-            {isOpen ? (
-              <X size={24} color="#fd6e00" />
-            ) : (
-              <AlignJustify size={24} color={scrolled ? "#fd6e00" : "#fff"} />
-            )}
-          </button>
-        )}
+            {item.label}
+          </Link>
+        ))}
+        <div className="bottom-menu-divider" />
+        {isClient ? (
+          <PopupButton
+            url="https://calendly.com/uvibescommunication/30min"
+            rootElement={document.body}
+            text="Prendre RDV"
+            className="bottom-menu-rdv"
+          />
+        ) : null}
       </nav>
 
-      {!isDesktop && isOpen && (
-        <>
-        <div
-          className="mobile-drawer-backdrop"
-          onClick={() => setIsOpen(false)}
-          aria-hidden="true"
-        />
-        <div className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu navigation">
-          <nav className="mobile-drawer-links">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                href={item.link}
-                className="mobile-drawer-link"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="mobile-drawer-divider" />
-            <button className="mobile-drawer-contact" onClick={scrollToContact}>
-              Nous contacter
-            </button>
-            {isClient ? (
-              <PopupButton
-                url="https://calendly.com/uvibescommunication/30min"
-                rootElement={document.body}
-                text="Prendre RDV"
-                className="mobile-drawer-rdv"
-              />
-            ) : null}
-            <Link
-              href="https://app.uvibes.fr/welcome"
-              className="mobile-drawer-connexion"
-              onClick={() => setIsOpen(false)}
-            >
-              Se connecter →
-            </Link>
-          </nav>
-        </div>
-        </>
-      )}
-    </>
+      {/* Carré droit — dark mode toggle */}
+      <button
+        className="bottom-menu-theme"
+        onClick={toggleDark}
+        aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
+      >
+        {isDark ? <Sun size={17} /> : <Moon size={17} />}
+      </button>
+
+    </div>
   );
 }

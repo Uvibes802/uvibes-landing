@@ -1,234 +1,263 @@
-/* ─── Navbar principale ─────────────────────────────────────────────────── */
+/* ─── Bottom floating menu — pellmell style ─────────────────────────────── */
 
-.site-navbar {
+.bottom-menu-wrapper {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
-  height: 64px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  background: transparent;
-  transition: background 0.35s ease, box-shadow 0.35s ease;
+  gap: 8px;
 }
 
-.site-navbar--scrolled {
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
-}
-
-/* Logo */
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-/* Liens de navigation (desktop) */
-.navbar-links {
-  display: flex;
-  align-items: center;
-  gap: 2.25rem;
-}
-
-.navbar-link {
-  font-family: var(--text-font);
-  font-size: 0.875rem;
-  letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.92);
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-  white-space: nowrap;
-}
-
-.site-navbar--scrolled .navbar-link {
-  color: #1a1a1a;
-}
-
-.navbar-link:hover {
-  opacity: 0.6;
-}
-
-/* Actions CTA (desktop) */
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-shrink: 0;
-}
-
-.navbar-btn-contact {
-  all: unset;
-  cursor: pointer;
-  font-family: var(--text-font);
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.01em;
-  transition: opacity 0.2s ease;
-  white-space: nowrap;
-}
-
-.site-navbar--scrolled .navbar-btn-contact {
-  color: #1a1a1a;
-}
-
-.navbar-btn-contact:hover {
-  opacity: 0.6;
-}
-
-/* Bouton "Prendre RDV" — override react-calendly PopupButton */
-.navbar-btn-rdv {
-  all: unset;
-  cursor: pointer;
-  background: var(--gradientColor-button);
-  color: #fff !important;
-  border-radius: 2rem;
-  padding: 0.5rem 1.25rem;
-  font-family: var(--text-font);
-  font-size: 0.875rem;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 2px 8px rgba(253, 110, 0, 0.25);
-}
-
-.navbar-btn-rdv:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-}
-
-/* Bouton connexion */
-.navbar-btn-connexion {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  font-family: var(--text-font);
-  font-size: 0.875rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  transition: background 0.2s ease, border-color 0.2s ease;
-  white-space: nowrap;
-}
-
-.navbar-btn-connexion:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-.site-navbar--scrolled .navbar-btn-connexion {
-  color: #1a1a1a;
-  border-color: rgba(0, 0, 0, 0.18);
-}
-
-.site-navbar--scrolled .navbar-btn-connexion:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-/* Hamburger (mobile) */
-.navbar-hamburger {
-  all: unset;
-  cursor: pointer;
+/* Carré gauche — logo mark */
+.bottom-menu-logo {
+  width: 52px;
+  height: 52px;
+  background: #1a1a1a;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-menu-logo:hover {
+  background: var(--mainColor);
+}
+
+/* Pilule navigation centrale */
+.bottom-menu-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(232, 232, 232, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  padding: 6px;
+  height: 52px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Indicateur glissant actif */
+.bottom-menu-indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  background: #1a1a1a;
+  border-radius: 7px;
+  pointer-events: none;
+  z-index: 1;
+  transition: left 0.28s ease, width 0.28s ease, opacity 0.18s ease;
+}
+
+/* Liens de navigation */
+.bottom-menu-item {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
   height: 40px;
-  border-radius: 50%;
-}
-
-/* ─── Drawer mobile (sidebar) ───────────────────────────────────────────── */
-
-.mobile-drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 998;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.mobile-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: min(78vw, 300px);
-  z-index: 999;
-  background: #fff;
-  box-shadow: -4px 0 32px rgba(0, 0, 0, 0.14);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5rem 2rem 2.5rem;
-  overflow-y: auto;
-}
-
-.mobile-drawer-links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.mobile-drawer-link {
-  font-family: var(--text-font-bold);
-  font-size: clamp(1.25rem, 5vw, 1.625rem);
+  font-family: var(--text-font);
+  font-size: 0.875rem;
   color: #1a1a1a;
   text-decoration: none;
-  letter-spacing: -0.01em;
-  transition: color 0.2s ease;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+  border-radius: 7px;
 }
 
-.mobile-drawer-link:hover {
+.bottom-menu-item.--active {
+  color: #f5f5f5;
+}
+
+.bottom-menu-item:not(.--active):hover {
+  color: #555;
+}
+
+/* Séparateur entre nav et RDV */
+.bottom-menu-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* Bouton Prendre RDV */
+.bottom-menu-rdv {
+  all: unset;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  height: 40px;
+  font-family: var(--text-font-bold);
+  font-size: 0.8125rem;
+  color: var(--mainColor);
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.bottom-menu-rdv:hover {
+  color: var(--secondaryColor);
+}
+
+/* Carré droit — dark mode */
+.bottom-menu-theme {
+  all: unset;
+  cursor: pointer;
+  width: 52px;
+  height: 52px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #f5f5f5;
+  transition: background 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-menu-theme:hover {
+  background: #333;
+}
+
+/* ─── Dark mode ─────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] body {
+  background: #111;
+}
+
+/* Nav pill en dark */
+[data-theme="dark"] .bottom-menu-nav {
+  background: rgba(28, 28, 28, 0.97);
+}
+
+[data-theme="dark"] .bottom-menu-indicator {
+  background: #f0f0f0;
+}
+
+[data-theme="dark"] .bottom-menu-item {
+  color: rgba(235, 235, 235, 0.75);
+}
+
+[data-theme="dark"] .bottom-menu-item.--active {
+  color: #111;
+}
+
+[data-theme="dark"] .bottom-menu-divider {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Sections blanches en dark */
+[data-theme="dark"] .why-uvibes-section {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"] .why-uvibes-article,
+[data-theme="dark"] .why-uvibes-text {
+  color: rgba(235, 235, 235, 0.8);
+}
+
+[data-theme="dark"] .article-section {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"] .uvibes-section {
+  background: #1a1a1a !important;
+}
+
+[data-theme="dark"] .contact-section {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"] .partner-carousel-container {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] .text {
+  color: rgba(220, 220, 220, 0.75);
+}
+
+[data-theme="dark"] .title-h2-orange {
+  /* Orange reste lisible sur fond sombre */
   color: var(--mainColor);
 }
 
-.mobile-drawer-divider {
-  width: 36px;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.1);
-  margin: 0.25rem 0;
+[data-theme="dark"] .title-h2 {
+  color: #f0f0f0;
 }
 
-.mobile-drawer-contact {
-  all: unset;
-  cursor: pointer;
-  font-family: var(--text-font);
-  font-size: 0.9375rem;
-  color: var(--blueUvibes);
-  letter-spacing: 0.01em;
+/* ─── Padding bas de page pour le menu fixe ─────────────────────────────── */
+
+main {
+  padding-bottom: 88px;
 }
 
-.mobile-drawer-rdv {
-  all: unset;
-  cursor: pointer;
-  background: var(--gradientColor-button);
-  color: #fff !important;
-  border-radius: 2rem;
-  padding: 0.6875rem 1.75rem;
-  font-family: var(--text-font);
-  font-size: 0.9375rem;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(253, 110, 0, 0.28);
+/* ─── Mobile ─────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 768px) {
+  .bottom-menu-wrapper {
+    bottom: 14px;
+    gap: 6px;
+    max-width: calc(100vw - 24px);
+  }
+
+  .bottom-menu-logo,
+  .bottom-menu-theme {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .bottom-menu-nav {
+    height: 44px;
+    padding: 5px;
+    border-radius: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bottom-menu-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bottom-menu-item {
+    padding: 0 10px;
+    font-size: 0.8125rem;
+    height: 34px;
+  }
+
+  .bottom-menu-indicator {
+    top: 5px;
+    bottom: 5px;
+  }
+
+  .bottom-menu-rdv {
+    padding: 0 10px;
+    font-size: 0.75rem;
+    height: 34px;
+  }
+
+  .bottom-menu-divider {
+    margin: 0 2px;
+    height: 16px;
+  }
 }
 
-.mobile-drawer-connexion {
-  font-family: var(--text-font);
-  font-size: 0.875rem;
-  color: #888;
-  text-decoration: none;
-  letter-spacing: 0.01em;
-}
+/* ─── Hero : logo restauré (plus de top navbar) ─────────────────────────── */
 
-/* ─── Hero : cacher le logo interne — la navbar le remplace sur tous les breakpoints ── */
-
-.hero-banner-header-top {
-  display: none !important;
-}
+/* hero-banner-header-top redevient visible — la navbar top est supprimée */
