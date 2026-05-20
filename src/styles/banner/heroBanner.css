@@ -27,6 +27,8 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-banner-header-top {
@@ -80,7 +82,7 @@
   right: -200px;
   width: 850px;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .logo_mobile {
@@ -149,6 +151,56 @@
     font-size: 0.875rem;
     padding: 0.6875rem 1.5rem;
   }
+}
+
+/* ─── Adaptation couleurs hero selon le thème (canvas remplace le gradient) ── */
+
+/* Light mode — fond canvas #fff5f0, texte sombre */
+.hero-banner-wrapper .title-h1,
+.hero-banner-wrapper .title-text,
+.hero-banner-wrapper .title-text-light,
+.hero-banner-wrapper .hero-banner-body p {
+  color: #1a0800;
+}
+
+.hero-banner-wrapper .hero-cta-primary {
+  background: var(--gradientColor);
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(253, 110, 0, 0.28);
+}
+
+.hero-banner-wrapper .hero-cta-secondary {
+  color: rgba(26, 8, 0, 0.8);
+  border-color: rgba(26, 8, 0, 0.25);
+}
+
+.hero-banner-wrapper .hero-cta-secondary:hover {
+  background: rgba(26, 8, 0, 0.06);
+  border-color: rgba(26, 8, 0, 0.55);
+}
+
+/* Dark mode — fond canvas #0d0d0d, texte blanc */
+[data-theme="dark"] .hero-banner-wrapper .title-h1,
+[data-theme="dark"] .hero-banner-wrapper .title-text,
+[data-theme="dark"] .hero-banner-wrapper .title-text-light,
+[data-theme="dark"] .hero-banner-wrapper .hero-banner-body p {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .hero-banner-wrapper .hero-cta-primary {
+  background: #fff;
+  color: var(--mainColor);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .hero-banner-wrapper .hero-cta-secondary {
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .hero-banner-wrapper .hero-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .visually-hidden {

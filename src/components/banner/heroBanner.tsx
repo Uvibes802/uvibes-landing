@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "../../styles/banner/heroBanner.css";
 import type { HeroBannerProps } from "../../types/banner/heroBanner";
+import HeroWaves from "./HeroWaves";
 const Logo_uVibesDesktop = "/images/Logo UVIBES.png";
 const Logo_uVibes = "/images/Logo VI blanc.png";
 
@@ -16,6 +17,7 @@ export function HeroBanner({
 }: HeroBannerProps) {
   return (
     <header className={`hero-banner-wrapper ${className || ""}`}>
+      <HeroWaves />
 
       <div className="hero-banner-container">
         <div className="hero-banner-header-top">
