@@ -14,10 +14,10 @@
 
   & h2 {
     font-size: var(--font-size-h2);
-    font-family: var(--title-font);
+    font-family: var(--text-font-bold);
     text-align: center;
-    letter-spacing: var(--spacing-letter);
-    line-height: 1;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
     padding-bottom: calc(var(--spacing-ref) * 2);
   }
 }

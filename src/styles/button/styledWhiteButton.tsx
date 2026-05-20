@@ -7,7 +7,8 @@ export const StyledWhiteButton = styled(Button)(
   background:  #F4ECEC;
   color:var(--mainColor);
   border-radius: 2rem;
-  padding: var(--spacing-ref;
+  padding: var(--spacing-ref);
+  text-transform: none;
   border: none;
   min-width: 10rem;
   cursor: pointer;

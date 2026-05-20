@@ -70,7 +70,7 @@ export default function VideoCard({
           justifySelf: "center",
           marginBottom: "var(--section-padding-h)",
           borderRadius: 8,
-          boxShadow: `0px 0px 0 ${isMobile ? "8px" : "18px"} #00AFDD`,
+          boxShadow: `0px 0px 0 ${isMobile ? "4px" : "5px"} rgba(0, 175, 221, 0.55)`,
         }}
       />
     </div>
