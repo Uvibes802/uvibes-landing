@@ -15,8 +15,9 @@ export default function Menu() {
   const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0, instant: true });
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const isFirstPosition = useRef(true);
 
   useEffect(() => {
     setIsClient(true);
@@ -31,9 +32,15 @@ export default function Menu() {
     const activeIndex = navItems.findIndex((item) => item.link === pathname);
     const el = activeIndex >= 0 ? itemRefs.current[activeIndex] : null;
     if (el) {
-      setIndicator({ left: el.offsetLeft, width: el.offsetWidth, opacity: 1 });
+      setIndicator({
+        left: el.offsetLeft,
+        width: el.offsetWidth,
+        opacity: 1,
+        instant: isFirstPosition.current, // premier rendu = pas d'animation de position
+      });
+      isFirstPosition.current = false;
     } else {
-      setIndicator((prev) => ({ ...prev, opacity: 0 }));
+      setIndicator((prev) => ({ ...prev, opacity: 0, instant: false }));
     }
   }, [pathname]);
 
@@ -68,7 +75,14 @@ export default function Menu() {
       <nav className="bottom-menu-nav" aria-label="Navigation principale">
         <div
           className="bottom-menu-indicator"
-          style={{ left: indicator.left, width: indicator.width, opacity: indicator.opacity }}
+          style={{
+            left: indicator.left,
+            width: indicator.width,
+            opacity: indicator.opacity,
+            transition: indicator.instant
+              ? "opacity 0.18s ease"
+              : "left 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.18s ease",
+          }}
         />
         {navItems.map((item, index) => (
           <Link

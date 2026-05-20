@@ -58,7 +58,7 @@
   --icon-max-size: 100px;
   --icon-size: 12vw;
   --section-padding-v: 4.5rem;
-  --section-padding-h: clamp(1.25rem, 5vw, 4rem);
+  --section-padding-h: clamp(1.5rem, 7vw, 6rem);
 }
 
 html {

@@ -77,26 +77,6 @@
   isolation: isolate;
 }
 
-/* Hover pill — border outline qui apparaît */
-.bottom-menu-item::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  border-radius: 7px;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: scale(0.82);
-  transition: opacity 0.18s ease,
-              transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.bottom-menu-item:not(.--active):hover::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
 .bottom-menu-item.--active {
   color: #f5f5f5;
 }
@@ -132,26 +112,8 @@
   border-radius: 8px;
 }
 
-.bottom-menu-rdv::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  border-radius: 7px;
-  border: 1.5px solid rgba(253, 110, 0, 0.35);
-  opacity: 0;
-  transform: scale(0.82);
-  transition: opacity 0.18s ease,
-              transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-}
-
 .bottom-menu-rdv:hover {
   color: var(--secondaryColor);
-}
-
-.bottom-menu-rdv:hover::after {
-  opacity: 1;
-  transform: scale(1);
 }
 
 /* Carré droit — dark mode */
@@ -182,11 +144,11 @@
   background: #0e0e0e;
 }
 
-/* Dégradé sombre : ambré profond → violet profond */
+/* Dégradé dark : mêmes teintes orange/rose que le light, très assombries */
 [data-theme="dark"] {
-  --gradientColor-card: linear-gradient(180deg, #180a00 0%, #0e0018 100%);
-  --gradientColor: linear-gradient(90deg, #180a00 0%, #0e0018 100%);
-  --gradientColor-button: linear-gradient(90deg, #c25000 53%, #8a0035 100%);
+  --gradientColor-card: linear-gradient(180deg, #2d1300 0%, #1c0212 100%);
+  --gradientColor: linear-gradient(90deg, #2d1300 0%, #1c0212 100%);
+  --gradientColor-button: linear-gradient(90deg, #b85500 53%, #8a0040 100%);
 }
 
 /* Nav pill en dark */
