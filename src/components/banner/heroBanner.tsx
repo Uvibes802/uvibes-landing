@@ -12,6 +12,7 @@ export function HeroBanner({
   image,
   alt,
   className,
+  showCta = false,
 }: HeroBannerProps) {
   return (
     <header className={`hero-banner-wrapper ${className || ""}`}>
@@ -43,6 +44,16 @@ export function HeroBanner({
             <h2 className="title-text">{subtitle}</h2>
             <h1 className="title-h1">{title}</h1>
             <p className="title-text-light">{description}</p>
+            {showCta && (
+              <div className="hero-cta">
+                <Link href="/avantages" className="hero-cta-primary">
+                  Découvrir l&apos;application
+                </Link>
+                <Link href="/#contact" className="hero-cta-secondary">
+                  Nous contacter
+                </Link>
+              </div>
+            )}
           </section>
 
           {/* image unique, affichée uniquement en desktop */}

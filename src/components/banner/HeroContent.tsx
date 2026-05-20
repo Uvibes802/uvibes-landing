@@ -19,6 +19,7 @@ export default function HeroContent({ title, description, image }: HeroContentPr
       image={image}
       alt="visuel application"
       className="home-hero"
+      showCta={true}
     />
   );
 }

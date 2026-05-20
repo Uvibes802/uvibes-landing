@@ -87,10 +87,11 @@ export default function Menu() {
             >
               <Image
                 src="/images/icone-connexion.svg"
-                width={28}
-                height={28}
+                width={20}
+                height={20}
                 alt=""
               />
+              <span>Se connecter</span>
             </Link>
           </div>
         )}
@@ -111,6 +112,12 @@ export default function Menu() {
       </nav>
 
       {!isDesktop && isOpen && (
+        <>
+        <div
+          className="mobile-drawer-backdrop"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
         <div className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu navigation">
           <nav className="mobile-drawer-links">
             {navItems.map((item) => (
@@ -144,6 +151,7 @@ export default function Menu() {
             </Link>
           </nav>
         </div>
+        </>
       )}
     </>
   );
