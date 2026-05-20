@@ -1,164 +1,150 @@
 "use client";
-import MenuItem from "@/components/menu/MenuItem";
 import Resize from "@/services/resize/resize";
-import { StyledBottomNavigation } from "@/styles/menu/StyledBottomNavigation";
-import { StyledFloatButton } from "@/styles/menu/styledFloatingMenu";
 import { AlignJustify, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PopupButton } from "react-calendly";
 import { Items } from "../../data/menu/MenuData";
 import "../../styles/menu/Menu.css";
-import MenuList from "./MenuList";
+
+const navItems = Items.filter((item) => item.id !== 6 && item.id !== 7);
 
 export default function Menu() {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isActive, setIsActive] = useState<boolean>(true);
-  const [lastScrollY, setLastScrollY] = useState<number>(0);
-  const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const { isDesktop } = Resize();
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
+    setIsClient(true);
+  }, []);
 
-      const isBottom = windowHeight + currentScrollY >= documentHeight - 50;
-      setIsAtBottom(isBottom);
-
-      if (currentScrollY > lastScrollY) {
-        setIsActive(false);
-      } else {
-        setIsActive(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
     } else {
       router.push("/#contact");
     }
+    setIsOpen(false);
   };
 
   return (
     <>
-      <div className="floating-menu-container">
-        {/* Bouton "Nous Contacter" — role+tabIndex+onKeyDown pour la navigation clavier */}
-        <div
-          role="button"
-          tabIndex={0}
-          style={{ cursor: "pointer" }}
-          onClick={scrollToContact}
-          onKeyDown={(e) => e.key === "Enter" && scrollToContact()}
-          className="megaphone-container"
-        >
-          {/* alt vide : le texte visible "Nous Contacter" suffit pour les lecteurs d'écran */}
-          <Image
-            src={
-              isDesktop
-                ? "/images/icone_megaphone_bleu.svg"
-                : "/images/icone_megaphone_bleu_rond.svg"
-            }
-            width={40}
-            height={40}
-            alt=""
-          />
-          {isDesktop && <p>Nous Contacter</p>}
-        </div>
-        {/* aria-label dynamique : indique l'état ouvert/fermé aux lecteurs d'écran */}
-        <StyledFloatButton
-          onClick={handleClick}
-          onKeyDown={(e) => e.key === "Enter" && handleClick()}
-          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
-          style={{ position: "static", margin: -10 }}
-        >
-          {isOpen ? (
-            <X size={32} color="#00AFDD" />
-          ) : (
-            <AlignJustify size={32} color="#00AFDD" />
-          )}
-        </StyledFloatButton>
-      </div>
-
-      {/* aria-label nécessaire si plusieurs <nav> sur la page — distingue ce menu des autres */}
-      {isOpen && (
-        <nav aria-label="Navigation principale" className="menu-items-container">
-          <MenuList className="menu-items" />
-        </nav>
-      )}
-
-      <div
-        className="bottom-nav-wrapper"
-        style={{
-          position: "fixed",
-          bottom: "var(--spacing-ref)",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          gap: "1rem",
-          zIndex: 9999,
-          pointerEvents: isActive && !isAtBottom ? "auto" : "none",
-        }}
+      <nav
+        className={`site-navbar${scrolled ? " site-navbar--scrolled" : ""}`}
+        aria-label="Navigation principale"
       >
-        <StyledBottomNavigation
-          style={{
-            height: "90px",
-            position: "relative",
-            left: "auto",
-            right: "auto",
-            bottom: "auto",
-            margin: 0,
-            transform:
-              isActive && !isAtBottom
-                ? "translateX(0px)"
-                : "translateX(1000px)",
-            opacity: isActive && !isAtBottom ? 1 : 0,
-            transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out",
-          }}
-        >
-          <MenuList className="menu-items-bottom-nav" />
-        </StyledBottomNavigation>
-        <div
-          style={{
-            height: "90px",
-            minHeight: "90px",
-            backgroundColor: "var(--background-paper, #fff)",
-            boxShadow:
-              "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
-            borderRadius: "calc(var(--border-radius) * 2.5)",
-            padding: "0.5rem 1rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transform:
-              isActive && !isAtBottom ? "translateX(0px)" : "translateY(200px)", // Changed from 1000px to translateY for safety
-            opacity: isActive && !isAtBottom ? 1 : 0,
-            transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out",
-          }}
-        >
-          <MenuItem
-            key={Items[6].id}
-            {...Items[6]}
-            className={"menu-items-bottom-nav"}
+        <Link href="/" className="navbar-logo" aria-label="Accueil Uvibes">
+          <Image
+            src={scrolled || !isDesktop ? "/images/Logo UVIBES.png" : "/images/Logo VI blanc.png"}
+            alt="Uvibes"
+            width={120}
+            height={40}
+            style={{ height: "auto", width: "auto", maxHeight: "36px" }}
+            priority
           />
+        </Link>
+
+        {isDesktop && (
+          <div className="navbar-links">
+            {navItems.map((item) => (
+              <Link key={item.id} href={item.link} className="navbar-link">
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {isDesktop && (
+          <div className="navbar-actions">
+            <button className="navbar-btn-contact" onClick={scrollToContact}>
+              Nous contacter
+            </button>
+            {isClient ? (
+              <PopupButton
+                url="https://calendly.com/uvibescommunication/30min"
+                rootElement={document.body}
+                text="Prendre RDV"
+                className="navbar-btn-rdv"
+              />
+            ) : (
+              <span className="navbar-btn-rdv">Prendre RDV</span>
+            )}
+            <Link
+              href="https://app.uvibes.fr/welcome"
+              className="navbar-btn-connexion"
+              aria-label="Se connecter à l'application Uvibes"
+            >
+              <Image
+                src="/images/icone-connexion.svg"
+                width={28}
+                height={28}
+                alt=""
+              />
+            </Link>
+          </div>
+        )}
+
+        {!isDesktop && (
+          <button
+            className="navbar-hamburger"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          >
+            {isOpen ? (
+              <X size={24} color="#fd6e00" />
+            ) : (
+              <AlignJustify size={24} color={scrolled ? "#fd6e00" : "#fff"} />
+            )}
+          </button>
+        )}
+      </nav>
+
+      {!isDesktop && isOpen && (
+        <div className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu navigation">
+          <nav className="mobile-drawer-links">
+            {navItems.map((item) => (
+              <Link
+                key={item.id}
+                href={item.link}
+                className="mobile-drawer-link"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="mobile-drawer-divider" />
+            <button className="mobile-drawer-contact" onClick={scrollToContact}>
+              Nous contacter
+            </button>
+            {isClient ? (
+              <PopupButton
+                url="https://calendly.com/uvibescommunication/30min"
+                rootElement={document.body}
+                text="Prendre RDV"
+                className="mobile-drawer-rdv"
+              />
+            ) : null}
+            <Link
+              href="https://app.uvibes.fr/welcome"
+              className="mobile-drawer-connexion"
+              onClick={() => setIsOpen(false)}
+            >
+              Se connecter →
+            </Link>
+          </nav>
         </div>
-      </div>
+      )}
     </>
   );
 }

@@ -241,7 +241,7 @@
   .hero-banner-content {
     grid-column: 1;
     padding: 0;
-    padding-top: 8rem; /* Space to avoid covering the logo on desktop grid */
+    padding-top: 5rem; /* Réduit depuis 8rem — le logo est masqué, la navbar prend 64px */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
