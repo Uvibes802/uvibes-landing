@@ -60,14 +60,23 @@ export default function Menu() {
   return (
     <div className="bottom-menu-wrapper">
 
-      {/* Carré gauche — logo mark Uvibes */}
+      {/* Logo — VI mark sur mobile (pilule bas), logo complet sur desktop (navbar) */}
       <Link href="/" className="bottom-menu-logo" aria-label="Retour à l'accueil Uvibes">
         <Image
           src="/images/Logo VI blanc.png"
           alt="Uvibes"
           width={26}
           height={26}
+          className="menu-logo-mark"
           style={{ height: "26px", width: "auto", objectFit: "contain" }}
+        />
+        <Image
+          src="/images/Logo UVIBES.png"
+          alt="Uvibes"
+          width={160}
+          height={40}
+          className="menu-logo-full"
+          style={{ height: "36px", width: "auto", objectFit: "contain" }}
         />
       </Link>
 

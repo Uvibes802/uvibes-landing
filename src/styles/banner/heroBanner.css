@@ -357,10 +357,9 @@
     display: none;
   }
 
+  /* Logo caché sur desktop — la navbar le prend en charge */
   .logo_desktop {
-    display: block;
-    width: 240px;
-    height: auto;
+    display: none;
   }
   .hero-mobile-only {
     display: none;

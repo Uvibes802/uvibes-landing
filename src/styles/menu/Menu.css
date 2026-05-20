@@ -2,16 +2,32 @@
 
 .bottom-menu-wrapper {
   position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  padding: 12px 2rem;
 }
 
-/* Carré gauche — logo mark */
+/* Mobile — pilule flottante en bas */
+@media screen and (max-width: 768px) {
+  .bottom-menu-wrapper {
+    top: auto;
+    bottom: 24px;
+    left: 50%;
+    right: auto;
+    width: auto;
+    transform: translateX(-50%);
+    padding: 0;
+    justify-content: unset;
+    gap: 8px;
+  }
+}
+
+/* Logo — mobile : carré pill */
 .bottom-menu-logo {
   width: 58px;
   height: 58px;
@@ -29,6 +45,30 @@
 .bottom-menu-logo:hover {
   background: var(--mainColor);
   transform: scale(1.06);
+}
+
+.menu-logo-mark { display: block; }
+.menu-logo-full  { display: none; }
+
+/* Desktop — logo plein dans la navbar */
+@media screen and (min-width: 769px) {
+  .bottom-menu-logo {
+    width: auto;
+    height: auto;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .bottom-menu-logo:hover {
+    background: transparent;
+    transform: none;
+    opacity: 0.85;
+  }
+
+  .menu-logo-mark { display: none; }
+  .menu-logo-full  { display: block; }
 }
 
 /* Pilule navigation centrale */
@@ -144,10 +184,10 @@
   background: #0e0e0e;
 }
 
-/* Dégradé dark : hue orange/rose préservée, luminosité ~12-18% HSL — lisible comme ember/rose sombre */
+/* Dégradé dark : rose sombre → indigo profond — évite le virage brun de l'orange très sombre */
 [data-theme="dark"] {
-  --gradientColor-card: linear-gradient(180deg, #4a1800 0%, #200018 100%);
-  --gradientColor: linear-gradient(90deg, #4a1800 0%, #200018 100%);
+  --gradientColor-card: linear-gradient(160deg, #1e0a14 0%, #09000f 100%);
+  --gradientColor: linear-gradient(160deg, #1e0a14 0%, #09000f 100%);
   --gradientColor-button: linear-gradient(90deg, #b85500 53%, #8a0040 100%);
 }
 
@@ -207,10 +247,18 @@
   color: rgba(210, 210, 210, 0.72);
 }
 
-/* ─── Padding bas de page ────────────────────────────────────────────────── */
+/* ─── Padding page ───────────────────────────────────────────────────────── */
 
+/* Desktop — nav en haut, pas besoin de clearance bas */
 main {
-  padding-bottom: 96px;
+  padding-bottom: 2rem;
+}
+
+/* Mobile — pilule en bas, clearance nécessaire */
+@media screen and (max-width: 768px) {
+  main {
+    padding-bottom: 96px;
+  }
 }
 
 /* ─── Responsive ────────────────────────────────────────────────────────── */
