@@ -144,10 +144,10 @@
   background: #0e0e0e;
 }
 
-/* Dégradé dark : mêmes teintes orange/rose que le light, très assombries */
+/* Dégradé dark : hue orange/rose préservée, luminosité ~12-18% HSL — lisible comme ember/rose sombre */
 [data-theme="dark"] {
-  --gradientColor-card: linear-gradient(180deg, #2d1300 0%, #1c0212 100%);
-  --gradientColor: linear-gradient(90deg, #2d1300 0%, #1c0212 100%);
+  --gradientColor-card: linear-gradient(180deg, #4a1800 0%, #200018 100%);
+  --gradientColor: linear-gradient(90deg, #4a1800 0%, #200018 100%);
   --gradientColor-button: linear-gradient(90deg, #b85500 53%, #8a0040 100%);
 }
 
