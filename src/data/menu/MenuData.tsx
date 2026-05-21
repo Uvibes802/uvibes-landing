@@ -1,5 +1,4 @@
 import {
-    CalendarDays,
     House,
     ListCheck,
     Newspaper,
@@ -33,7 +32,7 @@ export const Items = [
     {
         id: 4,
         icon: <Users size={32} color="#FD6E00"/>,
-        label: "Uvibes",
+        label: "À propos",
         color: "#FD6E00",
         link: "/uvibes",
     },
@@ -43,13 +42,6 @@ export const Items = [
         label: "Blog",
         color: "#78C751",
         link: "/blog",
-    },
-    {
-        id: 6,
-        icon: <CalendarDays size={32} color="#D90A5C"/>,
-        label: "Prendre RDV",
-        color: "#D90A5C",
-        link: "",
     },
     {
         id: 7,
