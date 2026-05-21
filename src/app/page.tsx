@@ -3,13 +3,10 @@ import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/Footer";
 import FloatingMenu from "@/components/menu/Menu";
 import FeaturedArticles from "@/components/section/FeaturedArticles";
-import FunctSection from "@/components/section/functSection";
-import Uvibes from "@/components/uvibes/uvibes";
 
 import UserNumberCard from "@/components/cards/userNumberCard";
 import VideoCard from "@/components/cards/videoCard";
 import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
-import InspirationSection from "@/components/section/inspirationSection";
 import WhyUvibes from "@/components/section/WhyUvibes";
 import Testimony from "@/components/testimony/testimony";
 import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
@@ -43,26 +40,8 @@ export default async function Home() {
       />
       <PartnerCarousel />
 
-      <VideoCard
-        title={
-          <>
-            Développement professionnel: <br className="mobile-only" /> <span className="text-bold">ils partagent leurs <br className="mobile-only" /> points de vue</span>
-          </>
-        }
-        videoSrcDdesktop={"/videos/Pierre-desktop.mp4"}
-        videoSrcMobile={"/videos/Pierre-mobile.mp4"}
-      />
-      <InspirationSection />
-      <VideoCard
-        title={
-          <>
-            Bien-être collectif: <br className="mobile-only" /> <span className="text-bold">ils créent du lien</span>
-          </>
-        }
-        videoSrcDdesktop={"/videos/Colette-desktop.mp4"}
-        videoSrcMobile={"/videos/Colette-mobile.mp4"}
-      />
       <Testimony />
+
       <VideoCard
         title={
           <>
@@ -72,36 +51,13 @@ export default async function Home() {
         videoSrcDdesktop={"/videos/Delphine-desktop.mp4"}
         videoSrcMobile={"/videos/Delphine-mobile.mp4"}
       />
-      <FunctSection />
-      <VideoCard
-        title={
-          <>
-            Développement professionnel: <br className="mobile-only" /> <span className="text-bold">ils élargissent <br className="mobile-only" /> leurs horizons</span>
-          </>
-        }
-        videoSrcDdesktop={"/videos/Nadine-desktop.mp4"}
-        videoSrcMobile={"/videos/Nadine-mobile.mp4"}
-      />
-
 
       <BenefitsHomeSection />
-      
-      <FeaturedArticles />
 
-      <VideoCard
-        title={
-          <>
-            Outil pédagogique: <br className="mobile-only" /> <span className="text-bold">ils se nourrissent <br className="mobile-only" /> d&apos;expériences</span>
-          </>
-        }
-        videoSrcDdesktop={"/videos/arjun-desktop.mp4"}
-        videoSrcMobile={"/videos/arjun-mobile.mp4"}
-        paddingTop="0"
-      />
+      <FeaturedArticles />
 
       <FloatingMenu />
 
-      <Uvibes />
       <Contact />
       <Footer />
     </main>
