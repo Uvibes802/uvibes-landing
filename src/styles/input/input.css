@@ -3,27 +3,31 @@
   flex-direction: column;
   padding: var(--spacing-ref);
 
-  & input {
-    width: var(--input-width);
-    height: 2.5rem;
+  & input,
+  & textarea {
+    width: 100%;
     border-radius: calc(var(--border-radius) * 0.7);
     background: linear-gradient(white, white) padding-box,
       var(--gradientColor) border-box;
     border: 1px solid transparent;
     padding: var(--spacing-ref);
     box-shadow: 0px 2px 3px 0px #0000003d;
+    font-family: var(--text-font);
+    font-size: var(--font-size-text);
+    font-style: italic;
+  }
+
+  & input {
+    height: 2.5rem;
+  }
+
+  & textarea {
+    min-height: 8rem;
+    resize: vertical;
   }
 
   & label {
     color: var(--mainColor);
     margin-left: calc(var(--spacing-ref) * 0.5);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .input-container {
-    & input {
-      width: calc(var(--input-width) * 2);
-    }
   }
 }

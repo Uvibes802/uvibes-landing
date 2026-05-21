@@ -11,7 +11,12 @@ export default function Input({
   return (
     <div className="input-container">
       <label htmlFor={htmlFor}>{label}</label>
-      <input id={htmlFor} type={type} placeholder={placeholder} {...props} />
+      {type === "textarea" ? (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        <textarea id={htmlFor} placeholder={placeholder} {...(props as any)} />
+      ) : (
+        <input id={htmlFor} type={type} placeholder={placeholder} {...props} />
+      )}
     </div>
   );
 }

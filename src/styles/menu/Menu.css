@@ -31,7 +31,7 @@
 .bottom-menu-logo {
   width: 58px;
   height: 58px;
-  background: #1a1a1a;
+  background: var(--gradientColor-button);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -100,12 +100,12 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.13);
 }
 
-/* Indicateur glissant actif */
+/* Indicateur glissant actif — couleur définie par JS selon l'item actif */
 .bottom-menu-indicator {
   position: absolute;
   top: 7px;
   bottom: 7px;
-  background: #1a1a1a;
+  background: var(--mainColor);
   border-radius: 8px;
   pointer-events: none;
   z-index: 1;
@@ -177,7 +177,7 @@
   cursor: pointer;
   width: 58px;
   height: 58px;
-  background: #1a1a1a;
+  background: var(--blueUvibes);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -189,7 +189,7 @@
 }
 
 .bottom-menu-theme:hover {
-  background: #333;
+  background: #0090b8;
   transform: scale(1.06);
 }
 
@@ -211,10 +211,6 @@
   background: rgba(22, 22, 22, 0.97);
 }
 
-[data-theme="dark"] .bottom-menu-indicator {
-  background: #efefef;
-}
-
 [data-theme="dark"] .bottom-menu-item {
   color: rgba(230, 230, 230, 0.7);
 }
@@ -228,7 +224,7 @@
 }
 
 [data-theme="dark"] .bottom-menu-item.--active {
-  color: #0e0e0e;
+  color: #ffffff;
 }
 
 [data-theme="dark"] .bottom-menu-rdv {
@@ -302,8 +298,8 @@ main {
   }
 }
 
-/* Tablette portrait 600-899px */
-@media screen and (max-width: 899px) and (min-width: 600px) {
+/* Tablette portrait mobile 600-768px — pilule en bas */
+@media screen and (max-width: 768px) and (min-width: 600px) {
   .bottom-menu-wrapper {
     bottom: 20px;
     gap: 7px;
@@ -338,6 +334,19 @@ main {
     top: 6px;
     bottom: 6px;
     border-radius: 7px;
+  }
+}
+
+/* Tablette portrait desktop 769-899px — navbar en haut, taille réduite */
+@media screen and (max-width: 899px) and (min-width: 769px) {
+  .bottom-menu-item {
+    padding: 0 11px;
+    font-size: 0.8125rem;
+  }
+
+  .bottom-menu-rdv {
+    padding: 0 10px;
+    font-size: 0.75rem;
   }
 }
 

@@ -4,7 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PopupButton } from "react-calendly";
 import { Items } from "../../data/menu/MenuData";
 import "../../styles/menu/Menu.css";
@@ -28,6 +28,9 @@ export default function Menu() {
     }
   }, []);
 
+  const activeItem = navItems.find((item) => item.link === pathname);
+  const indicatorColor = activeItem?.color ?? "var(--mainColor)";
+
   const updateIndicator = useCallback(() => {
     const activeIndex = navItems.findIndex((item) => item.link === pathname);
     const el = activeIndex >= 0 ? itemRefs.current[activeIndex] : null;
@@ -36,7 +39,7 @@ export default function Menu() {
         left: el.offsetLeft,
         width: el.offsetWidth,
         opacity: 1,
-        instant: isFirstPosition.current, // premier rendu = pas d'animation de position
+        instant: isFirstPosition.current,
       });
       isFirstPosition.current = false;
     } else {
@@ -44,8 +47,12 @@ export default function Menu() {
     }
   }, [pathname]);
 
-  useEffect(() => {
+  // useLayoutEffect = synchrone après mutations DOM → refs garanties peuplées
+  useLayoutEffect(() => {
     updateIndicator();
+  }, [updateIndicator]);
+
+  useEffect(() => {
     window.addEventListener("resize", updateIndicator);
     return () => window.removeEventListener("resize", updateIndicator);
   }, [updateIndicator]);
@@ -88,9 +95,10 @@ export default function Menu() {
             left: indicator.left,
             width: indicator.width,
             opacity: indicator.opacity,
+            background: indicatorColor,
             transition: indicator.instant
               ? "opacity 0.18s ease"
-              : "left 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.18s ease",
+              : "left 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.18s ease, background 0.3s ease",
           }}
         />
         {navItems.map((item, index) => (
