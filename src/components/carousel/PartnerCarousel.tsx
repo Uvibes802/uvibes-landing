@@ -43,7 +43,7 @@ export function PartnerCarousel() {
     <section className="container-orange">
     <div className="partner-carousel">
       <h2 className="title-h2-orange partner-carousel-title">
-        Nos Partenaires
+        Ils nous font confiance
       </h2>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}

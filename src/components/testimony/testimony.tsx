@@ -15,7 +15,7 @@ export default function Testimony() {
   return (
     <section className="container-orange">
     <div className="testimony">
-      <h2 style={{ textAlign: "center" }}>Ils parlent de nous</h2>
+      <h2 style={{ textAlign: "center" }}>Ils avancent avec nous</h2>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}

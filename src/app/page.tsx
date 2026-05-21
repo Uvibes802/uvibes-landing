@@ -7,6 +7,7 @@ import FeaturedArticles from "@/components/section/FeaturedArticles";
 import UserNumberCard from "@/components/cards/userNumberCard";
 import VideoCard from "@/components/cards/videoCard";
 import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
+import HowItWorks from "@/components/section/HowItWorks";
 import WhyUvibes from "@/components/section/WhyUvibes";
 import Testimony from "@/components/testimony/testimony";
 import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
@@ -28,11 +29,13 @@ export default async function Home() {
             
       <WhyUvibes />
 
+      <HowItWorks />
+
       <UserNumberCard />
       <VideoCard
         title={
           <>
-            Bien-être collectif: <br className="mobile-only" /> <span className="text-bold">elles y trouvent de <br className="mobile-only" /> la bonne humeur</span>
+            Avec Uvibes, <span className="text-bold">elles retrouvent <br className="mobile-only" /> la bonne humeur au quotidien</span>
           </>
         }
         videoSrcDdesktop={"/videos/Lisa-desktop.mp4"}
@@ -45,7 +48,7 @@ export default async function Home() {
       <VideoCard
         title={
           <>
-            Outil pédagogique: <br className="mobile-only" /> <span className="text-bold">ils y trouvent de <br className="mobile-only" /> nouvelles idées</span>
+            Avec Uvibes, <span className="text-bold">ils découvrent <br className="mobile-only" /> des idées nouvelles ensemble</span>
           </>
         }
         videoSrcDdesktop={"/videos/Delphine-desktop.mp4"}

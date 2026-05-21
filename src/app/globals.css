@@ -61,6 +61,19 @@
   --section-padding-h: clamp(1.5rem, 7vw, 6rem);
 }
 
+/* Mots clés colorés au scroll — réutilisables sur toutes les sections */
+.kw {
+  transition: color 1.3s ease-out;
+}
+.kw.kw-visible {
+  font-family: var(--text-font-bold);
+}
+.kw-orange.kw-visible { color: var(--mainColor); }
+.kw-rose.kw-visible   { color: var(--secondaryColor); }
+.kw-amber.kw-visible  { color: var(--yellowUvibes); }
+.kw-green.kw-visible  { color: var(--greenUvibes); }
+.kw-cyan.kw-visible   { color: var(--blueUvibes); }
+
 html {
   overflow-x: hidden;
 }
