@@ -1,33 +1,50 @@
 .testimony-card {
-  background-color: white;
-  padding: calc(var(--spacing-ref) * 2);
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  min-width: 80%;
-  max-width: 80%;
-  margin: calc(var(--spacing-ref) * 2) auto;
-  & h3 {
-    font-style: italic;
-    text-align: center;
-    color: var(--secondaryColor);
-    font-family: var(--text-font);
+  background: transparent;
+  padding: 1rem 2rem 2rem;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
 
-    &::before {
-      content: "❝ ";
-      display: inline;
-      top: 0;
-      left: 0;
-      font-size: 1.8rem;
-    }
+.testimony-card h3 {
+  font-size: clamp(1.1rem, 0.8rem + 1.5vw, 1.6rem);
+  font-style: italic;
+  text-align: center;
+  color: #212121;
+  font-family: var(--text-font);
+  line-height: 1.55;
+}
 
-    &::after {
-      content: " ❞";
-      display: inline;
-      font-size: 1.5rem;
-    }
-  }
+.testimony-card h3::before {
+  content: "❝";
+  display: block;
+  font-style: normal;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  color: var(--mainColor);
+}
 
-  & p {
-    text-align: center;
-  }
+.testimony-card h3::after {
+  content: "❞";
+  font-style: normal;
+  font-size: 1.5rem;
+  color: var(--secondaryColor);
+}
+
+.testimony-card p:first-of-type {
+  text-align: center;
+  font-family: var(--text-font-bold);
+  color: var(--mainColor);
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+.testimony-card p:last-of-type {
+  text-align: center;
+  color: #585c5f;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
