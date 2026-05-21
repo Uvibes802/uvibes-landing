@@ -41,6 +41,12 @@ export const PAGE_SEO: Record<string, PageSeoConfig> = {
       "Articles, conseils et inspirations sur le bien-être au travail, la cohésion d'équipe et les interactions sociales positives au sein des collectifs.",
     path: "/blog",
   },
+  solution: {
+    title: "La solution Uvibes — Pour qui, comment ça marche, nos offres | Uvibes",
+    description:
+      "Découvrez comment Uvibes s'adapte à votre contexte : étudiants, entreprises, aidants, sportifs… Fonctionnalités et offres détaillées.",
+    path: "/solution",
+  },
 };
 
 export function buildMetadata(page: keyof typeof PAGE_SEO): Metadata {

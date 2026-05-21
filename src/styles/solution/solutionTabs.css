@@ -1,0 +1,42 @@
+.solution-tabs-wrapper {
+  width: 100%;
+}
+
+/* ─── Nav tabs ─── */
+.solution-tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 2rem var(--section-padding-h) 0;
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 0;
+}
+
+.solution-tab-btn {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: none;
+  font-family: var(--text-font-bold);
+  font-size: 1rem;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -1.5px;
+}
+
+.solution-tab-btn:hover {
+  color: var(--mainColor);
+}
+
+.solution-tab-btn.--active {
+  color: var(--mainColor);
+  border-bottom-color: var(--mainColor);
+}
+
+/* ─── Contenu ─── */
+.solution-tab-content {
+  min-height: 400px;
+}

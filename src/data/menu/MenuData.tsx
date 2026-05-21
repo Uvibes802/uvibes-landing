@@ -1,6 +1,5 @@
 import {
     House,
-    ListCheck,
     Newspaper,
     Puzzle,
     Users,
@@ -16,18 +15,11 @@ export const Items = [
         link: "/",
     },
     {
-        id: 3,
-        icon: <ListCheck size={32} color="#00AFDD"/>,
-        label: "Avantages",
-        color: "#00AFDD",
-        link: "/avantages",
-    },
-    {
         id: 2,
         icon: <Puzzle size={32} color="#D90A5C"/>,
-        label: "Fonctionnement",
+        label: "La solution",
         color: "#D90A5C",
-        link: "/features",
+        link: "/solution",
     },
     {
         id: 4,

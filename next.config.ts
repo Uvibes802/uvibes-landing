@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ hostname: "wp.uvibes.fr" }],
   },
 
+  // Redirections permanentes des anciennes URLs vers /solution
+  async redirects() {
+    return [
+      { source: "/avantages", destination: "/solution", permanent: true },
+      { source: "/features",  destination: "/solution", permanent: true },
+    ];
+  },
+
   // Headers de sécurité envoyés sur toutes les routes
   async headers() {
     return [
