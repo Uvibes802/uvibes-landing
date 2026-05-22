@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import FlyerGallery from "@/components/flyers/FlyerGallery";
+import CollectifsSection from "@/components/collectifs/CollectifsSection";
 import FunctOrganisation from "@/components/funct/functOrganisation";
 import { FeaturesCard } from "@/components/cards/FeaturesCard";
 import PricingTable from "@/components/features/PricingTable";
@@ -36,7 +36,7 @@ export default function SolutionTabs() {
       </div>
 
       <div className="solution-tab-content">
-        {activeTab === "pour-qui" && <FlyerGallery />}
+        {activeTab === "pour-qui" && <CollectifsSection />}
         {activeTab === "comment" && (
           <>
             <FunctOrganisation />
