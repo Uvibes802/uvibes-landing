@@ -11,46 +11,30 @@ export default function FetchCitation() {
   const [userNumberTitle, setUserNumberTitle] = useState<string>("");
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
-    const sanitizeText = (text: string) => {
-      const tempDiv = document.createElement("p");
-      tempDiv.innerHTML = text;
-      return DOMPurify.sanitize(tempDiv.innerHTML, {
-        ALLOWED_TAGS: [],
-        ALLOWED_ATTR: [],
-      })
+    const sanitize = (text: string) => {
+      const div = document.createElement("p");
+      div.innerHTML = text;
+      return DOMPurify.sanitize(div.innerHTML, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
         .replace(/&nbsp;/g, " ")
         .replace(/\s+/g, " ")
         .trim();
     };
 
-    fetch(`${apiUrl}/wp-json/wp/v2/posts?categories=12`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCitation(sanitizeText(data[0].content.rendered));
+    const get = (cat: number) =>
+      fetch(`${apiUrl}/wp-json/wp/v2/posts?categories=${cat}`)
+        .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); });
+
+    get(12).then((d) => setCitation(sanitize(d[0].content.rendered))).catch(() => {});
+    get(13).then((d) => setAuthorCitation(sanitize(d[0].content.rendered))).catch(() => {});
+    get(14).then((d) => setRoleAuthor(sanitize(d[0].content.rendered))).catch(() => {});
+    get(15)
+      .then((d) => {
+        setUserNumber(sanitize(d[0].content.rendered));
+        setUserNumberTitle(sanitize(d[0].title.rendered));
       })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération de la citation:", error);
-        setCitation("Citation non disponible");
-      });
-
-    fetch(`${apiUrl}/wp-json/wp/v2/posts?categories=13`)
-      .then((response) => response.json())
-      .then((data) => {
-        setAuthorCitation(sanitizeText(data[0].content.rendered));
-      });
-
-    fetch(`${apiUrl}/wp-json/wp/v2/posts?categories=14`)
-      .then((response) => response.json())
-      .then((data) => {
-        setRoleAuthor(sanitizeText(data[0].content.rendered));
-      });
-    fetch(`${apiUrl}/wp-json/wp/v2/posts?categories=15`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUserNumber(sanitizeText(data[0].content.rendered));
-        setUserNumberTitle(sanitizeText(data[0].title.rendered));
-      });
+      .catch(() => {});
   }, [apiUrl]);
 
   return { citation, authorCitation, roleAuthor, userNumber, userNumberTitle };

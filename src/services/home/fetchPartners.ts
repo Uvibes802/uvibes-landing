@@ -29,19 +29,26 @@ export interface PartnerLogo {
 }
 
 export async function fetchPartners(): Promise<PartnerLogo[]> {
-  const tagRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/tags?slug=partner-logo`);
-  const tags = await tagRes.json();
-  const tagId = tags[0]?.id;
+  try {
+    const api = process.env.NEXT_PUBLIC_API_URL;
+    const tagRes = await fetch(`${api}/wp-json/wp/v2/tags?slug=partner-logo`);
+    if (!tagRes.ok) return [];
+    const tags = await tagRes.json();
+    const tagId = tags[0]?.id;
+    if (!tagId) return [];
 
-  if (!tagId) return [];
+    const postsRes = await fetch(`${api}/wp-json/wp/v2/posts?tags=${tagId}&per_page=100&_embed`);
+    if (!postsRes.ok) return [];
+    const posts = await postsRes.json();
 
-  // Fetch up to 100 partners
-  const postsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/posts?tags=${tagId}&per_page=100&_embed`);
-  const posts = await postsRes.json();
-
-  return posts.map((post: PartnerPost) => ({
-    id: post.id,
-    src: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/images/placeholder-logo.png", // Fallback if image missing
-    alt: post.title.rendered,
-  })).filter((partner: PartnerLogo) => partner.src !== "/images/placeholder-logo.png"); // Filter out invalid ones if strict, or keep placeholder
+    return posts
+      .map((post: PartnerPost) => ({
+        id: post.id,
+        src: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? "",
+        alt: post.title.rendered,
+      }))
+      .filter((p: PartnerLogo) => p.src !== "");
+  } catch {
+    return [];
+  }
 }

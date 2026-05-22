@@ -1,34 +1,41 @@
+const FALLBACK_TITLE = "Activez \nla puissance \nde votre collectif";
+const FALLBACK_DESC = "Et si les conversations clés arrivaient enfin ? \nL'outil digital qui les déclenche, au bon moment";
 
 export async function fetchHomeContent() {
-  const [titleRes, subtitleRes] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/tags?slug=title-homepage`),
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/tags?slug=subtitle-homepage`),
-  ]);
+  try {
+    const api = process.env.NEXT_PUBLIC_API_URL;
+    const [titleRes, subtitleRes] = await Promise.all([
+      fetch(`${api}/wp-json/wp/v2/tags?slug=title-homepage`, { next: { revalidate: 3600 } }),
+      fetch(`${api}/wp-json/wp/v2/tags?slug=subtitle-homepage`, { next: { revalidate: 3600 } }),
+    ]);
 
-  const [titleTags, subtitleTags] = await Promise.all([titleRes.json(), subtitleRes.json()]);
-  
-  const titleTagId = titleTags[0]?.id;
-  const subtitleTagId = subtitleTags[0]?.id;
+    if (!titleRes.ok || !subtitleRes.ok) return { title: FALLBACK_TITLE, description: FALLBACK_DESC };
 
-  let title = "Activez \nla puissance \nde votre collectif";
-  let description = "Et si les conversations clés arrivaient enfin ? \nL’outil digital qui les déclenche, au bon moment";
+    const [titleTags, subtitleTags] = await Promise.all([titleRes.json(), subtitleRes.json()]);
 
-  if (titleTagId) {
-    const postsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/posts?tags=${titleTagId}&per_page=1`);
-    const posts = await postsRes.json();
-    if (posts.length > 0) {
-      title = posts[0].title.rendered;
+    let title = FALLBACK_TITLE;
+    let description = FALLBACK_DESC;
+
+    const titleTagId = titleTags[0]?.id;
+    if (titleTagId) {
+      const res = await fetch(`${api}/wp-json/wp/v2/posts?tags=${titleTagId}&per_page=1`, { next: { revalidate: 3600 } });
+      if (res.ok) {
+        const posts = await res.json();
+        if (posts.length > 0) title = posts[0].title.rendered;
+      }
     }
-  }
 
-  // Fetch Subtitle/Description Post if tag exists
-  if (subtitleTagId) {
-    const postsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/posts?tags=${subtitleTagId}&per_page=1`);
-    const posts = await postsRes.json();
-    if (posts.length > 0) {
-      description = posts[0].title.rendered;
+    const subtitleTagId = subtitleTags[0]?.id;
+    if (subtitleTagId) {
+      const res = await fetch(`${api}/wp-json/wp/v2/posts?tags=${subtitleTagId}&per_page=1`, { next: { revalidate: 3600 } });
+      if (res.ok) {
+        const posts = await res.json();
+        if (posts.length > 0) description = posts[0].title.rendered;
+      }
     }
-  }
 
-  return { title, description };
+    return { title, description };
+  } catch {
+    return { title: FALLBACK_TITLE, description: FALLBACK_DESC };
+  }
 }
