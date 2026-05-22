@@ -1,0 +1,64 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic:
+        - link:
+          - /url: /
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - heading [level=2]
+          - heading "Explorez des contenus inspirants" [level=1] [ref=e6]
+          - paragraph [ref=e7]: Pour enrichir vos échanges, vos idées et vos réflexions
+        - figure [ref=e8]:
+          - img "Fonctionnalités de l'application" [ref=e9]
+    - figure:
+      - img "Fonctionnalités de l'application"
+  - navigation:
+    - generic [ref=e10]:
+      - link "Retour à l'accueil Uvibes" [ref=e11] [cursor=pointer]:
+        - /url: /
+        - img "Uvibes" [ref=e12]
+      - navigation "Navigation principale" [ref=e13]:
+        - link "Accueil" [ref=e14] [cursor=pointer]:
+          - /url: /
+        - link "La solution" [ref=e15] [cursor=pointer]:
+          - /url: /solution
+        - link "À propos" [ref=e16] [cursor=pointer]:
+          - /url: /uvibes
+        - link "Blog" [ref=e17] [cursor=pointer]:
+          - /url: /blog
+      - button "Activer le mode sombre" [ref=e19] [cursor=pointer]:
+        - img [ref=e20]
+  - generic [ref=e23]:
+    - combobox [ref=e24] [cursor=pointer]:
+      - option "Toutes les catégories" [selected]
+      - option "Science et Société"
+      - option "Expériences inattendues"
+      - option "Entreprise"
+      - option "Education"
+      - option "Collectifs sensibles aux échanges"
+      - option "Uvibes"
+    - generic [ref=e25]:
+      - button "Précédent" [disabled] [ref=e26] [cursor=pointer]
+      - generic [ref=e27]: Page 1 sur 0
+      - button "Suivant" [ref=e28] [cursor=pointer]
+  - contentinfo [ref=e29]:
+    - heading "Uvibes. Activez les bonnes ondes." [level=4] [ref=e31]:
+      - link "Uvibes. Activez les bonnes ondes." [ref=e32] [cursor=pointer]:
+        - /url: "#top"
+    - generic [ref=e33]:
+      - link "Mentions légales" [ref=e34] [cursor=pointer]:
+        - /url: /mention-legale
+      - link "Conditions d'utilisation" [ref=e35] [cursor=pointer]:
+        - /url: /conditions-dutilisation
+      - link "Politique de confidentialité" [ref=e36] [cursor=pointer]:
+        - /url: /politique-de-confidentialite
+      - link "Politique des cookies" [ref=e37] [cursor=pointer]:
+        - /url: /politique-cookies
+    - generic [ref=e39]:
+      - link "LinkedIn" [ref=e40] [cursor=pointer]:
+        - /url: https://www.linkedin.com/company/uvibes
+        - img "LinkedIn" [ref=e41]
+      - link "Instagram" [ref=e42] [cursor=pointer]:
+        - /url: https://www.instagram.com/uvibesofficiel/
+        - img "Instagram" [ref=e43]

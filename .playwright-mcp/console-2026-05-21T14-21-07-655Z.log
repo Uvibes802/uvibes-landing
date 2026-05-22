@@ -1,0 +1,15 @@
+[     856ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_react-dom_83ad35ed._.js:14537
+[     950ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[     953ms] [LOG] Google Analytics initialized with denied consent @ :10
+[     961ms] [LOG] Google Analytics consent restored: granted @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_src_components_12a11f02._.js:34
+[     976ms] [WARNING] Image with src "http://localhost:3000/images/Vibration-right.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    1197ms] [LOG] [Object, Object, Object, Object, Object] @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_55434233._.js:2193
+[  225400ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  225471ms] [LOG] [Fast Refresh] done in 171ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  226475ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  226562ms] [LOG] [Fast Refresh] done in 187ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  227714ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  227774ms] [LOG] [Fast Refresh] done in 160ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  453251ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  453352ms] [WARNING] Image with src "/images/Logo VI blanc.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[  453356ms] [LOG] [Fast Refresh] done in 203ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816

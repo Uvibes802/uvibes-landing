@@ -1,0 +1,144 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic:
+        - link:
+          - /url: /
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - heading [level=2]
+          - heading "La solution pour votre collectif" [level=1] [ref=e6]
+          - paragraph [ref=e7]: Découvrez comment Uvibes s'adapte à votre contexte et choisissez l'offre qui vous correspond
+        - figure [ref=e8]:
+          - img "Application Uvibes" [ref=e9]
+    - figure:
+      - img "Application Uvibes"
+  - generic [ref=e10]:
+    - link "Retour à l'accueil Uvibes" [ref=e11] [cursor=pointer]:
+      - /url: /
+      - img "Uvibes" [ref=e12]
+    - navigation "Navigation principale" [ref=e13]:
+      - link "Accueil" [ref=e14] [cursor=pointer]:
+        - /url: /
+      - link "La solution" [ref=e15] [cursor=pointer]:
+        - /url: /solution
+      - link "À propos" [ref=e16] [cursor=pointer]:
+        - /url: /uvibes
+      - link "Blog" [ref=e17] [cursor=pointer]:
+        - /url: /blog
+      - button "Prendre RDV" [ref=e130] [cursor=pointer]
+    - button "Activer le mode clair" [ref=e131] [cursor=pointer]:
+      - img [ref=e132]
+  - main [ref=e22]:
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - button "Pour qui ?" [ref=e25] [cursor=pointer]
+        - button "Comment ça marche ?" [ref=e26] [cursor=pointer]
+        - button "Nos offres" [ref=e27] [cursor=pointer]
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - heading "Chaque collectif a ses enjeux." [level=2] [ref=e31]
+          - paragraph [ref=e32]: Découvrez le vôtre.
+        - generic [ref=e33]:
+          - navigation "Sélecteur de collectif" [ref=e34]:
+            - button "01 Culture" [ref=e35] [cursor=pointer]:
+              - generic [ref=e36]: "01"
+              - generic [ref=e37]: Culture
+              - generic [ref=e38]: →
+            - button "02 Enseignement" [ref=e39] [cursor=pointer]:
+              - generic [ref=e40]: "02"
+              - generic [ref=e41]: Enseignement
+              - generic [ref=e42]: →
+            - button "03 Tourisme" [ref=e43] [cursor=pointer]:
+              - generic [ref=e44]: "03"
+              - generic [ref=e45]: Tourisme
+              - generic [ref=e46]: →
+            - button "04 Réseaux Business" [ref=e47] [cursor=pointer]:
+              - generic [ref=e48]: "04"
+              - generic [ref=e49]: Réseaux Business
+              - generic [ref=e50]: →
+            - button "05 Adhérents & Sociétaires" [ref=e51] [cursor=pointer]:
+              - generic [ref=e52]: "05"
+              - generic [ref=e53]: Adhérents & Sociétaires
+              - generic [ref=e54]: →
+            - button "06 Entreprises & Équipes" [ref=e55] [cursor=pointer]:
+              - generic [ref=e56]: "06"
+              - generic [ref=e57]: Entreprises & Équipes
+              - generic [ref=e58]: →
+            - button "07 Seniors" [ref=e59] [cursor=pointer]:
+              - generic [ref=e60]: "07"
+              - generic [ref=e61]: Seniors
+              - generic [ref=e62]: →
+            - button "08 Échanges entre pairs" [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: "08"
+              - generic [ref=e65]: Échanges entre pairs
+              - generic [ref=e66]: →
+            - button "09 International" [ref=e67] [cursor=pointer]:
+              - generic [ref=e68]: "09"
+              - generic [ref=e69]: International
+              - generic [ref=e70]: →
+            - button "10 Sport" [active] [pressed] [ref=e71] [cursor=pointer]:
+              - generic [ref=e72]: "10"
+              - generic [ref=e73]: Sport
+              - generic [ref=e74]: →
+            - button "11 Insertion Professionnelle" [ref=e75] [cursor=pointer]:
+              - generic [ref=e76]: "11"
+              - generic [ref=e77]: Insertion Professionnelle
+              - generic [ref=e78]: →
+          - generic [ref=e152]:
+            - generic [ref=e153]:
+              - generic [ref=e154]:
+                - generic [ref=e155]: Clubs sportifs, fédérations et organisateurs de compétitions
+                - heading "Sport" [level=3] [ref=e156]
+              - generic [ref=e157]:
+                - img "Supporter rugby senior avec Uvibes" [ref=e159]
+                - img "Supporter rugby jeune avec Uvibes" [ref=e161]
+                - img "Supporter USAP avec Uvibes" [ref=e163]
+            - generic [ref=e164]:
+              - generic [ref=e165]:
+                - heading "Ce que vous y gagnez" [level=4] [ref=e166]
+                - list [ref=e167]:
+                  - listitem [ref=e168]: Une expérience spectateur plus différenciante et engageante
+                  - listitem [ref=e169]: Un renforcement du lien entre le club, les supporters, les joueurs et le territoire
+                  - listitem [ref=e170]: Une meilleure compréhension des attentes, usages et dynamiques de vos spectateurs
+              - generic [ref=e171]:
+                - heading "Pourquoi ça fonctionne" [level=4] [ref=e172]
+                - list [ref=e173]:
+                  - listitem [ref=e174]: Vous amplifiez l'impact émotionnel vécu autour des matchs
+                  - listitem [ref=e175]: Vous proposez des expériences d'échanges auxquelles les joueurs peuvent prendre part
+    - generic [ref=e102]:
+      - heading "Prêt à un boost d'énergie positive ?" [level=2] [ref=e103]
+      - generic [ref=e104]:
+        - paragraph [ref=e105]: Rejoignez les organisations qui utilisent déjà Uvibes pour encourager et valoriser l'intelligence émotionnelle au sein de leur collectif
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - img "Fête des voisins" [ref=e109]
+            - img "Eklore" [ref=e111]
+            - img "Université de Perpignan" [ref=e113]
+          - paragraph [ref=e114]: L’inattendu commence ici
+    - generic [ref=e138]:
+      - heading "Découvrez comment Uvibes peut s'adapter à vos besoins" [level=2] [ref=e139]
+      - button "PARLER A UN CONSEILLER" [ref=e141] [cursor=pointer]
+  - contentinfo [ref=e115]:
+    - heading "Uvibes. Activez les bonnes ondes." [level=4] [ref=e117]:
+      - link "Uvibes. Activez les bonnes ondes." [ref=e118] [cursor=pointer]:
+        - /url: "#top"
+    - generic [ref=e119]:
+      - link "Mentions légales" [ref=e120] [cursor=pointer]:
+        - /url: /mention-legale
+      - link "Conditions d'utilisation" [ref=e121] [cursor=pointer]:
+        - /url: /conditions-dutilisation
+      - link "Politique de confidentialité" [ref=e122] [cursor=pointer]:
+        - /url: /politique-de-confidentialite
+      - link "Politique des cookies" [ref=e123] [cursor=pointer]:
+        - /url: /politique-cookies
+    - generic [ref=e125]:
+      - link "LinkedIn" [ref=e126] [cursor=pointer]:
+        - /url: https://www.linkedin.com/company/uvibes
+        - img "LinkedIn" [ref=e127]
+      - link "Instagram" [ref=e128] [cursor=pointer]:
+        - /url: https://www.instagram.com/uvibesofficiel/
+        - img "Instagram" [ref=e129]
+  - button "Open Next.js Dev Tools" [ref=e147] [cursor=pointer]:
+    - img [ref=e148]
+  - alert [ref=e151]

@@ -1,0 +1,164 @@
+{
+  "sections": [
+    {
+      "name": "hero",
+      "y": 0
+    },
+    {
+      "name": "whyuvibes",
+      "y": 900
+    },
+    {
+      "name": "usernumber",
+      "y": 1603
+    },
+    {
+      "name": "testimonies",
+      "y": 2602
+    },
+    {
+      "name": "inspiration",
+      "y": 3777
+    },
+    {
+      "name": "funct",
+      "y": 5354
+    },
+    {
+      "name": "benefices",
+      "y": 6983
+    },
+    {
+      "name": "articles",
+      "y": 7433
+    },
+    {
+      "name": "contact",
+      "y": 9374
+    }
+  ],
+  "gaps": [
+    {
+      "between": "hero-banner-content → why-uvibes-section",
+      "gap": 377
+    },
+    {
+      "between": "why-uvibes-section → user-number-wrapper",
+      "gap": 32
+    },
+    {
+      "between": "user-number-wrapper → container-orange",
+      "gap": 546
+    },
+    {
+      "between": "container-orange → inspiration-section-container",
+      "gap": 546
+    },
+    {
+      "between": "inspiration-section-container → inspiration-section",
+      "gap": -527
+    },
+    {
+      "between": "inspiration-section → container-orange",
+      "gap": 574
+    },
+    {
+      "between": "container-orange → container-orange",
+      "gap": 546
+    },
+    {
+      "between": "container-orange → container-orange",
+      "gap": 546
+    },
+    {
+      "between": "article-section featured-articles → uvibes-section",
+      "gap": 474
+    }
+  ],
+  "rects": [
+    {
+      "class": "hero-banner-content",
+      "top": 32,
+      "bottom": 523.40625,
+      "height": 491.40625,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "why-uvibes-section",
+      "top": 900,
+      "bottom": 1602.90625,
+      "height": 702.90625,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "user-number-wrapper",
+      "top": 1634.90625,
+      "bottom": 2056.6875,
+      "height": 421.78125,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "container-orange",
+      "top": 2602.375,
+      "bottom": 3232.21875,
+      "height": 629.84375,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "inspiration-section-container",
+      "top": 3777.90625,
+      "bottom": 4305.25,
+      "height": 527.34375,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "inspiration-section",
+      "top": 3777.90625,
+      "bottom": 4305.25,
+      "height": 527.34375,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "container-orange",
+      "top": 4879.59375,
+      "bottom": 5354.125,
+      "height": 474.53125,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "container-orange",
+      "top": 5899.8125,
+      "bottom": 6437.65625,
+      "height": 537.84375,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "container-orange",
+      "top": 6983.34375,
+      "bottom": 7433.34375,
+      "height": 450,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "article-section featured-articles",
+      "top": 7433.34375,
+      "bottom": 8700.25,
+      "height": 1266.90625,
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "class": "uvibes-section",
+      "top": 9173.9375,
+      "bottom": 9374.4375,
+      "height": 200.5,
+      "bg": "rgb(248, 249, 250)"
+    },
+    {
+      "class": "contact-section",
+      "top": 9374.4375,
+      "bottom": 10190.9375,
+      "height": 816.5,
+      "bg": "rgba(0, 0, 0, 0)"
+    }
+  ]
+}

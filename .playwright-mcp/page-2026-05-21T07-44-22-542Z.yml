@@ -1,0 +1,254 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e5]:
+        - generic:
+          - link:
+            - /url: /
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - heading [level=2]
+            - heading "Des conversations qui font avancer votre collectif" [level=1] [ref=e8]
+            - paragraph [ref=e9]: Découvrez nos fonctionnalités et choisissez l'offre adaptée à vos besoins
+          - figure [ref=e10]:
+            - img "Fonctionnalités de l'application" [ref=e11]
+      - figure:
+        - img "Fonctionnalités de l'application"
+    - navigation:
+      - generic [ref=e12]:
+        - link "Retour à l'accueil Uvibes" [ref=e13] [cursor=pointer]:
+          - /url: /
+          - img "Uvibes" [ref=e14]
+        - navigation "Navigation principale" [ref=e15]:
+          - link "Accueil" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "Avantages" [ref=e17] [cursor=pointer]:
+            - /url: /avantages
+          - link "Fonctionnement" [ref=e18] [cursor=pointer]:
+            - /url: /features
+          - link "Uvibes" [ref=e19] [cursor=pointer]:
+            - /url: /uvibes
+          - link "Blog" [ref=e20] [cursor=pointer]:
+            - /url: /blog
+        - button "Activer le mode sombre" [ref=e22] [cursor=pointer]:
+          - img [ref=e23]
+    - generic [ref=e25]:
+      - heading "Comment ça marche pour votre organisation ?" [level=2] [ref=e26]
+      - article [ref=e27]:
+        - heading "Vous définissez :" [level=3] [ref=e28]
+        - generic [ref=e30] [cursor=pointer]:
+          - img [ref=e32]
+          - paragraph [ref=e35]: Les thématiques abordées par votre collectif
+          - generic [ref=e36]:
+            - generic [ref=e37]: voir plus
+            - img [ref=e38]
+        - generic [ref=e41]:
+          - img [ref=e43]
+          - paragraph [ref=e47]: Le moment et la durée des expériences intéractives
+        - generic [ref=e49]:
+          - img [ref=e51]
+          - paragraph [ref=e54]: Les sujets sur lesquels vous souhaitez obtenir la vision de votre collectif
+        - generic [ref=e56]:
+          - img [ref=e58]
+          - paragraph [ref=e60]: Les ressources explorées par votre collectif
+    - generic [ref=e61]:
+      - article [ref=e62]:
+        - 'heading "Pour votre collectif : Un voyage conversationnel" [level=3] [ref=e63]'
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - img [ref=e66]
+            - paragraph [ref=e69]: Un échange de un à un
+          - listitem [ref=e70]:
+            - img [ref=e71]
+            - paragraph [ref=e74]: En vidéo
+          - listitem [ref=e75]:
+            - img [ref=e76]
+            - paragraph [ref=e79]: Sur un temps court, de 6 à 20 minutes
+          - listitem [ref=e80]:
+            - img [ref=e81]
+            - paragraph [ref=e84]: Sur un nombre infini de sujets
+        - generic [ref=e85]:
+          - generic [ref=e86]: Your browser does not support the video tag.
+          - img [ref=e87] [cursor=pointer]
+      - article [ref=e90]:
+        - 'heading "Pour vous : Une connaissance approfondie de votre organisation" [level=3] [ref=e91]'
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - img [ref=e94]
+            - paragraph [ref=e97]: Un éclairage nouveau sur les dynamiques individuelles et collectives
+          - listitem [ref=e98]:
+            - img [ref=e99]
+            - paragraph [ref=e102]: La possibilité de recueillir régulièrement des avis sur les sujets de votre choix
+          - listitem [ref=e103]:
+            - img [ref=e104]
+            - paragraph [ref=e107]: L'émergence de nouvelles réflexions et propositions
+        - generic [ref=e108]:
+          - generic [ref=e109]: Your browser does not support the video tag.
+          - img [ref=e110] [cursor=pointer]
+      - article [ref=e113]:
+        - 'heading "Pour tous : Un parcours d’entraînement aux compétences relationnelles" [level=3] [ref=e114]'
+        - list [ref=e115]:
+          - listitem [ref=e116]:
+            - img [ref=e117]
+            - paragraph [ref=e120]: Une cité des savoirs incluant vidéos, podcasts, et articles
+          - listitem [ref=e121]:
+            - img [ref=e122]
+            - paragraph [ref=e125]: Plus de 5h d’entraînement en autonomie
+          - listitem [ref=e126]:
+            - img [ref=e127]
+            - paragraph [ref=e130]: Avec une attestation à la fin
+        - generic [ref=e131]:
+          - generic [ref=e132]: Your browser does not support the video tag.
+          - img [ref=e133] [cursor=pointer]
+    - generic [ref=e136]:
+      - text: prev next ← Glissez pour découvrir nos offres →
+      - heading "Nos offres vibes" [level=2] [ref=e137]
+      - link "NOUS CONTACTER" [ref=e140] [cursor=pointer]:
+        - /url: /#contact
+      - table [ref=e142]:
+        - rowgroup [ref=e143]:
+          - row "Offre indicative jusqu'à 1 000 utilisateurs VIBES CONNECTION Favorisez les interactions et suivez l'état d'esprit de votre collectif VIBES PREMIUM Renforcez la visibilité de votre marque et l'efficacité de votre communication interne VIBES BOOST Boostez la dynamique de votre collectif avec des outils de travail innovants" [ref=e144]:
+            - columnheader "Offre indicative jusqu'à 1 000 utilisateurs" [ref=e145]:
+              - paragraph [ref=e146]:
+                - text: Offre indicative jusqu'à
+                - text: 1 000 utilisateurs
+            - columnheader "VIBES CONNECTION Favorisez les interactions et suivez l'état d'esprit de votre collectif" [ref=e147]:
+              - generic [ref=e148]:
+                - generic [ref=e149]: VIBES CONNECTION
+                - paragraph [ref=e150]: Favorisez les interactions et suivez l'état d'esprit de votre collectif
+            - columnheader "VIBES PREMIUM Renforcez la visibilité de votre marque et l'efficacité de votre communication interne" [ref=e151]:
+              - generic [ref=e152]:
+                - generic [ref=e153]: VIBES PREMIUM
+                - paragraph [ref=e154]: Renforcez la visibilité de votre marque et l'efficacité de votre communication interne
+            - columnheader "VIBES BOOST Boostez la dynamique de votre collectif avec des outils de travail innovants" [ref=e155]:
+              - generic [ref=e156]:
+                - generic [ref=e157]: VIBES BOOST
+                - paragraph [ref=e158]: Boostez la dynamique de votre collectif avec des outils de travail innovants
+        - rowgroup [ref=e159]:
+          - row "Prix hors taxes - - -" [ref=e160]:
+            - cell "Prix hors taxes" [ref=e161]
+            - cell "-" [ref=e162]
+            - cell "-" [ref=e163]
+            - cell "-" [ref=e164]
+          - row "Expériences interactives (1 000 vibes)" [ref=e165]:
+            - cell "Expériences interactives (1 000 vibes)" [ref=e166]
+            - cell [ref=e167]:
+              - img [ref=e168]
+            - cell [ref=e170]:
+              - img [ref=e171]
+            - cell [ref=e173]:
+              - img [ref=e174]
+          - row "Sondages" [ref=e176]:
+            - cell "Sondages" [ref=e177]
+            - cell [ref=e178]:
+              - img [ref=e179]
+            - cell [ref=e181]:
+              - img [ref=e182]
+            - cell [ref=e184]:
+              - img [ref=e185]
+          - row "Baromètre bien-être" [ref=e187]:
+            - cell "Baromètre bien-être" [ref=e188]
+            - cell [ref=e189]:
+              - img [ref=e190]
+            - cell [ref=e192]:
+              - img [ref=e193]
+            - cell [ref=e195]:
+              - img [ref=e196]
+          - row "Statistiques & pilotage" [ref=e198]:
+            - cell "Statistiques & pilotage" [ref=e199]
+            - cell [ref=e200]:
+              - img [ref=e201]
+            - cell [ref=e203]:
+              - img [ref=e204]
+            - cell [ref=e206]:
+              - img [ref=e207]
+          - row "Logo de votre entreprise" [ref=e209]:
+            - cell "Logo de votre entreprise" [ref=e210]
+            - cell [ref=e211]:
+              - img [ref=e212]
+            - cell [ref=e215]:
+              - img [ref=e216]
+            - cell [ref=e218]:
+              - img [ref=e219]
+          - row "Kit de communication" [ref=e221]:
+            - cell "Kit de communication" [ref=e222]
+            - cell [ref=e223]:
+              - img [ref=e224]
+            - cell [ref=e227]:
+              - img [ref=e228]
+            - cell [ref=e230]:
+              - img [ref=e231]
+          - row "Actualités internes" [ref=e233]:
+            - cell "Actualités internes" [ref=e234]
+            - cell [ref=e235]:
+              - img [ref=e236]
+            - cell [ref=e239]:
+              - img [ref=e240]
+            - cell [ref=e242]:
+              - img [ref=e243]
+          - row "Networking (cartes de visite digitales)" [ref=e245]:
+            - cell "Networking (cartes de visite digitales)" [ref=e246]
+            - cell [ref=e247]:
+              - img [ref=e248]
+            - cell [ref=e251]:
+              - img [ref=e252]
+            - cell [ref=e255]:
+              - img [ref=e256]
+          - row "Brainstorming (enquêtes post vibes)" [ref=e258]:
+            - cell "Brainstorming (enquêtes post vibes)" [ref=e259]
+            - cell [ref=e260]:
+              - img [ref=e261]
+            - cell [ref=e264]:
+              - img [ref=e265]
+            - cell [ref=e268]:
+              - img [ref=e269]
+          - row "Employer branding (invités extérieurs)" [ref=e271]:
+            - cell "Employer branding (invités extérieurs)" [ref=e272]
+            - cell [ref=e273]:
+              - img [ref=e274]
+            - cell [ref=e277]:
+              - img [ref=e278]
+            - cell [ref=e281]:
+              - img [ref=e282]
+          - row "Soft skills (parcours d'entrainement) ou médiathèque" [ref=e284]:
+            - cell "Soft skills (parcours d'entrainement) ou médiathèque" [ref=e285]
+            - cell [ref=e286]:
+              - img [ref=e287]
+            - cell [ref=e290]:
+              - img [ref=e291]
+            - cell [ref=e294]:
+              - img [ref=e295]
+      - generic [ref=e298]:
+        - heading "Vous avez des besoins spécifiques ou êtes une structure de moins de 250 personnes ? Parlons-en ensemble." [level=3] [ref=e299]
+        - link "NOUS CONTACTER" [ref=e301] [cursor=pointer]:
+          - /url: /#contact
+    - generic [ref=e303]:
+      - heading "Prêt à un boost d'énergie positive ?" [level=2] [ref=e304]
+      - generic [ref=e305]:
+        - paragraph [ref=e306]: Rejoignez les organisations qui utilisent déjà Uvibes pour encourager et valoriser l'intelligence émotionnelle au sein de leur collectif
+        - generic [ref=e307]:
+          - generic [ref=e308]:
+            - img "Fête des voisins" [ref=e310]
+            - img "Eklore" [ref=e312]
+            - img "Université de Perpignan" [ref=e314]
+          - paragraph [ref=e315]: L’inattendu commence ici
+  - contentinfo [ref=e316]:
+    - heading "Uvibes. Activez les bonnes ondes." [level=4] [ref=e318]:
+      - link "Uvibes. Activez les bonnes ondes." [ref=e319] [cursor=pointer]:
+        - /url: "#top"
+    - generic [ref=e320]:
+      - link "Mentions légales" [ref=e321] [cursor=pointer]:
+        - /url: /mention-legale
+      - link "Conditions d'utilisation" [ref=e322] [cursor=pointer]:
+        - /url: /conditions-dutilisation
+      - link "Politique de confidentialité" [ref=e323] [cursor=pointer]:
+        - /url: /politique-de-confidentialite
+      - link "Politique des cookies" [ref=e324] [cursor=pointer]:
+        - /url: /politique-cookies
+    - generic [ref=e326]:
+      - link "LinkedIn" [ref=e327] [cursor=pointer]:
+        - /url: https://www.linkedin.com/company/uvibes
+        - img "LinkedIn" [ref=e328]
+      - link "Instagram" [ref=e329] [cursor=pointer]:
+        - /url: https://www.instagram.com/uvibesofficiel/
+        - img "Instagram" [ref=e330]

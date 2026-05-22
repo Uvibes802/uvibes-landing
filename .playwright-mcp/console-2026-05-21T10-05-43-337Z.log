@@ -1,0 +1,131 @@
+[      45ms] [ERROR] ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1
+Parsing ecmascript source code failed
+> 1 | “use client”;
+    | ^
+  2 |
+  3 | import { useEffect, useRef } from “react”;
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+
+Unexpected character '“'
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:2405
+[     165ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[    1151ms] [ERROR] ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1
+Parsing ecmascript source code failed
+> 1 | “use client”;
+    | ^
+  2 |
+  3 | import { useEffect, useRef } from “react”;
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+
+Unexpected character '“'
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:2405
+[    1225ms] [ERROR] ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1
+Parsing ecmascript source code failed
+> 1 | “use client”;
+    | ^
+  2 |
+  3 | import { useEffect, useRef } from “react”;
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+
+Unexpected character '“'
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:2405
+[    1327ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[    1483ms] [ERROR] ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1
+Parsing ecmascript source code failed
+> 1 | “use client”;
+    | ^
+  2 |
+  3 | import { useEffect, useRef } from “react”;
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+
+Unexpected character '“'
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:2405
+[    1601ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[    1703ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/d835e_react-dom_16a197fd._.js:15305
+[    1765ms] Error: ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1
+Parsing ecmascript source code failed
+> 1 | “use client”;
+    | ^
+  2 |
+  3 | import { useEffect, useRef } from “react”;
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+
+Unexpected character '“'
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx
+
+
+    at <unknown> (Error: ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1)
+    at Object.getCompilationErrors (file:///home/falek/projects/uvibes-sitevitrine/node_modules/.pnpm/next@15.5.18_react-dom@19.2.6_react@19.2.6__react@19.2.6/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:775:59)
+    at DevBundlerService.getCompilationError (file:///home/falek/projects/uvibes-sitevitrine/node_modules/.pnpm/next@15.5.18_react-dom@19.2.6_react@19.2.6__react@19.2.6/node_modules/next/dist/server/lib/dev-bundler-service.js:39:55)
+    at DevServer.getCompilationError (file:///home/falek/projects/uvibes-sitevitrine/node_modules/.pnpm/next@15.5.18_react-dom@19.2.6_react@19.2.6__react@19.2.6/node_modules/next/dist/server/dev/next-dev-server.js:721:42)
+    at DevServer.findPageComponents (file:///home/falek/projects/uvibes-sitevitrine/node_modules/.pnpm/next@15.5.18_react-dom@19.2.6_react@19.2.6__react@19.2.6/node_modules/next/dist/server/dev/next-dev-server.js:691:43)
+    at async DevServer.renderErrorToResponseImpl (file:///home/falek/projects/uvibes-sitevitrine/node_modules/.pnpm/next@15.5.18_react-dom@19.2.6_react@19.2.6__react@19.2.6/node_modules/next/dist/server/base-server.js:1695:26)
+[    1762ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_08a0fefb._.js:2208
+[    1766ms] [ERROR] ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1
+Parsing ecmascript source code failed
+> 1 | “use client”;
+    | ^
+  2 |
+  3 | import { useEffect, useRef } from “react”;
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+
+Unexpected character '“'
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_4e26cc58._.js:1747
+[    1818ms] [LOG] {file: Object} @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_next-devtools_index_729cdce4.js:16058
+[    1842ms] [ERROR] ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:1:1
+Parsing ecmascript source code failed
+> 1 | “use client”;
+    | ^
+  2 |
+  3 | import { useEffect, useRef } from “react”;
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+
+Unexpected character '“'
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_4e26cc58._.js:1747
+[    1877ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_08a0fefb._.js:2496
+[   16158ms] [ERROR] ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx:3:35
+Parsing ecmascript source code failed
+  1 | 'use client';
+  2 |
+> 3 | import { useEffect, useRef } from “react”;
+    |                                   ^^^
+  4 | import { getVideoUrl } from “@/utils/videoUrl”;
+  5 | import “../../styles/section/whyUvibes.css”;
+  6 |
+
+Unexpected token `<lexing error: Error { error: (50..50, UnexpectedChar { c: '“' }) }>`. Expected a string literal
+
+Import trace:
+  Server Component:
+    ./projects/uvibes-sitevitrine/src/components/section/WhyUvibes.tsx
+    ./projects/uvibes-sitevitrine/src/app/page.tsx @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_4e26cc58._.js:1747
+[   16159ms] [LOG] {file: Object} @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_next-devtools_index_729cdce4.js:16058
+[   16219ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_08a0fefb._.js:2496

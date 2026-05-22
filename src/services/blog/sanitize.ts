@@ -35,3 +35,15 @@ export const sanitizeText = (text: string) => {
 
   return decodeHtmlEntities(sanitized);
 };
+
+// Variante texte brut — supprime toutes les balises, retourne du texte pur
+// Utilisé par citation.ts, team.ts, usePricing.ts
+export const sanitizePlainText = (text: string): string => {
+  if (typeof window === "undefined") {
+    return text.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+  }
+  return DOMPurify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};

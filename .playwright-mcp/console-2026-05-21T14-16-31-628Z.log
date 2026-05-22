@@ -1,0 +1,4 @@
+[     367ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_react-dom_83ad35ed._.js:14537
+[     473ms] [WARNING] Image with src "http://localhost:3000/images/Vibration-right.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[     474ms] [LOG] Google Analytics initialized with denied consent @ :10
+[     478ms] [LOG] Google Analytics consent restored: granted @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_src_components_12a11f02._.js:34

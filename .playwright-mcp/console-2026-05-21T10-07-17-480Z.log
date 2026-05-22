@@ -1,0 +1,33 @@
+[     880ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_react-dom_83ad35ed._.js:14537
+[     974ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[     977ms] [LOG] Google Analytics initialized with denied consent @ :10
+[     984ms] [LOG] Google Analytics consent restored: granted @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_src_components_12a11f02._.js:34
+[     998ms] [WARNING] Image with src "http://localhost:3000/images/Vibration-right.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    1029ms] [WARNING] Image with src "/images/Logo VI blanc.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[   -1003ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[    -962ms] [LOG] [Object, Object, Object, Object, Object] @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_55434233._.js:2180
+[  763800ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  764398ms] [LOG] [Fast Refresh] done in 698ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  764612ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  764634ms] [LOG] [Fast Refresh] done in 123ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  890861ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  890889ms] [LOG] [Fast Refresh] done in 21ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  895446ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  895473ms] [LOG] [Fast Refresh] done in 18ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1145063ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1145094ms] [LOG] [Fast Refresh] done in 9ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1149431ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1149491ms] [LOG] [Fast Refresh] done in 8ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1149595ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1149686ms] [LOG] [Fast Refresh] done in 192ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1184721ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1184937ms] [LOG] [Fast Refresh] done in 10ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1191775ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1191985ms] [LOG] [Fast Refresh] done in 102ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1192089ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[ 1192099ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[ 1192605ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[ 1192618ms] [LOG] [Object, Object, Object, Object, Object] @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_55434233._.js:2180
+[ 1192735ms] [LOG] [Object, Object, Object, Object, Object] @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_55434233._.js:2180
+[ 1196004ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1196207ms] [LOG] [Fast Refresh] done in 9ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816

@@ -1,0 +1,26 @@
+[     242ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_react-dom_83ad35ed._.js:14537
+[     302ms] [WARNING] Image with src "http://localhost:3000/images/Vibration-right.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[     302ms] [WARNING] Image with src "http://localhost:3000/_next/static/media/iconLinkedin.4fcd57a9.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[     302ms] [WARNING] Image with src "http://localhost:3000/_next/static/media/iconInsta.6219f2c2.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[     304ms] [LOG] Google Analytics initialized with denied consent @ :10
+[     313ms] [LOG] Google Analytics consent restored: granted @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_src_components_12a11f02._.js:34
+[   89603ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[   89646ms] [LOG] [Fast Refresh] done in 60ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[   97618ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[   97647ms] [LOG] [Fast Refresh] done in 38ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  161120ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  161150ms] [LOG] [Fast Refresh] done in 23ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  163470ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  163502ms] [LOG] [Fast Refresh] done in 12ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  173831ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  173862ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  186983ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  187016ms] [LOG] [Fast Refresh] done in 11ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  190447ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  190479ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  191657ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  191687ms] [LOG] [Fast Refresh] done in 13ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  215525ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  215556ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  223117ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  223146ms] [LOG] [Fast Refresh] done in 41ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816

@@ -1,0 +1,30 @@
+[     906ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_react-dom_83ad35ed._.js:14537
+[    1053ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[    1059ms] [LOG] Google Analytics initialized with denied consent @ :10
+[    1067ms] [LOG] Google Analytics consent restored: granted @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_src_components_12a11f02._.js:34
+[    1086ms] [WARNING] Image with src "http://localhost:3000/images/Vibration-right.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    1555ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[    1627ms] [LOG] [Object, Object, Object, Object, Object] @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_55434233._.js:2180
+[    1693ms] [WARNING] Image with src "https://wp.uvibes.fr/wp-content/uploads/2026/01/Capture-decran-2026-01-11-a-16.06.33.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    1716ms] [WARNING] Image with src "https://wp.uvibes.fr/wp-content/uploads/2025/06/gary-butterfield-YG8rZ323UsU-unsplash-scaled.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    1717ms] [WARNING] Image with src "https://wp.uvibes.fr/wp-content/uploads/2024/08/Capture-decran-2024-08-18-a-13.26.40.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[ 1948394ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1948447ms] [LOG] [Fast Refresh] done in 37ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1948568ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1948663ms] [LOG] [Fast Refresh] done in 195ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1950817ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1950845ms] [LOG] [Fast Refresh] done in 28ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1953420ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1953471ms] [LOG] [Fast Refresh] done in 12ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1953573ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1953655ms] [LOG] [Fast Refresh] done in 182ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1965850ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1966040ms] [LOG] [Fast Refresh] done in 36ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1974292ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1974321ms] [LOG] [Fast Refresh] done in 23ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1979366ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1979397ms] [LOG] [Fast Refresh] done in 21ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 1993050ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 1993078ms] [LOG] [Fast Refresh] done in 41ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 2003873ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 2003902ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816

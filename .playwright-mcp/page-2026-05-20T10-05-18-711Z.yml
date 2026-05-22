@@ -1,0 +1,219 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - heading [level=2]
+          - heading "Activez la puissance de votre collectif" [level=1] [ref=e7]
+          - paragraph [ref=e8]: Et si les conversations clés arrivaient enfin ? L’outil digital qui les déclenche, au bon moment
+          - generic [ref=e9]:
+            - link "Découvrir l'application" [ref=e10] [cursor=pointer]:
+              - /url: /avantages
+            - link "Nous contacter" [ref=e11] [cursor=pointer]:
+              - /url: /#contact
+        - figure [ref=e12]:
+          - img "visuel application" [ref=e13]
+      - figure:
+        - img "visuel application"
+    - generic [ref=e16]:
+      - heading "Pourquoi « Uvibes » ?" [level=2] [ref=e17]
+      - article [ref=e18]:
+        - paragraph [ref=e19]: Uvibes active la richesse des échanges humains au sein des collectifs, en y faisant naître des rencontres inattendues.
+        - paragraph [ref=e20]: “Vibes”, en anglais, évoque ces vibrations, ces sensations que l'on ressent quand on se connecte à quelqu’un, notamment une personne encore inconnue. Et ce “U”, c’est pour You, celui qui vit l'expérience .
+        - paragraph [ref=e21]: Chaque rencontre sur Uvibes est une aventure pour (re)découvrir quelqu’un de son collectif autour de questions ouvertes et positives. L’émerveillement se crée, et les conversations prennent vie.
+    - article [ref=e24]:
+      - generic [ref=e193]:
+        - heading "En 2026, sur Uvibes :" [level=2] [ref=e194]
+        - paragraph [ref=e195]: + de 3 500 utilisateurs
+    - 'heading "Bien-être collectif: elles y trouvent de la bonne humeur" [level=2] [ref=e26]':
+      - text: "Bien-être collectif:"
+      - generic [ref=e27]: elles y trouvent de la bonne humeur
+    - generic [ref=e30]:
+      - heading "Nos Partenaires" [level=2] [ref=e31]
+      - generic [ref=e33]:
+        - img "Eklore" [ref=e213]
+        - img "UPVD IN CUBE" [ref=e216]
+        - img "La fête des voisins" [ref=e219]
+        - img "Impact" [ref=e198]
+        - img "UPVD" [ref=e201]
+        - img "Perpignan Métropole" [ref=e204]
+        - img "Région Occitanie" [ref=e207]
+        - img "Fondation UPVD" [ref=e210]
+    - 'heading "Développement professionnel: ils partagent leurs points de vue" [level=2] [ref=e44]':
+      - text: "Développement professionnel:"
+      - generic [ref=e45]: ils partagent leurs points de vue
+    - generic [ref=e47]:
+      - article [ref=e48]:
+        - generic [ref=e50]:
+          - heading "Uvibes, la solution qui réinvente les interactions" [level=2] [ref=e51]
+          - paragraph [ref=e52]: ❝ En prenant le temps de réfléchir du point de vue d’une autre personne, nous développons notre humilité intellectuelle cette qualité qui nous permet de reconnaître nos limites et d’accepter que nous n’avons pas toutes les réponses. Nous devenons également plus ouverts d’esprit, prêts à envisager les différentes façons dont une situation peut évoluer. Et surtout, nous apprenons à intégrer des perspectives variées, enrichissant ainsi notre compréhension et la qualité de nos décisions. ❞
+          - paragraph [ref=e53]: Ilios Koutsou
+          - paragraph [ref=e220]: Docteur en psychologie et Maître de conférences à l’Université libre de Bruxelles
+      - link "Pour tous les collectifs" [ref=e55] [cursor=pointer]:
+        - /url: /avantages#top
+        - button "Pour tous les collectifs" [ref=e56]
+    - 'heading "Bien-être collectif: ils créent du lien" [level=2] [ref=e58]'
+    - generic [ref=e61]:
+      - heading "Ils parlent de nous" [level=2] [ref=e62]
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - article [ref=e224]:
+            - heading "❝ Sur Uvibes, on se sent écoutés pour qui l’on est ❞" [level=3] [ref=e225]
+            - paragraph
+            - paragraph
+          - article [ref=e227]:
+            - heading "❝ L’application pour échanger autrement, au sein d’un collectif ❞" [level=3] [ref=e228]
+            - paragraph [ref=e229]: Léa
+            - paragraph
+          - article [ref=e231]:
+            - heading "❝ Uvibes est une alternative éthique et pleine de vie aux réseaux sociaux habituels ❞" [level=3] [ref=e232]
+            - paragraph [ref=e233]: Maxime
+            - paragraph
+          - article [ref=e235]:
+            - heading "❝ Uvibes donne la parole et génère des interactions positives et constructives. ❞" [level=3] [ref=e236]
+            - paragraph [ref=e237]: Eric Peytavin
+            - paragraph [ref=e238]: Directeur de Acti-Protec et co-président du club RH 66
+          - article [ref=e240]:
+            - heading "❝ Avec Uvibes, développer mes soft skills devient enfin simple et concret ! ❞" [level=3] [ref=e241]
+            - paragraph [ref=e242]: Laura
+            - paragraph [ref=e243]: Etudiante
+        - generic [ref=e63] [cursor=pointer]: prev
+        - generic [ref=e64] [cursor=pointer]: next
+    - 'heading "Outil pédagogique: ils y trouvent de nouvelles idées" [level=2] [ref=e66]':
+      - text: "Outil pédagogique:"
+      - generic [ref=e67]: ils y trouvent de nouvelles idées
+    - generic [ref=e70]:
+      - heading "Découvrir des points de vue inattendus" [level=2] [ref=e71]
+      - generic [ref=e250]:
+        - generic [ref=e251]:
+          - generic [ref=e254]:
+            - img [ref=e256]
+            - heading "Echanges" [level=3] [ref=e259]
+            - paragraph [ref=e260]: Partager des témoignages positifs sur un nombre infini de sujets
+          - generic [ref=e263]:
+            - img [ref=e265]
+            - heading "Participation" [level=3] [ref=e268]
+            - paragraph [ref=e269]: Recueillir régulièrement les avis de son collectif
+          - generic [ref=e272]:
+            - img [ref=e274]
+            - heading "Ressources" [level=3] [ref=e276]
+            - paragraph [ref=e277]: Accéder à une médiathèque de savoirs sur-mesure
+        - generic: prev
+        - generic [ref=e278] [cursor=pointer]: next
+    - 'heading "Développement professionnel: ils élargissent leurs horizons" [level=2] [ref=e97]':
+      - text: "Développement professionnel:"
+      - generic [ref=e98]: ils élargissent leurs horizons
+    - generic [ref=e102]:
+      - heading "Transformez le quotidien" [level=2] [ref=e103]
+      - generic [ref=e105]:
+        - article [ref=e106]:
+          - img [ref=e108]
+          - heading "Optimisme" [level=3] [ref=e111]
+        - article [ref=e112]:
+          - img [ref=e114]
+          - heading "Flexibilité" [level=3] [ref=e117]
+        - article [ref=e118]:
+          - img [ref=e120]
+          - heading "Energie" [level=3] [ref=e122]
+        - article [ref=e123]:
+          - img [ref=e125]
+          - heading "Pensée critique" [level=3] [ref=e128]
+        - article [ref=e129]:
+          - img [ref=e131]
+          - heading "Adaptation" [level=3] [ref=e134]
+        - article [ref=e135]:
+          - img [ref=e137]
+          - heading "Bien-être" [level=3] [ref=e140]
+    - generic [ref=e283]:
+      - heading "Nos articles mis en avant" [level=2] [ref=e284]
+      - generic [ref=e285]:
+        - article [ref=e286]:
+          - img "NOTRE CHARTE UVIBES" [ref=e288]
+          - generic [ref=e289]:
+            - heading "NOTRE CHARTE UVIBES" [level=3] [ref=e290]
+            - paragraph [ref=e291]: "1. Préambule : Dans un environnement de plus en plus digitalisé, les outils technologiques façonnent en profondeur les modes de communication, de ..."
+            - paragraph [ref=e292]: 1/11/2026
+            - 'link "Lire l''article : NOTRE CHARTE UVIBES" [ref=e293] [cursor=pointer]':
+              - /url: /blog/notre-charte-uvibes
+        - article [ref=e294]:
+          - 'img "Ça ne fait pas de mal de demander : Poser des questions augmente le plaisir" [ref=e296]'
+          - generic [ref=e297]:
+            - 'heading "Ça ne fait pas de mal de demander : Poser des questions augmente le plaisir" [level=3] [ref=e298]'
+            - paragraph [ref=e299]: La conversation est une expérience humaine fondamentale, nécessaire pour atteindre des objectifs à la fois personnels (intrapersonnels) et sociau...
+            - paragraph [ref=e300]:
+              - strong [ref=e301]: Alison Wood Brooks et Francesca Gino
+            - paragraph [ref=e302]: 6/6/2025
+            - 'link "Lire l''article : Ça ne fait pas de mal de demander : Poser des questions augmente le plaisir" [ref=e303] [cursor=pointer]':
+              - /url: /blog/ca-ne-fait-pas-de-mal-de-demander-poser-des-questions-augmente-le-plaisir
+        - article [ref=e304]:
+          - 'img "Le plaisir de parler de soi : une fonction cognitive essentielle" [ref=e306]'
+          - generic [ref=e307]:
+            - 'heading "Le plaisir de parler de soi : une fonction cognitive essentielle" [level=3] [ref=e308]'
+            - paragraph [ref=e309]: Une série d’études scientifiques montre que le simple fait de partager ses pensées, même les plus banales, active les zones de récompense dans notre ...
+            - paragraph [ref=e310]:
+              - strong [ref=e311]: Etude de Michael S. Gazzaniga, University of California, Santa Barbara, 2012
+            - paragraph [ref=e312]: 6/3/2025
+            - 'link "Lire l''article : Le plaisir de parler de soi : une fonction cognitive essentielle" [ref=e313] [cursor=pointer]':
+              - /url: /blog/le-plaisir-de-parler-de-soi-une-fonction-cognitive-essentielle-2
+    - 'heading "Outil pédagogique: ils se nourrissent d''expériences" [level=2] [ref=e142]':
+      - text: "Outil pédagogique:"
+      - generic [ref=e143]: ils se nourrissent d'expériences
+    - navigation "Navigation principale" [ref=e145]:
+      - link "Accueil Uvibes" [ref=e146] [cursor=pointer]:
+        - /url: /
+        - img "Uvibes" [ref=e147]
+      - button "Ouvrir le menu" [ref=e340] [cursor=pointer]:
+        - img [ref=e341]
+    - link "Une solution éthique" [ref=e151] [cursor=pointer]:
+      - /url: /uvibes
+      - button "Une solution éthique" [ref=e152]
+    - main [ref=e153]:
+      - generic [ref=e154]:
+        - heading "Contactez-nous" [level=2] [ref=e155]
+        - paragraph [ref=e156]: Vous avez des questions ou souhaitez en savoir plus sur Uvibes ? Notre équipe est à votre disposition pour vous répondre.
+      - generic [ref=e157]:
+        - group [ref=e158]:
+          - generic [ref=e159]:
+            - generic [ref=e160]: Nom
+            - textbox "Nom" [ref=e161]
+          - generic [ref=e162]:
+            - generic [ref=e163]: Prénom
+            - textbox "Prénom" [ref=e164]
+        - generic [ref=e165]:
+          - generic [ref=e166]: Email
+          - textbox "Email" [ref=e167]
+        - generic [ref=e168]:
+          - generic [ref=e169]: Message
+          - textbox "Message" [ref=e170]:
+            - /placeholder: Votre message
+        - generic [ref=e171]:
+          - generic [ref=e172]:
+            - text: Je souhaite partager mes informations avec Uvibes
+            - checkbox "Je souhaite partager mes informations avec Uvibes" [ref=e173]
+          - generic [ref=e174]:
+            - text: Je m'inscris à la newsletter Uvibes
+            - checkbox "Je m'inscris à la newsletter Uvibes" [ref=e175]
+        - button "Envoyer" [ref=e177] [cursor=pointer]
+    - generic [ref=e178]:
+      - heading "Uvibes. Activez les bonnes ondes." [level=4] [ref=e180]:
+        - link "Uvibes. Activez les bonnes ondes." [ref=e181] [cursor=pointer]:
+          - /url: "#top"
+      - generic [ref=e182]:
+        - link "Mentions légales" [ref=e183] [cursor=pointer]:
+          - /url: /mention-legale
+        - link "Conditions d'utilisation" [ref=e184] [cursor=pointer]:
+          - /url: /conditions-dutilisation
+        - link "Politique de confidentialité" [ref=e185] [cursor=pointer]:
+          - /url: /politique-de-confidentialite
+        - link "Politique des cookies" [ref=e186] [cursor=pointer]:
+          - /url: /politique-cookies
+      - generic [ref=e188]:
+        - link "LinkedIn" [ref=e189] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/uvibes
+          - img "LinkedIn" [ref=e190]
+        - link "Instagram" [ref=e191] [cursor=pointer]:
+          - /url: https://www.instagram.com/uvibesofficiel/
+          - img "Instagram" [ref=e192]
+  - button "Open Next.js Dev Tools" [ref=e319] [cursor=pointer]:
+    - img [ref=e320]
+  - alert [ref=e323]

@@ -1,0 +1,255 @@
+{
+  "navData": [
+    {
+      "tag": "HEADER",
+      "class": "Header --state-default",
+      "rect": {
+        "w": 1280,
+        "h": 60,
+        "x": 0,
+        "y": 800
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "fixed"
+    },
+    {
+      "tag": "DIV",
+      "class": "Header-wrapper",
+      "rect": {
+        "w": 558,
+        "h": 60,
+        "x": 361,
+        "y": 800
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "relative"
+    },
+    {
+      "tag": "A",
+      "class": "nuxt-link-active router-link-exact-active Header-logo",
+      "rect": {
+        "w": 60,
+        "h": 60,
+        "x": 361,
+        "y": 800
+      },
+      "bg": "rgb(17, 17, 17)",
+      "borderRadius": "8px",
+      "position": "static"
+    },
+    {
+      "tag": "DIV",
+      "class": "AppSvg Header-logoIcon",
+      "rect": {
+        "w": 24,
+        "h": 26,
+        "x": 379,
+        "y": 817
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "static"
+    },
+    {
+      "tag": "NAV",
+      "class": "Header-nav",
+      "rect": {
+        "w": 408,
+        "h": 60,
+        "x": 436,
+        "y": 800
+      },
+      "bg": "rgb(238, 238, 238)",
+      "borderRadius": "8px",
+      "position": "relative"
+    },
+    {
+      "tag": "DIV",
+      "class": "Header-navBg",
+      "rect": {
+        "w": 104,
+        "h": 30,
+        "x": 543,
+        "y": 815
+      },
+      "bg": "rgb(26, 26, 26)",
+      "borderRadius": "3.35544e+07px",
+      "position": "absolute"
+    },
+    {
+      "tag": "A",
+      "class": "Header-navItem --nav-item-hover",
+      "rect": {
+        "w": 72,
+        "h": 38,
+        "x": 464,
+        "y": 811
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "relative"
+    },
+    {
+      "tag": "A",
+      "class": "Header-navItem --nav-item-hover --hover",
+      "rect": {
+        "w": 102,
+        "h": 38,
+        "x": 544,
+        "y": 811
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "relative"
+    },
+    {
+      "tag": "A",
+      "class": "Header-navItem --nav-item-hover",
+      "rect": {
+        "w": 70,
+        "h": 38,
+        "x": 654,
+        "y": 811
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "relative"
+    },
+    {
+      "tag": "A",
+      "class": "Header-navItem --nav-item-hover",
+      "rect": {
+        "w": 84,
+        "h": 38,
+        "x": 732,
+        "y": 811
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "relative"
+    },
+    {
+      "tag": "DIV",
+      "class": "Header-navMenuBt",
+      "rect": {
+        "w": 41,
+        "h": 18,
+        "x": 620,
+        "y": 821
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "absolute"
+    },
+    {
+      "tag": "DIV",
+      "class": "Header-menuBt",
+      "rect": {
+        "w": 0,
+        "h": 0,
+        "x": 0,
+        "y": 0
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "static"
+    },
+    {
+      "tag": "DIV",
+      "class": "Header-theme --not-overlay",
+      "rect": {
+        "w": 60,
+        "h": 60,
+        "x": 859,
+        "y": 800
+      },
+      "bg": "rgb(17, 17, 17)",
+      "borderRadius": "8px",
+      "position": "relative"
+    },
+    {
+      "tag": "NAV",
+      "class": "AppFooter-nav",
+      "rect": {
+        "w": 209,
+        "h": 142,
+        "x": 849,
+        "y": 5323
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "static"
+    },
+    {
+      "tag": "A",
+      "class": "AppFooter-navItem",
+      "rect": {
+        "w": 209,
+        "h": 18,
+        "x": 849,
+        "y": 5323
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "position": "relative"
+    }
+  ],
+  "linkData": [
+    {
+      "text": "Go to homepage",
+      "fontSize": "8.88889px",
+      "color": "rgb(53, 54, 58)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "Artists",
+      "fontSize": "16px",
+      "color": "rgb(246, 246, 244)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "Categories",
+      "fontSize": "16px",
+      "color": "rgb(246, 246, 244)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "About",
+      "fontSize": "16px",
+      "color": "rgb(246, 246, 244)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "Contact",
+      "fontSize": "16px",
+      "color": "rgb(246, 246, 244)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "Artists",
+      "fontSize": "16px",
+      "color": "rgb(255, 255, 255)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "Categories",
+      "fontSize": "16px",
+      "color": "rgb(255, 255, 255)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "About",
+      "fontSize": "16px",
+      "color": "rgb(255, 255, 255)",
+      "fontFamily": "season, sans-serif"
+    },
+    {
+      "text": "Contact",
+      "fontSize": "16px",
+      "color": "rgb(255, 255, 255)",
+      "fontFamily": "season, sans-serif"
+    }
+  ]
+}

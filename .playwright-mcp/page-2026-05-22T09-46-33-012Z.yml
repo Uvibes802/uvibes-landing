@@ -1,0 +1,161 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic:
+        - link:
+          - /url: /
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - heading [level=2]
+          - heading "La solution pour votre collectif" [level=1] [ref=e6]
+          - paragraph [ref=e7]: Découvrez comment Uvibes s'adapte à votre contexte et choisissez l'offre qui vous correspond
+        - figure [ref=e8]:
+          - img "Application Uvibes" [ref=e9]
+    - figure:
+      - img "Application Uvibes"
+  - generic [ref=e10]:
+    - link "Retour à l'accueil Uvibes" [ref=e11] [cursor=pointer]:
+      - /url: /
+      - img "Uvibes" [ref=e12]
+    - navigation "Navigation principale" [ref=e13]:
+      - link "Accueil" [ref=e14] [cursor=pointer]:
+        - /url: /
+      - link "La solution" [ref=e15] [cursor=pointer]:
+        - /url: /solution
+      - link "À propos" [ref=e16] [cursor=pointer]:
+        - /url: /uvibes
+      - link "Blog" [ref=e17] [cursor=pointer]:
+        - /url: /blog
+      - button "Prendre RDV" [ref=e130] [cursor=pointer]
+    - button "Activer le mode clair" [ref=e131] [cursor=pointer]:
+      - img [ref=e132]
+  - main [ref=e22]:
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - button "Pour qui ?" [ref=e25] [cursor=pointer]
+        - button "Comment ça marche ?" [active] [ref=e26] [cursor=pointer]
+        - button "Nos offres" [ref=e27] [cursor=pointer]
+      - generic [ref=e28]:
+        - generic [ref=e152]:
+          - heading "Comment ça marche pour votre organisation ?" [level=2] [ref=e153]
+          - article [ref=e154]:
+            - heading "Vous définissez :" [level=3] [ref=e155]
+            - generic [ref=e157] [cursor=pointer]:
+              - img [ref=e159]
+              - paragraph [ref=e162]: Les thématiques abordées par votre collectif
+              - generic [ref=e163]:
+                - generic [ref=e164]: voir plus
+                - img [ref=e165]
+            - generic [ref=e168]:
+              - img [ref=e170]
+              - paragraph [ref=e174]: Le moment et la durée des expériences intéractives
+            - generic [ref=e176]:
+              - img [ref=e178]
+              - paragraph [ref=e181]: Les sujets sur lesquels vous souhaitez obtenir la vision de votre collectif
+            - generic [ref=e183]:
+              - img [ref=e185]
+              - paragraph [ref=e187]: Les ressources explorées par votre collectif
+        - generic [ref=e188]:
+          - article [ref=e189]:
+            - 'heading "Pour votre collectif : Un voyage conversationnel" [level=3] [ref=e190]'
+            - list [ref=e191]:
+              - listitem [ref=e192]:
+                - img [ref=e193]
+                - paragraph [ref=e196]: Un échange de un à un
+              - listitem [ref=e197]:
+                - img [ref=e198]
+                - paragraph [ref=e201]: En vidéo
+              - listitem [ref=e202]:
+                - img [ref=e203]
+                - paragraph [ref=e206]: Sur un temps court, de 6 à 20 minutes
+              - listitem [ref=e207]:
+                - img [ref=e208]
+                - paragraph [ref=e211]: Sur un nombre infini de sujets
+            - generic [ref=e212]:
+              - generic [ref=e213]: Your browser does not support the video tag.
+              - img [ref=e214] [cursor=pointer]
+          - article [ref=e217]:
+            - 'heading "Pour vous : Une connaissance approfondie de votre organisation" [level=3] [ref=e218]'
+            - list [ref=e219]:
+              - listitem [ref=e220]:
+                - img [ref=e221]
+                - paragraph [ref=e224]: Un éclairage nouveau sur les dynamiques individuelles et collectives
+              - listitem [ref=e225]:
+                - img [ref=e226]
+                - paragraph [ref=e229]: La possibilité de recueillir régulièrement des avis sur les sujets de votre choix
+              - listitem [ref=e230]:
+                - img [ref=e231]
+                - paragraph [ref=e234]: L'émergence de nouvelles réflexions et propositions
+            - generic [ref=e235]:
+              - generic [ref=e236]: Your browser does not support the video tag.
+              - img [ref=e237] [cursor=pointer]
+          - article [ref=e240]:
+            - 'heading "Pour tous : Un parcours d’entraînement aux compétences relationnelles" [level=3] [ref=e241]'
+            - list [ref=e242]:
+              - listitem [ref=e243]:
+                - img [ref=e244]
+                - paragraph [ref=e247]: Une cité des savoirs incluant vidéos, podcasts, et articles
+              - listitem [ref=e248]:
+                - img [ref=e249]
+                - paragraph [ref=e252]: Plus de 5h d’entraînement en autonomie
+              - listitem [ref=e253]:
+                - img [ref=e254]
+                - paragraph [ref=e257]: Avec une attestation à la fin
+            - generic [ref=e258]:
+              - generic [ref=e259]: Your browser does not support the video tag.
+              - img [ref=e260] [cursor=pointer]
+        - generic [ref=e263]:
+          - heading "Entreprise" [level=3] [ref=e266] [cursor=pointer]:
+            - button "Entreprise" [ref=e267]:
+              - generic [ref=e269]:
+                - img [ref=e270]
+                - heading "Entreprise" [level=3] [ref=e273]
+              - img [ref=e275]
+          - heading "Etablissement d'enseignement" [level=3] [ref=e279] [cursor=pointer]:
+            - button "Etablissement d'enseignement" [ref=e280]:
+              - generic [ref=e282]:
+                - img [ref=e283]
+                - heading "Etablissement d'enseignement" [level=3] [ref=e288]
+              - img [ref=e290]
+          - heading "Collectif" [level=3] [ref=e294] [cursor=pointer]:
+            - button "Collectif" [ref=e295]:
+              - generic [ref=e297]:
+                - img [ref=e298]
+                - heading "Collectif" [level=3] [ref=e303]
+              - img [ref=e305]
+    - generic [ref=e102]:
+      - heading "Prêt à un boost d'énergie positive ?" [level=2] [ref=e103]
+      - generic [ref=e104]:
+        - paragraph [ref=e105]: Rejoignez les organisations qui utilisent déjà Uvibes pour encourager et valoriser l'intelligence émotionnelle au sein de leur collectif
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - img "Fête des voisins" [ref=e109]
+            - img "Eklore" [ref=e111]
+            - img "Université de Perpignan" [ref=e113]
+          - paragraph [ref=e114]: L’inattendu commence ici
+    - generic [ref=e138]:
+      - heading "Découvrez comment Uvibes peut s'adapter à vos besoins" [level=2] [ref=e139]
+      - button "PARLER A UN CONSEILLER" [ref=e141] [cursor=pointer]
+  - contentinfo [ref=e115]:
+    - heading "Uvibes. Activez les bonnes ondes." [level=4] [ref=e117]:
+      - link "Uvibes. Activez les bonnes ondes." [ref=e118] [cursor=pointer]:
+        - /url: "#top"
+    - generic [ref=e119]:
+      - link "Mentions légales" [ref=e120] [cursor=pointer]:
+        - /url: /mention-legale
+      - link "Conditions d'utilisation" [ref=e121] [cursor=pointer]:
+        - /url: /conditions-dutilisation
+      - link "Politique de confidentialité" [ref=e122] [cursor=pointer]:
+        - /url: /politique-de-confidentialite
+      - link "Politique des cookies" [ref=e123] [cursor=pointer]:
+        - /url: /politique-cookies
+    - generic [ref=e125]:
+      - link "LinkedIn" [ref=e126] [cursor=pointer]:
+        - /url: https://www.linkedin.com/company/uvibes
+        - img "LinkedIn" [ref=e127]
+      - link "Instagram" [ref=e128] [cursor=pointer]:
+        - /url: https://www.instagram.com/uvibesofficiel/
+        - img "Instagram" [ref=e129]
+  - button "Open Next.js Dev Tools" [ref=e147] [cursor=pointer]:
+    - img [ref=e148]
+  - alert [ref=e151]

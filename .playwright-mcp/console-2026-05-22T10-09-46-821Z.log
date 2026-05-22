@@ -1,0 +1,23 @@
+[     144ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[     170ms] [LOG] [Fast Refresh] done in 126ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[    1119ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_react-dom_83ad35ed._.js:14537
+[    1256ms] [LOG] Google Analytics initialized with denied consent @ :10
+[    1262ms] [LOG] Google Analytics consent restored: granted @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_src_components_12a11f02._.js:34
+[    1284ms] [WARNING] Image with src "http://localhost:3000/images/Vibration-right.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    1485ms] [LOG] [Object, Object, Object, Object, Object] @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_55434233._.js:2216
+[ 9061507ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9061563ms] [LOG] [Fast Refresh] done in 53ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 9080170ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9080199ms] [LOG] [Fast Refresh] done in 50ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 9099787ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9099816ms] [LOG] [Fast Refresh] done in 18ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 9112740ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9112770ms] [LOG] [Fast Refresh] done in 36ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 9125643ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9125673ms] [LOG] [Fast Refresh] done in 22ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 9159313ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9159345ms] [LOG] [Fast Refresh] done in 132ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 9540543ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9540571ms] [LOG] [Fast Refresh] done in 32ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[ 9554944ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[ 9554971ms] [LOG] [Fast Refresh] done in 26ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816

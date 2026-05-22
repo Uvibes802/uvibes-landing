@@ -1,0 +1,238 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - img [ref=e7]
+    - generic:
+      - img "Pellmell" [ref=e35]
+      - img "Pellmell" [ref=e38]
+      - img "Pellmell" [ref=e41]
+      - img "Pellmell" [ref=e44]
+      - img "Pellmell" [ref=e47]
+      - img "Pellmell" [ref=e50]
+      - img "Pellmell" [ref=e53]
+      - img "Pellmell" [ref=e56]
+  - generic [ref=e57]:
+    - banner:
+      - generic [ref=e58]:
+        - link "Go to homepage" [ref=e59] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e60]: Go to homepage
+        - navigation [ref=e61]:
+          - link "Artists" [ref=e62] [cursor=pointer]:
+            - /url: /artists/
+          - link "Categories" [ref=e63] [cursor=pointer]:
+            - /url: /categories/
+          - link "About" [ref=e64] [cursor=pointer]:
+            - /url: /about/
+          - link "Contact" [ref=e65] [cursor=pointer]:
+            - /url: /contact/
+          - generic [ref=e66]: Menu
+    - main [ref=e73]:
+      - generic [ref=e74]:
+        - generic "pellmell" [ref=e75]:
+          - generic [ref=e76]:
+            - heading "Pellmell" [level=1] [ref=e77]
+            - generic [ref=e78]:
+              - paragraph [ref=e80]: Your creative partner for Animation & Imagery. Digital Artists. World-class. Nothing else.
+              - link "Read More" [ref=e82] [cursor=pointer]:
+                - /url: /about/
+                - generic [ref=e84]: Read More
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - img "Thumbnail de la vidéo"
+            - heading "Our Work since..." [level=2]
+            - generic:
+              - generic: "2010"
+              - generic: "2026"
+        - generic [ref=e86]:
+          - heading "The Family" [level=2] [ref=e88]
+          - generic [ref=e92]:
+            - link "Noisegraph" [ref=e94] [cursor=pointer]:
+              - /url: /artists/noisegraph/
+            - link "Ben Fearnley" [ref=e96] [cursor=pointer]:
+              - /url: /artists/ben-fearnley/
+            - link "Arcade Studio" [ref=e98] [cursor=pointer]:
+              - /url: /artists/arcade-studio/
+            - link "Styleframe" [ref=e100] [cursor=pointer]:
+              - /url: /artists/styleframe/
+            - link "JVG" [ref=e102] [cursor=pointer]:
+              - /url: /artists/jvg/
+            - link "Garrigosa Studio" [ref=e104] [cursor=pointer]:
+              - /url: /artists/garrigosa-studio/
+            - link "Athom Studios" [ref=e106] [cursor=pointer]:
+              - /url: /artists/athom-studios/
+            - link "Platinum" [ref=e108] [cursor=pointer]:
+              - /url: /artists/platinum/
+            - link "Zachary Corzine" [ref=e110] [cursor=pointer]:
+              - /url: /artists/zachary-corzine/
+        - generic [ref=e112]:
+          - heading "Latest Projects" [level=2] [ref=e114]
+          - generic [ref=e117]:
+            - link "Thumbnail de la vidéo Moncler Styleframe" [ref=e119] [cursor=pointer]:
+              - /url: /artists/styleframe/moncler/
+              - img "Thumbnail de la vidéo" [ref=e125]
+              - generic [ref=e126]:
+                - generic [ref=e127]: Moncler
+                - generic [ref=e129]: Styleframe
+            - link "Thumbnail de la vidéo New York City Ballet Noisegraph" [ref=e131] [cursor=pointer]:
+              - /url: /artists/noisegraph/new-york-city-ballet/
+              - img "Thumbnail de la vidéo" [ref=e137]
+              - generic [ref=e138]:
+                - generic [ref=e139]: New York City Ballet
+                - generic [ref=e141]: Noisegraph
+            - link "Thumbnail de la vidéo Galaxy JVG" [ref=e143] [cursor=pointer]:
+              - /url: /artists/jvg/galaxy/
+              - img "Thumbnail de la vidéo" [ref=e149]
+              - generic [ref=e150]:
+                - generic [ref=e151]: Galaxy
+                - generic [ref=e153]: JVG
+        - generic [ref=e155]:
+          - heading "Categories" [level=2] [ref=e157]
+          - generic [ref=e158]:
+            - link "AI 13 Pellmell AI 13" [ref=e159] [cursor=pointer]:
+              - /url: /categories/?filter=ai
+              - generic:
+                - generic: AI
+                - generic: "13"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pellmell"
+                - generic:
+                  - generic: AI
+                  - generic: "13"
+            - link "Archi & Design 12 Pellmell Archi & Design 12" [ref=e160] [cursor=pointer]:
+              - /url: /categories/?filter=architecture-design
+              - generic:
+                - generic: Archi & Design
+                - generic: "12"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pellmell"
+                - generic:
+                  - generic: Archi & Design
+                  - generic: "12"
+            - link "Beauty 16 Pellmell Beauty 16" [ref=e161] [cursor=pointer]:
+              - /url: /categories/?filter=beauty
+              - generic:
+                - generic: Beauty
+                - generic: "16"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pellmell"
+                - generic:
+                  - generic: Beauty
+                  - generic: "16"
+            - link "Characters 26 Pellmell Characters 26" [ref=e162] [cursor=pointer]:
+              - /url: /categories/?filter=characters
+              - generic:
+                - generic: Characters
+                - generic: "26"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pellmell"
+                - generic:
+                  - generic: Characters
+                  - generic: "26"
+            - link "Luxury 17 Pellmell Luxury 17" [ref=e163] [cursor=pointer]:
+              - /url: /categories/?filter=luxury
+              - generic:
+                - generic: Luxury
+                - generic: "17"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pellmell"
+                - generic:
+                  - generic: Luxury
+                  - generic: "17"
+            - link "Set Design 13 Pellmell Set Design 13" [ref=e164] [cursor=pointer]:
+              - /url: /categories/?filter=set-design
+              - generic:
+                - generic: Set Design
+                - generic: "13"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pellmell"
+                - generic:
+                  - generic: Set Design
+                  - generic: "13"
+            - link "Typography 3 Pellmell Typography 3" [ref=e165] [cursor=pointer]:
+              - /url: /categories/?filter=typography
+              - generic:
+                - generic: Typography
+                - generic: "3"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pellmell"
+                - generic:
+                  - generic: Typography
+                  - generic: "3"
+            - link "See All" [ref=e167] [cursor=pointer]:
+              - /url: /categories/
+              - text: See All
+        - generic [ref=e171]:
+          - heading "Digital Artists. World-class. Nothing less." [level=2] [ref=e172]
+          - generic [ref=e175]:
+            - paragraph [ref=e177]: Our visionary digital artists bring ideas to life. Together, we will craft unique digital content that stands out.
+            - link "Get in touch!" [ref=e178] [cursor=pointer]:
+              - /url: /contact/
+              - generic [ref=e180]: Get in touch!
+        - generic [ref=e182]:
+          - generic [ref=e183]:
+            - generic [ref=e184]:
+              - paragraph [ref=e186]: Let's team up and make something legendary.
+              - link "hello@pellmell.fr" [ref=e187] [cursor=pointer]:
+                - /url: mailto:hello@pellmell.fr
+                - generic [ref=e189]: hello@pellmell.fr
+              - list [ref=e190]:
+                - listitem [ref=e191]:
+                  - link "Instagram Instagram" [ref=e192] [cursor=pointer]:
+                    - /url: https://www.instagram.com/pellmell_agency
+                    - generic [ref=e193]: Instagram
+                    - text: Instagram
+                - listitem [ref=e194]:
+                  - link "Linkedin Linkedin" [ref=e195] [cursor=pointer]:
+                    - /url: https://www.linkedin.com/company/pell-mell
+                    - generic [ref=e196]: Linkedin
+                    - text: Linkedin
+            - generic [ref=e197]:
+              - navigation [ref=e198]:
+                - link "Artists" [ref=e199] [cursor=pointer]:
+                  - /url: /artists/
+                  - generic [ref=e201]: Artists
+                - link "Categories" [ref=e202] [cursor=pointer]:
+                  - /url: /categories/
+                  - generic [ref=e204]: Categories
+                - link "About" [ref=e205] [cursor=pointer]:
+                  - /url: /about/
+                  - generic [ref=e207]: About
+                - link "Contact" [ref=e208] [cursor=pointer]:
+                  - /url: /contact/
+                  - generic [ref=e210]: Contact
+              - generic [ref=e211]:
+                - textbox "Newsletter" [ref=e212]
+                - button "register" [ref=e213] [cursor=pointer]
+          - generic [ref=e214]:
+            - generic [ref=e215]: Made with Love by
+            - generic [ref=e216]:
+              - link "Le Fruit Studio" [ref=e217] [cursor=pointer]:
+                - /url: https://lefruitstudio.fr/
+              - link "Emma Houlé" [ref=e218] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/emma-houl%C3%A9-1738b99b?originalSubdomain=fr
+              - link "Ludmilla Maury" [ref=e219] [cursor=pointer]:
+                - /url: https://ludmillamaury.com/

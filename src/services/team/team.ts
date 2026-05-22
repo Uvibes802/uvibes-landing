@@ -1,22 +1,10 @@
-import { useEffect, useState, useCallback } from "react";
-import DOMPurify from "dompurify";
+import { useEffect, useState } from "react";
+import { sanitizePlainText } from "@/services/blog/sanitize";
 import logoUvibes from "../../../public/images/Logo VI blanc.png";
 import type { TeamProps } from "@/types/team/teamProps";
 
 export default function useTeamByTag(slug: string) {
   const [team, setTeam] = useState<TeamProps[]>([]);
-
-  const sanitizeText = useCallback((text: string): string => {
-    const tempDiv = document.createElement("p");
-    tempDiv.innerHTML = text;
-    return DOMPurify.sanitize(tempDiv.innerHTML, {
-      ALLOWED_TAGS: [],
-      ALLOWED_ATTR: [],
-    })
-      .replace(/&nbsp;/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }, []);
 
   useEffect(() => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -48,10 +36,10 @@ export default function useTeamByTag(slug: string) {
                   logoUvibes;
 
                 return {
-                  name: sanitizeText(item.title.rendered),
-                  position: sanitizeText(item.content.rendered),
+                  name: sanitizePlainText(item.title.rendered),
+                  position: sanitizePlainText(item.content.rendered),
                   image,
-                  alt: `Photo de ${sanitizeText(item.title.rendered)}`,
+                  alt: `Photo de ${sanitizePlainText(item.title.rendered)}`,
                   team: slug,
                 };
               }
@@ -63,7 +51,7 @@ export default function useTeamByTag(slug: string) {
         console.error("Erreur lors de la récupération de l'équipe :", error);
         setTeam([]);
       });
-  }, [slug, sanitizeText]);
+  }, [slug]);
 
   return team;
 }

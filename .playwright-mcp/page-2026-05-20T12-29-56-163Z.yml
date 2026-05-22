@@ -1,0 +1,184 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - link "Logo uVibes" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "Logo uVibes" [ref=e7]
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - heading [level=2]
+          - heading "Activez la puissance de votre collectif" [level=1] [ref=e10]
+          - paragraph [ref=e11]: Et si les conversations clés arrivaient enfin ? L’outil digital qui les déclenche, au bon moment
+          - generic [ref=e12]:
+            - link "Découvrir l'application" [ref=e13] [cursor=pointer]:
+              - /url: /avantages
+            - link "Nous contacter" [ref=e14] [cursor=pointer]:
+              - /url: /#contact
+        - figure [ref=e15]:
+          - img "visuel application" [ref=e16]
+    - figure:
+      - img "visuel application"
+  - generic [ref=e19]:
+    - heading "Pourquoi « Uvibes » ?" [level=2] [ref=e20]:
+      - text: Pourquoi
+      - text: « Uvibes » ?
+    - article [ref=e21]:
+      - paragraph [ref=e22]: Uvibes active la richesse des échanges humains au sein des collectifs, en y faisant naître des rencontres inattendues.
+      - paragraph [ref=e23]: “Vibes”, en anglais, évoque ces vibrations, ces sensations que l'on ressent quand on se connecte à quelqu’un, notamment une personne encore inconnue. Et ce “U”, c’est pour You, celui qui vit l'expérience .
+      - paragraph [ref=e24]: Chaque rencontre sur Uvibes est une aventure pour (re)découvrir quelqu’un de son collectif autour de questions ouvertes et positives. L’émerveillement se crée, et les conversations prennent vie.
+  - article [ref=e27]:
+    - generic:
+      - heading [level=2]
+      - paragraph
+  - 'heading "Bien-être collectif: elles y trouvent de la bonne humeur" [level=2] [ref=e29]':
+    - text: "Bien-être collectif:"
+    - generic [ref=e30]:
+      - text: elles y trouvent de
+      - text: la bonne humeur
+  - generic [ref=e33]:
+    - heading "Nos Partenaires" [level=2] [ref=e34]
+    - generic [ref=e36]:
+      - img "University of Perpignan" [ref=e39]
+      - img "Eklore" [ref=e42]
+      - img "Fête des voisins" [ref=e45]
+  - 'heading "Développement professionnel: ils partagent leurs points de vue" [level=2] [ref=e47]':
+    - text: "Développement professionnel:"
+    - generic [ref=e48]:
+      - text: ils partagent leurs
+      - text: points de vue
+  - generic [ref=e50]:
+    - article [ref=e51]:
+      - generic [ref=e53]:
+        - heading "Uvibes, la solution qui réinvente les interactions" [level=2] [ref=e54]
+        - paragraph [ref=e55]: ❝ ❞
+        - paragraph [ref=e56]
+        - paragraph
+    - link "Pour tous les collectifs" [ref=e58] [cursor=pointer]:
+      - /url: /avantages#top
+      - button "Pour tous les collectifs" [ref=e59]
+  - 'heading "Bien-être collectif: ils créent du lien" [level=2] [ref=e61]':
+    - text: "Bien-être collectif:"
+    - text: ils créent du lien
+  - generic [ref=e64]:
+    - heading "Ils parlent de nous" [level=2] [ref=e65]
+    - generic:
+      - generic [ref=e66] [cursor=pointer]: prev
+      - generic [ref=e67] [cursor=pointer]: next
+  - 'heading "Outil pédagogique: ils y trouvent de nouvelles idées" [level=2] [ref=e69]':
+    - text: "Outil pédagogique:"
+    - generic [ref=e70]:
+      - text: ils y trouvent de
+      - text: nouvelles idées
+  - generic [ref=e73]:
+    - heading "Découvrir des points de vue inattendus" [level=2] [ref=e74]
+    - generic [ref=e75]:
+      - generic [ref=e77]:
+        - img [ref=e79]
+        - heading "Echanges" [level=3] [ref=e82]
+        - paragraph [ref=e83]: Partager des témoignages positifs sur un nombre infini de sujets
+      - generic [ref=e85]:
+        - img [ref=e87]
+        - heading "Participation" [level=3] [ref=e90]
+        - paragraph [ref=e91]: Recueillir régulièrement les avis de son collectif
+      - generic [ref=e93]:
+        - img [ref=e95]
+        - heading "Ressources" [level=3] [ref=e97]
+        - paragraph [ref=e98]: Accéder à une médiathèque de savoirs sur-mesure
+  - 'heading "Développement professionnel: ils élargissent leurs horizons" [level=2] [ref=e100]':
+    - text: "Développement professionnel:"
+    - generic [ref=e101]:
+      - text: ils élargissent
+      - text: leurs horizons
+  - generic [ref=e105]:
+    - heading "Transformez le quotidien" [level=2] [ref=e106]
+    - generic [ref=e108]:
+      - article [ref=e109]:
+        - img [ref=e111]
+        - heading "Optimisme" [level=3] [ref=e114]
+      - article [ref=e115]:
+        - img [ref=e117]
+        - heading "Flexibilité" [level=3] [ref=e120]
+      - article [ref=e121]:
+        - img [ref=e123]
+        - heading "Energie" [level=3] [ref=e125]
+      - article [ref=e126]:
+        - img [ref=e128]
+        - heading "Pensée critique" [level=3] [ref=e131]
+      - article [ref=e132]:
+        - img [ref=e134]
+        - heading "Adaptation" [level=3] [ref=e137]
+      - article [ref=e138]:
+        - img [ref=e140]
+        - heading "Bien-être" [level=3] [ref=e143]
+  - 'heading "Outil pédagogique: ils se nourrissent d''expériences" [level=2] [ref=e145]':
+    - text: "Outil pédagogique:"
+    - generic [ref=e146]:
+      - text: ils se nourrissent
+      - text: d'expériences
+  - generic [ref=e148]:
+    - link "Retour à l'accueil Uvibes" [ref=e149] [cursor=pointer]:
+      - /url: /
+      - img "Uvibes" [ref=e150]
+    - navigation "Navigation principale" [ref=e151]:
+      - link "Accueil" [ref=e152] [cursor=pointer]:
+        - /url: /
+      - link "Avantages" [ref=e153] [cursor=pointer]:
+        - /url: /avantages
+      - link "Fonctionnement" [ref=e154] [cursor=pointer]:
+        - /url: /features
+      - link "Uvibes" [ref=e155] [cursor=pointer]:
+        - /url: /uvibes
+      - link "Blog" [ref=e156] [cursor=pointer]:
+        - /url: /blog
+    - button "Activer le mode sombre" [ref=e158] [cursor=pointer]:
+      - img [ref=e159]
+  - link "Une solution éthique" [ref=e162] [cursor=pointer]:
+    - /url: /uvibes
+    - button "Une solution éthique" [ref=e163]
+  - main [ref=e164]:
+    - generic [ref=e165]:
+      - heading "Contactez-nous" [level=2] [ref=e166]
+      - paragraph [ref=e167]: Vous avez des questions ou souhaitez en savoir plus sur Uvibes ? Notre équipe est à votre disposition pour vous répondre.
+    - generic [ref=e168]:
+      - group [ref=e169]:
+        - generic [ref=e170]:
+          - generic [ref=e171]: Nom
+          - textbox "Nom" [ref=e172]
+        - generic [ref=e173]:
+          - generic [ref=e174]: Prénom
+          - textbox "Prénom" [ref=e175]
+      - generic [ref=e176]:
+        - generic [ref=e177]: Email
+        - textbox "Email" [ref=e178]
+      - generic [ref=e179]:
+        - generic [ref=e180]: Message
+        - textbox "Message" [ref=e181]:
+          - /placeholder: Votre message
+      - generic [ref=e182]:
+        - generic [ref=e183]:
+          - text: Je souhaite partager mes informations avec Uvibes
+          - checkbox "Je souhaite partager mes informations avec Uvibes" [ref=e184]
+        - generic [ref=e185]:
+          - text: Je m'inscris à la newsletter Uvibes
+          - checkbox "Je m'inscris à la newsletter Uvibes" [ref=e186]
+      - button "Envoyer" [ref=e188] [cursor=pointer]
+  - generic [ref=e189]:
+    - heading "Uvibes. Activez les bonnes ondes." [level=4] [ref=e191]:
+      - link "Uvibes. Activez les bonnes ondes." [ref=e192] [cursor=pointer]:
+        - /url: "#top"
+    - generic [ref=e193]:
+      - link "Mentions légales" [ref=e194] [cursor=pointer]:
+        - /url: /mention-legale
+      - link "Conditions d'utilisation" [ref=e195] [cursor=pointer]:
+        - /url: /conditions-dutilisation
+      - link "Politique de confidentialité" [ref=e196] [cursor=pointer]:
+        - /url: /politique-de-confidentialite
+      - link "Politique des cookies" [ref=e197] [cursor=pointer]:
+        - /url: /politique-cookies
+    - generic [ref=e199]:
+      - link "LinkedIn" [ref=e200] [cursor=pointer]:
+        - /url: https://www.linkedin.com/company/uvibes
+        - img "LinkedIn" [ref=e201]
+      - link "Instagram" [ref=e202] [cursor=pointer]:
+        - /url: https://www.instagram.com/uvibesofficiel/
+        - img "Instagram" [ref=e203]

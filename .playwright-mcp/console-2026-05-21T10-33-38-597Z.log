@@ -1,0 +1,29 @@
+[     153ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[     263ms] [LOG] [Fast Refresh] done in 210ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[    1454ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_compiled_react-dom_83ad35ed._.js:14537
+[    1600ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[    1606ms] [LOG] Google Analytics initialized with denied consent @ :10
+[    1618ms] [LOG] Google Analytics consent restored: granted @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_src_components_12a11f02._.js:34
+[    1638ms] [WARNING] Image with src "http://localhost:3000/images/Vibration-right.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    2102ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3000/_next/static/chunks/37b53_swiper_a7a860b8._.js:436
+[    2264ms] [LOG] [Object, Object, Object, Object, Object] @ http://localhost:3000/_next/static/chunks/projects_uvibes-sitevitrine_09948772._.js:2325
+[    2341ms] [WARNING] Image with src "https://wp.uvibes.fr/wp-content/uploads/2026/01/Capture-decran-2026-01-11-a-16.06.33.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    2360ms] [WARNING] Image with src "https://wp.uvibes.fr/wp-content/uploads/2025/06/gary-butterfield-YG8rZ323UsU-unsplash-scaled.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[    2361ms] [WARNING] Image with src "https://wp.uvibes.fr/wp-content/uploads/2024/08/Capture-decran-2024-08-18-a-13.26.40.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_401433b6._.js:1014
+[  172147ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  172174ms] [LOG] [Fast Refresh] done in 31ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  177255ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  177286ms] [LOG] [Fast Refresh] done in 17ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  188424ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  188557ms] [WARNING] [HMR] Invalid message: {"isTrusted":true}
+TypeError: Cannot convert undefined or null to object
+    at Object.keys (<anonymous>)
+    at extractModulesFromTurbopackMessage (http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5981:39)
+    at TurbopackHmr.onTurbopackMessage (http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5879:32)
+    at processMessage (http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:6283:30)
+    at WebSocket.handler (http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:6424:17) @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5609
+[  188558ms] [LOG] [Fast Refresh] done in 221ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  188688ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  188758ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
+[  195613ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5956
+[  195646ms] [LOG] [Fast Refresh] done in 10ms @ http://localhost:3000/_next/static/chunks/e00ff_next_dist_client_2572762d._.js:5816
