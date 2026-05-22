@@ -1,0 +1,91 @@
+/* ── ValuePillars ────────────────────────────────────────────────── */
+
+.value-pillars-section {
+  padding: var(--section-padding-v) var(--section-padding-h);
+  background: #fff;
+  text-align: center;
+}
+
+.value-pillars-header {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.value-pillars-title {
+  font-family: var(--text-font-bold);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.value-pillars-subtitle {
+  font-family: var(--text-font);
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ── Grille 2 colonnes ──────────────────────────────────────────── */
+
+.value-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── Pilier ─────────────────────────────────────────────────────── */
+
+.value-pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2.5rem 2rem;
+  background: color-mix(in srgb, var(--pillar-color) 5%, #fff);
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--pillar-color) 18%, transparent);
+  transition: box-shadow 0.25s ease;
+}
+
+.value-pillar:hover {
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--pillar-color) 14%, transparent);
+}
+
+.value-pillar-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pillar-color);
+  flex-shrink: 0;
+}
+
+.value-pillar-title {
+  font-family: var(--text-font-bold);
+  font-size: 1.15rem;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.value-pillar-desc {
+  font-family: var(--text-font);
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .value-pillars-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .value-pillar {
+    padding: 2rem 1.5rem;
+  }
+}

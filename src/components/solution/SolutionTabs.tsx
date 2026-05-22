@@ -5,10 +5,11 @@ import CollectifsSection from "@/components/collectifs/CollectifsSection";
 import FunctOrganisation from "@/components/funct/functOrganisation";
 import { FeaturesCard } from "@/components/cards/FeaturesCard";
 import AvantagesContent from "@/components/avantages/avantagesContent";
+import AvantagesHome from "@/components/section/AvantagesHome";
 import PricingTable from "@/components/features/PricingTable";
 import "@/styles/solution/solutionTabs.css";
 
-type Tab = "pour-qui" | "comment" | "offres";
+type Tab = "pour-qui" | "comment" | "avantages" | "offres";
 
 export default function SolutionTabs() {
   const [activeTab, setActiveTab] = useState<Tab>("pour-qui");
@@ -29,6 +30,12 @@ export default function SolutionTabs() {
           Comment ça marche ?
         </button>
         <button
+          className={`solution-tab-btn${activeTab === "avantages" ? " --active" : ""}`}
+          onClick={() => setActiveTab("avantages")}
+        >
+          Avantages
+        </button>
+        <button
           className={`solution-tab-btn${activeTab === "offres" ? " --active" : ""}`}
           onClick={() => setActiveTab("offres")}
         >
@@ -42,6 +49,11 @@ export default function SolutionTabs() {
           <>
             <FunctOrganisation />
             <FeaturesCard />
+          </>
+        )}
+        {activeTab === "avantages" && (
+          <>
+            <AvantagesHome showCta={false} />
             <AvantagesContent />
           </>
         )}

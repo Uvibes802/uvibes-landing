@@ -46,7 +46,7 @@ const spheres = [
   },
 ];
 
-export default function AvantagesHome() {
+export default function AvantagesHome({ showCta = true }: { showCta?: boolean }) {
   return (
     <section className="avantages-home-section">
       <div className="avantages-home-header">
@@ -88,11 +88,13 @@ export default function AvantagesHome() {
         ))}
       </div>
 
-      <div className="avantages-home-cta">
-        <Link href="/solution" className="btn-cta primary">
-          Découvrir la solution
-        </Link>
-      </div>
+      {showCta && (
+        <div className="avantages-home-cta">
+          <Link href="/solution" className="btn-cta primary">
+            Découvrir la solution
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

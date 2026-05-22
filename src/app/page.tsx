@@ -8,7 +8,7 @@ import UserNumberCard from "@/components/cards/userNumberCard";
 import VideoCard from "@/components/cards/videoCard";
 import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
 import HowItWorks from "@/components/section/HowItWorks";
-import AvantagesHome from "@/components/section/AvantagesHome";
+import ValuePillars from "@/components/section/ValuePillars";
 import WhyUvibes from "@/components/section/WhyUvibes";
 import Testimony from "@/components/testimony/testimony";
 import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
@@ -27,12 +27,12 @@ export default async function Home() {
         description={description}
         image={mockupHome}
       />
-            
+
       <WhyUvibes />
 
       <HowItWorks />
 
-      <AvantagesHome />
+      <ValuePillars />
 
       <UserNumberCard />
       <VideoCard
