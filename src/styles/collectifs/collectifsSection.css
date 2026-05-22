@@ -1,8 +1,8 @@
-/* ── CollectifsSection ──────────────────────────────────────────── */
+/* ── CollectifsSection — Split Panel ───────────────────────────── */
 
 .collectifs-section {
   padding: var(--section-padding-v) var(--section-padding-h);
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -13,190 +13,211 @@
 
 .collectifs-intro {
   font-size: 1.15rem;
-  color: #555;
-  margin-top: 0.5rem;
+  color: #666;
+  margin-top: 0.4rem;
 }
 
-/* ── Liste ─────────────────────────────────────────────────────── */
+/* ── Layout split ──────────────────────────────────────────────── */
 
-.collectifs-list {
+.collectifs-split {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ── Sidebar nav ───────────────────────────────────────────────── */
+
+.collectifs-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 2px;
+  position: sticky;
+  top: 90px;
 }
 
-/* ── Item ──────────────────────────────────────────────────────── */
-
-.collectif-item {
-  border-radius: var(--border-radius);
-  border: 1.5px solid #e8e8e8;
-  overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.collectif-item.--open {
-  border-color: var(--collectif-color);
-  box-shadow: 0 4px 20px color-mix(in srgb, var(--collectif-color) 15%, transparent);
-}
-
-/* ── Trigger (header cliquable) ────────────────────────────────── */
-
-.collectif-trigger {
-  width: 100%;
-  display: flex;
+.collectif-nav-item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
   align-items: center;
-  gap: 1rem;
-  padding: 1.1rem 1.4rem;
-  background: #fff;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
   border: none;
+  background: transparent;
+  border-radius: 8px;
   cursor: pointer;
   text-align: left;
-  transition: background 0.2s ease;
+  transition: background 0.18s ease;
 }
 
-.collectif-trigger:hover {
-  background: color-mix(in srgb, var(--collectif-color) 5%, #fff);
+.collectif-nav-item:hover {
+  background: color-mix(in srgb, var(--c-color) 10%, #fff);
 }
 
-.collectif-item.--open .collectif-trigger {
-  background: color-mix(in srgb, var(--collectif-color) 6%, #fff);
+.collectif-nav-item.--active {
+  background: color-mix(in srgb, var(--c-color) 14%, #fff);
 }
 
-/* Pastille colorée */
-.collectif-dot {
-  flex-shrink: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--collectif-color);
-}
-
-/* Texte trigger */
-.collectif-trigger-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.collectif-name {
+.collectif-nav-num {
   font-family: var(--text-font-bold);
-  font-size: 1rem;
+  font-size: 0.75rem;
+  color: var(--c-color);
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  transition: opacity 0.18s;
+}
+
+.collectif-nav-item.--active .collectif-nav-num {
+  opacity: 1;
+}
+
+.collectif-nav-name {
+  font-family: var(--text-font-bold);
+  font-size: 0.88rem;
   color: #1a1a1a;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
+  transition: color 0.18s;
 }
 
-.collectif-sub {
+.collectif-nav-item.--active .collectif-nav-name {
+  color: var(--c-color);
+}
+
+.collectif-nav-arrow {
   font-size: 0.85rem;
-  color: #777;
-  font-family: var(--text-font);
+  color: var(--c-color);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.18s, transform 0.18s;
 }
 
-/* Chevron */
-.collectif-chevron {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  color: var(--collectif-color);
-  transition: transform 0.3s ease;
+.collectif-nav-item.--active .collectif-nav-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.collectif-item.--open .collectif-chevron {
-  transform: rotate(180deg);
-}
+/* ── Panneau détail ────────────────────────────────────────────── */
 
-/* ── Drawer (animation CSS grid) ──────────────────────────────── */
-
-.collectif-drawer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s ease;
-}
-
-.collectif-item.--open .collectif-drawer {
-  grid-template-rows: 1fr;
-}
-
-.collectif-drawer-inner {
+.collectifs-panel {
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  animation: panel-fade 0.28s ease;
+}
+
+@keyframes panel-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero coloré */
+.collectif-panel-hero {
+  background: color-mix(in srgb, var(--c-color) 10%, #fff);
+  border-bottom: 2px solid color-mix(in srgb, var(--c-color) 20%, transparent);
+  padding: 2rem 2rem 0;
   display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  padding: 0 1.4rem;
-}
-
-.collectif-item.--open .collectif-drawer-inner {
-  padding: 1.25rem 1.4rem 1.5rem;
-}
-
-/* ── Flyers ────────────────────────────────────────────────────── */
-
-.collectif-flyers {
-  display: flex;
-  flex-direction: row;
-  gap: 0.75rem;
-  flex-shrink: 0;
-  align-items: flex-start;
-}
-
-.collectif-flyer-wrap {
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  flex-shrink: 0;
-}
-
-.collectif-flyer-img {
-  display: block;
-  width: 120px;
-  height: auto;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.collectif-flyer-wrap:hover .collectif-flyer-img {
-  transform: scale(1.03);
-}
-
-/* ── Contenu texte ─────────────────────────────────────────────── */
-
-.collectif-content {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 1.5rem;
-  align-content: start;
+  min-height: 160px;
 }
 
-.collectif-content-title {
+.collectif-panel-meta {
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+.collectif-panel-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--c-color);
   font-family: var(--text-font-bold);
-  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--collectif-color);
   margin-bottom: 0.6rem;
+  opacity: 0.85;
 }
 
-.collectif-list-items {
+.collectif-panel-title {
+  font-family: var(--text-font-bold);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #1a1a1a;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* Flyers dans le hero */
+.collectif-panel-flyers {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.collectif-panel-flyer-wrap {
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.collectif-panel-flyer-wrap:hover {
+  transform: translateY(-4px);
+}
+
+.collectif-panel-flyer-img {
+  display: block;
+  width: 130px;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Quand il y a 3 flyers : le milieu est décalé vers le haut */
+.collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child) {
+  transform: translateY(-12px);
+}
+.collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child):hover {
+  transform: translateY(-16px);
+}
+
+/* Corps texte */
+.collectif-panel-body {
+  background: #fff;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.collectif-panel-col-title {
+  font-family: var(--text-font-bold);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.collectif-panel-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.65rem;
 }
 
-.collectif-list-items li {
-  font-size: 0.9rem;
+.collectif-panel-list li {
+  font-size: 0.92rem;
   color: #333;
   font-family: var(--text-font);
   line-height: 1.5;
-  padding-left: 1rem;
+  padding-left: 1.1rem;
   position: relative;
 }
 
-.collectif-list-items li::before {
+.collectif-panel-list li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -204,45 +225,68 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--collectif-color);
+  background: var(--c-color);
 }
 
 /* ── Responsive ────────────────────────────────────────────────── */
 
-@media (max-width: 768px) {
-  .collectif-drawer-inner {
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .collectif-flyers {
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-    /* scrollbar discrète */
-    scrollbar-width: thin;
-    scrollbar-color: var(--collectif-color) transparent;
-  }
-
-  .collectif-flyer-img {
-    width: 100px;
-  }
-
-  .collectif-content {
+@media (max-width: 900px) {
+  .collectifs-split {
     grid-template-columns: 1fr;
-    gap: 1rem;
   }
 
-  .collectif-sub {
-    display: none;
+  .collectifs-nav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .collectif-nav-item {
+    grid-template-columns: auto auto;
+    gap: 0.4rem;
+    padding: 0.55rem 0.9rem;
+    border: 1.5px solid color-mix(in srgb, var(--c-color) 30%, transparent);
+  }
+
+  .collectif-nav-num { display: none; }
+  .collectif-nav-arrow { display: none; }
+
+  .collectif-nav-item.--active {
+    border-color: var(--c-color);
   }
 }
 
-@media (max-width: 480px) {
-  .collectif-trigger {
-    padding: 0.9rem 1rem;
+@media (max-width: 600px) {
+  .collectif-panel-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 0;
+    min-height: auto;
   }
 
-  .collectif-name {
-    font-size: 0.9rem;
+  .collectif-panel-meta {
+    padding-bottom: 1rem;
+  }
+
+  .collectif-panel-flyers {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0;
+    gap: 0.5rem;
+  }
+
+  .collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child) {
+    transform: none;
+  }
+
+  .collectif-panel-flyer-img {
+    width: 100px;
+  }
+
+  .collectif-panel-body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
 }

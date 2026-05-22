@@ -6,11 +6,8 @@ import { collectifs } from "@/data/collectifs/collectifsData";
 import "@/styles/collectifs/collectifsSection.css";
 
 export default function CollectifsSection() {
-  const [openId, setOpenId] = useState<string | null>(null);
-
-  const toggle = (id: string) => {
-    setOpenId((prev) => (prev === id ? null : id));
-  };
+  const [activeId, setActiveId] = useState(collectifs[0].id);
+  const active = collectifs.find((c) => c.id === activeId)!;
 
   return (
     <section className="collectifs-section">
@@ -19,84 +16,86 @@ export default function CollectifsSection() {
         <p className="collectifs-intro">Découvrez le vôtre.</p>
       </div>
 
-      <div className="collectifs-list">
-        {collectifs.map((collectif) => {
-          const isOpen = openId === collectif.id;
-          return (
-            <div
-              key={collectif.id}
-              className={`collectif-item${isOpen ? " --open" : ""}`}
-              style={{ "--collectif-color": collectif.color } as React.CSSProperties}
+      <div className="collectifs-split">
+        {/* ── Sidebar liste ── */}
+        <nav className="collectifs-nav" aria-label="Sélecteur de collectif">
+          {collectifs.map((c, i) => (
+            <button
+              key={c.id}
+              className={`collectif-nav-item${activeId === c.id ? " --active" : ""}`}
+              style={{ "--c-color": c.color } as React.CSSProperties}
+              onClick={() => setActiveId(c.id)}
+              aria-pressed={activeId === c.id}
             >
-              <button
-                className="collectif-trigger"
-                onClick={() => toggle(collectif.id)}
-                aria-expanded={isOpen}
-                aria-controls={`collectif-drawer-${collectif.id}`}
-              >
-                <span className="collectif-dot" aria-hidden="true" />
-                <div className="collectif-trigger-text">
-                  <span className="collectif-name">{collectif.name}</span>
-                  <span className="collectif-sub">{collectif.subtitle}</span>
-                </div>
-                <svg
-                  className="collectif-chevron"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </button>
+              <span className="collectif-nav-num">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="collectif-nav-name">{c.name}</span>
+              <span className="collectif-nav-arrow" aria-hidden="true">→</span>
+            </button>
+          ))}
+        </nav>
 
-              <div
-                id={`collectif-drawer-${collectif.id}`}
-                className="collectif-drawer"
-              >
-                <div className="collectif-drawer-inner">
-                  {collectif.flyers.length > 0 && (
-                    <div className="collectif-flyers">
-                      {collectif.flyers.map((flyer, i) => (
-                        <div key={i} className="collectif-flyer-wrap">
-                          <Image
-                            src={flyer.src}
-                            alt={flyer.alt}
-                            width={200}
-                            height={280}
-                            className="collectif-flyer-img"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="collectif-content">
-                    <div className="collectif-gains">
-                      <h4 className="collectif-content-title">Ce que vous y gagnez</h4>
-                      <ul className="collectif-list-items">
-                        {collectif.gains.map((gain, i) => (
-                          <li key={i}>{gain}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="collectif-pourquoi">
-                      <h4 className="collectif-content-title">Pourquoi ça fonctionne</h4>
-                      <ul className="collectif-list-items">
-                        {collectif.pourquoi.map((raison, i) => (
-                          <li key={i}>{raison}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* ── Panneau détail ── */}
+        <div className="collectifs-panel" key={activeId}>
+          {/* Header coloré avec flyers */}
+          <div
+            className="collectif-panel-hero"
+            style={{ "--c-color": active.color } as React.CSSProperties}
+          >
+            <div className="collectif-panel-meta">
+              <span className="collectif-panel-tag">{active.subtitle}</span>
+              <h3 className="collectif-panel-title">{active.name}</h3>
             </div>
-          );
-        })}
+            <div className="collectif-panel-flyers">
+              {active.flyers.map((f, i) => (
+                <div key={i} className="collectif-panel-flyer-wrap">
+                  <Image
+                    src={f.src}
+                    alt={f.alt}
+                    width={160}
+                    height={225}
+                    className="collectif-panel-flyer-img"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Contenu texte */}
+          <div className="collectif-panel-body">
+            <div className="collectif-panel-col">
+              <h4
+                className="collectif-panel-col-title"
+                style={{ color: active.color }}
+              >
+                Ce que vous y gagnez
+              </h4>
+              <ul className="collectif-panel-list">
+                {active.gains.map((g, i) => (
+                  <li key={i} style={{ "--c-color": active.color } as React.CSSProperties}>
+                    {g}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="collectif-panel-col">
+              <h4
+                className="collectif-panel-col-title"
+                style={{ color: active.color }}
+              >
+                Pourquoi ça fonctionne
+              </h4>
+              <ul className="collectif-panel-list">
+                {active.pourquoi.map((p, i) => (
+                  <li key={i} style={{ "--c-color": active.color } as React.CSSProperties}>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
