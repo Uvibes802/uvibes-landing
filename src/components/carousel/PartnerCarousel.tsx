@@ -16,11 +16,14 @@ import "../../styles/carousel/PartnerCarousel.css";
 
 
 export function PartnerCarousel() {
+  // 6 logos minimum pour que Swiper loop fonctionne (slidesPerView:3 * 2)
   const [partnerLogos, setPartnerLogos] = useState<PartnerLogo[]>([
     { id: 1, src: university.src, alt: "University of Perpignan" },
     { id: 3, src: eklore.src, alt: "Eklore" },
     { id: 4, src: fetedesvoisins.src, alt: "Fête des voisins" },
-    // Defaults to avoid empty carousel initially or on error
+    { id: 11, src: university.src, alt: "University of Perpignan" },
+    { id: 13, src: eklore.src, alt: "Eklore" },
+    { id: 14, src: fetedesvoisins.src, alt: "Fête des voisins" },
   ]);
   const [, setIsFetched] = useState(false);
 
