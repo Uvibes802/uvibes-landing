@@ -16,6 +16,26 @@ export default function CollectifsSection() {
         <p className="collectifs-intro">Découvrez le vôtre.</p>
       </div>
 
+      {/* ── Ticker infini ── */}
+      <div className="collectifs-ticker" aria-hidden="true">
+        <div className="collectifs-ticker-track --forward">
+          {[...collectifs, ...collectifs].map((c, i) => (
+            <span key={i} className="collectifs-ticker-item">
+              <span className="collectifs-ticker-dot" style={{ background: c.color }} />
+              {c.name}
+            </span>
+          ))}
+        </div>
+        <div className="collectifs-ticker-track --reverse">
+          {[...collectifs, ...collectifs].map((c, i) => (
+            <span key={i} className="collectifs-ticker-item">
+              <span className="collectifs-ticker-dot" style={{ background: c.color }} />
+              {c.name}
+            </span>
+          ))}
+        </div>
+      </div>
+
       <div className="collectifs-split">
         {/* ── Sidebar liste ── */}
         <nav className="collectifs-nav" aria-label="Sélecteur de collectif">
