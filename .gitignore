@@ -47,5 +47,14 @@ CLAUDE.local.md
 .claude/
 SETUP_PROMPT.md
 /memory
+
+# Screenshots et fichiers d'audit Claude
+/.playwright-mcp/
+/*.png
+/*.json
+/*.pdf
+/audit-*
+/.audit/
+/.mcp.json
 .agents/
 skills-lock.json
