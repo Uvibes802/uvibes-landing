@@ -49,24 +49,19 @@
 .orga-card-content-item {
   width: 100%;
   display: flex;
-  align-items: center;
-  background: var(--gradientColor);
-  padding: var(--spacing-ref);
-  border-radius: var(--border-radius);
+  align-items: flex-start;
+  background: #fff;
+  border-left: 3px solid var(--mainColor-opacity);
+  padding: 0.6rem 0.75rem;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
   position: relative;
-  overflow: hidden;
 }
 
-.orga-card-content-item::before {
-  content: "❝";
-  position: absolute;
-  top: 5px;
-  left: 10px;
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.3);
-}
 .orga-card-content-item p {
-  margin-left: 15px;
+  font-style: italic;
+  color: #555;
+  font-size: 0.85rem;
+  line-height: 1.45;
 }
 
 @media screen and (min-width: 768px) {

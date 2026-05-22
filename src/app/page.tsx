@@ -8,6 +8,7 @@ import UserNumberCard from "@/components/cards/userNumberCard";
 import VideoCard from "@/components/cards/videoCard";
 import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
 import HowItWorks from "@/components/section/HowItWorks";
+import AvantagesHome from "@/components/section/AvantagesHome";
 import WhyUvibes from "@/components/section/WhyUvibes";
 import Testimony from "@/components/testimony/testimony";
 import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
@@ -30,6 +31,8 @@ export default async function Home() {
       <WhyUvibes />
 
       <HowItWorks />
+
+      <AvantagesHome />
 
       <UserNumberCard />
       <VideoCard

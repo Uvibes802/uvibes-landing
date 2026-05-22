@@ -1,0 +1,183 @@
+/* ── AvantagesHome ──────────────────────────────────────────────── */
+
+.avantages-home-section {
+  padding: var(--section-padding-v) var(--section-padding-h);
+  background: #111;
+}
+
+.avantages-home-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.avantages-home-header .title-h2-orange {
+  color: #fff;
+}
+
+/* Cas particulier : titre blanc sur fond sombre */
+.avantages-home-section .title-h2-orange {
+  color: #fff;
+}
+
+.avantages-home-subtitle {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 0.5rem;
+  font-family: var(--text-font);
+}
+
+/* ── Grille 3 colonnes ──────────────────────────────────────────── */
+
+.avantages-home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Carte ──────────────────────────────────────────────────────── */
+
+.avantage-card {
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  border: 1px solid #2a2a2a;
+  transition: border-color 0.25s ease;
+}
+
+.avantage-card:hover {
+  border-color: var(--av-color);
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+
+.avantage-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.avantage-card-label {
+  font-family: var(--text-font-bold);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--av-color);
+}
+
+.avantage-card-intro {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.5;
+  font-family: var(--text-font);
+}
+
+/* ── Stat ───────────────────────────────────────────────────────── */
+
+.avantage-card-stat {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #222;
+  border-radius: 10px;
+  border-left: 3px solid var(--av-color);
+}
+
+.avantage-card-stat-num {
+  font-family: var(--text-font-bold);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  color: var(--av-color);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.avantage-card-stat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.avantage-card-stat-detail {
+  font-size: 0.82rem;
+  color: #ccc;
+  line-height: 1.4;
+  font-family: var(--text-font);
+}
+
+.avantage-card-stat-source {
+  font-size: 0.72rem;
+  color: #555;
+  font-family: var(--text-font);
+  font-style: italic;
+}
+
+/* ── Bénéfices ──────────────────────────────────────────────────── */
+
+.avantage-card-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.avantage-card-benefit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #252525;
+}
+
+.avantage-card-benefit:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.avantage-benefit-title {
+  font-family: var(--text-font-bold);
+  font-size: 0.85rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.avantage-benefit-title::before {
+  content: "— ";
+  color: var(--av-color);
+}
+
+.avantage-benefit-desc {
+  font-size: 0.82rem;
+  color: #777;
+  font-family: var(--text-font);
+  line-height: 1.4;
+}
+
+/* ── CTA ────────────────────────────────────────────────────────── */
+
+.avantages-home-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .avantages-home-grid {
+    grid-template-columns: 1fr;
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 600px) {
+  .avantage-card {
+    padding: 1.5rem;
+  }
+}
