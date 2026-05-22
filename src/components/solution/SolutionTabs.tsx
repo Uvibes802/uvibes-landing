@@ -4,6 +4,7 @@ import { useState } from "react";
 import CollectifsSection from "@/components/collectifs/CollectifsSection";
 import FunctOrganisation from "@/components/funct/functOrganisation";
 import { FeaturesCard } from "@/components/cards/FeaturesCard";
+import AvantagesContent from "@/components/avantages/avantagesContent";
 import PricingTable from "@/components/features/PricingTable";
 import "@/styles/solution/solutionTabs.css";
 
@@ -41,6 +42,7 @@ export default function SolutionTabs() {
           <>
             <FunctOrganisation />
             <FeaturesCard />
+            <AvantagesContent />
           </>
         )}
         {activeTab === "offres" && <PricingTable />}

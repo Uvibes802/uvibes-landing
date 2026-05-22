@@ -1,4 +1,4 @@
-/* ── CollectifsSection — Split Panel ───────────────────────────── */
+/* ── CollectifsSection ──────────────────────────────────────────── */
 
 .collectifs-section {
   padding: var(--section-padding-v) var(--section-padding-h);
@@ -8,158 +8,92 @@
 
 .collectifs-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .collectifs-intro {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: #666;
   margin-top: 0.4rem;
 }
 
-/* ── Ticker infini ─────────────────────────────────────────────── */
+/* ── Ticker de pills ────────────────────────────────────────────── */
 
-.collectifs-ticker {
-  margin-bottom: 3rem;
+.collectifs-pills-ticker {
   overflow: hidden;
+  margin-bottom: 2.5rem;
+  /* fondu aux bords */
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+/* Pause au hover sur le container */
+.collectifs-pills-ticker:hover .collectifs-pills-track {
+  animation-play-state: paused;
+}
+
+.collectifs-pills-track {
   display: flex;
-  flex-direction: column;
   gap: 0.6rem;
-  /* masque les bords */
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-}
-
-.collectifs-ticker-track {
-  display: flex;
-  gap: 0;
+  padding: 0.5rem 0;
   width: max-content;
-  white-space: nowrap;
+  animation: pills-forward 30s linear infinite;
 }
 
-.collectifs-ticker-track.--forward {
-  animation: ticker-forward 28s linear infinite;
-}
-
-.collectifs-ticker-track.--reverse {
-  animation: ticker-reverse 22s linear infinite;
-}
-
-@keyframes ticker-forward {
+@keyframes pills-forward {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-@keyframes ticker-reverse {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .collectifs-ticker-track { animation: none; }
+  .collectifs-pills-track { animation: none; flex-wrap: wrap; }
 }
 
-.collectifs-ticker-item {
+/* ── Pill button ──────────────────────────────────────────────── */
+
+.collectif-pill-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 1.4rem;
+  padding: 0.5rem 1.3rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--c-color);
+  background: transparent;
+  color: #333;
   font-family: var(--text-font-bold);
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #444;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
-.collectifs-ticker-dot {
-  display: inline-block;
+.collectif-pill-btn:hover {
+  background: color-mix(in srgb, var(--c-color) 12%, #fff);
+  transform: translateY(-1px);
+}
+
+.collectif-pill-btn.--active {
+  background: var(--c-color);
+  color: #fff;
+}
+
+.collectif-pill-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  background: var(--c-color);
   flex-shrink: 0;
+  transition: background 0.2s;
 }
 
-/* ── Layout split ──────────────────────────────────────────────── */
-
-.collectifs-split {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 2rem;
-  align-items: start;
+.collectif-pill-btn.--active .collectif-pill-dot {
+  background: rgba(255,255,255,0.7);
 }
 
-/* ── Sidebar nav ───────────────────────────────────────────────── */
-
-.collectifs-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  position: sticky;
-  top: 90px;
-}
-
-.collectif-nav-item {
-  display: grid;
-  grid-template-columns: 32px 1fr auto;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 1rem;
-  border: none;
-  background: transparent;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: left;
-  transition: background 0.18s ease;
-}
-
-.collectif-nav-item:hover {
-  background: color-mix(in srgb, var(--c-color) 10%, #fff);
-}
-
-.collectif-nav-item.--active {
-  background: color-mix(in srgb, var(--c-color) 14%, #fff);
-}
-
-.collectif-nav-num {
-  font-family: var(--text-font-bold);
-  font-size: 0.75rem;
-  color: var(--c-color);
-  letter-spacing: 0.04em;
-  opacity: 0.7;
-  transition: opacity 0.18s;
-}
-
-.collectif-nav-item.--active .collectif-nav-num {
-  opacity: 1;
-}
-
-.collectif-nav-name {
-  font-family: var(--text-font-bold);
-  font-size: 0.88rem;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  transition: color 0.18s;
-}
-
-.collectif-nav-item.--active .collectif-nav-name {
-  color: var(--c-color);
-}
-
-.collectif-nav-arrow {
-  font-size: 0.85rem;
-  color: var(--c-color);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.18s, transform 0.18s;
-}
-
-.collectif-nav-item.--active .collectif-nav-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ── Panneau détail ────────────────────────────────────────────── */
+/* ── Panneau détail ─────────────────────────────────────────────── */
 
 .collectifs-panel {
   border-radius: 16px;
@@ -173,16 +107,15 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero coloré */
 .collectif-panel-hero {
   background: color-mix(in srgb, var(--c-color) 10%, #fff);
   border-bottom: 2px solid color-mix(in srgb, var(--c-color) 20%, transparent);
-  padding: 2rem 2rem 0;
+  padding: 2rem 2.5rem 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 1.5rem;
-  min-height: 160px;
+  gap: 2rem;
+  min-height: 180px;
 }
 
 .collectif-panel-meta {
@@ -203,14 +136,13 @@
 
 .collectif-panel-title {
   font-family: var(--text-font-bold);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   color: #1a1a1a;
-  line-height: 1.1;
+  line-height: 1.05;
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
-/* Flyers dans le hero */
 .collectif-panel-flyers {
   display: flex;
   gap: 0.75rem;
@@ -236,26 +168,25 @@
   object-fit: cover;
 }
 
-/* Quand il y a 3 flyers : le milieu est décalé vers le haut */
 .collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child) {
   transform: translateY(-12px);
 }
+
 .collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child):hover {
   transform: translateY(-16px);
 }
 
-/* Corps texte */
 .collectif-panel-body {
   background: #fff;
-  padding: 2rem;
+  padding: 2rem 2.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .collectif-panel-col-title {
   font-family: var(--text-font-bold);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 1rem;
@@ -267,7 +198,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.6rem;
 }
 
 .collectif-panel-list li {
@@ -290,36 +221,9 @@
   background: var(--c-color);
 }
 
-/* ── Responsive ────────────────────────────────────────────────── */
+/* ── Responsive ─────────────────────────────────────────────────── */
 
-@media (max-width: 900px) {
-  .collectifs-split {
-    grid-template-columns: 1fr;
-  }
-
-  .collectifs-nav {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .collectif-nav-item {
-    grid-template-columns: auto auto;
-    gap: 0.4rem;
-    padding: 0.55rem 0.9rem;
-    border: 1.5px solid color-mix(in srgb, var(--c-color) 30%, transparent);
-  }
-
-  .collectif-nav-num { display: none; }
-  .collectif-nav-arrow { display: none; }
-
-  .collectif-nav-item.--active {
-    border-color: var(--c-color);
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .collectif-panel-hero {
     flex-direction: column;
     align-items: flex-start;
@@ -327,24 +231,19 @@
     min-height: auto;
   }
 
-  .collectif-panel-meta {
-    padding-bottom: 1rem;
-  }
+  .collectif-panel-meta { padding-bottom: 1rem; }
 
   .collectif-panel-flyers {
     width: 100%;
     overflow-x: auto;
-    padding-bottom: 0;
-    gap: 0.5rem;
+    scrollbar-width: none;
   }
 
   .collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child) {
     transform: none;
   }
 
-  .collectif-panel-flyer-img {
-    width: 100px;
-  }
+  .collectif-panel-flyer-img { width: 100px; }
 
   .collectif-panel-body {
     grid-template-columns: 1fr;

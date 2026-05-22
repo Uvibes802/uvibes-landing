@@ -1,130 +1,106 @@
-/* ── FunctOrganisation — style éditorial ────────────────────────── */
-
 .funct-orga-container {
   padding: var(--section-padding-v) var(--section-padding-h);
-  max-width: 800px;
-  margin: 0 auto;
-  background: #fff;
+  background: var(--bckgColor);
 }
 
 .funct-orga-container h2 {
   text-align: left;
-  margin-bottom: 2.5rem;
+  padding-bottom: calc(var(--spacing-ref) * 2);
 }
 
 .funct-orga-card {
   display: flex;
   flex-direction: column;
+  gap: calc(var(--spacing-ref) * 2);
 }
 
 .funct-orga-card h3 {
-  font-family: var(--text-font-bold);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #999;
-  margin-bottom: 1.5rem;
-}
-
-/* ── Chaque ligne ─────────────────────────────────────────────── */
-
-.funct-orga-section {
-  border-top: 1px solid #eee;
-}
-
-.funct-orga-section:last-child {
-  border-bottom: 1px solid #eee;
+  text-align: left;
+  width: fit-content;
+  color: var(--mainColor);
 }
 
 .funct-orga-icon-container {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  padding: 1.25rem 0;
-  background: transparent;
-  border-radius: 0;
-  cursor: default;
-  transition: padding-left 0.2s ease;
-}
-
-/* Seulement le premier item est cliquable (voir plus) */
-.funct-orga-section:first-of-type .funct-orga-icon-container {
-  cursor: pointer;
+  width: 100%;
+  gap: var(--spacing-ref);
+  padding: var(--spacing-ref);
+  background: rgba(253, 110, 0, 0.178);
+  border-radius: var(--border-radius);
 }
 
 .funct-orga-icon-container:hover {
-  padding-left: 0.5rem;
-  transform: none;
+  transform: translateX(5px);
 }
 
 .funct-orga-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1.5px solid #e8e8e8;
-  background: #fff;
+  border-radius: 50%;
+  padding: calc(var(--spacing-ref) * 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
+  background: var(--bckgColor);
 }
 
-.funct-orga-icon-container .title-text-orange {
-  flex: 1;
-  min-width: 0;
-  margin: 0;
-  font-size: 0.97rem;
-  color: #1a1a1a;
-  font-family: var(--text-font);
-  line-height: 1.45;
+.funct-orga-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-ref) * 2);
 }
 
-/* ── Toggle voir plus/moins ──────────────────────────────────── */
+.funct-orga-theme-title {
+  text-align: center;
+  font-size: calc(var(--font-size-h4) * 1.5);
+  color: var(--secondaryColor);
+  padding: var(--spacing-ref) 0;
+}
+
+.funct-orga-theme-title::before,
+.funct-orga-theme-title::after {
+  content: "•";
+  color: var(--mainColor);
+  margin: 0 10px;
+  font-size: 1.6rem;
+}
 
 .funct-orga-toggle {
   display: flex;
   align-items: center;
   gap: 4px;
-  flex-shrink: 0;
+  flex: 0 0 auto; /* Force it to not shrink or grow */
   white-space: nowrap;
-  color: var(--mainColor);
 }
 
 .funct-orga-toggle span {
-  font-size: 0.8rem;
-  font-family: var(--text-font-bold);
-  white-space: nowrap;
+  white-space: nowrap; /* Force the text itself to stay on one line */
 }
 
-/* ── Grille de thèmes ─────────────────────────────────────────── */
-
-.funct-orga-card-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  padding: 0.5rem 0 1.5rem 3.2rem;
+/* Ensure the title text can wrap and doesn't push the toggle */
+.funct-orga-icon-container .title-text-orange {
+  min-width: 0;
+  margin: 0;
 }
 
-.funct-orga-theme-title {
-  display: none;
-}
-
-/* OrgaCard reset — hérité du composant enfant */
-.funct-orga-card-container > * {
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #eee;
-}
-
-@media (max-width: 600px) {
-  .funct-orga-card-container {
-    grid-template-columns: 1fr;
-    padding-left: 0;
+@media screen and (max-width: 480px) {
+  .funct-orga-toggle .text {
+    font-size: 0.8rem;
+  }
+  
+  .funct-orga-icon-container {
+    padding: var(--spacing-ref) calc(var(--spacing-ref) * 0.5);
   }
 }
 
-@media (min-width: 768px) {
+
+@media screen and (min-width: 768px) {
   .funct-orga-card-container {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--spacing-ref) * 2);
+  }
+
+  .funct-orga-icon-container {
+    margin-left: 0;
   }
 }
