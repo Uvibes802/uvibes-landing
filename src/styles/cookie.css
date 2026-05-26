@@ -23,7 +23,7 @@
 .cookie-text {
   font-family: var(--text-font);
   font-size: var(--font-size-text);
-  color: black; /* Texte noir comme sur l'image */
+  color: var(--ink);
   line-height: 1.6; /* Meilleure lisibilité */
   letter-spacing: var(--spacing-letter);
 }

@@ -32,6 +32,7 @@ export default function SolutionPage() {
         image={mockupSolution}
         alt="Application Uvibes"
         className="features-hero"
+        useAppMockup={true}
       />
       <FloatingMenu />
       <main>

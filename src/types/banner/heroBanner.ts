@@ -8,4 +8,5 @@ export type HeroBannerProps = {
   alt: string;
   className?: string;
   showCta?: boolean;
+  useAppMockup?: boolean;
 };

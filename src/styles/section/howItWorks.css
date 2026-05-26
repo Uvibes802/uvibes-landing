@@ -169,3 +169,7 @@
   .how-circle { width: 72px; height: 72px; font-size: 26px; }
   .how-circle-ring { inset: -6px; }
 }
+
+@media (max-width: 768px) {
+  .how-title { letter-spacing: -0.03em; }
+}

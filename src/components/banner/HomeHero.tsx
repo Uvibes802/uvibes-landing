@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
+import AppMockup from "@/components/shared/AppMockup";
 import "../../styles/banner/homeHero.css";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -33,33 +34,6 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
-function PhoneMock() {
-  return (
-    <div className="hero-phone-wrap">
-      <div className="hero-phone-body">
-        <div className="hero-phone-notch" />
-        <div className="hero-phone-screen">
-          <div className="hero-phone-status v-mono">EN CONVERSATION · 02:14</div>
-          <div className="hero-phone-grid">
-            <div className="hero-phone-tile">Léa</div>
-            <div className="hero-phone-tile --dark">Vous</div>
-          </div>
-          <div className="hero-phone-question">
-            <div className="hero-phone-q-label v-mono">QUESTION 02</div>
-            <div className="hero-phone-q-text">
-              Quelle est la dernière chose qui t&apos;a fait rire au travail ?
-            </div>
-          </div>
-          <div className="hero-phone-actions">
-            <span className="hero-phone-btn" />
-            <span className="hero-phone-btn --rose" />
-            <span className="hero-phone-btn" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function HomeHero() {
   return (
@@ -194,50 +168,8 @@ export default function HomeHero() {
         </div>
 
         {/* Colonne visuelle */}
-        <div className="hero-visual-col" aria-hidden="true">
-          {/* Ripples concentriques */}
-          <div className="hero-ripples">
-            {[0,1,2,3].map((i) => (
-              <div key={i} className="hero-ripple"
-                style={{
-                  borderColor: i % 2 === 0 ? "rgba(253,110,0,.5)" : "rgba(217,10,92,.5)",
-                  animationDelay: `${i}s`,
-                }} />
-            ))}
-          </div>
-          {/* Orbite pointillée */}
-          <svg className="hero-orbit" width="460" height="540" viewBox="0 0 460 540">
-            <ellipse cx="230" cy="270" rx="200" ry="240" fill="none"
-              stroke="var(--ink-3)" strokeWidth="1" strokeDasharray="2 6" opacity=".5" />
-          </svg>
-          {/* EQ visualizer */}
-          <div className="hero-eq">
-            {[0,1,2,3,4,5].map((i) => (
-              <div key={i} className="hero-eq-bar"
-                style={{
-                  background: i % 2 ? "var(--rose)" : "var(--orange)",
-                  animationDelay: `${i * 0.12}s`,
-                  animationDuration: `${1.2 + i * 0.1}s`,
-                }} />
-            ))}
-          </div>
-          <PhoneMock />
-          {/* Chip statut */}
-          <Reveal delay={400}>
-            <div className="hero-chip-status">
-              <span className="hero-chip-dot" />
-              <span className="v-mono">Léa, 28, RH · disponible</span>
-            </div>
-          </Reveal>
-          {/* Chip témoignage */}
-          <Reveal delay={560}>
-            <div className="hero-chip-quote">
-              <div className="v-mono" style={{ fontSize: "10px", letterSpacing: "1.4px", opacity: .8 }}>NOUVELLE RENCONTRE</div>
-              <div style={{ fontWeight: 600, fontSize: "14px", marginTop: "4px", lineHeight: 1.3 }}>
-                « On bosse au même étage depuis 3 ans. »
-              </div>
-            </div>
-          </Reveal>
+        <div className="hero-visual-col">
+          <AppMockup />
         </div>
       </div>
 

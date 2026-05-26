@@ -40,3 +40,25 @@
 .solution-tab-content {
   min-height: 400px;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .solution-tabs-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    padding: 1rem var(--section-padding-h) 0;
+    gap: 0.25rem;
+    scrollbar-width: none;
+  }
+
+  .solution-tabs-nav::-webkit-scrollbar { display: none; }
+
+  .solution-tab-btn {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}

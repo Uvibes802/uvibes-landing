@@ -165,3 +165,7 @@
     border-right: none;
   }
 }
+
+@media (max-width: 768px) {
+  .ag-title { letter-spacing: -0.03em; }
+}
