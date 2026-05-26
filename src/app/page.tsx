@@ -12,7 +12,8 @@ import HowItWorks from "@/components/section/HowItWorks";
 import AdvantagesGrid from "@/components/section/AdvantagesGrid";
 import VideoSection from "@/components/section/VideoSection";
 
-// Server Component — texte héro hardcodé (BACKLOG CONTENT-02 : migrer vers WP)
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main>
