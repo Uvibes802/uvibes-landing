@@ -1,64 +1,36 @@
-import HeroContent from "@/components/banner/HeroContent";
 import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/Footer";
 import FloatingMenu from "@/components/menu/Menu";
 import FeaturedArticles from "@/components/section/FeaturedArticles";
 
-import UserNumberCard from "@/components/cards/userNumberCard";
-import VideoCard from "@/components/cards/videoCard";
 import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
-import HowItWorks from "@/components/section/HowItWorks";
+import HomeHero from "@/components/banner/HomeHero";
+import BannerCount from "@/components/section/BannerCount";
 import ValuePillars from "@/components/section/ValuePillars";
-import WhyUvibes from "@/components/section/WhyUvibes";
-import Testimony from "@/components/testimony/testimony";
-import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
-const mockupHome = "/images/mochupHome.png";
+import Enjeux from "@/components/section/Enjeux";
+import HowItWorks from "@/components/section/HowItWorks";
+import AdvantagesGrid from "@/components/section/AdvantagesGrid";
+import VideoSection from "@/components/section/VideoSection";
 
-import { fetchHomeContent } from "@/services/home/fetchHomeContent";
-
-// Server Component — le fetch WordPress se fait côté serveur, le HTML est pré-rempli pour le SEO
-export default async function Home() {
-  const { title, description } = await fetchHomeContent();
-
+// Server Component — texte héro hardcodé (BACKLOG CONTENT-02 : migrer vers WP)
+export default function Home() {
   return (
     <main>
-      <HeroContent
-        title={title}
-        description={description}
-        image={mockupHome}
-      />
+      <HomeHero />
 
-      <WhyUvibes />
-
-      <HowItWorks />
+      <BannerCount />
 
       <ValuePillars />
 
-      <UserNumberCard />
-      <VideoCard
-        title={
-          <>
-            Avec Uvibes, <span className="text-bold">elles retrouvent <br className="mobile-only" /> la bonne humeur au quotidien</span>
-          </>
-        }
-        videoSrcDdesktop={"/videos/Lisa-desktop.mp4"}
-        videoSrcMobile={"/videos/Lisa-mobile.mp4"}
-      />
+      <Enjeux />
+
       <PartnerCarousel />
 
-      <Testimony />
+      <HowItWorks />
 
-      <VideoCard
-        title={
-          <>
-            Avec Uvibes, <span className="text-bold">ils découvrent <br className="mobile-only" /> des idées nouvelles ensemble</span>
-          </>
-        }
-        videoSrcDdesktop={"/videos/Delphine-desktop.mp4"}
-        videoSrcMobile={"/videos/Delphine-mobile.mp4"}
-      />
+      <AdvantagesGrid />
 
-      <BenefitsHomeSection />
+      <VideoSection />
 
       <FeaturedArticles />
 

@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { collectifs } from "@/data/collectifs/collectifsData";
 import "@/styles/collectifs/collectifsSection.css";
 
-export default function CollectifsSection() {
+interface CollectifsSectionProps {
+  showCta?: boolean;
+}
+
+export default function CollectifsSection({ showCta = false }: CollectifsSectionProps) {
   const [activeId, setActiveId] = useState(collectifs[0].id);
   const active = collectifs.find((c) => c.id === activeId)!;
 
@@ -82,6 +87,14 @@ export default function CollectifsSection() {
           </div>
         </div>
       </div>
+
+      {showCta && (
+        <div className="collectifs-cta">
+          <Link href="/solution" className="btn-cta primary">
+            Voir toutes les solutions par collectif
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

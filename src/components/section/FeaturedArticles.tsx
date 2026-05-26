@@ -1,5 +1,6 @@
 "use client";
 
+import VibrationLine from "@/components/shared/VibrationLine";
 import { fetchFeaturedArticles } from "@/services/blog/featuredArticles";
 import { getExcerpt } from "@/services/blog/getExcerpt";
 import { sanitizeText } from "@/services/blog/sanitize";
@@ -7,73 +8,101 @@ import { Article } from "@/types/article/article";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import "../../styles/cards/blogHomepage.css";
-
-// Reusing global component styles
-// If new specific styles are needed, we can create a new CSS file.
-// For now, adhering to "reprend le design des cards du blog".
+import "../../styles/section/featuredArticles.css";
 
 export default function FeaturedArticles() {
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
-    const loadArticles = async () => {
-      try {
-        const fetchedArticles = await fetchFeaturedArticles();
-        // Sanitize content
-        const sanitizedArticles = fetchedArticles.map((article: Article) => ({
-            ...article,
-            title: {
-              ...article.title,
-              rendered: sanitizeText(article.title.rendered),
-            },
-            content: {
-              ...article.content,
-              rendered: sanitizeText(article.content.rendered),
-            },
-            date: new Date(article.date),
-          }));
-        setArticles(sanitizedArticles);
-      } catch (error) {
-        console.error("Failed to load featured articles", error);
-      }
-    };
-    loadArticles();
+    fetchFeaturedArticles()
+      .then((fetched) => {
+        const sanitized = fetched.map((a: Article) => ({
+          ...a,
+          title: { ...a.title, rendered: sanitizeText(a.title.rendered) },
+          content: { ...a.content, rendered: sanitizeText(a.content.rendered) },
+          date: new Date(a.date),
+        }));
+        setArticles(sanitized);
+      })
+      .catch(() => {});
   }, []);
 
   if (articles.length === 0) return null;
 
+  const [main, ...rest] = articles;
+
   return (
-    <section className="article-section featured-articles" style={{ padding: "var(--section-padding-v) var(--section-padding-h)" }}>
-      <h2 className="title-section">
-        Nos articles mis en avant
-      </h2>
-      <div className="article-container">
-      {articles.map((article) => (
-        <article key={article.id} className="blog-article uvibes-article">
-           {article.featured_image && (
-                <div className="article-image-wrapper">
-                    <Image
-                        src={article.featured_image}
-                        alt={article.title.rendered}
-                        fill
-                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                    />
+    <section className="fa-section">
+      <div className="fa-header">
+        <div>
+          <p className="v-mono fa-eyebrow">Le blog Uvibes</p>
+          <h2 className="fa-title v-prompt">
+            Ressources &amp; <span className="v-serif">insights.</span>
+          </h2>
+        </div>
+        <Link href="/blog" className="btn-glass fa-cta">
+          Voir tous les articles →
+        </Link>
+      </div>
+
+      <div className="fa-grid">
+        {/* Article principal */}
+        {main && (
+          <Link href={`/blog/${main.slug}`} className="fa-card fa-card--main">
+            <div className="fa-card-header">
+              {main.featured_image ? (
+                <Image
+                  src={main.featured_image}
+                  alt={main.title.rendered}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              ) : (
+                <div className="fa-card-wave" aria-hidden="true">
+                  <VibrationLine width={480} height={80} amplitude={28} freq={4} stroke="var(--orange)" strokeWidth={1.5} speed={16} />
                 </div>
-            )}
-            
-          <div className="article-card-content">
-            <h3>{article.title.rendered}</h3>
-            <p>{getExcerpt(article.content.rendered, 150)}</p>
-            {/* Show author if available locally or via ACF, handling generic fallback */}
-            {article.acf?.auteur_custom && (
-                <p><strong>{article.acf.auteur_custom}</strong></p>
-            )}
-            <p>{article.date.toLocaleDateString()}</p>
-            <Link href={`/blog/${article.slug}`}>{`Lire l'article : ${article.title.rendered}`}</Link>
-          </div>
-        </article>
-      ))}
+              )}
+              <div className="fa-card-overlay" />
+            </div>
+            <div className="fa-card-body">
+              <p className="v-mono fa-card-date">
+                {main.date instanceof Date ? main.date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) : ""}
+              </p>
+              <h3 className="fa-card-title v-prompt">{main.title.rendered}</h3>
+              <p className="fa-card-excerpt">{getExcerpt(main.content.rendered, 140)}</p>
+              {main.acf?.auteur_custom && (
+                <p className="v-mono fa-card-author">{main.acf.auteur_custom}</p>
+              )}
+              <span className="fa-card-link">Lire l&apos;article →</span>
+            </div>
+          </Link>
+        )}
+
+        {/* Articles secondaires */}
+        <div className="fa-side">
+          {rest.slice(0, 2).map((a) => (
+            <Link key={a.id} href={`/blog/${a.slug}`} className="fa-card fa-card--side">
+              <div className="fa-card-header fa-card-header--side">
+                {a.featured_image ? (
+                  <Image src={a.featured_image} alt={a.title.rendered} fill style={{ objectFit: "cover" }} />
+                ) : (
+                  <div className="fa-card-wave" aria-hidden="true">
+                    <VibrationLine width={240} height={50} amplitude={16} freq={5} stroke="var(--rose)" strokeWidth={1} speed={20} />
+                  </div>
+                )}
+                <div className="fa-card-overlay" />
+              </div>
+              <div className="fa-card-body">
+                <p className="v-mono fa-card-date">
+                  {a.date instanceof Date ? a.date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) : ""}
+                </p>
+                <h3 className="fa-card-title v-prompt">{a.title.rendered}</h3>
+                <p className="fa-card-excerpt">{getExcerpt(a.content.rendered, 90)}</p>
+                <span className="fa-card-link">Lire →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

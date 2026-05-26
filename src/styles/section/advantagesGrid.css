@@ -1,0 +1,167 @@
+/* ── AdvantagesGrid ───────────────────────────────────────────── */
+
+.ag-section {
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--paper);
+}
+
+/* Header */
+.ag-header {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.ag-eyebrow {
+  margin: 0 0 1rem;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.ag-title {
+  margin: 0;
+  font-size: clamp(40px, 6vw, 88px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  color: var(--ink);
+}
+
+.ag-title-rose { color: var(--rose); }
+
+/* Grid */
+.ag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1.5px solid var(--cream-3);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Card */
+.ag-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-right: 1.5px solid var(--cream-3);
+  border-bottom: 1.5px solid var(--cream-3);
+  background: var(--paper);
+  transition: background 0.2s ease;
+}
+
+.ag-card:hover {
+  background: var(--cream);
+}
+
+/* Remove right border for last in each row */
+.ag-card:nth-child(3n) {
+  border-right: none;
+}
+
+/* Remove bottom border for last row */
+.ag-card:nth-child(n+4) {
+  border-bottom: none;
+}
+
+.ag-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.ag-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.ag-wave {
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.ag-card-title {
+  margin: 0;
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.ag-card-body {
+  margin: 0;
+  font-size: clamp(13px, 1.1vw, 14px);
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+/* Accent top bar on hover */
+.ag-card::before {
+  content: "";
+  display: block;
+  height: 2px;
+  background: var(--ag-accent, var(--orange));
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  margin-bottom: 0.25rem;
+  margin-top: -0.875rem;
+  margin-left: -0.125rem;
+}
+
+.ag-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ag-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Reset nth-child rules for 2-col layout */
+  .ag-card:nth-child(3n) {
+    border-right: 1.5px solid var(--cream-3);
+  }
+
+  .ag-card:nth-child(n+4) {
+    border-bottom: 1.5px solid var(--cream-3);
+  }
+
+  .ag-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .ag-card:nth-child(n+5) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .ag-grid {
+    grid-template-columns: 1fr;
+    border-radius: 12px;
+  }
+
+  /* Reset all nth-child for 1-col */
+  .ag-card:nth-child(3n),
+  .ag-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .ag-card:nth-child(n+4),
+  .ag-card:nth-child(n+5) {
+    border-bottom: 1.5px solid var(--cream-3);
+  }
+
+  .ag-card:last-child {
+    border-bottom: none;
+  }
+
+  .ag-card {
+    border-right: none;
+  }
+}

@@ -1,0 +1,268 @@
+/* ── VideoSection ─────────────────────────────────────────────── */
+
+.vs-section {
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Vibration déco fond */
+.vs-bg-vibration {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.08;
+  pointer-events: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Header */
+.vs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.vs-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 0.75rem;
+}
+
+.vs-rating {
+  margin: 0 0 1rem;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+.vs-title {
+  margin: 0;
+  font-size: clamp(40px, 6vw, 88px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  color: var(--cream);
+}
+
+.vs-sub {
+  font-size: clamp(13px, 1.2vw, 15px);
+  line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 320px;
+  align-self: flex-end;
+}
+
+/* Grille vidéo */
+.vs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.vs-tile-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vs-tile-wrap.--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.vs-tile {
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.vs-tile-wrap.--featured .vs-tile {
+  aspect-ratio: 16/10;
+  height: 100%;
+  min-height: 300px;
+}
+
+.vs-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+}
+
+.vs-tile.--playing {
+  box-shadow: 0 0 0 2px var(--orange), 0 16px 48px rgba(253,110,0,0.25);
+}
+
+.vs-tile-initials {
+  font-size: clamp(32px, 4vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.18);
+  line-height: 1;
+  position: absolute;
+  top: 1rem; left: 1.25rem;
+  user-select: none;
+}
+
+.vs-tile-wrap.--featured .vs-tile-initials {
+  font-size: clamp(64px, 8vw, 120px);
+}
+
+.vs-tile-badge {
+  align-self: flex-end;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.vs-tile.--playing .vs-tile-badge {
+  background: var(--orange);
+}
+
+.vs-tile-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vs-tile-role {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+}
+
+.vs-tile-name {
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.vs-tile-wrap.--featured .vs-tile-name {
+  font-size: clamp(18px, 2vw, 26px);
+}
+
+.vs-featured-quote {
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.55;
+  color: var(--cream-2);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Témoignages écrits */
+.vs-testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.vs-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vs-testimonial-quote {
+  font-size: clamp(13px, 1.15vw, 15px);
+  line-height: 1.65;
+  color: var(--ink-3);
+  margin: 0;
+  flex: 1;
+}
+
+.vs-testimonial-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vs-testimonial-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+}
+
+.vs-testimonial-role {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .vs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vs-tile-wrap.--featured {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .vs-tile-wrap.--featured .vs-tile {
+    aspect-ratio: 16/7;
+    min-height: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .vs-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vs-sub { max-width: 100%; }
+
+  .vs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vs-testimonials {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .vs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vs-tile-wrap.--featured {
+    grid-column: span 1;
+  }
+
+  .vs-tile {
+    aspect-ratio: 3/2;
+  }
+
+  .vs-tile-wrap.--featured .vs-tile {
+    aspect-ratio: 3/2;
+    min-height: unset;
+  }
+}

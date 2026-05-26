@@ -3,14 +3,33 @@ import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Instrument_Serif, Prompt, Roboto, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
 const roboto = Roboto({
-  weight: ["400", "700", "900"],
+  weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-roboto",
+});
+
+const prompt = Prompt({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-prompt",
+});
+
+const robotoMono = Roboto_Mono({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  variable: "--font-roboto-mono",
+});
+
+const instrumentSerif = Instrument_Serif({
+  weight: ["400"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-instrument",
 });
 
 export const metadata: Metadata = {
@@ -79,7 +98,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={roboto.variable}>
+      <body className={`${roboto.variable} ${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
             <CookieConsent />

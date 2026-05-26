@@ -3,88 +3,57 @@
 import { fetchPartners, PartnerLogo } from "@/services/home/fetchPartners";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import eklore from "../../../public/images/eklore.png";
 import fetedesvoisins from "../../../public/images/LogoFeteDesVoisins.png";
 import university from "../../../public/images/upvd_logo_hori_rvb.png";
 import "../../styles/carousel/PartnerCarousel.css";
 
-
+const FALLBACK: PartnerLogo[] = [
+  { id: 1, src: university.src, alt: "Université de Perpignan" },
+  { id: 2, src: eklore.src, alt: "Eklore" },
+  { id: 3, src: fetedesvoisins.src, alt: "Fête des voisins" },
+  { id: 4, src: university.src, alt: "Université de Perpignan" },
+  { id: 5, src: eklore.src, alt: "Eklore" },
+  { id: 6, src: fetedesvoisins.src, alt: "Fête des voisins" },
+];
 
 export function PartnerCarousel() {
-  // 6 logos minimum pour que Swiper loop fonctionne (slidesPerView:3 * 2)
-  const [partnerLogos, setPartnerLogos] = useState<PartnerLogo[]>([
-    { id: 1, src: university.src, alt: "University of Perpignan" },
-    { id: 3, src: eklore.src, alt: "Eklore" },
-    { id: 4, src: fetedesvoisins.src, alt: "Fête des voisins" },
-    { id: 11, src: university.src, alt: "University of Perpignan" },
-    { id: 13, src: eklore.src, alt: "Eklore" },
-    { id: 14, src: fetedesvoisins.src, alt: "Fête des voisins" },
-  ]);
-  const [, setIsFetched] = useState(false);
+  const [logos, setLogos] = useState<PartnerLogo[]>(FALLBACK);
 
   useEffect(() => {
-    const loadPartners = async () => {
-      try {
-        const partners = await fetchPartners();
-        if (partners.length > 0) {
-            setPartnerLogos(partners);
-            setIsFetched(true);
-        }
-      } catch (error) {
-        console.error("Failed to load partners", error);
-      }
-    };
-    loadPartners();
+    fetchPartners()
+      .then((p) => { if (p.length > 0) setLogos(p); })
+      .catch(() => {});
   }, []);
 
+  // Triple pour que le marquee ne rame pas en rebouclant
+  const track = [...logos, ...logos, ...logos];
+
   return (
-    <section className="container-orange">
-    <div className="partner-carousel">
-      <h2 className="title-h2-orange partner-carousel-title">
-        Ils avancent avec nous
-      </h2>
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={10}
-        loop={true}
-        autoplay={{
-          delay: 500,
-          disableOnInteraction: false,
-        }}
-        speed={2000}
-        centeredSlides={true}
-        slidesPerView={3}
-        breakpoints={{
-          320: { slidesPerView: 1.1 },
-          480: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 3 },
-        }}
-      >
-        {partnerLogos.map((logo) => (
-          <SwiperSlide key={logo.id} className="swiper-slide">
-            <div className="slide-wrapper">
+    <section className="trustees-section">
+      <div className="trustees-header">
+        <h3 className="trustees-title v-prompt">
+          <span className="v-serif">Ils avancent</span> avec nous
+        </h3>
+        <span className="v-mono trustees-sub">+ 80 organisations partenaires</span>
+      </div>
+
+      <div className="trustees-marquee-wrap">
+        <div className="trustees-marquee-track">
+          {track.map((logo, i) => (
+            <div key={i} className="trustees-logo-item">
               <Image
                 src={logo.src}
                 alt={logo.alt}
-                className="partner-logo"
-                width={300}
-                height={300}
-                style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                width={140}
+                height={56}
+                style={{ objectFit: "contain", height: "48px", width: "auto" }}
               />
+              <span className="trustees-sep" aria-hidden="true" />
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      {/* If fetched logos are just a few, Swiper might bug with loop=true. 
-          Usually usually needs at least slidesPerView * 2 slides. 
-          For now assuming client will add enough or it just duplicates. */}
-    </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

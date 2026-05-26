@@ -1,0 +1,80 @@
+/* ── BannerCount ─────────────────────────────────────────────── */
+
+.banner-count {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 60px clamp(1.5rem, 5vw, 3.5rem);
+  overflow: hidden;
+}
+
+.banner-count-inner {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(1rem, 3vw, 2rem);
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.banner-count-label {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--orange);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.banner-count-number {
+  margin: 0;
+  font-size: clamp(44px, 7vw, 88px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.banner-count-plus {
+  color: var(--orange);
+}
+
+.banner-count-filler {
+  font-size: clamp(28px, 4vw, 52px);
+  color: var(--paper);
+  opacity: .9;
+  transition: opacity 300ms ease;
+  font-style: italic;
+}
+
+.banner-count-live {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.banner-count-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  animation: pulse-dot 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.banner-count-live .v-mono {
+  font-size: 12px;
+  opacity: .7;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  .banner-count-inner {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .banner-count-live {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}

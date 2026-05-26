@@ -23,6 +23,19 @@
   --text-font-bold: "Supreme-Bold";
   --button-font: "Bevellier-regular";
   --bckgColor: #f8f9fa;
+
+  /* ── Vibration editorial design system ──────────────────────── */
+  --orange: #fd6e00;
+  --rose:   #d90a5c;
+  --gradient-brand: linear-gradient(90deg, #fd6e00, #d90a5c);
+  --cream:   #f3ede3;
+  --cream-2: #ebe3d4;
+  --cream-3: #e2d7c1;
+  --paper:   #faf6ef;
+  --ink:     #1a1715;
+  --ink-2:   #4a4239;
+  --ink-3:   #7a6f63;
+  --nav-height: 68px;
   --mainColor: #fd6e00;
   --yellowUvibes: #feb000;
   --greenUvibes: #78c751;
@@ -297,5 +310,147 @@ h5 {
   flex-direction: column;
   justify-content: center;
   padding: var(--section-padding-v) var(--section-padding-h);
+}
+
+/* ── Boutons CTA globaux ────────────────────────────────────────── */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--text-font-bold);
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-cta.primary {
+  background: var(--gradientColor);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(253, 110, 0, 0.25);
+}
+
+.btn-cta.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(253, 110, 0, 0.35);
+}
+
+.btn-cta.secondary {
+  background: transparent;
+  color: var(--mainColor);
+  border: 1.5px solid var(--mainColor);
+}
+
+.btn-cta.secondary:hover {
+  background: rgba(253, 110, 0, 0.06);
+}
+
+/* ── Typographie Vibration ──────────────────────────────────────── */
+.v-prompt {
+  font-family: var(--font-prompt), "Supreme-Bold", sans-serif;
+}
+
+.v-serif {
+  font-family: var(--font-instrument), serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.v-mono {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  letter-spacing: 0.1em;
+}
+
+/* Bouton gradient orange→rose (Vibration design) */
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(90deg, var(--orange), var(--rose));
+  color: #fff;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 999px;
+  font-family: var(--font-prompt), sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 18px 40px -14px rgba(217, 10, 92, 0.5);
+  transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s cubic-bezier(.2,.7,.2,1);
+}
+
+.btn-brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 50px -12px rgba(217, 10, 92, 0.55);
+}
+
+/* Bouton verre dépoli (Vibration design — secondaire) */
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  border: 1px solid rgba(26, 23, 21, 0.2);
+  padding: 16px 24px;
+  border-radius: 999px;
+  font-family: var(--font-prompt), sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* Bouton ink (nav CTA) */
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-family: var(--font-prompt), sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.btn-ink:hover {
+  opacity: 0.85;
+}
+
+/* Reveal scroll — opacity + translateY */
+.v-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 900ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+
+.v-reveal.--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v-reveal { opacity: 1; transform: none; transition: none; }
+  [class*="blob-"], [style*="animation"] { animation: none !important; }
+  .spin-slow { animation: none !important; }
+  .marquee-track { animation: none !important; }
 }
 

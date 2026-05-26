@@ -1,43 +1,151 @@
-.contact-section {
-  padding: var(--section-padding-v) var(--section-padding-h);
-  background: var(--gradientColor-card);
-  color: white;
+/* ── Contact ─────────────────────────────────────────────────── */
 
-  & h2 {
-    font-size: var(--font-size-h2);
-    font-family: var(--title-font);
-    text-align: left;
-    letter-spacing: var(--spacing-letter);
-    line-height: 1;
-    padding-bottom: calc(var(--spacing-ref) * 2);
-  }
-
-  & p {
-    font-size: var(--font-size-text);
-    font-family: var(--text-font);
-    line-height: 1.2;
-    font-weight: 400;
-    padding-bottom: var(--spacing-ref);
-  }
-
-  & div {
-    display: flex;
-    align-items: center;
-    font-size: var(--font-size-text);
-    font-family: var(--text-font);
-    gap: calc(var(--spacing-ref) * 0.5);
-  }
+.ct-section {
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
 }
 
-@media screen and (min-width: 768px) {
-  .contact-container {
-    display: flex;
+/* Blobs déco */
+.ct-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.18;
+}
+
+.ct-blob--a {
+  width: 480px; height: 480px;
+  background: var(--orange);
+  top: -160px; left: -120px;
+}
+
+.ct-blob--b {
+  width: 360px; height: 360px;
+  background: var(--rose);
+  bottom: -120px; right: -80px;
+}
+
+/* Layout 2 colonnes */
+.ct-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* Colonne gauche */
+.ct-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ct-eyebrow {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.ct-title {
+  margin: 0;
+  font-size: clamp(40px, 5.5vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  color: var(--cream);
+}
+
+.ct-sub {
+  margin: 0;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.65;
+  color: var(--ink-3);
+  max-width: 380px;
+}
+
+.ct-promises {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.ct-promise {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 14px;
+  color: var(--cream-2);
+}
+
+.ct-promise-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.ct-wave {
+  margin-top: 1rem;
+  opacity: 0.5;
+}
+
+/* Colonne droite : carte formulaire */
+.ct-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.ct-form-card {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border: 1.5px solid rgba(255,255,255,0.06);
+}
+
+/* Surcharge styles du formulaire dans ce contexte */
+.ct-form-card .form-contact fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  border: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.ct-form-card .form-contact .form-error {
+  color: var(--rose);
+  font-size: 12px;
+  margin: -0.5rem 0 0.5rem;
+}
+
+.ct-form-card .form-contact .form-success {
+  color: var(--orange);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ct-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .contact-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: calc(var(--spacing-ref) * 4);
+  .ct-sub { max-width: 100%; }
+  .ct-wave { display: none; }
+}
+
+@media (max-width: 560px) {
+  .ct-form-card .form-contact fieldset {
+    grid-template-columns: 1fr;
   }
 }

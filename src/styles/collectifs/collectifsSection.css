@@ -17,6 +17,12 @@
   margin-top: 0.4rem;
 }
 
+/* ── CTA (visible uniquement sur la homepage via prop showCta) ─── */
+.collectifs-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
 /* ── Ticker de pills ────────────────────────────────────────────── */
 
 .collectifs-pills-ticker {
