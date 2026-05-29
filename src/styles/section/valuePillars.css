@@ -71,7 +71,10 @@
 
 .pillars-lines-bg {
   position: absolute;
-  inset: 0;
+  top: 0; bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
@@ -82,19 +85,19 @@
   position: absolute;
   left: 0;
   width: 100%;
-  opacity: 0.22;
+  opacity: 0.42;
 }
 .pillars-vline--1 { top: 32%; transform: translateY(-50%); }
 .pillars-vline--2 { top: 68%; transform: translateY(-50%); }
-.pillars-vline svg { width: 100%; height: 55px; }
+.pillars-vline svg { width: 100%; height: 60px; }
 
 /* Mobile : lignes statiques */
 .pillars-sline {
   display: none;
-  height: 8px;
+  height: 10px;
   border-radius: 99px;
   background: linear-gradient(90deg, #F4621F, #E8196A);
-  opacity: 0.22;
+  opacity: 0.38;
   position: absolute;
   left: 0;
   width: 100%;
@@ -116,9 +119,7 @@
   position: relative;
   padding: 36px;
   border-radius: 28px;
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: #fff;
   border-top: 3px solid var(--p-accent);
   border-left: 1px solid rgba(255,255,255,.9);
   border-right: 1px solid rgba(255,255,255,.5);
