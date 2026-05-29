@@ -282,9 +282,27 @@
 @media (max-width: 768px) {
   .pillars-grid { grid-template-columns: 1fr; }
   .pillar-card  { min-height: auto; padding: 28px; }
-  /* Lignes : SVG masqués, statiques visibles */
+
+  /* Lignes partagées masquées sur mobile */
   .pillars-vline { display: none; }
-  .pillars-sline { display: block; }
+  .pillars-sline { display: none; }
+
+  /* 2 lignes dégradées épaisses derrière chaque carte via pseudo-éléments */
+  .pillar-card::before,
+  .pillar-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--p-accent), #E8196A);
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .pillar-card::before { top: 28%; }
+  .pillar-card::after  { top: 65%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
