@@ -9,6 +9,60 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import "../../styles/section/featuredArticles.css";
 
+const ACCENTS = ["#FD6E00", "#D90A5C", "#00AFDD"];
+
+function formatDate(d: Date | string) {
+  const date = d instanceof Date ? d : new Date(d);
+  return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+}
+
+interface CardProps {
+  article: Article;
+  accent: string;
+  isMain?: boolean;
+  excerpt: string;
+}
+
+function ArticleCard({ article: a, accent, isMain, excerpt }: CardProps) {
+  return (
+    <Link
+      href={`/blog/${a.slug}`}
+      className={`fa-card${isMain ? " fa-card--main" : " fa-card--side"}`}
+      style={{ "--fa-accent": accent } as React.CSSProperties}
+    >
+      <div className="fa-card-img">
+        {a.featured_image ? (
+          <Image src={a.featured_image} alt={a.title.rendered} fill style={{ objectFit: "cover" }} />
+        ) : (
+          <div className="fa-card-wave-bg" aria-hidden="true">
+            <VibrationLine
+              width={480} height={60} amplitude={22} freq={4}
+              stroke={accent} strokeWidth={2} speed={16}
+            />
+          </div>
+        )}
+        <div className="fa-card-shine" aria-hidden="true" />
+
+        {/* Info — toujours visible, se cache au hover */}
+        <div className="fa-card-info">
+          <p className="v-mono fa-card-date">{formatDate(a.date)}</p>
+          <h3 className="fa-card-title v-prompt">{a.title.rendered}</h3>
+        </div>
+
+        {/* Reveal — monte au hover */}
+        <div className="fa-card-reveal">
+          <p className="v-mono fa-card-date">{formatDate(a.date)}</p>
+          <h3 className="fa-card-title v-prompt">{a.title.rendered}</h3>
+          <p className="fa-card-excerpt">{excerpt}</p>
+          <span className="fa-card-cta">
+            {isMain ? "Lire l'article" : "Lire"} <span aria-hidden="true">→</span>
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default function FeaturedArticles() {
   const [articles, setArticles] = useState<Article[]>([]);
 
@@ -40,67 +94,28 @@ export default function FeaturedArticles() {
             Ressources &amp; <span className="v-serif">insights.</span>
           </h2>
         </div>
-        <Link href="/blog" className="btn-glass fa-cta">
+        <Link href="/blog" className="fa-cta-btn">
           Voir tous les articles →
         </Link>
       </div>
 
       <div className="fa-grid">
-        {/* Article principal */}
         {main && (
-          <Link href={`/blog/${main.slug}`} className="fa-card fa-card--main">
-            <div className="fa-card-header">
-              {main.featured_image ? (
-                <Image
-                  src={main.featured_image}
-                  alt={main.title.rendered}
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              ) : (
-                <div className="fa-card-wave" aria-hidden="true">
-                  <VibrationLine width={480} height={80} amplitude={28} freq={4} stroke="var(--orange)" strokeWidth={1.5} speed={16} />
-                </div>
-              )}
-              <div className="fa-card-overlay" />
-            </div>
-            <div className="fa-card-body">
-              <p className="v-mono fa-card-date">
-                {main.date instanceof Date ? main.date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) : ""}
-              </p>
-              <h3 className="fa-card-title v-prompt">{main.title.rendered}</h3>
-              <p className="fa-card-excerpt">{getExcerpt(main.content.rendered, 140)}</p>
-              {main.acf?.auteur_custom && (
-                <p className="v-mono fa-card-author">{main.acf.auteur_custom}</p>
-              )}
-              <span className="fa-card-link">Lire l&apos;article →</span>
-            </div>
-          </Link>
+          <ArticleCard
+            article={main}
+            accent={ACCENTS[0]}
+            isMain
+            excerpt={getExcerpt(main.content.rendered, 160)}
+          />
         )}
-
-        {/* Articles secondaires */}
         <div className="fa-side">
-          {rest.slice(0, 2).map((a) => (
-            <Link key={a.id} href={`/blog/${a.slug}`} className="fa-card fa-card--side">
-              <div className="fa-card-header fa-card-header--side">
-                {a.featured_image ? (
-                  <Image src={a.featured_image} alt={a.title.rendered} fill style={{ objectFit: "cover" }} />
-                ) : (
-                  <div className="fa-card-wave" aria-hidden="true">
-                    <VibrationLine width={240} height={50} amplitude={16} freq={5} stroke="var(--rose)" strokeWidth={1} speed={20} />
-                  </div>
-                )}
-                <div className="fa-card-overlay" />
-              </div>
-              <div className="fa-card-body">
-                <p className="v-mono fa-card-date">
-                  {a.date instanceof Date ? a.date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) : ""}
-                </p>
-                <h3 className="fa-card-title v-prompt">{a.title.rendered}</h3>
-                <p className="fa-card-excerpt">{getExcerpt(a.content.rendered, 90)}</p>
-                <span className="fa-card-link">Lire →</span>
-              </div>
-            </Link>
+          {rest.slice(0, 2).map((a, i) => (
+            <ArticleCard
+              key={a.id}
+              article={a}
+              accent={ACCENTS[i + 1]}
+              excerpt={getExcerpt(a.content.rendered, 100)}
+            />
           ))}
         </div>
       </div>

@@ -1,4 +1,4 @@
-/* ── FeaturedArticles ────────────────────────────────────────── */
+/* ── FeaturedArticles — Magazine cover ───────────────────────── */
 
 .fa-section {
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
@@ -7,217 +7,257 @@
   overflow: hidden;
 }
 
-/* blob orange haut-droite */
+/* Blob déco haut-droite */
 .fa-section::before {
   content: '';
   position: absolute;
   top: -120px; right: -80px;
   width: 420px; height: 420px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.1), transparent 70%);
+  background: radial-gradient(closest-side, rgba(253,110,0,.08), transparent 70%);
   filter: blur(48px);
   animation: faBlob 14s ease-in-out infinite;
   pointer-events: none;
 }
-
-/* anneau rose bas-gauche */
 .fa-section::after {
   content: '';
   position: absolute;
   bottom: -60px; left: -60px;
   width: 320px; height: 320px;
   border-radius: 50%;
-  border: 2px solid rgba(217,10,92,.12);
+  background: radial-gradient(closest-side, rgba(217,10,92,.06), transparent 70%);
+  filter: blur(40px);
   animation: faBlob 18s ease-in-out infinite reverse;
   pointer-events: none;
 }
-
 @keyframes faBlob {
   0%,100% { transform: translate(0,0) scale(1); }
-  33%     { transform: translate(20px,-16px) scale(1.04); }
-  66%     { transform: translate(-12px,10px) scale(0.97); }
+  33%      { transform: translate(20px,-16px) scale(1.04); }
+  66%      { transform: translate(-12px,10px) scale(0.97); }
 }
 
-/* Header */
+/* ── Header ──────────────────────────────────────────────────── */
 .fa-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
   flex-wrap: wrap;
   gap: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .fa-eyebrow {
-  margin: 0 0 1rem;
-  font-size: 12px;
-  letter-spacing: 0.18em;
+  margin: 0 0 0.75rem;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   color: var(--orange);
   text-transform: uppercase;
 }
 
 .fa-title {
   margin: 0;
-  font-size: clamp(40px, 5.5vw, 80px);
+  font-size: clamp(36px, 5vw, 72px);
   font-weight: 700;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.05em;
   line-height: 0.96;
   color: var(--orange);
 }
 
-.fa-cta {
+.fa-cta-btn {
   flex-shrink: 0;
-  align-self: flex-end;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid var(--orange);
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: none;
+  transition: background 0.22s ease, color 0.22s ease;
   white-space: nowrap;
+  align-self: flex-end;
+}
+.fa-cta-btn:hover {
+  background: var(--orange);
+  color: #fff;
 }
 
-/* Grid asymétrique: main card + side column */
+/* ── Grid ────────────────────────────────────────────────────── */
 .fa-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: clamp(1.25rem, 2.5vw, 2rem);
-  align-items: start;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
 }
 
 .fa-side {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.25rem, 2.5vw, 2rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-/* Card base */
+/* ── Card ────────────────────────────────────────────────────── */
 .fa-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
+  display: block;
+  border-radius: 20px;
   overflow: hidden;
-  background: var(--paper);
-  border: 1.5px solid var(--cream-3);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.fa-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(26,23,21,0.12);
-}
-
-/* Header image/wave */
-.fa-card-header {
   position: relative;
-  height: 240px;
-  background: linear-gradient(155deg, var(--cream-2), var(--cream-3));
+  animation: faCardIn 0.65s cubic-bezier(.2,.7,.2,1) both;
+}
+.fa-card--main { min-height: 420px; animation-delay: 0.05s; }
+.fa-card--side { flex: 1; min-height: 200px; }
+.fa-side .fa-card:nth-child(1) { animation-delay: 0.2s; }
+.fa-side .fa-card:nth-child(2) { animation-delay: 0.35s; }
+
+@keyframes faCardIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Image ───────────────────────────────────────────────────── */
+.fa-card-img {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
+}
+
+.fa-card-img img {
+  transition: transform 0.55s cubic-bezier(.2,.7,.2,1);
+}
+.fa-card:hover .fa-card-img img {
+  transform: scale(1.06);
+}
+
+/* Placeholder wave — fond chaud sans image */
+.fa-card-wave-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #fff0e6 0%, #ffe4f0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.fa-card-header--side {
-  height: 150px;
-}
-
-.fa-card-wave {
-  opacity: 0.7;
-}
-
-.fa-card-overlay {
+/* Shine warm — remplace l'overlay sombre */
+.fa-card-shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(26,23,21,0.55) 0%, transparent 60%);
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--fa-accent) 22%, #fff8f2) 0%,
+    rgba(255,252,248,0.3) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
 }
 
-/* Body */
-.fa-card-body {
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+/* ── Info — visible en permanence, cache au hover ────────────── */
+.fa-card-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: linear-gradient(
+    to top,
+    rgba(255,248,242,0.96) 0%,
+    rgba(255,248,242,0.85) 60%,
+    transparent 100%
+  );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.38s cubic-bezier(.4,0,.2,1), opacity 0.38s ease;
+  z-index: 2;
+}
+.fa-card:hover .fa-card-info {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+/* ── Reveal — monte au hover ─────────────────────────────────── */
+.fa-card-reveal {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.5rem;
+  background: rgba(255,250,246,0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(.2,.7,.2,1);
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
-  flex: 1;
+  gap: 0.5rem;
+}
+.fa-card:hover .fa-card-reveal {
+  transform: translateY(0);
 }
 
+/* ── Typographie commune ─────────────────────────────────────── */
 .fa-card-date {
   margin: 0;
   font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--ink-3);
+  letter-spacing: 0.16em;
+  color: var(--fa-accent);
   text-transform: uppercase;
 }
 
 .fa-card-title {
   margin: 0;
-  font-size: clamp(16px, 1.6vw, 22px);
+  font-size: clamp(15px, 1.5vw, 21px);
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.2;
   color: var(--ink);
 }
-
 .fa-card--side .fa-card-title {
-  font-size: clamp(14px, 1.3vw, 17px);
+  font-size: clamp(14px, 1.2vw, 17px);
 }
 
 .fa-card-excerpt {
-  margin: 0;
-  font-size: clamp(13px, 1.1vw, 14px);
+  margin: 0.25rem 0 0;
+  font-size: 13px;
   line-height: 1.65;
   color: var(--ink-2);
 }
 
-.fa-card-author {
-  margin: 0;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--ink-3);
-  text-transform: uppercase;
-}
-
-.fa-card-link {
-  display: inline-block;
-  margin-top: auto;
-  padding-top: 0.5rem;
+.fa-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 0.5rem;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--orange);
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  color: var(--fa-accent);
   transition: gap 0.2s ease;
 }
-
-.fa-card:hover .fa-card-link {
-  text-decoration: underline;
+.fa-card:hover .fa-card-cta {
+  gap: 8px;
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .fa-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  .fa-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
-  .fa-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .fa-header { flex-direction: column; align-items: flex-start; }
+  .fa-grid { grid-template-columns: 1fr; }
+  .fa-card--main { min-height: 280px; }
+  .fa-card--side { min-height: 200px; }
 
-  .fa-cta { align-self: auto; }
-
-  .fa-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .fa-card-header {
-    height: 200px;
+  /* Sur mobile : révèle le contenu en statique (pas de hover) */
+  .fa-card-info { opacity: 0; transform: translateY(10px); }
+  .fa-card-reveal {
+    transform: translateY(0);
+    position: absolute;
   }
 }
 
 @media (max-width: 480px) {
-  .fa-card-header {
-    height: 160px;
-  }
-
-  .fa-card-header--side {
-    height: 120px;
-  }
+  .fa-card--main { min-height: 240px; }
+  .fa-card--side { min-height: 180px; }
 }
