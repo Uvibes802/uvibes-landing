@@ -1,4 +1,11 @@
 NOTES — Modifications de texte validées
 =======================================
-(Ce fichier est mis à jour au fil des validations)
+
+[1] ConversationIntro — paragraphe 3
+AVANT : "Dans de nombreux collectifs, nous n'osons pas toujours engager la conversation
+         et sous-estimons souvent les bénéfices de simples échanges entre pairs."
+APRÈS : "Un couloir suffit. Une pause café aussi. Mais ces échanges ne font pas toujours
+         partie du plan — Uvibes les rend inévitables."
+RAISON : Plus court, concret, évite le jargon, dit exactement ce que fait le produit.
+DATE   : 2026-05-29
 

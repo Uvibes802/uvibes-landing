@@ -142,7 +142,7 @@ export default function ConversationIntro() {
             <div className="ci-body">
               <p>Uvibes fait circuler les {kw(0,"bons plans")}, les {kw(1,"expériences")} et les {kw(2,"points de vue")} à travers des discussions courtes, humaines et engageantes.</p>
               <p>Conçue pour les organisations, Uvibes renforce le {kw(3,"lien entre les personnes")}, améliore la {kw(4,"qualité des échanges")} et facilite la {kw(5,"circulation des informations utiles")} au quotidien.</p>
-              <p>Dans de nombreux collectifs, nous n&apos;osons pas toujours engager la conversation et sous-estimons souvent les bénéfices de {kw(6,"simples échanges entre pairs")}.</p>
+              <p>Un couloir suffit. Une pause café aussi. Mais ces échanges ne font pas toujours partie du plan — {kw(6,"Uvibes les rend inévitables")}.</p>
               <p>Uvibes facilite les {kw(7,"bonnes conversations")}, entre les {kw(8,"bonnes personnes")}, au {kw(9,"bon moment")}. Votre organisation devient ainsi plus {kw(10,"en lien")}, plus {kw(11,"fluide")} et plus {kw(12,"efficace")}.</p>
             </div>
           </Reveal>
