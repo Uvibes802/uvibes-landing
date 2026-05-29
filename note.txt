@@ -9,6 +9,12 @@ APRÈS : "Un couloir suffit. Une pause café aussi. Mais ces échanges ne font p
 RAISON : Plus court, concret, évite le jargon, dit exactement ce que fait le produit.
 DATE   : 2026-05-29
 
+[3] HowItWorks — titre étape 03
+AVANT : "Recueillez des données stratégiques pour mieux comprendre votre collectif"
+APRÈS : "Votre collectif vous parle. Écoutez-le."
+RAISON : Registre humain vs jargon, plus court, crée une tension émotionnelle.
+DATE   : 2026-05-29
+
 [2] HowItWorks — titre étape 02
 AVANT : "Votre collectif échange en vidéo, en one-to-one"
 APRÈS : "Deux membres. Une conversation. Trois minutes."

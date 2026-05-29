@@ -23,7 +23,7 @@ const STEPS: { n: string; color: string; title: React.ReactNode; body: React.Rea
   {
     n: "03",
     color: "#00AFDD",
-    title: <>Recueillez des <span className="how-kw">données stratégiques</span></>,
+    title: <>Votre collectif <span className="how-kw">vous parle.</span> Écoutez-le.</>,
     body: <>À l&apos;issue des échanges, les participants répondent à de courtes <span className="how-kw">enquêtes personnalisées</span>. Vous recueillez retours, points de vue et <span className="how-kw">données utiles</span> pour mieux comprendre votre collectif.</>,
     time: "Dashboard temps réel",
   },
