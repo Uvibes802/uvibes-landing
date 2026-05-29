@@ -33,3 +33,10 @@ AVANT   : "Parlons de votre collectif."
 APRÈS   : "Votre projet mérite une vraie conversation."
 RAISON  : Fait écho au produit (conversations), valorise le prospect, moins générique.
 DATE    : 2026-05-29
+
+[5] Hero homepage — sous-titre
+FICHIER : src/components/banner/HomeHero.tsx
+AVANT   : "L'outil digital qui crée les bons échanges, au bon moment"
+APRÈS   : "Les bonnes conversations ne s'improvisent pas. Elles se créent."
+RAISON  : Retourne une idée reçue, positionne Uvibes comme acte intentionnel, plus mémorable.
+DATE    : 2026-05-29
