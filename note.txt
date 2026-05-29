@@ -61,3 +61,10 @@ AVANT   : "Ressources & insights."
 APRÈS   : "Ce qu'on lit. Ce qu'on pense."
 RAISON  : Plus personnel, donne une voix à Uvibes, sort du registre corporate.
 DATE    : 2026-05-29
+
+[9] [FAIT] VideoSection — titre section
+FICHIER : src/components/section/VideoSection.tsx
+AVANT   : "Ils aiment l'expérience."
+APRÈS   : "Ça change quelque chose."
+RAISON  : Court, ambigu intentionnellement, pousse à lire les témoignages.
+DATE    : 2026-05-29
