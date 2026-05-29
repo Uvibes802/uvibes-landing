@@ -40,10 +40,22 @@ export default function HomeHero() {
     <section className="hero-section" aria-label="Présentation Uvibes">
       {/* ── Backdrop animé ── */}
       <div className="hero-backdrop" aria-hidden="true">
+        <div className="hero-blob hero-blob-p" />
+        <div className="hero-blob hero-blob-o" />
+        <div className="hero-blob hero-blob-k" />
+        <div className="hero-blob hero-blob-l" />
+        <div className="hero-blob hero-blob-m" />
+        <div className="hero-blob hero-blob-n" />
+        <div className="hero-blob hero-blob-g" />
+        <div className="hero-blob hero-blob-h" />
+        <div className="hero-blob hero-blob-i" />
+        <div className="hero-blob hero-blob-j" />
         <div className="hero-blob hero-blob-a" />
         <div className="hero-blob hero-blob-b" />
         <div className="hero-blob hero-blob-c" />
         <div className="hero-blob hero-blob-d" />
+        <div className="hero-blob hero-blob-e" />
+        <div className="hero-blob hero-blob-f" />
         <svg className="hero-grain" aria-hidden="true">
           <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.6" /></filter>
           <rect width="100%" height="100%" filter="url(#grain)" />
@@ -86,7 +98,8 @@ export default function HomeHero() {
         </svg>
         {/* Particules flottantes */}
         {[0,1,2,3,4,5,6,7,8,9,10,11,12,13].map((i) => {
-          const colors = ["#FD6E00","#D90A5C","#1a1715"];
+          const colors = ["#FD6E00","#D90A5C","#FFB040","#FF5894","#FF9558"];
+          const c = colors[i % colors.length];
           return (
             <div key={i} className={`hero-particle hero-particle-${i % 3}`}
               style={{
@@ -94,7 +107,9 @@ export default function HomeHero() {
                 top: `${((i * 37 + 13) % 100)}%`,
                 width: `${4 + (i % 4) * 2}px`,
                 height: `${4 + (i % 4) * 2}px`,
-                background: colors[i % 3],
+                background: c,
+                boxShadow: `0 0 12px ${c}aa`,
+                opacity: 0.55,
                 animationDelay: `${i * 0.4}s`,
                 animationDuration: `${10 + (i % 6) * 2}s`,
               }} />
@@ -106,21 +121,17 @@ export default function HomeHero() {
       <div className="hero-eyebrow">
         <span className="hero-eyebrow-line" aria-hidden="true" />
         <span className="v-mono hero-eyebrow-text">Application bien-être collectif · 2026</span>
-        <div className="hero-live-badge">
-          <span className="hero-live-dot" aria-hidden="true" />
-          <span className="v-mono hero-live-text">3 142 conversations en cours</span>
-        </div>
       </div>
 
       {/* ── Grille principale ── */}
       <div className="hero-grid">
-        {/* Colonne texte */}
+        {/* Colonne texte — h1 uniquement */}
         <div className="hero-text-col">
           <Reveal delay={0}>
             <h1 className="hero-h1 v-prompt">
-              Activez la{" "}
+              Activez la<br />
               <span className="hero-h1-emph">
-                <span className="v-serif">puissance</span>
+                <span className="v-serif" style={{ color: "#FFE456" }}>puissance</span>
                 <svg className="hero-underline" viewBox="0 0 460 30" aria-hidden="true">
                   <path d="M5 22 Q 110 4 220 16 T 455 12" fill="none"
                     stroke="var(--orange)" strokeWidth="4" strokeLinecap="round" />
@@ -130,11 +141,19 @@ export default function HomeHero() {
               <span style={{ color: "var(--rose)" }}>collectif.</span>
             </h1>
           </Reveal>
+        </div>
 
+        {/* Colonne visuelle */}
+        <div className="hero-visual-col">
+          <AppMockup />
+        </div>
+
+        {/* Sub + CTAs + social proof — desktop: col1 row2 / mobile: après mockup */}
+        <div className="hero-after">
           <Reveal delay={180}>
             <p className="hero-sub">
               L&apos;outil digital qui crée les bons échanges, au bon moment.
-              Et si les <strong style={{ color: "var(--orange)", fontWeight: 700 }}>conversations clés</strong> arrivaient enfin ?
+              Et si les <strong style={{ color: "#fff", fontWeight: 700 }}>conversations clés</strong> arrivaient enfin ?
             </p>
           </Reveal>
 
@@ -155,27 +174,22 @@ export default function HomeHero() {
           <Reveal delay={460}>
             <div className="hero-social-proof">
               <div className="hero-avatars" aria-hidden="true">
-                {["#FD6E00","#D90A5C","#1a1715","#7a6f63"].map((c, i) => (
+                {["#FD6E00","#D90A5C","#FF9558","#FF4D7A"].map((c, i) => (
                   <span key={i} className="hero-avatar" style={{ background: c, marginLeft: i ? "-10px" : 0 }} />
                 ))}
               </div>
               <div className="v-mono hero-proof-text">
-                12 480 + utilisateurs<br />
-                <span style={{ color: "var(--ink-3)" }}>en France &amp; Belgique · 2026</span>
+                3 500 + utilisateurs<br />
+                <span style={{ color: "rgba(255,255,255,.6)" }}>en France · 2026</span>
               </div>
             </div>
           </Reveal>
-        </div>
-
-        {/* Colonne visuelle */}
-        <div className="hero-visual-col">
-          <AppMockup />
         </div>
       </div>
 
       {/* ── Ligne de vibration en bas ── */}
       <div className="hero-vib-line">
-        <VibrationLine stroke="var(--ink)" strokeWidth={1.2} amplitude={18} freq={12}
+        <VibrationLine stroke="var(--rose)" strokeWidth={1.5} amplitude={18} freq={12}
           width={1400} height={70} speed={14} />
       </div>
     </section>

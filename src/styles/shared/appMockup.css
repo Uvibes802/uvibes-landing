@@ -176,11 +176,10 @@
 }
 
 @media (max-width: 768px) {
-  .apm-img { width: 280px; }
-  /* Chips masquées en mobile */
+  .apm-img { width: 340px; }
   .apm-chip { display: none; }
 }
 
 @media (max-width: 480px) {
-  .apm-img { width: 220px; }
+  .apm-img { width: 280px; }
 }

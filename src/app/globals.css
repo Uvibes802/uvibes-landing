@@ -22,19 +22,40 @@
   --text-font: "Supreme-Light";
   --text-font-bold: "Supreme-Bold";
   --button-font: "Bevellier-regular";
-  --bckgColor: #f8f9fa;
 
-  /* ── Vibration editorial design system ──────────────────────── */
-  --orange: #fd6e00;
-  --rose:   #d90a5c;
-  --gradient-brand: linear-gradient(90deg, #fd6e00, #d90a5c);
-  --cream:   #f3ede3;
-  --cream-2: #ebe3d4;
-  --cream-3: #e2d7c1;
-  --paper:   #faf6ef;
-  --ink:     #2a221d;
-  --ink-2:   #5a4f44;
-  --ink-3:   #8a7d6e;
+  /* ── Vibration editorial design system v2 (palette vive) ─────── */
+  --orange:        #FD6E00;
+  --rose:          #D90A5C;
+  --gradient-brand: linear-gradient(90deg, #FD6E00, #D90A5C);
+
+  /* Variations vives */
+  --orange-light:  #FF9558;
+  --orange-bright: #FFB07A;
+  --rose-light:    #FF4D7A;
+  --rose-bright:   #FF77A0;
+  --coral:         #FF6B5C;
+  --peach:         #FFD5B8;
+  --pink-soft:     #FFDDE6;
+
+  /* Surfaces — éclaircies */
+  --cream:    #FFF6EC;
+  --cream-2:  #FFEFE0;
+  --cream-3:  #FFE5CC;
+  --paper:    #FFFBF4;
+  --bckgColor: #FFF6EC;
+
+  /* Texte — bordeaux vif */
+  --ink:      #4A1530;
+  --ink-2:    #7A2050;
+  --ink-3:    #B0507E;
+  --ink-4:    #E0AEC4;
+  --rose-deep: #B5083F;
+
+  /* Gradients */
+  --warm-glow:      linear-gradient(135deg, #FD6E00 0%, #FF4D7A 50%, #D90A5C 100%);
+  --warm-glow-soft: linear-gradient(135deg, #FFC8A8 0%, #FFADC7 100%);
+  --vivid-mesh:     linear-gradient(135deg, #FFE3B0 0%, #FFC7A0 25%, #FFA0B0 55%, #FF7AA8 80%, #FF4D7A 100%);
+
   --nav-height: 68px;
   --mainColor: #fd6e00;
   --yellowUvibes: #feb000;
@@ -44,15 +65,9 @@
   --purpleUvibes: #800080;
   --mainColor-opacity: #fd6e0075;
   --secondaryColor: #d90a5c;
-  --cardsOpacity: rgba(255, 255, 255, 0.808);
   --gradientColor-button: linear-gradient(90deg, #f76213 53%, #f62570 100%);
   --gradientColor: linear-gradient(90deg, #fd6e00 0%, #f62570 100%);
   --gradientColor-card: linear-gradient(180deg, #fd6e00 0%, #f62570 100%);
-  --gradientColor-card-opacity: linear-gradient(
-    180deg,
-    #fd6e00d8 0%,
-    #f62572d2 100%
-  );
   --gradientColor-white: linear-gradient(120deg, #fd6e0017 0%, #ffffff 100%);
   --font-size-ref: 1rem;
   --font-size-h1: clamp(3rem, 1.5rem + 5vw, 8rem);
@@ -313,17 +328,24 @@ h5 {
 }
 
 /* ── Boutons CTA globaux ────────────────────────────────────────── */
-.btn-cta {
+/* ── Boutons — propriétés partagées ─────────────────────────────── */
+.btn-cta,
+.btn-brand,
+.btn-glass,
+.btn-ink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-cta {
   font-family: var(--text-font-bold);
   font-size: 0.9375rem;
   padding: 0.75rem 1.75rem;
   border-radius: 2rem;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -364,22 +386,16 @@ h5 {
   letter-spacing: 0.1em;
 }
 
-/* Bouton gradient orange→rose (Vibration design) */
+/* Bouton gradient orange→rose */
 .btn-brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   gap: 10px;
   background: linear-gradient(90deg, var(--orange), var(--rose));
   color: #fff;
-  border: none;
   padding: 16px 24px;
   border-radius: 999px;
   font-family: var(--font-prompt), sans-serif;
   font-weight: 600;
   font-size: 15px;
-  cursor: pointer;
-  text-decoration: none;
   box-shadow: 0 18px 40px -14px rgba(217, 10, 92, 0.5);
   transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s cubic-bezier(.2,.7,.2,1);
 }
@@ -389,11 +405,8 @@ h5 {
   box-shadow: 0 24px 50px -12px rgba(217, 10, 92, 0.55);
 }
 
-/* Bouton verre dépoli (Vibration design — secondaire) */
+/* Bouton verre dépoli */
 .btn-glass {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   background: rgba(255, 255, 255, 0.55);
   color: var(--ink);
   border: 1px solid rgba(26, 23, 21, 0.2);
@@ -402,8 +415,6 @@ h5 {
   font-family: var(--font-prompt), sans-serif;
   font-weight: 500;
   font-size: 15px;
-  cursor: pointer;
-  text-decoration: none;
   backdrop-filter: blur(8px);
   transition: background 0.2s ease, border-color 0.2s ease;
 }
@@ -414,24 +425,55 @@ h5 {
 
 /* Bouton ink (nav CTA) */
 .btn-ink {
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none;
-  padding: 11px 18px;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  color: #fff;
+  padding: 11px 20px;
   border-radius: 999px;
   font-family: var(--font-prompt), sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(253,110,0,.35);
 }
 
 .btn-ink:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(253,110,0,.45);
+}
+
+/* Séparateur vibration entre sections */
+.vibe-sep {
+  position: relative;
+  z-index: 10;
+  margin-top: -55px;
+  margin-bottom: -55px;
+  pointer-events: none;
+  overflow: visible;
+}
+.vibe-sep svg { width: 100%; display: block; }
+
+@media (max-width: 900px) {
+  .vibe-sep {
+    margin-top: -90px;
+    margin-bottom: -20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vibe-sep {
+    margin-top: -110px;
+    margin-bottom: -10px;
+  }
+}
+
+/* Zone partagée : témoignages + partenaires — fond étoilé commun */
+.vibe-zone {
+  background: linear-gradient(160deg, #ffc8d8 0%, #ffb0c8 100%);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 /* Reveal scroll — opacity + translateY */

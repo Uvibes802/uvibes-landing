@@ -9,7 +9,7 @@ export async function fetchPostsByTagSlug(slug: string) {
     const tagId = tags[0]?.id;
     if (!tagId) return [];
 
-    const postsRes = await fetch(`${api}/wp-json/wp/v2/posts?tags=${tagId}&_embed`);
+    const postsRes = await fetch(`${api}/wp-json/wp/v2/posts?tags=${tagId}&per_page=100&_embed`);
     if (!postsRes.ok) return [];
     const posts = await postsRes.json();
 

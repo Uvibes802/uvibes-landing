@@ -14,7 +14,7 @@
   }
 
   & p {
-    color: #212121;
+    color: var(--ink);
     letter-spacing: 0.5px;
     font-size: calc(var(--font-size-text) * 1);
     text-align: left;

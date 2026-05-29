@@ -2,135 +2,244 @@
 
 .ct-section {
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: var(--ink);
+  background: #f7f1ea;
   position: relative;
   overflow: hidden;
 }
 
 /* Blobs déco */
-.ct-blob {
+.ct-deco-circle {
   position: absolute;
+  width: 600px; height: 600px;
   border-radius: 50%;
-  filter: blur(80px);
+  background: radial-gradient(closest-side, rgba(255,0,122,.18), transparent 70%);
+  bottom: -200px; left: -160px;
   pointer-events: none;
-  opacity: 0.18;
+  filter: blur(20px);
+  animation: ctBlobFloat 14s ease-in-out infinite;
 }
 
-.ct-blob--a {
-  width: 480px; height: 480px;
-  background: var(--orange);
-  top: -160px; left: -120px;
+/* Anneau orange haut-droite */
+.ct-section::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  border: 2px solid rgba(253,110,0,.18);
+  animation: ctSpin 25s linear infinite;
+  pointer-events: none;
 }
 
-.ct-blob--b {
+/* Petit blob orange milieu-droite */
+.ct-section::after {
+  content: '';
+  position: absolute;
+  top: 40%; right: 5%;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.12), transparent 70%);
+  filter: blur(20px);
+  animation: ctBlobFloat 10s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+/* ── Sonar / ripples ──────────────────────────────────────────── */
+.ct-sonar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ct-ripple {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(.4);
   width: 360px; height: 360px;
-  background: var(--rose);
-  bottom: -120px; right: -80px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(253,110,0,.55);
+  opacity: 0;
+  animation: ctRipple 4.5s ease-out infinite;
+}
+
+@keyframes ctRipple {
+  0%   { transform: translate(-50%,-50%) scale(.3); opacity:.85; border-width: 2.5px; }
+  75%  { opacity: 0; }
+  100% { transform: translate(-50%,-50%) scale(2.6); opacity: 0; border-width: .5px; }
+}
+
+.ct-sonar-dot {
+  display: block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--orange);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(253,110,0,.2);
+  animation: ctDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes ctDotPulse {
+  0%,100% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  50%     { opacity: .5; transform: translate(-50%,-50%) scale(1.4); }
+}
+
+@keyframes ctBlobFloat {
+  0%,100% { transform: translate(0,0); }
+  50%     { transform: translate(14px,-18px); }
+}
+@keyframes ctSpin { to { transform: rotate(360deg); } }
+
+.ct-deco-circle-2 {
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.14), transparent 70%);
+  top: -120px; right: -80px;
+  pointer-events: none;
+  filter: blur(20px);
 }
 
 /* Layout 2 colonnes */
 .ct-inner {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
-  gap: clamp(3rem, 6vw, 6rem);
+  gap: clamp(3rem, 7vw, 7rem);
   align-items: start;
   position: relative;
   z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* Colonne gauche */
 .ct-left {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .ct-eyebrow {
   margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.18em;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   color: var(--orange);
   text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ct-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
 }
 
 .ct-title {
   margin: 0;
-  font-size: clamp(40px, 5.5vw, 80px);
+  font-size: clamp(42px, 5.5vw, 82px);
   font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.96;
-  color: var(--cream);
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--orange);
+  font-family: var(--font-prompt), sans-serif;
+}
+
+/* Wrapper soulignement "collectif" */
+.ct-underline-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.ct-vline-under {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -6px;
+  display: block;
+  pointer-events: none;
+}
+
+.ct-title-serif {
+  font-style: italic;
+  font-weight: 400;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  background: linear-gradient(90deg, var(--rose), #e6007e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: clamp(46px, 6vw, 90px);
 }
 
 .ct-sub {
   margin: 0;
   font-size: clamp(14px, 1.2vw, 16px);
   line-height: 1.65;
-  color: var(--ink-3);
-  max-width: 380px;
+  color: var(--ink-2);
+  max-width: 360px;
 }
 
-.ct-promises {
+/* Infos contact */
+.ct-infos {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.5rem;
   margin-top: 0.5rem;
 }
 
-.ct-promise {
+.ct-info-item {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 14px;
-  color: var(--cream-2);
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.ct-promise-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--orange);
-  flex-shrink: 0;
+.ct-info-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-family: var(--font-roboto-mono), monospace;
 }
 
-.ct-wave {
-  margin-top: 1rem;
-  opacity: 0.5;
+.ct-info-value {
+  font-size: 15px;
+  color: var(--ink);
+  font-family: var(--text-font);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
 }
 
-/* Colonne droite : carte formulaire */
+a.ct-info-value:hover { color: var(--rose); }
+
+.ct-info-item + .ct-info-item {
+  padding-top: 1.25rem;
+  border-top: 1px dashed rgba(217,10,92,.15);
+}
+
+/* Colonne droite : card formulaire */
 .ct-right {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .ct-form-card {
-  background: var(--paper);
-  border-radius: 20px;
-  padding: clamp(1.75rem, 3vw, 2.5rem);
-  border: 1.5px solid rgba(255,255,255,0.06);
-}
-
-/* Surcharge styles du formulaire dans ce contexte */
-.ct-form-card .form-contact fieldset {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  border: none;
-  padding: 0;
-  margin: 0 0 1rem;
-}
-
-.ct-form-card .form-contact .form-error {
-  color: var(--rose);
-  font-size: 12px;
-  margin: -0.5rem 0 0.5rem;
-}
-
-.ct-form-card .form-contact .form-success {
-  color: var(--orange);
-  font-size: 13px;
-  text-align: center;
-  margin-top: 0.75rem;
+  background: #fff;
+  border-radius: 24px;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  box-shadow: 0 8px 48px rgba(26,23,21,0.08), 0 1px 4px rgba(26,23,21,0.04);
+  border: 1px solid rgba(253,110,0,.12);
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
@@ -141,11 +250,9 @@
   }
 
   .ct-sub { max-width: 100%; }
-  .ct-wave { display: none; }
 }
 
 @media (max-width: 560px) {
-  .ct-form-card .form-contact fieldset {
-    grid-template-columns: 1fr;
-  }
+  .ct-title { font-size: clamp(38px, 11vw, 60px); }
+  .ct-title-serif { font-size: clamp(42px, 12vw, 66px); }
 }

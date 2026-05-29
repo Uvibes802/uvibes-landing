@@ -10,7 +10,7 @@ export const Items = [
     {
         id: 1,
         icon: <House size={32} color="#78C751"/>,
-        label: "Accueil",
+        label: "Bienvenue",
         color: "#78C751",
         link: "/",
     },

@@ -6,16 +6,17 @@ const NAV_COLS = [
     label: "Produit",
     links: [
       { href: "/solution", label: "La solution" },
-      { href: "/solution#offres", label: "Nos offres" },
+      { href: "/solution#offres", label: "Tarifs" },
+      { href: "/uvibes", label: "À propos" },
       { href: "/blog", label: "Blog" },
     ],
   },
   {
-    label: "Entreprise",
+    label: "Ressources",
     links: [
-      { href: "/uvibes", label: "À propos" },
+      { href: "/blog", label: "Blog" },
+      { href: "/uvibes", label: "Cas clients" },
       { href: "/#contact", label: "Contact" },
-      { href: "https://app.uvibes.fr/welcome", label: "Connexion" },
     ],
   },
   {
@@ -32,48 +33,40 @@ const NAV_COLS = [
 export default function Footer() {
   return (
     <footer className="ft-footer">
-      <div className="ft-top">
-        {/* Wordmark géant */}
-        <div className="ft-brand">
-          <span className="ft-wordmark v-prompt">uvibes.</span>
-          <p className="ft-tagline v-serif">Activez la puissance de votre collectif.</p>
+      <svg className="ft-curve" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60 Q 360 0 720 60 T 1440 60" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+        <path d="M0 90 Q 360 30 720 90 T 1440 90" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+      </svg>
+
+      <div className="ft-inner">
+        {/* Top — brand + nav côte à côte */}
+        <div className="ft-top">
+          <div className="ft-brand">
+            <span className="ft-wordmark v-prompt">uvibes.</span>
+            <p className="ft-tagline v-serif">Activez les bonnes ondes.</p>
+          </div>
+
+          <div className="ft-nav">
+            {NAV_COLS.map((col) => (
+              <div key={col.label} className="ft-nav-col">
+                <p className="v-mono ft-nav-label">{col.label}</p>
+                <ul className="ft-nav-list">
+                  {col.links.map((l) => (
+                    <li key={l.href + l.label}>
+                      <Link href={l.href} className="ft-nav-link">{l.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Colonnes de nav */}
-        <div className="ft-nav">
-          {NAV_COLS.map((col) => (
-            <div key={col.label} className="ft-nav-col">
-              <p className="v-mono ft-nav-label">{col.label}</p>
-              <ul className="ft-nav-list">
-                {col.links.map((l) => (
-                  <li key={l.href}>
-                    <Link href={l.href} className="ft-nav-link">{l.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
+        <div className="ft-divider" aria-hidden="true" />
 
-      {/* Bas de footer */}
-      <div className="ft-bottom">
-        <p className="v-mono ft-copy">© {new Date().getFullYear()} Uvibes — Tous droits réservés</p>
-
-        <div className="ft-socials">
-          <Link href="https://www.linkedin.com/company/uvibes" className="ft-social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-          </Link>
-          <Link href="https://www.instagram.com/uvibesofficiel/" className="ft-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-            </svg>
-          </Link>
+        <div className="ft-bottom">
+          <p className="v-mono ft-copy">© 2026 Uvibes · Made with love in Perpignan</p>
+          <p className="ft-slogan v-serif">L&apos;inattendu commence ici.</p>
         </div>
       </div>
     </footer>

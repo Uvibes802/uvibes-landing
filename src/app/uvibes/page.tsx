@@ -1,7 +1,6 @@
 import { HeroBanner } from "@/components/banner/heroBanner";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
-import FloatingMenu from "@/components/menu/Menu";
 import { AppointmentSection } from "@/components/section/appointmentSection";
 import TeamSection from "@/components/section/TeamSection";
 import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
@@ -51,7 +50,6 @@ export default function Uvibes() {
         className="uvibes-hero"
       />
       <nav>
-        <FloatingMenu />
       </nav>
       <main>
         <section className="uvibes-aboutUs uvibes-container">

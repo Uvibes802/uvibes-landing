@@ -1,11 +1,20 @@
-/* ── Features-hero : fond crème + blobs ─────────────────────── */
+/* ── Features-hero : fond mesh vivid + blobs ────────────────── */
 .features-hero {
-  background: var(--cream) !important;
+  background: linear-gradient(135deg,
+    #FFF1D6 0%, #FFE0B0 30%, #FFCCA8 60%, #FFB8C0 100%) !important;
 }
 
 .features-hero .title-h1,
 .features-hero .title-text,
 .features-hero .title-text-light {
+  color: var(--ink);
+}
+
+/* Rendre tous les hero intérieurs cohérents avec le design system v2 */
+.hero-banner-wrapper .title-h1 {
+  font-family: var(--font-prompt), "Supreme-Bold", sans-serif;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
   color: var(--ink);
 }
 
@@ -24,23 +33,26 @@
 }
 
 .hero-banner-blob--a {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(253,110,0,.32), transparent 70%);
-  top: -120px; right: -80px;
+  width: 700px; height: 700px;
+  background: radial-gradient(closest-side, rgba(255,176,40,.85), transparent 70%);
+  top: -200px; right: -120px;
+  filter: blur(28px);
   animation: blob-drift-a 24s ease-in-out infinite;
 }
 
 .hero-banner-blob--b {
-  width: 380px; height: 380px;
-  background: radial-gradient(circle, rgba(217,10,92,.28), transparent 70%);
-  bottom: -60px; left: 10%;
+  width: 560px; height: 560px;
+  background: radial-gradient(closest-side, rgba(253,110,0,.75), transparent 70%);
+  bottom: -80px; left: 5%;
+  filter: blur(24px);
   animation: blob-drift-b 30s ease-in-out infinite;
 }
 
 .hero-banner-blob--c {
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(253,110,0,.18), transparent 70%);
-  top: 40%; left: 50%;
+  width: 480px; height: 480px;
+  background: radial-gradient(closest-side, rgba(217,10,92,.65), transparent 70%);
+  top: 35%; left: 45%;
+  filter: blur(30px);
   animation: blob-drift-c 32s ease-in-out infinite;
 }
 
@@ -73,9 +85,24 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  background: var(--gradientColor-card);
+  /* Vivid mesh gradient v2 pour toutes les pages */
+  background: linear-gradient(135deg,
+    #FFF1D6 0%, #FFD8B0 18%, #FFB8A8 38%,
+    #FF98B8 58%, #FF77A8 78%, #FF5894 100%);
   position: relative;
   overflow: hidden;
+}
+
+/* Blog : légèrement différent — plus orange/pêche */
+.blog-hero {
+  background: linear-gradient(135deg,
+    #FFF1D6 0%, #FFCFA0 25%, #FFA888 55%, #FF6E6E 100%) !important;
+}
+
+/* Uvibes/À propos : rose/pêche doux */
+.uvibes-hero {
+  background: linear-gradient(135deg,
+    #FFF6EC 0%, #FFDDE6 35%, #FFADC7 70%, #FF77A0 100%) !important;
 }
 
 .hero-banner-container {
@@ -92,9 +119,7 @@
 }
 
 .hero-banner-header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: none; /* nav fixe dans layout.tsx prend en charge le logo */
 }
 
 .hero-banner-body {
@@ -200,19 +225,6 @@
   border-color: rgba(255, 255, 255, 0.8);
 }
 
-@media screen and (max-width: 768px) {
-  .hero-cta {
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
-  .hero-cta-primary,
-  .hero-cta-secondary {
-    font-size: 0.875rem;
-    padding: 0.6875rem 1.5rem;
-  }
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -239,18 +251,28 @@
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
+  .hero-cta {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .hero-cta-primary,
+  .hero-cta-secondary {
+    font-size: 0.875rem;
+    padding: 0.6875rem 1.5rem;
+  }
+
   .hero-vibration {
     display: none;
   }
-}
 
-@media screen and (max-width: 768px) {
   .hero-banner-wrapper {
     min-height: 100dvh;
   }
+
   .hero-banner-container {
-    padding-top: 2rem;
+    padding-top: calc(var(--nav-height) + 1.5rem);
     min-height: 100dvh;
     gap: 1.5rem;
     justify-content: center;
@@ -309,22 +331,14 @@
     margin-top: -2rem;
   }
 
-  .home-hero .hero-banner-container {
-    padding-top: 4rem;
-  }
-
-  .hero-vibration {
-    display: none;
-  }
-
-  /* Specific padding for Avantages and Features pages on mobile */
+  .home-hero .hero-banner-container,
   .avantages-hero .hero-banner-container,
   .features-hero .hero-banner-container {
     padding-top: 4rem;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media (max-width: 320px) {
   .hero-vibration {
     display: none;
   }
@@ -336,7 +350,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .hero-banner-container {
     padding-left: clamp(2.5rem, 7vw, 6rem);
     padding-right: var(--section-padding-h);
@@ -370,7 +384,7 @@
   .hero-banner-content {
     grid-column: 1;
     padding: 0;
-    padding-top: 8rem; /* Espace pour le logo hero (menu en bas, plus de top navbar) */
+    padding-top: calc(var(--nav-height) + 3rem);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -458,13 +472,12 @@
   }
 
   .uvibes-hero .hero-banner-content {
-    padding-top: 14rem;
+    padding-top: calc(var(--nav-height) + 6rem);
   }
 
-  /* Specific padding for Avantages and Features pages on desktop */
   .avantages-hero .hero-banner-content,
   .features-hero .hero-banner-content {
-    padding-top: 12rem;
+    padding-top: calc(var(--nav-height) + 4rem);
   }
 
   .avantages-hero .hero-banner-image-container,

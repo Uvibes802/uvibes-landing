@@ -5,7 +5,6 @@ import PricingTable from "@/components/features/PricingTable";
 import Footer from "@/components/footer/Footer";
 import FunctOrganisation from "@/components/funct/functOrganisation";
 import JsonLd from "@/components/JsonLd";
-import FloatingMenu from "@/components/menu/Menu";
 import { AppointmentSection } from "@/components/section/appointmentSection";
 import { buildMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -59,7 +58,6 @@ export default function FeaturesPage() {
           className="features-hero"
         />
         <nav>
-          <FloatingMenu />
         </nav>
         <FunctOrganisation />
         <FeaturesCard />

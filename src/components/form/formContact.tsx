@@ -4,8 +4,6 @@ import type { FormData } from "@/types/form/form";
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import "../../styles/form/formContact.css";
-import Button from "../button/Button";
-import Input from "../input/Input";
 
 export default function FormContact() {
   const {
@@ -44,73 +42,90 @@ export default function FormContact() {
   };
 
   return (
-    <form className="form-contact" onSubmit={handleSubmit(onSubmitHandler)}>
-      <fieldset>
-        <Input
-          label="Nom"
-          type="text"
-          placeholder="Nom"
-          htmlFor="lastname"
-          {...register("lastname", { required: "Le nom est requis" })}
+    <form className="fc-form" onSubmit={handleSubmit(onSubmitHandler)}>
+      {/* Nom + Prénom */}
+      <div className="fc-row">
+        <div className="fc-field">
+          <label className="fc-label" htmlFor="lastname">Nom</label>
+          <input
+            id="lastname"
+            className={`fc-input${errors.lastname ? " --error" : ""}`}
+            placeholder="Dupont"
+            {...register("lastname", { required: "Requis" })}
+          />
+          {errors.lastname && <span className="fc-error">{errors.lastname.message}</span>}
+        </div>
+        <div className="fc-field">
+          <label className="fc-label" htmlFor="firstname">Prénom</label>
+          <input
+            id="firstname"
+            className={`fc-input${errors.firstname ? " --error" : ""}`}
+            placeholder="Marie"
+            {...register("firstname", { required: "Requis" })}
+          />
+          {errors.firstname && <span className="fc-error">{errors.firstname.message}</span>}
+        </div>
+      </div>
+
+      {/* Email */}
+      <div className="fc-field">
+        <label className="fc-label" htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          className={`fc-input${errors.email ? " --error" : ""}`}
+          placeholder="vous@organisation.fr"
+          {...register("email", { required: "Requis" })}
         />
-        {errors.lastname && (
-          <p className="form-error">{errors.lastname.message}</p>
-        )}
-        <Input
-          label="Prénom"
-          type="text"
-          placeholder="Prénom"
-          htmlFor="firstname"
-          {...register("firstname", { required: "Le prénom est requis" })}
+        {errors.email && <span className="fc-error">{errors.email.message}</span>}
+      </div>
+
+      {/* Organisation */}
+      <div className="fc-field">
+        <label className="fc-label" htmlFor="organisation">Organisation</label>
+        <input
+          id="organisation"
+          className="fc-input"
+          placeholder="Nom de votre structure"
+          {...register("organisation")}
         />
-        {errors.firstname && (
-          <p className="form-error">{errors.firstname.message}</p>
-        )}
-      </fieldset>
-      <Input
-        label="Email"
-        htmlFor="email"
-        type="email"
-        placeholder="Email"
-        {...register("email", { required: "L'email est requis" })}
-      />
-      {errors.email && (
-        <p className="form-error">{errors.email.message}</p>
-      )}
-      <Input
-        label="Message"
-        type="textarea"
-        placeholder="Votre message"
-        htmlFor="message"
-        {...register("message", { required: "Le message est requis" })}
-      />
-      {errors.message && (
-        <p className="form-error">{errors.message.message}</p>
-      )}
-      <div className="checkbox-container">
-        <label className="checkbox-label">
-          Je souhaite partager mes informations avec Uvibes
-          <input required type="checkbox" {...register("share")} />
+      </div>
+
+      {/* Message */}
+      <div className="fc-field">
+        <label className="fc-label" htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          className={`fc-input fc-textarea${errors.message ? " --error" : ""}`}
+          placeholder="Décrivez votre collectif et vos objectifs..."
+          {...register("message", { required: "Requis" })}
+        />
+        {errors.message && <span className="fc-error">{errors.message.message}</span>}
+      </div>
+
+      {/* Checkboxes */}
+      <div className="fc-checks">
+        <label className="fc-check-label">
+          <input type="checkbox" required {...register("share")} />
+          <span>Je souhaite partager mes informations avec Uvibes</span>
         </label>
-        <label className="checkbox-label">
-          Je m&apos;inscris à la newsletter Uvibes
+        <label className="fc-check-label">
           <input type="checkbox" {...register("newsletter")} />
+          <span>Je m&apos;inscris à la newsletter Uvibes</span>
         </label>
       </div>
-      <div className="button-container">
-        <Button
-          title={isSubmitting ? "Envoi en cours..." : "Envoyer"}
-          type="submit"
-          disabled={isSubmitting}
-        />
-      </div>
+
+      {/* Bouton */}
+      <button type="submit" className="fc-submit" disabled={isSubmitting}>
+        {isSubmitting ? "Envoi en cours…" : "Envoyer"}
+        {!isSubmitting && <span className="fc-submit-dot" aria-hidden="true" />}
+      </button>
+
       {submitSuccess && (
-        <p className="form-success">Message envoyé avec succès !</p>
+        <p className="fc-success">Message envoyé ! On revient vers vous sous 48h.</p>
       )}
       {submitError && (
-        <p className="form-error">
-          Une erreur est survenue, veuillez réessayer.
-        </p>
+        <p className="fc-error-global">Une erreur est survenue, veuillez réessayer.</p>
       )}
     </form>
   );

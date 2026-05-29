@@ -1,4 +1,5 @@
 import CookieConsent from "@/components/cookieConsent";
+import Menu from "@/components/menu/Menu";
 import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -99,6 +100,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${roboto.variable} ${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
+        <Menu />
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
             <CookieConsent />

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bienvenue — Uvibes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400;1,700&family=Roboto+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FD6E00;
+      --orange-light: #FF9558;
+      --orange-bright: #FFB07A;
+      --rose: #D90A5C;
+      --rose-light: #FF4D7A;
+      --rose-bright: #FF77A0;
+      --coral: #FF6B5C;
+      --peach: #FFD5B8;
+      --pink-soft: #FFDDE6;
+      --cream: #FFF6EC;            /* brighter cream */
+      --cream-2: #FFEFE0;
+      --cream-3: #FFE5CC;
+      --ink: #4A1530;              /* vivid wine — readable but bright */
+      --ink-2: #7A2050;            /* mid rose-wine for body */
+      --ink-3: #B0507E;            /* muted but warmer */
+      --ink-4: #E0AEC4;
+      --rose-deep: #B5083F;
+      --paper: #FFFBF4;
+      --warm-glow: linear-gradient(135deg, #FD6E00 0%, #ff4d7a 50%, #D90A5C 100%);
+      --warm-glow-soft: linear-gradient(135deg, #ffc8a8 0%, #ffadc7 100%);
+      --vivid-mesh: linear-gradient(135deg, #FFE3B0 0%, #FFC7A0 25%, #FFA0B0 55%, #FF7AA8 80%, #FF4D7A 100%);
+    }
+    /* Responsive overrides */
+    @media (max-width: 1280px) {
+      main section { padding-left: 40px !important; padding-right: 40px !important; }
+    }
+    @media (max-width: 1024px) {
+      main section { padding-left: 32px !important; padding-right: 32px !important; padding-top: 80px !important; padding-bottom: 80px !important; }
+      [data-grid="2col"], [data-grid="3col"] { grid-template-columns: 1fr 1fr !important; }
+      h1 { font-size: clamp(48px, 8vw, 84px) !important; }
+      h2 { font-size: clamp(36px, 5.5vw, 60px) !important; }
+    }
+    @media (max-width: 768px) {
+      main section { padding-left: 20px !important; padding-right: 20px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
+      nav { padding-left: 16px !important; padding-right: 16px !important; padding-top: 12px !important; padding-bottom: 12px !important; }
+      [data-grid="2col"], [data-grid="3col"], [data-grid="auto"] { grid-template-columns: 1fr !important; gap: 18px !important; }
+      [data-grid-rows="span"] { grid-row: auto !important; }
+      [data-hide-mobile="true"] { display: none !important; }
+      h1 { font-size: clamp(40px, 11vw, 68px) !important; letter-spacing: -0.03em !important; line-height: 1 !important; }
+      h2 { font-size: clamp(32px, 8vw, 52px) !important; letter-spacing: -0.025em !important; line-height: 1.02 !important; }
+      h3 { font-size: 22px !important; }
+      .hide-mobile { display: none !important; }
+      /* mobile spacing rhythm */
+      main section { margin: 0 !important; }
+      body { padding-bottom: 0 !important; } /* no floating menu */
+    }
+    @media (max-width: 480px) {
+      main section { padding-left: 16px !important; padding-right: 16px !important; padding-top: 52px !important; padding-bottom: 52px !important; }
+      h1 { font-size: 44px !important; }
+      h2 { font-size: 32px !important; }
+      .roboto-mono { font-size: 11px !important; }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; cursor: pointer; }
+    a { color: inherit; }
+    .roboto-mono { font-family: 'Roboto Mono', monospace; }
+    .prompt { font-family: 'Prompt', sans-serif; }
+    .instrument { font-family: 'Instrument Serif', serif; }
+    ::selection { background: var(--orange); color: var(--paper); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="application/json" id="tweak-defaults">
+  /*EDITMODE-BEGIN*/{
+    "direction": "vibration",
+    "animation": "vibing",
+    "activeTab": "pour-qui"
+  }/*EDITMODE-END*/
+  </script>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="shared.jsx"></script>
+  <script type="text/babel" src="direction-vibration.jsx"></script>
+  <script type="text/babel" src="direction-kinetic.jsx"></script>
+  <script type="text/babel" src="home-extras.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 .funct-orga-container {
   padding: var(--section-padding-v) var(--section-padding-h);
-  background: var(--bckgColor);
+  background: var(--cream);
 }
 
 .funct-orga-container h2 {
@@ -11,13 +11,17 @@
 .funct-orga-card {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing-ref) * 2);
+  gap: calc(var(--spacing-ref) * 1.5);
 }
 
 .funct-orga-card h3 {
   text-align: left;
   width: fit-content;
-  color: var(--mainColor);
+  color: var(--orange);
+  font-family: var(--text-font-bold);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .funct-orga-icon-container {
@@ -25,25 +29,28 @@
   align-items: center;
   width: 100%;
   gap: var(--spacing-ref);
-  padding: var(--spacing-ref);
-  background: #fff;
-  border-radius: var(--border-radius);
-  border: 1px solid #eee;
-  transition: border-color 0.2s ease, padding-left 0.2s ease;
+  padding: 1rem 1.25rem;
+  background: var(--paper);
+  border-radius: 12px;
+  border: 1.5px solid var(--ink-4);
+  transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .funct-orga-icon-container:hover {
-  border-color: var(--mainColor-opacity);
-  padding-left: calc(var(--spacing-ref) * 1.4);
+  border-color: rgba(253,110,0,.35);
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(253,110,0,.08);
 }
 
 .funct-orga-icon {
   border-radius: 50%;
-  padding: calc(var(--spacing-ref) * 0.5);
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--bckgColor);
+  background: linear-gradient(135deg, var(--cream-2), var(--peach));
 }
 
 .funct-orga-card-container {
@@ -55,14 +62,14 @@
 .funct-orga-theme-title {
   text-align: center;
   font-size: calc(var(--font-size-h4) * 1.5);
-  color: var(--secondaryColor);
+  color: var(--rose);
   padding: var(--spacing-ref) 0;
 }
 
 .funct-orga-theme-title::before,
 .funct-orga-theme-title::after {
   content: "•";
-  color: var(--mainColor);
+  color: var(--orange);
   margin: 0 10px;
   font-size: 1.6rem;
 }
@@ -71,18 +78,23 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  flex: 0 0 auto; /* Force it to not shrink or grow */
+  flex: 0 0 auto;
   white-space: nowrap;
 }
 
 .funct-orga-toggle span {
-  white-space: nowrap; /* Force the text itself to stay on one line */
+  white-space: nowrap;
+  color: var(--ink-3);
+  font-size: 0.8rem;
 }
 
-/* Ensure the title text can wrap and doesn't push the toggle */
 .funct-orga-icon-container .title-text-orange {
   min-width: 0;
   margin: 0;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-family: var(--text-font);
+  line-height: 1.4;
 }
 
 @media screen and (max-width: 480px) {

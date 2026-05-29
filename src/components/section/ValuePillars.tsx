@@ -1,11 +1,13 @@
-import VibrationLine from "@/components/shared/VibrationLine";
+"use client";
+import { useEffect, useRef } from "react";
 import "@/styles/section/valuePillars.css";
 
 const pillars = [
   {
     id: "federer",
-    dot: "var(--orange)",
-    label: "01 / pilier",
+    num: "01",
+    accentColor: "#F4621F",
+    label: "01 · Pilier",
     title: "Fédérer",
     titleEt: "et",
     titleSuffix: "engager",
@@ -15,8 +17,9 @@ const pillars = [
   },
   {
     id: "piloter",
-    dot: "var(--rose)",
-    label: "02 / pilier",
+    num: "02",
+    accentColor: "#E8196A",
+    label: "02 · Pilier",
     title: "Piloter",
     titleEt: "et",
     titleSuffix: "décider",
@@ -27,40 +30,58 @@ const pillars = [
 ];
 
 export default function ValuePillars() {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("pillars-visible"); observer.disconnect(); } },
+      { threshold: 0.12 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="pillars-section">
+    <section className="pillars-section" ref={ref}>
+
       <div className="pillars-header">
-        <p className="v-mono pillars-kicker">
+        <p className="pillars-kicker v-mono">
+          <span className="pillars-kicker-dot" aria-hidden="true" />
           Uvibes, moteur d&apos;engagement et de performance dans votre organisation
         </p>
-        <h2 className="pillars-title v-prompt">
+        <h2 className="pillars-title">
           Un seul outil pour{" "}
-          <strong style={{ color: "var(--orange)", fontWeight: 800 }}>renforcer votre collectif</strong>{" "}
-          et{" "}
-          <strong style={{ color: "var(--rose)", fontWeight: 800 }}>guider vos choix stratégiques</strong>.
+          <strong className="pillars-strong--gradient">renforcer votre collectif</strong>
+          {" "}et{" "}
+          <strong className="pillars-strong--gradient">guider vos choix stratégiques</strong>.
         </h2>
       </div>
 
       <div className="pillars-grid">
         {pillars.map((p) => (
-          <div key={p.id} className="pillar-card" style={{ "--p-dot": p.dot } as React.CSSProperties}>
-            <div className="pillar-card-top">
-              <span className="pillar-dot" aria-hidden="true" />
-              <span className="v-mono pillar-label">{p.label}</span>
-            </div>
-            <h3 className="pillar-title v-prompt">
+          <div
+            key={p.id}
+            className="pillar-card"
+            style={{ "--p-accent": p.accentColor } as React.CSSProperties}
+          >
+            <span className="pillar-watermark" aria-hidden="true">{p.num}</span>
+
+            <h3 className="pillar-title">
               {p.title}{" "}
-              <span className="v-serif">{p.titleEt}</span>{" "}
+              <span className="pillar-title-et v-serif">{p.titleEt}</span>{" "}
               {p.titleSuffix}
             </h3>
+
             <p className="pillar-body">{p.body}</p>
-            <div className="pillar-stat-row">
-              <div className="pillar-stat v-prompt" style={{ color: p.dot }}>{p.stat}</div>
-              <div className="pillar-stat-label">{p.statLabel}</div>
-            </div>
-            <div className="pillar-vibline" aria-hidden="true">
-              <VibrationLine width={120} height={36} amplitude={8} freq={4}
-                stroke={p.dot} strokeWidth={1.2} speed={20} />
+
+            <div className="pillar-stat-block">
+              <hr className="pillar-hr" />
+              <div className="pillar-stat-row">
+                <span className="pillar-stat">{p.stat}</span>
+                <span className="pillar-stat-label">{p.statLabel}</span>
+              </div>
             </div>
           </div>
         ))}

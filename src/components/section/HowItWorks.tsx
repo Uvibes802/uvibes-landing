@@ -1,23 +1,28 @@
 import Link from "next/link";
+import React from "react";
+import VibrationLine from "@/components/shared/VibrationLine";
 import "../../styles/section/howItWorks.css";
 
-const STEPS = [
+const STEPS: { n: string; color: string; title: React.ReactNode; body: React.ReactNode; time: string }[] = [
   {
     n: "01",
-    title: "Choisissez vos expériences et thématiques d'échange",
-    body: "Le paramétrage est réalisé en quelques minutes. Aucune compétence technique n'est requise.",
+    color: "#FD6E00",
+    title: <>Choisissez vos <span className="how-kw">expériences</span> et thématiques d&apos;échange</>,
+    body: <>Le paramétrage est réalisé en <span className="how-kw">quelques minutes</span>. Aucune <span className="how-kw">compétence technique</span> n&apos;est requise.</>,
     time: "≈ 6 min de setup",
   },
   {
     n: "02",
-    title: "Votre collectif échange en vidéo, en one-to-one",
-    body: "Les membres se rencontrent aléatoirement lors d'échanges vidéo individuels. Des questions adaptées viennent guider la conversation. À la fin, les participants peuvent échanger leurs cartes de visite.",
+    color: "#D90A5C",
+    title: <>Votre collectif échange en <span className="how-kw">vidéo</span>, en one-to-one</>,
+    body: <>Les membres se rencontrent <span className="how-kw">aléatoirement</span> lors d&apos;échanges vidéo individuels. Des <span className="how-kw">questions adaptées</span> viennent guider la conversation. À la fin, les participants peuvent échanger leurs <span className="how-kw">cartes de visite</span>.</>,
     time: "2 à 3 min par échange",
   },
   {
     n: "03",
-    title: "Recueillez des données stratégiques",
-    body: "À l'issue des échanges, les participants répondent à de courtes enquêtes personnalisées. Vous recueillez retours, points de vue et données utiles pour mieux comprendre votre collectif.",
+    color: "#00AFDD",
+    title: <>Recueillez des <span className="how-kw">données stratégiques</span></>,
+    body: <>À l&apos;issue des échanges, les participants répondent à de courtes <span className="how-kw">enquêtes personnalisées</span>. Vous recueillez retours, points de vue et <span className="how-kw">données utiles</span> pour mieux comprendre votre collectif.</>,
     time: "Dashboard temps réel",
   },
 ];
@@ -25,11 +30,16 @@ const STEPS = [
 export default function HowItWorks() {
   return (
     <section className="how-section">
+      <div className="how-vlines" aria-hidden="true">
+        <VibrationLine width={1400} height={70} amplitude={18} freq={5} stroke="rgba(255,255,255,.3)" strokeWidth={1.5} speed={18} />
+        <VibrationLine width={1400} height={70} amplitude={12} freq={8} stroke="rgba(255,255,255,.18)" strokeWidth={1} speed={26} />
+      </div>
       <div className="how-header">
         <div>
           <p className="v-mono how-eyebrow">Comment ça fonctionne</p>
           <h2 className="how-title v-prompt">
-            Trois <span className="v-serif">étapes.</span>
+            <span className="how-title-orange">Trois</span>{" "}
+            <span className="v-serif how-title-gradient">étapes.</span>
             <br />
             <span className="how-title-rose">Pas une de plus.</span>
           </h2>
@@ -40,15 +50,18 @@ export default function HowItWorks() {
       </div>
 
       <div className="how-grid">
-        <svg className="how-connector" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
-          <path
-            d="M0 20 Q 150 -10 300 20 T 600 20 T 900 20 T 1200 20"
-            fill="none" stroke="var(--rose)" strokeWidth="2" strokeDasharray="4 6"
+        <div className="how-connector" aria-hidden="true">
+          <VibrationLine
+            width={1200} height={40}
+            amplitude={14} freq={4}
+            stroke="var(--rose)" strokeWidth={2}
+            speed={6}
+            style={{ width: "100%", opacity: 0.6 }}
           />
-        </svg>
+        </div>
 
         {STEPS.map((s) => (
-          <div key={s.n} className="how-step">
+          <div key={s.n} className="how-step" style={{ "--step-color": s.color } as React.CSSProperties}>
             <div className="how-circle-wrap">
               <div className="how-circle v-prompt">{s.n}</div>
               <span className="how-circle-ring" aria-hidden="true" />
@@ -62,6 +75,7 @@ export default function HowItWorks() {
           </div>
         ))}
       </div>
+
     </section>
   );
 }

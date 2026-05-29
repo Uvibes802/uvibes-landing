@@ -3,7 +3,6 @@ import { HeroBanner } from "@/components/banner/heroBanner";
 import { PartnerBanner } from "@/components/banner/partnerBanner";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
-import FloatingMenu from "@/components/menu/Menu";
 import { AppointmentSection } from "@/components/section/appointmentSection";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -35,7 +34,6 @@ export default function Avantages() {
         className="avantages-hero"
       />
       <nav>
-        <FloatingMenu />
       </nav>
       <main id="top">
         <AvantagesPageClient />

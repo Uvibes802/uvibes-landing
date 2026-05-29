@@ -15,7 +15,15 @@ export default function Testimony() {
   return (
     <section className="testimony-section">
     <div className="testimony">
-      <h2 className="title-h2-orange" style={{ textAlign: "center" }}>Ils nous font confiance</h2>
+      <div className="testimony-header">
+        <span className="v-mono testimony-eyebrow">
+          <span className="testimony-eyebrow-dot" aria-hidden="true" />
+          Témoignages
+        </span>
+        <h2 className="testimony-title v-prompt">
+          Ils <span className="v-serif">aiment</span> l&apos;expérience.
+        </h2>
+      </div>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}
@@ -27,7 +35,7 @@ export default function Testimony() {
           disableOnInteraction: false,
         }}
         style={{ width: "100%" }}
-        loop={false}
+        loop={true}
         className="testimony-container"
       >
         {testimonies.map((testimony) => (

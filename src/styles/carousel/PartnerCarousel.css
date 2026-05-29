@@ -1,54 +1,92 @@
-/* ── Trustees / PartnerCarousel ──────────────────────────────── */
+/* ── PartnerCarousel — marquee only ─────────────────────────── */
 
 .trustees-section {
-  padding: clamp(3rem, 6vw, 5rem) 0;
-  background: var(--cream);
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  background: transparent;
+  position: relative;
+  overflow: visible;
 }
 
-.trustees-header {
+
+.trustees-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: 0 clamp(1.5rem, 5vw, 3.5rem);
-  margin-bottom: clamp(1.5rem, 3vw, 2rem);
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
 }
 
+/* Titre — même style que vs-title */
 .trustees-title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  font-size: clamp(40px, 6vw, 88px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  text-align: center;
 }
 
-.trustees-sub {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: var(--ink-3);
-  text-transform: uppercase;
+/* "Ils" et "avec nous." — orange */
+.trustees-t-orange { color: var(--orange); }
+
+/* "avancent" — gradient orange clair → pêche (serif italic) */
+.trustees-t-gradient {
+  color: var(--rose);
+  -webkit-text-fill-color: var(--rose);
 }
 
-/* Marquee */
+/* Wrapper pour positionner la VibrationLine sous "avancent" */
+.trustees-underline-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.trustees-vline-under {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -8px;
+  display: block;
+  pointer-events: none;
+}
+
+/* Lignes épaisses haut / bas */
+.trustees-vline {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.trustees-vline--top  { top: -28px; }
+.trustees-vline--bottom { bottom: -28px; }
+
+.trustees-vline svg { width: 100%; display: block; }
+
+/* ── Marquee ─────────────────────────────────────────────────── */
+
 .trustees-marquee-wrap {
   overflow: hidden;
   width: 100%;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 
 .trustees-marquee-track {
   display: flex;
-  gap: clamp(2rem, 4vw, 3.5rem);
+  gap: clamp(3rem, 5vw, 5rem);
   align-items: center;
   width: max-content;
-  animation: marquee-left 50s linear infinite;
+  animation: marquee-left 40s linear infinite;
+  padding: 0.5rem 0;
 }
 
-.trustees-marquee-track:hover {
-  animation-play-state: paused;
-}
+.trustees-marquee-track:hover { animation-play-state: paused; }
 
 @keyframes marquee-left {
   from { transform: translateX(0); }
@@ -58,23 +96,20 @@
 .trustees-logo-item {
   display: flex;
   align-items: center;
-  gap: clamp(2rem, 4vw, 3.5rem);
+  gap: clamp(3rem, 5vw, 5rem);
   flex-shrink: 0;
-  opacity: 0.65;
+  opacity: 0.88;
+  filter: none;
   transition: opacity 0.2s ease;
-  filter: grayscale(0.3);
 }
 
-.trustees-logo-item:hover { opacity: 1; filter: none; }
+.trustees-logo-item:hover { opacity: 1; }
 
 .trustees-sep {
   display: block;
-  width: 6px; height: 6px;
+  width: 4px; height: 4px;
   border-radius: 50%;
   background: var(--orange);
   flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .trustees-header { flex-direction: column; }
+  opacity: 0.4;
 }

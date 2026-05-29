@@ -1,59 +1,64 @@
 "use client";
 
-import { fetchPartners, PartnerLogo } from "@/services/home/fetchPartners";
+import { PartnerLogo } from "@/services/home/fetchPartners";
+import VibrationLine from "@/components/shared/VibrationLine";
+import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import eklore from "../../../public/images/eklore.png";
+import eclatens from "../../../public/images/LogoEclatens.png";
 import fetedesvoisins from "../../../public/images/LogoFeteDesVoisins.png";
 import university from "../../../public/images/upvd_logo_hori_rvb.png";
 import "../../styles/carousel/PartnerCarousel.css";
 
 const FALLBACK: PartnerLogo[] = [
-  { id: 1, src: university.src, alt: "Université de Perpignan" },
-  { id: 2, src: eklore.src, alt: "Eklore" },
+  { id: 1, src: university.src,     alt: "Université de Perpignan" },
+  { id: 2, src: eklore.src,         alt: "Eklore" },
   { id: 3, src: fetedesvoisins.src, alt: "Fête des voisins" },
-  { id: 4, src: university.src, alt: "Université de Perpignan" },
-  { id: 5, src: eklore.src, alt: "Eklore" },
-  { id: 6, src: fetedesvoisins.src, alt: "Fête des voisins" },
+  { id: 4, src: eclatens.src,       alt: "Éclatens" },
 ];
 
-export function PartnerCarousel() {
-  const [logos, setLogos] = useState<PartnerLogo[]>(FALLBACK);
-
-  useEffect(() => {
-    fetchPartners()
-      .then((p) => { if (p.length > 0) setLogos(p); })
-      .catch(() => {});
-  }, []);
-
-  // Triple pour que le marquee ne rame pas en rebouclant
+export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] }) {
   const track = [...logos, ...logos, ...logos];
 
   return (
     <section className="trustees-section">
-      <div className="trustees-header">
-        <h3 className="trustees-title v-prompt">
-          <span className="v-serif">Ils avancent</span> avec nous
-        </h3>
-        <span className="v-mono trustees-sub">+ 80 organisations partenaires</span>
-      </div>
 
-      <div className="trustees-marquee-wrap">
-        <div className="trustees-marquee-track">
-          {track.map((logo, i) => (
-            <div key={i} className="trustees-logo-item">
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={140}
-                height={56}
-                style={{ objectFit: "contain", height: "48px", width: "auto" }}
-              />
-              <span className="trustees-sep" aria-hidden="true" />
-            </div>
-          ))}
+      <div className="trustees-inner">
+        <h2 className="trustees-title v-prompt">
+          <span className="trustees-t-orange">Ils </span>
+          <span className="trustees-underline-wrap">
+            <span className="v-serif trustees-t-gradient">avancent</span>
+            <span className="trustees-vline-under" aria-hidden="true">
+              <VibrationLine width={400} height={18} amplitude={5} freq={5} stroke="#D90A5C" strokeWidth={3} speed={5} style={{ width: "100%" }} />
+            </span>
+          </span>
+          {" "}<span className="trustees-t-orange">avec nous.</span>
+        </h2>
+
+        <div className="trustees-marquee-wrap">
+          <div className="trustees-marquee-track">
+            {track.map((logo, i) => (
+              <div key={i} className="trustees-logo-item">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={180}
+                  height={72}
+                  style={{ objectFit: "contain", height: "96px", width: "auto", maxWidth: "200px" }}
+                />
+                <span className="trustees-sep" aria-hidden="true" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Lignes épaisses bas — dégradé orange → rose */}
+      <div className="trustees-vline trustees-vline--bottom" aria-hidden="true">
+        <GradientVibrationLine id="vline-bot-1" width={1800} height={55} amplitude={32} freq={5} strokeWidth={14} speed={11} colorFrom="#FD6E00" colorTo="#D90A5C" style={{ width: "100%" }} />
+        <GradientVibrationLine id="vline-bot-2" width={1800} height={55} amplitude={22} freq={7} strokeWidth={8}  speed={16} colorFrom="#D90A5C" colorTo="#FD6E00" style={{ width: "100%" }} />
+      </div>
+
     </section>
   );
 }

@@ -2,7 +2,40 @@
 
 .fa-section {
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: var(--cream);
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+/* blob orange haut-droite */
+.fa-section::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -80px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.1), transparent 70%);
+  filter: blur(48px);
+  animation: faBlob 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* anneau rose bas-gauche */
+.fa-section::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 2px solid rgba(217,10,92,.12);
+  animation: faBlob 18s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes faBlob {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%     { transform: translate(20px,-16px) scale(1.04); }
+  66%     { transform: translate(-12px,10px) scale(0.97); }
 }
 
 /* Header */
@@ -29,7 +62,7 @@
   font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 0.96;
-  color: var(--ink);
+  color: var(--orange);
 }
 
 .fa-cta {

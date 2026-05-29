@@ -13,7 +13,7 @@
 }
 
 .flyer-gallery-subtitle {
-  color: var(--text-secondary, #555);
+  color: var(--ink-2);
   font-size: 1.05rem;
   max-width: 48ch;
   margin: 0 auto;
@@ -32,11 +32,11 @@
 .flyer-filter-btn {
   padding: 0.45rem 1.1rem;
   border-radius: 2rem;
-  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  border: 1.5px solid rgba(217, 10, 92, 0.15);
   background: transparent;
   font-family: var(--text-font);
   font-size: 0.875rem;
-  color: #444;
+  color: var(--ink-2);
   cursor: pointer;
   transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }

@@ -8,6 +8,8 @@ import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
 import PricingMobile from "./PricingMobile";
 
+const booleanFeatures = features.slice(2);
+
 export default function PricingTable() {
   const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
   const pricingData = usePricing();
@@ -16,117 +18,81 @@ export default function PricingTable() {
     const dynamicPrice = pricingData.find(
       (p) => p.planName === plan.name.toUpperCase()
     )?.price;
-    return { ...plan, price: dynamicPrice || "-" }; 
+    return { ...plan, price: dynamicPrice || "Sur devis" };
   });
 
   useEffect(() => {
     setRootElement(document.getElementById("root") || document.body);
   }, []);
 
-  const renderFeatureName = (name: string) => {
-    const parts = name.split(/(\(.*?\))/g);
-    return parts.map((part, i) =>
-      part.startsWith("(") && part.endsWith(")") ? (
-        <span key={i} className="non-bold">
-          {part}
-        </span>
-      ) : (
-        part
-      )
-    );
-  };
-
   return (
-    <div className="pricing-container">
-      <PricingMobile />
-      <h2 className="pricing-title-desktop">Nos offres vibes</h2>
-      <div className="pricing-top-section">
-        <div className="cta-buttons">
-          {rootElement && (
-            <PopupButton
-              url="https://calendly.com/uvibescommunication/30min"
-              rootElement={rootElement}
-              text="Prendre RDV"
-              className="btn-cta secondary"
-            />
-          )}
-          <Link href="/#contact" className="btn-cta primary">
-            NOUS CONTACTER
-          </Link>
-        </div>
-      </div>
-      <div className="pricing-table-wrapper">
-        <table className="pricing-table">
-          <thead>
-            <tr>
-              <th className="feature-header">
-                <p className="blue-note">
-                  Offre indicative jusqu&apos;à <br />
-                  <span>1 000 utilisateurs</span>
-                </p>
-              </th>
-              {mergedPlans.map((plan, index) => (
-                <th
-                  key={index}
-                  className="plan-header"
-                  style={{ color: plan.color }}
-                >
-                  <div className="plan-title-container">
-                    <span className="plan-name">{plan.name}</span>
-                    <p className="plan-description-header">{plan.description}</p>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {/* Prix Row */}
-            <tr className="row-price">
-              <td className="feature-name">
-                Prix hors taxes
-              </td>
-              {mergedPlans.map((plan, index) => (
-                <td key={index} className="plan-price">
-                  {plan.price}
-                </td>
-              ))}
-            </tr>
-            {/* Boolean Features */}
-            {features.slice(2).map((feature, featureIndex) => (
-              <tr
-                key={featureIndex}
-                className={featureIndex % 2 === 0 ? "row-even" : "row-odd"}
-              >
-                <td className="feature-name">{renderFeatureName(feature.name)}</td>
-                {mergedPlans.map((plan, planIndex) => (
-                  <td key={planIndex} className="plan-value">
-                    {plan.values[featureIndex] ? (
-                      <Check className="icon-check" size={24} />
-                    ) : (
-                      <X className="icon-cross" size={24} />
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="pricing-wrapper">
+      {/* Mobile — composant existant inchangé */}
+      <div className="pricing-mobile-only">
+        <PricingMobile />
       </div>
 
-      <div className="pricing-cta-banner">
-        <div className="cta-content">
-          <h3 style={{textAlign: "center"}}>Vous avez des besoins spécifiques ou êtes une structure de moins de 250 personnes ? Parlons-en ensemble.</h3>
-          <div className="cta-buttons">
+      {/* Desktop — 3 cartes */}
+      <div className="pricing-desktop-only">
+        <h2 className="pricing-cards-title">Nos offres Vibes</h2>
+        <p className="pricing-cards-note">Offre indicative jusqu&apos;à 1 000 utilisateurs</p>
+
+        <div className="pricing-cards-grid">
+          {mergedPlans.map((plan, planIndex) => {
+            const isHighlighted = planIndex === 2;
+            return (
+              <div
+                key={plan.name}
+                className={`pricing-card${isHighlighted ? " pricing-card--highlighted" : ""}`}
+                style={{ "--plan-color": plan.color } as React.CSSProperties}
+              >
+                {isHighlighted && (
+                  <span className="pricing-card-badge">Complet</span>
+                )}
+                <div className="pricing-card-header">
+                  <h3 className="pricing-card-name">{plan.name}</h3>
+                  <p className="pricing-card-desc">{plan.description}</p>
+                </div>
+
+                <div className="pricing-card-price">
+                  <span className="pricing-card-price-value">{plan.price}</span>
+                  <span className="pricing-card-price-label">HT / an</span>
+                </div>
+
+                <ul className="pricing-card-features">
+                  {booleanFeatures.map((feature, i) => (
+                    <li
+                      key={i}
+                      className={`pricing-card-feature${plan.values[i] ? "" : " pricing-card-feature--off"}`}
+                    >
+                      {plan.values[i]
+                        ? <Check size={14} className="pricing-icon-check" />
+                        : <X size={14} className="pricing-icon-cross" />
+                      }
+                      <span>{feature.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="pricing-cards-cta">
+          <p className="pricing-cards-cta-text">
+            Vous avez des besoins spécifiques ou êtes une structure de moins de 250 personnes ?
+          </p>
+          <div className="pricing-cta-buttons">
             {rootElement && (
-                <PopupButton
-                    url="https://calendly.com/uvibescommunication/30min"
-                    rootElement={rootElement}
-                    text="Prendre RDV"
-                    className="btn-cta secondary"
-                />
+              <PopupButton
+                url="https://calendly.com/uvibescommunication/30min"
+                rootElement={rootElement}
+                text="Prendre RDV"
+                className="btn-cta secondary"
+              />
             )}
             <Link href="/#contact" className="btn-cta primary">
-              NOUS CONTACTER
+              Nous contacter
             </Link>
           </div>
         </div>

@@ -2,7 +2,6 @@ import { HeroBanner } from "@/components/banner/heroBanner";
 import AllArticle from "@/components/blog/allArticle";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
-import FloatingMenu from "@/components/menu/Menu";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
@@ -32,7 +31,6 @@ export default function BlogPage() {
         className="blog-hero"
       />
       <nav>
-        <FloatingMenu />
       </nav>
       <section className="blog-section">
         <AllArticle />

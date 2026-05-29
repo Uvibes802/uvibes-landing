@@ -2,7 +2,6 @@ import { HeroBanner } from "@/components/banner/heroBanner";
 import { PartnerBanner } from "@/components/banner/partnerBanner";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
-import FloatingMenu from "@/components/menu/Menu";
 import { AppointmentSection } from "@/components/section/appointmentSection";
 import SolutionTabs from "@/components/solution/SolutionTabs";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
@@ -34,7 +33,6 @@ export default function SolutionPage() {
         className="features-hero"
         useAppMockup={true}
       />
-      <FloatingMenu />
       <main>
         <SolutionTabs />
         <PartnerBanner />

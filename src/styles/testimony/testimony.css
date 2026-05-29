@@ -1,5 +1,5 @@
 .testimony-section {
-  background: white;
+  background: var(--paper);
   width: 100%;
   padding: var(--section-padding-v) var(--section-padding-h) calc(var(--section-padding-v) * 0.6);
 }
@@ -7,9 +7,44 @@
 .testimony {
   display: flex;
   flex-direction: column;
-  align-items: center;
   max-width: 900px;
   margin: 0 auto;
+}
+
+/* Header aligned left comme toutes les sections */
+.testimony-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2rem;
+}
+
+.testimony-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.testimony-eyebrow-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
+}
+
+.testimony-title {
+  margin: 12px 0 0;
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--orange);
 }
 
 .swiper-pagination {

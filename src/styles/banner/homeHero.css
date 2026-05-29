@@ -1,12 +1,19 @@
-/* ── HomeHero — Vibration editorial ────────────────────────────── */
+/* ── HomeHero — Vibration editorial v2 ─────────────────────────── */
 
 .hero-section {
   position: relative;
   padding-top: calc(var(--nav-height) + 60px);
   padding-bottom: 80px;
   overflow: hidden;
-  background: var(--cream);
   min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Gradient de base plus saturé et plus orange en haut-gauche */
+  background: linear-gradient(135deg,
+    #FD6E00 0%, #FF8530 8%, #FFB870 20%,
+    #FFB0A0 35%, #FF88B8 52%,
+    #FF5898 70%, #E6007E 88%, #D90A5C 100%);
 }
 
 /* ── Backdrop ─────────────────────────────────────────────────── */
@@ -23,50 +30,156 @@
   filter: blur(24px);
 }
 
+/* ── Blobs — palette très saturée, opacités fortes ──────────── */
+
+/* a — grand amber/or en haut-droite */
 .hero-blob-a {
-  width: 700px; height: 700px;
-  top: -220px; right: -180px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.5), transparent 70%);
+  width: 1000px; height: 1000px;
+  top: -320px; right: -280px;
+  background: radial-gradient(closest-side, rgba(255,176,40,1), rgba(255,140,20,0) 70%);
   animation: blob-a 22s ease-in-out infinite;
 }
+/* b — orange vif milieu-droite */
 .hero-blob-b {
-  width: 640px; height: 640px;
-  top: 80px; right: 120px;
-  background: radial-gradient(closest-side, rgba(217,10,92,.4), transparent 70%);
+  width: 880px; height: 880px;
+  top: 80px; right: 60px;
+  background: radial-gradient(closest-side, rgba(253,110,0,.95), rgba(253,110,0,0) 70%);
   animation: blob-b 26s ease-in-out infinite;
 }
+/* c — rose framboise gauche */
 .hero-blob-c {
-  width: 480px; height: 480px;
-  top: 260px; left: -120px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.28), transparent 70%);
+  width: 800px; height: 800px;
+  top: 160px; left: -200px;
+  background: radial-gradient(closest-side, rgba(255,50,130,.9), rgba(255,80,140,0) 70%);
   animation: blob-c 30s ease-in-out infinite;
 }
+/* d — magenta bas-centre */
 .hero-blob-d {
-  width: 340px; height: 340px;
-  bottom: -80px; left: 32%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.22), transparent 70%);
+  width: 680px; height: 680px;
+  bottom: -160px; left: 28%;
+  background: radial-gradient(closest-side, rgba(230,0,126,.9), rgba(217,10,92,0) 70%);
   animation: blob-d 34s ease-in-out infinite;
+}
+/* e — amber/jaune centre */
+.hero-blob-e {
+  width: 700px; height: 700px;
+  top: 38%; left: 40%;
+  background: radial-gradient(closest-side, rgba(255,200,60,.9), transparent 70%);
+  animation: blob-a 28s ease-in-out infinite reverse;
+}
+/* f — rose vif haut-centre */
+.hero-blob-f {
+  width: 520px; height: 520px;
+  top: -100px; left: 28%;
+  background: radial-gradient(closest-side, rgba(255,100,170,.85), transparent 70%);
+  animation: blob-c 24s ease-in-out infinite;
+}
+/* g — pêche bas-droite */
+.hero-blob-g {
+  width: 480px; height: 480px;
+  bottom: 80px; right: 180px;
+  background: radial-gradient(closest-side, rgba(255,150,60,.85), transparent 70%);
+  filter: blur(22px);
+  animation: blob-b 32s ease-in-out infinite reverse;
+}
+/* h — corail centre-gauche */
+.hero-blob-h {
+  width: 440px; height: 440px;
+  top: 55%; left: 8%;
+  background: radial-gradient(closest-side, rgba(255,90,90,.8), transparent 70%);
+  filter: blur(26px);
+  animation: blob-d 29s ease-in-out infinite;
+}
+/* i — violet-rose bas-gauche */
+.hero-blob-i {
+  width: 360px; height: 360px;
+  bottom: -60px; left: -60px;
+  background: radial-gradient(closest-side, rgba(200,0,160,.75), transparent 70%);
+  filter: blur(24px);
+  animation: blob-c 36s ease-in-out infinite reverse;
+}
+/* j — jaune-or centre haut */
+.hero-blob-j {
+  width: 320px; height: 320px;
+  top: 10%; left: 55%;
+  background: radial-gradient(closest-side, rgba(255,220,0,.7), transparent 70%);
+  filter: blur(20px);
+  animation: blob-a 20s ease-in-out infinite;
+}
+/* k — rouge-orangé haut-gauche */
+.hero-blob-k {
+  width: 560px; height: 560px;
+  top: -80px; left: -80px;
+  background: radial-gradient(closest-side, rgba(255,60,0,.85), transparent 70%);
+  filter: blur(26px);
+  animation: blob-e 18s ease-in-out infinite;
+}
+/* l — rose fluo milieu-gauche */
+.hero-blob-l {
+  width: 420px; height: 420px;
+  top: 30%; left: -60px;
+  background: radial-gradient(closest-side, rgba(255,0,100,.8), transparent 70%);
+  filter: blur(22px);
+  animation: blob-f 25s ease-in-out infinite reverse;
+}
+/* m — amber chaud centre-droit */
+.hero-blob-m {
+  width: 500px; height: 500px;
+  top: 20%; right: 20%;
+  background: radial-gradient(closest-side, rgba(255,160,0,.75), transparent 70%);
+  filter: blur(30px);
+  animation: blob-b 31s ease-in-out infinite;
+}
+/* n — magenta vif bas-droite */
+.hero-blob-n {
+  width: 380px; height: 380px;
+  bottom: 0; right: -40px;
+  background: radial-gradient(closest-side, rgba(220,0,180,.85), transparent 70%);
+  filter: blur(24px);
+  animation: blob-d 23s ease-in-out infinite reverse;
+}
+/* o — rose pâle centre pour adoucir */
+.hero-blob-o {
+  width: 900px; height: 900px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(255,100,160,.35), transparent 70%);
+  filter: blur(40px);
+  animation: blob-c 40s ease-in-out infinite;
+}
+/* p — overlay mesh vivid sur toute la surface */
+.hero-blob-p {
+  inset: 0;
+  width: 100%; height: 100%;
+  border-radius: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(255,100,0,.25) 0%, transparent 55%),
+              radial-gradient(ellipse at 80% 20%, rgba(255,220,0,.2) 0%, transparent 50%),
+              radial-gradient(ellipse at 60% 80%, rgba(230,0,120,.2) 0%, transparent 55%);
+  filter: blur(0);
+  animation: none;
 }
 
 @keyframes blob-a { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(-40px,30px) scale(1.08) } }
 @keyframes blob-b { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(50px,-20px) scale(.92) } }
 @keyframes blob-c { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(60px,40px) scale(1.12) } }
 @keyframes blob-d { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(-30px,-50px) scale(1.05) } }
+@keyframes blob-e { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(35px,45px) scale(1.1) } }
+@keyframes blob-f { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(-25px,-35px) scale(1.06) } }
 
 .hero-grain {
   position: absolute;
   inset: 0;
   width: 100%; height: 100%;
-  opacity: .18;
-  mix-blend-mode: multiply;
+  opacity: .08;
+  mix-blend-mode: overlay;
 }
 
 .hero-dot-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(26,23,21,.16) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,255,255,.5) 1px, transparent 1px);
   background-size: 28px 28px;
-  opacity: .35;
+  opacity: .4;
   mask-image: radial-gradient(ellipse at 60% 40%, #000 30%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000 30%, transparent 70%);
 }
@@ -96,7 +209,7 @@
 .hero-eyebrow {
   position: relative;
   z-index: 1;
-  padding: 0 clamp(1.5rem, 5vw, 3.5rem);
+  padding: 0 clamp(2.5rem, 7vw, 6rem);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -108,7 +221,7 @@
   display: block;
   width: 28px;
   height: 1px;
-  background: var(--ink);
+  background: rgba(255,255,255,.7);
   flex-shrink: 0;
 }
 
@@ -116,7 +229,7 @@
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: rgba(255,255,255,.75);
 }
 
 .hero-live-badge {
@@ -151,15 +264,33 @@
 .hero-grid {
   position: relative;
   z-index: 1;
-  padding: 0 clamp(1.5rem, 5vw, 3.5rem);
+  padding: 0 clamp(2.5rem, 7vw, 6rem);
   display: grid;
   grid-template-columns: 1.35fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  grid-template-rows: auto auto;
+  column-gap: clamp(2rem, 5vw, 4rem);
+  row-gap: 2rem;
 }
 
-/* ── Colonne texte ─────────────────────────────────────────────── */
+/* h1 — col 1, row 1 */
 .hero-text-col {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* mockup — col 2, spans les 2 rows */
+.hero-visual-col {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+/* sub + CTAs + proof — col 1, row 2 */
+.hero-after {
+  grid-column: 1;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
@@ -171,7 +302,7 @@
   font-weight: 700;
   line-height: .92;
   letter-spacing: -3px;
-  color: var(--ink);
+  color: #fff;
 }
 
 .hero-h1-emph {
@@ -193,7 +324,7 @@
   max-width: 540px;
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.55;
-  color: var(--ink-2);
+  color: rgba(255,255,255,.85);
   font-family: var(--font-roboto), sans-serif;
 }
 
@@ -222,7 +353,7 @@
 
 .hero-proof-text {
   font-size: 12px;
-  color: var(--ink-2);
+  color: rgba(255,255,255,.8);
   line-height: 1.55;
   letter-spacing: 0.06em;
 }
@@ -468,7 +599,7 @@
   position: relative;
   z-index: 1;
   margin-top: 80px;
-  padding: 0 clamp(1.5rem, 5vw, 3.5rem);
+  padding: 0 clamp(2.5rem, 7vw, 6rem);
   opacity: .8;
   overflow: hidden;
 }
@@ -477,12 +608,28 @@
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-rows: auto auto auto;
+    row-gap: 2.5rem;
   }
 
+  /* h1 en premier */
+  .hero-text-col {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* mockup en deuxième */
   .hero-visual-col {
+    grid-column: 1;
+    grid-row: 2;
     min-height: 400px;
-    order: -1;
+  }
+
+  /* sub + CTAs + proof en dernier */
+  .hero-after {
+    grid-column: 1;
+    grid-row: 3;
+    align-items: center;
   }
 
   .hero-chip-status { left: 0; top: 40px; }
@@ -517,7 +664,8 @@
 
   .hero-phone-body { width: 200px; height: 420px; }
 
-  .hero-chip-status, .hero-chip-quote { display: none; }
+  .hero-chip-status { left: -8px; top: 20px; }
+  .hero-chip-quote { right: -8px; bottom: 60px; }
   .hero-ripple { width: 220px; height: 220px; }
 
   .hero-eyebrow { justify-content: center; }
