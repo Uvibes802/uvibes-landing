@@ -559,24 +559,33 @@
 
 /* Carousel swipeable sur mobile */
 @media (max-width: 700px) {
+  /* Reset du full-bleed pour que le scroll natif fonctionne */
   .collectifs-pills-ticker {
+    position: static;
+    left: auto;
+    transform: none;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     mask-image: none;
     -webkit-mask-image: none;
+    padding-bottom: 0.25rem;
   }
 
   .collectifs-pills-ticker::-webkit-scrollbar { display: none; }
 
   .collectifs-pills-track {
     animation: none;
-    /* Affiche seulement le premier set de pills (pas les doublons) */
+    padding: 0.25rem 0.5rem;
   }
 
   /* Masque les pills dupliquées (la 2e copie des 11 collectifs) */
   .collectifs-pills-track > button:nth-child(n + 12) { display: none; }
+
+  /* Masque les flyers dans le panneau collectif — pas assez d'espace */
+  .collectif-panel-flyers { display: none; }
 }
 
 @media (max-width: 700px) {

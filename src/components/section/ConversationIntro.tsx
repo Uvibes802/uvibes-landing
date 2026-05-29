@@ -55,10 +55,6 @@ function PhoneMockup({ video }: { video: typeof VIDEOS[0] }) {
       <div className="ci-phone">
         <div className="ci-phone-screen">
           <video className="ci-phone-video" src={getVideoUrl(video.file)} autoPlay muted loop playsInline />
-          <div className="ci-phone-badge">
-            <span className="ci-badge-dot" aria-hidden="true" />
-            <span className="v-mono">Live · {video.name}</span>
-          </div>
         </div>
         <div className="ci-phone-bottom"><span className="ci-phone-bar" /></div>
       </div>
@@ -77,10 +73,6 @@ function MacMockup({ video }: { video: typeof VIDEOS[0] }) {
           <div className="ci-mac-notch" aria-hidden="true" />
           <div className="ci-mac-display">
             <video className="ci-mac-video" src={getVideoUrl(video.file)} autoPlay muted loop playsInline />
-            <div className="ci-mac-badge">
-              <span className="ci-badge-dot" aria-hidden="true" />
-              <span className="v-mono">Live · {video.name}</span>
-            </div>
           </div>
         </div>
         {/* Corps */}

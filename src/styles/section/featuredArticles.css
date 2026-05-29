@@ -247,18 +247,37 @@
 @media (max-width: 768px) {
   .fa-header { flex-direction: column; align-items: flex-start; }
   .fa-grid { grid-template-columns: 1fr; }
-  .fa-card--main { min-height: 280px; }
-  .fa-card--side { min-height: 200px; }
 
-  /* Sur mobile : révèle le contenu en statique (pas de hover) */
-  .fa-card-info { opacity: 0; transform: translateY(10px); }
+  /* Sur mobile : layout vertical — image en haut, texte en dessous */
+  .fa-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .fa-card-img {
+    position: relative;
+    inset: auto;
+    height: 220px;
+    flex-shrink: 0;
+  }
+
+  .fa-card--side .fa-card-img { height: 180px; }
+
+  /* Cache le shine et l'info overlay (inutiles avec layout vertical) */
+  .fa-card-shine { display: none; }
+  .fa-card-info  { display: none; }
+
+  /* Reveal en flux normal — plus besoin de position absolute */
   .fa-card-reveal {
-    transform: translateY(0);
-    position: absolute;
+    position: static;
+    transform: none;
+    padding: 1rem 1.25rem 1.25rem;
+    background: rgba(255,250,246,1);
   }
 }
 
 @media (max-width: 480px) {
-  .fa-card--main { min-height: 240px; }
-  .fa-card--side { min-height: 180px; }
+  .fa-card-img { height: 180px; }
+  .fa-card--side .fa-card-img { height: 150px; }
 }
