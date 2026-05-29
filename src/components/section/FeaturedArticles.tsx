@@ -1,7 +1,6 @@
 "use client";
 
 import VibrationLine from "@/components/shared/VibrationLine";
-import { fetchFeaturedArticles } from "@/services/blog/featuredArticles";
 import { getExcerpt } from "@/services/blog/getExcerpt";
 import { sanitizeText } from "@/services/blog/sanitize";
 import { Article } from "@/types/article/article";
@@ -14,7 +13,8 @@ export default function FeaturedArticles() {
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
-    fetchFeaturedArticles()
+    fetch("/api/featured-articles")
+      .then((r) => r.json())
       .then((fetched) => {
         const sanitized = fetched.map((a: Article) => ({
           ...a,

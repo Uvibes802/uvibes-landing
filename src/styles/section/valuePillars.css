@@ -53,7 +53,7 @@
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: #b06030;
+  color: #F4621F;
 }
 
 .pillars-strong--gradient {
@@ -286,9 +286,8 @@
   .pillars-grid { grid-template-columns: 1fr; }
   .pillar-card  { min-height: auto; padding: 28px; background: rgba(255,255,255,0.78); }
 
-  /* SVG animés masqués, lignes statiques visibles */
-  .pillars-vline { display: none; }
-  .pillars-sline { display: block; }
+  /* Lignes statiques masquées — SVG animés visibles comme sur desktop */
+  .pillars-sline { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
