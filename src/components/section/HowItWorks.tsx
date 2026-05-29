@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "../../styles/section/howItWorks.css";
 
@@ -30,19 +31,7 @@ const STEPS: { n: string; color: string; title: React.ReactNode; body: React.Rea
 ];
 
 export default function HowItWorks() {
-  const ref = useRef<HTMLElement>(null);
-  const [vis, setVis] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); io.disconnect(); } },
-      { threshold: 0.08 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.08 });
 
   return (
     <section className={`how-section${vis ? " how-vis" : ""}`} ref={ref}>

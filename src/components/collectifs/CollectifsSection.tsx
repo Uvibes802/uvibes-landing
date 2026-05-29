@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import Image from "next/image";
 import Link from "next/link";
 import VibrationLine from "@/components/shared/VibrationLine";
@@ -14,19 +15,7 @@ interface CollectifsSectionProps {
 export default function CollectifsSection({ showCta = false }: CollectifsSectionProps) {
   const [activeId, setActiveId] = useState(collectifs[0].id);
   const active = collectifs.find((c) => c.id === activeId)!;
-  const ref = useRef<HTMLElement>(null);
-  const [vis, setVis] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); io.disconnect(); } },
-      { threshold: 0.07 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.07 });
 
   return (
     <section className={`collectifs-section${vis ? " c-vis" : ""}`} ref={ref}>
@@ -98,11 +87,8 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
             <span className="cp cp--7" /><span className="cp cp--8" />
           </div>
 
-          <div className="collectifs-panel" key={activeId}>
-          <div
-            className="collectif-panel-hero"
-            style={{ "--c-color": active.color } as React.CSSProperties}
-          >
+          <div className="collectifs-panel" key={activeId} style={{ "--c-color": active.color } as React.CSSProperties}>
+          <div className="collectif-panel-hero">
             {/* Particules animées */}
             {Array.from({ length: 10 }).map((_, i) => (
               <span
@@ -142,7 +128,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
           </div>
 
           <div className="collectif-panel-body">
-            <div className="collectif-panel-col collectif-panel-col--gains" style={{ "--c-color": active.color } as React.CSSProperties}>
+            <div className="collectif-panel-col collectif-panel-col--gains">
               <div className="collectif-panel-col-title">→ Ce que vous y gagnez</div>
               <ul className="collectif-panel-list collectif-panel-list--gains">
                 {active.gains.map((g, i) => (
@@ -153,7 +139,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
                 ))}
               </ul>
             </div>
-            <div className="collectif-panel-col collectif-panel-col--pourquoi" style={{ "--c-color": active.color } as React.CSSProperties}>
+            <div className="collectif-panel-col collectif-panel-col--pourquoi">
               <div className="collectif-panel-col-title">→ Pourquoi ça fonctionne</div>
               <ul className="collectif-panel-list collectif-panel-list--pourquoi">
                 {active.pourquoi.map((p, i) => (

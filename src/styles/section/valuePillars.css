@@ -42,7 +42,7 @@
   display: inline-block;
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #F4621F, #E8196A);
+  background: linear-gradient(135deg, var(--orange), var(--rose));
   flex-shrink: 0;
 }
 
@@ -53,11 +53,11 @@
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: #F4621F;
+  color: var(--orange);
 }
 
 .pillars-strong--gradient {
-  background: linear-gradient(135deg, #F4621F, #E8196A);
+  background: linear-gradient(135deg, var(--orange), var(--rose));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -96,7 +96,7 @@
   display: none;
   height: 10px;
   border-radius: 99px;
-  background: linear-gradient(90deg, #F4621F, #E8196A);
+  background: linear-gradient(90deg, var(--orange), var(--rose));
   opacity: 0.42;
   position: absolute;
   left: 0;

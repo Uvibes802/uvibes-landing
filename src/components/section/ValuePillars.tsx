@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import "@/styles/section/valuePillars.css";
 
@@ -31,21 +31,10 @@ const pillars = [
 ];
 
 export default function ValuePillars() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add("pillars-visible"); observer.disconnect(); } },
-      { threshold: 0.12 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.12 });
 
   return (
-    <section className="pillars-section" ref={ref}>
+    <section className={`pillars-section${vis ? " pillars-visible" : ""}`} ref={ref}>
 
       <div className="pillars-header">
         <p className="pillars-kicker v-mono">
