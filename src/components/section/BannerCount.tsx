@@ -57,6 +57,8 @@ export default function BannerCount() {
 
   return (
     <section className="banner-count" ref={ref}>
+      <div className="bc-dash bc-dash--top"    aria-hidden="true" />
+      <div className="bc-dash bc-dash--bottom" aria-hidden="true" />
       <div className="banner-count-vlines" aria-hidden="true">
         <VibrationLine width={1400} height={70} amplitude={20} freq={6} stroke="rgba(255,255,255,.25)" strokeWidth={1.5} speed={14} />
         <VibrationLine width={1400} height={70} amplitude={14} freq={9} stroke="rgba(255,255,255,.15)" strokeWidth={1} speed={20} />

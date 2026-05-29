@@ -286,7 +286,10 @@
   .pillars-grid { grid-template-columns: 1fr; }
   .pillar-card  { min-height: auto; padding: 28px; background: #fff; }
 
-  /* Lignes statiques masquées — SVG animés visibles comme sur desktop */
+  /* Recentrage des lignes sur chaque carte empilée */
+  .pillars-vline--1 { top: 25%; }
+  .pillars-vline--2 { top: 75%; }
+
   .pillars-sline { display: none; }
 }
 
