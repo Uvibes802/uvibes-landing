@@ -9,3 +9,10 @@ APRÈS : "Un couloir suffit. Une pause café aussi. Mais ces échanges ne font p
 RAISON : Plus court, concret, évite le jargon, dit exactement ce que fait le produit.
 DATE   : 2026-05-29
 
+[2] HowItWorks — titre étape 02
+AVANT : "Votre collectif échange en vidéo, en one-to-one"
+APRÈS : "Deux membres. Une conversation. Trois minutes."
+RAISON : Rythme court et mémorable, donne le format exact de l'expérience produit,
+         contraste fort avec les étapes 01 (setup) et 03 (données).
+DATE   : 2026-05-29
+
