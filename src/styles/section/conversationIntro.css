@@ -118,7 +118,7 @@
   inset: -40px;
   border-radius: 50%;
   background: radial-gradient(closest-side,
-    rgba(217,10,92,.28) 0%, rgba(253,110,0,.18) 55%, transparent 75%);
+    rgba(180,185,200,.5) 0%, rgba(200,205,220,.28) 55%, transparent 75%);
   filter: blur(48px);
   pointer-events: none;
   animation: ciHalo 6s ease-in-out infinite;
@@ -132,14 +132,15 @@
 .ci-phone {
   position: relative;
   width: clamp(220px, 20vw, 280px);
-  background: #111;
+  background: linear-gradient(160deg, #d4d8de 0%, #c2c7cf 50%, #b0b6c0 100%);
   border-radius: 50px;
   padding: 14px 14px 18px;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.14),
-    0 0 0 1.5px rgba(255,255,255,.07),
-    0 40px 80px -20px rgba(0,0,0,.55),
-    0 10px 40px -14px rgba(217,10,92,.22);
+    inset 0 1px 0 rgba(255,255,255,.55),
+    inset 0 -1px 0 rgba(0,0,0,.1),
+    0 0 0 1px rgba(160,165,175,.4),
+    0 40px 80px -20px rgba(0,0,0,.38),
+    0 10px 40px -14px rgba(150,155,170,.3);
   animation: ci-float 7s ease-in-out infinite;
 }
 
@@ -149,7 +150,7 @@
   position: absolute;
   right: -3px; top: 30%;
   width: 3px; height: 13%;
-  background: #222;
+  background: linear-gradient(to bottom, #b0b5bd, #9a9fa8);
   border-radius: 0 3px 3px 0;
 }
 
@@ -159,9 +160,9 @@
   position: absolute;
   left: -3px; top: 22%;
   width: 3px; height: 8%;
-  background: #222;
+  background: linear-gradient(to bottom, #b0b5bd, #9a9fa8);
   border-radius: 3px 0 0 3px;
-  box-shadow: 0 16px 0 #222, 0 30px 0 #222;
+  box-shadow: 0 16px 0 #b0b5bd, 0 30px 0 #b0b5bd;
 }
 
 @keyframes ci-float {
@@ -219,7 +220,7 @@
 .ci-phone-bar {
   width: 80px; height: 4px;
   border-radius: 999px;
-  background: rgba(255,255,255,.18);
+  background: rgba(0,0,0,.15);
 }
 
 .ci-badge-dot {
@@ -244,7 +245,7 @@
   inset: -50px -40px;
   border-radius: 50%;
   background: radial-gradient(closest-side,
-    rgba(217,10,92,.22) 0%, rgba(253,110,0,.14) 55%, transparent 75%);
+    rgba(180,185,200,.48) 0%, rgba(200,205,220,.25) 55%, transparent 75%);
   filter: blur(52px);
   pointer-events: none;
   animation: ciHalo 6s ease-in-out infinite;
@@ -257,18 +258,18 @@
 
 /* ─ Animation d'ouverture du couvercle ─ */
 .ci-mac-lid {
-  background: linear-gradient(160deg, #2c2c2e 0%, #1c1c1e 60%, #141416 100%);
+  background: linear-gradient(160deg, #d8dce3 0%, #c8ccd4 40%, #b8bcc6 100%);
   border-radius: 14px 14px 3px 3px;
   padding: 10px 10px 6px;
   position: relative;
   transform-origin: bottom center;
   animation: macLidOpen 1.4s cubic-bezier(.22,1,.36,1) 0.3s both;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.1),
-    inset 0 -1px 0 rgba(0,0,0,.4),
-    0 0 0 1px rgba(255,255,255,.055),
-    0 30px 80px rgba(0,0,0,.55),
-    0 8px 32px rgba(217,10,92,.15);
+    inset 0 1px 0 rgba(255,255,255,.55),
+    inset 0 -1px 0 rgba(0,0,0,.12),
+    0 0 0 1px rgba(160,165,175,.3),
+    0 30px 80px rgba(0,0,0,.35),
+    0 8px 32px rgba(150,155,170,.2);
 }
 
 @keyframes macLidOpen {
@@ -282,7 +283,7 @@
   position: absolute;
   top: 0; left: 8%; right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18) 50%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.65) 50%, transparent);
   border-radius: 999px;
 }
 
@@ -294,7 +295,7 @@
   transform: translateX(-50%);
   width: 90px;
   height: 22px;
-  background: linear-gradient(160deg, #2c2c2e, #1c1c1e);
+  background: linear-gradient(160deg, #1a1a1c, #0a0a0c);
   border-radius: 0 0 12px 12px;
   z-index: 2;
   display: flex;
@@ -354,7 +355,7 @@
 .ci-mac-hinge {
   height: 5px;
   background: linear-gradient(to right,
-    #0a0a0c, #252527 15%, #3a3a3c 50%, #252527 85%, #0a0a0c);
+    #888, #a8acb2 15%, #c2c6cc 50%, #a8acb2 85%, #888);
   border-radius: 0;
   position: relative;
 }
@@ -364,12 +365,12 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.35);
 }
 
 /* Corps / clavier */
 .ci-mac-body {
-  background: linear-gradient(to bottom, #28282a 0%, #1e1e20 50%, #1a1a1c 100%);
+  background: linear-gradient(to bottom, #d2d6dc 0%, #c6cad1 50%, #bcc1c9 100%);
   border-radius: 0 0 10px 10px;
   padding: 14px 20px 20px;
   display: flex;
@@ -377,8 +378,8 @@
   align-items: center;
   gap: 12px;
   box-shadow:
-    0 16px 48px rgba(0,0,0,.5),
-    0 0 0 1px rgba(255,255,255,.04);
+    0 16px 48px rgba(0,0,0,.3),
+    0 0 0 1px rgba(160,165,175,.3);
   animation: macBodyIn 1.4s cubic-bezier(.22,1,.36,1) 0.3s both;
 }
 
@@ -393,14 +394,14 @@
   height: 56px;
   background:
     repeating-linear-gradient(90deg,
-      rgba(255,255,255,.06) 0px, rgba(255,255,255,.06) 1px,
+      rgba(0,0,0,.12) 0px, rgba(0,0,0,.12) 1px,
       transparent 1px, transparent 8px),
     repeating-linear-gradient(0deg,
-      rgba(255,255,255,.05) 0px, rgba(255,255,255,.05) 1px,
+      rgba(0,0,0,.1) 0px, rgba(0,0,0,.1) 1px,
       transparent 1px, transparent 8px),
-    rgba(0,0,0,.3);
+    rgba(165,170,180,.55);
   border-radius: 4px;
-  border: 1px solid rgba(255,255,255,.04);
+  border: 1px solid rgba(0,0,0,.08);
   position: relative;
   overflow: hidden;
 }
@@ -410,27 +411,27 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 40%;
-  background: linear-gradient(to bottom, rgba(255,255,255,.04), transparent);
+  background: linear-gradient(to bottom, rgba(255,255,255,.18), transparent);
 }
 
 /* Trackpad */
 .ci-mac-trackpad {
   width: 30%;
   height: 22px;
-  background: rgba(255,255,255,.055);
+  background: rgba(0,0,0,.07);
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,.06);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
 }
 
 /* Pied/base */
 .ci-mac-foot {
   height: 4px;
   background: linear-gradient(to right,
-    #080808, #181818 20%, #282828 50%, #181818 80%, #080808);
+    #888, #aaacb0 20%, #c2c4c8 50%, #aaacb0 80%, #888);
   border-radius: 0 0 3px 3px;
   margin: 0 8%;
-  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
 }
 
 /* ── Texte droite ────────────────────────────────────────────── */

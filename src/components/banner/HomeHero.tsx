@@ -171,19 +171,6 @@ export default function HomeHero() {
             </div>
           </Reveal>
 
-          <Reveal delay={460}>
-            <div className="hero-social-proof">
-              <div className="hero-avatars" aria-hidden="true">
-                {["#FD6E00","#D90A5C","#FF9558","#FF4D7A"].map((c, i) => (
-                  <span key={i} className="hero-avatar" style={{ background: c, marginLeft: i ? "-10px" : 0 }} />
-                ))}
-              </div>
-              <div className="v-mono hero-proof-text">
-                3 500 + utilisateurs<br />
-                <span style={{ color: "rgba(255,255,255,.6)" }}>en France · 2026</span>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </div>
 
