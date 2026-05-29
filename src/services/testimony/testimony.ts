@@ -2,7 +2,6 @@
 
 import { TestimonyCardProps } from "@/components/cards/testimonyCard";
 import { useEffect, useState } from "react";
-import { fetchPostsByTagSlug } from "../blog/article";
 import { sanitizeText } from "../blog/sanitize";
 
 export type Testimony = {
@@ -41,13 +40,15 @@ export default function FetchTestimony() {
   useEffect(() => {
     const fetchTestimony = async () => {
       try {
-        const data = await fetchPostsByTagSlug("temoignage");
+        const res = await fetch("/api/testimonials");
+        if (!res.ok) return;
+        const data = await res.json();
         if (!data || data.length === 0) return;
         const processed = data.map((t: Testimony) => ({
           id: t.id,
           testimony: sanitizeText(t.title.rendered),
-          auteur_temoignage: sanitizeText(t.acf.auteur_temoignage),
-          role_et_entreprise_temoignage: sanitizeText(t.acf.role_et_entreprise_temoignage),
+          auteur_temoignage: sanitizeText(t.acf?.auteur_temoignage ?? ""),
+          role_et_entreprise_temoignage: sanitizeText(t.acf?.role_et_entreprise_temoignage ?? ""),
         }));
         setTestimonies(processed);
       } catch {
