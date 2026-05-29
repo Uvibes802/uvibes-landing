@@ -1,24 +1,35 @@
 NOTES — Modifications de texte validées
 =======================================
+FORMAT : AVANT → APRÈS | Fichier | Raison
+⚠ Entrées marquées [FAIT] = déjà implémentées dans le code
+⚠ Entrées sans marquage = validées, À IMPLÉMENTER
 
-[1] ConversationIntro — paragraphe 3
-AVANT : "Dans de nombreux collectifs, nous n'osons pas toujours engager la conversation
-         et sous-estimons souvent les bénéfices de simples échanges entre pairs."
-APRÈS : "Un couloir suffit. Une pause café aussi. Mais ces échanges ne font pas toujours
-         partie du plan — Uvibes les rend inévitables."
-RAISON : Plus court, concret, évite le jargon, dit exactement ce que fait le produit.
-DATE   : 2026-05-29
+[1] [FAIT] ConversationIntro — paragraphe 3
+FICHIER : src/components/section/ConversationIntro.tsx
+AVANT   : "Dans de nombreux collectifs, nous n'osons pas toujours engager la conversation
+           et sous-estimons souvent les bénéfices de simples échanges entre pairs."
+APRÈS   : "Un couloir suffit. Une pause café aussi. Mais ces échanges ne font pas toujours
+           partie du plan — Uvibes les rend inévitables."
+RAISON  : Plus court, concret, évite le jargon, dit exactement ce que fait le produit.
+DATE    : 2026-05-29
 
-[3] HowItWorks — titre étape 03
-AVANT : "Recueillez des données stratégiques pour mieux comprendre votre collectif"
-APRÈS : "Votre collectif vous parle. Écoutez-le."
-RAISON : Registre humain vs jargon, plus court, crée une tension émotionnelle.
-DATE   : 2026-05-29
+[2] [FAIT] HowItWorks — titre étape 02
+FICHIER : src/components/section/HowItWorks.tsx
+AVANT   : "Votre collectif échange en vidéo, en one-to-one"
+APRÈS   : "Deux membres. Une conversation. Trois minutes."
+RAISON  : Rythme court et mémorable, donne le format exact de l'expérience, contraste fort.
+DATE    : 2026-05-29
 
-[2] HowItWorks — titre étape 02
-AVANT : "Votre collectif échange en vidéo, en one-to-one"
-APRÈS : "Deux membres. Une conversation. Trois minutes."
-RAISON : Rythme court et mémorable, donne le format exact de l'expérience produit,
-         contraste fort avec les étapes 01 (setup) et 03 (données).
-DATE   : 2026-05-29
+[3] [FAIT] HowItWorks — titre étape 03
+FICHIER : src/components/section/HowItWorks.tsx
+AVANT   : "Recueillez des données stratégiques pour mieux comprendre votre collectif"
+APRÈS   : "Votre collectif vous parle. Écoutez-le."
+RAISON  : Registre humain vs jargon, plus court, tension émotionnelle.
+DATE    : 2026-05-29
 
+[4] Contact — titre section
+FICHIER : src/components/contact/contact.tsx
+AVANT   : "Parlons de votre collectif."
+APRÈS   : "Votre projet mérite une vraie conversation."
+RAISON  : Fait écho au produit (conversations), valorise le prospect, moins générique.
+DATE    : 2026-05-29
