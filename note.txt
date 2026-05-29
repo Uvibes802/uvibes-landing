@@ -54,3 +54,10 @@ AVANT   : "de sentiment d'appartenance après 6 semaines"
 APRÈS   : "se sentent vraiment faire partie de quelque chose"
 RAISON  : Évite le jargon RH, dit la même chose avec les mots des utilisateurs, plus humain.
 DATE    : 2026-05-29
+
+[8] [FAIT] FeaturedArticles — titre section
+FICHIER : src/components/section/FeaturedArticles.tsx
+AVANT   : "Ressources & insights."
+APRÈS   : "Ce qu'on lit. Ce qu'on pense."
+RAISON  : Plus personnel, donne une voix à Uvibes, sort du registre corporate.
+DATE    : 2026-05-29
