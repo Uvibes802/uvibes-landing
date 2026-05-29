@@ -61,25 +61,30 @@ export default function CookieConsent() {
   if (!showBanner) return null;
 
   return (
-    <div className="cookie-banner">
-      <div className="cookie-container">
-        <p className="cookie-text">
-          Nous utilisons des cookies pour améliorer votre expérience sur notre
-          site. En continuant à naviguer, vous acceptez notre utilisation des
-          cookies.{" "}
-          <a href="/politique-cookies" style={{ textDecoration: "underline", color: "inherit" }}>
-            En savoir plus
-          </a>
-        </p>
+    <>
+      <div className="cookie-backdrop" aria-hidden="true" />
+      <div className="cookie-banner" role="dialog" aria-label="Gestion des cookies">
+        <div className="cookie-top">
+          <span className="cookie-icon" aria-hidden="true">🍪</span>
+          <div>
+            <p className="cookie-title">Votre confidentialité</p>
+            <p className="cookie-text">
+              Nous utilisons des cookies pour améliorer votre expérience.{" "}
+              <a href="/politique-cookies" className="cookie-link">
+                En savoir plus
+              </a>
+            </p>
+          </div>
+        </div>
         <div className="cookie-buttons">
-          <button onClick={acceptCookies} className="accept-button">
+          <button onClick={acceptCookies} className="cookie-btn cookie-btn--accept">
             Accepter
           </button>
-          <button onClick={refuseCookies} className="refuse-button">
+          <button onClick={refuseCookies} className="cookie-btn cookie-btn--refuse">
             Refuser
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
