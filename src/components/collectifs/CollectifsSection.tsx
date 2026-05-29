@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import VibrationLine from "@/components/shared/VibrationLine";
@@ -14,9 +14,22 @@ interface CollectifsSectionProps {
 export default function CollectifsSection({ showCta = false }: CollectifsSectionProps) {
   const [activeId, setActiveId] = useState(collectifs[0].id);
   const active = collectifs.find((c) => c.id === activeId)!;
+  const ref = useRef<HTMLElement>(null);
+  const [vis, setVis] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVis(true); io.disconnect(); } },
+      { threshold: 0.07 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <section className="collectifs-section">
+    <section className={`collectifs-section${vis ? " c-vis" : ""}`} ref={ref}>
       <div className="collectifs-inner">
         <div className="collectifs-header">
           <div className="collectifs-header-left">

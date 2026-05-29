@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "../../styles/section/howItWorks.css";
 
@@ -28,8 +30,22 @@ const STEPS: { n: string; color: string; title: React.ReactNode; body: React.Rea
 ];
 
 export default function HowItWorks() {
+  const ref = useRef<HTMLElement>(null);
+  const [vis, setVis] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVis(true); io.disconnect(); } },
+      { threshold: 0.08 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section className="how-section">
+    <section className={`how-section${vis ? " how-vis" : ""}`} ref={ref}>
       <div className="how-vlines" aria-hidden="true">
         <VibrationLine width={1400} height={70} amplitude={18} freq={5} stroke="rgba(255,255,255,.3)" strokeWidth={1.5} speed={18} />
         <VibrationLine width={1400} height={70} amplitude={12} freq={8} stroke="rgba(255,255,255,.18)" strokeWidth={1} speed={26} />
@@ -60,8 +76,12 @@ export default function HowItWorks() {
           />
         </div>
 
-        {STEPS.map((s) => (
-          <div key={s.n} className="how-step" style={{ "--step-color": s.color } as React.CSSProperties}>
+        {STEPS.map((s, i) => (
+          <div
+            key={s.n}
+            className={`how-step how-step--${i + 1}`}
+            style={{ "--step-color": s.color } as React.CSSProperties}
+          >
             <div className="how-circle-wrap">
               <div className="how-circle v-prompt">{s.n}</div>
               <span className="how-circle-ring" aria-hidden="true" />

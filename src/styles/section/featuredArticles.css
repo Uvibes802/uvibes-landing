@@ -2,7 +2,12 @@
 
 .fa-section {
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: var(--paper);
+  background:
+    radial-gradient(ellipse 75% 55% at 8%  18%, rgba(253,110,0,.13),  transparent),
+    radial-gradient(ellipse 65% 45% at 92% 82%, rgba(217,10,92,.11),  transparent),
+    radial-gradient(ellipse 55% 40% at 55% 50%, rgba(255,180,100,.07), transparent),
+    radial-gradient(ellipse 40% 35% at 20% 85%, rgba(0,175,221,.07),  transparent),
+    linear-gradient(148deg, #fff8f2 0%, #fef2f8 40%, #fff4ee 70%, #fdf0f7 100%);
   position: relative;
   overflow: hidden;
 }
@@ -200,28 +205,31 @@
 .fa-card-date {
   margin: 0;
   font-size: 10px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   color: var(--fa-accent);
   text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
 }
 
 .fa-card-title {
   margin: 0;
-  font-size: clamp(15px, 1.5vw, 21px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-size: clamp(16px, 1.6vw, 23px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
   color: var(--ink);
+  font-family: var(--font-prompt), sans-serif;
 }
 .fa-card--side .fa-card-title {
-  font-size: clamp(14px, 1.2vw, 17px);
+  font-size: clamp(14px, 1.25vw, 18px);
 }
 
 .fa-card-excerpt {
   margin: 0.25rem 0 0;
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 13.5px;
+  line-height: 1.68;
   color: var(--ink-2);
+  font-family: var(--text-font), sans-serif;
 }
 
 .fa-card-cta {
@@ -229,13 +237,16 @@
   align-items: center;
   gap: 5px;
   margin-top: 0.5rem;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--fa-accent);
+  font-family: var(--font-roboto-mono), monospace;
   transition: gap 0.2s ease;
 }
 .fa-card:hover .fa-card-cta {
-  gap: 8px;
+  gap: 9px;
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
