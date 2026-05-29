@@ -69,9 +69,11 @@ export default function ValuePillars() {
           <div className="pillars-vline pillars-vline--2">
             <GradientVibrationLine id="vl-pillar-2" strokeWidth={36} amplitude={18} speed={17} colorFrom="#E8196A" colorTo="#FD6E00" />
           </div>
-          {/* Mobile : lignes statiques dégradées */}
+          {/* Mobile : 4 lignes statiques — 2 par carte */}
           <div className="pillars-sline pillars-sline--1" />
           <div className="pillars-sline pillars-sline--2" />
+          <div className="pillars-sline pillars-sline--3" />
+          <div className="pillars-sline pillars-sline--4" />
         </div>
 
         <div className="pillars-grid">
