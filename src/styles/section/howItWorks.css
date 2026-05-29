@@ -1,7 +1,7 @@
 /* ── HowItWorks ──────────────────────────────────────────────── */
 
 .how-section {
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3.5rem) clamp(4rem, 8vw, 7rem);
+  padding: 1.5rem clamp(1.5rem, 5vw, 3.5rem) clamp(4rem, 8vw, 7rem);
   background: linear-gradient(160deg, #FFF1D6 0%, #FFE0B8 35%, #ffd0d8 75%, #ffc8d8 100%);
   position: relative;
   overflow: visible;
