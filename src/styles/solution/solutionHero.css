@@ -7,13 +7,11 @@
   display: flex;
   align-items: center;
   padding: clamp(7rem, 14vw, 11rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
-  background:
-    radial-gradient(ellipse 70% 55% at 15%  10%, rgba(253,110,0,.55),  transparent),
-    radial-gradient(ellipse 60% 50% at 85%  80%, rgba(217,10,92,.50),  transparent),
-    radial-gradient(ellipse 50% 40% at 50%  50%, rgba(255,100,60,.30), transparent),
-    radial-gradient(ellipse 40% 35% at 5%   85%, rgba(0,175,221,.20),  transparent),
-    radial-gradient(ellipse 45% 38% at 90%  10%, rgba(255,60,140,.28), transparent),
-    linear-gradient(145deg, #c84000 0%, #d43060 35%, #9a1050 65%, #6a0030 100%);
+  /* Gradient identique au hero homepage */
+  background: linear-gradient(135deg,
+    #FD6E00 0%, #FF8530 8%, #FFB870 20%,
+    #FFB0A0 35%, #FF88B8 52%,
+    #FF5898 70%, #E6007E 88%, #D90A5C 100%);
 }
 
 /* Grain overlay */
@@ -21,8 +19,22 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: .07;
   mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Grille de points ─────────────────────────────────────────── */
+.sh-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.45) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: .35;
+  mask-image: radial-gradient(ellipse at 60% 40%, #000 25%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000 25%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -39,22 +51,45 @@
 .sh-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
   animation: shBlobFloat 9s ease-in-out infinite;
 }
 
-.sh-blob--a { width: 460px; height: 460px; top: -100px; left: -80px;  background: rgba(255,80,0,.35);   animation-delay: 0s;   animation-duration: 12s; }
-.sh-blob--b { width: 380px; height: 380px; top: 30%;    right: -60px; background: rgba(200,0,80,.30);   animation-delay: 1.5s; animation-duration: 10s; }
-.sh-blob--c { width: 300px; height: 300px; bottom: 5%;  left: 20%;    background: rgba(253,110,0,.25);  animation-delay: 3s;   animation-duration: 14s; }
-.sh-blob--d { width: 240px; height: 240px; top: 20%;    left: 40%;    background: rgba(255,40,120,.20); animation-delay: 2s;   animation-duration: 8s;  }
-.sh-blob--e { width: 200px; height: 200px; bottom: 15%; right: 25%;   background: rgba(0,175,221,.15);  animation-delay: 4s;   animation-duration: 11s; }
-.sh-blob--f { width: 180px; height: 180px; top: 60%;    left: 5%;     background: rgba(255,160,0,.22);  animation-delay: 1s;   animation-duration: 9s;  }
+.sh-blob--a { width: 900px; height: 900px; top: -280px; right: -200px; background: radial-gradient(closest-side, rgba(255,180,40,.95), transparent 70%); filter: blur(24px); animation-duration: 22s; }
+.sh-blob--b { width: 820px; height: 820px; top: 60px;   right: 40px;   background: radial-gradient(closest-side, rgba(253,110,0,.9),  transparent 70%); filter: blur(22px); animation-duration: 26s; animation-delay: 1s; }
+.sh-blob--c { width: 750px; height: 750px; top: 150px;  left: -160px;  background: radial-gradient(closest-side, rgba(255,50,130,.88), transparent 70%); filter: blur(26px); animation-duration: 30s; animation-delay: 2s; }
+.sh-blob--d { width: 620px; height: 620px; bottom:-140px; left: 26%;   background: radial-gradient(closest-side, rgba(230,0,126,.88), transparent 70%); filter: blur(26px); animation-duration: 34s; animation-delay: 0.5s; }
+.sh-blob--e { width: 640px; height: 640px; top: 36%;   left: 38%;     background: radial-gradient(closest-side, rgba(255,200,60,.85), transparent 70%); filter: blur(28px); animation-duration: 28s; animation-delay: 3s; }
+.sh-blob--f { width: 480px; height: 480px; top: -90px; left: 26%;     background: radial-gradient(closest-side, rgba(255,100,170,.82), transparent 70%); filter: blur(24px); animation-duration: 24s; animation-delay: 1.5s; }
 
 @keyframes shBlobFloat {
-  0%,100% { transform: translate(0,0)    scale(1);    }
-  33%     { transform: translate(18px,-22px) scale(1.06); }
-  66%     { transform: translate(-14px,12px) scale(0.94); }
+  0%,100% { transform: translate(0,0)      scale(1);    }
+  33%      { transform: translate(22px,-18px) scale(1.06); }
+  66%      { transform: translate(-16px,14px) scale(0.94); }
 }
+
+/* ── Particules flottantes ────────────────────────────────────── */
+.sh-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sh-particle {
+  position: absolute;
+  border-radius: 999px;
+}
+
+/* ── VibrationLine bas de section ─────────────────────────────── */
+.sh-vib {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  opacity: .55;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.sh-vib svg { width: 100%; display: block; }
 
 /* ── Inner layout ─────────────────────────────────────────────── */
 .sh-inner {
@@ -70,6 +105,11 @@
 }
 
 /* ── Texte ────────────────────────────────────────────────────── */
+.sh-content {
+  position: relative;
+  z-index: 1;
+}
+
 .sh-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -87,6 +127,7 @@
   border-radius: 50%;
   background: rgba(255,255,255,.9);
   flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.25);
 }
 
 .sh-title {
@@ -108,7 +149,7 @@
 .sh-desc {
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.65;
-  color: rgba(255,255,255,.8);
+  color: rgba(255,255,255,.82);
   margin: 0 0 2.5rem;
   max-width: 460px;
   font-family: var(--text-font);
@@ -137,23 +178,23 @@
 .sh-mac-wrap {
   position: relative;
   flex-shrink: 0;
-  perspective: 1200px;
+  perspective: 1400px;
 }
 
 .sh-mac-halo {
   position: absolute;
-  inset: -60px -50px;
+  inset: -80px -60px;
   border-radius: 50%;
   background: radial-gradient(closest-side,
-    rgba(217,10,92,.30) 0%, rgba(253,110,0,.18) 55%, transparent 75%);
-  filter: blur(60px);
+    rgba(180,185,200,.45) 0%, rgba(200,205,220,.22) 55%, transparent 75%);
+  filter: blur(64px);
   pointer-events: none;
   animation: shHalo 6s ease-in-out infinite;
 }
 
 @keyframes shHalo {
   0%,100% { transform: scale(1);    opacity: 1;   }
-  50%     { transform: scale(1.08); opacity: 0.8; }
+  50%      { transform: scale(1.1); opacity: 0.75; }
 }
 
 .sh-mac {
@@ -162,46 +203,49 @@
 }
 
 @keyframes shFloat {
-  0%,100% { transform: translateY(0);    }
-  50%     { transform: translateY(-12px); }
+  0%,100% { transform: translateY(0);     }
+  50%      { transform: translateY(-14px); }
 }
 
-/* Couvercle */
+/* Couvercle — silver aluminium, ouvert à 130° */
 .sh-mac-lid {
-  background: linear-gradient(160deg, #2c2c2e 0%, #1c1c1e 60%, #141416 100%);
+  background: linear-gradient(160deg, #d8dce4 0%, #c8ccd5 40%, #b8bcc7 100%);
   border-radius: 14px 14px 3px 3px;
   padding: 10px 10px 6px;
   position: relative;
   transform-origin: bottom center;
-  animation: shLidOpen 1.4s cubic-bezier(.22,1,.36,1) 0.3s both;
+  animation: shLidOpen 1.5s cubic-bezier(.22,1,.36,1) 0.3s both;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.10),
-    inset 0 -1px 0 rgba(0,0,0,.4),
-    0 0 0 1px rgba(255,255,255,.055),
-    0 30px 80px rgba(0,0,0,.55),
-    0 8px 32px rgba(217,10,92,.18);
+    inset 0 1px 0 rgba(255,255,255,.6),
+    inset 0 -1px 0 rgba(0,0,0,.1),
+    0 0 0 1px rgba(160,165,175,.3),
+    0 28px 72px rgba(0,0,0,.32),
+    0 6px 28px rgba(150,155,170,.18);
 }
 
+/* Animation couvercle → s'ouvre à 130° (rotateX négatif = écran incliné vers spectateur) */
 @keyframes shLidOpen {
-  from { transform: perspective(900px) rotateX(82deg); opacity: .2; }
-  to   { transform: perspective(900px) rotateX(0deg);  opacity: 1;  }
+  from { transform: perspective(1000px) rotateX(72deg); opacity: .15; }
+  to   { transform: perspective(1000px) rotateX(-18deg); opacity: 1;  }
 }
 
+/* Reflet bord supérieur */
 .sh-mac-lid::before {
   content: '';
   position: absolute;
   top: 0; left: 8%; right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18) 50%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.7) 50%, transparent);
+  border-radius: 999px;
 }
 
-/* Notch */
+/* Notch caméra */
 .sh-mac-notch {
   position: absolute;
   top: 0; left: 50%;
   transform: translateX(-50%);
   width: 90px; height: 22px;
-  background: linear-gradient(160deg, #2c2c2e, #1c1c1e);
+  background: linear-gradient(160deg, #1c1c1e, #0c0c0e);
   border-radius: 0 0 12px 12px;
   z-index: 2;
   display: flex;
@@ -212,9 +256,9 @@
   content: '';
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: #2a2a2c;
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 0 0 2px rgba(0,175,221,.2);
+  background: #1a1a1c;
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 0 0 2px rgba(0,175,221,.18);
 }
 
 /* Display */
@@ -224,6 +268,7 @@
   background: #000;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.7);
 }
 
 .sh-mac-video {
@@ -237,88 +282,85 @@
 .sh-mac-screen-glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(253,110,0,.06), rgba(217,10,92,.04), transparent 60%);
+  background: linear-gradient(135deg, rgba(253,110,0,.05), rgba(217,10,92,.04), transparent 60%);
   pointer-events: none;
 }
 
-.sh-mac-badge {
-  position: absolute;
-  bottom: 10px; left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.88);
-  backdrop-filter: blur(8px);
-  color: #111;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  z-index: 3;
-  font-family: var(--font-roboto-mono), monospace;
-}
-
-.sh-mac-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #22c55e;
-  animation: shDotPulse 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
-@keyframes shDotPulse {
-  0%,100% { opacity: 1; }
-  50%     { opacity: .4; }
-}
-
-/* Charnière */
+/* Charnière brushed metal */
 .sh-mac-hinge {
   height: 5px;
-  background: linear-gradient(to right, #0a0a0c, #252527 15%, #3a3a3c 50%, #252527 85%, #0a0a0c);
+  background: linear-gradient(to right, #888, #a8acb3 15%, #c0c4cc 50%, #a8acb3 85%, #888);
+  position: relative;
+}
+.sh-mac-hinge::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: rgba(255,255,255,.3);
 }
 
-/* Corps */
+/* Corps silver */
 .sh-mac-body {
-  background: linear-gradient(to bottom, #28282a 0%, #1e1e20 50%, #1a1a1c 100%);
+  background: linear-gradient(to bottom, #d2d7de 0%, #c6cbd3 50%, #bcbfc8 100%);
   border-radius: 0 0 10px 10px;
-  padding: 14px 20px 20px;
+  padding: 12px 20px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  box-shadow: 0 16px 48px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04);
-  animation: shBodyIn 1.4s cubic-bezier(.22,1,.36,1) 0.3s both;
+  gap: 10px;
+  box-shadow:
+    0 14px 44px rgba(0,0,0,.28),
+    0 0 0 1px rgba(160,165,175,.28);
+  animation: shBodyIn 1.5s cubic-bezier(.22,1,.36,1) 0.3s both;
 }
 @keyframes shBodyIn {
-  from { opacity: 0; transform: translateY(-8px); }
+  from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Clavier — aspect clean MacBook (surface texturée sans grille Blackberry) */
 .sh-mac-keyboard {
-  width: 92%; height: 56px;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0px, rgba(255,255,255,.06) 1px, transparent 1px, transparent 8px),
-    repeating-linear-gradient(0deg,  rgba(255,255,255,.05) 0px, rgba(255,255,255,.05) 1px, transparent 1px, transparent 8px),
-    rgba(0,0,0,.3);
-  border-radius: 4px;
-  border: 1px solid rgba(255,255,255,.04);
+  width: 92%; height: 48px;
+  background: rgba(138,145,158,.52);
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,.07);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,.14),
+    inset 0 -1px 0 rgba(255,255,255,.18);
 }
 
+/* Rangée "barre espace" simulée */
+.sh-mac-keyboard::after {
+  content: '';
+  position: absolute;
+  bottom: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 36%;
+  height: 7px;
+  background: rgba(0,0,0,.18);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+}
+
+/* Trackpad silver */
 .sh-mac-trackpad {
-  width: 30%; height: 22px;
-  background: rgba(255,255,255,.055);
+  width: 30%; height: 20px;
+  background: rgba(0,0,0,.07);
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,.06);
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
 }
 
+/* Pied */
 .sh-mac-foot {
   height: 4px;
-  background: linear-gradient(to right, #080808, #181818 20%, #282828 50%, #181818 80%, #080808);
+  background: linear-gradient(to right, #888, #aaadb4 20%, #c2c5cc 50%, #aaadb4 80%, #888);
   border-radius: 0 0 3px 3px;
   margin: 0 8%;
-  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
 }
 
 /* ── Responsive ───────────────────────────────────────────────── */
