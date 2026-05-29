@@ -47,3 +47,10 @@ AVANT   : "En 2026, sur Uvibes :"
 APRÈS   : "Déjà actifs sur Uvibes"
 RAISON  : Plus direct, pas de date qui vieillit, sentiment de communauté existante.
 DATE    : 2026-05-29
+
+[7] ValuePillars — stat label pilier 1
+FICHIER : src/components/section/ValuePillars.tsx (ligne 17)
+AVANT   : "de sentiment d'appartenance après 6 semaines"
+APRÈS   : "se sentent vraiment faire partie de quelque chose"
+RAISON  : Évite le jargon RH, dit la même chose avec les mots des utilisateurs, plus humain.
+DATE    : 2026-05-29
