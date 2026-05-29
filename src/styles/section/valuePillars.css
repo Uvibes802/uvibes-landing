@@ -71,24 +71,22 @@
 
 .pillars-lines-bg {
   position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
 }
 
-/* Desktop : lignes SVG animées */
+/* Desktop : lignes SVG animées — exactement derrière les cartes */
 .pillars-vline {
   position: absolute;
   left: 0;
   width: 100%;
-  opacity: 0.42;
+  opacity: 0.48;
 }
-.pillars-vline--1 { top: 32%; transform: translateY(-50%); }
-.pillars-vline--2 { top: 68%; transform: translateY(-50%); }
+.pillars-vline--1 { top: 25%; transform: translateY(-50%); }
+.pillars-vline--2 { top: 52%; transform: translateY(-50%); }
+.pillars-vline--3 { top: 78%; transform: translateY(-50%); }
 .pillars-vline svg { width: 100%; height: 60px; }
 
 /* Mobile : lignes statiques (cachées par défaut, affichées via media query) */
