@@ -46,12 +46,7 @@
 }
 .c-vis .collectifs-header { opacity: 1; transform: translateY(0); }
 
-/* Pills : slide depuis la droite — PAS d'opacity 0 pour garder la carousel fonctionnelle */
-.collectifs-pills-ticker {
-  transform: translateX(48px);
-  transition: transform 0.7s 0.28s cubic-bezier(.2,.7,.2,1);
-}
-.c-vis .collectifs-pills-ticker { transform: translateX(0); }
+/* Pills : pas d'animation sur le container (overflow:hidden déplacerait la zone de clip) */
 
 /* Panel : fade-up avec léger délai */
 .collectifs-panel-wrapper {
