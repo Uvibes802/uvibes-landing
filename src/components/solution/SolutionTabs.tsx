@@ -36,7 +36,7 @@ export default function SolutionTabs() {
         </button>
       </div>
 
-      <div className="solution-tab-content">
+      <div className="solution-tab-content" key={activeTab}>
         {activeTab === "comment" && (
           <>
             <FunctOrganisation />

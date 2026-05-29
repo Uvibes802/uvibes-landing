@@ -1,10 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { getVideoUrl } from "@/utils/videoUrl";
 import "@/styles/solution/solutionHero.css";
 
+const VIDEOS = ["Isaline-desktop.mp4", "Lisa-desktop.mp4", "Delphine-desktop.mp4", "Colette-desktop.mp4"];
+
 function MacBook() {
+  const [src, setSrc] = useState(VIDEOS[0]);
+  useEffect(() => { setSrc(VIDEOS[Math.floor(Math.random() * VIDEOS.length)]); }, []);
+
   return (
     <div className="sh-mac-wrap">
       <div className="sh-mac-halo" aria-hidden="true" />
@@ -14,7 +20,7 @@ function MacBook() {
           <div className="sh-mac-display">
             <video
               className="sh-mac-video"
-              src={getVideoUrl("Isaline-desktop.mp4")}
+              src={getVideoUrl(src)}
               autoPlay muted loop playsInline
             />
             <div className="sh-mac-screen-glow" aria-hidden="true" />
