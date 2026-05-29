@@ -68,3 +68,10 @@ AVANT   : "Ils aiment l'expérience."
 APRÈS   : "Ça change quelque chose."
 RAISON  : Court, ambigu intentionnellement, pousse à lire les témoignages.
 DATE    : 2026-05-29
+
+[10] HowItWorks — eyebrow label
+FICHIER : src/components/section/HowItWorks.tsx
+AVANT   : "Comment ça fonctionne"
+APRÈS   : "Le produit en vrai"
+RAISON  : Moins institutionnel, donne l'impression d'une démo honnête, pas un tunnel marketing.
+DATE    : 2026-05-29
