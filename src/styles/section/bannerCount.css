@@ -6,6 +6,8 @@
   padding: 52px clamp(1.5rem, 5vw, 3.5rem);
   overflow: hidden;
   position: relative;
+  border-top: 12px solid #fff;
+  border-bottom: 12px solid #fff;
 }
 
 /* Lignes vibration fond */

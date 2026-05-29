@@ -69,9 +69,6 @@ export default function ValuePillars() {
           <div className="pillars-vline pillars-vline--2">
             <GradientVibrationLine id="vl-pillar-2" strokeWidth={36} amplitude={18} speed={17} colorFrom="#E8196A" colorTo="#FD6E00" />
           </div>
-          <div className="pillars-vline pillars-vline--3">
-            <GradientVibrationLine id="vl-pillar-3" strokeWidth={28} amplitude={14} speed={21} colorFrom="#FD6E00" colorTo="#D90A5C" />
-          </div>
         </div>
 
         <div className="pillars-grid">
