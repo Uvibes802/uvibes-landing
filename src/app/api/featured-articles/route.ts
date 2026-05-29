@@ -4,7 +4,13 @@ export async function GET() {
   try {
     const api = process.env.NEXT_PUBLIC_API_URL;
 
-    const postsRes = await fetch(`${api}/wp-json/wp/v2/posts?per_page=3&orderby=date&order=desc&_embed`, { next: { revalidate: 3600 } });
+    const tagRes = await fetch(`${api}/wp-json/wp/v2/tags?slug=homepage-article`, { next: { revalidate: 3600 } });
+    if (!tagRes.ok) return NextResponse.json([]);
+    const tags = await tagRes.json();
+    const tagId = tags[0]?.id;
+    if (!tagId) return NextResponse.json([]);
+
+    const postsRes = await fetch(`${api}/wp-json/wp/v2/posts?tags=${tagId}&per_page=3&orderby=date&order=desc&_embed`, { next: { revalidate: 3600 } });
     if (!postsRes.ok) return NextResponse.json([]);
     const posts = await postsRes.json();
 

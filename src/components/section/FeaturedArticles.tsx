@@ -94,7 +94,7 @@ export default function FeaturedArticles() {
             Ressources &amp; <span className="v-serif">insights.</span>
           </h2>
         </div>
-        <Link href="/blog" className="fa-cta-btn">
+        <Link href="/blog" className="btn-brand fa-cta-btn">
           Voir tous les articles →
         </Link>
       </div>

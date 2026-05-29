@@ -3,11 +3,13 @@
 .fa-section {
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
   background:
-    radial-gradient(ellipse 75% 55% at 8%  18%, rgba(253,110,0,.13),  transparent),
-    radial-gradient(ellipse 65% 45% at 92% 82%, rgba(217,10,92,.11),  transparent),
-    radial-gradient(ellipse 55% 40% at 55% 50%, rgba(255,180,100,.07), transparent),
-    radial-gradient(ellipse 40% 35% at 20% 85%, rgba(0,175,221,.07),  transparent),
-    linear-gradient(148deg, #fff8f2 0%, #fef2f8 40%, #fff4ee 70%, #fdf0f7 100%);
+    radial-gradient(ellipse 90% 60% at 5%   10%, rgba(253,110,0,.18),  transparent),
+    radial-gradient(ellipse 70% 55% at 95%  90%, rgba(217,10,92,.16),  transparent),
+    radial-gradient(ellipse 60% 50% at 50%  50%, rgba(255,160,80,.10), transparent),
+    radial-gradient(ellipse 45% 40% at 15%  90%, rgba(0,175,221,.10),  transparent),
+    radial-gradient(ellipse 55% 45% at 85%  15%, rgba(255,100,150,.09),transparent),
+    radial-gradient(ellipse 35% 30% at 40%  75%, rgba(253,110,0,.08),  transparent),
+    linear-gradient(148deg, #fff6ee 0%, #fef0f7 30%, #fff3ea 55%, #fceef8 80%, #fff8f0 100%);
   position: relative;
   overflow: hidden;
 }
@@ -72,20 +74,8 @@
 
 .fa-cta-btn {
   flex-shrink: 0;
-  padding: 0.75rem 1.5rem;
-  border: 1.5px solid var(--orange);
-  border-radius: 99px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--orange);
-  text-decoration: none;
-  transition: background 0.22s ease, color 0.22s ease;
-  white-space: nowrap;
   align-self: flex-end;
-}
-.fa-cta-btn:hover {
-  background: var(--orange);
-  color: #fff;
+  white-space: nowrap;
 }
 
 /* ── Grid ────────────────────────────────────────────────────── */
