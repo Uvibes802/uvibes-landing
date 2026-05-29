@@ -308,6 +308,7 @@ Toujours incrémenter — ne jamais réutiliser un numéro existant.
 - [x] **UI-38** — Cookie consent : redesign complet (backdrop, gradient, Prompt, pills)
 - [x] **FIX-03** — CORS fix : routes API testimonials + featured-articles côté serveur
 - [x] **CONTENT-02** — note.txt : 10 propositions texte (3 appliquées, 7 en attente)
+- [x] **CODE-05** — /simplify : useIntersectionOnce hook + CSS vars valuePillars + c-color parent collectifs
 
 ---
 

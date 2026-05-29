@@ -115,6 +115,12 @@ RevealObserver       components/shared/RevealObserver.tsx  "use client" — Inte
 GradientVibrationLine components/shared/GradientVibrationLine.tsx — SVG SMIL animé, dégradé linéaire
 ```
 
+### Hook partagé (simplify)
+```
+useIntersectionOnce  hooks/useIntersectionOnce.ts — hook générique IntersectionObserver (threshold + rootMargin)
+                     Utilisé par : HowItWorks, CollectifsSection, ValuePillars
+```
+
 ### Blog Article (/blog/[slug]) ✅ Server Component
 ```
 ArticleContent       components/blog/article.tsx

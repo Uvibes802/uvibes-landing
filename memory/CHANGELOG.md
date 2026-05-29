@@ -2,6 +2,23 @@
 
 ---
 
+## 2026-05-29 (session 3 — /simplify) — Nettoyage qualité code
+
+### Tâches terminées
+- **`useIntersectionOnce` hook** créé dans `src/hooks/` — IntersectionObserver générique (threshold + rootMargin) partagé par HowItWorks, CollectifsSection, ValuePillars (−35 lignes boilerplate)
+- **`valuePillars.css`** — `#F4621F` → `var(--orange)`, `#E8196A` → `var(--rose)` (4 occurrences)
+- **CollectifsSection** — `--c-color` défini une fois sur `.collectifs-panel` parent au lieu de 3 enfants séparément
+
+### Sautés
+- `cache: "no-store"` featured-articles → intentionnel (fix stale data Vercel)
+- Extraction MacBook en composant partagé → risque sans test visuel
+- Unification class names visibilité → hors scope
+
+### Branche
+`refactor/ux-simplification`
+
+---
+
 ## 2026-05-29 (session 3) — Animations, FeaturedArticles, /solution hero MacBook, textes
 
 ### Tâches terminées
