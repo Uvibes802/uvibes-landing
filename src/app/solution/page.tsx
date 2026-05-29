@@ -1,8 +1,8 @@
-import { HeroBanner } from "@/components/banner/heroBanner";
 import { PartnerBanner } from "@/components/banner/partnerBanner";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
 import { AppointmentSection } from "@/components/section/appointmentSection";
+import SolutionHero from "@/components/solution/SolutionHero";
 import SolutionTabs from "@/components/solution/SolutionTabs";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -18,22 +18,12 @@ const breadcrumbJsonLd = {
   ],
 };
 
-const mockupSolution = "/images/mockupFeature.png";
-
 export default function SolutionPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd} />
-      <HeroBanner
-        subtitle=""
-        title={"La solution\npour votre\ncollectif"}
-        description="Découvrez comment Uvibes s'adapte à votre contexte et choisissez l'offre qui vous correspond"
-        image={mockupSolution}
-        alt="Application Uvibes"
-        className="features-hero"
-        useAppMockup={true}
-      />
-      <main>
+      <SolutionHero />
+      <main id="solution-tabs">
         <SolutionTabs />
         <PartnerBanner />
         <AppointmentSection />
