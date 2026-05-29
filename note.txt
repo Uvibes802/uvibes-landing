@@ -1,77 +1,43 @@
-NOTES — Modifications de texte validées
-=======================================
-FORMAT : AVANT → APRÈS | Fichier | Raison
-⚠ Entrées marquées [FAIT] = déjà implémentées dans le code
-⚠ Entrées sans marquage = validées, À IMPLÉMENTER
+MODIFICATIONS DE TEXTE VALIDÉES
+================================
+[FAIT] = déjà dans le code | sans = à implémenter
 
-[1] [FAIT] ConversationIntro — paragraphe 3
-FICHIER : src/components/section/ConversationIntro.tsx
-AVANT   : "Dans de nombreux collectifs, nous n'osons pas toujours engager la conversation
-           et sous-estimons souvent les bénéfices de simples échanges entre pairs."
-APRÈS   : "Un couloir suffit. Une pause café aussi. Mais ces échanges ne font pas toujours
-           partie du plan — Uvibes les rend inévitables."
-RAISON  : Plus court, concret, évite le jargon, dit exactement ce que fait le produit.
-DATE    : 2026-05-29
+[1] [FAIT] ConversationIntro
+AVANT : "Dans de nombreux collectifs, nous n'osons pas toujours engager la conversation et sous-estimons souvent les bénéfices de simples échanges entre pairs."
+APRÈS : "Un couloir suffit. Une pause café aussi. Mais ces échanges ne font pas toujours partie du plan — Uvibes les rend inévitables."
 
-[2] [FAIT] HowItWorks — titre étape 02
-FICHIER : src/components/section/HowItWorks.tsx
-AVANT   : "Votre collectif échange en vidéo, en one-to-one"
-APRÈS   : "Deux membres. Une conversation. Trois minutes."
-RAISON  : Rythme court et mémorable, donne le format exact de l'expérience, contraste fort.
-DATE    : 2026-05-29
+[2] [FAIT] HowItWorks — étape 02
+AVANT : "Votre collectif échange en vidéo, en one-to-one"
+APRÈS : "Deux membres. Une conversation. Trois minutes."
 
-[3] [FAIT] HowItWorks — titre étape 03
-FICHIER : src/components/section/HowItWorks.tsx
-AVANT   : "Recueillez des données stratégiques pour mieux comprendre votre collectif"
-APRÈS   : "Votre collectif vous parle. Écoutez-le."
-RAISON  : Registre humain vs jargon, plus court, tension émotionnelle.
-DATE    : 2026-05-29
+[3] [FAIT] HowItWorks — étape 03
+AVANT : "Recueillez des données stratégiques pour mieux comprendre votre collectif"
+APRÈS : "Votre collectif vous parle. Écoutez-le."
 
-[4] Contact — titre section
-FICHIER : src/components/contact/contact.tsx
-AVANT   : "Parlons de votre collectif."
-APRÈS   : "Votre projet mérite une vraie conversation."
-RAISON  : Fait écho au produit (conversations), valorise le prospect, moins générique.
-DATE    : 2026-05-29
+[4] Contact
+AVANT : "Parlons de votre collectif."
+APRÈS : "Votre projet mérite une vraie conversation."
 
 [5] Hero homepage — sous-titre
-FICHIER : src/components/banner/HomeHero.tsx
-AVANT   : "L'outil digital qui crée les bons échanges, au bon moment"
-APRÈS   : "Les bonnes conversations ne s'improvisent pas. Elles se créent."
-RAISON  : Retourne une idée reçue, positionne Uvibes comme acte intentionnel, plus mémorable.
-DATE    : 2026-05-29
+AVANT : "L'outil digital qui crée les bons échanges, au bon moment"
+APRÈS : "Les bonnes conversations ne s'improvisent pas. Elles se créent."
 
-[6] BannerCount — label compteur
-FICHIER : src/components/section/BannerCount.tsx
-AVANT   : "En 2026, sur Uvibes :"
-APRÈS   : "Déjà actifs sur Uvibes"
-RAISON  : Plus direct, pas de date qui vieillit, sentiment de communauté existante.
-DATE    : 2026-05-29
+[6] BannerCount — label
+AVANT : "En 2026, sur Uvibes :"
+APRÈS : "Déjà actifs sur Uvibes"
 
-[7] ValuePillars — stat label pilier 1
-FICHIER : src/components/section/ValuePillars.tsx (ligne 17)
-AVANT   : "de sentiment d'appartenance après 6 semaines"
-APRÈS   : "se sentent vraiment faire partie de quelque chose"
-RAISON  : Évite le jargon RH, dit la même chose avec les mots des utilisateurs, plus humain.
-DATE    : 2026-05-29
+[7] ValuePillars — stat pilier 1
+AVANT : "de sentiment d'appartenance après 6 semaines"
+APRÈS : "se sentent vraiment faire partie de quelque chose"
 
-[8] [FAIT] FeaturedArticles — titre section
-FICHIER : src/components/section/FeaturedArticles.tsx
-AVANT   : "Ressources & insights."
-APRÈS   : "Ce qu'on lit. Ce qu'on pense."
-RAISON  : Plus personnel, donne une voix à Uvibes, sort du registre corporate.
-DATE    : 2026-05-29
+[8] [FAIT] FeaturedArticles — titre
+AVANT : "Ressources & insights."
+APRÈS : "Ce qu'on lit. Ce qu'on pense."
 
-[9] VideoSection — titre section
-FICHIER : src/components/section/VideoSection.tsx
-AVANT   : "Ils aiment l'expérience."
-APRÈS   : "Ça change quelque chose."
-RAISON  : Court, ambigu intentionnellement, pousse à lire les témoignages.
-DATE    : 2026-05-29
+[9] VideoSection — titre
+AVANT : "Ils aiment l'expérience."
+APRÈS : "Ça change quelque chose."
 
-[10] HowItWorks — eyebrow label
-FICHIER : src/components/section/HowItWorks.tsx
-AVANT   : "Comment ça fonctionne"
-APRÈS   : "Le produit en vrai"
-RAISON  : Moins institutionnel, donne l'impression d'une démo honnête, pas un tunnel marketing.
-DATE    : 2026-05-29
+[10] HowItWorks — eyebrow
+AVANT : "Comment ça fonctionne"
+APRÈS : "Le produit en vrai"
