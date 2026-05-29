@@ -1,5 +1,6 @@
 import CookieConsent from "@/components/cookieConsent";
 import Menu from "@/components/menu/Menu";
+import RevealObserver from "@/components/shared/RevealObserver";
 import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -101,6 +102,7 @@ export default function RootLayout({
       </head>
       <body className={`${roboto.variable} ${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
         <Menu />
+        <RevealObserver />
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
             <CookieConsent />

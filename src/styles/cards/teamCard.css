@@ -8,6 +8,13 @@
     var(--gradientColor) border-box;
   border: 1px solid transparent;
   border-radius: var(--border-radius);
+  transition: transform 0.32s cubic-bezier(.34,1.56,.64,1), box-shadow 0.32s ease;
+}
+.team-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 48px rgba(253,110,0,0.18);
+}
+.team-card {
 
   @media screen and (max-width: 480px) {
     max-width: 280px;

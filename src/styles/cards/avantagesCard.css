@@ -5,6 +5,12 @@
   background: linear-gradient(white, white) padding-box,
     var(--gradientColor) border-box;
   padding: calc(var(--spacing-ref) * 2);
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s ease;
+}
+.avantages-card-container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(253,110,0,0.14);
+}
 
   & h5 {
     color: var(--secondaryColor);

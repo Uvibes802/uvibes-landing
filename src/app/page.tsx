@@ -31,13 +31,13 @@ export default async function Home() {
 
       <ConversationIntro />
 
-      <BannerCount />
+      <div className="v-reveal"><BannerCount /></div>
 
-      <ValuePillars />
+      <div className="v-reveal"><ValuePillars /></div>
 
-      <CollectifsSection showCta={true} />
+      <div className="v-reveal"><CollectifsSection showCta={true} /></div>
 
-      <HowItWorks />
+      <div className="v-reveal"><HowItWorks /></div>
 
       {/* Séparateur vibration entre HowItWorks et vibe-zone */}
       <div className="vibe-sep" aria-hidden="true">
@@ -46,14 +46,14 @@ export default async function Home() {
       </div>
 
       {/* Zone partagée étoilée : partenaires + témoignages */}
-      <div className="vibe-zone">
+      <div className="vibe-zone v-reveal">
         <PartnerCarousel logos={partners} />
         <VideoSection />
       </div>
 
-      <FeaturedArticles />
+      <div className="v-reveal"><FeaturedArticles /></div>
 
-      <Contact />
+      <div className="v-reveal"><Contact /></div>
       <Footer />
     </main>
   );

@@ -10,6 +10,13 @@
   box-shadow: 1px 4px 10px #00000038;
   flex-direction: column;
   gap: var(--spacing-ref);
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.blog-article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(253,110,0,0.15);
+  border-color: var(--orange);
+}
 
   & h3 {
     font-size: var(--font-size-h3);
