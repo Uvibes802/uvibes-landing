@@ -24,10 +24,6 @@ function MacBook() {
               autoPlay muted loop playsInline
             />
             <div className="sh-mac-screen-glow" aria-hidden="true" />
-            <div className="sh-mac-badge">
-              <span className="sh-mac-dot" aria-hidden="true" />
-              Live · Uvibes
-            </div>
           </div>
         </div>
         <div className="sh-mac-hinge" aria-hidden="true" />
