@@ -64,6 +64,44 @@
   font-weight: 800;
 }
 
+/* ── Lignes de vibration ──────────────────────────────────────── */
+.pillars-cards-wrap {
+  position: relative;
+}
+
+.pillars-lines-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Desktop : lignes SVG animées */
+.pillars-vline {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0.22;
+}
+.pillars-vline--1 { top: 32%; transform: translateY(-50%); }
+.pillars-vline--2 { top: 68%; transform: translateY(-50%); }
+.pillars-vline svg { width: 100%; height: 55px; }
+
+/* Mobile : lignes statiques */
+.pillars-sline {
+  display: none;
+  height: 8px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #F4621F, #E8196A);
+  opacity: 0.22;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.pillars-sline--1 { top: 33%; }
+.pillars-sline--2 { top: 67%; }
+
 /* ── Grid ─────────────────────────────────────────────────────── */
 .pillars-grid {
   display: grid;
@@ -243,6 +281,9 @@
 @media (max-width: 768px) {
   .pillars-grid { grid-template-columns: 1fr; }
   .pillar-card  { min-height: auto; padding: 28px; }
+  /* Lignes : SVG masqués, statiques visibles */
+  .pillars-vline { display: none; }
+  .pillars-sline { display: block; }
 }
 
 @media (prefers-reduced-motion: reduce) {

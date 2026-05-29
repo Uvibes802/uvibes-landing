@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import "@/styles/section/valuePillars.css";
 
 const pillars = [
@@ -59,7 +60,21 @@ export default function ValuePillars() {
         </h2>
       </div>
 
-      <div className="pillars-grid">
+      <div className="pillars-cards-wrap">
+        {/* Lignes de vibration — partagées par les 2 cartes */}
+        <div className="pillars-lines-bg" aria-hidden="true">
+          <div className="pillars-vline pillars-vline--1">
+            <GradientVibrationLine id="vl-pillar-1" strokeWidth={36} amplitude={22} speed={12} colorFrom="#F4621F" colorTo="#E8196A" />
+          </div>
+          <div className="pillars-vline pillars-vline--2">
+            <GradientVibrationLine id="vl-pillar-2" strokeWidth={36} amplitude={18} speed={17} colorFrom="#E8196A" colorTo="#FD6E00" />
+          </div>
+          {/* Mobile : lignes statiques dégradées */}
+          <div className="pillars-sline pillars-sline--1" />
+          <div className="pillars-sline pillars-sline--2" />
+        </div>
+
+        <div className="pillars-grid">
         {pillars.map((p) => (
           <div
             key={p.id}
@@ -85,6 +100,7 @@ export default function ValuePillars() {
             </div>
           </div>
         ))}
+        </div>
       </div>
     </section>
   );
