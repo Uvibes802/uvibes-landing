@@ -53,9 +53,9 @@ export default function VideoSection() {
       <div className="vs-header">
         <p className="v-mono vs-rating">4.9 / 5 · 312 avis</p>
         <h2 className="vs-title v-prompt">
-          <span className="vs-t-rose">Ça </span>
-          <span className="v-serif vs-t-gradient">change</span>
-          <br /><span className="vs-t-rose">quelque chose.</span>
+          <span className="vs-t-rose">Ils </span>
+          <span className="v-serif vs-t-gradient">aiment</span>
+          <br /><span className="vs-t-rose">l&apos;expérience.</span>
         </h2>
       </div>
 
