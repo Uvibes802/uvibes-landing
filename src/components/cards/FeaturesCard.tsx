@@ -2,105 +2,156 @@
 
 import { getVideoUrl } from "@/utils/videoUrl";
 import { FeaturesData } from "@/data/features/featuresData";
-import { CircleCheckBig, CirclePlay, PauseCircle } from "lucide-react";
+import { Check, CirclePlay, PauseCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import "../../styles/cards/FeaturesCard.css";
 
-const NUMS = ["01", "02", "03"];
-const EYEBROWS = ["Pour votre collectif", "Pour vous", "Pour tous"];
+const FEATURES = [
+  {
+    n: "01",
+    eyebrow: "Pour votre collectif",
+    accent: "orange" as const,
+    title: "Un voyage conversationnel",
+    points: [
+      "Des échanges vidéo one-to-one, guidés par des questions adaptées à chaque thématique.",
+      "200+ sujets prêts à l'emploi — ou les vôtres, en quelques clics.",
+      "Des rencontres courtes, de 6 à 20 minutes, qui s'intègrent dans la journée.",
+    ],
+  },
+  {
+    n: "02",
+    eyebrow: "Pour vous",
+    accent: "rose" as const,
+    title: "Une connaissance approfondie de votre organisation",
+    points: [
+      "Des tableaux de bord en temps réel : satisfaction, bien-être, engagement.",
+      "La perception des initiatives collectives, mesurée à la source.",
+      "Les attentes et besoins non exprimés, enfin rendus visibles.",
+    ],
+  },
+  {
+    n: "03",
+    eyebrow: "Pour tous",
+    accent: "orange" as const,
+    title: "Un parcours d'entraînement aux compétences relationnelles",
+    points: [
+      "Un premier espace d'entraînement aux compétences interpersonnelles.",
+      "Des échanges bienveillants qui renforcent la confiance en soi.",
+      "Une habitude qui se cultive, échange après échange.",
+    ],
+  },
+];
 
-export function FeaturesCard() {
-  const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
-  const videoRefs = useRef<{ [id: number]: HTMLVideoElement | null }>({});
+function FeatureRow({
+  feature,
+  videoSrc,
+  index,
+}: {
+  feature: typeof FEATURES[0];
+  videoSrc: string;
+  index: number;
+}) {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const reverse = index % 2 === 1;
 
-  const handlePlay = (id: number) => {
-    for (const [key, ref] of Object.entries(videoRefs.current)) {
-      if (Number(key) !== id && ref && !ref.paused) ref.pause();
-    }
-    const video = videoRefs.current[id];
-    if (video) { video.play(); setActiveVideoId(id); }
+  const handlePlay = () => {
+    videoRef.current?.play();
+    setPlaying(true);
   };
-
-  const handlePause = (id: number) => {
-    videoRefs.current[id]?.pause();
-    setActiveVideoId(null);
+  const handlePause = () => {
+    videoRef.current?.pause();
+    setPlaying(false);
   };
 
   return (
-    <section className="features-card-container">
-      {FeaturesData.map((feature, index) => {
-        const color = index % 2 === 0 ? "orange" : "pink";
-        /* Découpe le titre en sous-titre éditorial */
-        const colonIdx = feature.title.indexOf(":");
-        const titleMain  = colonIdx > -1 ? feature.title.slice(colonIdx + 1).trim() : feature.title;
+    <div className={`fc-row fc-row--${feature.accent}${reverse ? " fc-row--reverse" : ""}`}>
+      {/* Filigrane numéro */}
+      <span className="fc-watermark" aria-hidden="true">{feature.n}</span>
 
-        return (
-          <article
-            key={feature.id}
-            className={`features-card ${color}`}
-            data-num={NUMS[index] ?? ""}
-          >
-            {/* Texte */}
-            <div className="features-card-text">
-              <span className={`features-card-eyebrow`}>
-                <span className="features-card-eyebrow-dot" aria-hidden="true" />
-                {EYEBROWS[index]}
+      {/* Texte */}
+      <div className="fc-text">
+        <span className="fc-eyebrow v-mono">
+          <span className="fc-eyebrow-dot" aria-hidden="true" />
+          {feature.eyebrow}
+        </span>
+        <h3 className="fc-title v-prompt">{feature.title}</h3>
+        <ul className="fc-list">
+          {feature.points.map((p, i) => (
+            <li key={i} className="fc-item">
+              <span className="fc-chip" aria-hidden="true">
+                <Check size={13} strokeWidth={2.6} />
               </span>
+              <span>{p}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-              <h3 className="title-h3 feature-title">
-                {titleMain.split("–")[0]?.trim() || titleMain}
-                {titleMain.includes("–") && (
-                  <span>{titleMain.split("–")[1]?.trim()}</span>
-                )}
-              </h3>
+      {/* Visuel vidéo circulaire */}
+      <div className="fc-visual">
+        <div className="fc-halo" aria-hidden="true" />
+        {[0, 1, 2].map((i) => (
+          <span key={i} className="fc-ripple" style={{ animationDelay: `${i * 1.3}s` }} aria-hidden="true" />
+        ))}
+        <div className="fc-circle">
+          <video
+            ref={videoRef}
+            className={`fc-video${playing ? " --playing" : ""}`}
+            src={getVideoUrl(videoSrc)}
+            playsInline
+            onPause={() => setPlaying(false)}
+          />
+          {!playing ? (
+            <CirclePlay
+              className="fc-play-icon"
+              onClick={handlePlay}
+              onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") handlePlay(); }}
+              tabIndex={0}
+              aria-label={`Lire la vidéo : ${feature.title}`}
+            />
+          ) : (
+            <PauseCircle
+              className="fc-play-icon fc-pause-icon"
+              onClick={handlePause}
+              onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") handlePause(); }}
+              tabIndex={0}
+              aria-label="Mettre en pause"
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
-              <ul>
-                {feature.items.map(({ id, item }) => (
-                  <li key={id} className="feature-list-item">
-                    <CircleCheckBig className={`features-item-icon ${color}-icon`} />
-                    <p className="text">{item}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+export function FeaturesCard() {
+  return (
+    <section className="fc-section" id="fonctionnalites" style={{ scrollMarginTop: 70 }}>
+      {/* Intro centré */}
+      <div className="fc-intro">
+        <span className="fc-intro-eyebrow v-mono">
+          <span className="fc-intro-dot" aria-hidden="true" />
+          Fonctionnalités
+        </span>
+        <h2 className="fc-intro-title v-prompt">
+          Ce qu&apos;Uvibes change,{" "}
+          <span className="fc-intro-serif v-serif">concrètement.</span>
+        </h2>
+        <p className="fc-intro-sub">
+          Trois regards sur une même expérience — pour votre collectif, pour vous, pour chacun.
+        </p>
+      </div>
 
-            {/* Visuel — vidéo circulaire */}
-            <div className="features-card-visual">
-              <div className="features-video-halo" aria-hidden="true" />
-              <div className="features-video-container">
-                <video
-                  className={`features-video${activeVideoId === feature.id ? " playing" : ""}`}
-                  ref={(el) => { videoRefs.current[feature.id] = el; }}
-                  src={getVideoUrl(feature.video)}
-                  playsInline
-                  onPause={() => handlePause(feature.id)}
-                >
-                  <source src={getVideoUrl(feature.video)} type="video/mp4" />
-                  <track kind="captions" src="/videos/test-temoignage.vtt" srcLang="fr" label="French" />
-                </video>
-
-                {activeVideoId !== feature.id ? (
-                  <CirclePlay
-                    className={`features-video-icon ${color}-video-icon`}
-                    onClick={() => handlePlay(feature.id)}
-                    onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") handlePlay(feature.id); }}
-                    tabIndex={0}
-                    aria-label={`Lire la vidéo : ${feature.title}`}
-                  />
-                ) : (
-                  <PauseCircle
-                    className={`features-video-icon pause-icon ${color}-video-icon`}
-                    onClick={() => handlePause(feature.id)}
-                    onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") handlePause(feature.id); }}
-                    tabIndex={0}
-                    aria-label="Mettre en pause"
-                  />
-                )}
-              </div>
-            </div>
-          </article>
-        );
-      })}
+      {/* 3 rangées */}
+      {FEATURES.map((f, i) => (
+        <FeatureRow
+          key={i}
+          feature={f}
+          videoSrc={FeaturesData[i]?.video ?? ""}
+          index={i}
+        />
+      ))}
     </section>
   );
 }

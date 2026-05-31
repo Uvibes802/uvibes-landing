@@ -1,9 +1,15 @@
 import { PartnerBanner } from "@/components/banner/partnerBanner";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
+import { FeaturesCard } from "@/components/cards/FeaturesCard";
+import PricingTable from "@/components/features/PricingTable";
 import { AppointmentSection } from "@/components/section/appointmentSection";
+import SolutionAnchorNav from "@/components/solution/SolutionAnchorNav";
+import SolutionForWho from "@/components/solution/SolutionForWho";
 import SolutionHero from "@/components/solution/SolutionHero";
-import SolutionTabs from "@/components/solution/SolutionTabs";
+import SolutionHowItWorks from "@/components/solution/SolutionHowItWorks";
+import SolutionProofBar from "@/components/solution/SolutionProofBar";
+import SolutionThemes from "@/components/solution/SolutionThemes";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
@@ -23,8 +29,14 @@ export default function SolutionPage() {
     <>
       <JsonLd data={breadcrumbJsonLd} />
       <SolutionHero />
-      <main id="solution-tabs">
-        <SolutionTabs />
+      <SolutionProofBar />
+      <SolutionAnchorNav />
+      <main>
+        <SolutionForWho />
+        <SolutionHowItWorks />
+        <SolutionThemes />
+        <FeaturesCard />
+        <PricingTable />
         <PartnerBanner />
         <AppointmentSection />
       </main>

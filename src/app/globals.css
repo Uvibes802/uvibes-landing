@@ -51,6 +51,14 @@
   --ink-4:    #E0AEC4;
   --rose-deep: #B5083F;
 
+  /* Solution page tokens */
+  --sol-dark:        linear-gradient(135deg, #3a0a22 0%, var(--ink) 55%, #5a1038 100%);
+  --sol-step-rail:   linear-gradient(to bottom, var(--orange), var(--rose));
+  --sol-card-shadow: 0 14px 34px -22px rgba(74,21,48,.22), 0 0 0 1px rgba(74,21,48,.06);
+  --sol-card-hover:  0 30px 60px -26px rgba(74,21,48,.45);
+  --sol-divider:     1px dashed rgba(74,21,48,.16);
+  --ease:            cubic-bezier(.2,.7,.2,1);
+
   /* Gradients */
   --warm-glow:      linear-gradient(135deg, #FD6E00 0%, #FF4D7A 50%, #D90A5C 100%);
   --warm-glow-soft: linear-gradient(135deg, #FFC8A8 0%, #FFADC7 100%);
