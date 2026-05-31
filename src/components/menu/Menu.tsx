@@ -90,6 +90,19 @@ export default function Menu() {
         </ul>
 
         <div className="v-nav-right">
+          <a
+            href="https://app.uvibes.fr/welcome"
+            className="v-nav-connexion"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Se connecter à la plateforme Uvibes"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            Connexion
+          </a>
           {isClient && (
             <PopupButton
               url="https://calendly.com/uvibescommunication/30min"
@@ -137,6 +150,19 @@ export default function Menu() {
             ))}
           </ul>
 
+          <a
+            href="https://app.uvibes.fr/welcome"
+            className="v-sheet-connexion"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            Connexion à la plateforme
+          </a>
           {isClient && (
             <PopupButton
               url="https://calendly.com/uvibescommunication/30min"
