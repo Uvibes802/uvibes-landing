@@ -52,13 +52,13 @@ export default function AppMockup() {
       </div>
 
       <div className="apm-chip apm-chip--top-right" aria-hidden="true">
-        <span className="v-mono apm-chip-vibes">+ 17 VIBES</span>
-        <span className="apm-chip-hello">Bonjour Thomas 👋</span>
+        <span className="v-mono apm-chip-vibes">83 membres actifs</span>
+        <span className="apm-chip-hello">Votre collectif buzze ✦</span>
       </div>
 
       <div className="apm-chip apm-chip--bottom-right" aria-hidden="true">
         <span className="v-mono apm-chip-live">EN COURS · 04:59</span>
-        <span className="v-serif apm-chip-quote">« Un personnage de film qui t&apos;inspire ? »</span>
+        <span className="v-serif apm-chip-quote">« Ta découverte de la semaine ? »</span>
       </div>
     </div>
   );
