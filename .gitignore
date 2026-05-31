@@ -58,3 +58,4 @@ SETUP_PROMPT.md
 /.mcp.json
 .agents/
 skills-lock.json
+/generated/prisma

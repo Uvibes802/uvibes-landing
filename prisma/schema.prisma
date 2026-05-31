@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ── DEVIS & CLIENTS ────────────────────────────────────────────
+
+model Collectif {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  nom             String
+  contact         String
+  email           String
+  telephone       String?
+  ville           String?
+  typeCollectif   String
+  tailleCollectif String
+  usagesPrevus    String  @default("[]")
+  besoinsNotes    String?
+
+  statut  String  @default("PROSPECT")
+  notes   String?
+  source  String  @default("formulaire_site")
+
+  quotes  Quote[]
+}
+
+model Quote {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  numero      String   @unique
+
+  collectifId String
+  collectif   Collectif @relation(fields: [collectifId], references: [id])
+
+  planSlug    String
+  planNom     String
+  planCouleur String
+  featuresJson String @default("[]")
+
+  nombreUtilisateurs Int
+  dureeContrat        Int
+  remise              Float  @default(0)
+  prixHT              Float
+  prixTTC             Float
+  mentionPrix         String?
+
+  statut      String   @default("BROUILLON")
+  validUntil  DateTime?
+
+  signedAt      DateTime?
+  signatureData String?
+  signedByName  String?
+  signedByRole  String?
+
+  pdfPath         String?
+  pdfGeneratedAt  DateTime?
+
+  sentAt  DateTime?
+  sentTo  String?
+}
+
+// ── CMS ────────────────────────────────────────────────────────
+
+model CmsContent {
+  id        String   @id @default(cuid())
+  cle       String   @unique
+  label     String
+  valeur    String
+  updatedAt DateTime @updatedAt
+}
+
+model Partner {
+  id      String  @id @default(cuid())
+  nom     String
+  logoUrl String
+  siteUrl String?
+  actif   Boolean @default(true)
+  ordre   Int     @default(0)
+}
+
+model Testimony {
+  id     String  @id @default(cuid())
+  texte  String
+  auteur String
+  role   String
+  actif  Boolean @default(true)
+  ordre  Int     @default(0)
+}
+
+model TeamMember {
+  id       String  @id @default(cuid())
+  nom      String
+  poste    String
+  equipe   String
+  photoUrl String?
+  actif    Boolean @default(true)
+  ordre    Int     @default(0)
+}
+
+// ── PLANS TARIFAIRES ───────────────────────────────────────────
+
+model Plan {
+  id          String  @id @default(cuid())
+  slug        String  @unique
+  nom         String
+  couleur     String
+  description String
+  prixAnnuel  Float
+  mention     String?
+  actif       Boolean @default(true)
+  ordre       Int     @default(0)
+
+  planFeatures PlanFeature[]
+}
+
+model Feature {
+  id    String @id @default(cuid())
+  slug  String @unique
+  nom   String
+  ordre Int    @default(0)
+
+  planFeatures PlanFeature[]
+}
+
+model PlanFeature {
+  id        String  @id @default(cuid())
+  planId    String
+  featureId String
+  valeur    Boolean @default(false)
+
+  plan    Plan    @relation(fields: [planId], references: [id])
+  feature Feature @relation(fields: [featureId], references: [id])
+
+  @@unique([planId, featureId])
+}
+
+// ── AUTH ADMIN ─────────────────────────────────────────────────
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  nom          String
+  role         String    @default("EDITOR")
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+}

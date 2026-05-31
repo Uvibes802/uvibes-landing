@@ -5,6 +5,7 @@ import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Instrument_Serif, Prompt, Roboto, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -67,12 +68,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const isMaintenanceMode = getMaintenanceStatus();
+  const headersList = await headers();
+  const pathname = headersList.get("x-invoke-path") ?? headersList.get("x-pathname") ?? "";
+  const isAdminCrm = pathname.startsWith("/admin/crm") || pathname.startsWith("/devis");
 
   return (
     <html lang="fr">
@@ -101,11 +105,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${roboto.variable} ${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
-        <Menu />
-        <RevealObserver />
+        {!isAdminCrm && <Menu />}
+        {!isAdminCrm && <RevealObserver />}
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
-            <CookieConsent />
+            {!isAdminCrm && <CookieConsent />}
         </MaintenanceWrapper>
       </body>
     </html>
