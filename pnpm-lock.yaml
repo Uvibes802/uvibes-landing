@@ -74,6 +74,9 @@ importers:
       react-signature-canvas:
         specifier: 1.1.0-alpha.2
         version: 1.1.0-alpha.2(@types/prop-types@15.7.15)(@types/react@19.2.14)(prop-types@15.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
       swiper:
         specifier: ^11.2.6
         version: 11.2.10
@@ -117,9 +120,6 @@ importers:
       lint-staged:
         specifier: ^15.5.1
         version: 15.5.2
-      sharp:
-        specifier: ^0.34.5
-        version: 0.34.5
       typescript:
         specifier: ^5
         version: 5.9.3
