@@ -84,10 +84,13 @@
 
 /* Card featured (Premium) */
 .pt-card--featured {
-  background: linear-gradient(160deg, #3a0a22, var(--ink) 70%);
+  background: linear-gradient(135deg, #FD6E00 0%, #FF4D8B 55%, #D90A5C 100%);
   color: #fff;
-  border-color: rgba(255,255,255,.12);
-  box-shadow: 0 40px 80px -32px rgba(217,10,92,.55);
+  border-color: rgba(255,255,255,.25);
+  box-shadow:
+    0 40px 80px -24px rgba(217,10,92,.5),
+    0 0 0 1px rgba(255,255,255,.15),
+    inset 0 1px 0 rgba(255,255,255,.25);
   transform: translateY(-14px);
 }
 
@@ -220,7 +223,13 @@
 }
 
 .pt-card--featured .pt-card-cta {
-  box-shadow: 0 16px 38px -14px rgba(253,110,0,.6);
+  background: rgba(255,255,255,.95);
+  color: #D90A5C;
+  box-shadow: 0 16px 38px -14px rgba(0,0,0,.25);
+}
+.pt-card--featured .pt-card-cta:hover {
+  background: #fff;
+  box-shadow: 0 20px 44px -12px rgba(0,0,0,.3);
 }
 
 .pt-card-cta:hover {

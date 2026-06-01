@@ -3,7 +3,6 @@ import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
 import { FeaturesCard } from "@/components/cards/FeaturesCard";
 import PricingTable from "@/components/features/PricingTable";
-import { AppointmentSection } from "@/components/section/appointmentSection";
 import SolutionAnchorNav from "@/components/solution/SolutionAnchorNav";
 import SolutionForWho from "@/components/solution/SolutionForWho";
 import SolutionHero from "@/components/solution/SolutionHero";
@@ -38,7 +37,6 @@ export default function SolutionPage() {
         <FeaturesCard />
         <PricingTable />
         <PartnerBanner />
-        <AppointmentSection />
       </main>
       <Footer />
     </>
