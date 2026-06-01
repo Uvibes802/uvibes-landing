@@ -82,12 +82,26 @@ async function main() {
 
   // ── CMS par défaut ────────────────────────────────────
   const cmsDefaults = [
+    // Homepage hero
     { cle: "hero-title", label: "Titre hero (homepage)", valeur: "Activez la puissance de votre collectif." },
     { cle: "hero-subtitle", label: "Sous-titre hero (homepage)", valeur: "L'outil digital qui crée les bons échanges, au bon moment." },
+    // BannerCount
     { cle: "citation-texte", label: "Citation BannerCount", valeur: "Uvibes a transformé nos échanges internes." },
     { cle: "citation-auteur", label: "Auteur de la citation", valeur: "Marie Dupont" },
     { cle: "citation-role", label: "Rôle de l'auteur", valeur: "DRH — Entreprise XY" },
     { cle: "user-number", label: "Nombre d'utilisateurs (BannerCount)", valeur: "3 500" },
+    // Page À propos
+    { cle: "uvibes-mission", label: "Mission Uvibes (page À propos)", valeur: "Uvibes est la plateforme qui transforme les collectifs en communautés vivantes, engagées et efficaces." },
+    { cle: "uvibes-annee-creation", label: "Année de création", valeur: "2022" },
+    { cle: "uvibes-ville", label: "Ville siège social", valeur: "Paris, France" },
+    // Page Solution
+    { cle: "solution-title", label: "Titre page /solution", valeur: "La solution Uvibes" },
+    { cle: "solution-subtitle", label: "Sous-titre page /solution", valeur: "Un outil pensé pour chaque type de collectif, à chaque étape de son évolution." },
+    // Contact
+    { cle: "contact-email", label: "Email de contact affiché", valeur: "contact@uvibes.fr" },
+    { cle: "contact-telephone", label: "Téléphone de contact affiché", valeur: "+33 1 00 00 00 00" },
+    // SEO
+    { cle: "og-description", label: "Description OG (réseaux sociaux)", valeur: "Uvibes, la plateforme qui active la puissance de votre collectif grâce aux expériences interactives." },
   ];
 
   for (const c of cmsDefaults) {
@@ -96,6 +110,41 @@ async function main() {
       update: {},
       create: c,
     });
+  }
+
+  // ── Partenaires ───────────────────────────────────────
+  const partenaires = [
+    { nom: "Université Paris Cité", logoUrl: "/images/partners/upc.png", siteUrl: "https://u-paris.fr", ordre: 0 },
+    { nom: "Fédération Française de Handball", logoUrl: "/images/partners/ffhb.png", siteUrl: "https://ff-handball.org", ordre: 1 },
+    { nom: "Croix-Rouge Française", logoUrl: "/images/partners/croix-rouge.png", siteUrl: "https://www.croix-rouge.fr", ordre: 2 },
+    { nom: "Mairie de Lyon", logoUrl: "/images/partners/lyon.png", siteUrl: "https://www.lyon.fr", ordre: 3 },
+  ];
+  for (const p of partenaires) {
+    await prisma.partner.upsert({
+      where: { id: p.nom.toLowerCase().replace(/\s/g, "-") },
+      update: {},
+      create: p,
+    }).catch(() => prisma.partner.create({ data: p }));
+  }
+
+  // ── Témoignages ───────────────────────────────────────
+  const temoignages = [
+    { auteur: "Marie Dupont", role: "DRH — Entreprise XY", texte: "Uvibes a transformé nos échanges internes. Les équipes sont plus engagées et la communication est bien plus fluide.", ordre: 0 },
+    { auteur: "Thomas Martin", role: "Directeur Sportif — Club Athlétisme Toulouse", texte: "L'application est intuitive et nos adhérents l'ont adoptée en moins d'une semaine. Un vrai plus pour notre collectif.", ordre: 1 },
+    { auteur: "Isabelle Leroy", role: "Responsable RH — Association Solidarité 13", texte: "Le baromètre bien-être nous a permis d'identifier des problèmes avant qu'ils ne deviennent critiques. Indispensable.", ordre: 2 },
+  ];
+  for (const t of temoignages) {
+    await prisma.testimony.create({ data: t }).catch(() => {});
+  }
+
+  // ── Équipe ────────────────────────────────────────────
+  const equipe = [
+    { nom: "Sofia Ait-Taleb", poste: "CEO & Co-fondatrice", equipe: "Direction", ordre: 0 },
+    { nom: "Lucas Bernard", poste: "CTO", equipe: "Tech", ordre: 1 },
+    { nom: "Amina Chouaib", poste: "Responsable Partenariats", equipe: "Commercial", ordre: 2 },
+  ];
+  for (const m of equipe) {
+    await prisma.teamMember.create({ data: m }).catch(() => {});
   }
 
   // ── Admin par défaut ──────────────────────────────────
@@ -111,7 +160,7 @@ async function main() {
     },
   });
 
-  console.log("✅ Seed terminé : plans, features, CMS, admin créés");
+  console.log("✅ Seed terminé : plans, features, CMS, partenaires, témoignages, équipe, admin créés");
 }
 
 main()
