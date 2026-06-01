@@ -17,12 +17,6 @@ const TAILLES = [
   { value: "+1000", label: "+ 1 000 membres" },
 ];
 
-const PLANS = [
-  { slug: "vibes-connection", nom: "Vibes Connection" },
-  { slug: "vibes-premium", nom: "Vibes Premium" },
-  { slug: "vibes-boost", nom: "Vibes Boost" },
-];
-
 const DUREES = [
   { mois: 12, label: "12 mois" },
   { mois: 24, label: "24 mois (−8%)" },
@@ -30,12 +24,14 @@ const DUREES = [
 ];
 
 interface Collectif { id: string; nom: string; email: string; contact: string; }
+interface Plan { slug: string; nom: string; prixAnnuel: number; }
 
 interface Props {
   collectifs: Collectif[];
+  plans: Plan[];
 }
 
-export default function AdminDevisForm({ collectifs }: Props) {
+export default function AdminDevisForm({ collectifs, plans }: Props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
@@ -55,7 +51,7 @@ export default function AdminDevisForm({ collectifs }: Props) {
   const [tailleCollectif, setTailleCollectif] = useState("50-250");
 
   // Devis
-  const [planSlug, setPlanSlug] = useState("vibes-premium");
+  const [planSlug, setPlanSlug] = useState(plans[0]?.slug ?? "");
   const [nombreUtilisateurs, setNombreUtilisateurs] = useState(100);
   const [dureeContrat, setDureeContrat] = useState(12);
   const [remiseManuelle, setRemiseManuelle] = useState(0);
@@ -191,7 +187,12 @@ export default function AdminDevisForm({ collectifs }: Props) {
               <div className="crm-field-row">
                 <label className="crm-field-label">Plan *</label>
                 <select className="crm-field-select" value={planSlug} onChange={(e) => setPlanSlug(e.target.value)}>
-                  {PLANS.map((p) => <option key={p.slug} value={p.slug}>{p.nom}</option>)}
+                  {plans.length === 0 && <option value="">Aucun plan actif</option>}
+                  {plans.map((p) => (
+                    <option key={p.slug} value={p.slug}>
+                      {p.nom} — {p.prixAnnuel.toLocaleString("fr-FR")} €/an
+                    </option>
+                  ))}
                 </select>
               </div>
 

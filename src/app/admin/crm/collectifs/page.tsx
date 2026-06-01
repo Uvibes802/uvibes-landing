@@ -31,6 +31,7 @@ export default async function CollectifsPage({ searchParams }: Props) {
     <>
       <div className="crm-topbar">
         <span className="crm-topbar-title">Collectifs ({items.length})</span>
+        <Link href="/admin/crm/collectifs/nouveau" className="crm-btn --primary --sm">+ Nouveau collectif</Link>
       </div>
 
       <div className="crm-content">
