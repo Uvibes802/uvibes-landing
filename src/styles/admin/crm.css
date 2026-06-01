@@ -480,6 +480,10 @@ table.crm-table {
 .crm-login-sub { font-size: 13px; color: var(--crm-muted); margin: 0 0 28px; }
 .crm-login-error { font-size: 13px; color: var(--rose, #D90A5C); margin-bottom: 16px; padding: 10px 14px; background: rgba(217,10,92,.07); border-radius: 8px; }
 
+/* ── Utils ────────────────────────────────────────────────────── */
+@keyframes crmSpin { to { transform: rotate(360deg); } }
+.crm-spin { animation: crmSpin 0.8s linear infinite; }
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .crm-metrics { grid-template-columns: repeat(2, 1fr); }
