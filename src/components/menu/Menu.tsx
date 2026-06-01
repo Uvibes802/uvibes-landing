@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { PopupButton } from "react-calendly";
+
 import { Items } from "../../data/menu/MenuData";
 import "../../styles/menu/Menu.css";
 
@@ -103,14 +103,9 @@ export default function Menu() {
             </svg>
             Connexion
           </a>
-          {isClient && (
-            <PopupButton
-              url="https://calendly.com/uvibescommunication/30min"
-              rootElement={document.body}
-              text="On en parle ?"
-              className="btn-ink v-nav-cta"
-            />
-          )}
+          <Link href="/rdv" className="btn-ink v-nav-cta">
+            On en parle ?
+          </Link>
         </div>
       </nav>
 
@@ -163,14 +158,9 @@ export default function Menu() {
             </svg>
             Connexion à la plateforme
           </a>
-          {isClient && (
-            <PopupButton
-              url="https://calendly.com/uvibescommunication/30min"
-              rootElement={document.body}
-              text="On en parle ?"
-              className="v-sheet-cta"
-            />
-          )}
+          <Link href="/rdv" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>
+            On en parle ?
+          </Link>
         </div>
 
         {/* FAB */}

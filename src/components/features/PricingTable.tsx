@@ -23,8 +23,8 @@ const PLAN_META = [
     featured: true,
     badge: "Le plus populaire",
     inherit: "Connection",
-    cta: "Choisir Premium",
-    ctaType: "calendly" as const,
+    cta: "Faire un devis",
+    ctaType: "devis" as const,
   },
   {
     accent: "var(--rose)",
@@ -126,7 +126,12 @@ export default function PricingTable() {
 
                 {/* CTA */}
                 <div className="pt-card-cta-wrap">
-                  {meta.ctaType === "calendly" && rootElement ? (
+                  {meta.ctaType === "devis" ? (
+                    <Link href="/devis" className="pt-card-cta">
+                      {meta.cta}
+                      <ArrowRight size={16} />
+                    </Link>
+                  ) : meta.ctaType === "calendly" && rootElement ? (
                     <PopupButton
                       url="https://calendly.com/uvibescommunication/30min"
                       rootElement={rootElement}

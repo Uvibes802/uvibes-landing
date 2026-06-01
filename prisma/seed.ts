@@ -160,7 +160,19 @@ async function main() {
     },
   });
 
-  console.log("✅ Seed terminé : plans, features, CMS, partenaires, témoignages, équipe, admin créés");
+  // ── Disponibilités RDV ────────────────────────────────
+  // Lundi à Vendredi, 9h-18h, créneaux 30 min
+  const joursOuvrables = [1, 2, 3, 4, 5]; // 1=Lundi ... 5=Vendredi
+  const existingDispo = await prisma.rdvDisponibilite.count();
+  if (existingDispo === 0) {
+    for (const jour of joursOuvrables) {
+      await prisma.rdvDisponibilite.create({
+        data: { jourSemaine: jour, heureDebut: "09:00", heureFin: "18:00", dureeMinutes: 30, actif: true },
+      });
+    }
+  }
+
+  console.log("✅ Seed terminé : plans, features, CMS, partenaires, témoignages, équipe, admin, RDV créés");
 }
 
 main()

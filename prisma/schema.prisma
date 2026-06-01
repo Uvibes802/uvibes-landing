@@ -153,3 +153,29 @@ model AdminUser {
   createdAt    DateTime  @default(now())
   lastLoginAt  DateTime?
 }
+
+// ── SYSTÈME RDV ────────────────────────────────────────
+
+model RdvDisponibilite {
+  id          String  @id @default(cuid())
+  jourSemaine Int     // 1=Lundi ... 5=Vendredi
+  heureDebut  String  // "09:00"
+  heureFin    String  // "18:00"
+  dureeMinutes Int    @default(30)
+  actif       Boolean @default(true)
+}
+
+model RdvReservation {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  date         String   // "2026-06-15"
+  heure        String   // "14:00"
+  nom          String
+  email        String
+  telephone    String?
+  organisation String?
+  sujet        String
+  message      String?
+  statut       String   @default("EN_ATTENTE") // EN_ATTENTE | CONFIRME | ANNULE
+  noteAdmin    String?
+}

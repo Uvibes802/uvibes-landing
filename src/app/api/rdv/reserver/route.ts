@@ -1,0 +1,72 @@
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import nodemailer from "nodemailer";
+
+// Rate limiting simple : 3 réservations par IP par heure
+const attempts = new Map<string, { count: number; resetAt: number }>();
+function checkRate(ip: string) {
+  const now = Date.now();
+  const entry = attempts.get(ip);
+  if (!entry || now > entry.resetAt) { attempts.set(ip, { count: 1, resetAt: now + 3600_000 }); return true; }
+  if (entry.count >= 3) return false;
+  entry.count++; return true;
+}
+
+export async function POST(req: NextRequest) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  if (!checkRate(ip)) return NextResponse.json({ error: "Trop de réservations — réessayez plus tard." }, { status: 429 });
+
+  const { date, heure, nom, email, telephone, organisation, sujet, message } = await req.json();
+  if (!date || !heure || !nom || !email || !sujet) {
+    return NextResponse.json({ error: "Champs obligatoires manquants" }, { status: 400 });
+  }
+
+  // Vérifier que le créneau est encore disponible
+  const existing = await prisma.rdvReservation.findFirst({
+    where: { date, heure, statut: { not: "ANNULE" } },
+  });
+  if (existing) return NextResponse.json({ error: "Ce créneau vient d'être pris. Choisissez-en un autre." }, { status: 409 });
+
+  const rdv = await prisma.rdvReservation.create({
+    data: { date, heure, nom, email, telephone: telephone || null, organisation: organisation || null, sujet, message: message || null },
+  });
+
+  // Email de confirmation au client
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { type: "OAuth2", user: process.env.EMAIL_USER, clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET, refreshToken: process.env.GOOGLE_REFRESH_TOKEN },
+    });
+    const dateFormatted = new Date(date).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    await transporter.sendMail({
+      from: `"Uvibes" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: `Confirmation de rendez-vous Uvibes — ${dateFormatted} à ${heure}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#4A1530">
+          <div style="background:linear-gradient(135deg,#FD6E00,#D90A5C);padding:32px;border-radius:12px 12px 0 0">
+            <h1 style="color:#fff;margin:0;font-size:24px">Uvibes</h1>
+          </div>
+          <div style="padding:32px;background:#FFFBF4;border-radius:0 0 12px 12px;border:1px solid rgba(74,21,48,.09)">
+            <h2>Bonjour ${nom},</h2>
+            <p>Votre demande de rendez-vous a bien été enregistrée. Nous confirmerons rapidement.</p>
+            <table style="width:100%;border-collapse:collapse;margin:24px 0">
+              <tr style="background:#FFF6EC"><td style="padding:12px;border:1px solid #E0AEC4">Date</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${dateFormatted}</strong></td></tr>
+              <tr><td style="padding:12px;border:1px solid #E0AEC4">Heure</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${heure}</strong></td></tr>
+              <tr style="background:#FFF6EC"><td style="padding:12px;border:1px solid #E0AEC4">Sujet</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${sujet}</strong></td></tr>
+            </table>
+            <p style="color:#B0507E;font-size:13px">Une question ? Contactez-nous sur uvibes.fr</p>
+          </div>
+        </div>`,
+    });
+    // Notifier l'admin
+    await transporter.sendMail({
+      from: `"Uvibes CRM" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER ?? "",
+      subject: `📅 Nouveau RDV — ${nom} — ${dateFormatted} ${heure}`,
+      html: `<p>Nouveau RDV demandé :<br><strong>${nom}</strong> (${email})<br>Le ${dateFormatted} à ${heure}<br>Sujet : ${sujet}<br>${organisation ? "Org : " + organisation : ""}</p>`,
+    });
+  } catch (e) { console.error("Email RDV:", e); }
+
+  return NextResponse.json({ id: rdv.id }, { status: 201 });
+}
