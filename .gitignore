@@ -52,6 +52,7 @@ SETUP_PROMPT.md
 /.playwright-mcp/
 /*.png
 /*.json
+!vercel.json
 /*.pdf
 /audit-*
 /.audit/
