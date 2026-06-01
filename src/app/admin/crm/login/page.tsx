@@ -70,8 +70,7 @@ export default function CrmLoginPage() {
         </form>
 
         <p style={{ marginTop: 24, fontSize: 11, color: "var(--crm-muted)", textAlign: "center" }}>
-          Identifiants par défaut :<br />
-          admin@uvibes.fr · uvibes-admin-2026
+          Accès réservé — contactez l&apos;administrateur système.
         </p>
       </div>
     </div>

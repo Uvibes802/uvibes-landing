@@ -6,7 +6,12 @@ type Ctx = { params: Promise<{ id: string }> };
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const { id } = await params;
   const body = await req.json();
-  const item = await prisma.partner.update({ where: { id }, data: body });
+  const allowed = ["nom", "logoUrl", "siteUrl", "actif", "ordre"];
+  const data: Record<string, unknown> = {};
+  for (const key of allowed) {
+    if (body[key] !== undefined) data[key] = body[key];
+  }
+  const item = await prisma.partner.update({ where: { id }, data });
   return NextResponse.json(item);
 }
 

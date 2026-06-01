@@ -5,7 +5,13 @@ type Ctx = { params: Promise<{ id: string }> };
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const { id } = await params;
-  const item = await prisma.teamMember.update({ where: { id }, data: await req.json() });
+  const body = await req.json();
+  const allowed = ["nom", "poste", "equipe", "photoUrl", "actif", "ordre"];
+  const data: Record<string, unknown> = {};
+  for (const key of allowed) {
+    if (body[key] !== undefined) data[key] = body[key];
+  }
+  const item = await prisma.teamMember.update({ where: { id }, data });
   return NextResponse.json(item);
 }
 
