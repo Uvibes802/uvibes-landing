@@ -164,13 +164,51 @@
   text-align: center;
   padding: 3rem 2rem;
   background: #fff;
-  border-radius: 16px;
+  border-radius: 20px;
   border: 1px solid rgba(22, 163, 74, 0.2);
+  box-shadow: 0 8px 40px rgba(22, 163, 74, 0.08);
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 .rdv-success-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.rdv-success-title {
+  font-family: var(--text-font-bold, "Supreme-Bold");
+  font-size: 1.6rem;
+  color: var(--ink, #2a1a2e);
+  margin: 0 0 0.75rem;
+}
+
+.rdv-success-text {
+  color: var(--ink-muted, #6b5c75);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.rdv-success-sub {
+  color: var(--ink-muted, #6b5c75);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.rdv-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(22, 163, 74, 0.08);
+  border: 1px solid rgba(22, 163, 74, 0.2);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #16a34a;
 }
 
 .rdv-error {

@@ -12,7 +12,7 @@ export default async function PartenairesPage() {
           apiBase="/api/admin/cms/partners"
           fields={[
             { key: "nom", label: "Nom", required: true },
-            { key: "logoUrl", label: "URL du logo", required: true },
+            { key: "logoUrl", label: "URL du logo", required: true, type: "image" },
             { key: "siteUrl", label: "Site web" },
           ]}
           displayField="nom"

@@ -8,6 +8,7 @@ interface FieldDef {
   label: string;
   required?: boolean;
   multiline?: boolean;
+  type?: "text" | "url" | "image";
 }
 
 interface Props {
@@ -116,7 +117,15 @@ export default function CrudManager({ items: initial, apiBase, fields, toggleFie
               <tr key={String(item.id)}>
                 {fields.slice(0, 2).map((f) => (
                   <td key={f.key} style={{ maxWidth: 260, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: 13 }}>
-                    {String(item[f.key] ?? "")}
+                    {f.type === "image" && item[f.key] ? (
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={String(item[f.key])} alt="" style={{ height: 32, width: "auto", maxWidth: 80, objectFit: "contain", borderRadius: 4, border: "1px solid var(--crm-border)", background: "#fff", padding: 2 }} onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                        <span style={{ fontSize: 11, color: "var(--crm-muted)", overflow: "hidden", textOverflow: "ellipsis" }}>{String(item[f.key])}</span>
+                      </div>
+                    ) : (
+                      String(item[f.key] ?? "")
+                    )}
                   </td>
                 ))}
                 {toggleField && (

@@ -67,16 +67,25 @@ export default function BookingForm() {
   if (success) {
     return (
       <div className="rdv-success">
-        <div className="rdv-success-icon">✅</div>
-        <h2 style={{ fontFamily: "var(--text-font-bold)", fontSize: "1.5rem", marginBottom: "0.75rem" }}>
-          Demande envoyée !
-        </h2>
-        <p style={{ color: "var(--ink-muted, #6b5c75)", marginBottom: "0.5rem" }}>
-          Votre rendez-vous du <strong>{new Date(date).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</strong> à <strong>{selectedSlot}</strong> a bien été enregistré.
+        <div className="rdv-success-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="24" fill="rgba(22,163,74,.1)" />
+            <path d="M14 24l8 8 12-14" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <h2 className="rdv-success-title">Demande envoyée !</h2>
+        <p className="rdv-success-text">
+          Votre rendez-vous du{" "}
+          <strong>{new Date(date).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</strong>{" "}
+          à <strong>{selectedSlot}</strong> a bien été enregistré.
         </p>
-        <p style={{ color: "var(--ink-muted, #6b5c75)", fontSize: "0.875rem" }}>
-          Un email de confirmation a été envoyé à {email}. Nous confirmerons rapidement.
+        <p className="rdv-success-sub">
+          Un email de confirmation vous sera envoyé à <strong>{email}</strong>.<br />
+          Nous confirmons dans les 24h.
         </p>
+        <div className="rdv-success-badge">
+          <span>🗓</span> Rendez-vous en attente de confirmation
+        </div>
       </div>
     );
   }

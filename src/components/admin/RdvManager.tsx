@@ -122,15 +122,32 @@ export default function RdvManager({ reservations: initRes, disponibilites: init
 
   const filteredRes = filterStatut ? reservations.filter((r) => r.statut === filterStatut) : reservations;
 
+  const enAttente = reservations.filter((r) => r.statut === "EN_ATTENTE").length;
+  const confirmes = reservations.filter((r) => r.statut === "CONFIRME").length;
+
   return (
     <div>
+      {/* Stats rapides */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 20 }}>
+        {[
+          { label: "Total RDV", value: reservations.length, color: "var(--crm-text)" },
+          { label: "En attente", value: enAttente, color: "var(--crm-accent)" },
+          { label: "Confirmés", value: confirmes, color: "#16a34a" },
+        ].map(({ label, value, color }) => (
+          <div key={label} className="crm-detail-card" style={{ padding: "14px 18px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span className="crm-field-label">{label}</span>
+            <span style={{ fontSize: 24, fontWeight: 800, color, fontFamily: "var(--font-prompt, sans-serif)", lineHeight: 1 }}>{value}</span>
+          </div>
+        ))}
+      </div>
+
       {/* Tabs */}
       <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
         <button className={`crm-btn --sm ${tab === "reservations" ? "--primary" : "--outline"}`} onClick={() => setTab("reservations")}>
-          <Calendar size={13} /> Réservations ({reservations.length})
+          <Calendar size={13} /> Réservations {enAttente > 0 && <span style={{ background: "var(--crm-accent)", color: "#fff", borderRadius: 999, padding: "1px 6px", fontSize: 10, marginLeft: 4 }}>{enAttente}</span>}
         </button>
         <button className={`crm-btn --sm ${tab === "disponibilites" ? "--primary" : "--outline"}`} onClick={() => setTab("disponibilites")}>
-          <Settings size={13} /> Disponibilités
+          <Settings size={13} /> Disponibilités ({dispos.filter(d => d.actif).length} actives)
         </button>
       </div>
 
@@ -207,11 +224,16 @@ export default function RdvManager({ reservations: initRes, disponibilites: init
               </div>
 
               <div style={{ display: "flex", gap: 8, marginTop: 16, flexWrap: "wrap" }}>
-                <button className="crm-btn --sm" style={{ background: "#16a34a", color: "#fff", border: "none" }} onClick={() => updateStatut(selected.id, "CONFIRME")} disabled={saving || selected.statut === "CONFIRME"}>
-                  <Check size={13} /> Confirmer
+                <button
+                  className="crm-btn --sm"
+                  style={{ background: selected.statut === "CONFIRME" ? "rgba(22,163,74,.1)" : "#16a34a", color: selected.statut === "CONFIRME" ? "#16a34a" : "#fff", border: selected.statut === "CONFIRME" ? "1px solid rgba(22,163,74,.3)" : "none", cursor: selected.statut === "CONFIRME" ? "default" : "pointer" }}
+                  onClick={() => updateStatut(selected.id, "CONFIRME")}
+                  disabled={saving || selected.statut === "CONFIRME"}
+                >
+                  <Check size={13} /> {selected.statut === "CONFIRME" ? "Confirmé ✓" : "Confirmer"}
                 </button>
                 <button className="crm-btn --danger --sm" onClick={() => updateStatut(selected.id, "ANNULE")} disabled={saving || selected.statut === "ANNULE"}>
-                  <X size={13} /> Annuler
+                  <X size={13} /> {selected.statut === "ANNULE" ? "Annulé" : "Annuler"}
                 </button>
               </div>
 
@@ -288,8 +310,11 @@ export default function RdvManager({ reservations: initRes, disponibilites: init
                       </select>
                     </td>
                     <td>
-                      <button style={{ background: "none", border: "none", cursor: "pointer", color: d.actif ? "#16a34a" : "var(--crm-muted)", fontSize: 13, fontWeight: 600 }}
-                        onClick={() => toggleDispo(d.id, !d.actif)}>
+                      <button
+                        className={`crm-badge ${d.actif ? "--signe" : "--brouillon"}`}
+                        style={{ background: "none", border: `1px solid ${d.actif ? "rgba(22,163,74,.3)" : "var(--crm-border)"}`, cursor: "pointer" }}
+                        onClick={() => toggleDispo(d.id, !d.actif)}
+                      >
                         {d.actif ? "✓ Actif" : "Inactif"}
                       </button>
                     </td>
