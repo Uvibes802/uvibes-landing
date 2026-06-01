@@ -9,8 +9,12 @@ export interface SessionData {
   isLoggedIn: boolean;
 }
 
+if (process.env.NODE_ENV === "production" && !process.env.IRON_SESSION_SECRET) {
+  throw new Error("IRON_SESSION_SECRET doit être défini en production.");
+}
+
 const SESSION_OPTIONS = {
-  password: process.env.IRON_SESSION_SECRET ?? "uvibes-crm-secret-32-chars-minimum!!",
+  password: process.env.IRON_SESSION_SECRET ?? "uvibes-crm-dev-secret-32-chars-min!!",
   cookieName: "uvibes_admin_session",
   cookieOptions: {
     secure: process.env.NODE_ENV === "production",

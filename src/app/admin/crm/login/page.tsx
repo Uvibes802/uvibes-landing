@@ -19,7 +19,7 @@ export default function CrmLoginPage() {
       const res = await fetch("/api/admin/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error); return; }
@@ -40,7 +40,7 @@ export default function CrmLoginPage() {
 
         {error && <div className="crm-login-error">{error}</div>}
 
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }} autoComplete="on">
           <div>
             <label className="crm-field-label" style={{ display: "block", marginBottom: 6 }}>Email</label>
             <input
@@ -49,6 +49,7 @@ export default function CrmLoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@uvibes.fr"
+              autoComplete="email"
               required
               autoFocus
             />
@@ -61,6 +62,7 @@ export default function CrmLoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
+              autoComplete="current-password"
               required
             />
           </div>

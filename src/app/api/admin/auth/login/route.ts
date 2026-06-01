@@ -26,7 +26,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Trop de tentatives — réessayez dans 15 minutes." }, { status: 429 });
     }
 
-    const { email, password } = await req.json();
+    const body = await req.json();
+    const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+    const password = typeof body.password === "string" ? body.password : "";
+
     if (!email || !password) {
       return NextResponse.json({ error: "Email et mot de passe requis" }, { status: 400 });
     }

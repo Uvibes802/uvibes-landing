@@ -154,6 +154,17 @@
   color: rgba(255,255,255,.65);
 }
 
+.ft-admin-link {
+  font-size: 10px;
+  color: rgba(255,255,255,.2);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.ft-admin-link:hover { color: rgba(255,255,255,.5); }
+
 /* ── Responsive ──────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
