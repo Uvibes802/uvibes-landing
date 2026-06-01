@@ -32,7 +32,10 @@
   font-size: clamp(38px, 4.8vw, 72px);
   line-height: .95;
   letter-spacing: -0.04em;
-  color: var(--ink);
+  background: linear-gradient(90deg, var(--orange), var(--rose));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .fc-intro-serif {
@@ -63,8 +66,8 @@
   align-items: center;
 }
 
-.fc-row:nth-child(odd)  { background: var(--paper); }
-.fc-row:nth-child(even) { background: var(--cream); }
+.fc-row:nth-child(odd)  { background: linear-gradient(135deg, #fff8f2 0%, #fff4fa 100%); }
+.fc-row:nth-child(even) { background: linear-gradient(135deg, #fff4f0 0%, #fff0f8 100%); }
 
 /* Colonne inversée sur rangée impaire (index 1) */
 .fc-row--reverse .fc-text  { order: 2; }
@@ -123,8 +126,9 @@
   font-size: clamp(32px, 3.6vw, 52px);
   line-height: 1.02;
   letter-spacing: -0.03em;
-  color: var(--ink);
+  color: var(--orange);
 }
+.fc-row--rose .fc-title { color: var(--rose); }
 
 /* ── Liste avec CheckChip ─────────────────────────────────────── */
 .fc-list {
@@ -211,12 +215,11 @@
 .fc-circle {
   position: relative;
   width: clamp(240px, 28vw, 340px);
-  height: clamp(240px, 28vw, 340px);
-  max-width: 76vw; max-height: 76vw;
+  aspect-ratio: 1 / 1;
+  max-width: 76vw;
   border-radius: 50%;
   overflow: hidden;
-  display: grid;
-  place-items: center;
+  flex-shrink: 0;
 }
 
 .fc-row--orange .fc-circle {
@@ -235,10 +238,12 @@
 }
 
 .fc-video {
+  position: absolute;
+  inset: 0;
   width: 100%; height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  object-position: top;
+  object-position: center top;
   display: block;
   transition: opacity .3s ease;
 }
