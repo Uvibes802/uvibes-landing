@@ -44,7 +44,7 @@ export default async function DevisListPage({ searchParams }: Props) {
     <>
       <div className="crm-topbar">
         <span className="crm-topbar-title">Devis ({total})</span>
-        <Link href="/devis" target="_blank" className="crm-btn --primary --sm">+ Nouveau devis</Link>
+        <Link href="/admin/crm/devis/nouveau" className="crm-btn --primary --sm">+ Nouveau devis</Link>
       </div>
 
       <div className="crm-content">
