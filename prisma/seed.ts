@@ -102,6 +102,11 @@ async function main() {
     { cle: "contact-telephone", label: "Téléphone de contact affiché", valeur: "+33 1 00 00 00 00" },
     // SEO
     { cle: "og-description", label: "Description OG (réseaux sociaux)", valeur: "Uvibes, la plateforme qui active la puissance de votre collectif grâce aux expériences interactives." },
+    // Système RDV
+    { cle: "rdv-systeme", label: "Système de prise de RDV (custom | calendly)", valeur: "custom" },
+    { cle: "rdv-calendly-url", label: "URL Calendly (si système = calendly)", valeur: "https://calendly.com/uvibescommunication/30min" },
+    // Catégories équipe
+    { cle: "team-categories", label: "Catégories équipe (JSON)", valeur: JSON.stringify(["Direction", "Tech", "Commercial"]) },
   ];
 
   for (const c of cmsDefaults) {

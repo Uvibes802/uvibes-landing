@@ -15,12 +15,21 @@ export default function Menu() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [rdvSysteme, setRdvSysteme] = useState<"custom" | "calendly">("custom");
+  const [calendlyUrl, setCalendlyUrl] = useState("https://calendly.com/uvibescommunication/30min");
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsClient(true);
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((s) => {
+        if (s["rdv-systeme"]) setRdvSysteme(s["rdv-systeme"] as "custom" | "calendly");
+        if (s["rdv-calendly-url"]) setCalendlyUrl(s["rdv-calendly-url"]);
+      })
+      .catch(() => {});
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -103,9 +112,13 @@ export default function Menu() {
             </svg>
             Connexion
           </a>
-          <Link href="/rdv" className="btn-ink v-nav-cta">
-            On en parle ?
-          </Link>
+          {rdvSysteme === "calendly" && isClient ? (
+            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-ink v-nav-cta">
+              On en parle ?
+            </a>
+          ) : (
+            <Link href="/rdv" className="btn-ink v-nav-cta">On en parle ?</Link>
+          )}
         </div>
       </nav>
 
@@ -158,9 +171,13 @@ export default function Menu() {
             </svg>
             Connexion à la plateforme
           </a>
-          <Link href="/rdv" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>
-            On en parle ?
-          </Link>
+          {rdvSysteme === "calendly" && isClient ? (
+            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>
+              On en parle ?
+            </a>
+          ) : (
+            <Link href="/rdv" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>On en parle ?</Link>
+          )}
         </div>
 
         {/* FAB */}

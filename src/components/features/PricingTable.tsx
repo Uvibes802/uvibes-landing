@@ -4,7 +4,7 @@ import usePricing from "@/services/pricing/usePricing";
 import { ArrowRight, Check, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { PopupButton } from "react-calendly";
+
 import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
 import PricingMobile from "./PricingMobile";
@@ -44,8 +44,10 @@ const FRESH: Record<number, (i: number) => boolean> = {
 };
 
 export default function PricingTable() {
-  const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
   const pricingData = usePricing();
+  const [rdvSysteme, setRdvSysteme] = useState<"custom" | "calendly">("custom");
+   
+  const [calendlyUrl, setCalendlyUrl] = useState("https://calendly.com/uvibescommunication/30min");
 
   const mergedPlans = plans.map((plan) => {
     const dynamicPrice = pricingData.find(
@@ -55,7 +57,13 @@ export default function PricingTable() {
   });
 
   useEffect(() => {
-    setRootElement(document.getElementById("root") || document.body);
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((s) => {
+        if (s["rdv-systeme"]) setRdvSysteme(s["rdv-systeme"] as "custom" | "calendly");
+        if (s["rdv-calendly-url"]) setCalendlyUrl(s["rdv-calendly-url"]);
+      })
+      .catch(() => {});
   }, []);
 
   return (
@@ -131,13 +139,18 @@ export default function PricingTable() {
                       {meta.cta}
                       <ArrowRight size={16} />
                     </Link>
-                  ) : meta.ctaType === "calendly" && rootElement ? (
-                    <PopupButton
-                      url="https://calendly.com/uvibescommunication/30min"
-                      rootElement={rootElement}
-                      text={meta.cta.replace("&apos;", "'")}
-                      className="pt-card-cta"
-                    />
+                  ) : meta.ctaType === "calendly" ? (
+                    rdvSysteme === "calendly" ? (
+                      <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="pt-card-cta">
+                        {meta.cta}
+                        <ArrowRight size={16} />
+                      </a>
+                    ) : (
+                      <Link href="/rdv" className="pt-card-cta">
+                        {meta.cta}
+                        <ArrowRight size={16} />
+                      </Link>
+                    )
                   ) : (
                     <Link href="/#contact" className="pt-card-cta">
                       Contacter l&apos;équipe
