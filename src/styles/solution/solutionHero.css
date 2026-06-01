@@ -174,193 +174,118 @@
 }
 .sh-cta-ghost:hover { color: #fff; border-color: #fff; }
 
-/* ── MacBook ──────────────────────────────────────────────────── */
-.sh-mac-wrap {
+/* ── App Screen mockup ────────────────────────────────────────── */
+.sh-screen-wrap {
   position: relative;
   flex-shrink: 0;
-  perspective: 1400px;
+  animation: shFloat 7s ease-in-out infinite;
 }
 
-.sh-mac-halo {
+@keyframes shFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+.sh-screen-halo {
   position: absolute;
-  inset: -80px -60px;
+  inset: -60px;
   border-radius: 50%;
   background: radial-gradient(closest-side,
-    rgba(180,185,200,.45) 0%, rgba(200,205,220,.22) 55%, transparent 75%);
-  filter: blur(64px);
+    rgba(255,180,80,.35) 0%, rgba(253,110,0,.18) 50%, transparent 75%);
+  filter: blur(48px);
   pointer-events: none;
   animation: shHalo 6s ease-in-out infinite;
 }
 
 @keyframes shHalo {
   0%,100% { transform: scale(1);    opacity: 1;   }
-  50%      { transform: scale(1.1); opacity: 0.75; }
+  50%      { transform: scale(1.12); opacity: 0.7; }
 }
 
-.sh-mac {
-  width: clamp(280px, 38vw, 560px);
-  animation: shFloat 7s ease-in-out infinite;
-}
-
-@keyframes shFloat {
-  0%,100% { transform: translateY(0);     }
-  50%      { transform: translateY(-14px); }
-}
-
-/* Couvercle — silver aluminium, ouvert à 130° */
-.sh-mac-lid {
-  background: linear-gradient(160deg, #d8dce4 0%, #c8ccd5 40%, #b8bcc7 100%);
-  border-radius: 14px 14px 3px 3px;
-  padding: 10px 10px 6px;
-  position: relative;
-  transform-origin: bottom center;
-  animation: shLidOpen 1.5s cubic-bezier(.22,1,.36,1) 0.3s both;
+.sh-screen {
+  width: clamp(300px, 40vw, 580px);
+  background: rgba(255,255,255,.12);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.35);
+  backdrop-filter: blur(6px);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.6),
-    inset 0 -1px 0 rgba(0,0,0,.1),
-    0 0 0 1px rgba(160,165,175,.3),
-    0 28px 72px rgba(0,0,0,.32),
-    0 6px 28px rgba(150,155,170,.18);
-}
-
-/* Animation couvercle → s'ouvre à 130° (rotateX négatif = écran incliné vers spectateur) */
-@keyframes shLidOpen {
-  from { transform: perspective(1000px) rotateX(72deg); opacity: .15; }
-  to   { transform: perspective(1000px) rotateX(-18deg); opacity: 1;  }
-}
-
-/* Reflet bord supérieur */
-.sh-mac-lid::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 8%; right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.7) 50%, transparent);
-  border-radius: 999px;
-}
-
-/* Notch caméra */
-.sh-mac-notch {
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 90px; height: 22px;
-  background: linear-gradient(160deg, #1c1c1e, #0c0c0e);
-  border-radius: 0 0 12px 12px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sh-mac-notch::after {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #1a1a1c;
-  border: 1px solid rgba(255,255,255,.06);
-  box-shadow: 0 0 0 2px rgba(0,175,221,.18);
-}
-
-/* Display */
-.sh-mac-display {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  background: #000;
-  border-radius: 8px;
+    0 32px 80px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,255,255,.2),
+    inset 0 1px 0 rgba(255,255,255,.4);
   overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.7);
+  animation: shScreenIn 0.9s cubic-bezier(.22,1,.36,1) 0.2s both;
 }
 
-.sh-mac-video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: #000;
+@keyframes shScreenIn {
+  from { opacity: 0; transform: translateY(28px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.sh-mac-screen-glow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(253,110,0,.05), rgba(217,10,92,.04), transparent 60%);
-  pointer-events: none;
-}
-
-/* Charnière brushed metal */
-.sh-mac-hinge {
-  height: 5px;
-  background: linear-gradient(to right, #888, #a8acb3 15%, #c0c4cc 50%, #a8acb3 85%, #888);
-  position: relative;
-}
-.sh-mac-hinge::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: rgba(255,255,255,.3);
-}
-
-/* Corps silver */
-.sh-mac-body {
-  background: linear-gradient(to bottom, #d2d7de 0%, #c6cbd3 50%, #bcbfc8 100%);
-  border-radius: 0 0 10px 10px;
-  padding: 12px 20px 18px;
+/* Barre browser */
+.sh-screen-bar {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
-  box-shadow:
-    0 14px 44px rgba(0,0,0,.28),
-    0 0 0 1px rgba(160,165,175,.28);
-  animation: shBodyIn 1.5s cubic-bezier(.22,1,.36,1) 0.3s both;
-}
-@keyframes shBodyIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  padding: 10px 14px;
+  background: rgba(255,255,255,.18);
+  border-bottom: 1px solid rgba(255,255,255,.2);
 }
 
-/* Clavier — aspect clean MacBook (surface texturée sans grille Blackberry) */
-.sh-mac-keyboard {
-  width: 92%; height: 48px;
-  background: rgba(138,145,158,.52);
-  border-radius: 5px;
-  border: 1px solid rgba(0,0,0,.07);
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    inset 0 2px 6px rgba(0,0,0,.14),
-    inset 0 -1px 0 rgba(255,255,255,.18);
+.sh-screen-dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
-/* Rangée "barre espace" simulée */
-.sh-mac-keyboard::after {
-  content: '';
-  position: absolute;
-  bottom: 10px; left: 50%;
-  transform: translateX(-50%);
-  width: 36%;
-  height: 7px;
-  background: rgba(0,0,0,.18);
-  border-radius: 3px;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+.sh-screen-dots span {
+  display: block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
 }
 
-/* Trackpad silver */
-.sh-mac-trackpad {
-  width: 30%; height: 20px;
-  background: rgba(0,0,0,.07);
+.sh-screen-url {
+  flex: 1;
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.3);
   border-radius: 6px;
-  border: 1px solid rgba(0,0,0,.1);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: monospace;
+  color: rgba(255,255,255,.9);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
 }
 
-/* Pied */
-.sh-mac-foot {
-  height: 4px;
-  background: linear-gradient(to right, #888, #aaadb4 20%, #c2c5cc 50%, #aaadb4 80%, #888);
-  border-radius: 0 0 3px 3px;
-  margin: 0 8%;
-  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+.sh-screen-lock { font-size: 10px; opacity: .7; }
+
+.sh-screen-bar-actions {
+  width: 40px; flex-shrink: 0;
+}
+
+/* Écran vidéo */
+.sh-screen-display {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0a0a0f;
+  overflow: hidden;
+}
+
+.sh-screen-video {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.sh-screen-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(253,110,0,.06) 0%,
+    rgba(217,10,92,.04) 100%);
+  pointer-events: none;
 }
 
 /* ── Responsive ───────────────────────────────────────────────── */

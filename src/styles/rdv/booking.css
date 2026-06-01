@@ -1,14 +1,42 @@
+/* ── Page RDV ─────────────────────────────────────────────────── */
 .rdv-page {
   min-height: 100vh;
-  background: var(--bckgColor, #f8f9fa);
+  background: linear-gradient(160deg, #fff8f2 0%, #fff0f7 50%, #fff4fc 100%);
   padding: 6rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Blobs déco */
+.rdv-page::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.12), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.rdv-page::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(217,10,92,.1), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
 }
 
 .rdv-container {
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
+/* ── Header ───────────────────────────────────────────────────── */
 .rdv-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -19,55 +47,77 @@
   align-items: center;
   gap: 8px;
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--mainColor);
+  color: var(--mainColor, #fd6e00);
   margin-bottom: 1rem;
   font-family: var(--text-font-bold, "Supreme-Bold");
+  background: rgba(253,110,0,.08);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(253,110,0,.18);
 }
 
 .rdv-title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-family: var(--text-font-bold, "Supreme-Bold");
   color: var(--ink, #2a1a2e);
-  margin: 0 0 1rem;
-  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .rdv-subtitle {
   color: var(--ink-muted, #6b5c75);
   font-size: 1rem;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
+/* ── Grid ─────────────────────────────────────────────────────── */
 .rdv-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
   .rdv-grid { grid-template-columns: 1fr; }
 }
 
+/* ── Cards ────────────────────────────────────────────────────── */
 .rdv-card {
   background: #fff;
-  border-radius: 16px;
-  padding: 2rem;
-  border: 1px solid rgba(74, 21, 48, 0.08);
-  box-shadow: 0 4px 24px rgba(74, 21, 48, 0.06);
+  border-radius: 20px;
+  padding: 1.75rem;
+  border: 1px solid rgba(253,110,0,.1);
+  box-shadow: 0 4px 32px rgba(253,110,0,.06), 0 1px 4px rgba(0,0,0,.04);
 }
 
 .rdv-card-title {
-  font-size: 14px;
+  font-size: 11px;
   font-family: var(--text-font-bold, "Supreme-Bold");
-  color: var(--mainColor);
+  color: var(--mainColor, #fd6e00);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   margin: 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+.rdv-card-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--mainColor, #fd6e00);
+  flex-shrink: 0;
+}
+
+/* ── Fields ───────────────────────────────────────────────────── */
 .rdv-field {
   display: flex;
   flex-direction: column;
@@ -76,24 +126,24 @@
 }
 
 .rdv-label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   color: var(--ink, #2a1a2e);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 .rdv-input,
 .rdv-select,
 .rdv-textarea {
   width: 100%;
-  padding: 10px 14px;
-  border: 1.5px solid rgba(74, 21, 48, 0.14);
-  border-radius: 8px;
+  padding: 11px 14px;
+  border: 1.5px solid rgba(74,21,48,.1);
+  border-radius: 10px;
   font-size: 14px;
   color: var(--ink, #2a1a2e);
-  background: #fff;
-  transition: border-color 0.2s;
+  background: #fafafa;
+  transition: all 0.2s;
   font-family: inherit;
   box-sizing: border-box;
 }
@@ -102,11 +152,14 @@
 .rdv-select:focus,
 .rdv-textarea:focus {
   outline: none;
-  border-color: var(--mainColor);
+  border-color: var(--mainColor, #fd6e00);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(253,110,0,.1);
 }
 
-.rdv-textarea { min-height: 80px; resize: vertical; }
+.rdv-textarea { min-height: 88px; resize: vertical; }
 
+/* ── Slots ────────────────────────────────────────────────────── */
 .rdv-slots {
   display: flex;
   flex-wrap: wrap;
@@ -115,73 +168,87 @@
 }
 
 .rdv-slot {
-  padding: 7px 14px;
-  border: 1.5px solid rgba(74, 21, 48, 0.14);
+  padding: 8px 16px;
+  border: 1.5px solid rgba(253,110,0,.2);
   border-radius: 999px;
   font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-  background: #fff;
-  color: var(--ink, #2a1a2e);
-}
-
-.rdv-slot:hover {
-  border-color: var(--mainColor);
-  color: var(--mainColor);
-}
-
-.rdv-slot.--selected {
-  background: var(--mainColor);
-  border-color: var(--mainColor);
-  color: #fff;
-}
-
-.rdv-slot:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.rdv-submit {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(90deg, var(--mainColor), var(--secondaryColor));
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 1.5rem;
-  transition: opacity 0.2s;
+  transition: all 0.18s;
+  background: rgba(253,110,0,.04);
+  color: var(--mainColor, #fd6e00);
   font-family: var(--text-font-bold, "Supreme-Bold");
 }
 
-.rdv-submit:hover { opacity: 0.9; }
-.rdv-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.rdv-slot:hover {
+  border-color: var(--mainColor, #fd6e00);
+  background: rgba(253,110,0,.1);
+  transform: translateY(-1px);
+}
 
+.rdv-slot.--selected {
+  background: linear-gradient(90deg, var(--mainColor, #fd6e00), var(--secondaryColor, #d90a5c));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 6px 18px -4px rgba(217,10,92,.4);
+  transform: translateY(-2px);
+}
+
+/* ── Submit ───────────────────────────────────────────────────── */
+.rdv-submit {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(90deg, var(--mainColor, #fd6e00), var(--secondaryColor, #d90a5c));
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--text-font-bold, "Supreme-Bold");
+  box-shadow: 0 8px 28px -6px rgba(217,10,92,.45);
+  letter-spacing: 0.01em;
+}
+
+.rdv-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 32px -6px rgba(217,10,92,.5); }
+.rdv-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ── Erreur ───────────────────────────────────────────────────── */
+.rdv-error {
+  padding: 12px 16px;
+  background: rgba(217,10,92,.07);
+  border: 1px solid rgba(217,10,92,.18);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--secondaryColor, #d90a5c);
+  margin-bottom: 1.25rem;
+}
+
+/* ── Success ──────────────────────────────────────────────────── */
 .rdv-success {
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 3.5rem 2rem;
   background: #fff;
-  border-radius: 20px;
-  border: 1px solid rgba(22, 163, 74, 0.2);
-  box-shadow: 0 8px 40px rgba(22, 163, 74, 0.08);
-  max-width: 520px;
+  border-radius: 24px;
+  border: 1px solid rgba(22,163,74,.15);
+  box-shadow: 0 8px 48px rgba(22,163,74,.08);
+  max-width: 540px;
   margin: 0 auto;
 }
 
 .rdv-success-icon {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
 }
 
 .rdv-success-title {
   font-family: var(--text-font-bold, "Supreme-Bold");
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--ink, #2a1a2e);
   margin: 0 0 0.75rem;
+  letter-spacing: -0.02em;
 }
 
 .rdv-success-text {
@@ -194,7 +261,7 @@
 .rdv-success-sub {
   color: var(--ink-muted, #6b5c75);
   font-size: 0.875rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   line-height: 1.6;
 }
 
@@ -202,20 +269,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  background: rgba(22, 163, 74, 0.08);
-  border: 1px solid rgba(22, 163, 74, 0.2);
+  padding: 10px 20px;
+  background: rgba(22,163,74,.07);
+  border: 1px solid rgba(22,163,74,.18);
   border-radius: 999px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   color: #16a34a;
-}
-
-.rdv-error {
-  padding: 10px 16px;
-  background: rgba(217, 10, 92, 0.08);
-  border-radius: 8px;
-  font-size: 13px;
-  color: var(--secondaryColor);
-  margin-bottom: 1rem;
+  font-family: var(--text-font-bold, "Supreme-Bold");
 }

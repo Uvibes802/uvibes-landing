@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import EquipeManager from "@/components/admin/EquipeManager";
+import SyncWpButton from "@/components/admin/SyncWpButton";
 
 export default async function EquipePage() {
   const [members, catEntry] = await Promise.all([
@@ -14,7 +15,10 @@ export default async function EquipePage() {
 
   return (
     <>
-      <div className="crm-topbar"><span className="crm-topbar-title">Équipe</span></div>
+      <div className="crm-topbar">
+        <span className="crm-topbar-title">Équipe ({members.length})</span>
+        <SyncWpButton endpoint="/api/admin/cms/team/sync-wp" label="Sync WordPress" />
+      </div>
       <div className="crm-content">
         <EquipeManager members={members} categories={categories} />
       </div>

@@ -25,27 +25,32 @@ const PARTICLES = [
   { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
 ];
 
-function MacBook() {
+function AppScreen() {
   const [src, setSrc] = useState(VIDEOS[0]);
   useEffect(() => { setSrc(VIDEOS[Math.floor(Math.random() * VIDEOS.length)]); }, []);
 
   return (
-    <div className="sh-mac-wrap">
-      <div className="sh-mac-halo" aria-hidden="true" />
-      <div className="sh-mac">
-        <div className="sh-mac-lid">
-          <div className="sh-mac-notch" aria-hidden="true" />
-          <div className="sh-mac-display">
-            <video className="sh-mac-video" src={getVideoUrl(src)} autoPlay muted loop playsInline />
-            <div className="sh-mac-screen-glow" aria-hidden="true" />
+    <div className="sh-screen-wrap">
+      <div className="sh-screen-halo" aria-hidden="true" />
+      <div className="sh-screen">
+        {/* Barre browser */}
+        <div className="sh-screen-bar">
+          <div className="sh-screen-dots">
+            <span style={{ background: "#FF5F57" }} />
+            <span style={{ background: "#FEBC2E" }} />
+            <span style={{ background: "#28C840" }} />
           </div>
+          <div className="sh-screen-url">
+            <span className="sh-screen-lock">🔒</span>
+            app.uvibes.fr
+          </div>
+          <div className="sh-screen-bar-actions" />
         </div>
-        <div className="sh-mac-hinge" aria-hidden="true" />
-        <div className="sh-mac-body" aria-hidden="true">
-          <div className="sh-mac-keyboard" />
-          <div className="sh-mac-trackpad" />
+        {/* Écran vidéo */}
+        <div className="sh-screen-display">
+          <video className="sh-screen-video" src={getVideoUrl(src)} autoPlay muted loop playsInline />
+          <div className="sh-screen-overlay" aria-hidden="true" />
         </div>
-        <div className="sh-mac-foot" aria-hidden="true" />
       </div>
     </div>
   );
@@ -121,8 +126,8 @@ export default function SolutionHero() {
           </div>
         </div>
 
-        {/* MacBook */}
-        <MacBook />
+        {/* App Screen */}
+        <AppScreen />
       </div>
     </section>
   );
