@@ -23,34 +23,34 @@
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--orange);
   font-family: var(--font-roboto-mono), monospace;
 }
 
 .fc-input {
-  background: transparent;
-  border: none;
-  border-bottom: 1.5px solid var(--ink-4);
-  border-radius: 0;
-  padding: 0.55rem 0;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
   font-size: 15px;
   font-family: var(--text-font);
-  color: var(--ink);
+  color: #fff;
   outline: none;
   width: 100%;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .fc-input:focus {
-  border-bottom-color: var(--orange);
+  border-color: rgba(255,255,255,.6);
+  background: rgba(255,255,255,.18);
 }
 
 .fc-input.--error {
-  border-bottom-color: var(--rose);
+  border-color: #FFE456;
 }
 
 .fc-input::placeholder {
-  color: var(--ink-4);
+  color: rgba(255,255,255,.5);
   font-style: italic;
 }
 
@@ -72,7 +72,7 @@
   align-items: flex-start;
   gap: 0.6rem;
   font-size: 12px;
-  color: var(--ink-2);
+  color: rgba(255,255,255,.8);
   cursor: pointer;
   line-height: 1.5;
 }

@@ -2,7 +2,7 @@
 
 .vs-section {
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: var(--cream);
+  background: var(--paper);
   position: relative;
   overflow: visible;
   display: flex;
@@ -11,23 +11,8 @@
   gap: clamp(0.75rem, 1.5vw, 1.5rem);
 }
 
-/* Blobs déco */
-.vs-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(28px);
-  pointer-events: none;
-}
-.vs-blob--a {
-  width: 500px; height: 500px;
-  top: -60px; right: -80px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.3), transparent 70%);
-}
-.vs-blob--b {
-  width: 480px; height: 480px;
-  bottom: -80px; left: -60px;
-  background: radial-gradient(closest-side, rgba(217,10,92,.28), transparent 70%);
-}
+/* Blobs désactivés — fond unifié paper */
+.vs-blob { display: none; }
 
 /* Blobs désactivés sur fond unifié */
 .vs-particles { display: none; }
@@ -37,26 +22,17 @@
   position: relative;
   z-index: 1;
   text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Carte au-dessus des particules */
-.vs-card-wrap {
-  position: relative;
-  z-index: 1;
-}
-
-.vs-stars {
-  display: flex;
-  gap: 4px;
-  justify-content: center;
-  margin-bottom: 0.6rem;
-}
-
+/* ── Header ────────────────────────────────────────────────────── */
 .vs-rating {
   margin: 0 0 1rem;
   font-size: 11px;
   letter-spacing: 0.14em;
-  color: rgba(80, 30, 10, 0.65);
+  color: var(--ink-3);
   text-transform: uppercase;
 }
 
@@ -80,13 +56,12 @@
   background-clip: text;
 }
 
-/* ── Témoignage sans carte ────────────────────────────────────── */
-
+/* ── Carte témoignage ──────────────────────────────────────────── */
 .vs-card-wrap {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 760px;
+  max-width: 860px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,8 +74,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   animation: vsCardIn 0.55s cubic-bezier(.22,1,.36,1) both;
+  background: #fff;
+  border-radius: 24px;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  border: 1px solid rgba(253,110,0,.1);
+  box-shadow: 0 8px 40px rgba(253,110,0,.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grand guillemet décoratif */
+.vs-card::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  font-size: 120px;
+  line-height: 1;
+  color: var(--orange);
+  opacity: 0.08;
+  font-family: var(--font-instrument), serif;
+  pointer-events: none;
+}
+
+/* Barre couleur en haut */
+.vs-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--rose));
+  border-radius: 24px 24px 0 0;
 }
 
 @keyframes vsCardIn {
@@ -125,25 +131,30 @@
 /* Citation */
 .vs-card-quote {
   margin: 0;
-  font-size: clamp(16px, 1.8vw, 22px);
-  line-height: 1.45;
+  font-size: clamp(17px, 1.8vw, 24px);
+  line-height: 1.55;
   font-style: italic;
   color: var(--ink-2);
   quotes: none;
+  font-family: var(--font-instrument), serif;
 }
 
-/* Auteur */
+/* Séparateur auteur */
 .vs-card-author {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(253,110,0,.12);
+  width: 100%;
+  justify-content: center;
 }
 
 .vs-card-author-info {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  text-align: left;
+  text-align: center;
 }
 
 .vs-card-name {

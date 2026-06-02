@@ -1,8 +1,8 @@
 /* ── HowItWorks ──────────────────────────────────────────────── */
 
 .how-section {
-  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: var(--cream);
+  padding: clamp(2rem, 3vw, 3rem) clamp(1.5rem, 5vw, 3.5rem) clamp(3rem, 5vw, 5rem);
+  background: var(--paper);
   position: relative;
   overflow: visible;
 }
@@ -63,11 +63,11 @@
 /* Header */
 .how-header {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   margin-bottom: clamp(3rem, 6vw, 5rem);
-  flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .how-section > * { position: relative; z-index: 1; }
@@ -76,8 +76,9 @@
   margin: 0 0 1rem;
   font-size: 12px;
   letter-spacing: 0.18em;
-  color: #7a3a10;
+  color: var(--orange);
   text-transform: uppercase;
+  text-align: center;
 }
 
 .how-title {
@@ -86,7 +87,8 @@
   font-weight: 700;
   letter-spacing: -0.055em;
   line-height: .96;
-  color: #1a0a06;
+  color: var(--orange);
+  text-align: center;
 }
 
 .how-title-orange { color: #FD6E00; }

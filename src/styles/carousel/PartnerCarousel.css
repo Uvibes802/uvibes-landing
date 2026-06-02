@@ -2,7 +2,7 @@
 
 .trustees-section {
   padding: clamp(3rem, 5vw, 5rem) 0;
-  background: var(--cream);
+  background: var(--paper);
   position: relative;
   overflow: visible;
 }

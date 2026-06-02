@@ -4,7 +4,11 @@ import path from "path";
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   images: {
-    remotePatterns: [{ hostname: "wp.uvibes.fr" }],
+    remotePatterns: [
+      { hostname: "wp.uvibes.fr" },
+      { hostname: "*.cloudfront.net" },
+      { hostname: "secure.gravatar.com" },
+    ],
   },
 
   // Redirections permanentes des anciennes URLs vers /solution

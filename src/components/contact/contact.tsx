@@ -5,8 +5,11 @@ import FormContact from "../form/formContact";
 export default function Contact() {
   return (
     <section className="ct-section" id="contact">
-      <div className="ct-deco-circle" aria-hidden="true" />
-      <div className="ct-deco-circle-2" aria-hidden="true" />
+      {/* Blobs identiques au hero */}
+      <div className="ct-blob ct-blob--a" aria-hidden="true" />
+      <div className="ct-blob ct-blob--b" aria-hidden="true" />
+      <div className="ct-blob ct-blob--c" aria-hidden="true" />
+      <div className="ct-blob ct-blob--d" aria-hidden="true" />
 
       <div className="ct-inner">
         {/* Colonne gauche */}

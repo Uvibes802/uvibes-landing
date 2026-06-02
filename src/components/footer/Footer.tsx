@@ -44,12 +44,11 @@ export default function Footer() {
         <div className="ft-top">
           <div className="ft-brand">
             <Image
-              src="/images/Logo VI blanc.png"
+              src="/images/Logo%20VI%20blanc.png"
               alt="Uvibes"
-              width={120}
-              height={60}
+              width={160}
+              height={80}
               className="ft-logo"
-              style={{ objectFit: "contain", objectPosition: "left" }}
             />
             <p className="ft-tagline v-serif">Activez les bonnes ondes.</p>
           </div>
