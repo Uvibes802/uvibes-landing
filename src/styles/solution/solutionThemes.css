@@ -4,8 +4,8 @@
 
 /* ——— Section ——— */
 .sth-section {
-  background: var(--cream);
-  padding: clamp(70px, 8vw, 110px) 56px;
+  background: var(--paper);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
 }
 

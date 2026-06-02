@@ -7,23 +7,65 @@ import type { Article } from "@/types/article/article";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 
 const SLUGS = {
-  entreprise: "entreprise-article",
-  education: "education-article",
-  science: "science-et-societe",
+  entreprise:    "entreprise-article",
+  education:     "education-article",
+  science:       "science-et-societe",
   vulnerability: "personnes-sensibles-aux-échanges",
-  uvibes: "uvibes-article",
-  experience: "experiences-inattendues",
+  uvibes:        "uvibes-article",
+  experience:    "experiences-inattendues",
 } as const;
 
+const CATEGORIES = [
+  { value: "",                                 label: "Tous" },
+  { value: "science-et-societe",               label: "Science & Société" },
+  { value: "experiences-inattendues",          label: "Expériences" },
+  { value: "entreprise-article",               label: "Entreprise" },
+  { value: "education-article",                label: "Éducation" },
+  { value: "personnes-sensibles-aux-echanges", label: "Collectifs" },
+  { value: "uvibes-article",                   label: "Uvibes" },
+];
+
 const ARTICLES_PER_PAGE = 9;
+
+function ArticleCard({ article }: { article: Article }) {
+  const excerpt = getExcerpt(article.content.rendered, 140);
+  const hasImage = !!article.featured_image;
+
+  return (
+    <Link href={`/blog/${article.slug}`} className="ba-card">
+      <div className="ba-card-img">
+        {hasImage ? (
+          <Image
+            src={article.featured_image}
+            alt={article.title.rendered}
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        ) : (
+          <div className="ba-card-placeholder" aria-hidden="true" />
+        )}
+        <div className="ba-card-overlay" aria-hidden="true" />
+      </div>
+      <div className="ba-card-body">
+        <p className="v-mono ba-card-date">
+          {new Date(article.date).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" })}
+        </p>
+        <h3 className="ba-card-title v-prompt">{article.title.rendered}</h3>
+        <p className="ba-card-excerpt">{excerpt}</p>
+        {article.acf?.auteur_custom && (
+          <p className="v-mono ba-card-author">— {article.acf.auteur_custom}</p>
+        )}
+        <span className="ba-card-cta">Lire l&apos;article →</span>
+      </div>
+    </Link>
+  );
+}
 
 export default function AllArticle() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const router = useRouter();
 
   const entreprise    = useBlogArticles(SLUGS.entreprise);
   const education     = useBlogArticles(SLUGS.education);
@@ -44,64 +86,56 @@ export default function AllArticle() {
     ? allArticles.filter((a) => a.tags.slug === selectedCategory)
     : allArticles;
 
-  const totalPages = Math.ceil(filtered.length / ARTICLES_PER_PAGE);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ARTICLES_PER_PAGE));
   const start = (currentPage - 1) * ARTICLES_PER_PAGE;
   const current = filtered.slice(start, start + ARTICLES_PER_PAGE);
 
-  const handlePageChange = (page: number) => {
+  const handleCategory = (val: string) => {
+    setSelectedCategory(val);
+    setCurrentPage(1);
+  };
+
+  const handlePage = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <section className="article-section">
-      <select
-        name="category"
-        id="categories"
-        value={selectedCategory}
-        onChange={(e) => { setSelectedCategory(e.target.value); setCurrentPage(1); }}
-      >
-        <option value="">Toutes les catégories</option>
-        <option value="science-et-societe">Science et Société</option>
-        <option value="experiences-inattendues">Expériences inattendues</option>
-        <option value="entreprise-article">Entreprise</option>
-        <option value="education-article">Education</option>
-        <option value="personnes-sensibles-aux-echanges">Collectifs sensibles aux échanges</option>
-        <option value="uvibes-article">Uvibes</option>
-      </select>
-
-      {current.map((article: Article) => (
-        <article
-          key={article.id}
-          className={`blog-article ${article.tags.slug}`}
-          onClick={() => router.push(`/blog/${article.slug}`)}
-          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") router.push(`/blog/${article.slug}`); }}
-        >
-          <Image
-            src={article.featured_image}
-            alt={article.title.rendered}
-            width={200}
-            height={200}
-          />
-          <div className="article-card-content">
-            <h3>{article.title.rendered}</h3>
-            <p>{getExcerpt(article.content.rendered, 240)}</p>
-            <p><strong>{article.acf.auteur_custom}</strong></p>
-            <p>{article.date.toLocaleDateString()}</p>
-            <Link href={`/blog/${article.slug}`}>{`Lire l'article : ${article.title.rendered}`}</Link>
-          </div>
-        </article>
-      ))}
-
-      <div className="pagination-controls">
-        <button type="button" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-          Précédent
-        </button>
-        <span>Page {currentPage} sur {totalPages}</span>
-        <button type="button" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-          Suivant
-        </button>
+    <div className="ba-wrap">
+      {/* Filtres pills */}
+      <div className="ba-filters">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat.value}
+            className={`ba-filter-btn${selectedCategory === cat.value ? " --active" : ""}`}
+            onClick={() => handleCategory(cat.value)}
+          >
+            {cat.label}
+          </button>
+        ))}
       </div>
-    </section>
+
+      {current.length === 0 ? (
+        <p className="ba-empty">Aucun article dans cette catégorie pour le moment.</p>
+      ) : (
+        <div className="ba-grid">
+          {current.map((article: Article) => (
+            <ArticleCard key={article.id} article={article} />
+          ))}
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <div className="ba-pagination">
+          <button className="ba-page-btn" onClick={() => handlePage(currentPage - 1)} disabled={currentPage === 1}>
+            ← Précédent
+          </button>
+          <span className="v-mono ba-page-info">{currentPage} / {totalPages}</span>
+          <button className="ba-page-btn" onClick={() => handlePage(currentPage + 1)} disabled={currentPage === totalPages}>
+            Suivant →
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

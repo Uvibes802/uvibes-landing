@@ -2,69 +2,69 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--cream);
-  border-bottom: 1px solid transparent;
-  transition: background 300ms ease, border-color 300ms ease, backdrop-filter 300ms ease;
+  background: var(--paper);
+  border-bottom: 1px solid rgba(253,110,0,.1);
+  transition: backdrop-filter 300ms ease;
 }
 
 .anchor-nav--pinned {
-  background: rgba(243, 237, 227, 0.94);
+  background: rgba(255,251,244,.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom-color: rgba(74, 21, 48, 0.08);
 }
 
 .anchor-nav__row {
   display: flex;
-  padding: 0 56px;
+  padding: 0 clamp(1.5rem, 5vw, 3.5rem);
   gap: 4px;
   overflow-x: auto;
   scrollbar-width: none;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.anchor-nav__row::-webkit-scrollbar {
-  display: none;
-}
+.anchor-nav__row::-webkit-scrollbar { display: none; }
 
 .anchor-nav__link {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 16px;
+  padding: 1rem 0.75rem;
   white-space: nowrap;
   text-decoration: none;
-  color: var(--ink-4);
-  transition: color 200ms var(--ease);
+  color: var(--ink-3);
+  transition: color 200ms ease;
+  font-size: 14px;
+  font-weight: 500;
 }
 
+.anchor-nav__link:hover { color: var(--orange); }
+
 .anchor-nav__link--active {
-  color: var(--ink);
+  color: var(--orange);
+  font-weight: 700;
 }
 
 .anchor-nav__link--active::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 12px;
-  right: 12px;
-  height: 3px;
-  background: var(--orange);
-  border-radius: 3px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--rose));
+  border-radius: 2px;
 }
 
 .anchor-nav__index {
-  font-size: 11px;
-  opacity: 0.7;
+  font-size: 10px;
+  opacity: 0.6;
+  font-family: var(--font-roboto-mono), monospace;
 }
 
-.anchor-nav__label {
-  font-size: 14.5px;
-  font-weight: 500;
-}
+.anchor-nav__label { font-size: 13.5px; }
 
 @media (max-width: 768px) {
-  .anchor-nav__row {
-    padding: 0 20px;
-  }
+  .anchor-nav__row { padding: 0 1rem; }
 }
