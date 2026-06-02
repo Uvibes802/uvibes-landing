@@ -1,8 +1,10 @@
 import AllArticle from "@/components/blog/allArticle";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
+import VibrationLine from "@/components/shared/VibrationLine";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
+import "../../styles/page/blog.css";
 
 export const metadata: Metadata = buildMetadata("blog");
 
@@ -20,39 +22,34 @@ export default function BlogPage() {
     <>
       <JsonLd data={breadcrumbJsonLd} />
 
-      {/* Hero blog vivid */}
-      <section style={{
-        background: "linear-gradient(135deg, #FD6E00 0%, #FF7040 20%, #FF5888 55%, #D90A5C 100%)",
-        padding: "calc(var(--nav-height) + 4rem) clamp(1.5rem, 5vw, 3.5rem) 5rem",
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-        minHeight: "52vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ fontFamily: "var(--font-roboto-mono), monospace", fontSize: 11, letterSpacing: "0.22em", color: "rgba(255,255,255,.7)", textTransform: "uppercase", marginBottom: "1rem" }}>
-            Le blog Uvibes · Idées & conversations
-          </p>
-          <h1 style={{ fontFamily: "var(--font-prompt), sans-serif", fontSize: "clamp(40px, 7vw, 96px)", fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 0.95, color: "#fff", margin: "0 0 1.5rem" }}>
+      {/* ── Hero blog — blobs turquoise/corail/rose — palette distincte ── */}
+      <section className="blog-hero">
+        {/* Blobs : couleur dominante cyan/turquoise = ID visuel unique au blog */}
+        <div className="blog-hero-blob blog-hero-blob--a" aria-hidden="true" />
+        <div className="blog-hero-blob blog-hero-blob--b" aria-hidden="true" />
+        <div className="blog-hero-blob blog-hero-blob--c" aria-hidden="true" />
+        <div className="blog-hero-blob blog-hero-blob--d" aria-hidden="true" />
+
+        <div className="blog-hero-inner">
+          <p className="blog-hero-eyebrow">Le blog Uvibes · Idées & conversations</p>
+          <h1 className="blog-hero-title v-prompt">
             Explorez<br />
-            <span style={{ fontStyle: "italic", fontFamily: "var(--font-instrument), serif", fontWeight: 400 }}>
-              des contenus
-            </span>
+            <em className="blog-hero-em v-serif">des contenus</em>
             <br />inspirants
           </h1>
-          <p style={{ fontSize: "clamp(15px, 1.4vw, 18px)", color: "rgba(255,255,255,.85)", lineHeight: 1.65, margin: 0 }}>
+          <p className="blog-hero-sub">
             Pour enrichir vos échanges, vos idées et vos réflexions.
           </p>
         </div>
-        {/* Anneaux déco */}
-        <div aria-hidden="true" style={{ position: "absolute", top: -60, right: -60, width: 300, height: 300, borderRadius: "50%", border: "2px solid rgba(255,255,255,.12)", animation: "uvSpin 28s linear infinite", pointerEvents: "none" }} />
-        <div aria-hidden="true" style={{ position: "absolute", bottom: -70, left: -50, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(closest-side, rgba(255,255,255,.1), transparent 70%)", filter: "blur(20px)", pointerEvents: "none" }} />
+
+        {/* VibrationLine bas */}
+        <div className="blog-hero-vib" aria-hidden="true">
+          <VibrationLine width={1800} height={50} amplitude={20} freq={8} stroke="rgba(255,255,255,.28)" strokeWidth={1.5} speed={18} />
+          <VibrationLine width={1800} height={50} amplitude={12} freq={13} stroke="rgba(255,255,255,.16)" strokeWidth={1} speed={25} />
+        </div>
       </section>
 
-      <section style={{ background: "var(--paper)", padding: "clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem)", minHeight: "60vh" }}>
+      <section className="blog-content">
         <AllArticle />
       </section>
 

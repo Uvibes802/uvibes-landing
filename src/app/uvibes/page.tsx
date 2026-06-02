@@ -2,9 +2,12 @@ import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
 import TeamSection from "@/components/section/TeamSection";
 import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
+import VibrationLine from "@/components/shared/VibrationLine";
+import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import "../../styles/page/uvibes.css";
 
 export const metadata: Metadata = buildMetadata("uvibes");
@@ -15,31 +18,15 @@ const organizationJsonLd = {
   name: "Uvibes",
   url: SITE_URL,
   logo: `${SITE_URL}/images/Logo UVIBES.png`,
-  description:
-    "Uvibes est une innovation socio-digitale qui active les conversations positives au sein des collectifs pour renforcer le lien social, le bien-être et l'engagement humain.",
+  description: "Uvibes est une innovation socio-digitale qui active les conversations positives au sein des collectifs pour renforcer le lien social, le bien-être et l'engagement humain.",
   foundingDate: "2022",
-  sameAs: [
-    "https://www.linkedin.com/company/uvibes",
-    "https://www.instagram.com/uvibes_app",
-  ],
+  sameAs: ["https://www.linkedin.com/company/uvibes", "https://www.instagram.com/uvibes_app"],
 };
 
 const ETHICS = [
-  {
-    num: "01",
-    title: "Respect & confidentialité",
-    text: "Un service digital respectueux, pensé pour la qualité des discussions, l'inclusion et la protection des données de chaque membre.",
-  },
-  {
-    num: "02",
-    title: "Collaboration & écoute",
-    text: "Une conduite de projet alignée avec nos valeurs — basée sur l'écoute active, la co-construction et la responsabilité collective.",
-  },
-  {
-    num: "03",
-    title: "Partenariats responsables",
-    text: "Des partenaires choisis pour leur transparence, leur impact positif et leur engagement sociétal — pas pour leur seule notoriété.",
-  },
+  { num: "01", title: "Respect & confidentialité", text: "Un service digital respectueux, pensé pour la qualité des discussions, l'inclusion et la protection des données de chaque membre." },
+  { num: "02", title: "Collaboration & écoute", text: "Une conduite de projet alignée avec nos valeurs — basée sur l'écoute active, la co-construction et la responsabilité collective." },
+  { num: "03", title: "Partenariats responsables", text: "Des partenaires choisis pour leur transparence, leur impact positif et leur engagement sociétal — pas pour leur seule notoriété." },
 ];
 
 const VALUES = [
@@ -53,35 +40,30 @@ export default function Uvibes() {
     <div className="uv-page">
       <JsonLd data={organizationJsonLd} />
 
-      {/* ── Hero gradient (réutilise le hero maison, pas heroBanner) ── */}
-      <section style={{
-        background: "linear-gradient(135deg, #FD6E00 0%, #FF8530 12%, #FF6898 55%, #D90A5C 100%)",
-        padding: "calc(var(--nav-height) + 4rem) clamp(1.5rem, 5vw, 3.5rem) 5rem",
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-        minHeight: "55vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto" }}>
-          <p style={{ fontFamily: "var(--font-roboto-mono), monospace", fontSize: 11, letterSpacing: "0.22em", color: "rgba(255,255,255,.75)", textTransform: "uppercase", marginBottom: "1rem" }}>
-            À propos d&apos;Uvibes
-          </p>
-          <h1 style={{ fontFamily: "var(--font-prompt), sans-serif", fontSize: "clamp(42px, 7vw, 96px)", fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 0.95, color: "#fff", margin: "0 0 1.5rem" }}>
+      {/* ── Hero Uvibes — blobs rose/pêche/saumon distincts du hero homepage ── */}
+      <section className="uv-hero">
+        {/* Blobs différents du hero homepage : dominante rose/pêche → identité page À propos */}
+        <div className="uv-hero-blob uv-hero-blob--a" aria-hidden="true" />
+        <div className="uv-hero-blob uv-hero-blob--b" aria-hidden="true" />
+        <div className="uv-hero-blob uv-hero-blob--c" aria-hidden="true" />
+        <div className="uv-hero-blob uv-hero-blob--d" aria-hidden="true" />
+
+        <div className="uv-hero-inner">
+          <p className="uv-hero-eyebrow">À propos d&apos;Uvibes</p>
+          <h1 className="uv-hero-title v-prompt">
             Qui donne vie<br />
-            <span style={{ fontStyle: "italic", fontFamily: "var(--font-instrument), serif", fontWeight: 400 }}>
-              à Uvibes&nbsp;?
-            </span>
+            <em className="uv-hero-em v-serif">à Uvibes&nbsp;?</em>
           </h1>
-          <p style={{ fontSize: "clamp(16px, 1.5vw, 20px)", color: "rgba(255,255,255,.88)", lineHeight: 1.6, margin: 0 }}>
+          <p className="uv-hero-sub">
             Découvrez les personnes et les idées qui font grandir Uvibes
           </p>
         </div>
-        {/* Anneau déco */}
-        <div aria-hidden="true" style={{ position: "absolute", top: -60, right: -60, width: 300, height: 300, borderRadius: "50%", border: "2px solid rgba(255,255,255,.15)", animation: "uvSpin 25s linear infinite", pointerEvents: "none" }} />
-        <div aria-hidden="true" style={{ position: "absolute", bottom: -80, left: -60, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(closest-side, rgba(255,255,255,.1), transparent 70%)", filter: "blur(20px)", pointerEvents: "none" }} />
+
+        {/* VibrationLine bas du hero */}
+        <div className="uv-hero-vib" aria-hidden="true">
+          <VibrationLine width={1800} height={50} amplitude={18} freq={9} stroke="rgba(255,255,255,.3)" strokeWidth={1.5} speed={16} />
+          <VibrationLine width={1800} height={50} amplitude={11} freq={14} stroke="rgba(255,255,255,.18)" strokeWidth={1} speed={22} />
+        </div>
       </section>
 
       {/* ── Intro ── */}
@@ -91,17 +73,17 @@ export default function Uvibes() {
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />La naissance de l&apos;idée</p>
             <h2 className="uv-intro-title">
               Et si on se<br />
-              <span className="uv-intro-title-serif">parlait vraiment&nbsp;?</span>
+              <em className="uv-serif-accent">parlait vraiment&nbsp;?</em>
             </h2>
             <p className="uv-intro-lead">
-              La plus longue étude menée par Harvard montre que la qualité de nos relations est le premier facteur de bonheur.
+              La plus longue étude menée par Harvard montre que la qualité de nos relations est le <em className="uv-em-orange">premier facteur de bonheur</em>.
             </p>
             <p className="uv-intro-body">
               Sur les réseaux sociaux, les algorithmes nous relient à ceux qui pensent comme nous. Dans la vraie vie, on reste entre groupes familiers — et petit à petit, on perd la richesse de la diversité humaine.
               <br /><br />
-              Uvibes facilite ces rencontres inattendues, par un jeu de questions ouvertes et positives. Parce que c&apos;est en allant vers l&apos;inconnu que naissent les plus belles conversations.
+              Uvibes facilite ces rencontres inattendues, par un jeu de questions ouvertes et positives. Parce que c&apos;est en allant vers l&apos;<em className="uv-em-rose">inconnu</em> que naissent les plus <em className="uv-em-orange">belles conversations</em>.
             </p>
-            <div className="uv-intro-values" style={{ marginTop: "2rem" }}>
+            <div className="uv-intro-values">
               {VALUES.map((v) => (
                 <div key={v} className="uv-value-item">
                   <span className="uv-value-icon" aria-hidden="true" />
@@ -131,6 +113,12 @@ export default function Uvibes() {
             </div>
           </div>
         </div>
+
+        {/* VibrationLine séparateur */}
+        <div className="uv-sep-vib" aria-hidden="true">
+          <GradientVibrationLine id="uv-vib-1" width={1800} height={45} amplitude={28} freq={5} strokeWidth={10} speed={11} colorFrom="#FD6E00" colorTo="#D90A5C" style={{ width: "100%" }} />
+          <GradientVibrationLine id="uv-vib-2" width={1800} height={45} amplitude={18} freq={8} strokeWidth={6} speed={16} colorFrom="#D90A5C" colorTo="#FD6E00" style={{ width: "100%" }} />
+        </div>
       </section>
 
       {/* ── Équipe ── */}
@@ -138,7 +126,7 @@ export default function Uvibes() {
         <div className="uv-team-inner">
           <div className="uv-section-header">
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Sa concrétisation</p>
-            <h2 className="uv-section-title">L&apos;équipe derrière Uvibes</h2>
+            <h2 className="uv-section-title">L&apos;équipe derrière <em className="uv-serif-accent">Uvibes</em></h2>
           </div>
           <TeamSection />
         </div>
@@ -146,13 +134,8 @@ export default function Uvibes() {
 
       {/* ── Photo équipe ── */}
       <div className="uv-team-photo">
-        <Image
-          src="/images/TeamUvibes.jpg"
-          alt="L'équipe Uvibes réunie"
-          fill
-          style={{ objectFit: "cover", objectPosition: "center 20%" }}
-          loading="lazy"
-        />
+        <Image src="/images/TeamUvibes.jpg" alt="L'équipe Uvibes réunie" fill style={{ objectFit: "cover", objectPosition: "center 20%" }} loading="lazy" />
+        <div className="uv-team-photo-overlay" aria-hidden="true" />
       </div>
 
       {/* ── Éthique ── */}
@@ -160,7 +143,7 @@ export default function Uvibes() {
         <div className="uv-ethics-inner">
           <div className="uv-section-header">
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Notre engagement</p>
-            <h2 className="uv-section-title">Une éthique au cœur du projet</h2>
+            <h2 className="uv-section-title">Une <em className="uv-serif-accent">éthique</em> au cœur du projet</h2>
           </div>
           <div className="uv-ethics-grid">
             {ETHICS.map((e) => (
@@ -180,7 +163,7 @@ export default function Uvibes() {
           <p className="uv-eyebrow" style={{ justifyContent: "center" }}><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
           <div className="uv-portage-card">
             <Image src="/images/LogoEclatens.png" alt="Logo Éclatens" width={180} height={80} className="uv-portage-logo" />
-            <h3 className="uv-portage-title">Un modèle non lucratif</h3>
+            <h3 className="uv-portage-title">Un modèle <em className="uv-em-orange">non lucratif</em></h3>
             <p className="uv-portage-text">
               Tous les bénéfices générés par Uvibes sont réinvestis dans le projet ou dans d&apos;autres initiatives portées par l&apos;association Éclatens — pour que la technologie serve vraiment les gens.
             </p>
@@ -189,21 +172,33 @@ export default function Uvibes() {
         </div>
       </section>
 
-      {/* ── CTA rejoindre ── */}
-      <section className="uv-cta">
-        <div className="uv-cta-inner">
-          <h2 className="uv-cta-title">Rejoignez l&apos;aventure Uvibes</h2>
-          <p className="uv-cta-sub">
-            Prenez part à une dynamique qui réinvente nos façons d&apos;interagir — en ouvrant notre esprit à des visions nouvelles.
-          </p>
-          <div className="uv-cta-btns">
-            <a href="mailto:contact@uvibes.fr" className="uv-cta-btn uv-cta-btn--filled">
-              Nous contacter
-            </a>
-            <a href="mailto:contact@uvibes.fr" className="uv-cta-btn">
-              Devenir partenaire
-            </a>
+      {/* ── CTA rejoindre — nouvelle version sobre sur paper ── */}
+      <section className="uv-join">
+        <div className="uv-join-inner">
+          <div className="uv-join-text">
+            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Ensemble</p>
+            <h2 className="uv-join-title">
+              Rejoignez<br />
+              l&apos;<em className="uv-serif-accent">aventure</em> Uvibes
+            </h2>
+            <p className="uv-join-sub">
+              Prenez part à une dynamique qui réinvente nos façons d&apos;interagir — en ouvrant notre esprit à des visions nouvelles.
+            </p>
           </div>
+          <div className="uv-join-actions">
+            <Link href="mailto:contact@uvibes.fr" className="uv-join-btn uv-join-btn--primary">
+              Nous contacter
+            </Link>
+            <Link href="mailto:contact@uvibes.fr" className="uv-join-btn uv-join-btn--outline">
+              Devenir partenaire
+            </Link>
+          </div>
+        </div>
+
+        {/* VibrationLine déco */}
+        <div className="uv-join-vib" aria-hidden="true">
+          <VibrationLine width={1800} height={50} amplitude={22} freq={6} stroke="rgba(253,110,0,.18)" strokeWidth={2} speed={14} />
+          <VibrationLine width={1800} height={50} amplitude={14} freq={10} stroke="rgba(217,10,92,.12)" strokeWidth={1.2} speed={20} />
         </div>
       </section>
 

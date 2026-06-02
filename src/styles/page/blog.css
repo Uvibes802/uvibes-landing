@@ -1,0 +1,125 @@
+/* ── Page Blog ───────────────────────────────────────────────── */
+
+/* Hero — dominante cyan/turquoise — différent de homepage (orange) et uvibes (rose/pêche) */
+.blog-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--nav-height) + 4rem) clamp(1.5rem, 5vw, 3.5rem) 5rem;
+  background: linear-gradient(145deg, #0098CC 0%, #00AFDD 20%, #D90A5C 55%, #FF6A00 85%, #FFB040 100%);
+}
+
+/* Blobs — cyan + corail : identité visuelle unique au blog */
+.blog-hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(32px);
+  pointer-events: none;
+}
+/* cyan vif haut-gauche */
+.blog-hero-blob--a {
+  width: 720px; height: 720px;
+  top: -220px; left: -160px;
+  background: radial-gradient(closest-side, rgba(0,175,221,.9), transparent 70%);
+  animation: blogBlobA 20s ease-in-out infinite;
+}
+/* corail/saumon haut-droite */
+.blog-hero-blob--b {
+  width: 580px; height: 580px;
+  top: -80px; right: -80px;
+  background: radial-gradient(closest-side, rgba(255,100,80,.8), transparent 70%);
+  animation: blogBlobB 24s ease-in-out infinite;
+}
+/* rose vif bas-gauche */
+.blog-hero-blob--c {
+  width: 500px; height: 500px;
+  bottom: -120px; left: 18%;
+  background: radial-gradient(closest-side, rgba(217,10,92,.8), transparent 70%);
+  animation: blogBlobA 28s ease-in-out infinite reverse;
+}
+/* amber/or petit haut-milieu */
+.blog-hero-blob--d {
+  width: 350px; height: 350px;
+  top: -40px; left: 42%;
+  background: radial-gradient(closest-side, rgba(255,180,40,.7), transparent 70%);
+  animation: blogBlobB 16s ease-in-out infinite;
+}
+
+@keyframes blogBlobA {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  35%       { transform: translate(25px,-18px) scale(1.07); }
+  68%       { transform: translate(-15px,12px) scale(0.96); }
+}
+@keyframes blogBlobB {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  40%       { transform: translate(-20px,16px) scale(1.05); }
+  72%       { transform: translate(12px,-10px) scale(0.98); }
+}
+
+.blog-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.blog-hero-eyebrow {
+  font-family: var(--font-roboto-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,.75);
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  display: block;
+}
+
+.blog-hero-title {
+  font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(40px, 7vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  color: #fff;
+  margin: 0 0 1.5rem;
+}
+
+/* Italique en couleur distincte */
+.blog-hero-em {
+  font-style: italic;
+  font-weight: 400;
+  font-family: var(--font-instrument), serif;
+  color: #FFE456;
+  -webkit-text-fill-color: #FFE456;
+}
+
+.blog-hero-sub {
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: rgba(255,255,255,.88);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* VibrationLine bas */
+.blog-hero-vib {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+}
+.blog-hero-vib svg { width: 100%; display: block; }
+
+/* Contenu articles */
+.blog-content {
+  background: var(--paper);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  min-height: 60vh;
+}
