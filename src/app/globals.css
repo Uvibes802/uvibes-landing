@@ -476,12 +476,15 @@ h5 {
   }
 }
 
-/* Zone partagée : témoignages + partenaires — fond étoilé commun */
-.vibe-zone {
-  background: linear-gradient(160deg, #ffc8d8 0%, #ffb0c8 100%);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
+/* Transitions seamless — toutes les sections --paper se collent */
+.ci-section,
+.pillars-section,
+.collectifs-section,
+.how-section,
+.trustees-section,
+.vs-section,
+.fa-section {
+  margin-top: -1px;
 }
 
 /* Reveal scroll — opacity + translateY */

@@ -16,12 +16,16 @@ export async function fetchPartners(): Promise<PartnerLogo[]> {
     });
 
     if (dbPartners.length > 0) {
-      return dbPartners.map((p, i) => ({
-        id: i,
-        src: p.logoUrl,
-        alt: p.nom,
-        siteUrl: p.siteUrl ?? undefined,
-      }));
+      // Filtrer les chemins locaux inexistants (/images/partners/...)
+      const valid = dbPartners.filter(p => p.logoUrl.startsWith("http"));
+      if (valid.length > 0) {
+        return valid.map((p, i) => ({
+          id: i,
+          src: p.logoUrl,
+          alt: p.nom,
+          siteUrl: p.siteUrl ?? undefined,
+        }));
+      }
     }
 
     // Fallback WordPress si DB vide

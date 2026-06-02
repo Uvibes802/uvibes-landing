@@ -10,7 +10,11 @@
 .fc-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
+}
+
+.fc-form {
+  gap: 1.25rem;
 }
 
 .fc-field {

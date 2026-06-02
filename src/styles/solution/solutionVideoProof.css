@@ -1,0 +1,157 @@
+/* ── SolutionVideoProof ─────────────────────────────────────── */
+
+.svp-section {
+  background: var(--paper);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.svp-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.svp-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.svp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
+.svp-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
+}
+
+.svp-title {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--orange);
+}
+
+.svp-title-accent {
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-right: 0.1em;
+}
+
+/* Grid 3 colonnes */
+.svp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
+/* Card macOS style */
+.svp-card {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(253,110,0,.1);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04),
+    0 8px 32px rgba(253,110,0,.06);
+  transition: transform 0.3s cubic-bezier(.2,.7,.2,1), box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.svp-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 4px 16px rgba(0,0,0,.06),
+    0 20px 48px color-mix(in srgb, var(--svp-color) 18%, transparent);
+}
+
+/* Video */
+.svp-video-wrap {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  overflow: hidden;
+}
+
+.svp-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.svp-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.4) 0%, transparent 60%);
+}
+
+/* Tag collectif */
+.svp-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--svp-color, var(--orange));
+  font-family: var(--font-roboto-mono), monospace;
+  font-weight: 600;
+}
+
+.svp-tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--svp-color, var(--orange));
+  flex-shrink: 0;
+}
+
+/* Corps texte */
+.svp-body {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 2px solid var(--svp-color, var(--orange));
+}
+
+.svp-quote {
+  margin: 0;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.svp-name {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--svp-color, var(--orange));
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .svp-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .svp-video-wrap { aspect-ratio: 9 / 14; }
+}

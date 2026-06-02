@@ -9,6 +9,7 @@ import SolutionHero from "@/components/solution/SolutionHero";
 import SolutionHowItWorks from "@/components/solution/SolutionHowItWorks";
 import SolutionProofBar from "@/components/solution/SolutionProofBar";
 import SolutionThemes from "@/components/solution/SolutionThemes";
+import SolutionVideoProof from "@/components/solution/SolutionVideoProof";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
@@ -35,6 +36,7 @@ export default function SolutionPage() {
         <SolutionHowItWorks />
         <SolutionThemes />
         <FeaturesCard />
+        <SolutionVideoProof />
         <PricingTable />
         <PartnerBanner />
       </main>
