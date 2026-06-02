@@ -152,8 +152,7 @@ export default function HomeHero() {
         <div className="hero-after">
           <Reveal delay={180}>
             <p className="hero-sub">
-              L&apos;outil digital qui crée les bons échanges, au bon moment.
-              Et si les <strong style={{ color: "#FFE456", fontWeight: 700 }}>conversations clés</strong> arrivaient enfin ?
+              Les bonnes conversations ne s&apos;improvisent pas. Elles se créent.
             </p>
           </Reveal>
 
