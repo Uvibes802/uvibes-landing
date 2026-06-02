@@ -2,6 +2,39 @@
 
 ---
 
+## 2026-06-02 — Session polish global v2 (branche style/polish-global-v2)
+
+### Tâches terminées
+- **Textes** : [1] revert ConversationIntro, [5] hero sous-titre, [6] BannerCount label
+- **Backgrounds seamless** : toutes sections légères → `--paper` (#FFFBF4), `margin-top: -1px` entre sections adjacentes → zéro coupure visible
+- **Espacement** : `clamp(3rem,5vw,5rem)` unifié sur toutes les sections (était `clamp(5rem,10vw,9rem)`)
+- **Contact** : gradient hero identique (4 blobs amber/orange/rose/magenta), formulaire glassmorphism (inputs semi-transparents), email/tél/adresse supprimés (anti-bots), titre "Votre projet mérite une vraie conversation."
+- **CollectifsSection** : pills statiques (flex-wrap centré), redesignées border orange → active gradient, flyers `padding: 44px 44px 0` + `align-items: flex-end` → touchent la bordure basse colorée
+- **VideoSection** : carte blanche macOS (border-radius 24px, barre gradient haut, guillemet décoratif), zéro étoiles, auteur orange
+- **Footer** : logo `Logo VI blanc.png` (URL-encodée), CSS `.ft-logo`
+- **Hero chips** : rapprochées mockup (left/right 2%), style unifié font Supreme, fond blanc semi-transparent
+- **BannerCount** : "organisations" retiré du ticker, label mis à jour
+- **Partners** : filtrage URL locales invalides, fallback FALLBACK toujours actif, remotePatterns + CloudFront
+- **Blog AllArticle** : redesign complet — cards macOS (border-radius 20px, hover translateY), pills filtre (plus de select dropdown), null check featured_image, placeholder gradient vivid
+- **Page /solution** : SolutionVideoProof ajouté (3 vidéos CloudFront : étudiante/entreprise/retraitée)
+- **Page /uvibes** : redesign complet — hero gradient, 4 stats cards, valeurs list, équipe, éthique 3 cards, portage Éclatens, CTA gradient
+- **Page /blog** : hero vivid orange→rose + AllArticle premium
+- **Solution sections** : SolutionProofBar gradient vivid, SolutionForWho paper+orange, SolutionAnchorNav paper+orange, SolutionThemes/SolutionHowItWorks paper
+
+### Branche
+`style/polish-global-v2` — 5 commits
+
+### Impact
+- Site complet cohérent : zéro coupure visible entre sections légères
+- Palette 100% vivid (orange/rose) — zéro couleur sombre/violet
+- Pages /solution, /uvibes, /blog entièrement redesignées
+- Blog: navigation par pills + cards premium avec vraie photo ou placeholder gradient
+- Partners: toujours visibles grâce au fallback robuste
+
+---
+
+---
+
 ## 2026-05-29 (session 3 — /simplify) — Nettoyage qualité code
 
 ### Tâches terminées

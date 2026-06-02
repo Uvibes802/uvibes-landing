@@ -314,9 +314,27 @@ Toujours incrémenter — ne jamais réutiliser un numéro existant.
 
 ## ⚠️ À régler (prochaine session)
 
-- [ ] **Appliquer les textes validés** de `note.txt` ([4][5][6][7][9][10]) — voir `note.txt` à la racine
 - [ ] **MacBook vidéos paysage** : ajouter dans `VIDEOS` de `ConversationIntro.tsx` quand dispo
-  - Fichier : `src/components/section/ConversationIntro.tsx`, tableau `VIDEOS`
+
+---
+
+## 🟡 Important — Session 2026-06-02 (style/polish-global-v2)
+
+- [x] **UI-39** — Textes [1] revert ConversationIntro, [5] hero sous-titre appliqué
+- [x] **UI-40** — Espacement inter-sections unifié `clamp(3rem,5vw,5rem)`, backgrounds `--paper` seamless
+- [x] **UI-41** — Contact : gradient hero identique (4 blobs amber/orange/rose/magenta), formulaire glassmorphism, titre mis à jour, email/tél supprimés
+- [x] **UI-42** — CollectifsSection : pills statiques redesignées (border orange, active gradient), flyers ancrés au bas de la carte colorée, centré
+- [x] **UI-43** — VideoSection : carte blanche macOS, guillemet décoratif, barre gradient haut, zéro étoiles/rose
+- [x] **UI-44** — Footer : logo VI blanc.png (URL encodée), `ft-logo` CSS
+- [x] **UI-45** — Hero chips rapprochées du mockup, style unifié font Supreme
+- [x] **UI-46** — BannerCount : "organisations" retiré, label "Déjà actifs sur Uvibes"
+- [x] **FIX-04** — Partners : filtre URL locales `/images/partners/` invalides, fallback FALLBACK, remotePatterns CloudFront
+- [x] **FIX-05** — Blog AllArticle : redesign complet cards macOS + pills filtre + null check featured_image
+- [x] **UI-47** — Page /solution : SolutionVideoProof (3 vidéos CloudFront : étudiante/entreprise/retraitée)
+- [x] **UI-48** — Page /uvibes : redesign complet (hero gradient, stats, éthique cards, portage, CTA)
+- [x] **UI-49** — Page /blog : hero vivid + AllArticle premium
+- [x] **UI-50** — SolutionProofBar : gradient vivid (plus sombre), SolutionForWho : paper + orange, SolutionAnchorNav : paper + orange, SolutionThemes + SolutionHowItWorks : paper
+- [x] **CODE-06** — Transitions seamless : `margin-top: -1px` sur toutes sections --paper adjacentes
 - [ ] Vérifier que /blog affiche bien les articles en prod
 - [ ] Vérifier CORS CloudFront pour les vidéos en prod
 
