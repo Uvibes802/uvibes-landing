@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=DM+Sans:wght@400;500&display=swap');
 
 .pillars-section {
-  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(145deg, #ffe4cc 0%, #ffc8e0 52%, #ffe8cc 100%);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--cream);
   position: relative;
   overflow: hidden;
 }

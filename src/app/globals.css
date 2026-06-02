@@ -44,10 +44,10 @@
   --paper:    #FFFBF4;
   --bckgColor: #FFF6EC;
 
-  /* Texte — bordeaux vif */
-  --ink:      #4A1530;
-  --ink-2:    #7A2050;
-  --ink-3:    #B0507E;
+  /* Texte — bordeaux chaud (jamais sombre/violet) */
+  --ink:      #8A3050;
+  --ink-2:    #A0405E;
+  --ink-3:    #C0607A;
   --ink-4:    #E0AEC4;
   --rose-deep: #B5083F;
 

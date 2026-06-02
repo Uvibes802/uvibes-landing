@@ -18,7 +18,8 @@ const FALLBACK: PartnerLogo[] = [
 ];
 
 export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] }) {
-  const track = [...logos, ...logos, ...logos];
+  const display = logos.length > 0 ? logos : FALLBACK;
+  const track = [...display, ...display, ...display];
 
   return (
     <section className="trustees-section">
@@ -40,7 +41,7 @@ export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] })
             {track.map((logo, i) => (
               <div key={i} className="trustees-logo-item">
                 <Image
-                  src={logo.src}
+                  src={logo.src || "/images/Logo UVIBES.png"}
                   alt={logo.alt}
                   width={180}
                   height={72}

@@ -4,19 +4,7 @@ import FetchTestimony from "@/services/testimony/testimony";
 import { useEffect, useState } from "react";
 import "../../styles/section/videoSection.css";
 
-const ACCENTS = ["#FD6E00", "#D90A5C", "#FF9558"];
-
-function Stars({ color = "#FD6E00" }: { color?: string }) {
-  return (
-    <div className="vs-stars" aria-label="5 étoiles sur 5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={color}>
-          <path d="M12 2.5l2.9 6.2 6.6.9-4.9 4.7 1.3 6.7L12 17.8 6.1 21l1.3-6.7-4.9-4.7 6.6-.9z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
+const ACCENTS = ["#FD6E00", "#FF9558", "#FD6E00"];
 
 export default function VideoSection() {
   const testimonies = FetchTestimony();
@@ -51,11 +39,11 @@ export default function VideoSection() {
 
       {/* Header */}
       <div className="vs-header">
-        <p className="v-mono vs-rating">4.9 / 5 · 312 avis</p>
+        <p className="v-mono vs-rating">4.9 / 5 · 312 avis vérifiés</p>
         <h2 className="vs-title v-prompt">
-          <span className="vs-t-rose">Ils </span>
-          <span className="v-serif vs-t-gradient">aiment</span>
-          <br /><span className="vs-t-rose">l&apos;expérience.</span>
+          <span className="vs-t-orange">Ça change </span>
+          <span className="v-serif vs-t-gradient">quelque</span>
+          <br /><span className="vs-t-orange">chose.</span>
         </h2>
       </div>
 
@@ -69,12 +57,6 @@ export default function VideoSection() {
           {/* Guillemet décoratif */}
           <span className="vs-card-glyph v-serif" aria-hidden="true">&ldquo;</span>
 
-          {/* Étoiles + score */}
-          <div className="vs-card-stars">
-            <Stars color={accent} />
-            <span className="v-mono vs-card-score">5.0</span>
-          </div>
-
           {/* Citation */}
           <blockquote className="vs-card-quote v-serif">
             {t?.testimony}
@@ -83,7 +65,7 @@ export default function VideoSection() {
           {/* Auteur */}
           <div className="vs-card-author">
             <div className="vs-card-author-info">
-              <span className="vs-card-name v-prompt">{t?.auteur_temoignage || "Membre Uvibes"}</span>
+              <span className="vs-card-name v-prompt" style={{ color: "var(--orange)" }}>{t?.auteur_temoignage || "Membre Uvibes"}</span>
               {t?.role_et_entreprise_temoignage && (
                 <span className="v-mono vs-card-role">{t.role_et_entreprise_temoignage}</span>
               )}

@@ -1,8 +1,8 @@
 /* ── VideoSection ─────────────────────────────────────────────── */
 
 .vs-section {
-  padding: clamp(2rem, 3.5vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: transparent;
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--cream);
   position: relative;
   overflow: visible;
   display: flex;
@@ -29,65 +29,8 @@
   background: radial-gradient(closest-side, rgba(217,10,92,.28), transparent 70%);
 }
 
-/* ── Étoiles & particules ────────────────────────────────────── */
-.vs-particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.vs-p {
-  position: absolute;
-  display: block;
-}
-
-/* Type 1 — grande étoile ★ */
-.vs-p--1::before {
-  content: '★';
-  font-size: clamp(18px, 2.5vw, 28px);
-  color: rgba(255,255,255,.75);
-  animation: vsStar 6s ease-in-out infinite;
-  display: block;
-  line-height: 1;
-}
-
-/* Type 2 — étoile moyenne */
-.vs-p--2::before {
-  content: '★';
-  font-size: clamp(12px, 1.6vw, 20px);
-  color: rgba(255,255,255,.5);
-  animation: vsStar 8s ease-in-out infinite reverse;
-  display: block;
-  line-height: 1;
-}
-
-/* Type 3 — petit cercle */
-.vs-p--3 {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.55);
-  animation: vsFloat 7s ease-in-out infinite;
-}
-
-/* Type 4 — anneau */
-.vs-p--4 {
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,.4);
-  animation: vsFloat 10s ease-in-out infinite reverse;
-}
-
-@keyframes vsStar {
-  0%,100% { transform:translate(0,0) scale(1); opacity:.6; }
-  33%      { transform:translate(6px,-10px) scale(1.2); opacity:1; }
-  66%      { transform:translate(-5px,6px) scale(0.8); opacity:.4; }
-}
-
-@keyframes vsFloat {
-  0%,100% { transform:translate(0,0); }
-  50%      { transform:translate(8px,-12px); }
-}
+/* Blobs désactivés sur fond unifié */
+.vs-particles { display: none; }
 
 /* Header */
 .vs-header {
@@ -125,7 +68,8 @@
   line-height: 0.96;
 }
 
-.vs-t-rose { color: var(--rose); }
+.vs-t-orange { color: var(--orange); }
+.vs-t-rose   { color: var(--orange); }
 
 .vs-t-gradient {
   display: inline-block;
@@ -184,9 +128,8 @@
   font-size: clamp(16px, 1.8vw, 22px);
   line-height: 1.45;
   font-style: italic;
-  color: #fff;
+  color: var(--ink-2);
   quotes: none;
-  text-shadow: 0 2px 16px rgba(0,0,0,.12);
 }
 
 /* Auteur */
@@ -206,7 +149,7 @@
 .vs-card-name {
   font-size: 15px;
   font-weight: 700;
-  color: var(--rose);
+  color: var(--orange);
   letter-spacing: -0.01em;
 }
 
@@ -214,7 +157,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.65);
+  color: var(--ink-3);
 }
 
 /* ── Dots navigation ──────────────────────────────────────────── */
@@ -228,7 +171,7 @@
 .vs-dot {
   width: 8px; height: 8px;
   border-radius: 999px;
-  background: rgba(255,255,255,.4);
+  background: rgba(253,110,0,.25);
   border: none;
   cursor: pointer;
   padding: 0;
@@ -237,7 +180,7 @@
 
 .vs-dot.--active {
   width: 28px;
-  background: #fff;
+  background: var(--orange);
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */

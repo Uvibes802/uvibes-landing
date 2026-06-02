@@ -41,9 +41,9 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
         {/* ── Ticker de pills cliquables ── */}
         <div className="collectifs-pills-ticker" aria-label="Sélecteur de collectif">
           <div className="collectifs-pills-track">
-            {[...collectifs, ...collectifs].map((c, i) => (
+            {collectifs.map((c) => (
               <button
-                key={i}
+                key={c.id}
                 className={`collectif-pill-btn${activeId === c.id ? " --active" : ""}`}
                 style={{ "--c-color": c.color } as React.CSSProperties}
                 onClick={() => setActiveId(c.id)}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import "../../styles/footer/footer.css";
 
 const NAV_COLS = [
@@ -42,7 +43,14 @@ export default function Footer() {
         {/* Top — brand + nav côte à côte */}
         <div className="ft-top">
           <div className="ft-brand">
-            <span className="ft-wordmark v-prompt">uvibes.</span>
+            <Image
+              src="/images/Logo VI blanc.png"
+              alt="Uvibes"
+              width={120}
+              height={60}
+              className="ft-logo"
+              style={{ objectFit: "contain", objectPosition: "left" }}
+            />
             <p className="ft-tagline v-serif">Activez les bonnes ondes.</p>
           </div>
 

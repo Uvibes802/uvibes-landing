@@ -13,39 +13,18 @@ export default function Contact() {
         <div className="ct-left">
           <p className="ct-eyebrow v-mono">Étudions votre projet</p>
           <h2 className="ct-title">
-            <span className="v-prompt">Parlons de votre</span>
+            <span className="v-prompt">Votre projet mérite</span>
             <br />
             <span className="ct-underline-wrap">
-              <span className="v-serif ct-title-serif">collectif.</span>
+              <span className="v-serif ct-title-serif">une vraie conversation.</span>
               <span className="ct-vline-under" aria-hidden="true">
-                <VibrationLine width={500} height={20} amplitude={6} freq={5} stroke="#D90A5C" strokeWidth={3} speed={5} style={{ width: "100%" }} />
+                <VibrationLine width={500} height={20} amplitude={6} freq={5} stroke="rgba(255,255,255,.6)" strokeWidth={3} speed={5} style={{ width: "100%" }} />
               </span>
             </span>
           </h2>
           <p className="ct-sub">
             Quelques lignes suffisent. On vous répond sous 48h, sans script de vente.
           </p>
-
-          <div className="ct-infos">
-            <div className="ct-info-item">
-              <span className="ct-info-label v-mono">Email</span>
-              <a href="mailto:bonjour@uvibes.fr" className="ct-info-value">
-                bonjour@uvibes.fr
-              </a>
-            </div>
-            <div className="ct-info-item">
-              <span className="ct-info-label v-mono">Téléphone</span>
-              <a href="tel:+33411223344" className="ct-info-value">
-                +33 (0)4 11 22 33 44
-              </a>
-            </div>
-            <div className="ct-info-item">
-              <span className="ct-info-label v-mono">Adresse</span>
-              <span className="ct-info-value">
-                Perpignan, France · Bruxelles, Belgique
-              </span>
-            </div>
-          </div>
         </div>
 
         {/* Colonne droite : formulaire */}

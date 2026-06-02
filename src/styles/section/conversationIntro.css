@@ -3,8 +3,8 @@
 .ci-section {
   position: relative;
   overflow: clip;
-  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(145deg, #fff5ed 0%, #fce8f3 55%, #eef3ff 100%);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--paper);
 }
 
 .ci-blob {
@@ -81,7 +81,8 @@
   width: 100%;
 }
 
-.ci-t1, .ci-t2, .ci-t3, .ci-t4 { color: var(--ink); }
+.ci-t1, .ci-t3 { color: var(--orange); }
+.ci-t2, .ci-t4 { color: var(--rose); }
 
 .ci-title-enfin {
   display: inline-block;
@@ -163,8 +164,8 @@
 }
 
 @keyframes ci-float {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50%       { transform: translateY(-12px) rotate(-1deg); }
+  0%, 100% { transform: rotate(-1deg); }
+  50%       { transform: rotate(-1deg); }
 }
 
 /* Écran — border-radius arrondi, overflow hidden clip la vidéo */
@@ -431,32 +432,32 @@
   box-shadow: 0 4px 16px rgba(0,0,0,.2);
 }
 
-/* ── Texte droite ────────────────────────────────────────────── */
+/* ── Texte droite : pills ────────────────────────────────────── */
 .ci-body {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  padding: 1.75rem 2rem 1.75rem 1.75rem;
-  background: rgba(255,255,255,.6);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  border-left: 3px solid var(--orange);
-  box-shadow: 0 4px 24px rgba(253,110,0,.07);
+  gap: 0.85rem;
 }
 
 .ci-body p {
   margin: 0;
-  font-size: clamp(15px, 1.35vw, 18px);
+  font-size: clamp(14px, 1.2vw, 17px);
   line-height: 1.72;
   color: var(--ink-2);
+  padding: 1rem 1.4rem;
+  background: #fff;
+  border-radius: 14px;
+  border-left: 3px solid var(--orange);
+  box-shadow: 0 2px 12px rgba(253,110,0,.07);
 }
 
-/* Premier paragraphe plus grand et plus affirmé */
+.ci-body p:nth-child(even) {
+  border-left-color: var(--rose);
+  box-shadow: 0 2px 12px rgba(217,10,92,.07);
+}
+
 .ci-body p:first-child {
-  font-size: clamp(17px, 1.55vw, 20px);
-  font-weight: 500;
-  line-height: 1.65;
-  color: var(--ink);
+  font-size: clamp(15px, 1.35vw, 18px);
 }
 
 .ci-kw {
@@ -467,9 +468,9 @@
   transition-delay: calc(var(--kw-i, 0) * 200ms);
 }
 
-/* Déclenchement séquentiel quand le Reveal parent est visible */
+/* Déclenchement séquentiel — utilise la couleur définie par le JSX */
 .ci-reveal.--in .ci-kw {
-  color: var(--orange);
+  color: var(--kw-color, var(--orange));
 }
 
 /* ── Particules flottantes ───────────────────────────────────── */

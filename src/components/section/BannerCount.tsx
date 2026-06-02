@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "../../styles/section/bannerCount.css";
 
-const FILLERS = ["organisations", "rencontres provoquées", "minutes d'écoute", "vibrations partagées"];
+const FILLERS = ["rencontres provoquées", "minutes d'écoute", "vibrations partagées", "échanges engagés"];
 
 function useCountUp(target: number, duration: number, started: boolean) {
   const [v, setV] = useState(0);
@@ -68,7 +68,7 @@ export default function BannerCount() {
 
         {/* Compteur principal */}
         <div className="banner-count-main">
-          <span className="v-mono banner-count-label">En 2026, sur Uvibes</span>
+          <span className="v-mono banner-count-label">Déjà actifs sur Uvibes</span>
           <div className="banner-count-row">
             <h2 className="banner-count-number v-prompt">
               {display}<span className="banner-count-plus">+</span>

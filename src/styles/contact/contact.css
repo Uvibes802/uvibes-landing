@@ -1,8 +1,8 @@
 /* ── Contact ─────────────────────────────────────────────────── */
 
 .ct-section {
-  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: #f7f1ea;
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: linear-gradient(135deg, var(--orange) 0%, #ff4d7a 50%, var(--rose) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -19,14 +19,14 @@
   animation: ctBlobFloat 14s ease-in-out infinite;
 }
 
-/* Anneau orange haut-droite */
+/* Anneau blanc haut-droite */
 .ct-section::before {
   content: '';
   position: absolute;
   top: -60px; right: -60px;
   width: 280px; height: 280px;
   border-radius: 50%;
-  border: 2px solid rgba(253,110,0,.18);
+  border: 2px solid rgba(255,255,255,.18);
   animation: ctSpin 25s linear infinite;
   pointer-events: none;
 }
@@ -112,7 +112,7 @@
   align-items: start;
   position: relative;
   z-index: 1;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -127,7 +127,7 @@
   margin: 0;
   font-size: 11px;
   letter-spacing: 0.2em;
-  color: var(--orange);
+  color: rgba(255,255,255,.75);
   text-transform: uppercase;
   font-family: var(--font-roboto-mono), monospace;
   display: inline-flex;
@@ -146,11 +146,11 @@
 
 .ct-title {
   margin: 0;
-  font-size: clamp(42px, 5.5vw, 82px);
+  font-size: clamp(38px, 4.5vw, 72px);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.0;
-  color: var(--orange);
+  color: #fff;
   font-family: var(--font-prompt), sans-serif;
 }
 
@@ -172,18 +172,15 @@
   font-style: italic;
   font-weight: 400;
   font-family: var(--font-instrument), "Instrument Serif", serif;
-  background: linear-gradient(90deg, var(--rose), #e6007e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: clamp(46px, 6vw, 90px);
+  color: #fff;
+  font-size: clamp(38px, 4.5vw, 72px);
 }
 
 .ct-sub {
   margin: 0;
   font-size: clamp(14px, 1.2vw, 16px);
   line-height: 1.65;
-  color: var(--ink-2);
+  color: rgba(255,255,255,.8);
   max-width: 360px;
 }
 

@@ -64,13 +64,11 @@
   gap: 0.75rem;
 }
 
-.ft-wordmark {
+.ft-logo {
   display: block;
-  font-size: clamp(52px, 9vw, 120px);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.88;
-  color: #fff;
+  width: clamp(80px, 10vw, 140px);
+  height: auto;
+  object-fit: contain;
 }
 
 .ft-tagline {

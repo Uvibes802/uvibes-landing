@@ -12,7 +12,6 @@ import HowItWorks from "@/components/section/HowItWorks";
 import VideoSection from "@/components/section/VideoSection";
 import ConversationIntro from "@/components/section/ConversationIntro";
 import { fetchPartners } from "@/services/home/fetchPartners";
-import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 
 export const dynamic = "force-dynamic";
 
@@ -39,17 +38,8 @@ export default async function Home() {
 
       <HowItWorks />
 
-      {/* Séparateur vibration entre HowItWorks et vibe-zone */}
-      <div className="vibe-sep" aria-hidden="true">
-        <GradientVibrationLine id="vsep-1" width={1800} height={55} amplitude={38} freq={4} strokeWidth={18} speed={9}  colorFrom="#FD6E00" colorTo="#D90A5C" style={{ width: "100%" }} />
-        <GradientVibrationLine id="vsep-2" width={1800} height={55} amplitude={28} freq={6} strokeWidth={10} speed={13} colorFrom="#D90A5C" colorTo="#FD6E00" style={{ width: "100%" }} />
-      </div>
-
-      {/* Zone partagée étoilée : partenaires + témoignages */}
-      <div className="vibe-zone">
-        <PartnerCarousel logos={partners} />
-        <VideoSection />
-      </div>
+      <PartnerCarousel logos={partners} />
+      <VideoSection />
 
       <FeaturedArticles />
 
