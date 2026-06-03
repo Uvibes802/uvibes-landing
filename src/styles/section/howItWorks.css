@@ -1,7 +1,7 @@
 /* ── HowItWorks ──────────────────────────────────────────────── */
 
 .how-section {
-  padding: 1rem clamp(1.5rem, 5vw, 3.5rem) clamp(3rem, 5vw, 5rem);
+  padding: 0 clamp(1.5rem, 5vw, 3.5rem) clamp(3rem, 5vw, 5rem);
   background: var(--paper);
   position: relative;
   overflow: visible;
@@ -66,8 +66,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: clamp(3rem, 6vw, 5rem);
-  gap: 1.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  gap: 1rem;
 }
 
 .how-section > * { position: relative; z-index: 1; }
@@ -113,7 +113,7 @@
 
 .how-cta {
   flex-shrink: 0;
-  align-self: flex-end;
+  align-self: center;
   white-space: nowrap;
 }
 
@@ -183,12 +183,14 @@
 .how-vis .how-step--2 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.68s; }
 .how-vis .how-step--3 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.84s; }
 
-/* Step — sans carte */
+/* Step — centré */
 .how-step {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 1.25rem;
 }
 
@@ -235,7 +237,7 @@
   letter-spacing: -0.02em;
   line-height: 1.22;
   color: var(--step-color, #1a0a06);
-  max-width: 320px;
+  max-width: 300px;
 }
 
 .how-step-body {
@@ -243,7 +245,7 @@
   font-size: clamp(14px, 1.1vw, 16px);
   line-height: 1.68;
   color: #2a2a2a;
-  max-width: 360px;
+  max-width: 340px;
   flex-grow: 1;
 }
 

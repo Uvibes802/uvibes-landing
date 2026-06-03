@@ -7,11 +7,11 @@
   width: 100%;
 }
 
-/* Nom + Prénom : 2 colonnes équilibrées avec bonne taille */
+/* Nom + Prénom : chacun sur sa propre ligne, pleine largeur */
 .fc-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .fc-field {
