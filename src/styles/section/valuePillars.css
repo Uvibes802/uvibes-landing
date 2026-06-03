@@ -15,7 +15,7 @@
   top: -60px; left: -60px;
   width: 350px; height: 350px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.06), transparent);
+  background: radial-gradient(closest-side, rgba(253,110,0,.18), transparent 70%);
   pointer-events: none;
 }
 
