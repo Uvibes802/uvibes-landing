@@ -144,7 +144,10 @@
   );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,.9);
+  border-top: 3px solid var(--p-accent);
+  border-left: 1px solid rgba(255,255,255,.95);
+  border-right: 1px solid rgba(255,255,255,.6);
+  border-bottom: 1px solid rgba(255,255,255,.6);
   overflow: hidden;
   min-height: 280px;
   display: flex;
