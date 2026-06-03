@@ -40,18 +40,13 @@ export default function HowItWorks() {
         <VibrationLine width={1400} height={70} amplitude={12} freq={8} stroke="rgba(217,10,92,.1)" strokeWidth={1} speed={26} />
       </div>
       <div className="how-header">
-        <div>
-          <p className="v-mono how-eyebrow">Comment ça fonctionne</p>
-          <h2 className="how-title v-prompt">
-            <span className="how-title-orange">Trois</span>{" "}
-            <span className="v-serif how-title-gradient">étapes.</span>
-            <br />
-            <span className="how-title-rose">Pas une de plus.</span>
-          </h2>
-        </div>
-        <Link href="/solution" className="btn-brand how-cta">
-          Voir la solution en détail →
-        </Link>
+        <p className="v-mono how-eyebrow">Comment ça fonctionne</p>
+        <h2 className="how-title v-prompt">
+          <span className="how-title-orange">Trois</span>{" "}
+          <span className="v-serif how-title-gradient">étapes.</span>
+          <br />
+          <span className="how-title-rose">Pas une de plus.</span>
+        </h2>
       </div>
 
       <div className="how-grid">
@@ -83,6 +78,12 @@ export default function HowItWorks() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="how-cta-wrap">
+        <Link href="/solution" className="btn-brand how-cta">
+          Voir la solution en détail →
+        </Link>
       </div>
 
     </section>
