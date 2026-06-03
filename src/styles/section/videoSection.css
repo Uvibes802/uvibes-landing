@@ -132,7 +132,7 @@
   line-height: 1;
   color: var(--vs-accent, #FD6E00);
   opacity: 0.15;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   user-select: none;
   margin-bottom: -1.25rem;
   align-self: flex-start;
@@ -163,7 +163,7 @@
   font-style: italic;
   color: #1a0a06;
   text-align: center;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--text-font, "Supreme-Light"), sans-serif;
   max-width: 56ch;
   position: relative;
   z-index: 1;

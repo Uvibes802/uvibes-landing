@@ -303,12 +303,14 @@
 }
 
 .collectif-panel-subtitle {
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.3;
-  color: rgba(255,255,255,.95);
+  font-family: var(--text-font, "Supreme-Light"), sans-serif;
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: rgba(255,255,255,.82);
   margin: 0;
+  text-transform: uppercase;
 }
 
 .collectif-panel-flyers {
