@@ -126,21 +126,26 @@
 .pillars-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(1rem, 2vw, 1.75rem);
+  gap: clamp(2rem, 3.5vw, 3rem);
   position: relative;
   z-index: 1;
 }
 
-/* ── Card ─────────────────────────────────────────────────────── */
+/* ── Card — glass gradient ────────────────────────────────────── */
 .pillar-card {
   position: relative;
   padding: 36px;
   border-radius: 28px;
-  background: rgba(255,255,255,.78);
+  /* fond gradient teinté de la couleur accent */
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.95) 0%,
+    color-mix(in srgb, var(--p-accent) 18%, rgba(255,255,255,.78)) 100%
+  );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 3px solid var(--p-accent);
-  border-left: 1px solid rgba(255,255,255,.9);
+  border-left: 1px solid rgba(255,255,255,.95);
   border-right: 1px solid rgba(255,255,255,.6);
   border-bottom: 1px solid rgba(255,255,255,.6);
   overflow: hidden;
@@ -149,9 +154,9 @@
   flex-direction: column;
   justify-content: space-between;
   box-shadow:
-    0 1px 0 rgba(255,255,255,.8) inset,
-    0 4px 24px color-mix(in srgb, var(--p-accent) 12%, transparent),
-    0 16px 48px rgba(0,0,0,.07);
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 6px 32px color-mix(in srgb, var(--p-accent) 16%, transparent),
+    0 20px 56px rgba(0,0,0,.08);
   transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s ease;
   opacity: 0;
   transform: translateY(40px);
@@ -301,7 +306,7 @@
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .pillars-grid { grid-template-columns: 1fr; }
-  .pillar-card  { min-height: auto; padding: 28px; background: rgba(255,255,255,.82); }
+  .pillar-card  { min-height: auto; padding: 28px; }
 
   /* Recentrage des lignes sur chaque carte empilée */
   .pillars-vline--1 { top: 25%; }
