@@ -54,18 +54,8 @@ export default function TeamSection() {
 
     if (team.length === 0) {
       return (
-        <div style={{
-          textAlign: 'center',
-          padding: '3rem 2rem',
-          color: '#9c7080',
-          fontSize: '15px',
-          fontFamily: 'var(--text-font)',
-          background: 'rgba(255,255,255,.6)',
-          borderRadius: '16px',
-          border: '1px dashed rgba(253,110,0,.2)',
-          width: '100%',
-        }}>
-          <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.75rem' }}>🔄</span>
+        <div className="team-empty-state">
+          <span className="team-empty-state__icon">🔄</span>
           Données en cours de mise à jour
         </div>
       );

@@ -24,6 +24,12 @@ const organizationJsonLd = {
   sameAs: ["https://www.linkedin.com/company/uvibes", "https://www.instagram.com/uvibes_app"],
 };
 
+const VIDEOS_UVIBES = [
+  { file: "Isaline-desktop.mp4", name: "Isaline", role: "Étudiante" },
+  { file: "Lisa-desktop.mp4",    name: "Lisa",    role: "Professionnelle RH" },
+  { file: "Delphine-desktop.mp4",name: "Delphine",role: "Responsable collectif" },
+];
+
 const ETHICS = [
   { num: "01", title: "Respect & confidentialité", text: "Un service digital respectueux, pensé pour la qualité des discussions, l'inclusion et la protection des données de chaque membre." },
   { num: "02", title: "Collaboration & écoute", text: "Une conduite de projet alignée avec nos valeurs — basée sur l'écoute active, la co-construction et la responsabilité collective." },
@@ -163,11 +169,7 @@ export default function Uvibes() {
             <h2 className="uv-section-title">La solution <em className="uv-serif-accent">en action</em></h2>
           </div>
           <div className="uv-videos-grid">
-            {[
-              { file: "Isaline-desktop.mp4", name: "Isaline", role: "Étudiante" },
-              { file: "Lisa-desktop.mp4",    name: "Lisa",    role: "Professionnelle RH" },
-              { file: "Delphine-desktop.mp4",name: "Delphine",role: "Responsable collectif" },
-            ].map((v) => (
+            {VIDEOS_UVIBES.map((v) => (
               <div key={v.name} className="uv-video-card">
                 <video
                   className="uv-video-el"

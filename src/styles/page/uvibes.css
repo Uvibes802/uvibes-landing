@@ -91,7 +91,7 @@
 
 @keyframes uvlSlide {
   from { transform: translateX(0); }
-  to   { transform: translateX(110vw); }
+  to   { transform: translateX(calc(100vw + 120px)); }
 }
 
 /* ── Particules rondes + carrés hero uvibes ────────────────────── */

@@ -104,20 +104,6 @@
   color: #9c7080;
 }
 
-/* Fallback (si pas de legal-hero/legal-content-card) */
-.legal-page h1 {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 800;
-  color: var(--orange);
-  letter-spacing: -0.03em;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-.legal-page h2 { font-size: clamp(17px, 2vw, 22px); font-weight: 700; color: #FD6E00; margin: 2rem 0 0.75rem; }
-.legal-page h3 { font-size: clamp(15px, 1.6vw, 17px); font-weight: 700; color: #D90A5C; margin: 1.5rem 0 0.5rem; }
-.legal-page p, .legal-page li { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 0.85rem; }
-.legal-page ul { padding-left: 1.5rem; }
-.legal-page a { color: #FD6E00; text-decoration: underline; }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 860px) {

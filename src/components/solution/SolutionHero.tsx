@@ -8,6 +8,23 @@ import "@/styles/solution/solutionHero.css";
 
 const VIDEOS = ["Isaline-desktop.mp4", "Lisa-desktop.mp4", "Delphine-desktop.mp4", "Colette-desktop.mp4"];
 
+const PARTICLES = [
+  { color: "#FD6E00", size: 14, top: "12%", left: "6%",  anim: "particle-0", dur: "11s", del: "0s"   },
+  { color: "#D90A5C", size: 22, top: "25%", right: "7%", anim: "particle-1", dur: "14s", del: "1.2s" },
+  { color: "#FFE456", size: 8,  top: "55%", right:"14%", anim: "particle-2", dur: "16s", del: "0.4s" },
+  { color: "#FD6E00", size: 32, top: "5%",  left: "45%", anim: "particle-0", dur: "18s", del: "2s"   },
+  { color: "#D90A5C", size: 10, top: "70%", left: "4%",  anim: "particle-1", dur: "13s", del: "0.8s" },
+  { color: "#00AFDD", size: 18, top: "40%", left: "2%",  anim: "particle-2", dur: "12s", del: "1.6s" },
+  { color: "#FD6E00", size: 6,  top: "8%",  right:"22%", anim: "particle-0", dur: "7s",  del: "3s"   },
+  { color: "#fff",    size: 5,  top: "82%", right:"18%", anim: "particle-1", dur: "17s", del: "0.3s" },
+  { color: "#FFB800", size: 12, bottom:"20%",left:"30%", anim: "particle-2", dur: "15s", del: "1s"   },
+  { color: "#fff",    size: 40, top: "35%", right:"2%",  anim: "particle-0", dur: "22s", del: "2.5s", border: true },
+  { color: "#FD6E00", size: 28, bottom:"15%",right:"5%", anim: "particle-1", dur: "20s", del: "0.6s", border: true },
+  { color: "#D90A5C", size: 48, top: "60%", right:"3%",  anim: "particle-2", dur: "25s", del: "1.8s", border: true },
+  { color: "#fff",    size: 20, top: "20%", left:"20%",  anim: "particle-0", dur: "9s",  del: "4s",   border: true },
+  { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
+];
+
 function AppScreen() {
   const [src, setSrc] = useState(VIDEOS[0]);
   useEffect(() => { setSrc(VIDEOS[Math.floor(Math.random() * VIDEOS.length)]); }, []);
@@ -40,24 +57,6 @@ function AppScreen() {
     </div>
   );
 }
-
-const PARTICLES = [
-  { color: "#FD6E00", size: 14, top: "12%", left: "6%",  anim: "particle-0", dur: "11s", del: "0s"   },
-  { color: "#D90A5C", size: 22, top: "25%", right: "7%", anim: "particle-1", dur: "14s", del: "1.2s" },
-  { color: "#FFE456", size: 8,  top: "55%", right:"14%", anim: "particle-2", dur: "16s", del: "0.4s" },
-  { color: "#FD6E00", size: 32, top: "5%",  left: "45%", anim: "particle-0", dur: "18s", del: "2s"   },
-  { color: "#D90A5C", size: 10, top: "70%", left: "4%",  anim: "particle-1", dur: "13s", del: "0.8s" },
-  { color: "#00AFDD", size: 18, top: "40%", left: "2%",  anim: "particle-2", dur: "12s", del: "1.6s" },
-  { color: "#FD6E00", size: 6,  top: "8%",  right:"22%", anim: "particle-0", dur: "7s",  del: "3s"   },
-  { color: "#fff",    size: 5,  top: "82%", right:"18%", anim: "particle-1", dur: "17s", del: "0.3s" },
-  { color: "#FFB800", size: 12, bottom:"20%",left:"30%", anim: "particle-2", dur: "15s", del: "1s"   },
-  { color: "#fff",    size: 40, top: "35%", right:"2%",  anim: "particle-0", dur: "22s", del: "2.5s", border: true },
-  { color: "#FD6E00", size: 28, bottom:"15%",right:"5%", anim: "particle-1", dur: "20s", del: "0.6s", border: true },
-  { color: "#D90A5C", size: 48, top: "60%", right:"3%",  anim: "particle-2", dur: "25s", del: "1.8s", border: true },
-  { color: "#fff",    size: 20, top: "20%", left:"20%",  anim: "particle-0", dur: "9s",  del: "4s",   border: true },
-  { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
-];
-
 
 export default function SolutionHero() {
   return (

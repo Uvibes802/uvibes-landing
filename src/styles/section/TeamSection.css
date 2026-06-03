@@ -1,5 +1,23 @@
 /* ── TeamSection redesign ────────────────────────────────────── */
 
+.team-empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #9c7080;
+  font-size: 15px;
+  font-family: var(--text-font);
+  background: rgba(255,255,255,.6);
+  border-radius: 16px;
+  border: 1px dashed rgba(253,110,0,.2);
+  width: 100%;
+}
+
+.team-empty-state__icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
 .uvibes-teamSection-container {
   width: 100%;
 }
