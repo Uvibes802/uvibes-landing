@@ -330,6 +330,8 @@ Toujours incrémenter — ne jamais réutiliser un numéro existant.
 - [x] **UI-63** — Page uvibes : stats/éthique/portage en glass macOS, fonds gradient, couleurs vivid par carte éthique
 - [x] **UI-64** — CRM : sidebar glass backdrop-filter, cards métriques glass, login premium, tables glass
 - [x] **FEAT-01** — CRM newsletter : model Prisma + API /api/newsletter + page CRM manager + composant public
+- [x] **UI-65** — Glassmorphism + gradients vivid systématiques sur toutes les sections/pages (backdrop-filter, warm gradients, blobs déco)
+  - RDV, Devis, CRM, VideoSection, HowItWorks, ValuePillars, PricingTable, solutionForWho/Themes/HowItWorks, uvibes, article, légal, FeaturesCard
 
 ---
 

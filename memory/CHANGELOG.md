@@ -2,6 +2,28 @@
 
 ---
 
+## 2026-06-03 — Session redesign premium macOS v3 — phase 2 (branche style/redesign-premium-v3)
+
+### Tâches terminées
+- **Glassmorphism systématique** : backdrop-filter blur(16-20px) + rgba(255,255,255,.75-.82) sur toutes les cards et panneaux
+  - RDV, Devis, CRM sidebar/topbar/métriques/tables, VideoSection, HowItWorks, ValuePillars, PricingTable, éthique/portage uvibes, legal card, blog article
+- **Gradients warm vivid** : remplacement de tous les `#F5F5F7` et `#fff` plats par `linear-gradient(145deg, #FFFBF4→#FFF6EC→#FFF0F8)` sur 14 fichiers CSS
+- **Blobs déco** : radial-gradient subtil `::before`/`::after` sur chaque section (profondeur sans surcharge)
+- **Uvibes CTA** : section "Rejoindre" → gradient orange→rose vivid (texte blanc)
+- **Legal hero** : gradient orange→rose (eyebrow + titre en blanc)
+- **FeaturesCard rows** : alternance gradients warm (#FFFBF4→#FFF6EC / #FFF0F8→#FFFBF4) vs #fff/#F5F5F7 plats
+- **Footer** : compact + newsletter inline committés
+
+### Branche
+`style/redesign-premium-v3` — commit 3d5e14c
+
+### Impact
+- Cohérence glass macOS 100% : toutes les cards du site ont backdrop-filter + border rgba blanc
+- Zéro fond plat gris sur aucune page — gradient warm partout
+- Profondeur visuelle renforcée par les blobs déco sans JS
+
+---
+
 ## 2026-06-03 — Session redesign premium macOS v3 (branche style/redesign-premium-v3)
 
 ### Tâches terminées
