@@ -173,6 +173,77 @@
 .uv-team-photo { position: relative; width: 100%; height: 48vh; overflow: hidden; }
 .uv-team-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(253,110,0,.12) 0%, transparent 60%); pointer-events: none; }
 
+/* ── Vidéos témoignages ───────────────────────────────────────── */
+.uv-videos {
+  background: transparent;
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+}
+.uv-videos-inner { max-width: 1200px; margin: 0 auto; }
+
+.uv-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.uv-video-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.8);
+  box-shadow: 0 4px 20px rgba(0,0,0,.08), 0 20px 48px rgba(253,110,0,.08);
+  transition: transform 0.3s cubic-bezier(.2,.7,.2,1), box-shadow 0.3s ease;
+  aspect-ratio: 9 / 16;
+}
+
+.uv-video-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 8px 32px rgba(0,0,0,.1), 0 32px 64px rgba(253,110,0,.12);
+}
+
+.uv-video-el {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.uv-video-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1;
+}
+
+.uv-video-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-prompt), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.uv-video-role {
+  font-size: 11px;
+  color: rgba(255,255,255,.75);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+}
+
+@media (max-width: 768px) {
+  .uv-videos-grid { grid-template-columns: 1fr; }
+  .uv-video-card  { aspect-ratio: 4 / 3; }
+}
+
 /* ── Éthique ──────────────────────────────────────────────────── */
 .uv-ethics {
   background: transparent;

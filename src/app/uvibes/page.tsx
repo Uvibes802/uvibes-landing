@@ -1,4 +1,5 @@
 import Footer from "@/components/footer/Footer";
+import { getVideoUrl } from "@/utils/videoUrl";
 import JsonLd from "@/components/JsonLd";
 import TeamSection from "@/components/section/TeamSection";
 import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
@@ -137,6 +138,35 @@ export default function Uvibes() {
         <Image src="/images/TeamUvibes.jpg" alt="L'équipe Uvibes réunie" fill style={{ objectFit: "cover", objectPosition: "center 20%" }} loading="lazy" />
         <div className="uv-team-photo-overlay" aria-hidden="true" />
       </div>
+
+      {/* ── Vidéos témoignages ── */}
+      <section className="uv-videos">
+        <div className="uv-videos-inner">
+          <div className="uv-section-header">
+            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Ils le vivent</p>
+            <h2 className="uv-section-title">La solution <em className="uv-serif-accent">en action</em></h2>
+          </div>
+          <div className="uv-videos-grid">
+            {[
+              { file: "Isaline-desktop.mp4", name: "Isaline", role: "Étudiante" },
+              { file: "Lisa-desktop.mp4",    name: "Lisa",    role: "Professionnelle RH" },
+              { file: "Delphine-desktop.mp4",name: "Delphine",role: "Responsable collectif" },
+            ].map((v) => (
+              <div key={v.name} className="uv-video-card">
+                <video
+                  className="uv-video-el"
+                  src={getVideoUrl(v.file)}
+                  autoPlay muted loop playsInline
+                />
+                <div className="uv-video-info">
+                  <span className="uv-video-name">{v.name}</span>
+                  <span className="uv-video-role">{v.role}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── Éthique ── */}
       <section className="uv-ethics">

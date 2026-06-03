@@ -1,9 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import { useEffect, useState } from "react";
+import { getVideoUrl } from "@/utils/videoUrl";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "@/styles/solution/solutionHero.css";
+
+const VIDEOS = ["Isaline-desktop.mp4", "Lisa-desktop.mp4", "Delphine-desktop.mp4", "Colette-desktop.mp4"];
+
+function AppScreen() {
+  const [src, setSrc] = useState(VIDEOS[0]);
+  useEffect(() => { setSrc(VIDEOS[Math.floor(Math.random() * VIDEOS.length)]); }, []);
+
+  return (
+    <div className="sh-screen-wrap">
+      <div className="sh-screen-halo" aria-hidden="true" />
+      <div className="sh-screen">
+        <div className="sh-screen-bar">
+          <div className="sh-screen-dots">
+            <span style={{ background: "#FF5F57" }} />
+            <span style={{ background: "#FEBC2E" }} />
+            <span style={{ background: "#28C840" }} />
+          </div>
+          <div className="sh-screen-url">
+            <span className="sh-screen-lock">🔒</span>
+            app.uvibes.fr
+          </div>
+          <div className="sh-screen-bar-actions" />
+        </div>
+        <div className="sh-screen-display">
+          <video className="sh-screen-video" src={getVideoUrl(src)} autoPlay muted loop playsInline />
+          <div className="sh-screen-overlay" aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const PARTICLES = [
   { color: "#FD6E00", size: 14, top: "12%", left: "6%",  anim: "particle-0", dur: "11s", del: "0s"   },
@@ -22,34 +54,6 @@ const PARTICLES = [
   { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
 ];
 
-const STATS = [
-  { value: "3 500+", label: "Échanges engagés", icon: "💬", color: "#FD6E00", delay: "0s" },
-  { value: "93%",    label: "Satisfaction",     icon: "⭐", color: "#D90A5C", delay: "0.4s" },
-  { value: "4.9/5",  label: "Note moyenne",     icon: "✨", color: "#F59E0B", delay: "0.8s" },
-  { value: "< 3min", label: "Par échange",      icon: "⚡", color: "#10B981", delay: "1.2s" },
-];
-
-function FloatingStats() {
-  return (
-    <div className="sh-stats-wrap">
-      {/* Orbe central */}
-      <div className="sh-stats-orb" aria-hidden="true" />
-      {/* Anneaux */}
-      <div className="sh-ring sh-ring--1" aria-hidden="true" />
-      <div className="sh-ring sh-ring--2" aria-hidden="true" />
-      <div className="sh-ring sh-ring--3" aria-hidden="true" />
-      {/* Stats cards */}
-      {STATS.map((s, i) => (
-        <div key={i} className={`sh-stat-card sh-stat-card--${i + 1}`}
-          style={{ "--card-color": s.color, animationDelay: s.delay } as React.CSSProperties}>
-          <span className="sh-stat-icon">{s.icon}</span>
-          <span className="sh-stat-value" style={{ color: s.color }}>{s.value}</span>
-          <span className="sh-stat-label">{s.label}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default function SolutionHero() {
   return (
@@ -121,8 +125,8 @@ export default function SolutionHero() {
           </div>
         </div>
 
-        {/* Stats flottantes */}
-        <FloatingStats />
+        {/* App Screen */}
+        <AppScreen />
       </div>
     </section>
   );

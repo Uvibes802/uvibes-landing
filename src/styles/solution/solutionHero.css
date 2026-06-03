@@ -174,95 +174,108 @@
 }
 .sh-cta-ghost:hover { color: #fff; border-color: #fff; }
 
-/* ── Floating Stats ───────────────────────────────────────────── */
-.sh-stats-wrap {
+/* ── App Screen mockup ────────────────────────────────────────── */
+.sh-screen-wrap {
   position: relative;
-  width: clamp(280px, 38vw, 500px);
-  height: clamp(280px, 38vw, 500px);
   flex-shrink: 0;
+  animation: shFloat 7s ease-in-out infinite;
 }
 
-/* Orbe central lumineux */
-.sh-stats-orb {
+@keyframes shFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+.sh-screen-halo {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 180px; height: 180px;
+  inset: -60px;
   border-radius: 50%;
   background: radial-gradient(closest-side,
-    rgba(255,200,80,.45) 0%, rgba(253,110,0,.25) 50%, transparent 75%);
-  filter: blur(32px);
-  animation: orbPulse 4s ease-in-out infinite;
+    rgba(255,180,80,.35) 0%, rgba(253,110,0,.18) 50%, transparent 75%);
+  filter: blur(48px);
+  pointer-events: none;
+  animation: shHalo 6s ease-in-out infinite;
 }
 
-@keyframes orbPulse {
-  0%,100% { transform: translate(-50%,-50%) scale(1);    opacity: 1; }
-  50%      { transform: translate(-50%,-50%) scale(1.35); opacity: .65; }
+@keyframes shHalo {
+  0%,100% { transform: scale(1);    opacity: 1;   }
+  50%      { transform: scale(1.12); opacity: 0.7; }
 }
 
-/* Anneaux concentriques */
-.sh-ring {
-  position: absolute;
-  top: 50%; left: 50%;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,.18);
-  transform: translate(-50%, -50%);
-  animation: ringSpin linear infinite;
-}
-.sh-ring--1 { width: 200px; height: 200px; animation-duration: 20s; }
-.sh-ring--2 { width: 310px; height: 310px; animation-duration: 30s; animation-direction: reverse; border-color: rgba(253,110,0,.25); border-style: dashed; }
-.sh-ring--3 { width: 420px; height: 420px; animation-duration: 45s; border-color: rgba(217,10,92,.15); }
-
-@keyframes ringSpin {
-  from { transform: translate(-50%,-50%) rotate(0deg); }
-  to   { transform: translate(-50%,-50%) rotate(360deg); }
-}
-
-/* Cards stats */
-.sh-stat-card {
-  position: absolute;
-  background: rgba(255,255,255,.14);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,.3);
+.sh-screen {
+  width: clamp(300px, 40vw, 580px);
+  background: rgba(255,255,255,.12);
   border-radius: 18px;
-  padding: 1rem 1.25rem;
+  border: 1px solid rgba(255,255,255,.35);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,255,255,.2),
+    inset 0 1px 0 rgba(255,255,255,.4);
+  overflow: hidden;
+  animation: shScreenIn 0.9s cubic-bezier(.22,1,.36,1) 0.2s both;
+}
+
+@keyframes shScreenIn {
+  from { opacity: 0; transform: translateY(28px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.sh-screen-bar {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  text-align: center;
-  min-width: 110px;
-  box-shadow: 0 4px 20px rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.25) inset;
-  animation: cardFloat 6s ease-in-out infinite;
-  animation-delay: var(--card-delay, 0s);
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.18);
+  border-bottom: 1px solid rgba(255,255,255,.2);
 }
 
-.sh-stat-card--1 { top: 5%;  left: 0;   animation-duration: 7s; }
-.sh-stat-card--2 { top: 5%;  right: 0;  animation-duration: 9s;  animation-delay: 1s; }
-.sh-stat-card--3 { bottom: 5%; left: 5%; animation-duration: 8s;  animation-delay: 2s; }
-.sh-stat-card--4 { bottom: 5%; right: 5%;animation-duration: 10s; animation-delay: 0.5s; }
-
-@keyframes cardFloat {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-12px); }
+.sh-screen-dots { display: flex; gap: 6px; flex-shrink: 0; }
+.sh-screen-dots span {
+  display: block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
 }
 
-.sh-stat-icon  { font-size: 20px; line-height: 1; }
-.sh-stat-value {
-  font-family: var(--font-prompt), sans-serif;
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
+.sh-screen-url {
+  flex: 1;
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: monospace;
+  color: rgba(255,255,255,.9);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
 }
-.sh-stat-label {
-  font-size: 10px;
-  color: rgba(255,255,255,.8);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: var(--font-roboto-mono), monospace;
-  white-space: nowrap;
+
+.sh-screen-lock { font-size: 10px; opacity: .7; }
+.sh-screen-bar-actions { width: 40px; flex-shrink: 0; }
+
+.sh-screen-display {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0a0a0f;
+  overflow: hidden;
+}
+
+.sh-screen-video {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.sh-screen-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(253,110,0,.06) 0%,
+    rgba(217,10,92,.04) 100%);
+  pointer-events: none;
 }
 
 /* ── Responsive ───────────────────────────────────────────────── */
