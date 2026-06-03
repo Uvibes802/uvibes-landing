@@ -68,6 +68,9 @@
   text-align: center;
   margin-bottom: clamp(2rem, 4vw, 3rem);
   gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1);
 }
 
 /* Exclure les éléments absolus pour ne pas écraser leur position */
@@ -143,6 +146,9 @@
   height: 40px;
   z-index: 0;
   pointer-events: none;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.9s 0.3s cubic-bezier(.2,.7,.2,1);
 }
 
 .how-connector svg {
@@ -152,23 +158,11 @@
 
 /* ── Scroll reveal ──────────────────────────────────────────────── */
 
-/* Header : fade-up */
-.how-header {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1);
-}
 .how-vis .how-header {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Connecteur : se dessine de gauche à droite */
-.how-connector {
-  transform-origin: left center;
-  transform: scaleX(0);
-  transition: transform 0.9s 0.3s cubic-bezier(.2,.7,.2,1);
-}
 .how-vis .how-connector {
   transform: scaleX(1);
 }
@@ -182,11 +176,6 @@
 .how-vis .how-step--3 { opacity: 1; transform: translate(0); }
 
 /* Cercles — effet tampon : grossissent puis se posent */
-.how-circle {
-  transform: scale(2.2);
-  opacity: 0;
-  transition: transform 0.5s cubic-bezier(.34,1.56,.64,1), opacity 0.3s ease;
-}
 .how-vis .how-step--1 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.52s; }
 .how-vis .how-step--2 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.68s; }
 .how-vis .how-step--3 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.84s; }
@@ -222,6 +211,9 @@
   position: relative;
   z-index: 1;
   box-shadow: 0 6px 20px color-mix(in srgb, var(--step-color, var(--orange)) 45%, transparent);
+  transform: scale(2.2);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(.34,1.56,.64,1), opacity 0.3s ease;
 }
 
 .how-circle-ring {
