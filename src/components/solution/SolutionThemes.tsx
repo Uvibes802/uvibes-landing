@@ -19,6 +19,9 @@ interface ThemeCard {
   title: string;
   desc: string;
   question: string;
+  color: string;
+  glow: string;
+  iconBg: string;
 }
 
 /* ——— Données ——— */
@@ -28,36 +31,54 @@ const THEMES: ThemeCard[] = [
     title: "Réflexions & loisirs",
     desc: "Aspirations individuelles, séries TV, modèles de réussite.",
     question: "Quel personnage de film t'inspire ?",
+    color: "#FD6E00",
+    glow: "rgba(253,110,0,.18)",
+    iconBg: "linear-gradient(135deg, rgba(253,110,0,.18), rgba(255,150,60,.14))",
   },
   {
     Icon: GraduationCap,
     title: "Expertise & formation",
     desc: "Réflexions autour de sujets professionnels et pédagogiques.",
     question: "Comment vois-tu le management du futur ?",
+    color: "#D90A5C",
+    glow: "rgba(217,10,92,.16)",
+    iconBg: "linear-gradient(135deg, rgba(217,10,92,.16), rgba(255,77,120,.12))",
   },
   {
     Icon: Lightbulb,
     title: "Astuces & bons plans",
     desc: "Partage d'expériences et conseils pratiques.",
     question: "Des recettes de saison à partager ?",
+    color: "#F59E0B",
+    glow: "rgba(245,158,11,.18)",
+    iconBg: "linear-gradient(135deg, rgba(245,158,11,.18), rgba(253,200,60,.14))",
   },
   {
     Icon: Calendar,
     title: "Événements & actualités",
     desc: "Octobre rose, cultures locales, Tour de France.",
     question: "La tradition préférée de votre territoire ?",
+    color: "#10B981",
+    glow: "rgba(16,185,129,.16)",
+    iconBg: "linear-gradient(135deg, rgba(16,185,129,.16), rgba(60,220,160,.12))",
   },
   {
     Icon: Gamepad2,
     title: "Jeux & mises en situation",
     desc: "Challenges en équipe et jeux de rôle.",
     question: "Trouvez 6 métiers commençant par M",
+    color: "#6366F1",
+    glow: "rgba(99,102,241,.16)",
+    iconBg: "linear-gradient(135deg, rgba(99,102,241,.16), rgba(139,92,246,.12))",
   },
   {
     Icon: MessageSquare,
     title: "Débats",
     desc: "Mettre en commun différents points de vue.",
     question: "Bienfaits et limites du progrès",
+    color: "#EC4899",
+    glow: "rgba(236,72,153,.16)",
+    iconBg: "linear-gradient(135deg, rgba(236,72,153,.16), rgba(249,115,180,.12))",
   },
 ];
 
@@ -69,6 +90,11 @@ function ThemeCard({ data }: { data: ThemeCard }) {
   return (
     <div
       className={`sth-card${hovered ? " sth-card--hovered" : ""}`}
+      style={{
+        "--sth-color": data.color,
+        "--sth-glow": data.glow,
+        "--sth-icon-bg": data.iconBg,
+      } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

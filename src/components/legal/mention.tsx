@@ -4,7 +4,11 @@ import "../../styles/legal/legal.css";
 export default function Mention() {
   return (
     <main className="legal-page">
-      <h1>Mentions légales</h1>
+      <div className="legal-hero">
+        <p className="legal-hero-eyebrow">Informations légales</p>
+        <h1 className="legal-hero-title">Mentions légales</h1>
+      </div>
+      <div className="legal-content-card">
 
       <section>
         <h2>1. Présentation du site</h2>
@@ -208,6 +212,7 @@ export default function Mention() {
           <em>Mis à jour, le 9 janvier 2026</em>
         </p>
       </footer>
+      </div>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
 import "../../styles/footer/footer.css";
 
 const NAV_COLS = [
@@ -51,6 +52,7 @@ export default function Footer() {
               className="ft-logo"
             />
             <p className="ft-tagline v-serif">Activez les bonnes ondes.</p>
+            <NewsletterSignup />
           </div>
 
           <div className="ft-nav">

@@ -76,8 +76,8 @@ const CARDS: CardData[] = [
   },
   {
     badge: "Collectifs",
-    accent: "var(--blueUvibes)",
-    glow: "rgba(0,175,221,.14)",
+    accent: "#10B981",
+    glow: "rgba(16,185,129,.14)",
     intro:
       "Une nouvelle respiration pour les organisations du prendre soin.",
     stat: {
@@ -164,27 +164,29 @@ export default function SolutionForWho() {
       className={`sfw-section sol-reveal${visible ? " --in" : ""}`}
       ref={sectionRef}
     >
-      {/* Header */}
-      <header className="sfw-header">
-        <div className="sfw-eyebrow">
-          <span className="sfw-eyebrow__dot" aria-hidden="true" />
-          <span className="v-mono sfw-eyebrow__label">Pour qui ?</span>
-        </div>
-        <h2 className="sfw-title v-prompt">
-          Uvibes s&apos;adapte
-          <br />à votre{" "}
-          <span className="sfw-title__accent v-serif">contexte.</span>
-        </h2>
-        <p className="sfw-subtitle">
-          Des résultats concrets, mesurés — quel que soit votre collectif.
-        </p>
-      </header>
+      <div className="sfw-inner">
+        {/* Header */}
+        <header className="sfw-header">
+          <div className="sfw-eyebrow">
+            <span className="sfw-eyebrow__dot" aria-hidden="true" />
+            <span className="v-mono sfw-eyebrow__label">Pour qui ?</span>
+          </div>
+          <h2 className="sfw-title v-prompt">
+            Uvibes s&apos;adapte
+            <br />à votre{" "}
+            <span className="sfw-title__accent v-serif">contexte.</span>
+          </h2>
+          <p className="sfw-subtitle">
+            Des résultats concrets, mesurés — quel que soit votre collectif.
+          </p>
+        </header>
 
-      {/* Grille */}
-      <div className="sfw-grid">
-        {CARDS.map((card) => (
-          <ForWhoCard key={card.badge} data={card} />
-        ))}
+        {/* Grille */}
+        <div className="sfw-grid">
+          {CARDS.map((card) => (
+            <ForWhoCard key={card.badge} data={card} />
+          ))}
+        </div>
       </div>
     </section>
   );

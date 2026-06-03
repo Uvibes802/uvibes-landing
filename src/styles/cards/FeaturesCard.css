@@ -30,8 +30,9 @@
 .fc-intro-title {
   margin: 18px 0 0;
   font-size: clamp(38px, 4.8vw, 72px);
-  line-height: .95;
+  line-height: 1.0;
   letter-spacing: -0.04em;
+  padding-bottom: 0.08em;
   background: linear-gradient(90deg, var(--orange), var(--rose));
   -webkit-background-clip: text;
   background-clip: text;

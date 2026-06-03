@@ -4,9 +4,33 @@
 
 /* ——— Section ——— */
 .sth-section {
-  background: var(--paper);
+  background: linear-gradient(160deg, #FFF8ED 0%, #FFF3F8 55%, #F0FFFA 100%);
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sth-section::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: -60px;
+  width: 380px; height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.1), transparent 70%);
+  filter: blur(36px);
+  pointer-events: none;
+}
+
+.sth-section::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(16,185,129,.1), transparent 70%);
+  filter: blur(36px);
+  pointer-events: none;
 }
 
 /* ——— Header ——— */
@@ -67,41 +91,55 @@
 
 /* ——— Card ——— */
 .sth-card {
-  background: #fff;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 28px;
-  border: 1px solid rgba(253,110,0,.08);
+  border: 1px solid rgba(255,255,255,.85);
   box-shadow:
     0 2px 8px rgba(0,0,0,.04),
-    0 8px 32px rgba(253,110,0,.06);
+    0 8px 32px rgba(0,0,0,.06),
+    inset 0 1px 0 rgba(255,255,255,.9);
   display: flex;
   flex-direction: column;
   height: 100%;
   transition: transform 300ms cubic-bezier(.2,.7,.2,1), box-shadow 300ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orbe déco coin haut-droite */
+.sth-card::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--sth-glow, rgba(253,110,0,.15)), transparent 70%);
+  pointer-events: none;
 }
 
 .sth-card--hovered {
   transform: translateY(-6px);
   box-shadow:
     0 4px 16px rgba(0,0,0,.06),
-    0 20px 48px rgba(217,10,92,.16);
+    0 20px 48px var(--sth-glow, rgba(253,110,0,.16)),
+    inset 0 1px 0 rgba(255,255,255,.9);
 }
 
-/* Tuile icône */
+/* Tuile icône — couleur vivid par carte */
 .sth-card__icon-tile {
-  width: 46px;
-  height: 46px;
-  border-radius: 13px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   display: grid;
   place-items: center;
-  background: linear-gradient(
-    135deg,
-    rgba(253, 110, 0, 0.14),
-    rgba(217, 10, 92, 0.14)
-  );
-  color: var(--rose);
+  background: var(--sth-icon-bg, linear-gradient(135deg, rgba(253,110,0,.15), rgba(217,10,92,.15)));
+  color: var(--sth-color, var(--rose));
   flex-shrink: 0;
   transition: transform 420ms var(--ease);
+  box-shadow: 0 4px 12px var(--sth-glow, rgba(253,110,0,.18));
 }
 
 .sth-card__icon-tile--hovered {
@@ -112,7 +150,7 @@
 .sth-card__title {
   font-size: 21px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--sth-color, var(--orange));
   margin: 18px 0 0;
 }
 

@@ -77,9 +77,22 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--paper);
-  border: 1px solid rgba(74,21,48,.09);
-  box-shadow: 0 16px 38px -24px rgba(74,21,48,.22);
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(253,110,0,.1);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04),
+    0 8px 32px rgba(253,110,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  transition: transform 300ms cubic-bezier(.2,.7,.2,1), box-shadow 300ms ease;
+}
+.pt-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 16px rgba(0,0,0,.06),
+    0 20px 48px rgba(253,110,0,.14),
+    inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 /* Card featured (Premium) */
@@ -137,9 +150,9 @@
   text-transform: uppercase;
   padding: 5px 11px;
   border-radius: 999px;
-  background: var(--cream-2);
-  color: var(--ink-3);
-  border: 1px solid rgba(74,21,48,.12);
+  background: rgba(253,110,0,.08);
+  color: var(--orange);
+  border: 1px solid rgba(253,110,0,.18);
 }
 
 .pt-card-badge.--featured {
@@ -154,8 +167,10 @@
   margin: 20px 0 0;
   font-size: 34px;
   letter-spacing: -0.03em;
-  color: inherit;
+  color: var(--orange);
 }
+
+.pt-card--featured .pt-card-name { color: #fff; }
 
 .pt-card-desc {
   position: relative;
@@ -188,8 +203,9 @@
   font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: inherit;
+  color: var(--orange);
 }
+.pt-card--featured .pt-card-price-value { color: #fff; }
 
 .pt-card-price-note {
   font-size: 11px;

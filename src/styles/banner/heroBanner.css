@@ -93,10 +93,10 @@
   overflow: hidden;
 }
 
-/* Blog : légèrement différent — plus orange/pêche */
+/* Blog : gradient vivid orange → magenta chaud */
 .blog-hero {
-  background: linear-gradient(135deg,
-    #FFF1D6 0%, #FFCFA0 25%, #FFA888 55%, #FF6E6E 100%) !important;
+  background: linear-gradient(140deg,
+    #FFE0B0 0%, #FFB060 22%, #FF7A6A 48%, #FF4498 75%, #E6007E 100%) !important;
 }
 
 /* Uvibes/À propos : rose/pêche doux */

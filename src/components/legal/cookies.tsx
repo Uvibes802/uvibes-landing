@@ -3,7 +3,11 @@ import "@/styles/legal/legal.css";
 export default function CookiesPolicy() {
   return (
     <main className="legal-page">
-      <h1>Politique de collecte et de gestion des cookies</h1>
+      <div className="legal-hero">
+        <p className="legal-hero-eyebrow">Informations légales</p>
+        <h1 className="legal-hero-title">Politique des cookies</h1>
+      </div>
+      <div className="legal-content-card">
 
       <p>
         Cette politique de gestion des cookies vous informe de l’utilisation que
@@ -152,10 +156,9 @@ export default function CookiesPolicy() {
       </section>
 
       <footer>
-        <p>
-          <em>Mis à jour, 9 janvier 2026</em>
-        </p>
+        <p><em>Mis à jour, 9 janvier 2026</em></p>
       </footer>
+      </div>
     </main>
   );
 }

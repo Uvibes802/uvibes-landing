@@ -1,13 +1,13 @@
-/* ── CRM Admin — layout global ───────────────────────────────── */
+/* ── CRM Admin — layout macOS premium ───────────────────────── */
 
 :root {
-  --crm-sidebar-w: 240px;
-  --crm-header-h: 56px;
-  --crm-bg: #f5f0ea;
-  --crm-surface: #fffbf4;
-  --crm-border: rgba(74,21,48,.1);
-  --crm-text: #4A1530;
-  --crm-muted: #B0507E;
+  --crm-sidebar-w: 248px;
+  --crm-header-h: 58px;
+  --crm-bg: #FFF8F2;
+  --crm-surface: rgba(255,255,255,.92);
+  --crm-border: rgba(253,110,0,.1);
+  --crm-text: #7A2840;
+  --crm-muted: #C0607A;
   --crm-accent: #FD6E00;
 }
 
@@ -15,34 +15,37 @@
 .crm-shell {
   display: flex;
   min-height: 100svh;
-  background: var(--crm-bg);
+  background: linear-gradient(160deg, #FFF8F2 0%, #FFF4F8 100%);
   font-family: var(--text-font, sans-serif);
   color: var(--crm-text);
 }
 
-/* ── Sidebar ──────────────────────────────────────────────────── */
+/* ── Sidebar macOS premium ────────────────────────────────────── */
 .crm-sidebar {
   width: var(--crm-sidebar-w);
-  background: var(--crm-surface);
-  border-right: 1px solid var(--crm-border);
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(253,110,0,.1);
   display: flex;
   flex-direction: column;
   position: fixed;
   top: 0; bottom: 0; left: 0;
   z-index: 50;
   overflow-y: auto;
+  box-shadow: 2px 0 24px rgba(253,110,0,.05);
 }
 
 .crm-sidebar-brand {
-  padding: 20px 20px 16px;
+  padding: 22px 20px 18px;
   font-family: var(--font-prompt, sans-serif);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   background: var(--gradient-brand, linear-gradient(135deg,#FD6E00,#D90A5C));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  border-bottom: 1px solid var(--crm-border);
+  border-bottom: 1px solid rgba(253,110,0,.1);
 }
 
 .crm-sidebar-sub {
@@ -70,20 +73,21 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 16px;
+  padding: 10px 16px;
   font-size: 13.5px;
   color: var(--crm-text);
   text-decoration: none;
-  border-radius: 8px;
-  margin: 1px 8px;
+  border-radius: 12px;
+  margin: 2px 8px;
   transition: all 180ms;
 }
 
-.crm-nav-item:hover { background: rgba(74,21,48,.06); }
+.crm-nav-item:hover { background: rgba(253,110,0,.08); color: var(--crm-accent); }
 .crm-nav-item.--active {
-  background: rgba(253,110,0,.1);
+  background: linear-gradient(135deg, rgba(253,110,0,.15), rgba(217,10,92,.1));
   color: var(--crm-accent);
   font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
 }
 
 .crm-nav-icon { opacity: .7; flex-shrink: 0; }
@@ -123,8 +127,10 @@
 
 .crm-topbar {
   height: var(--crm-header-h);
-  background: var(--crm-surface);
-  border-bottom: 1px solid var(--crm-border);
+  background: rgba(255,255,255,.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(253,110,0,.08);
   display: flex;
   align-items: center;
   padding: 0 28px;
@@ -153,7 +159,7 @@
   flex: 1;
 }
 
-/* ── Cards métrics ────────────────────────────────────────────── */
+/* ── Cards métrics macOS glass ────────────────────────────────── */
 .crm-metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -162,13 +168,24 @@
 }
 
 .crm-metric-card {
-  background: var(--crm-surface);
-  border: 1px solid var(--crm-border);
-  border-radius: 14px;
-  padding: 20px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 18px;
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.03),
+    0 8px 24px rgba(253,110,0,.06),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.crm-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,.05), 0 16px 40px rgba(253,110,0,.1), inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 .crm-metric-label {
@@ -191,12 +208,18 @@
 .crm-metric-card.--green .crm-metric-value  { color: #16a34a; }
 .crm-metric-card.--rose .crm-metric-value   { color: var(--rose, #D90A5C); }
 
-/* ── Tables ───────────────────────────────────────────────────── */
+/* ── Tables macOS ─────────────────────────────────────────────── */
 .crm-table-wrap {
-  background: var(--crm-surface);
-  border: 1px solid var(--crm-border);
-  border-radius: 16px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 18px;
   overflow: hidden;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.03),
+    0 8px 24px rgba(253,110,0,.05),
+    inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 .crm-table-header {
@@ -315,7 +338,7 @@ table.crm-table {
 
 .crm-btn.--sm { padding: 6px 12px; font-size: 12px; }
 
-/* ── Fiche détail ─────────────────────────────────────────────── */
+/* ── Fiche détail macOS ───────────────────────────────────────── */
 .crm-detail-grid {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -324,10 +347,13 @@ table.crm-table {
 }
 
 .crm-detail-card {
-  background: var(--crm-surface);
-  border: 1px solid var(--crm-border);
-  border-radius: 14px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 18px;
   padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.03), 0 8px 24px rgba(253,110,0,.05), inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 .crm-detail-section-title {
@@ -447,23 +473,61 @@ table.crm-table {
 .crm-cms-save-btn:hover { opacity: .9; }
 .crm-cms-save-btn:disabled { opacity: .4; cursor: not-allowed; }
 
-/* ── Login page ───────────────────────────────────────────────── */
+/* ── Login page macOS ─────────────────────────────────────────── */
 .crm-login-page {
   min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--crm-bg);
+  background: linear-gradient(160deg, #FFF8F2 0%, #FFF0F8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.crm-login-page::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.1), transparent 70%);
+  filter: blur(50px);
+}
+
+.crm-login-page::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(217,10,92,.08), transparent 70%);
+  filter: blur(50px);
 }
 
 .crm-login-card {
-  background: var(--crm-surface);
-  border: 1px solid var(--crm-border);
-  border-radius: 20px;
-  padding: 44px;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 28px;
+  padding: 48px;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 20px 60px -20px rgba(74,21,48,.18);
+  max-width: 420px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04),
+    0 20px 60px rgba(253,110,0,.1),
+    inset 0 1px 0 rgba(255,255,255,1);
+  position: relative;
+  overflow: hidden;
+}
+
+.crm-login-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FD6E00, #D90A5C);
+  border-radius: 28px 28px 0 0;
 }
 
 .crm-login-brand {

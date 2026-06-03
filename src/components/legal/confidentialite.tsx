@@ -3,7 +3,11 @@ import "@/styles/legal/legal.css";
 export default function Confidentialite() {
   return (
     <main className="legal-page">
-      <h1>Politique de confidentialité</h1>
+      <div className="legal-hero">
+        <p className="legal-hero-eyebrow">Informations légales</p>
+        <h1 className="legal-hero-title">Politique de confidentialité</h1>
+      </div>
+      <div className="legal-content-card">
 
       <p>
         En utilisant le uvibes.fr, vous acceptez cette politique de
@@ -118,10 +122,9 @@ export default function Confidentialite() {
       </section>
 
       <footer>
-        <p>
-          <em>Mis à jour, 9 janvier 2026</em>
-        </p>
+        <p><em>Mis à jour, 9 janvier 2026</em></p>
       </footer>
+      </div>
     </main>
   );
 }

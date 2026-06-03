@@ -2,8 +2,21 @@
 
 .shiw-section {
   scroll-margin-top: 70px;
-  background: var(--paper);
+  background: linear-gradient(160deg, #FFFBF4 0%, #FFF6F0 50%, #F0FFF8 100%);
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.shiw-section::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.1), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
 }
 
 /* ── Grille 2 colonnes ────────────────────────────────────────────── */
@@ -95,7 +108,7 @@
   display: grid;
   grid-template-columns: 72px 1fr;
   gap: clamp(18px, 3vw, 40px);
-  padding-bottom: 44px;
+  padding-bottom: 32px;
 
   /* Reveal : état initial */
   opacity: 0;

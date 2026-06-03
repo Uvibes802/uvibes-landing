@@ -2,7 +2,7 @@
 
 import {
   BarChart2, FileText, Home, LogOut,
-  Settings, Users, Layers, PenLine, Star, CalendarDays,
+  Settings, Users, Layers, PenLine, Star, CalendarDays, Mail,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -15,6 +15,7 @@ const NAV = [
       { href: "/admin/crm/devis", icon: FileText, label: "Devis" },
       { href: "/admin/crm/collectifs", icon: Users, label: "Collectifs" },
       { href: "/admin/crm/rdv", icon: CalendarDays, label: "Rendez-vous" },
+      { href: "/admin/crm/newsletter", icon: Mail, label: "Newsletter" },
     ],
   },
   {

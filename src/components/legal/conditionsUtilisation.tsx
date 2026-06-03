@@ -3,7 +3,11 @@ import "@/styles/legal/legal.css";
 export default function ConditionsDutilisation() {
   return (
     <main className="legal-page">
-      <h1>Conditions générales d’utilisation de Uvibes.fr</h1>
+      <div className="legal-hero">
+        <p className="legal-hero-eyebrow">Informations légales</p>
+        <h1 className="legal-hero-title">Conditions générales d&apos;utilisation</h1>
+      </div>
+      <div className="legal-content-card">
 
       <section>
         <h2>Préambule</h2>
@@ -114,10 +118,9 @@ export default function ConditionsDutilisation() {
       </section>
 
       <footer>
-        <p>
-          <em>Mis à jour, le 9 janvier 2026</em>
-        </p>
+        <p><em>Mis à jour, le 9 janvier 2026</em></p>
       </footer>
+      </div>
     </main>
   );
 }

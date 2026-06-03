@@ -153,7 +153,7 @@
 
 /* ── Intro ───────────────────────────────────────────────────── */
 .uv-intro {
-  background: var(--paper);
+  background: linear-gradient(160deg, #FFFBF4 0%, #FFF6EC 100%);
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem) 0;
   position: relative;
 }
@@ -199,11 +199,23 @@
 }
 
 .uv-stat-card {
-  background: #fff;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 1.5rem;
-  border: 1px solid rgba(253,110,0,.1);
-  box-shadow: 0 4px 20px rgba(253,110,0,.07);
+  border: 1px solid rgba(255,255,255,.85);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04),
+    0 8px 28px rgba(253,110,0,.09),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.uv-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,.06), 0 16px 40px rgba(253,110,0,.14), inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 .uv-stat-num {
@@ -311,8 +323,20 @@
 
 /* ── Éthique ─────────────────────────────────────────────────── */
 .uv-ethics {
-  background: var(--paper);
+  background: linear-gradient(160deg, #FFF6EC 0%, #FFF0F8 100%);
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
+}
+.uv-ethics::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.1), transparent 70%);
+  filter: blur(36px);
+  pointer-events: none;
 }
 
 .uv-ethics-inner { max-width: 1100px; margin: 0 auto; }
@@ -325,26 +349,45 @@
 }
 
 .uv-ethics-card {
-  background: #fff;
-  border-radius: 20px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
   padding: 2rem 1.75rem;
-  border: 1px solid rgba(253,110,0,.1);
-  box-shadow: 0 4px 20px rgba(253,110,0,.06);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04),
+    0 8px 28px rgba(253,110,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.95);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  transition: transform 0.28s cubic-bezier(.2,.7,.2,1), box-shadow 0.28s ease;
+  position: relative;
+  overflow: hidden;
 }
+.uv-ethics-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--rose));
+  border-radius: 24px 24px 0 0;
+}
+.uv-ethics-card:nth-child(2)::before { background: linear-gradient(90deg, var(--rose), #EC4899); }
+.uv-ethics-card:nth-child(3)::before { background: linear-gradient(90deg, #10B981, #06B6D4); }
 .uv-ethics-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(217,10,92,.1);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0,0,0,.06), 0 20px 48px rgba(253,110,0,.14), inset 0 1px 0 rgba(255,255,255,.95);
 }
 .uv-ethics-num {
   font-size: 10px; letter-spacing: 0.2em; color: var(--orange);
   text-transform: uppercase; font-family: var(--font-roboto-mono), monospace;
 }
-.uv-ethics-card-title { font-size: 17px; font-weight: 700; color: var(--orange); margin: 0; }
-.uv-ethics-card-text  { font-size: 14px; line-height: 1.65; color: var(--ink-3); margin: 0; }
+.uv-ethics-card-title { font-size: 18px; font-weight: 700; color: var(--orange); margin: 0; letter-spacing: -0.01em; }
+.uv-ethics-card:nth-child(2) .uv-ethics-card-title { color: var(--rose); }
+.uv-ethics-card:nth-child(3) .uv-ethics-card-title { color: #10B981; }
+.uv-ethics-card-text  { font-size: 14px; line-height: 1.7; color: var(--ink-3); margin: 0; }
 
 /* ── Portage ─────────────────────────────────────────────────── */
 .uv-portage {
@@ -354,16 +397,31 @@
 .uv-portage-inner { max-width: 700px; margin: 0 auto; text-align: center; }
 
 .uv-portage-card {
-  background: #fff;
-  border-radius: 24px;
-  padding: 3rem 2rem;
-  border: 2px solid rgba(253,110,0,.15);
-  box-shadow: 0 8px 40px rgba(253,110,0,.08);
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 3rem 2.5rem;
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04),
+    0 20px 60px rgba(253,110,0,.1),
+    inset 0 1px 0 rgba(255,255,255,1);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
   margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.uv-portage-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FD6E00, #D90A5C);
+  border-radius: 28px 28px 0 0;
 }
 .uv-portage-logo { width: 180px; height: auto; object-fit: contain; }
 .uv-portage-title { font-size: 22px; font-weight: 700; color: var(--orange); margin: 0; }

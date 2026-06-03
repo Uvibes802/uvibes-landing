@@ -143,6 +143,18 @@ model PlanFeature {
   @@unique([planId, featureId])
 }
 
+// ── NEWSLETTER ─────────────────────────────────────────────────
+
+model NewsletterSubscriber {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  email       String   @unique
+  prenom      String?
+  source      String   @default("site") // site | crm | import
+  actif       Boolean  @default(true)
+  unsubscribedAt DateTime?
+}
+
 // ── AUTH ADMIN ─────────────────────────────────────────────────
 
 model AdminUser {
