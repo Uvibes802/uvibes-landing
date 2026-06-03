@@ -2,11 +2,8 @@
 
 .ft-footer {
   position: relative;
-  background: linear-gradient(135deg,
-    #FD6E00 0%, #FF8530 12%, #FFB870 28%,
-    #FF88B8 55%, #E6007E 88%, #D90A5C 100%);
+  background: linear-gradient(135deg, #ff6a00 0%, #ff4d7a 50%, #e6007e 100%);
   overflow: hidden;
-  margin-top: 0;
 }
 
 .ft-footer::before {
