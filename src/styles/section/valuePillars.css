@@ -136,18 +136,10 @@
   position: relative;
   padding: 36px;
   border-radius: 28px;
-  /* fond gradient teinté de la couleur accent */
-  background: linear-gradient(
-    145deg,
-    rgba(255,255,255,.95) 0%,
-    color-mix(in srgb, var(--p-accent) 18%, rgba(255,255,255,.78)) 100%
-  );
+  background: rgba(255,255,255,.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 3px solid var(--p-accent);
-  border-left: 1px solid rgba(255,255,255,.95);
-  border-right: 1px solid rgba(255,255,255,.6);
-  border-bottom: 1px solid rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.9);
   overflow: hidden;
   min-height: 280px;
   display: flex;
