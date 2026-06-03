@@ -4,19 +4,23 @@
 
 /* ── Intro centré ─────────────────────────────────────────────── */
 .fc-intro {
-  padding: clamp(70px, 8vw, 100px) 56px clamp(20px, 3vw, 40px);
-  background: var(--paper);
+  padding: clamp(3.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  background: linear-gradient(160deg, #FFFBF4 0%, #FFF6EC 100%);
   text-align: center;
 }
 
 .fc-intro-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  letter-spacing: 2px;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--rose);
+  color: #FD6E00;
+  padding: 5px 14px;
+  background: rgba(253,110,0,.08);
+  border: 1px solid rgba(253,110,0,.16);
+  border-radius: 999px;
 }
 
 .fc-intro-dot {
@@ -67,8 +71,8 @@
   align-items: center;
 }
 
-.fc-row:nth-child(odd)  { background: linear-gradient(135deg, #fff8f2 0%, #fff4fa 100%); }
-.fc-row:nth-child(even) { background: linear-gradient(135deg, #fff4f0 0%, #fff0f8 100%); }
+.fc-row:nth-child(odd)  { background: linear-gradient(160deg, #FFFBF4 0%, #FFF6EC 100%); }
+.fc-row:nth-child(even) { background: linear-gradient(160deg, #FFF0F8 0%, #FFFBF4 100%); }
 
 /* Colonne inversée sur rangée impaire (index 1) */
 .fc-row--reverse .fc-text  { order: 2; }

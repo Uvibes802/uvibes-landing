@@ -312,6 +312,27 @@ Toujours incrémenter — ne jamais réutiliser un numéro existant.
 
 ---
 
+## 🟡 Important — Session 2026-06-03 (style/redesign-premium-v3)
+
+- [x] **UI-51** — HowItWorks : step 3 amber #F59E0B (plus de bleu), cartes glass macOS, espacement réduit
+- [x] **UI-52** — VideoSection : cartes témoignages premium (glassmorphism, avatar gradient, 5 étoiles, orbe déco)
+- [x] **UI-53** — SolutionForWho : accent Collectifs → vert #10B981, fond gradient vivid, wrapper inner
+- [x] **UI-54** — SolutionThemes : 6 couleurs vivid par thème, fond gradient, cartes glass macOS
+- [x] **UI-55** — SolutionHowItWorks : fond gradient vivid + blob déco
+- [x] **FIX-06** — FeaturesCard : texte "concrètement." coupé → padding-bottom + line-height corrigé
+- [x] **UI-56** — PricingTable : cartes glass macOS, prix en orange (plus de couleurs sombres)
+- [x] **UI-57** — Footer : padding réduit (−30%), newsletter inline intégrée
+- [x] **UI-58** — Blog hero : gradient vivid orange→magenta #E6007E
+- [x] **UI-59** — Blog article : redesign complet (hero image/gradient, card corps white, typo premium, retour pill)
+- [x] **UI-60** — Pages légales : hero gradient + card blanche + typographie orangée cohérente
+- [x] **UI-61** — Page RDV : redesign glass macOS complet (backdrop-filter, inputs arrondis, success vert)
+- [x] **UI-62** — Devis : fond gradient (plus de --ink sombre), card glass + accent barre, stepper orange
+- [x] **UI-63** — Page uvibes : stats/éthique/portage en glass macOS, fonds gradient, couleurs vivid par carte éthique
+- [x] **UI-64** — CRM : sidebar glass backdrop-filter, cards métriques glass, login premium, tables glass
+- [x] **FEAT-01** — CRM newsletter : model Prisma + API /api/newsletter + page CRM manager + composant public
+
+---
+
 ## ⚠️ À régler (prochaine session)
 
 - [ ] **MacBook vidéos paysage** : ajouter dans `VIDEOS` de `ConversationIntro.tsx` quand dispo

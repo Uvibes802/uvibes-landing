@@ -1,191 +1,161 @@
-/* ============================================================
-   SolutionThemes — Section "6 univers de conversation"
-   ============================================================ */
+/* ── SolutionThemes — macOS premium ──────────────────────────── */
 
-/* ——— Section ——— */
 .sth-section {
-  background: linear-gradient(160deg, #FFF8ED 0%, #FFF3F8 55%, #F0FFFA 100%);
-  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: linear-gradient(155deg, #FFF6EC 0%, #FFFBF4 40%, #F0FFF8 70%, #FFF0F5 100%);
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
   position: relative;
   overflow: hidden;
-}
-
-.sth-section::before {
-  content: '';
-  position: absolute;
-  top: -60px; left: -60px;
-  width: 380px; height: 380px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.1), transparent 70%);
-  filter: blur(36px);
-  pointer-events: none;
 }
 
 .sth-section::after {
   content: '';
   position: absolute;
   bottom: -60px; right: -60px;
-  width: 320px; height: 320px;
+  width: 350px; height: 350px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(16,185,129,.1), transparent 70%);
-  filter: blur(36px);
+  background: radial-gradient(closest-side, rgba(217,10,92,.05), transparent);
   pointer-events: none;
 }
 
-/* ——— Header ——— */
+/* ── Header ───────────────────────────────────────────────────── */
 .sth-header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 3rem;
 }
 
-/* Eyebrow */
 .sth-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 16px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(253,110,0,.08);
+  border: 1px solid rgba(253,110,0,.16);
+  margin-bottom: 1rem;
 }
 
 .sth-eyebrow__dot {
-  width: 8px;
-  height: 8px;
+  width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--orange);
-  box-shadow: 0 0 0 4px rgba(253, 110, 0, 0.16);
+  background: #FD6E00;
   flex-shrink: 0;
 }
 
 .sth-eyebrow__label {
-  font-size: 12px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--rose);
+  color: #FD6E00;
 }
 
-/* Titre */
 .sth-title {
-  font-size: clamp(38px, 4.8vw, 72px);
-  line-height: 0.95;
-  color: var(--ink);
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #1a0a06;
   margin: 0;
 }
 
 .sth-title__accent {
   font-style: italic;
-  padding-right: 0.15em;
   display: inline-block;
-  background: var(--gradient-brand);
+  padding-bottom: 0.04em;
+  background: linear-gradient(135deg, #FD6E00, #D90A5C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ——— Grille ——— */
+/* ── Grille ───────────────────────────────────────────────────── */
 .sth-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 1.25rem;
   align-items: stretch;
 }
 
-/* ——— Card ——— */
+/* ── Card macOS ───────────────────────────────────────────────── */
 .sth-card {
-  background: rgba(255,255,255,.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 24px;
-  padding: 28px;
-  border: 1px solid rgba(255,255,255,.85);
-  box-shadow:
-    0 2px 8px rgba(0,0,0,.04),
-    0 8px 32px rgba(0,0,0,.06),
-    inset 0 1px 0 rgba(255,255,255,.9);
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.75rem;
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 8px 32px rgba(0,0,0,.06);
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 300ms cubic-bezier(.2,.7,.2,1), box-shadow 300ms ease;
+  transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
 }
 
-/* Orbe déco coin haut-droite */
+.sth-card--hovered {
+  transform: translateY(-5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 20px 48px rgba(0,0,0,.1);
+}
+
+/* Accent fin gauche */
 .sth-card::before {
   content: '';
   position: absolute;
-  top: -30px; right: -30px;
-  width: 120px; height: 120px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, var(--sth-glow, rgba(253,110,0,.15)), transparent 70%);
-  pointer-events: none;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--sth-color, #FD6E00);
+  border-radius: 20px 0 0 20px;
 }
 
-.sth-card--hovered {
-  transform: translateY(-6px);
-  box-shadow:
-    0 4px 16px rgba(0,0,0,.06),
-    0 20px 48px var(--sth-glow, rgba(253,110,0,.16)),
-    inset 0 1px 0 rgba(255,255,255,.9);
-}
-
-/* Tuile icône — couleur vivid par carte */
+/* Tuile icône — rounded square macOS */
 .sth-card__icon-tile {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+  width: 44px; height: 44px;
+  border-radius: 11px;
   display: grid;
   place-items: center;
-  background: var(--sth-icon-bg, linear-gradient(135deg, rgba(253,110,0,.15), rgba(217,10,92,.15)));
-  color: var(--sth-color, var(--rose));
+  background: color-mix(in srgb, var(--sth-color, #FD6E00) 12%, white);
+  color: var(--sth-color, #FD6E00);
   flex-shrink: 0;
-  transition: transform 420ms var(--ease);
-  box-shadow: 0 4px 12px var(--sth-glow, rgba(253,110,0,.18));
+  transition: transform 0.3s ease;
 }
 
 .sth-card__icon-tile--hovered {
-  transform: scale(1.08) rotate(-3deg);
+  transform: scale(1.08);
 }
 
 /* Titre */
 .sth-card__title {
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--sth-color, var(--orange));
-  margin: 18px 0 0;
+  color: #1a0a06;
+  margin: 1rem 0 0;
+  letter-spacing: -0.01em;
 }
 
 /* Desc */
 .sth-card__desc {
-  font-size: 14.5px;
-  line-height: 1.5;
-  color: var(--ink-3);
-  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b4455;
+  margin-top: 0.5rem;
+  flex-grow: 1;
 }
 
 /* Question */
 .sth-card__question {
   font-style: italic;
-  font-size: 17px;
-  line-height: 1.35;
-  color: var(--rose);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--sth-color, #FD6E00);
   margin-top: auto;
-  padding-top: 16px;
-  border-top: var(--sol-divider);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,.07);
 }
 
-/* ——— Responsive ——— */
+/* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .sth-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .sth-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
-  .sth-section {
-    padding: clamp(48px, 8vw, 70px) 20px;
-  }
-
-  .sth-grid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 600px) {
+  .sth-grid { grid-template-columns: 1fr; }
 }

@@ -1,110 +1,76 @@
-/* ── HowItWorks ──────────────────────────────────────────────── */
+/* ── HowItWorks — macOS premium redesign ──────────────────────── */
 
 .how-section {
-  padding: 0 clamp(1.5rem, 5vw, 3.5rem) clamp(3rem, 5vw, 5rem);
-  background: var(--paper);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: linear-gradient(160deg, #FFFBF4 0%, #FFF6EC 50%, #FFF0F5 100%);
   position: relative;
-  overflow: visible;
-}
-
-/* Blobs déco */
-.how-section::before {
-  content: "";
-  position: absolute;
-  width: 500px; height: 500px;
-  top: -80px; right: -60px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.35), transparent 70%);
-  filter: blur(28px);
-  pointer-events: none;
-}
-
-.how-section::after {
-  content: "";
-  position: absolute;
-  width: 420px; height: 420px;
-  bottom: 0; left: -40px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.3), transparent 70%);
-  filter: blur(28px);
-  pointer-events: none;
-}
-
-/* Séparateur bas — centré sur la limite entre sections */
-.how-bottom-sep {
-  position: absolute;
-  bottom: -57px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  pointer-events: none;
-  z-index: 5;
-}
-.how-bottom-sep svg { width: 100%; display: block; }
-
-/* Lignes vibration fond */
-.how-vlines {
-  position: absolute;
-  left: 0; right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  pointer-events: none;
-  z-index: 0;
   overflow: hidden;
 }
-.how-vlines svg { width: 100%; }
 
-/* Header */
+/* Blob déco */
+.how-section > .how-bg-blob {
+  display: none;
+}
+.how-section::before {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.07), transparent);
+  pointer-events: none;
+}
+
+/* Header centré */
 .how-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: clamp(3rem, 6vw, 5rem);
-  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  gap: 1rem;
 }
 
 .how-section > * { position: relative; z-index: 1; }
 
 .how-eyebrow {
-  margin: 0 0 1rem;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(253,110,0,.08);
+  border: 1px solid rgba(253,110,0,.16);
+  font-size: 11px;
   letter-spacing: 0.18em;
-  color: var(--orange);
+  color: #FD6E00;
   text-transform: uppercase;
-  text-align: center;
+  margin: 0;
 }
 
 .how-title {
   margin: 0;
-  font-size: clamp(44px, 6.5vw, 96px);
-  font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: .96;
-  color: var(--orange);
-  text-align: center;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.0;
+  color: #1a0a06;
 }
 
 .how-title-orange { color: #FD6E00; }
+.how-title-rose   { color: #D90A5C; }
 
 .how-title-gradient {
   background: linear-gradient(135deg, #FD6E00, #D90A5C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: inline-block;
+  padding-bottom: 0.04em;
 }
 
-.how-title-rose { color: #D90A5C; }
-
-/* Mots-clés dans les titres d'étapes */
 .how-kw {
-  background: linear-gradient(135deg, var(--step-color, #FD6E00), #D90A5C);
+  background: linear-gradient(135deg, var(--step-color, #FD6E00), color-mix(in srgb, var(--step-color, #FD6E00) 60%, #D90A5C));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -112,167 +78,157 @@
 }
 
 .how-cta {
-  flex-shrink: 0;
-  align-self: flex-end;
   white-space: nowrap;
 }
 
-/* Grid */
+/* ── Grid 3 colonnes ──────────────────────────────────────────── */
 .how-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.5rem, 3vw, 2rem);
+  gap: 1.25rem;
   position: relative;
   align-items: stretch;
 }
 
+/* Connecteur SVG entre les cartes */
 .how-connector {
   position: absolute;
-  top: 52px;
-  left: 4%;
-  right: 4%;
-  width: 92%;
-  height: 40px;
-  z-index: 0;
+  top: 44px;
+  left: calc(33.33% - 10px);
+  right: calc(33.33% - 10px);
+  width: auto;
+  height: 24px;
+  z-index: 2;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .how-connector svg {
   width: 100%;
-  height: 40px;
+  height: 24px;
 }
 
-/* ── Scroll reveal ──────────────────────────────────────────────── */
-
-/* Header : fade-up */
+/* ── Scroll reveal ────────────────────────────────────────────── */
 .how-header {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1);
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(.2,.7,.2,1);
 }
-.how-vis .how-header {
-  opacity: 1;
-  transform: translateY(0);
-}
+.how-vis .how-header { opacity: 1; transform: translateY(0); }
 
-/* Connecteur : se dessine de gauche à droite */
 .how-connector {
   transform-origin: left center;
   transform: scaleX(0);
   transition: transform 0.9s 0.3s cubic-bezier(.2,.7,.2,1);
 }
-.how-vis .how-connector {
-  transform: scaleX(1);
-}
+.how-vis .how-connector { transform: scaleX(1); }
 
-/* Étapes — zigzag : 1 vient de gauche, 2 d'en bas, 3 de droite */
-.how-step--1 { opacity: 0; transform: translateX(-52px); transition: opacity 0.65s 0.25s ease, transform 0.65s 0.25s cubic-bezier(.2,.7,.2,1); }
-.how-step--2 { opacity: 0; transform: translateY(48px);  transition: opacity 0.65s 0.42s ease, transform 0.65s 0.42s cubic-bezier(.2,.7,.2,1); }
-.how-step--3 { opacity: 0; transform: translateX(52px);  transition: opacity 0.65s 0.58s ease, transform 0.65s 0.58s cubic-bezier(.2,.7,.2,1); }
+.how-step--1 { opacity: 0; transform: translateY(32px); transition: opacity 0.6s 0.2s ease, transform 0.6s 0.2s cubic-bezier(.2,.7,.2,1); }
+.how-step--2 { opacity: 0; transform: translateY(32px); transition: opacity 0.6s 0.35s ease, transform 0.6s 0.35s cubic-bezier(.2,.7,.2,1); }
+.how-step--3 { opacity: 0; transform: translateY(32px); transition: opacity 0.6s 0.5s ease, transform 0.6s 0.5s cubic-bezier(.2,.7,.2,1); }
 .how-vis .how-step--1,
 .how-vis .how-step--2,
-.how-vis .how-step--3 { opacity: 1; transform: translate(0); }
+.how-vis .how-step--3 { opacity: 1; transform: translateY(0); }
 
-/* Cercles — effet tampon : grossissent puis se posent */
 .how-circle {
-  transform: scale(2.2);
+  transform: scale(0.6);
   opacity: 0;
-  transition: transform 0.5s cubic-bezier(.34,1.56,.64,1), opacity 0.3s ease;
+  transition: transform 0.45s cubic-bezier(.34,1.56,.64,1), opacity 0.3s ease;
 }
-.how-vis .how-step--1 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.52s; }
-.how-vis .how-step--2 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.68s; }
-.how-vis .how-step--3 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.84s; }
+.how-vis .how-step--1 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.48s; }
+.how-vis .how-step--2 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.62s; }
+.how-vis .how-step--3 .how-circle { transform: scale(1); opacity: 1; transition-delay: 0.76s; }
 
-/* Step — carte macOS glass premium */
+/* ── Carte macOS glass ────────────────────────────────────────── */
 .how-step {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background: rgba(255,255,255,.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 24px;
-  border: 1px solid rgba(255,255,255,.75);
+  border: 1px solid rgba(255,255,255,.9);
+  padding: 2rem 1.75rem 1.5rem;
   box-shadow:
-    0 2px 8px rgba(0,0,0,.04),
-    0 8px 32px rgba(0,0,0,.06),
-    inset 0 1px 0 rgba(255,255,255,.9);
-  padding: 2rem 1.75rem;
-  transition: box-shadow 300ms ease, transform 300ms cubic-bezier(.2,.7,.2,1);
+    0 1px 0 rgba(255,255,255,.8) inset,
+    0 2px 6px rgba(0,0,0,.04),
+    0 12px 36px rgba(0,0,0,.08);
+  transition: box-shadow 0.28s ease, transform 0.28s cubic-bezier(.2,.7,.2,1);
+  overflow: hidden;
 }
+
+/* Accent coloré en haut de chaque carte */
+.how-step::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--step-color, #FD6E00);
+  border-radius: 20px 20px 0 0;
+}
+
 .how-step:hover {
   box-shadow:
-    0 4px 16px rgba(0,0,0,.06),
-    0 20px 48px color-mix(in srgb, var(--step-color, var(--orange)) 18%, transparent),
-    inset 0 1px 0 rgba(255,255,255,.9);
+    0 2px 8px rgba(0,0,0,.06),
+    0 20px 48px rgba(0,0,0,.1);
   transform: translateY(-4px);
 }
 
+/* ── Numéro macOS — carré arrondi ─────────────────────────────── */
 .how-circle-wrap {
-  position: relative;
   width: fit-content;
 }
 
 .how-circle {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: var(--step-color, var(--orange));
-  border: none;
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: var(--step-color, #FD6E00);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.04em;
   color: #fff;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--step-color, var(--orange)) 45%, transparent);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--step-color, #FD6E00) 40%, transparent);
 }
 
-.how-circle-ring {
-  position: absolute;
-  inset: -8px;
-  border: 1.5px dashed var(--step-color, var(--orange));
-  border-radius: 50%;
-  animation: spin-slow 40s linear infinite;
-  opacity: .45;
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
+/* Ring supprimé — trop distrayant */
+.how-circle-ring { display: none; }
 
 .how-step-title {
   margin: 0;
-  font-size: clamp(17px, 1.8vw, 22px);
+  font-size: clamp(16px, 1.5vw, 20px);
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.22;
-  color: var(--step-color, #1a0a06);
-  max-width: 320px;
+  line-height: 1.25;
+  color: #1a0a06;
+  max-width: 300px;
 }
 
 .how-step-body {
   margin: 0;
-  font-size: clamp(14px, 1.1vw, 16px);
-  line-height: 1.68;
-  color: #2a2a2a;
-  max-width: 360px;
+  font-size: clamp(14px, 1.1vw, 15px);
+  line-height: 1.7;
+  color: #6b4455;
+  max-width: 340px;
   flex-grow: 1;
 }
 
+/* Time badge */
 .how-time-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   padding: 6px 14px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--step-color, var(--orange)) 12%, white);
-  border: 1px solid color-mix(in srgb, var(--step-color, var(--orange)) 28%, transparent);
+  background: color-mix(in srgb, var(--step-color, #FD6E00) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--step-color, #FD6E00) 20%, transparent);
   width: fit-content;
   margin-top: auto;
 }
@@ -280,70 +236,33 @@
 .how-time-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--step-color, var(--orange));
+  background: var(--step-color, #FD6E00);
   flex-shrink: 0;
 }
 
 .how-time-text {
   font-size: 11px;
-  color: var(--step-color, var(--orange));
-  letter-spacing: 0.08em;
+  color: var(--step-color, #FD6E00);
+  letter-spacing: 0.06em;
   font-weight: 600;
 }
 
-/* ── Responsive — roadmap verticale ─────────────────────────── */
-@media (max-width: 900px) {
-  .how-header { flex-direction: column; align-items: flex-start; }
-  .how-cta { align-self: auto; }
-  .how-connector { display: none; }
+/* ── Lignes vibration (décoration légère) ──────────────────────── */
+.how-vlines { display: none; }
+.how-bottom-sep { display: none; }
 
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .how-header { align-items: center; }
+  .how-connector { display: none; }
   .how-grid {
     grid-template-columns: 1fr;
-    gap: 0;
-    position: relative;
-    padding-left: 0;
+    gap: 1rem;
   }
-
-  /* Ligne verticale continue entre les étapes */
-  .how-grid::before {
-    content: '';
-    position: absolute;
-    left: 35px;
-    top: 72px;
-    bottom: 72px;
-    width: 2px;
-    background: linear-gradient(to bottom, #FD6E00, #D90A5C, #00AFDD);
-    border-radius: 2px;
-    z-index: 0;
-  }
-
-  /* Chaque étape en layout horizontal : cercle à gauche, texte à droite */
-  .how-step {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    grid-template-rows: auto auto auto;
-    column-gap: 1.5rem;
-    row-gap: 0.5rem;
-    padding: 1.5rem;
-    position: relative;
-  }
-
-  .how-circle-wrap {
-    grid-column: 1;
-    grid-row: 1 / 4;
-    align-self: start;
-    position: relative;
-    z-index: 1;
-  }
-
-  .how-step-title { grid-column: 2; grid-row: 1; }
-  .how-step-body  { grid-column: 2; grid-row: 2; }
-  .how-time-badge { grid-column: 2; grid-row: 3; margin-top: 0.5rem; }
-
-  .how-circle { width: 70px; height: 70px; font-size: 24px; }
-  .how-circle-ring { inset: -6px; }
+  .how-step::before { border-radius: 20px 20px 0 0; }
 }
 
-@media (max-width: 768px) {
-  .how-title { letter-spacing: -0.03em; }
+@media (max-width: 480px) {
+  .how-section { padding-inline: 1rem; }
+  .how-step { padding: 1.5rem; }
 }

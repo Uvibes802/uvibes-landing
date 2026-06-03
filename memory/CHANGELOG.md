@@ -2,6 +2,39 @@
 
 ---
 
+## 2026-06-03 — Session redesign premium macOS v3 (branche style/redesign-premium-v3)
+
+### Tâches terminées
+- **HowItWorks** : étape 3 amber (#F59E0B, plus de bleu), cartes glass macOS (backdrop-filter, border-radius 24px, inset shadow, hover lift), top padding 1rem → 0
+- **VideoSection** : cartes témoignages premium — glassmorphism, orbe déco radiante, avatar initiale gradient, 5 étoiles SVG dorées, guillemet 80px opaque
+- **SolutionForWho** : accent Collectifs vert #10B981, section fond gradient vivid (#FFF6EC→#FFECF8), blobs déco, wrapper .sfw-inner
+- **SolutionThemes** : 6 couleurs vivid par thème (orange/rose/amber/green/indigo/pink), fond gradient, cartes glass macOS, titre coloré par thème
+- **SolutionHowItWorks** : fond gradient (#FFFBF4→#F0FFF8), blob déco orange top-right
+- **FeaturesCard** : texte "concrètement." corrigé — padding-bottom 0.08em + line-height 1.0
+- **PricingTable** : cartes glass macOS (backdrop-filter), badge orange (plus de cream-2 dark), prix et nom en orange
+- **Footer** : padding clamp(4rem→2.5rem), newsletter inline (input+bouton flèche, success pill)
+- **Blog hero** : gradient vivid #FFE0B0→#FFB060→#FF7A6A→#FF4498→#E6007E
+- **Blog article** : redesign complet — hero image fullscreen avec overlay, card corps blanche (border-radius 28px, barre accent, shadow), typographie premium (h2 orange, h3 rose, blockquote orange), bouton retour pill gradient
+- **Pages légales** : hero gradient orange→rose, card contenu blanche premium, typographie cohérente orangée/rose
+- **Page RDV** : redesign glass macOS — cards backdrop-filter, inputs rounded-12, slots pills, success vert avec barre #10B981
+- **Devis** : fond gradient (#FFFBF4→#FFF6EC), card glass + barre accent, stepper step-active gradient (plus de --ink), dv-price-block gradient orange→rose (plus sombre)
+- **Page uvibes** : intro gradient, stats cards glass macOS, éthique gradient fond + cards glass avec 3 accents distincts (orange/rose/vert), portage card glass + barre accent
+- **CRM** : sidebar glass (backdrop-filter blur(20px)), topbar glass, cards métriques glass, tables glass, login page glass + blobs + barre accent, nav items rounded-12 + hover orange
+- **CRM newsletter** : model `NewsletterSubscriber` dans schema.prisma, route API `/api/newsletter` (POST inscription, DELETE désinscription), page `/admin/crm/newsletter`, composant `NewsletterManager` (table, filtres, export CSV, ajout manuel), sidebar CRM + entrée Mail
+- **Prisma** : client régénéré avec nouveau model
+
+### Branche
+`style/redesign-premium-v3` — 1 commit
+
+### Impact
+- Toutes les sections homepage et pages internes ont le glass macOS feel (backdrop-filter, rounded-28, inset shadow)
+- Zéro couleur sombre/violet foncé — palette 100% orange/rose/amber/vert vivid
+- Blog article : expérience lecture complète (hero image + card blanche flottante)
+- Newsletter fonctionnelle côté public (footer) et côté admin (CRM avec filtres + export CSV)
+- CRM redesigné avec sidebar glass premium, login page branded
+
+---
+
 ## 2026-06-02 — Session polish global v2 (branche style/polish-global-v2)
 
 ### Tâches terminées

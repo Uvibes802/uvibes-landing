@@ -1,222 +1,90 @@
-/* ── Footer — gradient premium ───────────────────────────────── */
+/* ── Footer — macOS compact premium ──────────────────────────── */
 
 .ft-footer {
   position: relative;
-  background: linear-gradient(135deg, #ff6a00 0%, #ff5f6d 50%, #e6007e 100%);
+  background: linear-gradient(135deg, #ff6a00 0%, #ff4d7a 50%, #e6007e 100%);
   overflow: hidden;
 }
 
 .ft-footer::before {
   content: '';
   position: absolute;
-  top: -80px; right: -80px;
-  width: 360px; height: 360px;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.12);
   animation: ftSpin 30s linear infinite;
   pointer-events: none;
 }
 
-.ft-footer::after {
-  content: '';
-  position: absolute;
-  bottom: -60px; left: -60px;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255,255,255,.1), transparent 70%);
-  filter: blur(28px);
-  animation: ftFloat 11s ease-in-out infinite;
-  pointer-events: none;
-}
-
 @keyframes ftSpin  { to { transform: rotate(360deg); } }
-@keyframes ftFloat {
-  0%,100% { transform: translate(0,0); }
-  50%     { transform: translate(18px,-22px); }
-}
 
 .ft-curve {
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 120px;
+  width: 100%; height: 80px;
   pointer-events: none;
 }
 
 .ft-inner {
   position: relative;
   z-index: 1;
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3.5rem) clamp(1.25rem, 2.5vw, 2rem);
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 3.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
-/* ── Top : brand + nav ───────────────────────────────────────── */
-
+/* ── Top : brand + nav ────────────────────────────────────────── */
 .ft-top {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
+  grid-template-columns: 240px 1fr;
   gap: clamp(2rem, 4vw, 5rem);
   align-items: start;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-.ft-brand {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
+.ft-brand { display: flex; flex-direction: column; gap: 0.6rem; }
 
-.ft-logo {
-  display: block;
-  width: clamp(100px, 12vw, 160px);
-  height: auto;
-  object-fit: contain;
-  object-position: left;
-}
+.ft-logo { display: block; width: clamp(90px, 10vw, 140px); height: auto; object-fit: contain; object-position: left; }
 
-.ft-tagline {
-  margin: 0;
-  font-size: clamp(16px, 1.6vw, 20px);
-  font-style: italic;
-  color: rgba(255,255,255,.75);
-  line-height: 1.4;
-}
+.ft-tagline { margin: 0; font-size: clamp(14px, 1.3vw, 16px); font-style: italic; color: rgba(255,255,255,.72); line-height: 1.4; }
 
-/* ── Nav colonnes (maintenant dans .ft-top) ─────────────────── */
+/* ── Newsletter ───────────────────────────────────────────────── */
+.nl-form { margin-top: 0.85rem; }
 
-.ft-nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
+.nl-label { font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,.6); text-transform: uppercase; margin: 0 0 0.5rem; display: block; }
 
-.ft-nav-col {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.ft-nav-label {
-  margin: 0;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,.5);
-  text-transform: uppercase;
-}
-
-.ft-nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.ft-nav-link {
-  font-size: 14px;
-  color: rgba(255,255,255,.8);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.ft-nav-link:hover { color: #fff; }
-
-/* ── Divider ─────────────────────────────────────────────────── */
-
-.ft-divider {
-  height: 1px;
-  background: rgba(255,255,255,.18);
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-/* ── Bas ─────────────────────────────────────────────────────── */
-
-.ft-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.ft-copy {
-  margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,.5);
-  text-transform: uppercase;
-}
-
-.ft-slogan {
-  margin: 0;
-  font-size: clamp(14px, 1.3vw, 17px);
-  font-style: italic;
-  color: rgba(255,255,255,.65);
-}
-
-.ft-admin-link {
-  font-size: 10px;
-  color: rgba(255,255,255,.2);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-
-.ft-admin-link:hover { color: rgba(255,255,255,.5); }
-
-/* ── Newsletter inline footer ────────────────────────────────── */
-.nl-form { margin-top: 1rem; }
-
-.nl-label {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,.65);
-  text-transform: uppercase;
-  margin: 0 0 0.5rem;
-}
-
-.nl-row {
-  display: flex;
-  gap: 6px;
-}
+.nl-row { display: flex; gap: 6px; }
 
 .nl-input {
-  flex: 1;
-  padding: 9px 12px;
+  flex: 1; min-width: 0;
+  padding: 8px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.3);
-  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.14);
   color: #fff;
   font-size: 13px;
   font-family: inherit;
   outline: none;
-  transition: border-color 200ms, background 200ms;
-  min-width: 0;
+  transition: border-color 0.18s, background 0.18s;
 }
-
 .nl-input::placeholder { color: rgba(255,255,255,.5); }
-.nl-input:focus { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.22); }
+.nl-input:focus { border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.2); }
 
 .nl-btn {
-  padding: 9px 16px;
+  padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255,255,255,.25);
-  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.38);
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 200ms, transform 200ms;
   flex-shrink: 0;
+  transition: background 0.18s, transform 0.18s;
 }
-.nl-btn:hover { background: rgba(255,255,255,.35); transform: translateX(2px); }
-.nl-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.nl-btn:hover { background: rgba(255,255,255,.32); transform: translateX(2px); }
+.nl-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 
-.nl-error {
-  font-size: 12px;
-  color: #FFE456;
-  margin-top: 0.4rem;
-}
+.nl-error { font-size: 12px; color: #FFE456; margin-top: 0.4rem; }
 
 .nl-success {
   display: flex;
@@ -224,25 +92,45 @@
   gap: 8px;
   font-size: 13px;
   color: rgba(255,255,255,.9);
-  margin-top: 1rem;
-  padding: 10px 14px;
-  background: rgba(255,255,255,.15);
+  margin-top: 0.85rem;
+  padding: 8px 14px;
+  background: rgba(255,255,255,.14);
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.25);
+  border: 1px solid rgba(255,255,255,.22);
 }
 
-/* ── Responsive ──────────────────────────────────────────────── */
+/* ── Nav colonnes ─────────────────────────────────────────────── */
+.ft-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 
+.ft-nav-col { display: flex; flex-direction: column; gap: 0.8rem; }
+
+.ft-nav-label { margin: 0; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,.48); text-transform: uppercase; }
+
+.ft-nav-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+
+.ft-nav-link { font-size: 13.5px; color: rgba(255,255,255,.78); text-decoration: none; transition: color 0.18s; }
+.ft-nav-link:hover { color: #fff; }
+
+/* ── Divider ──────────────────────────────────────────────────── */
+.ft-divider { height: 1px; background: rgba(255,255,255,.16); margin-bottom: clamp(1rem, 2vw, 1.5rem); }
+
+/* ── Bas ──────────────────────────────────────────────────────── */
+.ft-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+
+.ft-copy { margin: 0; font-size: 10px; letter-spacing: 0.08em; color: rgba(255,255,255,.45); text-transform: uppercase; }
+.ft-slogan { margin: 0; font-size: clamp(12px, 1.1vw, 14px); font-style: italic; color: rgba(255,255,255,.6); }
+
+.ft-admin-link { font-size: 10px; color: rgba(255,255,255,.18); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.18s; }
+.ft-admin-link:hover { color: rgba(255,255,255,.45); }
+
+/* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .ft-top { grid-template-columns: 1fr; gap: 3rem; }
+  .ft-top { grid-template-columns: 1fr; gap: 2rem; }
   .ft-nav { grid-template-columns: repeat(3, 1fr); }
 }
-
 @media (max-width: 560px) {
-  .ft-nav { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .ft-wordmark { font-size: clamp(52px, 14vw, 80px); }
+  .ft-nav { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 }
-
-@media (max-width: 400px) {
-  .ft-nav { grid-template-columns: 1fr; gap: 1.5rem; }
+@media (max-width: 380px) {
+  .ft-nav { grid-template-columns: 1fr; gap: 1.25rem; }
 }
