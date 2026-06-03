@@ -25,32 +25,36 @@ const PARTICLES = [
   { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
 ];
 
-function AppScreen() {
+function MacBookMockup() {
   const [src, setSrc] = useState(VIDEOS[0]);
   useEffect(() => { setSrc(VIDEOS[Math.floor(Math.random() * VIDEOS.length)]); }, []);
 
   return (
-    <div className="sh-screen-wrap">
-      <div className="sh-screen-halo" aria-hidden="true" />
-      <div className="sh-screen">
-        {/* Barre browser */}
-        <div className="sh-screen-bar">
-          <div className="sh-screen-dots">
-            <span style={{ background: "#FF5F57" }} />
-            <span style={{ background: "#FEBC2E" }} />
-            <span style={{ background: "#28C840" }} />
+    <div className="sh-mac-wrap">
+      <div className="sh-mac-halo" aria-hidden="true" />
+      <div className="sh-mac">
+        {/* Écran / couvercle */}
+        <div className="sh-mac-lid">
+          <div className="sh-mac-notch" aria-hidden="true" />
+          <div className="sh-mac-display">
+            {/* Barre menu macOS */}
+            <div className="sh-mac-menubar" aria-hidden="true">
+              <span className="sh-mac-menubar-dots">
+                <i style={{ background: "#FF5F57" }} />
+                <i style={{ background: "#FEBC2E" }} />
+                <i style={{ background: "#28C840" }} />
+              </span>
+            </div>
+            <video className="sh-mac-video" src={getVideoUrl(src)} autoPlay muted loop playsInline />
           </div>
-          <div className="sh-screen-url">
-            <span className="sh-screen-lock">🔒</span>
-            app.uvibes.fr
-          </div>
-          <div className="sh-screen-bar-actions" />
         </div>
-        {/* Écran vidéo */}
-        <div className="sh-screen-display">
-          <video className="sh-screen-video" src={getVideoUrl(src)} autoPlay muted loop playsInline />
-          <div className="sh-screen-overlay" aria-hidden="true" />
+        {/* Corps — charnière + clavier */}
+        <div className="sh-mac-hinge" aria-hidden="true" />
+        <div className="sh-mac-body" aria-hidden="true">
+          <div className="sh-mac-keyboard" />
+          <div className="sh-mac-trackpad" />
         </div>
+        <div className="sh-mac-foot" aria-hidden="true" />
       </div>
     </div>
   );
@@ -126,8 +130,8 @@ export default function SolutionHero() {
           </div>
         </div>
 
-        {/* App Screen */}
-        <AppScreen />
+        {/* MacBook mockup */}
+        <MacBookMockup />
       </div>
     </section>
   );

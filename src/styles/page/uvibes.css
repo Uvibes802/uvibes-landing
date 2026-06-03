@@ -5,8 +5,8 @@
 /* ── Utilitaires typographiques ────────────────────────────────── */
 .uv-serif-accent {
   font-style: italic;
-  font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-weight: 600;
+  font-family: var(--font-prompt), sans-serif;
   background: linear-gradient(135deg, #FD6E00, #D90A5C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -59,7 +59,7 @@
 .uv-hero-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; text-align: center; }
 .uv-hero-eyebrow { font-family: var(--font-roboto-mono), monospace; font-size: 11px; letter-spacing: 0.22em; color: rgba(255,255,255,.78); text-transform: uppercase; margin: 0 0 1rem; display: block; background: none; border: none; padding: 0; }
 .uv-hero-title { font-family: var(--font-prompt), sans-serif; font-size: clamp(42px, 7vw, 88px); font-weight: 800; letter-spacing: -0.05em; line-height: .95; color: #fff; margin: 0 0 1.5rem; }
-.uv-hero-em { font-style: italic; font-weight: 400; font-family: var(--font-instrument), "Instrument Serif", serif; color: #FFE456; -webkit-text-fill-color: #FFE456; }
+.uv-hero-em { font-style: italic; font-weight: 400; font-family: var(--font-prompt), sans-serif; color: #FFE456; -webkit-text-fill-color: #FFE456; }
 .uv-hero-sub { font-size: clamp(15px, 1.4vw, 19px); color: rgba(255,255,255,.88); line-height: 1.6; margin: 0; }
 .uv-hero-vib { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100vw; display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
 .uv-hero-vib svg { width: 100%; display: block; }
@@ -84,12 +84,12 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.05;
-  color: #1a0a06;
+  color: var(--orange);
   margin: 0 0 1.5rem;
   font-family: var(--font-prompt), sans-serif;
 }
 
-.uv-intro-lead { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; color: #374151; margin: 0 0 1.25rem; }
+.uv-intro-lead { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; color: #6b4455; margin: 0 0 1.25rem; }
 .uv-intro-body { font-size: 15px; line-height: 1.8; color: #6b4455; margin: 0; }
 
 /* Stats cards */
@@ -164,7 +164,7 @@
   font-size: clamp(24px, 3.5vw, 46px);
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: #1a0a06;
+  color: var(--orange);
   margin: 0;
   font-family: var(--font-prompt), sans-serif;
 }

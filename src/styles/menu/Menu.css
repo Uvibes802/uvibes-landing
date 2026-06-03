@@ -140,29 +140,28 @@
 
 /* ── Responsive ─────────────────────────────────────────────────── */
 
-/* Tablet 769–1080px — liens resserrés, Connexion masqué */
+/* Tablet 769–1080px — liens et boutons resserrés */
 @media (min-width: 769px) and (max-width: 1080px) {
   .v-nav {
     padding: 0 clamp(1rem, 3vw, 2rem);
   }
 
   .v-nav-links {
-    gap: clamp(0.6rem, 1.5vw, 1.2rem);
+    gap: clamp(0.5rem, 1.2vw, 1rem);
   }
 
   .v-nav-link {
-    font-size: 13px;
+    font-size: 12px;
   }
 
-  /* Cacher le bouton Connexion sur tablet — reste dans le menu mobile */
   .v-nav-connexion {
-    display: none;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 
-  /* CTA "On en parle ?" plus compact */
   .v-nav-cta {
-    padding: 7px 14px;
-    font-size: 13px;
+    padding: 7px 12px;
+    font-size: 12px;
   }
 }
 

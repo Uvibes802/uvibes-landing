@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   padding: calc(var(--nav-height) + 4rem) clamp(1.5rem, 5vw, 3.5rem) 5rem;
-  background: linear-gradient(145deg, #0098CC 0%, #00AFDD 20%, #D90A5C 55%, #FF6A00 85%, #FFB040 100%);
+  background: linear-gradient(145deg, #FD6E00 0%, #FF8530 15%, #FF88B8 50%, #E6007E 80%, #D90A5C 100%);
 }
 
 /* Blobs — cyan + corail : identité visuelle unique au blog */
@@ -19,11 +19,11 @@
   filter: blur(32px);
   pointer-events: none;
 }
-/* cyan vif haut-gauche */
+/* orange vif haut-gauche */
 .blog-hero-blob--a {
   width: 720px; height: 720px;
   top: -220px; left: -160px;
-  background: radial-gradient(closest-side, rgba(0,175,221,.9), transparent 70%);
+  background: radial-gradient(closest-side, rgba(253,110,0,.9), transparent 70%);
   animation: blogBlobA 20s ease-in-out infinite;
 }
 /* corail/saumon haut-droite */

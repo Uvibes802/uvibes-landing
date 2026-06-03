@@ -74,14 +74,16 @@
   color: #fff;
 }
 
-.vs-t-orange  { color: #FFE456; }
+.vs-t-orange  { color: #fff; }
 .vs-t-rose    { color: rgba(255,255,255,.85); }
 
 .vs-t-gradient {
   display: inline-block;
   padding-bottom: 0.04em;
-  color: #FFE456;
-  -webkit-text-fill-color: #FFE456;
+  background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,220,180,1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ── Citation éditoriale — pas de carte ────────────────────────── */

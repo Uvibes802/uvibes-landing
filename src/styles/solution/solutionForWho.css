@@ -66,7 +66,7 @@
   line-height: 1.05;
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: #1a0a06;
+  color: var(--orange);
   margin: 0 0 0.75rem;
 }
 
@@ -218,7 +218,7 @@
 .sfw-card__benefit-text strong {
   font-size: 14px;
   font-weight: 700;
-  color: #1a0a06;
+  color: var(--orange);
 }
 
 .sfw-card__benefit-desc {

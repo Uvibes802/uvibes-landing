@@ -1,33 +1,55 @@
-/* ── Team Card — redesign premium ────────────────────────────── */
+/* ── Team Card — premium animé ────────────────────────────────── */
 
 .team-card {
   position: relative;
-  width: 220px;
-  border-radius: 20px;
+  width: 260px;
+  border-radius: 24px;
   overflow: hidden;
-  background: #fff;
-  border: 1px solid rgba(253,110,0,.1);
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.9);
   box-shadow:
-    0 2px 8px rgba(0,0,0,.04),
-    0 8px 32px rgba(253,110,0,.07);
-  transition: transform 0.3s cubic-bezier(.2,.7,.2,1), box-shadow 0.3s ease;
+    0 1px 0 rgba(255,255,255,.8) inset,
+    0 4px 16px rgba(0,0,0,.06),
+    0 16px 48px rgba(253,110,0,.1);
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s ease;
   flex-shrink: 0;
 }
 
 .team-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) scale(1.02);
   box-shadow:
-    0 4px 16px rgba(0,0,0,.06),
-    0 24px 48px rgba(253,110,0,.16);
+    0 1px 0 rgba(255,255,255,.8) inset,
+    0 8px 28px rgba(0,0,0,.08),
+    0 32px 64px rgba(253,110,0,.2);
 }
 
 /* Photo — couvre les 2/3 hauts */
 .team-card img {
   display: block;
   width: 100%;
-  height: 220px;
+  height: 280px;
   object-fit: cover;
   object-position: top;
+  transition: transform 0.5s cubic-bezier(.2,.7,.2,1);
+}
+
+.team-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay gradient sur la photo */
+.team-card::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 120px;
+  height: 160px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,.95));
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
 }
 
 /* Barre accent en haut */
@@ -37,22 +59,24 @@
   top: 0; left: 0; right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--orange), var(--rose));
-  z-index: 2;
+  z-index: 3;
 }
 
-/* Div vide du premier enfant — masqué dans le nouveau design */
+/* Div vide du premier enfant — masqué */
 .team-card > div:first-child { display: none; }
 
 .content-card {
-  padding: 1.1rem 1.25rem 1.4rem;
+  padding: 1.25rem 1.5rem 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  border-top: 1px solid rgba(253,110,0,.08);
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,.95);
 }
 
 .content-card p:first-child {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--orange);
   letter-spacing: -0.02em;
@@ -63,14 +87,16 @@
 
 .content-card p:last-child {
   font-size: 12px;
-  color: var(--ink-3);
+  color: #9c7080;
   font-family: var(--text-font);
   margin: 0;
   line-height: 1.4;
-  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-style: normal;
 }
 
 @media (max-width: 480px) {
-  .team-card { width: 180px; }
-  .team-card img { height: 180px; }
+  .team-card { width: 200px; }
+  .team-card img { height: 220px; }
 }
