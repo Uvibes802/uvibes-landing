@@ -22,19 +22,38 @@ export default function BlogPage() {
     <>
       <JsonLd data={breadcrumbJsonLd} />
 
-      {/* ── Hero blog — blobs turquoise/corail/rose — palette distincte ── */}
+      {/* ── Hero blog ── */}
       <section className="blog-hero">
-        {/* Blobs : couleur dominante cyan/turquoise = ID visuel unique au blog */}
+        {/* Blobs */}
         <div className="blog-hero-blob blog-hero-blob--a" aria-hidden="true" />
         <div className="blog-hero-blob blog-hero-blob--b" aria-hidden="true" />
         <div className="blog-hero-blob blog-hero-blob--c" aria-hidden="true" />
         <div className="blog-hero-blob blog-hero-blob--d" aria-hidden="true" />
 
+        {/* Particules flottantes CSS-only */}
+        <div className="blog-hero-particles" aria-hidden="true">
+          <span className="bhp bhp--1" />
+          <span className="bhp bhp--2" />
+          <span className="bhp bhp--3" />
+          <span className="bhp bhp--4" />
+          <span className="bhp bhp--5" />
+          <span className="bhp bhp--6" />
+          <span className="bhp bhp--7" />
+          <span className="bhp bhp--8" />
+        </div>
+
+        {/* Anneaux animés */}
+        <div className="blog-hero-rings" aria-hidden="true">
+          <span className="bhr bhr--1" />
+          <span className="bhr bhr--2" />
+          <span className="bhr bhr--3" />
+        </div>
+
         <div className="blog-hero-inner">
           <p className="blog-hero-eyebrow">Le blog Uvibes · Idées & conversations</p>
           <h1 className="blog-hero-title v-prompt">
             Explorez<br />
-            <em className="blog-hero-em v-serif">des contenus</em>
+            <em className="blog-hero-em">des contenus</em>
             <br />inspirants
           </h1>
           <p className="blog-hero-sub">
@@ -42,10 +61,11 @@ export default function BlogPage() {
           </p>
         </div>
 
-        {/* VibrationLine bas */}
+        {/* VibrationLines bas */}
         <div className="blog-hero-vib" aria-hidden="true">
-          <VibrationLine width={1800} height={50} amplitude={20} freq={8} stroke="rgba(255,255,255,.28)" strokeWidth={1.5} speed={18} />
-          <VibrationLine width={1800} height={50} amplitude={12} freq={13} stroke="rgba(255,255,255,.16)" strokeWidth={1} speed={25} />
+          <VibrationLine width={1800} height={50} amplitude={22} freq={7} stroke="rgba(255,255,255,.35)" strokeWidth={2} speed={16} />
+          <VibrationLine width={1800} height={50} amplitude={14} freq={11} stroke="rgba(255,255,255,.2)" strokeWidth={1.5} speed={22} />
+          <VibrationLine width={1800} height={50} amplitude={8}  freq={15} stroke="rgba(255,255,255,.12)" strokeWidth={1} speed={30} />
         </div>
       </section>
 

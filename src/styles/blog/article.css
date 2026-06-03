@@ -105,14 +105,14 @@
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: #fff;
-  margin: 0;
+  margin: 0 0 2rem;
   text-shadow: 0 1px 8px rgba(0,0,0,.2);
 }
 
 /* ── Card corps de l'article ─────────────────────────────────── */
 .article-body-card {
   max-width: 780px;
-  margin: -3rem auto 4rem;
+  margin: 2rem auto 4rem;
   background: #fff;
   border-radius: 20px;
   padding: clamp(2rem, 4vw, 3.5rem);

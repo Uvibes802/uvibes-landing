@@ -87,13 +87,15 @@
   margin: 0 0 1.5rem;
 }
 
-/* Italique en couleur distincte */
+/* Italique accent — sans serif */
 .blog-hero-em {
   font-style: italic;
   font-weight: 400;
-  font-family: var(--font-instrument), serif;
-  color: #FFE456;
-  -webkit-text-fill-color: #FFE456;
+  font-family: var(--font-prompt), sans-serif;
+  background: linear-gradient(90deg, #fff 0%, rgba(255,220,160,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .blog-hero-sub {
@@ -116,6 +118,50 @@
   pointer-events: none;
 }
 .blog-hero-vib svg { width: 100%; display: block; }
+
+/* ── Particules flottantes ────────────────────────────────────── */
+.blog-hero-particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+
+.bhp {
+  position: absolute;
+  border-radius: 50%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.bhp--1 { width:12px; height:12px; top:14%; left:8%;  background:rgba(255,255,255,.5); animation: bhpFloat 9s  0s infinite ease-in-out; }
+.bhp--2 { width:22px; height:22px; top:30%; right:9%; background:rgba(253,110,0,.65); animation: bhpFloat 12s 1s infinite ease-in-out; }
+.bhp--3 { width:8px;  height:8px;  top:65%; left:5%;  background:rgba(255,255,255,.4); animation: bhpFloat 7s  2s infinite ease-in-out; }
+.bhp--4 { width:16px; height:16px; top:20%; left:40%; background:rgba(217,10,92,.6);  animation: bhpFloat 11s 0.5s infinite ease-in-out; }
+.bhp--5 { width:28px; height:28px; top:70%; right:12%;background:rgba(253,110,0,.5); animation: bhpFloat 14s 1.5s infinite ease-in-out; }
+.bhp--6 { width:6px;  height:6px;  top:45%; left:15%; background:rgba(255,255,255,.6); animation: bhpFloat 8s 3s infinite ease-in-out; }
+.bhp--7 { width:18px; height:18px; bottom:25%; left:28%;background:rgba(255,180,40,.55); animation: bhpFloat 10s 0.8s infinite ease-in-out; }
+.bhp--8 { width:10px; height:10px; top:55%; right:25%; background:rgba(255,255,255,.45); animation: bhpFloat 13s 2.2s infinite ease-in-out; }
+
+@keyframes bhpFloat {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(12px,-18px) scale(1.1); }
+  66%      { transform: translate(-8px,10px) scale(0.9); }
+}
+
+/* ── Anneaux animés ───────────────────────────────────────────── */
+.blog-hero-rings { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+
+.bhr {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.2);
+  animation: bhrSpin linear infinite;
+}
+
+.bhr--1 { width:280px; height:280px; top:-80px; right:-60px;  animation-duration: 28s; }
+.bhr--2 { width:180px; height:180px; bottom:-40px; left:-40px; animation-duration: 22s; animation-direction: reverse; border-color: rgba(253,110,0,.3); }
+.bhr--3 { width:380px; height:380px; top:-120px; left:30%;    animation-duration: 36s; border-color: rgba(217,10,92,.15); }
+
+@keyframes bhrSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 
 /* Contenu articles */
 .blog-content {
