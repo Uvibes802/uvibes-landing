@@ -32,30 +32,32 @@
 }
 
 .fc-input {
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 8px;
-  padding: 0.7rem 1rem;
+  background: #F8F4FF;
+  border: 1.5px solid rgba(0,0,0,.1);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
   font-size: 15px;
   font-family: var(--text-font);
-  color: #fff;
+  color: #1a0a06;
   outline: none;
   width: 100%;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
 .fc-input:focus {
-  border-color: rgba(255,255,255,.6);
-  background: rgba(255,255,255,.18);
+  border-color: var(--orange);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(253,110,0,.12);
 }
 
 .fc-input.--error {
-  border-color: #FFE456;
+  border-color: var(--rose);
 }
 
 .fc-input::placeholder {
-  color: rgba(255,255,255,.5);
-  font-style: italic;
+  color: #b0a0b8;
+  font-style: normal;
 }
 
 .fc-textarea {
@@ -76,7 +78,7 @@
   align-items: flex-start;
   gap: 0.6rem;
   font-size: 12px;
-  color: rgba(255,255,255,.8);
+  color: #6b4455;
   cursor: pointer;
   line-height: 1.5;
 }
@@ -148,6 +150,9 @@
   font-family: var(--text-font-bold);
   color: var(--orange);
   text-align: center;
+  background: rgba(253,110,0,.07);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
 }
 
 /* Responsive */
