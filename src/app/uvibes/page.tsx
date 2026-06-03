@@ -41,19 +41,35 @@ export default function Uvibes() {
     <div className="uv-page">
       <JsonLd data={organizationJsonLd} />
 
-      {/* ── Hero Uvibes — blobs rose/pêche/saumon distincts du hero homepage ── */}
+      {/* ── Hero Uvibes ── */}
       <section className="uv-hero">
-        {/* Blobs différents du hero homepage : dominante rose/pêche → identité page À propos */}
         <div className="uv-hero-blob uv-hero-blob--a" aria-hidden="true" />
         <div className="uv-hero-blob uv-hero-blob--b" aria-hidden="true" />
         <div className="uv-hero-blob uv-hero-blob--c" aria-hidden="true" />
         <div className="uv-hero-blob uv-hero-blob--d" aria-hidden="true" />
+        {/* Lignes flottantes — style différent des autres pages */}
+        <div className="uv-hero-lines" aria-hidden="true">
+          <span className="uvl uvl--1" />
+          <span className="uvl uvl--2" />
+          <span className="uvl uvl--3" />
+          <span className="uvl uvl--4" />
+          <span className="uvl uvl--5" />
+        </div>
+        {/* Particules rondes + carrés */}
+        <div className="uv-hero-pars" aria-hidden="true">
+          <span className="uvp uvp--1" />
+          <span className="uvp uvp--2" />
+          <span className="uvp uvp--3" />
+          <span className="uvp uvp--4" />
+          <span className="uvp uvp--5" />
+          <span className="uvp uvp--6" />
+        </div>
 
         <div className="uv-hero-inner">
           <p className="uv-hero-eyebrow">À propos d&apos;Uvibes</p>
           <h1 className="uv-hero-title v-prompt">
             Qui donne vie<br />
-            <em className="uv-hero-em v-serif">à Uvibes&nbsp;?</em>
+            <em className="uv-hero-em">à Uvibes&nbsp;?</em>
           </h1>
           <p className="uv-hero-sub">
             Découvrez les personnes et les idées qui font grandir Uvibes

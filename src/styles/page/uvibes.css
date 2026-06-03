@@ -59,10 +59,59 @@
 .uv-hero-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; text-align: center; }
 .uv-hero-eyebrow { font-family: var(--font-roboto-mono), monospace; font-size: 11px; letter-spacing: 0.22em; color: rgba(255,255,255,.78); text-transform: uppercase; margin: 0 0 1rem; display: block; background: none; border: none; padding: 0; }
 .uv-hero-title { font-family: var(--font-prompt), sans-serif; font-size: clamp(42px, 7vw, 88px); font-weight: 800; letter-spacing: -0.05em; line-height: .95; color: #fff; margin: 0 0 1.5rem; }
-.uv-hero-em { font-style: italic; font-weight: 400; font-family: var(--font-prompt), sans-serif; color: #FFE456; -webkit-text-fill-color: #FFE456; }
+.uv-hero-em {
+  font-style: italic;
+  font-weight: 400;
+  font-family: var(--font-prompt), sans-serif;
+  display: inline-block;
+  background: linear-gradient(90deg, #FFB8D8, #FF88B8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 0.04em;
+}
 .uv-hero-sub { font-size: clamp(15px, 1.4vw, 19px); color: rgba(255,255,255,.88); line-height: 1.6; margin: 0; }
 .uv-hero-vib { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100vw; display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
 .uv-hero-vib svg { width: 100%; display: block; }
+
+/* ── Lignes flottantes hero (style propre à uvibes) ────────────── */
+.uv-hero-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.uvl {
+  position: absolute;
+  height: 2px;
+  background: rgba(255,255,255,.35);
+  border-radius: 2px;
+  animation: uvlSlide linear infinite;
+}
+.uvl--1 { width: 80px;  top: 22%; left: -80px;  animation-duration: 8s;  animation-delay: 0s; }
+.uvl--2 { width: 120px; top: 45%; left: -120px; animation-duration: 11s; animation-delay: 2s; background: rgba(255,140,200,.5); }
+.uvl--3 { width: 60px;  top: 65%; left: -60px;  animation-duration: 7s;  animation-delay: 1s; }
+.uvl--4 { width: 100px; top: 30%; right: -100px; animation-duration: 9s;  animation-delay: 3s; animation-direction: reverse; }
+.uvl--5 { width: 70px;  top: 75%; right: -70px;  animation-duration: 6s;  animation-delay: 0.5s; animation-direction: reverse; background: rgba(255,200,80,.45); }
+
+@keyframes uvlSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(110vw); }
+}
+
+/* ── Particules rondes + carrés hero uvibes ────────────────────── */
+.uv-hero-pars { position: absolute; inset: 0; pointer-events: none; }
+.uvp {
+  position: absolute;
+  animation: uvpFloat ease-in-out infinite;
+}
+.uvp--1 { width:10px; height:10px; top:15%; left:10%;  border-radius:50%; background:rgba(255,255,255,.55); animation-duration:8s;  animation-delay:0s; }
+.uvp--2 { width:16px; height:16px; top:60%; right:8%;  border-radius:4px;  background:rgba(255,140,200,.6);  animation-duration:10s; animation-delay:1.2s; }
+.uvp--3 { width:8px;  height:8px;  top:35%; left:6%;   border-radius:50%; background:rgba(255,200,80,.7);  animation-duration:7s;  animation-delay:2s; }
+.uvp--4 { width:20px; height:20px; top:70%; left:20%;  border-radius:6px;  background:rgba(255,255,255,.2); animation-duration:12s; animation-delay:0.6s; }
+.uvp--5 { width:12px; height:12px; top:25%; right:15%; border-radius:50%; background:rgba(253,110,0,.55);  animation-duration:9s;  animation-delay:3s; }
+.uvp--6 { width:6px;  height:6px;  top:80%; right:20%; border-radius:50%; background:rgba(255,255,255,.45); animation-duration:6s;  animation-delay:1.8s; }
+
+@keyframes uvpFloat {
+  0%,100% { transform: translate(0,0) rotate(0deg); }
+  33%      { transform: translate(10px,-15px) rotate(20deg); }
+  66%      { transform: translate(-8px,8px) rotate(-10deg); }
+}
 
 /* ── Intro ────────────────────────────────────────────────────── */
 .uv-intro {

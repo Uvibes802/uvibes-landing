@@ -14,6 +14,10 @@ function AppScreen() {
 
   return (
     <div className="sh-screen-wrap">
+      {/* Pulses concentriques autour de l'écran */}
+      <div className="sh-pulse sh-pulse--1" aria-hidden="true" />
+      <div className="sh-pulse sh-pulse--2" aria-hidden="true" />
+      <div className="sh-pulse sh-pulse--3" aria-hidden="true" />
       <div className="sh-screen-halo" aria-hidden="true" />
       <div className="sh-screen">
         <div className="sh-screen-bar">

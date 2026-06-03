@@ -140,10 +140,15 @@
 }
 
 .sh-title-accent {
+  font-style: italic;
+  font-weight: 400;
+  display: inline-block;
   background: linear-gradient(90deg, #FFE456, #FFB800);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: none;
+  padding-bottom: 0.04em;
 }
 
 .sh-desc {
@@ -219,6 +224,26 @@
 @keyframes shScreenIn {
   from { opacity: 0; transform: translateY(28px) scale(.96); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Pulses concentriques */
+.sh-pulse {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,200,80,.5);
+  pointer-events: none;
+  animation: shPulse 4s ease-out infinite;
+}
+.sh-pulse--1 { width: 120%; height: 120%; animation-delay: 0s; }
+.sh-pulse--2 { width: 150%; height: 150%; animation-delay: 1.3s; border-color: rgba(253,110,0,.35); }
+.sh-pulse--3 { width: 185%; height: 185%; animation-delay: 2.6s; border-color: rgba(217,10,92,.2); }
+
+@keyframes shPulse {
+  0%   { opacity: .8; transform: translate(-50%,-50%) scale(.8); }
+  70%  { opacity: 0; }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(1.1); }
 }
 
 .sh-screen-bar {
