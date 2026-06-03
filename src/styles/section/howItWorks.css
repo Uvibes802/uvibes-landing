@@ -70,7 +70,8 @@
   gap: 0.75rem;
 }
 
-.how-section > * { position: relative; z-index: 1; }
+/* Exclure les éléments absolus pour ne pas écraser leur position */
+.how-section > *:not(.how-vlines):not(.how-bottom-sep) { position: relative; z-index: 1; }
 
 .how-eyebrow {
   margin: 0 0 1rem;
