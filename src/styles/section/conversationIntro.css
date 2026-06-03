@@ -4,7 +4,7 @@
   position: relative;
   overflow: clip;
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: var(--paper);
+  background: transparent;
 }
 
 .ci-blob {

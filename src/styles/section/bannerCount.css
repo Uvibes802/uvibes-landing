@@ -1,7 +1,7 @@
 /* ── BannerCount ─────────────────────────────────────────────── */
 
 .banner-count {
-  background: linear-gradient(90deg, var(--orange) 0%, #ff4d7a 50%, var(--rose) 100%);
+  background: linear-gradient(135deg, #FD6E00 0%, #FF8530 12%, #FFB870 28%, #FF88B8 55%, #E6007E 88%, #D90A5C 100%);
   color: #fff;
   padding: 52px clamp(1.5rem, 5vw, 3.5rem);
   overflow: hidden;

@@ -3,7 +3,7 @@
 
 .pillars-section {
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(145deg, #FFFBF4 0%, #FFF6EC 50%, #FFF0F5 100%);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
