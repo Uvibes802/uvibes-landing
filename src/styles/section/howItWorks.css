@@ -14,7 +14,7 @@
   width: 500px; height: 500px;
   top: -80px; right: -60px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.35), transparent 70%);
+  background: radial-gradient(closest-side, rgba(253,110,0,.10), transparent 70%);
   filter: blur(28px);
   pointer-events: none;
 }
@@ -25,7 +25,7 @@
   width: 420px; height: 420px;
   bottom: 0; left: -40px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.3), transparent 70%);
+  background: radial-gradient(closest-side, rgba(217,10,92,.08), transparent 70%);
   filter: blur(28px);
   pointer-events: none;
 }

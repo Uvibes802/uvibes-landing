@@ -16,7 +16,7 @@
   width: clamp(500px, 65vw, 820px);
   height: clamp(500px, 65vw, 820px);
   top: -200px; right: -120px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.22), transparent 68%);
+  background: radial-gradient(closest-side, rgba(253,110,0,.10), transparent 68%);
   filter: blur(80px);
   animation: ciBlob 14s ease-in-out infinite;
 }
@@ -24,7 +24,7 @@
   width: clamp(400px, 55vw, 700px);
   height: clamp(400px, 55vw, 700px);
   bottom: -140px; left: -100px;
-  background: radial-gradient(closest-side, rgba(217,10,92,.18), transparent 68%);
+  background: radial-gradient(closest-side, rgba(217,10,92,.08), transparent 68%);
   filter: blur(80px);
   animation: ciBlob 19s ease-in-out infinite reverse;
 }
