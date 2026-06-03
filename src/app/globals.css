@@ -487,6 +487,17 @@ h5 {
   margin-top: -1px;
 }
 
+/* ── Section fades — transitions fluides entre sections vivid et paper ── */
+.section-fade {
+  position: absolute;
+  left: 0; right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 4;
+}
+.section-fade--top    { top: 0;    background: linear-gradient(to bottom, var(--paper), transparent); }
+.section-fade--bottom { bottom: 0; background: linear-gradient(to top,   var(--paper), transparent); }
+
 /* Reveal scroll — opacity + translateY */
 .v-reveal {
   opacity: 0;

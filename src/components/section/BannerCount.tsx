@@ -57,6 +57,7 @@ export default function BannerCount() {
 
   return (
     <section className="banner-count" ref={ref}>
+      <div className="section-fade section-fade--top"    aria-hidden="true" />
       <div className="bc-dash bc-dash--top"    aria-hidden="true" />
       <div className="bc-dash bc-dash--bottom" aria-hidden="true" />
       <div className="banner-count-vlines" aria-hidden="true">
@@ -107,6 +108,7 @@ export default function BannerCount() {
         </div>
 
       </div>
+      <div className="section-fade section-fade--bottom" aria-hidden="true" />
     </section>
   );
 }

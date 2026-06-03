@@ -22,6 +22,7 @@ export default function VideoSection() {
 
   return (
     <section className="vs-section">
+      <div className="section-fade section-fade--top"    aria-hidden="true" />
       <div className="vs-blob vs-blob--a" aria-hidden="true" />
       <div className="vs-blob vs-blob--b" aria-hidden="true" />
 
@@ -105,6 +106,7 @@ export default function VideoSection() {
           </div>
         )}
       </div>
+      <div className="section-fade section-fade--bottom" aria-hidden="true" />
     </section>
   );
 }

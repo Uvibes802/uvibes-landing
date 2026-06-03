@@ -5,6 +5,7 @@ import FormContact from "../form/formContact";
 export default function Contact() {
   return (
     <section className="ct-section" id="contact">
+      <div className="section-fade section-fade--top" aria-hidden="true" />
       {/* Blobs identiques au hero */}
       <div className="ct-blob ct-blob--a" aria-hidden="true" />
       <div className="ct-blob ct-blob--b" aria-hidden="true" />
