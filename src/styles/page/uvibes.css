@@ -726,9 +726,9 @@
   font-family: var(--font-roboto-mono), monospace;
 }
 
-/* Vidéo draggable — grande, sans rotation */
+/* Vidéo draggable — sans rotation */
 .uv-scatter-vid--draggable {
-  width: 380px;
+  width: 260px;
   transition: box-shadow 0.2s ease;
 }
 .uv-scatter-vid--draggable:hover {
