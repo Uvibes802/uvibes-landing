@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getVideoUrl } from "@/utils/videoUrl";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "@/styles/solution/solutionHero.css";
@@ -27,11 +27,20 @@ const PARTICLES = [
 
 function AppScreen() {
   const [src, setSrc] = useState(VIDEOS[0]);
+  const [playing, setPlaying] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => { setSrc(VIDEOS[Math.floor(Math.random() * VIDEOS.length)]); }, []);
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setPlaying(true); }
+    else          { v.pause(); setPlaying(false); }
+  };
 
   return (
     <div className="sh-screen-wrap">
-      {/* Pulses concentriques autour de l'écran */}
       <div className="sh-pulse sh-pulse--1" aria-hidden="true" />
       <div className="sh-pulse sh-pulse--2" aria-hidden="true" />
       <div className="sh-pulse sh-pulse--3" aria-hidden="true" />
@@ -49,9 +58,28 @@ function AppScreen() {
           </div>
           <div className="sh-screen-bar-actions" />
         </div>
-        <div className="sh-screen-display">
-          <video className="sh-screen-video" src={getVideoUrl(src)} autoPlay muted loop playsInline />
+        <div
+          className={`sh-screen-display sh-screen-display--clickable`}
+          onClick={togglePlay}
+          role="button"
+          aria-label={playing ? "Mettre en pause" : "Lire"}
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") togglePlay(); }}
+        >
+          <video
+            ref={videoRef}
+            className="sh-screen-video"
+            src={getVideoUrl(src)}
+            autoPlay muted loop playsInline
+          />
           <div className="sh-screen-overlay" aria-hidden="true" />
+          {/* Bouton play/pause */}
+          <div className={`sh-screen-playbtn${playing ? " --playing" : " --paused"}`} aria-hidden="true">
+            {playing
+              ? <svg viewBox="0 0 24 24" fill="#fff" width="22" height="22"><rect x="5" y="3" width="4" height="18" rx="1.5"/><rect x="15" y="3" width="4" height="18" rx="1.5"/></svg>
+              : <svg viewBox="0 0 24 24" fill="#fff" width="22" height="22"><path d="M5 3l14 9-14 9V3z"/></svg>
+            }
+          </div>
         </div>
       </div>
     </div>
