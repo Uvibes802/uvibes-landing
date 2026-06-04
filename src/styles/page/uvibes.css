@@ -728,7 +728,7 @@
 
 /* Vidéo draggable — sans rotation */
 .uv-scatter-vid--draggable {
-  width: 260px;
+  width: clamp(130px, 15vw, 190px);
   transition: box-shadow 0.2s ease;
 }
 .uv-scatter-vid--draggable:hover {
