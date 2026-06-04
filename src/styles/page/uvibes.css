@@ -731,6 +731,10 @@
   width: clamp(220px, 28vw, 320px);
   transform: rotate(-4deg);
   transition: box-shadow 0.2s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate; /* force le clipping avec transform */
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* fix Safari */
 }
 .uv-scatter-vid--draggable:hover {
   box-shadow: 0 14px 48px rgba(0,0,0,.22), 0 4px 14px rgba(0,0,0,.12);
@@ -740,6 +744,7 @@
   object-fit: cover;
   width: 100%;
   display: block;
+  border-radius: 20px;
 }
 
 /* Indicateur de coordonnées */
