@@ -8,6 +8,8 @@ import SolutionHero from "@/components/solution/SolutionHero";
 import SolutionHowItWorks from "@/components/solution/SolutionHowItWorks";
 import SolutionThemes from "@/components/solution/SolutionThemes";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
+import DraggableVideo from "@/components/shared/DraggableVideo";
+import { getVideoUrl } from "@/utils/videoUrl";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
@@ -34,6 +36,14 @@ export default function SolutionPage() {
       </div>
 
       <SolutionAnchorNav />
+
+      {/* Vidéo draggable — à positionner avec la souris */}
+      <DraggableVideo
+        src={getVideoUrl("Isaline-desktop.mp4")}
+        label="Isaline"
+        initialX={40}
+        initialY={160}
+      />
 
       <main className="sol-main-content">
         <SolutionHowItWorks />

@@ -62,15 +62,15 @@
 }
 
 .anchor-nav__label {
-  font-size: 13px;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0.01em;
+  font-size: 14px;
+  font-family: var(--font-prompt), "Supreme-Bold", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .anchor-nav__link--active .anchor-nav__label {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
