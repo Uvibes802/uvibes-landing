@@ -8,7 +8,7 @@
 }
 
 /* Nom + Prénom côte à côte — même largeur totale que le champ email */
-.fc-row {
+.fco-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
@@ -157,7 +157,7 @@
 
 /* Responsive — mobile : NOM et PRÉNOM empilés */
 @media (max-width: 640px) {
-  .fc-row {
+  .fco-row {
     grid-template-columns: 1fr;
     gap: 1rem;
   }

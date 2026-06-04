@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "../../styles/section/bannerCount.css";
 
-const FILLERS = ["rencontres provoquées", "minutes d'écoute", "vibrations partagées", "échanges engagés"];
+const FILLER_STATIC = "échanges engagés";
 
 function useCountUp(target: number, duration: number, started: boolean) {
   const [v, setV] = useState(0);
@@ -28,7 +28,6 @@ function useCountUp(target: number, duration: number, started: boolean) {
 export default function BannerCount() {
   const { userNumber } = FetchCitation();
   const [started, setStarted] = useState(false);
-  const [phrase, setPhrase] = useState(0);
   const ref = useRef<HTMLElement>(null);
 
   const numericMatch = userNumber?.match(/\d(?:[\s\d]*\d)?|\d/);
@@ -50,10 +49,6 @@ export default function BannerCount() {
     return () => io.disconnect();
   }, []);
 
-  useEffect(() => {
-    const t = setInterval(() => setPhrase((p) => (p + 1) % FILLERS.length), 2400);
-    return () => clearInterval(t);
-  }, []);
 
   return (
     <section className="banner-count" ref={ref}>
@@ -73,7 +68,7 @@ export default function BannerCount() {
             <h2 className="banner-count-number v-prompt">
               {display}<span className="banner-count-plus">+</span>
             </h2>
-            <span className="banner-count-filler v-serif">{FILLERS[phrase]}</span>
+            <span className="banner-count-filler v-serif">{FILLER_STATIC}</span>
           </div>
         </div>
 

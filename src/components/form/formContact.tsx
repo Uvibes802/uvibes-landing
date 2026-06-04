@@ -44,7 +44,7 @@ export default function FormContact() {
   return (
     <form className="fc-form" onSubmit={handleSubmit(onSubmitHandler)}>
       {/* Nom + Prénom */}
-      <div className="fc-row">
+      <div className="fco-row">
         <div className="fc-field">
           <label className="fc-label" htmlFor="lastname">Nom</label>
           <input

@@ -17,7 +17,7 @@ export default function Contact() {
         <div className="ct-left">
           <p className="ct-eyebrow v-mono">Étudions votre projet</p>
           <h2 className="ct-title">
-            <span className="v-prompt">Votre projet mérite</span>
+            <span className="v-prompt ct-title-magenta">Votre projet mérite</span>
             <br />
             <span className="ct-underline-wrap">
               <span className="v-serif ct-title-serif">une vraie conversation.</span>
