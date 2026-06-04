@@ -1,7 +1,7 @@
 /* ── PartnerCarousel — marquee only ─────────────────────────── */
 
 .trustees-section {
-  padding: clamp(3rem, 5vw, 5rem) 0;
+  padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(2.5rem, 4vw, 4rem);
   background: transparent;
   position: relative;
   overflow: visible;
