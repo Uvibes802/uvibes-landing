@@ -94,7 +94,14 @@ function FeatureRow({
         {[0, 1, 2].map((i) => (
           <span key={i} className="fc-ripple" style={{ animationDelay: `${i * 1.3}s` }} aria-hidden="true" />
         ))}
-        <div className="fc-circle">
+        <div
+          className={`fc-circle fc-circle--clickable`}
+          onClick={playing ? handlePause : handlePlay}
+          role="button"
+          tabIndex={0}
+          aria-label={playing ? "Mettre en pause" : `Lire : ${feature.title}`}
+          onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") { if (playing) { handlePause(); } else { handlePlay(); } } }}
+        >
           <video
             ref={videoRef}
             className={`fc-video${playing ? " --playing" : ""}`}
@@ -103,21 +110,9 @@ function FeatureRow({
             onPause={() => setPlaying(false)}
           />
           {!playing ? (
-            <CirclePlay
-              className="fc-play-icon"
-              onClick={handlePlay}
-              onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") handlePlay(); }}
-              tabIndex={0}
-              aria-label={`Lire la vidéo : ${feature.title}`}
-            />
+            <CirclePlay className="fc-play-icon" aria-hidden="true" />
           ) : (
-            <PauseCircle
-              className="fc-play-icon fc-pause-icon"
-              onClick={handlePause}
-              onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") handlePause(); }}
-              tabIndex={0}
-              aria-label="Mettre en pause"
-            />
+            <PauseCircle className="fc-play-icon fc-pause-icon" aria-hidden="true" />
           )}
         </div>
       </div>

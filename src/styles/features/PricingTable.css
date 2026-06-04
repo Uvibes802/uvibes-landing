@@ -228,8 +228,9 @@
   width: 100%;
   padding: 14px 18px;
   border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-prompt), "Supreme-Bold", sans-serif;
   background: linear-gradient(90deg, #FD6E00, #D90A5C);
   color: #fff;
   border: none;
@@ -273,9 +274,10 @@
   display: flex;
   gap: 9px;
   align-items: flex-start;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.4;
   color: #4a2a38;
+  font-family: var(--text-font), "Supreme-Light", sans-serif;
 }
 .pt-card--featured .pt-card-feat { color: rgba(255,255,255,.8); }
 

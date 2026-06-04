@@ -227,6 +227,20 @@
   flex-shrink: 0;
 }
 
+.fc-circle--clickable {
+  cursor: pointer;
+}
+/* Pause icon centré et plus grand quand vidéo joue */
+.fc-circle--clickable .fc-pause-icon {
+  top: 50%; left: 50%;
+  bottom: auto; right: auto;
+  transform: translate(-50%, -50%);
+  width: 48px; height: 48px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.fc-circle--clickable:hover .fc-pause-icon { opacity: 1; }
+
 .fc-row--orange .fc-circle {
   background:
     repeating-linear-gradient(135deg, rgba(253,110,0,.1) 0 14px, transparent 14px 28px),

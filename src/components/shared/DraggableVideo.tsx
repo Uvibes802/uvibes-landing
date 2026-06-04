@@ -9,8 +9,9 @@ interface Props {
   initialY?: number;
 }
 
-export default function DraggableVideo({ src, label, initialX = 40, initialY = 120 }: Props) {
+export default function DraggableVideo({ src, label, initialX = 60, initialY = 140 }: Props) {
   const [pos, setPos] = useState({ x: initialX, y: initialY });
+  const [rotation] = useState(() => (Math.random() * 6 - 3).toFixed(1));
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,33 +54,19 @@ export default function DraggableVideo({ src, label, initialX = 40, initialY = 1
         zIndex: 9999,
         cursor: "grab",
         userSelect: "none",
-        filter: "drop-shadow(0 8px 28px rgba(0,0,0,.22))",
+        transform: `rotate(${rotation}deg)`,
+        transition: "box-shadow 0.2s ease",
       }}
       onMouseDown={onMouseDown}
     >
       <div style={{
+        position: "relative",
         borderRadius: 20,
         overflow: "hidden",
-        border: "2px solid rgba(255,255,255,.8)",
-        background: "#1a0a06",
         width: 200,
-        position: "relative",
+        boxShadow: "0 8px 32px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.1)",
+        border: "2px solid rgba(255,255,255,.85)",
       }}>
-        {/* Drag handle bar */}
-        <div style={{
-          height: 28,
-          background: "rgba(0,0,0,.55)",
-          backdropFilter: "blur(8px)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 5,
-          cursor: "grab",
-        }}>
-          <span style={{ color: "rgba(255,255,255,.5)", fontSize: 12, letterSpacing: "0.12em", fontFamily: "monospace" }}>
-            ⠿ {label || "Vidéo"}
-          </span>
-        </div>
         <video
           ref={videoRef}
           src={src}
@@ -88,6 +75,19 @@ export default function DraggableVideo({ src, label, initialX = 40, initialY = 1
           style={{ display: "block", width: "100%", cursor: "pointer" }}
           title="Cliquer pour pause / reprendre"
         />
+        {/* Label overlay */}
+        <div style={{
+          position: "absolute",
+          bottom: 0, left: 0, right: 0,
+          padding: "0.6rem 0.85rem",
+          background: "linear-gradient(to top, rgba(0,0,0,.6), transparent)",
+          color: "#fff",
+          fontSize: 12,
+          letterSpacing: "0.06em",
+          fontFamily: "var(--font-roboto-mono, monospace)",
+        }}>
+          {label || "Vidéo"}
+        </div>
       </div>
     </div>
   );
