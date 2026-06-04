@@ -12,6 +12,7 @@ interface Props {
 
 export default function DraggableVideo({ src, label, initialX = 60, initialY = 140 }: Props) {
   const [pos, setPos] = useState({ x: initialX, y: initialY });
+  const [scrollY, setScrollY] = useState(0);
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -32,9 +33,13 @@ export default function DraggableVideo({ src, label, initialX = 60, initialY = 1
   useEffect(() => {
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll);
+    setScrollY(window.scrollY);
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [onMouseMove, onMouseUp]);
 
@@ -63,7 +68,9 @@ export default function DraggableVideo({ src, label, initialX = 60, initialY = 1
 
         {/* Coordonnées en direct */}
         <div className="uv-drag-coords">
-          x: {Math.round(pos.x)} · y: {Math.round(pos.y)}
+          📍 page: x {Math.round(pos.x)} · y {Math.round(pos.y + scrollY)}
+          <br />
+          <span style={{ opacity: 0.6, fontSize: 10 }}>écran: x {Math.round(pos.x)} · y {Math.round(pos.y)}</span>
         </div>
       </div>
     </div>
