@@ -1,7 +1,7 @@
-/* ── SolutionThemes — question cards éditoriales ──────────────── */
+/* ── SolutionThemes — macOS premium ──────────────────────────── */
 
 .sth-section {
-  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 50%, #FFF0F8 100%);
+  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 35%, #FFF0F8 65%, #FFF6EC 100%);
   background-attachment: fixed;
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
@@ -9,53 +9,52 @@
   overflow: hidden;
 }
 
+/* Blobs saturés éparpillés */
 .sth-section::before {
   content: '';
   position: absolute;
-  top: 12%; right: 8%;
-  width: 400px; height: 400px;
+  top: 15%; right: 10%;
+  width: 440px; height: 440px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255,176,40,.28), transparent 70%);
-  filter: blur(52px);
+  background: radial-gradient(closest-side, rgba(255,176,40,.38), transparent 68%);
+  filter: blur(50px);
   pointer-events: none;
 }
 
 .sth-section::after {
   content: '';
   position: absolute;
-  bottom: 18%; left: 10%;
-  width: 360px; height: 360px;
+  bottom: 20%; left: 12%;
+  width: 380px; height: 380px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.18), transparent 70%);
-  filter: blur(48px);
+  background: radial-gradient(closest-side, rgba(217,10,92,.25), transparent 68%);
+  filter: blur(46px);
   pointer-events: none;
 }
 
+/* Blobs HTML additionnels */
 .sth-blob {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
 }
 .sth-blob--1 {
-  top: 45%; left: 35%;
-  width: 380px; height: 380px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.20), transparent 70%);
-  filter: blur(46px);
+  top: 42%; left: 25%;
+  width: 420px; height: 420px;
+  background: radial-gradient(closest-side, rgba(253,110,0,.30), transparent 70%);
+  filter: blur(48px);
 }
 .sth-blob--2 {
-  top: 22%; left: 58%;
-  width: 280px; height: 280px;
-  background: radial-gradient(closest-side, rgba(255,228,86,.24), transparent 70%);
-  filter: blur(38px);
+  top: 20%; left: 55%;
+  width: 320px; height: 320px;
+  background: radial-gradient(closest-side, rgba(255,228,86,.32), transparent 70%);
+  filter: blur(40px);
 }
 
 /* ── Header ───────────────────────────────────────────────────── */
 .sth-header {
   text-align: center;
-  margin-bottom: clamp(2.5rem, 4vw, 4rem);
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 3rem;
 }
 
 .sth-eyebrow {
@@ -68,17 +67,30 @@
   border: 1px solid rgba(253,110,0,.16);
   margin-bottom: 1rem;
 }
-.sth-eyebrow__dot { width: 6px; height: 6px; border-radius: 50%; background: #FD6E00; flex-shrink: 0; }
-.sth-eyebrow__label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #FD6E00; }
+
+.sth-eyebrow__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #FD6E00;
+  flex-shrink: 0;
+}
+
+.sth-eyebrow__label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FD6E00;
+}
 
 .sth-title {
-  font-size: clamp(32px, 4.5vw, 58px);
+  font-size: clamp(32px, 4.5vw, 60px);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.04em;
   color: var(--orange);
   margin: 0;
 }
+
 .sth-title__accent {
   font-style: italic;
   font-family: var(--font-instrument), "Instrument Serif", serif;
@@ -86,109 +98,94 @@
   -webkit-text-fill-color: #FF88B8;
 }
 
-/* ── Grille 3×2 ───────────────────────────────────────────────── */
+/* ── Grille ───────────────────────────────────────────────────── */
 .sth-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.1rem;
-  position: relative;
-  z-index: 1;
+  gap: 1.25rem;
+  align-items: stretch;
 }
 
-/* ── Card — question card premium ─────────────────────────────── */
+/* ── Card macOS ───────────────────────────────────────────────── */
 .sth-card {
-  background: color-mix(in srgb, var(--sth-color, #FD6E00) 5%, #FFFBF4);
-  border-radius: 28px;
-  border: 1.5px solid color-mix(in srgb, var(--sth-color, #FD6E00) 12%, rgba(255,255,255,.9));
-  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 28px rgba(0,0,0,.07);
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.75rem;
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 8px 32px rgba(0,0,0,.06);
   display: flex;
   flex-direction: column;
+  height: 100%;
+  transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease;
+  position: relative;
   overflow: hidden;
-  transition: transform 0.28s cubic-bezier(.2,.7,.2,1), box-shadow 0.28s ease;
-  cursor: default;
-  min-height: 220px;
 }
 
 .sth-card--hovered {
-  transform: translateY(-6px);
-  box-shadow: 0 2px 8px rgba(0,0,0,.07), 0 22px 52px rgba(0,0,0,.12);
+  transform: translateY(-5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 20px 48px rgba(0,0,0,.1);
 }
 
-/* ── Question — zone principale ───────────────────────────────── */
-.sth-card__question {
-  flex: 1;
-  padding: 1.6rem 1.6rem 1rem;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
-  font-size: clamp(16px, 1.55vw, 20px);
-  line-height: 1.5;
-  color: #2a0a10;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-/* Grand guillemet décoratif */
-.sth-card__question::before {
-  content: '"';
-  font-size: clamp(48px, 5vw, 72px);
-  line-height: 0.75;
-  color: var(--sth-color, #FD6E00);
-  opacity: 0.2;
-  font-family: var(--font-prompt), serif;
-  display: block;
-  margin-bottom: 0.1em;
-}
-
-/* ── Bande footer colorée ─────────────────────────────────────── */
-.sth-card__footer {
+/* Accent fin gauche */
+.sth-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
   background: var(--sth-color, #FD6E00);
-  padding: 0.9rem 1.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  flex-shrink: 0;
+  border-radius: 20px 0 0 20px;
 }
 
+/* Tuile icône — rounded square macOS */
 .sth-card__icon-tile {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  background: rgba(255,255,255,.22);
+  width: 44px; height: 44px;
+  border-radius: 11px;
   display: grid;
   place-items: center;
-  color: #fff;
+  background: color-mix(in srgb, var(--sth-color, #FD6E00) 12%, white);
+  color: var(--sth-color, #FD6E00);
   flex-shrink: 0;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease;
 }
-.sth-card__icon-tile--hovered { transform: scale(1.12); }
 
+.sth-card__icon-tile--hovered {
+  transform: scale(1.08);
+}
+
+/* Titre */
 .sth-card__title {
-  font-size: 13.5px;
+  font-size: 18px;
   font-weight: 700;
-  color: #fff;
-  margin: 0;
+  color: var(--orange);
+  margin: 1rem 0 0;
   letter-spacing: -0.01em;
-  line-height: 1.2;
-  flex: 1;
 }
 
+/* Desc */
 .sth-card__desc {
-  font-size: 11.5px;
-  color: rgba(255,255,255,.75);
-  margin: 0;
-  line-height: 1.4;
-  display: none; /* descriptif masqué — question suffit */
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b4455;
+  margin-top: 0.5rem;
+  flex-grow: 1;
 }
 
-/* sol-reveal */
-.sol-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.sol-reveal.--in { opacity: 1; transform: translateY(0); }
+/* Question */
+.sth-card__question {
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--sth-color, #FD6E00);
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,.07);
+}
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .sth-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 600px) {
   .sth-grid { grid-template-columns: 1fr; }
 }

@@ -90,22 +90,29 @@ function ThemeCard({ data }: { data: ThemeCard }) {
   return (
     <div
       className={`sth-card${hovered ? " sth-card--hovered" : ""}`}
-      style={{ "--sth-color": data.color } as React.CSSProperties}
+      style={{
+        "--sth-color": data.color,
+        "--sth-glow": data.glow,
+        "--sth-icon-bg": data.iconBg,
+      } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Zone question — héros */}
-      <div className="sth-card__question">
-        {data.question}
+      {/* Tuile icône */}
+      <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
+        <Icon size={22} strokeWidth={1.8} />
       </div>
 
-      {/* Bande colorée bas */}
-      <div className="sth-card__footer">
-        <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
-          <Icon size={16} strokeWidth={2} />
-        </div>
-        <h3 className="sth-card__title v-prompt">{data.title}</h3>
-      </div>
+      {/* Titre */}
+      <h3 className="sth-card__title v-prompt">{data.title}</h3>
+
+      {/* Desc */}
+      <p className="sth-card__desc">{data.desc}</p>
+
+      {/* Question */}
+      <p className="sth-card__question v-serif">
+        «&nbsp;{data.question}&nbsp;»
+      </p>
     </div>
   );
 }

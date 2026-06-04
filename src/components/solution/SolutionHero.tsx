@@ -58,28 +58,16 @@ function AppScreen() {
           </div>
           <div className="sh-screen-bar-actions" />
         </div>
-        <div
-          className={`sh-screen-display sh-screen-display--clickable`}
-          onClick={togglePlay}
-          role="button"
-          aria-label={playing ? "Mettre en pause" : "Lire"}
-          tabIndex={0}
-          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") togglePlay(); }}
-        >
+        <div className="sh-screen-display">
           <video
             ref={videoRef}
-            className="sh-screen-video"
+            className={`sh-screen-video sh-screen-video--clickable${!playing ? " --paused" : ""}`}
             src={getVideoUrl(src)}
             autoPlay muted loop playsInline
+            onClick={togglePlay}
+            title={playing ? "Cliquer pour mettre en pause" : "Cliquer pour lire"}
           />
           <div className="sh-screen-overlay" aria-hidden="true" />
-          {/* Bouton play/pause */}
-          <div className={`sh-screen-playbtn${playing ? " --playing" : " --paused"}`} aria-hidden="true">
-            {playing
-              ? <svg viewBox="0 0 24 24" fill="#fff" width="22" height="22"><rect x="5" y="3" width="4" height="18" rx="1.5"/><rect x="15" y="3" width="4" height="18" rx="1.5"/></svg>
-              : <svg viewBox="0 0 24 24" fill="#fff" width="22" height="22"><path d="M5 3l14 9-14 9V3z"/></svg>
-            }
-          </div>
         </div>
       </div>
     </div>
