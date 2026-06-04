@@ -397,6 +397,129 @@
   .uv-join-actions { flex-direction: row; flex-wrap: wrap; }
 }
 
+/* ── Vidéo hero floating ─────────────────────────────────────── */
+.uv-hero-vid {
+  position: absolute;
+  top: clamp(5rem, 12vh, 9rem);
+  right: clamp(1.5rem, 5vw, 4rem);
+  width: clamp(120px, 14vw, 180px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.2);
+  transform: rotate(3deg);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+.uv-hero-vid:hover { transform: rotate(0deg) scale(1.04); }
+.uv-hero-vid__el { width: 100%; display: block; object-fit: cover; }
+.uv-hero-vid__label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.5rem 0.65rem;
+  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  font-family: var(--font-roboto-mono), monospace;
+}
+
+/* ── Bento intro : vidéo entourée de stats ───────────────────── */
+.uv-intro-bento {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.uv-intro-bento__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.uv-intro-bento__vid {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.07);
+  min-height: 280px;
+}
+
+.uv-intro-bento__vid-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 280px;
+}
+
+.uv-intro-bento__vid-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.65rem 0.9rem;
+  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-family: var(--font-roboto-mono), monospace;
+}
+
+/* ── Vidéo équipe (remplace photo pleine largeur) ────────────── */
+.uv-team-vid-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 3.5rem) clamp(2rem, 4vw, 3rem);
+  position: relative;
+}
+
+.uv-team-vid-el {
+  width: 100%;
+  display: block;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.14), 0 4px 12px rgba(0,0,0,.08);
+  object-fit: cover;
+}
+
+.uv-team-vid-label {
+  position: absolute;
+  bottom: clamp(2rem, 4vw, 3rem);
+  left: clamp(3rem, 6vw, 5rem);
+  right: clamp(3rem, 6vw, 5rem);
+  padding: 0.65rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  font-family: var(--font-roboto-mono), monospace;
+  border-radius: 0 0 24px 24px;
+}
+
+/* ── Vidéo solo éparpillée ────────────────────────────────────── */
+.uv-solo-vid-wrap {
+  display: flex;
+  justify-content: flex-end;
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.uv-solo-vid {
+  position: relative;
+  width: clamp(200px, 22vw, 280px);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,.12);
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+}
+.uv-solo-vid:hover { transform: rotate(0deg) scale(1.02); }
+
+@media (max-width: 768px) {
+  .uv-hero-vid { display: none; }
+  .uv-intro-bento { grid-template-columns: 1fr; }
+  .uv-intro-bento__vid { min-height: 200px; }
+  .uv-intro-bento__vid-el { min-height: 200px; }
+  .uv-solo-vid-wrap { justify-content: center; }
+}
+
 /* ── Vidéos éparpillées ───────────────────────────────────────── */
 .uv-scatter-vid {
   position: relative;

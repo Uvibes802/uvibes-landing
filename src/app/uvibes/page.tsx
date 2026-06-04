@@ -65,6 +65,12 @@ export default function Uvibes() {
           <span className="uvp uvp--6" />
         </div>
 
+        {/* Vidéo floating hero */}
+        <div className="uv-hero-vid" aria-label="Témoignage">
+          <video src={getVideoUrl("Colette-desktop.mp4")} autoPlay muted loop playsInline className="uv-hero-vid__el" />
+          <div className="uv-hero-vid__label">Colette · Retraitée</div>
+        </div>
+
         <div className="uv-hero-inner">
           <p className="uv-hero-eyebrow">À propos d&apos;Uvibes</p>
           <h1 className="uv-hero-title v-prompt">
@@ -109,8 +115,9 @@ export default function Uvibes() {
               ))}
             </div>
           </div>
-          <div>
-            <div className="uv-intro-stats">
+          {/* Bento : vidéo entourée de stats */}
+          <div className="uv-intro-bento">
+            <div className="uv-intro-bento__col">
               <div className="uv-stat-card">
                 <span className="uv-stat-num">+38%</span>
                 <span className="uv-stat-label">de sentiment d&apos;appartenance après 6 semaines</span>
@@ -119,6 +126,12 @@ export default function Uvibes() {
                 <span className="uv-stat-num">4.9/5</span>
                 <span className="uv-stat-label">score de satisfaction moyen des membres</span>
               </div>
+            </div>
+            <div className="uv-intro-bento__vid">
+              <video src={getVideoUrl("Delphine-desktop.mp4")} autoPlay muted loop playsInline className="uv-intro-bento__vid-el" />
+              <div className="uv-intro-bento__vid-label">Delphine · Responsable collectif</div>
+            </div>
+            <div className="uv-intro-bento__col">
               <div className="uv-stat-card">
                 <span className="uv-stat-num">3 min</span>
                 <span className="uv-stat-label">pour une conversation qui change vraiment quelque chose</span>
@@ -127,15 +140,6 @@ export default function Uvibes() {
                 <span className="uv-stat-num">2022</span>
                 <span className="uv-stat-label">création à Perpignan, déjà présents dans toute la France</span>
               </div>
-            </div>
-            {/* Vidéo floating dans l'intro */}
-            <div className="uv-scatter-vid uv-scatter-vid--a">
-              <video
-                src={getVideoUrl("Colette-desktop.mp4")}
-                autoPlay muted loop playsInline
-                className="uv-scatter-vid__el"
-              />
-              <div className="uv-scatter-vid__label">Colette · Retraitée</div>
             </div>
           </div>
         </div>
@@ -155,18 +159,13 @@ export default function Uvibes() {
             <h2 className="uv-section-title">L&apos;équipe derrière <em className="uv-serif-accent uv-serif-accent--rose">Uvibes</em></h2>
           </div>
           <TeamSection />
-          {/* Vidéo floating dans la section équipe */}
-          <div className="uv-scatter-vid uv-scatter-vid--team">
-            <video src={getVideoUrl("Isaline-desktop.mp4")} autoPlay muted loop playsInline className="uv-scatter-vid__el" />
-            <div className="uv-scatter-vid__label">Isaline · Étudiante</div>
-          </div>
         </div>
       </section>
 
-      {/* ── Photo équipe ── */}
-      <div className="uv-team-photo">
-        <Image src="/images/TeamUvibes.jpg" alt="L'équipe Uvibes réunie" fill style={{ objectFit: "cover", objectPosition: "center 20%" }} loading="lazy" />
-        <div className="uv-team-photo-overlay" aria-hidden="true" />
+      {/* ── Vidéo équipe (remplace la photo pleine largeur) ── */}
+      <div className="uv-team-vid-wrap">
+        <video src={getVideoUrl("Lisa-desktop.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
+        <div className="uv-team-vid-label">Lisa · Professionnelle RH</div>
       </div>
 
       {/* ── Éthique ── */}
@@ -188,15 +187,11 @@ export default function Uvibes() {
         </div>
       </section>
 
-      {/* Vidéos éparpillées — paire horizontale */}
-      <div className="uv-vid-pair">
-        <div className="uv-scatter-vid uv-scatter-vid--b">
+      {/* Vidéo solo — après éthique */}
+      <div className="uv-solo-vid-wrap">
+        <div className="uv-solo-vid">
           <video src={getVideoUrl("Nadine-desktop.mp4")} autoPlay muted loop playsInline className="uv-scatter-vid__el" />
           <div className="uv-scatter-vid__label">Nadine · Aidante</div>
-        </div>
-        <div className="uv-scatter-vid uv-scatter-vid--c">
-          <video src={getVideoUrl("Pierre-desktop.mp4")} autoPlay muted loop playsInline className="uv-scatter-vid__el" />
-          <div className="uv-scatter-vid__label">Pierre · Manager</div>
         </div>
       </div>
 

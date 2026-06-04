@@ -2,7 +2,9 @@
 
 .vs-section {
   padding: clamp(2.5rem, 4vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(145deg, #1C0830 0%, #2E0A40 45%, #1A0428 100%);
+  background: linear-gradient(135deg,
+    #FD6E00 0%, #FF8530 12%, #FFB870 28%,
+    #FF88B8 55%, #E6007E 88%, #D90A5C 100%);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -11,23 +13,23 @@
   gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-/* Blobs sur fond sombre */
+/* Blobs déco */
 .vs-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(55px);
+  filter: blur(28px);
   pointer-events: none;
 }
 .vs-blob--a {
-  width: 600px; height: 600px;
-  top: -100px; right: -100px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.45), transparent 70%);
+  width: 700px; height: 700px;
+  top: -200px; right: -180px;
+  background: radial-gradient(closest-side, rgba(255,176,40,.85), transparent 70%);
   animation: vsBlobFloat 22s ease-in-out infinite;
 }
 .vs-blob--b {
   width: 500px; height: 500px;
-  bottom: -80px; left: -60px;
-  background: radial-gradient(closest-side, rgba(217,10,92,.38), transparent 70%);
+  bottom: -120px; left: -80px;
+  background: radial-gradient(closest-side, rgba(217,10,92,.7), transparent 70%);
   animation: vsBlobFloat 28s ease-in-out infinite reverse;
 }
 
@@ -72,14 +74,14 @@
   color: #fff;
 }
 
-.vs-t-orange  { color: #FF8C40; text-shadow: 0 2px 24px rgba(253,110,0,.4); }
-.vs-t-rose    { color: #FF8C40; text-shadow: 0 2px 24px rgba(253,110,0,.4); }
+.vs-t-orange  { color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,.2); }
+.vs-t-rose    { color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,.2); }
 
 .vs-t-gradient {
   font-family: var(--font-instrument), "Instrument Serif", serif;
   font-style: italic;
-  color: #FFB8D8;
-  -webkit-text-fill-color: #FFB8D8;
+  color: #E6007E;
+  -webkit-text-fill-color: #E6007E;
 }
 
 /* ── Citation éditoriale — pas de carte ────────────────────────── */
@@ -188,7 +190,7 @@
 .vs-card-name {
   font-size: 16px;
   font-weight: 700;
-  color: #FF9A58;
+  color: #E6007E;
   letter-spacing: -0.01em;
 }
 
@@ -196,7 +198,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.6);
+  color: rgba(255,255,255,.7);
 }
 
 /* Séparateur décoratif */
