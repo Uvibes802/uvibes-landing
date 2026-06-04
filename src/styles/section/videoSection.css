@@ -1,7 +1,7 @@
 /* ── VideoSection — éditorial sans carte ──────────────────────── */
 
 .vs-section {
-  padding: clamp(2.5rem, 4vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  padding: clamp(4rem, 6vw, 6rem) clamp(1.5rem, 5vw, 3.5rem) clamp(2.5rem, 4vw, 4.5rem);
   background: linear-gradient(135deg,
     #FD6E00 0%, #FF8530 12%, #FFB870 28%,
     #FF88B8 55%, #E6007E 88%, #D90A5C 100%);
