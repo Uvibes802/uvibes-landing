@@ -2,9 +2,7 @@
 
 .ct-section {
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(160deg,
-    #FD6E00 0%, #FF4A10 12%, #FF1880 38%,
-    #E6007E 60%, #C4004E 100%);
+  background: transparent;
   position: relative;
   overflow: hidden;
   margin-bottom: 0;
