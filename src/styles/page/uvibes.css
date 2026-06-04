@@ -726,13 +726,19 @@
   font-family: var(--font-roboto-mono), monospace;
 }
 
-/* Vidéo draggable — sans rotation */
+/* Vidéo draggable — format paysage */
 .uv-scatter-vid--draggable {
-  width: clamp(130px, 15vw, 190px);
+  width: clamp(220px, 28vw, 320px);
   transition: box-shadow 0.2s ease;
 }
 .uv-scatter-vid--draggable:hover {
   box-shadow: 0 14px 48px rgba(0,0,0,.22), 0 4px 14px rgba(0,0,0,.12);
+}
+.uv-scatter-vid--draggable .uv-scatter-vid__el {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  width: 100%;
+  display: block;
 }
 
 /* Indicateur de coordonnées */
