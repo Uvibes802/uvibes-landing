@@ -83,18 +83,14 @@ const THEMES: ThemeCard[] = [
 ];
 
 /* ——— Sous-composant Card ——— */
-function ThemeCard({ data }: { data: ThemeCard }) {
+function ThemeCard({ data, cardStyle }: { data: ThemeCard; cardStyle: StyleKey }) {
   const [hovered, setHovered] = useState(false);
   const { Icon } = data;
 
   return (
     <div
-      className={`sth-card${hovered ? " sth-card--hovered" : ""}`}
-      style={{
-        "--sth-color": data.color,
-        "--sth-glow": data.glow,
-        "--sth-icon-bg": data.iconBg,
-      } as React.CSSProperties}
+      className={`sth-card sth-card--s${cardStyle.toLowerCase()}${hovered ? " sth-card--hovered" : ""}`}
+      style={{ "--sth-color": data.color, "--sth-glow": data.glow, "--sth-icon-bg": data.iconBg } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -102,26 +98,32 @@ function ThemeCard({ data }: { data: ThemeCard }) {
       <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
         <Icon size={22} strokeWidth={1.8} />
       </div>
-
       {/* Titre */}
       <h3 className="sth-card__title v-prompt">{data.title}</h3>
-
       {/* Desc */}
       <p className="sth-card__desc">{data.desc}</p>
-
       {/* Question */}
-      <p className="sth-card__question v-serif">
-        «&nbsp;{data.question}&nbsp;»
-      </p>
+      <p className="sth-card__question v-serif">«&nbsp;{data.question}&nbsp;»</p>
     </div>
   );
 }
+
+const STYLES = ["A", "B", "C", "D"] as const;
+type StyleKey = typeof STYLES[number];
+
+const STYLE_LABELS: Record<StyleKey, string> = {
+  A: "Question first",
+  B: "Gradient",
+  C: "Magazine",
+  D: "Minimal",
+};
 
 /* ——— Composant principal ——— */
 export default function SolutionThemes() {
   const [sectionRef, visible] = useIntersectionOnce<HTMLElement>({
     threshold: 0.08,
   });
+  const [activeStyle, setActiveStyle] = useState<StyleKey>("A");
 
   return (
     <section
@@ -143,10 +145,24 @@ export default function SolutionThemes() {
         </h2>
       </header>
 
+      {/* Switcher de style */}
+      <div className="sth-style-switcher">
+        {STYLES.map((s) => (
+          <button
+            key={s}
+            className={`sth-style-btn${activeStyle === s ? " --active" : ""}`}
+            onClick={() => setActiveStyle(s)}
+          >
+            <span className="sth-style-btn__letter">{s}</span>
+            <span className="sth-style-btn__label">{STYLE_LABELS[s]}</span>
+          </button>
+        ))}
+      </div>
+
       {/* Grille */}
-      <div className="sth-grid">
+      <div className={`sth-grid sth-grid--style-${activeStyle.toLowerCase()}`}>
         {THEMES.map((theme) => (
-          <ThemeCard key={theme.title} data={theme} />
+          <ThemeCard key={theme.title} data={theme} cardStyle={activeStyle} />
         ))}
       </div>
     </section>
