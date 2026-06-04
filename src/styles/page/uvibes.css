@@ -729,7 +729,6 @@
 /* Vidéo draggable — format paysage, légèrement penché gauche */
 .uv-scatter-vid--draggable {
   width: clamp(220px, 28vw, 320px);
-  transform: rotate(-4deg);
   transition: box-shadow 0.2s ease;
   border-radius: 20px;
   overflow: hidden;

@@ -12,6 +12,7 @@ interface Props {
 
 export default function DraggableVideo({ src, label, initialX = 60, initialY = 140 }: Props) {
   const [pos, setPos] = useState({ x: initialX, y: initialY });
+  const [rotation, setRotation] = useState(-4);
   const [scrollY, setScrollY] = useState(0);
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
@@ -54,8 +55,12 @@ export default function DraggableVideo({ src, label, initialX = 60, initialY = 1
     <div
       style={{ position: "fixed", left: pos.x, top: pos.y, zIndex: 9999, cursor: "grab", userSelect: "none" }}
       onMouseDown={onMouseDown}
+      onWheel={(e) => {
+        e.preventDefault();
+        setRotation(r => Math.round((r + (e.deltaY > 0 ? 1 : -1)) * 10) / 10);
+      }}
     >
-      <div className="uv-scatter-vid uv-scatter-vid--draggable">
+      <div className="uv-scatter-vid uv-scatter-vid--draggable" style={{ transform: `rotate(${rotation}deg)` }}>
         <video
           ref={videoRef}
           src={src}
@@ -66,11 +71,13 @@ export default function DraggableVideo({ src, label, initialX = 60, initialY = 1
         />
         <div className="uv-scatter-vid__label">{label || "Vidéo"}</div>
 
-        {/* Coordonnées en direct */}
+        {/* Coordonnées + rotation en direct */}
         <div className="uv-drag-coords">
-          📍 page: x {Math.round(pos.x)} · y {Math.round(pos.y + scrollY)}
+          🔄 {rotation}°
           <br />
-          <span style={{ opacity: 0.6, fontSize: 10 }}>écran: x {Math.round(pos.x)} · y {Math.round(pos.y)}</span>
+          📍 x {Math.round(pos.x)} · y {Math.round(pos.y + scrollY)}
+          <br />
+          <span style={{ opacity: 0.55, fontSize: 10 }}>Molette = tourner</span>
         </div>
       </div>
     </div>
