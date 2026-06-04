@@ -114,9 +114,34 @@
 }
 
 /* ── Intro ────────────────────────────────────────────────────── */
+/* ── Intro — redesign éditorial ───────────────────────────────── */
 .uv-intro {
-  background: transparent;
-  padding: clamp(3.5rem, 5.5vw, 6rem) clamp(1.5rem, 5vw, 3.5rem) 0;
+  background: linear-gradient(160deg, #FFFBF4 0%, #FFF6EC 45%, #FFF0F8 100%);
+  padding: clamp(4rem, 6vw, 6.5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(2rem, 4vw, 3rem);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Blob déco */
+.uv-intro::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -60px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,176,40,.22), transparent 70%);
+  filter: blur(55px);
+  pointer-events: none;
+}
+.uv-intro::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 15%;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(217,10,92,.14), transparent 70%);
+  filter: blur(48px);
+  pointer-events: none;
 }
 
 .uv-intro-inner {
@@ -125,27 +150,42 @@
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(3rem, 6vw, 6rem);
-  align-items: start;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Ligne décorative éditoriale */
+.uv-intro-inner > div:first-child {
+  border-left: 3px solid;
+  border-image: linear-gradient(to bottom, #FD6E00, #D90A5C) 1;
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .uv-intro-title {
-  font-size: clamp(32px, 4.5vw, 60px);
+  font-size: clamp(36px, 5vw, 66px);
   font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1.03;
+  letter-spacing: -0.05em;
+  line-height: 1.0;
   color: var(--orange);
-  margin: 0 0 1.5rem;
+  margin: 0 0 2rem;
   font-family: var(--font-prompt), sans-serif;
 }
 
+/* Pullquote — stat Harvard mise en valeur */
 .uv-intro-lead {
-  font-size: clamp(16px, 1.5vw, 20px);
-  line-height: 1.65;
-  color: #4a2a38;
-  margin: 0 0 1.25rem;
-  font-weight: 500;
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.6;
+  color: #2a0a10;
+  margin: 0 0 1.5rem;
+  font-style: italic;
+  position: relative;
+  padding: 1rem 1.25rem;
+  background: rgba(253,110,0,.06);
+  border-radius: 12px;
+  border-left: 3px solid #FD6E00;
 }
-.uv-intro-body { font-size: 15px; line-height: 1.85; color: #6b4455; margin: 0; }
+.uv-intro-body { font-size: 15px; line-height: 1.9; color: #6b4455; margin: 0; }
 
 /* Stats cards — redesign premium */
 .uv-intro-stats {
@@ -155,7 +195,7 @@
 }
 
 .uv-stat-card {
-  background: rgba(255,255,255,.82);
+  background: rgba(255,255,255,.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-radius: 22px;
@@ -170,7 +210,7 @@
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(90deg, #FD6E00, #D90A5C);
   border-radius: 22px 22px 0 0;
 }
@@ -178,37 +218,49 @@
 
 .uv-stat-num {
   display: block;
-  font-size: clamp(28px, 3.2vw, 44px);
+  font-size: clamp(30px, 3.5vw, 48px);
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   font-family: var(--font-prompt), sans-serif;
   color: #FD6E00;
   -webkit-text-fill-color: #FD6E00;
   line-height: 1;
 }
-.uv-stat-label { display: block; font-size: 11.5px; color: #6b4455; margin-top: 0.5rem; line-height: 1.4; }
+.uv-stat-label { display: block; font-size: 11.5px; color: #6b4455; margin-top: 0.6rem; line-height: 1.4; }
 
-.uv-intro-values { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 2rem; }
+/* Values — pills tags */
+.uv-intro-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
 
 .uv-value-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 15px;
-  color: #374151;
-  line-height: 1.55;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.8);
+  border: 1.5px solid rgba(253,110,0,.18);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #4a2a38;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, transform 0.2s ease;
 }
+.uv-value-item:hover { background: rgba(255,255,255,.95); transform: translateY(-2px); }
 
 .uv-value-icon {
   flex-shrink: 0;
-  width: 20px; height: 20px;
-  border-radius: 6px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
   background: linear-gradient(135deg, #FD6E00, #D90A5C);
   display: grid;
   place-items: center;
-  margin-top: 2px;
 }
-.uv-value-icon::after { content: '✓'; font-size: 10px; color: #fff; font-weight: 700; }
+.uv-value-icon::after { content: '✓'; font-size: 9px; color: #fff; font-weight: 800; }
 
 .uv-sep-vib {
   margin-top: 3rem;

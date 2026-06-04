@@ -94,23 +94,17 @@ function ThemeCard({ data }: { data: ThemeCard }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Question — élément héros */}
-      <p className="sth-card__question">
+      {/* Zone question — héros */}
+      <div className="sth-card__question">
         {data.question}
-      </p>
+      </div>
 
-      {/* Séparateur */}
-      <div className="sth-card__sep" aria-hidden="true" />
-
-      {/* Footer : icône + titre + desc */}
+      {/* Bande colorée bas */}
       <div className="sth-card__footer">
-        <div className="sth-card__icon-row">
-          <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
-            <Icon size={18} strokeWidth={1.8} />
-          </div>
-          <h3 className="sth-card__title v-prompt">{data.title}</h3>
+        <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
+          <Icon size={16} strokeWidth={2} />
         </div>
-        <p className="sth-card__desc">{data.desc}</p>
+        <h3 className="sth-card__title v-prompt">{data.title}</h3>
       </div>
     </div>
   );
