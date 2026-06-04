@@ -1,35 +1,33 @@
 /* ── VideoSection — éditorial sans carte ──────────────────────── */
 
 .vs-section {
-  padding: clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(135deg,
-    #FD6E00 0%, #FF8530 12%, #FFB870 28%,
-    #FF88B8 55%, #E6007E 88%, #D90A5C 100%);
+  padding: clamp(2.5rem, 4vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: linear-gradient(145deg, #1C0830 0%, #2E0A40 45%, #1A0428 100%);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(2rem, 4vw, 3.5rem);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-/* Blobs déco identiques au hero */
+/* Blobs sur fond sombre */
 .vs-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(28px);
+  filter: blur(55px);
   pointer-events: none;
 }
 .vs-blob--a {
-  width: 700px; height: 700px;
-  top: -200px; right: -180px;
-  background: radial-gradient(closest-side, rgba(255,176,40,.85), transparent 70%);
+  width: 600px; height: 600px;
+  top: -100px; right: -100px;
+  background: radial-gradient(closest-side, rgba(253,110,0,.45), transparent 70%);
   animation: vsBlobFloat 22s ease-in-out infinite;
 }
 .vs-blob--b {
   width: 500px; height: 500px;
-  bottom: -120px; left: -80px;
-  background: radial-gradient(closest-side, rgba(217,10,92,.7), transparent 70%);
+  bottom: -80px; left: -60px;
+  background: radial-gradient(closest-side, rgba(217,10,92,.38), transparent 70%);
   animation: vsBlobFloat 28s ease-in-out infinite reverse;
 }
 
@@ -53,37 +51,35 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 1.25rem;
+  margin: 0 0 0.75rem;
   font-size: 11px;
   letter-spacing: 0.16em;
-  color: rgba(255,255,255,.8);
+  color: #FFE456;
   text-transform: uppercase;
   font-family: var(--font-roboto-mono), monospace;
-  background: rgba(255,255,255,.15);
+  background: rgba(0,0,0,.18);
   padding: 5px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.25);
+  border: 1px solid rgba(255,228,86,.35);
 }
 
 .vs-title {
   margin: 0;
-  font-size: clamp(30px, 4vw, 56px);
+  font-size: clamp(26px, 3.2vw, 44px);
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1.0;
   color: #fff;
 }
 
-.vs-t-orange  { color: #fff; }
-.vs-t-rose    { color: rgba(255,255,255,.85); }
+.vs-t-orange  { color: #FF8C40; text-shadow: 0 2px 24px rgba(253,110,0,.4); }
+.vs-t-rose    { color: #FF8C40; text-shadow: 0 2px 24px rgba(253,110,0,.4); }
 
 .vs-t-gradient {
-  display: inline-block;
-  padding-bottom: 0.04em;
-  background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,220,180,1));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: italic;
+  color: #FFB8D8;
+  -webkit-text-fill-color: #FFB8D8;
 }
 
 /* ── Citation éditoriale — pas de carte ────────────────────────── */
@@ -95,27 +91,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
   text-align: center;
 }
 
 /* Guillemet décoratif géant */
 .vs-card-glyph {
   display: block;
-  font-size: 120px;
+  font-size: 80px;
   line-height: 0.7;
   color: rgba(255,255,255,.25);
   font-family: var(--font-prompt), sans-serif;
   user-select: none;
   align-self: flex-start;
-  margin-bottom: -2rem;
+  margin-bottom: -1.25rem;
 }
 
 .vs-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   animation: vsCardIn 0.55s cubic-bezier(.22,1,.36,1) both;
   background: none;
   border: none;
@@ -192,7 +188,7 @@
 .vs-card-name {
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
+  color: #FF9A58;
   letter-spacing: -0.01em;
 }
 
@@ -200,7 +196,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.65);
+  color: rgba(255,255,255,.6);
 }
 
 /* Séparateur décoratif */

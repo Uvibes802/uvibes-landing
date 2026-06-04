@@ -76,8 +76,8 @@ const CARDS: CardData[] = [
   },
   {
     badge: "Collectifs",
-    accent: "#10B981",
-    glow: "rgba(16,185,129,.14)",
+    accent: "#FFB800",
+    glow: "rgba(255,184,0,.18)",
     intro:
       "Une nouvelle respiration pour les organisations du prendre soin.",
     stat: {

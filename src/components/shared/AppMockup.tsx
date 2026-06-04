@@ -48,17 +48,15 @@ export default function AppMockup() {
       {/* Couche 4 — Chips flottantes (desktop uniquement) */}
       <div className="apm-chip apm-chip--left" aria-hidden="true">
         <span className="apm-chip-dot" />
-        <span className="apm-chip-text">3 142 conversations live</span>
+        <span className="apm-chip-text">Et vous, qu&apos;est-ce qui vous rassemble ?</span>
       </div>
 
       <div className="apm-chip apm-chip--top-right" aria-hidden="true">
-        <span className="apm-chip-vibes">83 membres actifs</span>
-        <span className="apm-chip-hello">Votre collectif buzze ✦</span>
+        <span className="apm-chip-hello">Tu rejoins le cercle ce soir ?</span>
       </div>
 
       <div className="apm-chip apm-chip--bottom-right" aria-hidden="true">
-        <span className="apm-chip-live">EN COURS · 04:59</span>
-        <span className="apm-chip-quote">« Ta découverte de la semaine ? »</span>
+        <span className="apm-chip-quote">« Qu&apos;est-ce qui t&apos;a inspiré cette semaine ? »</span>
       </div>
     </div>
   );

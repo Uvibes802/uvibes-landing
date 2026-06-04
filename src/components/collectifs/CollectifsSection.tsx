@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,11 +14,25 @@ interface CollectifsSectionProps {
 
 export default function CollectifsSection({ showCta = false }: CollectifsSectionProps) {
   const [activeId, setActiveId] = useState(collectifs[0].id);
+  const [isLocked, setIsLocked] = useState(false);
   const active = collectifs.find((c) => c.id === activeId)!;
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.07 });
 
+  useEffect(() => {
+    if (isLocked) return;
+    const t = setInterval(() => {
+      setActiveId((curr) => {
+        const idx = collectifs.findIndex((c) => c.id === curr);
+        return collectifs[(idx + 1) % collectifs.length].id;
+      });
+    }, 3500);
+    return () => clearInterval(t);
+  }, [isLocked]);
+
   return (
     <section className={`collectifs-section${vis ? " c-vis" : ""}`} ref={ref}>
+      <div className="cs-blob cs-blob--1" aria-hidden="true" />
+      <div className="cs-blob cs-blob--2" aria-hidden="true" />
       <div className="collectifs-inner">
         <div className="collectifs-header">
           <div className="collectifs-header-left">
@@ -46,7 +60,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
                 key={c.id}
                 className={`collectif-pill-btn${activeId === c.id ? " --active" : ""}`}
                 style={{ "--c-color": c.color } as React.CSSProperties}
-                onClick={() => setActiveId(c.id)}
+                onClick={() => { setIsLocked(true); setActiveId(c.id); }}
                 aria-pressed={activeId === c.id}
               >
                 <span className="collectif-pill-dot" aria-hidden="true" />

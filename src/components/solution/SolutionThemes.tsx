@@ -129,6 +129,8 @@ export default function SolutionThemes() {
       className={`sth-section sol-reveal${visible ? " --in" : ""}`}
       ref={sectionRef}
     >
+      <div className="sth-blob sth-blob--1" aria-hidden="true" />
+      <div className="sth-blob sth-blob--2" aria-hidden="true" />
       {/* Header */}
       <header className="sth-header">
         <div className="sth-eyebrow">

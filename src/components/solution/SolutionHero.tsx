@@ -126,6 +126,27 @@ export default function SolutionHero() {
               Voir les offres
             </Link>
           </div>
+
+          {/* Stats directement dans le hero */}
+          <div className="sh-stats">
+            <div className="sh-stat">
+              <span className="sh-stat-value v-prompt">93 %</span>
+              <span className="sh-stat-label">des salariés non engagés</span>
+              <span className="sh-stat-source v-mono">Gallup, 2025</span>
+            </div>
+            <div className="sh-stat-sep" aria-hidden="true" />
+            <div className="sh-stat">
+              <span className="sh-stat-value v-prompt">41 %</span>
+              <span className="sh-stat-label">des étudiants en difficulté</span>
+              <span className="sh-stat-source v-mono">Bordeaux, 2024</span>
+            </div>
+            <div className="sh-stat-sep" aria-hidden="true" />
+            <div className="sh-stat">
+              <span className="sh-stat-value v-prompt">−38 %</span>
+              <span className="sh-stat-label">de risque de démence</span>
+              <span className="sh-stat-source v-mono">Rush Univ., 2025</span>
+            </div>
+          </div>
         </div>
 
         {/* App Screen */}

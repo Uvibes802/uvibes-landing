@@ -1,21 +1,54 @@
 /* ── SolutionThemes — macOS premium ──────────────────────────── */
 
 .sth-section {
-  background: linear-gradient(155deg, #FFF6EC 0%, #FFFBF4 40%, #F0FFF8 70%, #FFF0F5 100%);
+  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 35%, #FFF0F8 65%, #FFF6EC 100%);
+  background-attachment: fixed;
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
   position: relative;
   overflow: hidden;
 }
 
+/* Blobs saturés éparpillés */
+.sth-section::before {
+  content: '';
+  position: absolute;
+  top: 15%; right: 10%;
+  width: 440px; height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,176,40,.38), transparent 68%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
 .sth-section::after {
   content: '';
   position: absolute;
-  bottom: -60px; right: -60px;
-  width: 350px; height: 350px;
+  bottom: 20%; left: 12%;
+  width: 380px; height: 380px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.05), transparent);
+  background: radial-gradient(closest-side, rgba(217,10,92,.25), transparent 68%);
+  filter: blur(46px);
   pointer-events: none;
+}
+
+/* Blobs HTML additionnels */
+.sth-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.sth-blob--1 {
+  top: 42%; left: 25%;
+  width: 420px; height: 420px;
+  background: radial-gradient(closest-side, rgba(253,110,0,.30), transparent 70%);
+  filter: blur(48px);
+}
+.sth-blob--2 {
+  top: 20%; left: 55%;
+  width: 320px; height: 320px;
+  background: radial-gradient(closest-side, rgba(255,228,86,.32), transparent 70%);
+  filter: blur(40px);
 }
 
 /* ── Header ───────────────────────────────────────────────────── */
@@ -60,12 +93,9 @@
 
 .sth-title__accent {
   font-style: italic;
-  display: inline-block;
-  padding-bottom: 0.04em;
-  background: linear-gradient(135deg, #FD6E00, #D90A5C);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  color: #FF88B8;
+  -webkit-text-fill-color: #FF88B8;
 }
 
 /* ── Grille ───────────────────────────────────────────────────── */

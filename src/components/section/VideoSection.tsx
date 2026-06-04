@@ -40,7 +40,6 @@ export default function VideoSection() {
 
       {/* Header */}
       <div className="vs-header">
-        <p className="v-mono vs-rating">4.9 / 5 · 312 avis vérifiés</p>
         <h2 className="vs-title v-prompt">
           <span className="vs-t-orange">Ça change </span>
           <span className="v-serif vs-t-gradient">quelque</span>

@@ -28,6 +28,20 @@
   filter: blur(80px);
   animation: ciBlob 19s ease-in-out infinite reverse;
 }
+.ci-blob--c {
+  width: 420px; height: 420px;
+  top: 28%; left: 22%;
+  background: radial-gradient(closest-side, rgba(255,176,40,.38), transparent 68%);
+  filter: blur(55px);
+  animation: ciBlob 13s ease-in-out infinite 1s;
+}
+.ci-blob--d {
+  width: 360px; height: 360px;
+  top: 52%; right: 18%;
+  background: radial-gradient(closest-side, rgba(255,50,140,.30), transparent 68%);
+  filter: blur(50px);
+  animation: ciBlob 17s ease-in-out infinite reverse 3s;
+}
 
 @keyframes ciBlob {
   0%, 100% { transform: translate(0, 0) scale(1); }

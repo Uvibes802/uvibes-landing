@@ -128,6 +128,62 @@ body {
   width: 100%;
 }
 
+
+/* ── Vidéos éparpillées pages solution ───────────────────────── */
+.sol-vid-scatter {
+  display: flex;
+  gap: 2rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: linear-gradient(160deg, #FFFBF4 0%, #FFF6EC 50%, #FFF0F8 100%);
+  background-attachment: fixed;
+  align-items: flex-start;
+}
+
+.sol-vid-single {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 clamp(1.5rem, 5vw, 3.5rem) clamp(1.5rem, 3vw, 2rem);
+}
+
+.sol-scatter-vid {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.13), 0 2px 8px rgba(0,0,0,.07);
+  flex: 1;
+  max-width: 360px;
+}
+
+.sol-scatter-vid__el {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.sol-scatter-vid__label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.6rem 0.9rem;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  font-family: var(--font-roboto-mono), monospace;
+}
+
+.sol-scatter-vid--a { transform: rotate(-1.5deg); transition: transform 0.3s ease; }
+.sol-scatter-vid--a:hover { transform: rotate(0deg) scale(1.02); }
+.sol-scatter-vid--b { transform: rotate(2deg); margin-top: 2rem; transition: transform 0.3s ease; }
+.sol-scatter-vid--b:hover { transform: rotate(0deg) scale(1.02); }
+.sol-scatter-vid--c { transform: rotate(1.5deg); max-width: 300px; transition: transform 0.3s ease; }
+.sol-scatter-vid--c:hover { transform: rotate(0deg) scale(1.02); }
+
+@media (max-width: 768px) {
+  .sol-vid-scatter { flex-direction: column; align-items: center; }
+  .sol-scatter-vid { max-width: 85%; transform: none !important; }
+  .sol-scatter-vid--b { margin-top: 0; }
+}
+
 @media screen and (min-width: 768px) {
   .mobile-only {
     display: none !important;

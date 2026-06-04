@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
 import "../../styles/footer/footer.css";
 
 const NAV_COLS = [
@@ -35,11 +34,6 @@ const NAV_COLS = [
 export default function Footer() {
   return (
     <footer className="ft-footer">
-      <svg className="ft-curve" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 60 Q 360 0 720 60 T 1440 60" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
-        <path d="M0 90 Q 360 30 720 90 T 1440 90" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-      </svg>
-
       <div className="ft-inner">
         {/* Top — brand + nav côte à côte */}
         <div className="ft-top">
@@ -52,7 +46,6 @@ export default function Footer() {
               className="ft-logo"
             />
             <p className="ft-tagline v-serif">Activez les bonnes ondes.</p>
-            <NewsletterSignup />
           </div>
 
           <div className="ft-nav">

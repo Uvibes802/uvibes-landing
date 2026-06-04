@@ -45,6 +45,33 @@
 }
 .how-bottom-sep svg { width: 100%; display: block; }
 
+/* Blobs intérieurs */
+.how-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.how-blob--1 {
+  width: 500px; height: 500px;
+  top: 30%; left: 38%;
+  background: radial-gradient(closest-side, rgba(255,176,40,.38), transparent 70%);
+  filter: blur(55px);
+  animation: howBlobFloat 16s ease-in-out infinite;
+}
+.how-blob--2 {
+  width: 400px; height: 400px;
+  top: 22%; right: 18%;
+  background: radial-gradient(closest-side, rgba(255,50,140,.28), transparent 70%);
+  filter: blur(48px);
+  animation: howBlobFloat 22s ease-in-out infinite reverse 1.5s;
+}
+@keyframes howBlobFloat {
+  0%,100% { transform: translate(0,0) scale(1); }
+  35%     { transform: translate(20px,-16px) scale(1.05); }
+  70%     { transform: translate(-14px,12px) scale(0.97); }
+}
+
 /* Lignes vibration fond */
 .how-vlines {
   position: absolute;
@@ -140,9 +167,8 @@
 .how-connector {
   position: absolute;
   top: 52px;
-  left: 4%;
-  right: 4%;
-  width: 92%;
+  left: calc(-1 * clamp(1.5rem, 5vw, 3.5rem));
+  width: 100vw;
   height: 40px;
   z-index: 0;
   pointer-events: none;
@@ -295,7 +321,7 @@
     top: 72px;
     bottom: 72px;
     width: 2px;
-    background: linear-gradient(to bottom, #FD6E00, #D90A5C, #00AFDD);
+    background: linear-gradient(to bottom, #FD6E00, #D90A5C, #F59E0B);
     border-radius: 2px;
     z-index: 0;
   }

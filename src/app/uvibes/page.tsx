@@ -24,12 +24,6 @@ const organizationJsonLd = {
   sameAs: ["https://www.linkedin.com/company/uvibes", "https://www.instagram.com/uvibes_app"],
 };
 
-const VIDEOS_UVIBES = [
-  { file: "Isaline-desktop.mp4", name: "Isaline", role: "Étudiante" },
-  { file: "Lisa-desktop.mp4",    name: "Lisa",    role: "Professionnelle RH" },
-  { file: "Delphine-desktop.mp4",name: "Delphine",role: "Responsable collectif" },
-];
-
 const ETHICS = [
   { num: "01", title: "Respect & confidentialité", text: "Un service digital respectueux, pensé pour la qualité des discussions, l'inclusion et la protection des données de chaque membre." },
   { num: "02", title: "Collaboration & écoute", text: "Une conduite de projet alignée avec nos valeurs — basée sur l'écoute active, la co-construction et la responsabilité collective." },
@@ -134,6 +128,15 @@ export default function Uvibes() {
                 <span className="uv-stat-label">création à Perpignan, déjà présents dans toute la France</span>
               </div>
             </div>
+            {/* Vidéo floating dans l'intro */}
+            <div className="uv-scatter-vid uv-scatter-vid--a">
+              <video
+                src={getVideoUrl("Colette-desktop.mp4")}
+                autoPlay muted loop playsInline
+                className="uv-scatter-vid__el"
+              />
+              <div className="uv-scatter-vid__label">Colette · Retraitée</div>
+            </div>
           </div>
         </div>
 
@@ -149,9 +152,14 @@ export default function Uvibes() {
         <div className="uv-team-inner">
           <div className="uv-section-header">
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Sa concrétisation</p>
-            <h2 className="uv-section-title">L&apos;équipe derrière <em className="uv-serif-accent">Uvibes</em></h2>
+            <h2 className="uv-section-title">L&apos;équipe derrière <em className="uv-serif-accent uv-serif-accent--rose">Uvibes</em></h2>
           </div>
           <TeamSection />
+          {/* Vidéo floating dans la section équipe */}
+          <div className="uv-scatter-vid uv-scatter-vid--team">
+            <video src={getVideoUrl("Isaline-desktop.mp4")} autoPlay muted loop playsInline className="uv-scatter-vid__el" />
+            <div className="uv-scatter-vid__label">Isaline · Étudiante</div>
+          </div>
         </div>
       </section>
 
@@ -161,37 +169,12 @@ export default function Uvibes() {
         <div className="uv-team-photo-overlay" aria-hidden="true" />
       </div>
 
-      {/* ── Vidéos témoignages ── */}
-      <section className="uv-videos">
-        <div className="uv-videos-inner">
-          <div className="uv-section-header">
-            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Ils le vivent</p>
-            <h2 className="uv-section-title">La solution <em className="uv-serif-accent">en action</em></h2>
-          </div>
-          <div className="uv-videos-grid">
-            {VIDEOS_UVIBES.map((v) => (
-              <div key={v.name} className="uv-video-card">
-                <video
-                  className="uv-video-el"
-                  src={getVideoUrl(v.file)}
-                  autoPlay muted loop playsInline
-                />
-                <div className="uv-video-info">
-                  <span className="uv-video-name">{v.name}</span>
-                  <span className="uv-video-role">{v.role}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Éthique ── */}
       <section className="uv-ethics">
         <div className="uv-ethics-inner">
           <div className="uv-section-header">
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Notre engagement</p>
-            <h2 className="uv-section-title">Une <em className="uv-serif-accent">éthique</em> au cœur du projet</h2>
+            <h2 className="uv-section-title">Une <em className="uv-serif-accent uv-serif-accent--rose">éthique</em> au cœur du projet</h2>
           </div>
           <div className="uv-ethics-grid">
             {ETHICS.map((e) => (
@@ -204,6 +187,18 @@ export default function Uvibes() {
           </div>
         </div>
       </section>
+
+      {/* Vidéos éparpillées — paire horizontale */}
+      <div className="uv-vid-pair">
+        <div className="uv-scatter-vid uv-scatter-vid--b">
+          <video src={getVideoUrl("Nadine-desktop.mp4")} autoPlay muted loop playsInline className="uv-scatter-vid__el" />
+          <div className="uv-scatter-vid__label">Nadine · Aidante</div>
+        </div>
+        <div className="uv-scatter-vid uv-scatter-vid--c">
+          <video src={getVideoUrl("Pierre-desktop.mp4")} autoPlay muted loop playsInline className="uv-scatter-vid__el" />
+          <div className="uv-scatter-vid__label">Pierre · Manager</div>
+        </div>
+      </div>
 
       {/* ── Portage Éclatens ── */}
       <section className="uv-portage">
@@ -227,7 +222,7 @@ export default function Uvibes() {
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Ensemble</p>
             <h2 className="uv-join-title">
               Rejoignez<br />
-              l&apos;<em className="uv-serif-accent">aventure</em> Uvibes
+              l&apos;<em className="uv-serif-accent uv-serif-accent--yellow">aventure</em> Uvibes
             </h2>
             <p className="uv-join-sub">
               Prenez part à une dynamique qui réinvente nos façons d&apos;interagir — en ouvrant notre esprit à des visions nouvelles.

@@ -7,6 +7,27 @@
   overflow: hidden;
 }
 
+/* Blobs intérieurs */
+.fa-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.fa-blob--1 {
+  width: 480px; height: 480px;
+  top: 25%; left: 20%;
+  background: radial-gradient(closest-side, rgba(255,176,40,.34), transparent 70%);
+  filter: blur(56px);
+  animation: faBlob 14s ease-in-out infinite 1s;
+}
+.fa-blob--2 {
+  width: 400px; height: 400px;
+  top: 50%; right: 15%;
+  background: radial-gradient(closest-side, rgba(255,50,140,.26), transparent 70%);
+  filter: blur(50px);
+  animation: faBlob 19s ease-in-out infinite reverse 0.5s;
+}
+
 /* Blob déco haut-droite */
 .fa-section::before {
   content: '';

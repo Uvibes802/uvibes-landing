@@ -1,7 +1,7 @@
 /* ── CollectifsSection ──────────────────────────────────────────── */
 
 .collectifs-section {
-  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(1.5rem, 2.5vw, 2.5rem);
   background: transparent;
   position: relative;
   overflow: hidden;
@@ -21,12 +21,38 @@
 .collectifs-section::after {
   content: "";
   position: absolute;
-  bottom: -180px; left: -100px;
-  width: 600px; height: 600px;
+  top: 38%; left: -120px;
+  width: 520px; height: 520px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.16), transparent 70%);
+  background: radial-gradient(closest-side, rgba(217,10,92,.18), transparent 70%);
   filter: blur(30px);
   pointer-events: none;
+}
+
+/* Blobs intérieurs */
+.cs-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cs-blob--1 {
+  width: 460px; height: 460px;
+  top: 35%; left: 32%;
+  background: radial-gradient(closest-side, rgba(255,176,40,.35), transparent 70%);
+  filter: blur(52px);
+  animation: csBlob 15s ease-in-out infinite;
+}
+.cs-blob--2 {
+  width: 380px; height: 380px;
+  top: 58%; right: 22%;
+  background: radial-gradient(closest-side, rgba(255,50,140,.28), transparent 70%);
+  filter: blur(46px);
+  animation: csBlob 20s ease-in-out infinite reverse 2s;
+}
+@keyframes csBlob {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%     { transform: translate(18px,-14px) scale(1.06); }
+  70%     { transform: translate(-12px,10px) scale(0.96); }
 }
 
 .collectifs-inner {

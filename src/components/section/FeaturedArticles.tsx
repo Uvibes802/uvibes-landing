@@ -87,6 +87,8 @@ export default function FeaturedArticles() {
 
   return (
     <section className="fa-section">
+      <div className="fa-blob fa-blob--1" aria-hidden="true" />
+      <div className="fa-blob fa-blob--2" aria-hidden="true" />
       <div className="fa-header">
         <div>
           <p className="v-mono fa-eyebrow">Le blog Uvibes</p>

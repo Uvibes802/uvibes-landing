@@ -1,9 +1,10 @@
 .proof-bar {
-  background: linear-gradient(135deg, var(--orange) 0%, #FF4D7A 50%, var(--rose) 100%);
+  background: transparent;
   color: #fff;
   padding: clamp(3rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
   overflow: hidden;
   position: relative;
+  margin-top: 0;
 }
 
 /* Anneau déco */

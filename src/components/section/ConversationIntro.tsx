@@ -98,6 +98,8 @@ export default function ConversationIntro() {
     <section className="ci-section">
       <div className="ci-blob ci-blob--a" aria-hidden="true" />
       <div className="ci-blob ci-blob--b" aria-hidden="true" />
+      <div className="ci-blob ci-blob--c" aria-hidden="true" />
+      <div className="ci-blob ci-blob--d" aria-hidden="true" />
       {PARTICLES.map((cls, i) => (
         <div key={i} className={`ci-p ${cls}`} aria-hidden="true" />
       ))}

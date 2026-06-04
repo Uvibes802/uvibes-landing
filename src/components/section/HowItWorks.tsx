@@ -35,6 +35,8 @@ export default function HowItWorks() {
 
   return (
     <section className={`how-section${vis ? " how-vis" : ""}`} ref={ref}>
+      <div className="how-blob how-blob--1" aria-hidden="true" />
+      <div className="how-blob how-blob--2" aria-hidden="true" />
       <div className="how-vlines" aria-hidden="true">
         <VibrationLine width={1400} height={70} amplitude={18} freq={5} stroke="rgba(253,110,0,.15)" strokeWidth={1.5} speed={18} />
         <VibrationLine width={1400} height={70} amplitude={12} freq={8} stroke="rgba(217,10,92,.1)" strokeWidth={1} speed={26} />

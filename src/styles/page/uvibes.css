@@ -6,13 +6,17 @@
 .uv-serif-accent {
   font-style: italic;
   font-weight: 600;
-  font-family: var(--font-prompt), sans-serif;
-  background: linear-gradient(135deg, #FD6E00, #D90A5C);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  padding-bottom: 0.04em;
-  display: inline-block;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  color: var(--rose);
+  -webkit-text-fill-color: currentColor;
+}
+.uv-serif-accent--yellow {
+  color: #FFE456;
+  -webkit-text-fill-color: #FFE456;
+}
+.uv-serif-accent--rose {
+  color: #FF88B8;
+  -webkit-text-fill-color: #FF88B8;
 }
 .uv-em-orange { font-style: italic; color: #FD6E00; font-weight: 600; }
 .uv-em-rose   { font-style: italic; color: #D90A5C; font-weight: 600; }
@@ -62,13 +66,9 @@
 .uv-hero-em {
   font-style: italic;
   font-weight: 400;
-  font-family: var(--font-prompt), sans-serif;
-  display: inline-block;
-  background: linear-gradient(90deg, #FFB8D8, #FF88B8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  padding-bottom: 0.04em;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  color: #FFE456;
+  -webkit-text-fill-color: #FFE456;
 }
 .uv-hero-sub { font-size: clamp(15px, 1.4vw, 19px); color: rgba(255,255,255,.88); line-height: 1.6; margin: 0; }
 .uv-hero-vib { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100vw; display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
@@ -365,11 +365,13 @@
 
 /* ── CTA Rejoindre ────────────────────────────────────────────── */
 .uv-join {
-  background: linear-gradient(135deg, #FD6E00 0%, #FF3D78 50%, #D90A5C 100%);
+  background: linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%);
+  background-attachment: fixed;
   padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
   position: relative;
   overflow: hidden;
   border-top: none;
+  margin-bottom: 0;
 }
 .uv-join-vib { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100vw; display: flex; flex-direction: column; gap: 4px; pointer-events: none; opacity: 0.4; }
 .uv-join-vib svg { width: 100%; display: block; }
@@ -393,6 +395,81 @@
   .uv-ethics-grid { grid-template-columns: 1fr; }
   .uv-join-inner  { grid-template-columns: 1fr; }
   .uv-join-actions { flex-direction: row; flex-wrap: wrap; }
+}
+
+/* ── Vidéos éparpillées ───────────────────────────────────────── */
+.uv-scatter-vid {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.14), 0 2px 8px rgba(0,0,0,.08);
+}
+
+.uv-scatter-vid__el {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.uv-scatter-vid__label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.6rem 0.9rem;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  font-family: var(--font-roboto-mono), monospace;
+}
+
+/* Vidéo floating dans intro — rotation légère */
+.uv-scatter-vid--a {
+  margin-top: 1.5rem;
+  max-width: 280px;
+  transform: rotate(2deg);
+  transition: transform 0.3s ease;
+}
+.uv-scatter-vid--a:hover { transform: rotate(0deg) scale(1.02); }
+
+/* Vidéo dans la section équipe */
+.uv-scatter-vid--team {
+  margin-top: 2rem;
+  max-width: 320px;
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s ease;
+}
+.uv-scatter-vid--team:hover { transform: rotate(0deg) scale(1.02); }
+
+/* Paire de vidéos entre ethics et portage */
+.uv-vid-pair {
+  display: flex;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: transparent;
+  align-items: flex-start;
+}
+
+.uv-scatter-vid--b {
+  flex: 1;
+  max-width: 340px;
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s ease;
+}
+.uv-scatter-vid--b:hover { transform: rotate(0deg) scale(1.02); }
+
+.uv-scatter-vid--c {
+  flex: 1;
+  max-width: 340px;
+  margin-top: 2.5rem;
+  transform: rotate(2deg);
+  transition: transform 0.3s ease;
+}
+.uv-scatter-vid--c:hover { transform: rotate(0deg) scale(1.02); }
+
+@media (max-width: 768px) {
+  .uv-scatter-vid--a { max-width: 100%; transform: none; }
+  .uv-vid-pair { flex-direction: column; align-items: center; }
+  .uv-scatter-vid--b, .uv-scatter-vid--c { max-width: 80%; margin-top: 0; transform: none; }
 }
 @media (max-width: 560px) {
   .uv-intro-stats { grid-template-columns: 1fr 1fr; }
