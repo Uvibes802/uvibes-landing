@@ -726,9 +726,10 @@
   font-family: var(--font-roboto-mono), monospace;
 }
 
-/* Vidéo draggable — format paysage */
+/* Vidéo draggable — format paysage, légèrement penché gauche */
 .uv-scatter-vid--draggable {
   width: clamp(220px, 28vw, 320px);
+  transform: rotate(-4deg);
   transition: box-shadow 0.2s ease;
 }
 .uv-scatter-vid--draggable:hover {
