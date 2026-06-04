@@ -726,6 +726,31 @@
   font-family: var(--font-roboto-mono), monospace;
 }
 
+/* Vidéo draggable — grande, sans rotation */
+.uv-scatter-vid--draggable {
+  width: 380px;
+  transition: box-shadow 0.2s ease;
+}
+.uv-scatter-vid--draggable:hover {
+  box-shadow: 0 14px 48px rgba(0,0,0,.22), 0 4px 14px rgba(0,0,0,.12);
+}
+
+/* Indicateur de coordonnées */
+.uv-drag-coords {
+  position: absolute;
+  top: 8px; left: 8px;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(6px);
+  border-radius: 8px;
+  padding: 4px 10px;
+  color: #FFE456;
+  font-size: 11px;
+  font-family: var(--font-roboto-mono), monospace;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  line-height: 1.5;
+}
+
 /* Vidéo floating dans intro — rotation légère */
 .uv-scatter-vid--a {
   margin-top: 1.5rem;
