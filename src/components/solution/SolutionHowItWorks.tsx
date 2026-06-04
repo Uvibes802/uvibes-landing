@@ -96,6 +96,7 @@ export default function SolutionHowItWorks() {
           <p className="shiw-subtitle">
             Vous gardez le contrôle. Nous fournissons la plateforme, vous définissez le contenu.
           </p>
+          <p className="shiw-you-define v-mono">→ Vous définissez :</p>
         </header>
 
         <div className="shiw-grid">

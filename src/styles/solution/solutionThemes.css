@@ -1,7 +1,7 @@
-/* ── SolutionThemes — macOS premium ──────────────────────────── */
+/* ── SolutionThemes — question-first editorial ─────────────────── */
 
 .sth-section {
-  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 35%, #FFF0F8 65%, #FFF6EC 100%);
+  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 50%, #FFF0F8 100%);
   background-attachment: fixed;
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
@@ -9,52 +9,53 @@
   overflow: hidden;
 }
 
-/* Blobs saturés éparpillés */
 .sth-section::before {
   content: '';
   position: absolute;
-  top: 15%; right: 10%;
-  width: 440px; height: 440px;
+  top: 12%; right: 8%;
+  width: 400px; height: 400px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255,176,40,.38), transparent 68%);
-  filter: blur(50px);
+  background: radial-gradient(closest-side, rgba(255,176,40,.30), transparent 70%);
+  filter: blur(52px);
   pointer-events: none;
 }
 
 .sth-section::after {
   content: '';
   position: absolute;
-  bottom: 20%; left: 12%;
-  width: 380px; height: 380px;
+  bottom: 18%; left: 10%;
+  width: 360px; height: 360px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.25), transparent 68%);
-  filter: blur(46px);
+  background: radial-gradient(closest-side, rgba(217,10,92,.20), transparent 70%);
+  filter: blur(48px);
   pointer-events: none;
 }
 
-/* Blobs HTML additionnels */
 .sth-blob {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
 }
 .sth-blob--1 {
-  top: 42%; left: 25%;
-  width: 420px; height: 420px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.30), transparent 70%);
-  filter: blur(48px);
+  top: 45%; left: 35%;
+  width: 380px; height: 380px;
+  background: radial-gradient(closest-side, rgba(253,110,0,.22), transparent 70%);
+  filter: blur(46px);
 }
 .sth-blob--2 {
-  top: 20%; left: 55%;
-  width: 320px; height: 320px;
-  background: radial-gradient(closest-side, rgba(255,228,86,.32), transparent 70%);
-  filter: blur(40px);
+  top: 22%; left: 58%;
+  width: 280px; height: 280px;
+  background: radial-gradient(closest-side, rgba(255,228,86,.26), transparent 70%);
+  filter: blur(38px);
 }
 
 /* ── Header ───────────────────────────────────────────────────── */
 .sth-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sth-eyebrow {
@@ -83,7 +84,7 @@
 }
 
 .sth-title {
-  font-size: clamp(32px, 4.5vw, 60px);
+  font-size: clamp(32px, 4.5vw, 58px);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.04em;
@@ -98,94 +99,135 @@
   -webkit-text-fill-color: #FF88B8;
 }
 
-/* ── Grille ───────────────────────────────────────────────────── */
+/* ── Grille éditoriale asymétrique ────────────────────────────── */
 .sth-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  align-items: stretch;
+  gap: 1.1rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* ── Card macOS ───────────────────────────────────────────────── */
+/* ── Card — question en héros ─────────────────────────────────── */
 .sth-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 1.75rem;
-  border: 1px solid rgba(0,0,0,.07);
-  box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 8px 32px rgba(0,0,0,.06);
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 1.75rem 1.75rem 1.5rem;
+  border: 1.5px solid rgba(255,255,255,.85);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 28px rgba(0,0,0,.07), inset 0 1px 0 rgba(255,255,255,.95);
   display: flex;
   flex-direction: column;
-  height: 100%;
   transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
+  cursor: default;
 }
 
 .sth-card--hovered {
   transform: translateY(-5px);
-  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 20px 48px rgba(0,0,0,.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 20px 48px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.95);
 }
 
-/* Accent fin gauche */
-.sth-card::before {
+/* Fond teinté discret en haut de la card */
+.sth-card::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 3px;
-  background: var(--sth-color, #FD6E00);
-  border-radius: 20px 0 0 20px;
+  top: 0; left: 0; right: 0;
+  height: 56%;
+  background: color-mix(in srgb, var(--sth-color, #FD6E00) 5%, transparent);
+  pointer-events: none;
+  border-radius: 28px 28px 0 0;
 }
 
-/* Tuile icône — rounded square macOS */
+/* ── Question — élément héros ─────────────────────────────────── */
+.sth-card__question {
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.4;
+  color: var(--sth-color, #FD6E00);
+  margin: 0 0 auto;
+  padding-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Grand guillemet décoratif */
+.sth-card__question::before {
+  content: '"';
+  font-size: 4rem;
+  line-height: 0.8;
+  color: var(--sth-color, #FD6E00);
+  opacity: 0.15;
+  font-family: var(--font-prompt), serif;
+  margin-right: 0.25rem;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 0.1em;
+}
+
+/* ── Séparateur ───────────────────────────────────────────────── */
+.sth-card__sep {
+  height: 1px;
+  background: rgba(0,0,0,.06);
+  margin: 0 0 1.1rem;
+}
+
+/* ── Footer : icône + titre + desc ───────────────────────────── */
+.sth-card__footer {
+  position: relative;
+  z-index: 1;
+}
+
+.sth-card__icon-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
 .sth-card__icon-tile {
-  width: 44px; height: 44px;
-  border-radius: 11px;
+  width: 36px; height: 36px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--sth-color, #FD6E00) 12%, white);
+  background: color-mix(in srgb, var(--sth-color, #FD6E00) 14%, white);
   color: var(--sth-color, #FD6E00);
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
-.sth-card__icon-tile--hovered {
-  transform: scale(1.08);
-}
+.sth-card__icon-tile--hovered { transform: scale(1.1); }
 
-/* Titre */
 .sth-card__title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--orange);
-  margin: 1rem 0 0;
-  letter-spacing: -0.01em;
-}
-
-/* Desc */
-.sth-card__desc {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #6b4455;
-  margin-top: 0.5rem;
-  flex-grow: 1;
-}
-
-/* Question */
-.sth-card__question {
-  font-style: italic;
   font-size: 15px;
-  line-height: 1.4;
-  color: var(--sth-color, #FD6E00);
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0,0,0,.07);
+  font-weight: 700;
+  color: #1a0a06;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
+
+.sth-card__desc {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #9c7080;
+  margin: 0;
+}
+
+/* sol-reveal animation */
+.sol-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.sol-reveal.--in { opacity: 1; transform: translateY(0); }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .sth-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 600px) {
   .sth-grid { grid-template-columns: 1fr; }
 }

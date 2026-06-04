@@ -90,29 +90,28 @@ function ThemeCard({ data }: { data: ThemeCard }) {
   return (
     <div
       className={`sth-card${hovered ? " sth-card--hovered" : ""}`}
-      style={{
-        "--sth-color": data.color,
-        "--sth-glow": data.glow,
-        "--sth-icon-bg": data.iconBg,
-      } as React.CSSProperties}
+      style={{ "--sth-color": data.color } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Tuile icône */}
-      <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
-        <Icon size={22} strokeWidth={1.8} />
-      </div>
-
-      {/* Titre */}
-      <h3 className="sth-card__title v-prompt">{data.title}</h3>
-
-      {/* Desc */}
-      <p className="sth-card__desc">{data.desc}</p>
-
-      {/* Question */}
-      <p className="sth-card__question v-serif">
-        «&nbsp;{data.question}&nbsp;»
+      {/* Question — élément héros */}
+      <p className="sth-card__question">
+        {data.question}
       </p>
+
+      {/* Séparateur */}
+      <div className="sth-card__sep" aria-hidden="true" />
+
+      {/* Footer : icône + titre + desc */}
+      <div className="sth-card__footer">
+        <div className="sth-card__icon-row">
+          <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
+            <Icon size={18} strokeWidth={1.8} />
+          </div>
+          <h3 className="sth-card__title v-prompt">{data.title}</h3>
+        </div>
+        <p className="sth-card__desc">{data.desc}</p>
+      </div>
     </div>
   );
 }
