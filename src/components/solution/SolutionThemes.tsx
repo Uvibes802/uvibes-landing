@@ -138,8 +138,7 @@ export default function SolutionThemes() {
           <span className="v-mono sth-eyebrow__label">Thématiques</span>
         </div>
         <h2 className="sth-title v-prompt">
-          6 univers de conversation
-          <br />pour votre{" "}
+          <span className="sth-title__magenta">6 univers de conversation<br />pour votre{" "}</span>
           <span className="sth-title__accent v-serif">collectif.</span>
         </h2>
       </header>

@@ -86,6 +86,10 @@
   color: var(--orange);
 }
 
+.fa-title-magenta {
+  color: #E6007E;
+}
+
 .fa-cta-btn {
   flex-shrink: 0;
   align-self: flex-end;

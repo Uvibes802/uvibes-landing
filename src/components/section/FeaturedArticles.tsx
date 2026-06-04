@@ -93,7 +93,7 @@ export default function FeaturedArticles() {
         <div>
           <p className="v-mono fa-eyebrow">Le blog Uvibes</p>
           <h2 className="fa-title v-prompt">
-            Ce qu&apos;on lit.{" "}<span className="v-serif">Ce qu&apos;on pense.</span>
+            <span className="fa-title-magenta">Ce qu&apos;on lit</span>{" "}<span className="v-serif">Ce qu&apos;on pense.</span>
           </h2>
         </div>
         <Link href="/blog" className="btn-brand fa-cta-btn">

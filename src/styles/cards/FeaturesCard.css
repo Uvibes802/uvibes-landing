@@ -103,6 +103,12 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-left: clamp(1.5rem, 5vw, 5rem);
+}
+
+.fc-row--reverse .fc-text {
+  padding-left: 0;
+  padding-right: clamp(1.5rem, 5vw, 5rem);
 }
 
 .fc-eyebrow {
@@ -153,6 +159,8 @@
   line-height: 1.5;
   color: var(--ink-2);
   max-width: 480px;
+  font-family: var(--font-prompt), "Supreme-Bold", sans-serif;
+  font-weight: 500;
 }
 
 .fc-chip {

@@ -91,11 +91,20 @@
   margin: 0;
 }
 
+.sth-title__magenta {
+  color: #E6007E;
+  -webkit-text-fill-color: #E6007E;
+}
+
 .sth-title__accent {
   font-style: italic;
   font-family: var(--font-instrument), "Instrument Serif", serif;
-  color: #FF88B8;
-  -webkit-text-fill-color: #FF88B8;
+  background: linear-gradient(135deg, #FD6E00, #D90A5C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  padding-bottom: 0.08em;
 }
 
 /* ── Grille ───────────────────────────────────────────────────── */
