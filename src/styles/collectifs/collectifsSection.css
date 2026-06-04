@@ -1,7 +1,7 @@
 /* ── CollectifsSection ──────────────────────────────────────────── */
 
 .collectifs-section {
-  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(1.5rem, 2.5vw, 2.5rem);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(0.5rem, 1vw, 0.75rem);
   background: transparent;
   position: relative;
   overflow: hidden;
@@ -376,7 +376,7 @@
 
 .collectif-panel-body {
   background: var(--paper);
-  padding: 44px;
+  padding: 28px 44px 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
