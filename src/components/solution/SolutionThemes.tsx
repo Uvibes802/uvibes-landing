@@ -5,164 +5,164 @@ import {
   Sparkles,
   GraduationCap,
   Lightbulb,
-  Calendar,
+  Globe,
   Gamepad2,
-  MessageSquare,
+  Flame,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import "@/styles/solution/solutionThemes.css";
 
-/* ——— Types ——— */
-interface ThemeCard {
+interface Theme {
   Icon: LucideIcon;
   title: string;
   desc: string;
-  question: string;
+  q1: string;
+  q2: string;
+  label: string;
   color: string;
-  glow: string;
+  cardGradient: string;
   iconBg: string;
 }
 
-/* ——— Données ——— */
-const THEMES: ThemeCard[] = [
+const THEMES: Theme[] = [
   {
     Icon: Sparkles,
     title: "Réflexions & loisirs",
-    desc: "Aspirations individuelles, séries TV, modèles de réussite.",
-    question: "Quel personnage de film t'inspire ?",
-    color: "#FD6E00",
-    glow: "rgba(253,110,0,.18)",
-    iconBg: "linear-gradient(135deg, rgba(253,110,0,.18), rgba(255,150,60,.14))",
+    desc: "Discussions autour des passions, inspirations et moments de vie.",
+    q1: "Quel personnage de film t'inspire ?",
+    q2: "Quel hobby aimerais-tu commencer ?",
+    label: "Conversation ouverte",
+    color: "#00AFDD",
+    cardGradient: "linear-gradient(145deg, rgba(0,175,221,.07) 0%, rgba(0,175,221,.02) 100%)",
+    iconBg: "rgba(0,175,221,.1)",
   },
   {
     Icon: GraduationCap,
     title: "Expertise & formation",
-    desc: "Réflexions autour de sujets professionnels et pédagogiques.",
-    question: "Comment vois-tu le management du futur ?",
-    color: "#D90A5C",
-    glow: "rgba(217,10,92,.16)",
-    iconBg: "linear-gradient(135deg, rgba(217,10,92,.16), rgba(255,77,120,.12))",
+    desc: "Partager des idées, apprendre et réfléchir ensemble.",
+    q1: "Comment vois-tu le management du futur ?",
+    q2: "Quelle compétence deviendra essentielle ?",
+    label: "Discussion & réflexion",
+    color: "#FD6E00",
+    cardGradient: "linear-gradient(145deg, rgba(253,110,0,.07) 0%, rgba(253,110,0,.02) 100%)",
+    iconBg: "rgba(253,110,0,.1)",
   },
   {
     Icon: Lightbulb,
     title: "Astuces & bons plans",
-    desc: "Partage d'expériences et conseils pratiques.",
-    question: "Des recettes de saison à partager ?",
-    color: "#F59E0B",
-    glow: "rgba(245,158,11,.18)",
-    iconBg: "linear-gradient(135deg, rgba(245,158,11,.18), rgba(253,200,60,.14))",
+    desc: "Conseils pratiques et idées utiles du quotidien.",
+    q1: "Des recettes de saison à partager ?",
+    q2: "Une habitude qui te fait gagner du temps ?",
+    label: "Partage d'expériences",
+    color: "#10B981",
+    cardGradient: "linear-gradient(145deg, rgba(16,185,129,.07) 0%, rgba(16,185,129,.02) 100%)",
+    iconBg: "rgba(16,185,129,.1)",
   },
   {
-    Icon: Calendar,
+    Icon: Globe,
     title: "Événements & actualités",
-    desc: "Octobre rose, cultures locales, Tour de France.",
-    question: "La tradition préférée de votre territoire ?",
-    color: "#10B981",
-    glow: "rgba(16,185,129,.16)",
-    iconBg: "linear-gradient(135deg, rgba(16,185,129,.16), rgba(60,220,160,.12))",
+    desc: "Échanger autour des tendances, cultures et événements.",
+    q1: "La tradition préférée de votre territoire ?",
+    q2: "Un événement qui t'a marqué récemment ?",
+    label: "Échanges spontanés",
+    color: "#FFB800",
+    cardGradient: "linear-gradient(145deg, rgba(255,184,0,.07) 0%, rgba(255,184,0,.02) 100%)",
+    iconBg: "rgba(255,184,0,.1)",
   },
   {
     Icon: Gamepad2,
     title: "Jeux & mises en situation",
-    desc: "Challenges en équipe et jeux de rôle.",
-    question: "Trouvez 6 métiers commençant par M",
-    color: "#6366F1",
-    glow: "rgba(99,102,241,.16)",
-    iconBg: "linear-gradient(135deg, rgba(99,102,241,.16), rgba(139,92,246,.12))",
+    desc: "Créer des interactions fun et dynamiques.",
+    q1: "Trouvez 6 métiers commençant par M",
+    q2: "Quelle équipe survivrait sur une île déserte ?",
+    label: "Moments ludiques",
+    color: "#D90A5C",
+    cardGradient: "linear-gradient(145deg, rgba(217,10,92,.06) 0%, rgba(217,10,92,.02) 100%)",
+    iconBg: "rgba(217,10,92,.09)",
   },
   {
-    Icon: MessageSquare,
+    Icon: Flame,
     title: "Débats",
-    desc: "Mettre en commun différents points de vue.",
-    question: "Bienfaits et limites du progrès",
-    color: "#EC4899",
-    glow: "rgba(236,72,153,.16)",
-    iconBg: "linear-gradient(135deg, rgba(236,72,153,.16), rgba(249,115,180,.12))",
+    desc: "Confronter les points de vue avec intelligence.",
+    q1: "Bienfaits et limites du progrès",
+    q2: "Le télétravail est-il l'avenir ?",
+    label: "Opinions & perspectives",
+    color: "#E6007E",
+    cardGradient: "linear-gradient(145deg, rgba(230,0,126,.06) 0%, rgba(230,0,126,.02) 100%)",
+    iconBg: "rgba(230,0,126,.09)",
   },
 ];
 
-/* ——— Sous-composant Card ——— */
-function ThemeCard({ data, cardStyle }: { data: ThemeCard; cardStyle: StyleKey }) {
+function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
   const [hovered, setHovered] = useState(false);
-  const { Icon } = data;
+  const [ref, visible] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.1 });
+  const { Icon } = theme;
 
   return (
     <div
-      className={`sth-card sth-card--s${cardStyle.toLowerCase()}${hovered ? " sth-card--hovered" : ""}`}
-      style={{ "--sth-color": data.color, "--sth-glow": data.glow, "--sth-icon-bg": data.iconBg } as React.CSSProperties}
+      ref={ref}
+      className={`sth-card${visible ? " sth-card--visible" : ""}${hovered ? " sth-card--hovered" : ""}`}
+      style={{
+        "--sth-color": theme.color,
+        "--sth-gradient": theme.cardGradient,
+        "--sth-icon-bg": theme.iconBg,
+        "--sth-delay": `${index * 60}ms`,
+      } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Tuile icône */}
-      <div className={`sth-card__icon-tile${hovered ? " sth-card__icon-tile--hovered" : ""}`} aria-hidden="true">
-        <Icon size={22} strokeWidth={1.8} />
+      {/* Icône */}
+      <div className={`sth-icon${hovered ? " sth-icon--hovered" : ""}`} aria-hidden="true">
+        <Icon size={20} strokeWidth={1.8} />
       </div>
+
       {/* Titre */}
-      <h3 className="sth-card__title v-prompt">{data.title}</h3>
-      {/* Desc */}
-      <p className="sth-card__desc">{data.desc}</p>
-      {/* Question */}
-      <p className="sth-card__question v-serif">«&nbsp;{data.question}&nbsp;»</p>
+      <h3 className="sth-card-title">{theme.title}</h3>
+
+      {/* Description */}
+      <p className="sth-card-desc">{theme.desc}</p>
+
+      {/* Questions */}
+      <ul className="sth-questions">
+        <li className="sth-question">
+          <span className="sth-q-dot" aria-hidden="true" />
+          {theme.q1}
+        </li>
+        <li className="sth-question">
+          <span className="sth-q-dot" aria-hidden="true" />
+          {theme.q2}
+        </li>
+      </ul>
+
+      {/* Label */}
+      <span className="sth-label">{theme.label}</span>
     </div>
   );
 }
 
-const STYLES = ["A", "B", "C", "D"] as const;
-type StyleKey = typeof STYLES[number];
-
-const STYLE_LABELS: Record<StyleKey, string> = {
-  A: "Question first",
-  B: "Gradient",
-  C: "Magazine",
-  D: "Minimal",
-};
-
-/* ——— Composant principal ——— */
 export default function SolutionThemes() {
-  const [sectionRef, visible] = useIntersectionOnce<HTMLElement>({
-    threshold: 0.08,
-  });
-  const [activeStyle, setActiveStyle] = useState<StyleKey>("A");
-
   return (
-    <section
-      id="themes"
-      className={`sth-section sol-reveal${visible ? " --in" : ""}`}
-      ref={sectionRef}
-    >
-      <div className="sth-blob sth-blob--1" aria-hidden="true" />
-      <div className="sth-blob sth-blob--2" aria-hidden="true" />
-      {/* Header */}
-      <header className="sth-header">
-        <div className="sth-eyebrow">
-          <span className="sth-eyebrow__dot" aria-hidden="true" />
-          <span className="v-mono sth-eyebrow__label">Thématiques</span>
+    <section id="themes" className="sth-section">
+      <div className="sth-header">
+        <div className="sth-eyebrow-wrap">
+          <span className="sth-eyebrow-dot" aria-hidden="true" />
+          <span className="sth-eyebrow-text">Thématiques</span>
         </div>
-        <h2 className="sth-title v-prompt">
-          <span className="sth-title__magenta">6 univers de conversation<br />pour votre{" "}</span>
-          <span className="sth-title__accent v-serif">collectif.</span>
+        <h2 className="sth-heading">
+          <span className="sth-heading-main">6 univers de conversation</span>
+          <br />
+          <span className="sth-heading-sub">pour créer des échanges plus riches.</span>
         </h2>
-      </header>
-
-      {/* Switcher de style */}
-      <div className="sth-style-switcher">
-        {STYLES.map((s) => (
-          <button
-            key={s}
-            className={`sth-style-btn${activeStyle === s ? " --active" : ""}`}
-            onClick={() => setActiveStyle(s)}
-          >
-            <span className="sth-style-btn__letter">{s}</span>
-            <span className="sth-style-btn__label">{STYLE_LABELS[s]}</span>
-          </button>
-        ))}
+        <p className="sth-subtext">
+          Des thèmes pensés pour stimuler les échanges,<br className="sth-br" />
+          renforcer les liens et créer des conversations naturelles.
+        </p>
       </div>
 
-      {/* Grille */}
-      <div className={`sth-grid sth-grid--style-${activeStyle.toLowerCase()}`}>
-        {THEMES.map((theme) => (
-          <ThemeCard key={theme.title} data={theme} cardStyle={activeStyle} />
+      <div className="sth-grid">
+        {THEMES.map((theme, i) => (
+          <ThemeCard key={theme.title} theme={theme} index={i} />
         ))}
       </div>
     </section>

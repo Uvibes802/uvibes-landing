@@ -1,280 +1,197 @@
-/* ── SolutionThemes — macOS premium ──────────────────────────── */
+/* ── SolutionThemes — premium minimal ─────────────────────────── */
 
 .sth-section {
-  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 35%, #FFF0F8 65%, #FFF6EC 100%);
-  background-attachment: fixed;
-  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: #f7f7f5;
+  padding: clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Blobs saturés éparpillés */
-.sth-section::before {
-  content: '';
-  position: absolute;
-  top: 15%; right: 10%;
-  width: 440px; height: 440px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255,176,40,.38), transparent 68%);
-  filter: blur(50px);
-  pointer-events: none;
-}
-
-.sth-section::after {
-  content: '';
-  position: absolute;
-  bottom: 20%; left: 12%;
-  width: 380px; height: 380px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.25), transparent 68%);
-  filter: blur(46px);
-  pointer-events: none;
-}
-
-/* Blobs HTML additionnels */
-.sth-blob {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-.sth-blob--1 {
-  top: 42%; left: 25%;
-  width: 420px; height: 420px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.30), transparent 70%);
-  filter: blur(48px);
-}
-.sth-blob--2 {
-  top: 20%; left: 55%;
-  width: 320px; height: 320px;
-  background: radial-gradient(closest-side, rgba(255,228,86,.32), transparent 70%);
-  filter: blur(40px);
 }
 
 /* ── Header ───────────────────────────────────────────────────── */
 .sth-header {
   text-align: center;
-  margin-bottom: 3rem;
+  max-width: 680px;
+  margin: 0 auto clamp(3rem, 5vw, 5rem);
 }
 
-.sth-eyebrow {
+.sth-eyebrow-wrap {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: rgba(253,110,0,.08);
-  border: 1px solid rgba(253,110,0,.16);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.sth-eyebrow__dot {
+.sth-eyebrow-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: #FD6E00;
+  background: var(--orange);
   flex-shrink: 0;
 }
 
-.sth-eyebrow__label {
+.sth-eyebrow-text {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #FD6E00;
-}
-
-.sth-title {
-  font-size: clamp(32px, 4.5vw, 60px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
   color: var(--orange);
-  margin: 0;
+  font-family: var(--font-roboto-mono), monospace;
 }
 
-.sth-title__magenta {
+.sth-heading {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+}
+
+.sth-heading-main {
+  color: #1a1a1a;
+}
+
+.sth-heading-sub {
   color: #E6007E;
   -webkit-text-fill-color: #E6007E;
 }
 
-.sth-title__accent {
-  font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  background: linear-gradient(135deg, #FD6E00, #D90A5C);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-  padding-bottom: 0.08em;
+.sth-subtext {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.7;
+  color: #6b6b6b;
+  margin: 0;
+  font-family: var(--text-font), "Supreme-Light", sans-serif;
 }
+
+.sth-br { display: block; }
 
 /* ── Grille ───────────────────────────────────────────────────── */
 .sth-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  align-items: stretch;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* ── Card macOS ───────────────────────────────────────────────── */
+/* ── Card ─────────────────────────────────────────────────────── */
 .sth-card {
-  background: #fff;
+  background: var(--sth-gradient, linear-gradient(145deg, #fff, #fafaf9));
   border-radius: 20px;
-  padding: 1.75rem;
   border: 1px solid rgba(0,0,0,.07);
-  box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 8px 32px rgba(0,0,0,.06);
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease;
-  position: relative;
-  overflow: hidden;
+  gap: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
+  transition: transform 350ms cubic-bezier(.2,.7,.2,1), box-shadow 350ms ease;
+  cursor: default;
+
+  /* fade-in au scroll */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease var(--sth-delay, 0ms),
+    transform 0.5s cubic-bezier(.2,.7,.2,1) var(--sth-delay, 0ms),
+    box-shadow 300ms ease,
+    filter 300ms ease;
+}
+
+.sth-card--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .sth-card--hovered {
-  transform: translateY(-5px);
-  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 20px 48px rgba(0,0,0,.1);
+  transform: translateY(-6px);
+  box-shadow: 0 2px 4px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.1);
 }
 
-/* Accent fin gauche */
-.sth-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 3px;
-  background: var(--sth-color, #FD6E00);
-  border-radius: 20px 0 0 20px;
-}
-
-/* Tuile icône — rounded square macOS */
-.sth-card__icon-tile {
+/* ── Icône ────────────────────────────────────────────────────── */
+.sth-icon {
   width: 44px; height: 44px;
-  border-radius: 11px;
+  border-radius: 12px;
+  background: var(--sth-icon-bg, rgba(253,110,0,.1));
+  color: var(--sth-color, #FD6E00);
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--sth-color, #FD6E00) 12%, white);
-  color: var(--sth-color, #FD6E00);
+  margin-bottom: 1.25rem;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: transform 300ms cubic-bezier(.34,1.56,.64,1);
 }
 
-.sth-card__icon-tile--hovered {
-  transform: scale(1.08);
-}
+.sth-icon--hovered { transform: scale(1.1) rotate(-3deg); }
 
-/* Titre */
-.sth-card__title {
-  font-size: 18px;
+/* ── Titre ────────────────────────────────────────────────────── */
+.sth-card-title {
+  font-size: 16px;
   font-weight: 700;
-  color: var(--orange);
-  margin: 1rem 0 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+  font-family: var(--font-prompt), "Supreme-Bold", sans-serif;
+  line-height: 1.3;
 }
 
-/* Desc */
-.sth-card__desc {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #6b4455;
-  margin-top: 0.5rem;
-  flex-grow: 1;
+/* ── Description ──────────────────────────────────────────────── */
+.sth-card-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #6b6b6b;
+  margin: 0 0 1.25rem;
+  font-family: var(--text-font), "Supreme-Light", sans-serif;
 }
 
-/* Question */
-.sth-card__question {
-  font-style: italic;
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--sth-color, #FD6E00);
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0,0,0,.07);
-}
-
-/* ── Switcher ─────────────────────────────────────────────────── */
-.sth-style-switcher {
+/* ── Questions ────────────────────────────────────────────────── */
+.sth-questions {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 auto;
   display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 2;
-}
-.sth-style-btn {
-  display: inline-flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
-  padding: 0.5rem 1.1rem;
-  border-radius: 999px;
-  border: 1.5px solid rgba(253,110,0,.2);
-  background: rgba(255,255,255,.7);
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: var(--font-prompt), sans-serif;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,.06);
 }
-.sth-style-btn:hover { background: rgba(255,255,255,.9); border-color: #FD6E00; }
-.sth-style-btn.--active { background: #FD6E00; border-color: #FD6E00; }
-.sth-style-btn__letter { font-size: 13px; font-weight: 800; color: #FD6E00; }
-.sth-style-btn.--active .sth-style-btn__letter { color: #fff; }
-.sth-style-btn__label { font-size: 12px; font-weight: 500; color: #6b4455; }
-.sth-style-btn.--active .sth-style-btn__label { color: rgba(255,255,255,.9); }
 
-/* ══ STYLE A — Question héros + bande colorée bas ══════════════ */
-.sth-card--sa .sth-card__question {
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic; font-size: clamp(15px,1.5vw,18px); color: #2a0a10;
-  padding: 1.5rem 1.5rem 0.75rem; flex: 1; line-height: 1.5; display: block;
+.sth-question {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4a4a4a;
+  font-family: var(--text-font), "Supreme-Light", sans-serif;
+  font-style: italic;
+  opacity: 0.75;
+  transition: opacity 250ms ease;
 }
-.sth-card--sa .sth-card__question::before {
-  content: '"'; font-size: 3.5rem; color: var(--sth-color); opacity: 0.18;
-  line-height: 0.7; display: block; margin-bottom: 0.2em; font-family: var(--font-prompt), serif;
-}
-.sth-card--sa .sth-card__footer { display: flex; align-items: center; gap: 0.65rem; background: var(--sth-color); padding: 0.85rem 1.4rem; }
-.sth-card--sa .sth-card__title { font-size: 13.5px; font-weight: 700; color: #fff; margin: 0; }
-.sth-card--sa .sth-card__icon-tile { width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,.22); color: #fff; }
-.sth-card--sa .sth-card__desc { display: none; }
-.sth-card--sa > .sth-card__icon-tile { display: none; }
 
-/* ══ STYLE B — Fond teinté, question centrée ════════════════════ */
-.sth-card--sb { background: color-mix(in srgb, var(--sth-color) 8%, #FFFBF4); border-color: color-mix(in srgb, var(--sth-color) 15%, transparent); }
-.sth-card--sb .sth-card__question {
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic; font-size: clamp(16px,1.6vw,20px); color: var(--sth-color);
-  text-align: center; flex: 1; display: flex; align-items: center; justify-content: center;
-  border-top: 1px dashed color-mix(in srgb, var(--sth-color) 25%, transparent);
-  margin-top: 0.75rem; padding-top: 0.85rem;
-}
-.sth-card--sb .sth-card__footer { display: none; }
-.sth-card--sb .sth-card__title { font-size: 17px; font-weight: 700; color: #1a0a06; margin: 0.75rem 0 0; }
-.sth-card--sb .sth-card__desc { font-size: 12.5px; color: #6b4455; margin: 0.4rem 0 0; }
-.sth-card--sb .sth-card__icon-tile { background: color-mix(in srgb, var(--sth-color) 15%, white); color: var(--sth-color); }
+.sth-card--hovered .sth-question { opacity: 1; }
 
-/* ══ STYLE C — Magazine cover, grand guillemet ══════════════════ */
-.sth-card--sc { background: #fff; border-color: rgba(0,0,0,.07); padding: 1.75rem; overflow: visible; }
-.sth-card--sc::before {
-  content: '"'; position: absolute; top: -8px; right: 14px;
-  font-size: 6rem; line-height: 1; color: var(--sth-color); opacity: 0.12;
-  font-family: var(--font-prompt), serif; pointer-events: none;
+.sth-q-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--sth-color, #FD6E00);
+  flex-shrink: 0;
+  margin-top: 6px;
 }
-.sth-card--sc .sth-card__title { font-size: clamp(18px,1.8vw,22px); font-weight: 800; color: var(--sth-color); margin: 0.75rem 0 0; letter-spacing: -0.02em; }
-.sth-card--sc .sth-card__desc { font-size: 13px; color: #9c7080; margin: 0.4rem 0 0; }
-.sth-card--sc .sth-card__question { font-family: var(--font-instrument),"Instrument Serif",serif; font-style: italic; font-size: 14px; color: #6b4455; margin-top: auto; padding-top: 0.85rem; border-top: 1px solid rgba(0,0,0,.07); }
-.sth-card--sc .sth-card__footer { display: none; }
-.sth-card--sc .sth-card__icon-tile { background: color-mix(in srgb, var(--sth-color) 12%, white); color: var(--sth-color); }
 
-/* ══ STYLE D — Minimal, top border ══════════════════════════════ */
-.sth-card--sd { background: #fff; border: 1px solid rgba(0,0,0,.08); border-top: 4px solid var(--sth-color); border-radius: 16px; padding: 1.5rem; }
-.sth-card--sd .sth-card__icon-tile { background: transparent; color: var(--sth-color); width: 28px; height: 28px; border-radius: 0; }
-.sth-card--sd .sth-card__title { font-size: 15px; font-weight: 700; color: #1a0a06; margin: 0.6rem 0 0; }
-.sth-card--sd .sth-card__desc { font-size: 12px; color: #9c7080; margin: 0.3rem 0 0; }
-.sth-card--sd .sth-card__question { font-family: var(--font-instrument),"Instrument Serif",serif; font-style: italic; font-size: clamp(16px,1.6vw,19px); color: var(--sth-color); margin-top: auto; padding-top: 0.85rem; line-height: 1.45; display: block; }
-.sth-card--sd .sth-card__footer { display: none; }
+/* ── Label ────────────────────────────────────────────────────── */
+.sth-label {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sth-color, #FD6E00);
+  font-family: var(--font-roboto-mono), monospace;
+  opacity: 0.65;
+}
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .sth-grid { grid-template-columns: repeat(2, 1fr); }
+  .sth-br { display: none; }
 }
+
 @media (max-width: 600px) {
-  .sth-grid { grid-template-columns: 1fr; }
-  .sth-style-switcher { flex-wrap: wrap; }
+  .sth-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
