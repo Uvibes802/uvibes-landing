@@ -210,8 +210,11 @@ export default function Uvibes() {
         </div>
       </section>
 
-      {/* ── CTA rejoindre — nouvelle version sobre sur paper ── */}
-      <section className="uv-join">
+      {/* Wrapper uv-join + Footer seamless */}
+      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%)" }}>
+
+      {/* ── CTA rejoindre ── */}
+      <section className="uv-join" style={{ background: "transparent" }}>
         <div className="uv-join-inner">
           <div className="uv-join-text">
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Ensemble</p>
@@ -241,6 +244,7 @@ export default function Uvibes() {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 }

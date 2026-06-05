@@ -44,7 +44,7 @@ export default async function Home() {
       <FeaturedArticles />
 
       {/* Wrapper gradient commun — contact + footer seamless */}
-      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF4A10 12%, #FF1880 38%, #E6007E 60%, #C4004E 100%)" }}>
+      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #D90A5C 72%, #B80048 100%)" }}>
         <Contact />
         <Footer />
       </div>
