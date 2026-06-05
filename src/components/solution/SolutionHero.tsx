@@ -1,12 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { getVideoUrl } from "@/utils/videoUrl";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "@/styles/solution/solutionHero.css";
-
-const VIDEOS = ["Isaline-desktop.mp4", "Lisa-desktop.mp4", "Delphine-desktop.mp4", "Colette-desktop.mp4"];
 
 const PARTICLES = [
   { color: "#FD6E00", size: 14, top: "12%", left: "6%",  anim: "particle-0", dur: "11s", del: "0s"   },
@@ -24,55 +20,6 @@ const PARTICLES = [
   { color: "#fff",    size: 20, top: "20%", left:"20%",  anim: "particle-0", dur: "9s",  del: "4s",   border: true },
   { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
 ];
-
-function AppScreen() {
-  const [src, setSrc] = useState(VIDEOS[0]);
-  const [playing, setPlaying] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => { setSrc(VIDEOS[Math.floor(Math.random() * VIDEOS.length)]); }, []);
-
-  const togglePlay = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) { v.play(); setPlaying(true); }
-    else          { v.pause(); setPlaying(false); }
-  };
-
-  return (
-    <div className="sh-screen-wrap">
-      <div className="sh-pulse sh-pulse--1" aria-hidden="true" />
-      <div className="sh-pulse sh-pulse--2" aria-hidden="true" />
-      <div className="sh-pulse sh-pulse--3" aria-hidden="true" />
-      <div className="sh-screen-halo" aria-hidden="true" />
-      <div className="sh-screen">
-        <div className="sh-screen-bar">
-          <div className="sh-screen-dots">
-            <span style={{ background: "#FF5F57" }} />
-            <span style={{ background: "#FEBC2E" }} />
-            <span style={{ background: "#28C840" }} />
-          </div>
-          <div className="sh-screen-url">
-            <span className="sh-screen-lock">🔒</span>
-            app.uvibes.fr
-          </div>
-          <div className="sh-screen-bar-actions" />
-        </div>
-        <div className="sh-screen-display">
-          <video
-            ref={videoRef}
-            className={`sh-screen-video sh-screen-video--clickable${!playing ? " --paused" : ""}`}
-            src={getVideoUrl(src)}
-            autoPlay muted loop playsInline
-            onClick={togglePlay}
-            title={playing ? "Cliquer pour mettre en pause" : "Cliquer pour lire"}
-          />
-          <div className="sh-screen-overlay" aria-hidden="true" />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function SolutionHero() {
   return (
@@ -164,9 +111,6 @@ export default function SolutionHero() {
             </div>
           </div>
         </div>
-
-        {/* App Screen */}
-        <AppScreen />
       </div>
     </section>
   );

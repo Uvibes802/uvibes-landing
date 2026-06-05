@@ -1,3 +1,27 @@
+/* Bouton don — rounded pill gradient */
+.uvibes-contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #FD6E00, #D90A5C);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--text-font-bold);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(217, 10, 92, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.uvibes-contact-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(217, 10, 92, 0.36);
+  filter: brightness(1.05);
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;

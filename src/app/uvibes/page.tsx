@@ -65,12 +65,6 @@ export default function Uvibes() {
           <span className="uvp uvp--6" />
         </div>
 
-        {/* Vidéo floating hero */}
-        <div className="uv-hero-vid" aria-label="Témoignage">
-          <video src={getVideoUrl("Colette-desktop.mp4")} autoPlay muted loop playsInline className="uv-hero-vid__el" />
-          <div className="uv-hero-vid__label">Colette · Retraitée</div>
-        </div>
-
         <div className="uv-hero-inner">
           <p className="uv-hero-eyebrow">À propos d&apos;Uvibes</p>
           <h1 className="uv-hero-title v-prompt">
@@ -115,65 +109,42 @@ export default function Uvibes() {
               ))}
             </div>
           </div>
-          {/* Bento : vidéo entourée de stats */}
-          <div className="uv-intro-bento">
-            <div className="uv-intro-bento__col">
-              <div className="uv-stat-card">
-                <span className="uv-stat-num">+38%</span>
-                <span className="uv-stat-label">de sentiment d&apos;appartenance après 6 semaines</span>
-              </div>
-              <div className="uv-stat-card">
-                <span className="uv-stat-num">4.9/5</span>
-                <span className="uv-stat-label">score de satisfaction moyen des membres</span>
-              </div>
-            </div>
-            <div className="uv-intro-bento__vid">
-              <video src={getVideoUrl("Delphine-desktop.mp4")} autoPlay muted loop playsInline className="uv-intro-bento__vid-el" />
-              <div className="uv-intro-bento__vid-label">Delphine · Responsable collectif</div>
-            </div>
-            <div className="uv-intro-bento__col">
-              <div className="uv-stat-card">
-                <span className="uv-stat-num">3 min</span>
-                <span className="uv-stat-label">pour une conversation qui change vraiment quelque chose</span>
-              </div>
-              <div className="uv-stat-card">
-                <span className="uv-stat-num">2022</span>
-                <span className="uv-stat-label">création à Perpignan, déjà présents dans toute la France</span>
-              </div>
-            </div>
+          {/* Vidéo témoignage — Delphine */}
+          <div className="uv-intro-media">
+            <video src={getVideoUrl("Delphine-desktop.mp4")} autoPlay muted loop playsInline className="uv-intro-media__el" />
+            <div className="uv-intro-media__label">Delphine · Responsable collectif</div>
           </div>
-        </div>
-
-        {/* VibrationLine séparateur */}
-        <div className="uv-sep-vib" aria-hidden="true">
-          <GradientVibrationLine id="uv-vib-1" width={1800} height={45} amplitude={28} freq={5} strokeWidth={10} speed={11} colorFrom="#FD6E00" colorTo="#D90A5C" style={{ width: "100%" }} />
-          <GradientVibrationLine id="uv-vib-2" width={1800} height={45} amplitude={18} freq={8} strokeWidth={6} speed={16} colorFrom="#D90A5C" colorTo="#FD6E00" style={{ width: "100%" }} />
         </div>
       </section>
 
       {/* ── Équipe ── */}
       <section className="uv-team">
+        {/* Ondes de vibration animées en fond */}
+        <div className="uv-waves" aria-hidden="true">
+          <GradientVibrationLine id="uv-tw1" width={1800} height={70} amplitude={30} freq={5} strokeWidth={22} speed={10} colorFrom="#FD6E00" colorTo="#E6007E" style={{ width: "100%" }} />
+          <GradientVibrationLine id="uv-tw2" width={1800} height={70} amplitude={24} freq={7} strokeWidth={15} speed={14} colorFrom="#00AFDD" colorTo="#D90A5C" style={{ width: "100%" }} />
+          <GradientVibrationLine id="uv-tw3" width={1800} height={70} amplitude={34} freq={4} strokeWidth={18} speed={12} colorFrom="#E6007E" colorTo="#FD6E00" style={{ width: "100%" }} />
+        </div>
         <div className="uv-team-inner">
           <div className="uv-section-header">
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Sa concrétisation</p>
-            <h2 className="uv-section-title">L&apos;équipe derrière <em className="uv-serif-accent uv-serif-accent--rose">Uvibes</em></h2>
+            <h2 className="uv-section-title uv-section-title--magenta">L&apos;équipe derrière <em className="uv-serif-grad">Uvibes</em></h2>
           </div>
           <TeamSection />
         </div>
       </section>
 
-      {/* ── Vidéo équipe (remplace la photo pleine largeur) ── */}
-      <div className="uv-team-vid-wrap">
-        <video src={getVideoUrl("Lisa-desktop.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
-        <div className="uv-team-vid-label">Lisa · Professionnelle RH</div>
-      </div>
-
       {/* ── Éthique ── */}
       <section className="uv-ethics">
         <div className="uv-ethics-inner">
-          <div className="uv-section-header">
-            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Notre engagement</p>
-            <h2 className="uv-section-title">Une <em className="uv-serif-accent uv-serif-accent--rose">éthique</em> au cœur du projet</h2>
+          <div className="uv-ethics-header">
+            <div className="uv-ethics-header__text">
+              <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Notre engagement</p>
+              <h2 className="uv-section-title">Une <em className="uv-serif-grad">éthique</em> au cœur du projet</h2>
+            </div>
+            <div className="uv-ethics-polaroid">
+              <video src={getVideoUrl("Isaline-desktop.mp4")} autoPlay muted loop playsInline className="uv-ethics-polaroid__img" />
+            </div>
           </div>
           <div className="uv-ethics-grid">
             {ETHICS.map((e) => (
@@ -184,34 +155,36 @@ export default function Uvibes() {
               </div>
             ))}
           </div>
+
+          {/* Vidéo Lisa — déplacée sous les 3 cartes */}
+          <div className="uv-team-vid-wrap">
+            <video src={getVideoUrl("Lisa-desktop.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
+            <div className="uv-team-vid-label">Lisa · Professionnelle RH</div>
+          </div>
         </div>
       </section>
-
-      {/* Vidéo solo — après éthique */}
-      <div className="uv-solo-vid-wrap">
-        <div className="uv-solo-vid">
-          <video src={getVideoUrl("Nadine-desktop.mp4")} autoPlay muted loop playsInline className="uv-scatter-vid__el" />
-          <div className="uv-scatter-vid__label">Nadine · Aidante</div>
-        </div>
-      </div>
 
       {/* ── Portage Éclatens ── */}
       <section className="uv-portage">
         <div className="uv-portage-inner">
           <p className="uv-eyebrow" style={{ justifyContent: "center" }}><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
           <div className="uv-portage-card">
-            <Image src="/images/LogoEclatens.png" alt="Logo Éclatens" width={180} height={80} className="uv-portage-logo" />
-            <h3 className="uv-portage-title">Un modèle <em className="uv-em-orange">non lucratif</em></h3>
-            <p className="uv-portage-text">
-              Tous les bénéfices générés par Uvibes sont réinvestis dans le projet ou dans d&apos;autres initiatives portées par l&apos;association Éclatens — pour que la technologie serve vraiment les gens.
-            </p>
-            <HelloAssoDon />
+            <div className="uv-portage-card__media">
+              <Image src="/images/LogoEclatens.png" alt="Logo Éclatens" width={180} height={80} className="uv-portage-logo" />
+            </div>
+            <div className="uv-portage-card__body">
+              <h3 className="uv-portage-title">Un modèle <em className="uv-em-orange">non lucratif</em></h3>
+              <p className="uv-portage-text">
+                Tous les bénéfices générés par Uvibes sont réinvestis dans le projet ou dans d&apos;autres initiatives portées par l&apos;association Éclatens — pour que la technologie serve vraiment les gens.
+              </p>
+              <HelloAssoDon />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Wrapper uv-join + Footer seamless */}
-      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%)" }}>
+      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)" }}>
 
       {/* ── CTA rejoindre ── */}
       <section className="uv-join" style={{ background: "transparent" }}>
