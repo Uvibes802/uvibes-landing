@@ -69,11 +69,12 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="blog-content">
-        <AllArticle />
-      </section>
-
-      <Footer />
+      <div style={{ background: "var(--paper)" }}>
+        <section className="blog-content">
+          <AllArticle />
+        </section>
+        <Footer />
+      </div>
     </>
   );
 }

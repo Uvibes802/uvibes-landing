@@ -54,9 +54,11 @@ export default function SolutionPage() {
           <GradientVibrationLine id="sol-vib-2" width={1800} height={50} amplitude={18} freq={8} strokeWidth={6} speed={16} colorFrom="#D90A5C" colorTo="#FD6E00" style={{ width: "100%" }} />
         </div>
         <PricingTable />
-        <PartnerBanner />
+        <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%)" }}>
+          <PartnerBanner />
+          <Footer />
+        </div>
       </main>
-      <Footer />
     </>
   );
 }

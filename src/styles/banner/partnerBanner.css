@@ -2,8 +2,7 @@
 .pb-section {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%);
-  background-attachment: fixed;
+  background: transparent;
   padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
   text-align: center;
   margin-bottom: 0;

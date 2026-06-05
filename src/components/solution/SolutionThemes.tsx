@@ -103,40 +103,30 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
     <div
       ref={ref}
       className={`sth-card${visible ? " sth-card--visible" : ""}${hovered ? " sth-card--hovered" : ""}`}
-      style={{
-        "--sth-color": theme.color,
-        "--sth-gradient": theme.cardGradient,
-        "--sth-icon-bg": theme.iconBg,
-        "--sth-delay": `${index * 60}ms`,
-      } as React.CSSProperties}
+      style={{ "--sth-color": theme.color, "--sth-icon-bg": theme.iconBg, "--sth-delay": `${index * 60}ms` } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Icône */}
-      <div className={`sth-icon${hovered ? " sth-icon--hovered" : ""}`} aria-hidden="true">
-        <Icon size={20} strokeWidth={1.8} />
+      {/* Barre accent */}
+      <div className="sth-card-top-bar" aria-hidden="true" />
+
+      {/* Icône + Titre */}
+      <div className="sth-card-head">
+        <div className={`sth-icon${hovered ? " sth-icon--hovered" : ""}`} aria-hidden="true">
+          <Icon size={18} strokeWidth={1.8} />
+        </div>
+        <h3 className="sth-card-title">{theme.title}</h3>
       </div>
 
-      {/* Titre */}
-      <h3 className="sth-card-title">{theme.title}</h3>
-
-      {/* Description */}
-      <p className="sth-card-desc">{theme.desc}</p>
-
-      {/* Questions */}
-      <ul className="sth-questions">
-        <li className="sth-question">
-          <span className="sth-q-dot" aria-hidden="true" />
-          {theme.q1}
-        </li>
-        <li className="sth-question">
-          <span className="sth-q-dot" aria-hidden="true" />
-          {theme.q2}
-        </li>
-      </ul>
-
-      {/* Label */}
-      <span className="sth-label">{theme.label}</span>
+      {/* Corps */}
+      <div className="sth-card-body">
+        <p className="sth-card-desc">{theme.desc}</p>
+        <ul className="sth-questions">
+          <li className="sth-question"><span className="sth-q-dot" aria-hidden="true" />{theme.q1}</li>
+          <li className="sth-question"><span className="sth-q-dot" aria-hidden="true" />{theme.q2}</li>
+        </ul>
+        <span className="sth-label">{theme.label}</span>
+      </div>
     </div>
   );
 }
@@ -150,14 +140,9 @@ export default function SolutionThemes() {
           <span className="sth-eyebrow-text">Thématiques</span>
         </div>
         <h2 className="sth-heading">
-          <span className="sth-heading-main">6 univers de conversation</span>
-          <br />
-          <span className="sth-heading-sub">pour créer des échanges plus riches.</span>
+          <span className="sth-heading-main">6 univers de conversation<br />pour votre{" "}</span>
+          <span className="sth-heading-sub v-serif">collectif.</span>
         </h2>
-        <p className="sth-subtext">
-          Des thèmes pensés pour stimuler les échanges,<br className="sth-br" />
-          renforcer les liens et créer des conversations naturelles.
-        </p>
       </div>
 
       <div className="sth-grid">

@@ -1,4 +1,4 @@
-/* ── SolutionHowItWorks — bento grid ──────────────────────────── */
+/* ── SolutionHowItWorks — roadmap zigzag ──────────────────────── */
 
 .shiw-section {
   scroll-margin-top: 70px;
@@ -9,46 +9,39 @@
   overflow: hidden;
 }
 
-/* Blobs saturés éparpillés */
 .shiw-section::before {
   content: '';
   position: absolute;
-  top: 18%; left: 8%;
-  width: 480px; height: 480px;
+  top: 10%; right: -60px;
+  width: 420px; height: 420px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255,176,40,.42), transparent 68%);
-  filter: blur(52px);
+  background: radial-gradient(closest-side, rgba(255,176,40,.28), transparent 70%);
+  filter: blur(56px);
   pointer-events: none;
 }
-
 .shiw-section::after {
   content: '';
   position: absolute;
-  top: 45%; right: 6%;
-  width: 400px; height: 400px;
+  bottom: 15%; left: -60px;
+  width: 360px; height: 360px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.28), transparent 68%);
-  filter: blur(48px);
+  background: radial-gradient(closest-side, rgba(217,10,92,.2), transparent 70%);
+  filter: blur(50px);
   pointer-events: none;
 }
 
-/* Blobs HTML additionnels */
-.shiw-xblob {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
+.shiw-xblob { position: absolute; border-radius: 50%; pointer-events: none; }
 .shiw-xblob--1 {
-  top: 62%; left: 38%;
-  width: 360px; height: 360px;
-  background: radial-gradient(closest-side, rgba(253,110,0,.32), transparent 70%);
+  top: 45%; left: 30%;
+  width: 340px; height: 340px;
+  background: radial-gradient(closest-side, rgba(253,110,0,.2), transparent 70%);
   filter: blur(44px);
   animation: shiw-float 18s ease-in-out infinite;
 }
 .shiw-xblob--2 {
-  top: 25%; right: 30%;
-  width: 300px; height: 300px;
-  background: radial-gradient(closest-side, rgba(255,228,86,.36), transparent 70%);
+  top: 20%; right: 25%;
+  width: 280px; height: 280px;
+  background: radial-gradient(closest-side, rgba(255,228,86,.24), transparent 70%);
   filter: blur(38px);
   animation: shiw-float 14s ease-in-out infinite reverse 2s;
 }
@@ -58,20 +51,23 @@
   70%     { transform: translate(-12px,10px); }
 }
 
-/* ── Layout ───────────────────────────────────────────────────── */
+/* ── Layout 2 col ─────────────────────────────────────────────── */
 .shiw-inner {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(3rem, 7vw, 8rem);
+  align-items: start;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* ── Header centré ────────────────────────────────────────────── */
+/* ── Header sticky ────────────────────────────────────────────── */
 .shiw-head {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto;
+  position: sticky;
+  top: 96px;
+  text-align: left;
 }
 
 .shiw-eyebrow {
@@ -81,149 +77,181 @@
   padding: 6px 16px;
   border-radius: 999px;
   background: rgba(253,110,0,.08);
-  border: 1px solid rgba(253,110,0,.16);
+  border: 1px solid rgba(253,110,0,.18);
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #FD6E00;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.5rem;
 }
-
-.shiw-eyebrow-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #FD6E00;
-  flex-shrink: 0;
-}
+.shiw-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #FD6E00; flex-shrink: 0; }
 
 .shiw-title {
-  font-size: clamp(32px, 4.5vw, 56px);
+  font-size: clamp(28px, 3.5vw, 48px);
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.04em;
   color: var(--orange);
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
 }
-
 .shiw-title-accent {
   font-style: italic;
   font-family: var(--font-instrument), "Instrument Serif", serif;
   color: #D90A5C;
   -webkit-text-fill-color: #D90A5C;
 }
-
 .shiw-subtitle {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.65;
   color: #6b4455;
   margin: 0;
+  max-width: 340px;
 }
 
-/* ── Bento grid 2×2 ──────────────────────────────────────────── */
-.shiw-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-
-/* ── Card premium ─────────────────────────────────────────────── */
-.shiw-card {
-  background: rgba(255,255,255,.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 32px;
-  border: 1.5px solid rgba(255,255,255,.8);
-  padding: 2rem 2rem 1.75rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 10px 36px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.95);
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease;
-  transition-delay: var(--delay, 0ms);
-}
-
-.shiw-card--vis { opacity: 1; transform: translateY(0); }
-
-.shiw-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 2px 6px rgba(0,0,0,.06), 0 20px 50px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.95);
-}
-
-/* ── Card top : icône + watermark ────────────────────────────── */
-.shiw-card-top {
+/* ── Roadmap zigzag ───────────────────────────────────────────── */
+.shiw-roadmap {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
+  flex-direction: column;
+  gap: clamp(2.5rem, 4vw, 4rem);
+  position: relative;
 }
 
-.shiw-card-icon {
-  width: 56px; height: 56px;
-  border-radius: 18px;
-  background: linear-gradient(145deg, var(--card-accent, #FD6E00), color-mix(in srgb, var(--card-accent, #FD6E00) 60%, #D90A5C));
+/* Ligne verticale centrale */
+.shiw-roadmap::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(to bottom,
+    rgba(253,110,0,.25),
+    rgba(217,10,92,.25),
+    rgba(255,107,53,.25),
+    rgba(230,0,126,.2));
+  border-radius: 2px;
+}
+
+/* ── Étape ────────────────────────────────────────────────────── */
+.shiw-step {
   display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--card-accent, #FD6E00) 40%, transparent);
+  grid-template-columns: 1fr 48px 1fr;
+  gap: 0;
+  align-items: start;
+  position: relative;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.55s ease var(--step-delay, 0ms),
+    transform 0.55s cubic-bezier(.2,.7,.2,1) var(--step-delay, 0ms);
+}
+.shiw-step--visible { opacity: 1; transform: translateY(0); }
+
+/* Contenu à gauche pour les pairs, à droite pour les impairs */
+.shiw-step-content {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  padding-right: 1.75rem;
+}
+.shiw-step--right .shiw-step-content {
+  grid-column: 3;
+  text-align: left;
+  padding-right: 0;
+  padding-left: 1.75rem;
 }
 
-.shiw-card-watermark {
-  font-size: clamp(52px, 6vw, 80px);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  color: var(--card-accent, #FD6E00);
-  opacity: 0.07;
-  user-select: none;
-  pointer-events: none;
-  margin-top: -8px;
+/* Numéro centré sur la ligne */
+.shiw-step-num {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
+
+.shiw-step-num-text {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--step-color, #FD6E00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--step-color, #FD6E00);
+  letter-spacing: -0.03em;
+  font-family: var(--font-prompt), sans-serif;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08), 0 0 0 4px color-mix(in srgb, var(--step-color, #FD6E00) 10%, transparent);
+  flex-shrink: 0;
+}
+
+.shiw-step-num-line { display: none; }
 
 /* ── Texte ────────────────────────────────────────────────────── */
-.shiw-card-title {
-  font-size: clamp(17px, 1.7vw, 20px);
+.shiw-step-title {
+  font-size: clamp(16px, 1.6vw, 19px);
   font-weight: 700;
-  line-height: 1.22;
   color: var(--orange);
   letter-spacing: -0.02em;
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.6rem;
+  line-height: 1.25;
+  font-family: var(--font-prompt), sans-serif;
 }
 
-.shiw-card-body {
+.shiw-step-body {
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.7;
   color: #6b4455;
-  margin: 0;
+  margin: 0 0 0.75rem;
 }
 
-/* ── Tag pill ─────────────────────────────────────────────────── */
-.shiw-tag {
+.shiw-step-tag {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px 12px;
+  gap: 6px;
+  padding: 4px 10px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--card-accent, #FD6E00) 8%, white);
-  border: 1px solid color-mix(in srgb, var(--card-accent, #FD6E00) 20%, transparent);
-  margin-top: 1rem;
-}
-
-.shiw-tag-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--card-accent, #FD6E00);
-  flex-shrink: 0;
-}
-
-.shiw-tag-text {
+  background: color-mix(in srgb, var(--step-color, #FD6E00) 7%, white);
+  border: 1px solid color-mix(in srgb, var(--step-color, #FD6E00) 18%, transparent);
   font-size: 11px;
-  letter-spacing: 0.05em;
-  color: var(--card-accent, #FD6E00);
+  letter-spacing: 0.04em;
+  color: var(--step-color, #FD6E00);
   font-family: var(--font-roboto-mono), monospace;
 }
 
+.shiw-step-tag-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--step-color, #FD6E00);
+  flex-shrink: 0;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .shiw-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .shiw-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .shiw-head { position: static; }
+  .shiw-subtitle { max-width: 100%; }
+
+  /* Roadmap linear sur mobile */
+  .shiw-roadmap::before {
+    left: 24px;
+    transform: none;
+  }
+  .shiw-step {
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+  }
+  .shiw-step-num { grid-column: 1; grid-row: 1; }
+  .shiw-step-content,
+  .shiw-step--right .shiw-step-content {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+    padding: 0;
+  }
 }
