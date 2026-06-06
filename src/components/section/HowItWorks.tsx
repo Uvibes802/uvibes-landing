@@ -17,7 +17,7 @@ const STEPS: { n: string; color: string; title: React.ReactNode; body: React.Rea
   {
     n: "02",
     color: "#D90A5C",
-    title: <><span className="how-kw">Deux membres.</span> Une conversation. <span className="how-kw">Trois minutes.</span></>,
+    title: <><span className="how-kw">Deux membres.</span> Une conversation. <span className="how-kw">Six minutes.</span></>,
     body: <>Les membres se rencontrent <span className="how-kw">aléatoirement</span> lors d&apos;échanges vidéo individuels. Des <span className="how-kw">questions adaptées</span> viennent guider la conversation. À la fin, les participants peuvent échanger leurs <span className="how-kw">cartes de visite</span>.</>,
     time: "2 à 3 min par échange",
   },
