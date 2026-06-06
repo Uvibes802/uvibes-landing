@@ -117,12 +117,6 @@ export default function HomeHero() {
         })}
       </div>
 
-      {/* ── Eyebrow ── */}
-      <div className="hero-eyebrow">
-        <span className="hero-eyebrow-line" aria-hidden="true" />
-        <span className="v-mono hero-eyebrow-text">Application bien-être collectif · 2026</span>
-      </div>
-
       {/* ── Grille principale ── */}
       <div className="hero-grid">
         {/* Colonne texte — h1 uniquement */}
