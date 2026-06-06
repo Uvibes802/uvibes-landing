@@ -49,11 +49,7 @@
 .pt-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: rgba(253,110,0,.08);
-  border: 1px solid rgba(253,110,0,.16);
+  gap: 10px;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
