@@ -436,7 +436,7 @@
 .uv-ethics-polaroid {
   flex-shrink: 0;
   background: #fff;
-  padding: 12px;
+  padding: 12px 12px 30px;
   border-radius: 8px;
   box-shadow: 0 14px 36px rgba(0,0,0,.16), 0 4px 12px rgba(0,0,0,.1);
   transform: rotate(4deg);

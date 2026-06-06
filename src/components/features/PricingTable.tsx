@@ -8,7 +8,6 @@ import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 
 import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
-import PricingMobile from "./PricingMobile";
 
 const PLAN_META = [
   {
@@ -80,12 +79,7 @@ export default function PricingTable() {
         <GradientVibrationLine id="pt-w3" width={1800} height={70} amplitude={36} freq={4} strokeWidth={20} speed={12} colorFrom="#E6007E" colorTo="#FD6E00" style={{ width: "100%" }} />
       </div>
 
-      {/* Mobile — composant existant */}
-      <div className="pt-mobile-only">
-        <PricingMobile />
-      </div>
-
-      {/* Desktop — 3 cards redesign */}
+      {/* Mêmes cartes premium sur tous les écrans (empilées en mobile) */}
       <div className="pt-desktop-only">
         {/* Header */}
         <div className="pt-head">

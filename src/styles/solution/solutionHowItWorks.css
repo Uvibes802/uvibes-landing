@@ -329,7 +329,7 @@
 }
 
 /* ── Responsive — vertical sur mobile ───────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .shiw-roadmap {
     flex-direction: column;
     gap: 2rem;

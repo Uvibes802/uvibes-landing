@@ -312,8 +312,8 @@
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .pt-mobile-only  { display: block; }
-  .pt-desktop-only { display: none; }
+  /* On garde les mêmes cartes premium que sur grand écran, simplement empilées */
+  .pt-grid { grid-template-columns: 1fr; max-width: 440px; }
   .pt-card--featured { transform: none; }
   .pt-card--featured:hover { transform: translateY(-4px); }
 }

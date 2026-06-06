@@ -62,19 +62,17 @@ export default function WhyName() {
           </p>
         </div>
 
-        {/* Colonne médias — polaroïds */}
+        {/* Médias — polaroïds côte à côte */}
         <div className="uvn-media">
-          <div className="uvn-polaroid uvn-polaroid--main">
+          <div className="uvn-polaroid uvn-polaroid--a">
             <div className="uvn-polaroid-media">
               <video src={getVideoUrl("Colette-desktop.mp4")} autoPlay muted loop playsInline />
             </div>
-            <span className="uvn-polaroid-cap">You · celui qui vit l&apos;expérience</span>
           </div>
-          <div className="uvn-polaroid uvn-polaroid--accent">
+          <div className="uvn-polaroid uvn-polaroid--b">
             <div className="uvn-polaroid-media">
               <video src={getVideoUrl("Delphine-desktop.mp4")} autoPlay muted loop playsInline />
             </div>
-            <span className="uvn-polaroid-cap">Une rencontre inattendue</span>
           </div>
         </div>
       </div>

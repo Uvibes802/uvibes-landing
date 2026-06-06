@@ -17,7 +17,7 @@ export default function SolutionSoftSkills() {
       {/* Ondes de vibration en fond — identité uvibes */}
       <div className="sss-waves" aria-hidden="true">
         <GradientVibrationLine id="sss-w1" width={1800} height={70} amplitude={30} freq={5} strokeWidth={20} speed={11} colorFrom="#FD6E00" colorTo="#E6007E" style={{ width: "100%" }} />
-        <GradientVibrationLine id="sss-w2" width={1800} height={70} amplitude={24} freq={7} strokeWidth={13} speed={15} colorFrom="#00AFDD" colorTo="#D90A5C" style={{ width: "100%" }} />
+        <GradientVibrationLine id="sss-w2" width={1800} height={70} amplitude={24} freq={7} strokeWidth={13} speed={15} colorFrom="#FFB800" colorTo="#D90A5C" style={{ width: "100%" }} />
       </div>
 
       <div className="sss-inner">
@@ -36,69 +36,81 @@ export default function SolutionSoftSkills() {
           </p>
         </header>
 
-        <div className="sss-cards">
+        <div className="sss-rows">
 
-          {/* ── 1 · Ressources (podcast / vidéo) ── */}
-          <article className="sss-card" style={{ "--c": "#FD6E00" } as React.CSSProperties}>
-            <div className="sss-illu sss-illu--wave" aria-hidden="true">
-              <span className="sss-play">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-              </span>
-              <div className="sss-wave">
-                {WAVE_BARS.map((h, i) => (
-                  <span key={i} className="sss-wave-bar" style={{ "--h": h, animationDelay: `${i * 0.09}s` } as React.CSSProperties} />
-                ))}
+          {/* ── 01 · Ressources (podcast / vidéo) ── */}
+          <div className="sss-row" style={{ "--c": "#FD6E00" } as React.CSSProperties}>
+            <div className="sss-illu-col">
+              <div className="sss-illu sss-illu--wave" aria-hidden="true">
+                <span className="sss-play">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <div className="sss-wave">
+                  {WAVE_BARS.map((h, i) => (
+                    <span key={i} className="sss-wave-bar" style={{ "--h": h, animationDelay: `${i * 0.09}s` } as React.CSSProperties} />
+                  ))}
+                </div>
               </div>
             </div>
-            <span className="sss-card-num v-mono">01</span>
-            <h3 className="sss-card-title">Des ressources à disposition</h3>
-            <p className="sss-card-body">
-              Vidéos et podcasts pour comprendre, concrètement, comment progresser
-              sur chaque soft skill.
-            </p>
-          </article>
-
-          {/* ── 2 · Terrain d'entraînement quotidien ── */}
-          <article className="sss-card" style={{ "--c": "#D90A5C" } as React.CSSProperties}>
-            <div className="sss-illu sss-illu--streak" aria-hidden="true">
-              <div className="sss-days">
-                {DAYS.map((on, i) => (
-                  <span key={i} className={`sss-day${on ? " sss-day--on" : ""}${i === 4 ? " sss-day--now" : ""}`} />
-                ))}
-              </div>
-              <div className="sss-pulse-line" />
+            <div className="sss-text-col">
+              <span className="sss-num v-mono">01</span>
+              <h3 className="sss-row-title">Des ressources à disposition</h3>
+              <p className="sss-row-body">
+                Vidéos et podcasts pour comprendre, concrètement, comment progresser
+                sur chaque soft skill.
+              </p>
             </div>
-            <span className="sss-card-num v-mono">02</span>
-            <h3 className="sss-card-title">Un terrain d&apos;entraînement quotidien</h3>
-            <p className="sss-card-body">
-              Chaque échange est une occasion de pratiquer pour de vrai — écoute,
-              prise de parole, ouverture — un peu chaque jour.
-            </p>
-          </article>
+          </div>
 
-          {/* ── 3 · Attestation / certificat ── */}
-          <article className="sss-card" style={{ "--c": "#00AFDD" } as React.CSSProperties}>
-            <div className="sss-illu sss-illu--cert" aria-hidden="true">
-              <div className="sss-doc">
-                <span className="sss-doc-line" />
-                <span className="sss-doc-line sss-doc-line--short" />
-                <span className="sss-doc-line sss-doc-line--shorter" />
-              </div>
-              <div className="sss-seal">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.4">
-                  <path d="M5 12l5 5L20 6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span className="sss-seal-ribbon" />
-                <span className="sss-seal-ribbon sss-seal-ribbon--2" />
+          {/* ── 02 · Terrain d'entraînement quotidien ── */}
+          <div className="sss-row sss-row--reverse" style={{ "--c": "#E6007E" } as React.CSSProperties}>
+            <div className="sss-illu-col">
+              <div className="sss-illu sss-illu--streak" aria-hidden="true">
+                <div className="sss-days">
+                  {DAYS.map((on, i) => (
+                    <span key={i} className={`sss-day${on ? " sss-day--on" : ""}${i === 4 ? " sss-day--now" : ""}`} />
+                  ))}
+                </div>
+                <div className="sss-pulse-line" />
               </div>
             </div>
-            <span className="sss-card-num v-mono">03</span>
-            <h3 className="sss-card-title">Une attestation pour se valoriser</h3>
-            <p className="sss-card-body">
-              Les utilisateurs obtiennent un certificat qui reconnaît leur entraînement
-              et valorise leurs soft skills.
-            </p>
-          </article>
+            <div className="sss-text-col">
+              <span className="sss-num v-mono">02</span>
+              <h3 className="sss-row-title">Un terrain d&apos;entraînement quotidien</h3>
+              <p className="sss-row-body">
+                Chaque échange est une occasion de pratiquer pour de vrai — écoute,
+                prise de parole, ouverture — un peu chaque jour.
+              </p>
+            </div>
+          </div>
+
+          {/* ── 03 · Attestation / certificat ── */}
+          <div className="sss-row" style={{ "--c": "#F59E0B" } as React.CSSProperties}>
+            <div className="sss-illu-col">
+              <div className="sss-illu sss-illu--cert" aria-hidden="true">
+                <div className="sss-doc">
+                  <span className="sss-doc-line" />
+                  <span className="sss-doc-line sss-doc-line--short" />
+                  <span className="sss-doc-line sss-doc-line--shorter" />
+                </div>
+                <div className="sss-seal">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                    <path d="M5 12l5 5L20 6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="sss-seal-ribbon" />
+                  <span className="sss-seal-ribbon sss-seal-ribbon--2" />
+                </div>
+              </div>
+            </div>
+            <div className="sss-text-col">
+              <span className="sss-num v-mono">03</span>
+              <h3 className="sss-row-title">Une attestation pour se valoriser</h3>
+              <p className="sss-row-body">
+                Les utilisateurs obtiennent un certificat qui reconnaît leur entraînement
+                et valorise leurs soft skills.
+              </p>
+            </div>
+          </div>
 
         </div>
       </div>

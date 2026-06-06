@@ -84,6 +84,9 @@ export default function Uvibes() {
         </div>
       </section>
 
+      {/* ── Pourquoi « Uvibes » ? ── */}
+      <WhyName />
+
       {/* ── Intro ── */}
       <section className="uv-intro">
         <div className="uv-intro-inner">
@@ -117,9 +120,6 @@ export default function Uvibes() {
           </div>
         </div>
       </section>
-
-      {/* ── Pourquoi « Uvibes » ? ── */}
-      <WhyName />
 
       {/* ── Équipe ── */}
       <section className="uv-team">
