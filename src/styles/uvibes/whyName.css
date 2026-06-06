@@ -1,0 +1,177 @@
+/* ── Pourquoi « Uvibes » ? — sens du nom ───────────────────────── */
+
+.uvn-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 3.5rem) clamp(4rem, 7vw, 7rem);
+  background: transparent;
+}
+
+/* Grand U décoratif en fond */
+.uvn-bigU {
+  position: absolute;
+  top: clamp(-2rem, -4vw, -4rem);
+  right: clamp(-1rem, 2vw, 4rem);
+  font-size: clamp(220px, 38vw, 540px);
+  line-height: 0.8;
+  font-weight: 700;
+  background: linear-gradient(160deg, rgba(253,110,0,.08), rgba(217,10,92,.05));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Particules flottantes */
+.uvn-particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.uvn-p {
+  position: absolute;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: uvnFloat ease-in-out infinite;
+}
+.uvn-p--0 { background: var(--orange); }
+.uvn-p--1 { background: var(--rose); }
+.uvn-p--2 { background: #FFB040; }
+
+@keyframes uvnFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50%      { transform: translateY(-26px) scale(1.25); opacity: 0.85; }
+}
+
+/* Grille principale */
+.uvn-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+/* Texte — révélation au scroll */
+.uvn-text {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.uvn-vis .uvn-text { opacity: 1; transform: none; }
+
+.uvn-lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--ink, #1a1715);
+  margin: 1.25rem 0 1rem;
+  font-weight: 500;
+}
+.uvn-body {
+  font-size: clamp(0.98rem, 1.4vw, 1.1rem);
+  line-height: 1.75;
+  color: rgba(26,23,21,.78);
+  margin: 0 0 1rem;
+}
+
+/* Mots-clés surlignés (Vibes / U) */
+.uvn-hl {
+  font-weight: 700;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+.uvn-hl--rose   { color: var(--rose);   background: rgba(217,10,92,.10); }
+.uvn-hl--orange { color: var(--orange); background: rgba(253,110,0,.12); }
+
+/* Médias — polaroïds */
+.uvn-media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 360px;
+}
+
+.uvn-polaroid {
+  background: #fff;
+  padding: 12px 12px 14px;
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.16), 0 4px 12px rgba(0,0,0,.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+}
+.uvn-polaroid-media {
+  overflow: hidden;
+  border-radius: 4px;
+}
+.uvn-polaroid-media video {
+  display: block;
+  width: clamp(190px, 22vw, 270px);
+  aspect-ratio: 3 / 4;
+  height: auto;
+  object-fit: cover;
+}
+.uvn-polaroid-cap {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: rgba(26,23,21,.6);
+}
+
+/* Polaroïd principal */
+.uvn-polaroid--main {
+  transform: rotate(-3deg) translateY(20px);
+  z-index: 2;
+}
+/* Polaroïd accent — décalé derrière */
+.uvn-polaroid--accent {
+  position: absolute;
+  top: 0; right: clamp(0px, 2vw, 30px);
+  transform: rotate(5deg) scale(0.82) translateY(-10px);
+  z-index: 1;
+}
+.uvn-polaroid--accent .uvn-polaroid-cap { display: none; }
+
+/* Révélation des polaroïds */
+.uvn-vis .uvn-polaroid--main {
+  animation: uvnPolaroidIn 0.8s ease 0.15s forwards;
+}
+.uvn-vis .uvn-polaroid--accent {
+  animation: uvnPolaroidInAccent 0.8s ease 0.35s forwards;
+}
+@keyframes uvnPolaroidIn {
+  from { opacity: 0; transform: rotate(-3deg) translateY(48px); }
+  to   { opacity: 1; transform: rotate(-3deg) translateY(20px); }
+}
+@keyframes uvnPolaroidInAccent {
+  from { opacity: 0; transform: rotate(5deg) scale(0.82) translateY(24px); }
+  to   { opacity: 1; transform: rotate(5deg) scale(0.82) translateY(-10px); }
+}
+
+/* Hover — léger redressement */
+.uvn-polaroid--main:hover  { transform: rotate(-1deg) translateY(14px) scale(1.02); }
+.uvn-polaroid--accent:hover { transform: rotate(3deg) scale(0.86) translateY(-14px); }
+
+/* Ligne de vibration bas */
+.uvn-vib {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  z-index: 0;
+}
+.uvn-vib svg { width: 100%; }
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .uvn-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .uvn-media { order: -1; min-height: 340px; margin-bottom: 1rem; }
+}

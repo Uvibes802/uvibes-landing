@@ -41,17 +41,13 @@
 .uv-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 11px;
   letter-spacing: 0.18em;
   color: #FD6E00;
   text-transform: uppercase;
   font-family: var(--font-roboto-mono), monospace;
   margin: 0 0 1rem;
-  padding: 5px 14px;
-  background: rgba(253,110,0,.08);
-  border: 1px solid rgba(253,110,0,.16);
-  border-radius: 999px;
 }
 .uv-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #FD6E00; flex-shrink: 0; }
 

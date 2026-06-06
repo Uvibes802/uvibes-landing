@@ -2,6 +2,7 @@ import Footer from "@/components/footer/Footer";
 import { getVideoUrl } from "@/utils/videoUrl";
 import JsonLd from "@/components/JsonLd";
 import TeamSection from "@/components/section/TeamSection";
+import WhyName from "@/components/uvibes/WhyName";
 import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
 import VibrationLine from "@/components/shared/VibrationLine";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
@@ -116,6 +117,9 @@ export default function Uvibes() {
           </div>
         </div>
       </section>
+
+      {/* ── Pourquoi « Uvibes » ? ── */}
+      <WhyName />
 
       {/* ── Équipe ── */}
       <section className="uv-team">
