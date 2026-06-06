@@ -68,14 +68,10 @@ export default function SolutionHero() {
       <div className="sh-inner">
         {/* Texte */}
         <div className="sh-content">
-          <p className="v-mono sh-eyebrow">
-            <span className="sh-eyebrow-dot" aria-hidden="true" />
-            La solution Uvibes
-          </p>
           <h1 className="sh-title v-prompt">
             La solution<br />
             pour votre<br />
-            <span className="sh-title-accent">collectif.</span>
+            <span className="sh-title-accent">organisation.</span>
           </h1>
           <p className="sh-desc">
             Découvrez comment Uvibes s&apos;adapte à votre contexte

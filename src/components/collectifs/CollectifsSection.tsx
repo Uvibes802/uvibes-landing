@@ -42,12 +42,12 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
             </span>
             <h2 className="collectifs-title">
               Chaque{" "}
-              <span className="collectifs-title-serif">collectif</span>
+              <span className="collectifs-title-serif">organisation</span>
               <br />a ses enjeux.
             </h2>
             <p className="collectifs-desc">
-              Découvrez le vôtre. Onze contextes typiques —{" "}
-              la vraie réponse vient toujours d&apos;une conversation.
+              11 secteurs d&apos;activité auxquels Uvibes apporte une meilleure
+              compréhension du terrain et un engagement renforcé de son collectif.
             </p>
           </div>
         </div>

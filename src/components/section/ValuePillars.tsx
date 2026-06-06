@@ -12,9 +12,9 @@ const pillars = [
     title: "Fédérer",
     titleEt: "et",
     titleSuffix: "engager",
-    body: "Créer un sentiment d'appartenance fort à votre organisation. Vos membres se croisent chaque jour — Uvibes les fait se rencontrer.",
-    stat: "+38%",
-    statLabel: "de sentiment d'appartenance après 6 semaines",
+    body: "Créez un sentiment d'appartenance fort à votre organisation. Celui-ci naît rarement dans les réunions : il se construit au quotidien, à travers les échanges informels. Uvibes renforce l'identité collective et fédère autour d'une vision commune.",
+    stat: "x4",
+    statLabel: "d'engagement dans les organisations où le sentiment d'appartenance est fort",
   },
   {
     id: "piloter",
@@ -26,7 +26,7 @@ const pillars = [
     titleSuffix: "décider",
     body: "Accédez à des données en temps réel pour augmenter l'efficacité de vos actions. Pas un rapport de 40 pages — juste ce qu'il faut pour agir.",
     stat: "< 5 min",
-    statLabel: "pour lire le pouls de votre collectif",
+    statLabel: "pour connaître chaque semaine les dynamiques de votre collectif",
   },
 ];
 
