@@ -5,7 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "../../styles/section/bannerCount.css";
 
-const FILLER_STATIC = "échanges engagés";
+const FILLERS = [
+  "priorités partagées",
+  "visions croisées",
+  "inspirations nouvelles",
+  "confiance créée",
+  "bons plans échangés",
+  "objectifs alignés",
+];
 
 function useCountUp(target: number, duration: number, started: boolean) {
   const [v, setV] = useState(0);
@@ -39,6 +46,20 @@ export default function BannerCount() {
   const rawScore = useCountUp(49, 1800, started);
   const score = (rawScore / 10).toFixed(1);
 
+  // Mot en rotation à côté du compteur
+  const [fillerIdx, setFillerIdx] = useState(0);
+  const [fillerVisible, setFillerVisible] = useState(true);
+  useEffect(() => {
+    const iv = setInterval(() => {
+      setFillerVisible(false);
+      setTimeout(() => {
+        setFillerIdx((i) => (i + 1) % FILLERS.length);
+        setFillerVisible(true);
+      }, 300);
+    }, 2600);
+    return () => clearInterval(iv);
+  }, []);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -52,8 +73,13 @@ export default function BannerCount() {
 
   return (
     <section className="banner-count" ref={ref}>
-      <div className="bc-dash bc-dash--top"    aria-hidden="true" />
-      <div className="bc-dash bc-dash--bottom" aria-hidden="true" />
+      {/* Vagues de délimitation haut / bas (couleur du fond de page) */}
+      <svg className="bc-wave bc-wave--top" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 H1440 V18 C1140,40 960,2 720,20 C480,38 300,2 0,22 Z" />
+      </svg>
+      <svg className="bc-wave bc-wave--bottom" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 H1440 V22 C1140,0 960,38 720,20 C480,2 300,38 0,18 Z" />
+      </svg>
       <div className="banner-count-vlines" aria-hidden="true">
         <VibrationLine width={1400} height={70} amplitude={20} freq={6} stroke="rgba(255,255,255,.25)" strokeWidth={1.5} speed={14} />
         <VibrationLine width={1400} height={70} amplitude={14} freq={9} stroke="rgba(255,255,255,.15)" strokeWidth={1} speed={20} />
@@ -63,12 +89,14 @@ export default function BannerCount() {
 
         {/* Compteur principal */}
         <div className="banner-count-main">
-          <span className="v-mono banner-count-label">Déjà actifs sur Uvibes</span>
+          <span className="v-mono banner-count-label">en 2026</span>
           <div className="banner-count-row">
             <h2 className="banner-count-number v-prompt">
               {display}<span className="banner-count-plus">+</span>
             </h2>
-            <span className="banner-count-filler v-serif">{FILLER_STATIC}</span>
+            <span className="banner-count-filler v-serif" style={{ opacity: fillerVisible ? 1 : 0 }}>
+              {FILLERS[fillerIdx]}
+            </span>
           </div>
         </div>
 
@@ -98,7 +126,6 @@ export default function BannerCount() {
               </div>
             </div>
           </div>
-          <span className="v-mono banner-score-label">312 avis vérifiés</span>
         </div>
 
       </div>
