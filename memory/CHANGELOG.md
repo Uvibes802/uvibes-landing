@@ -40,6 +40,21 @@
 - `pnpm build` ✅ (toutes les routes compilent, dont /solution et /uvibes)
 - Screenshots Playwright desktop 1280 + mobile 390 sur home, /solution, /uvibes ✅ — console 0 erreur
 
+### Corrections (retours) — même journée
+- **BannerCount** : vagues haut/bas plus marquées ; compteur stabilisé (largeur réservée → fini le tremblement pendant l'incrément)
+- **ConversationIntro** : ombre du téléphone supprimée ; point repositionné au début de la phrase philosophie
+- **ValuePillars** : titre long réduit (clamp 30/3.8vw/54) ; label de stat « x4 / … » ramené sur 2 lignes propres
+- **HowItWorks** : libellés d'étapes sans point ni filet supérieur → soulignés par une petite ligne de vibration (couleur de l'étape)
+- **CollectifsSection** : descendante du « g » d'« organisation » plus coupée
+- **SolutionHero** : contenu centré verticalement (plus collé en haut), titre agrandi (clamp 52/7vw/104), responsive
+- **SolutionHowItWorks** : passage au layout vertical dès 1024px (tablettes mieux organisées)
+- **Soft skills** : redesign sans cartes (lignes éditoriales alternées), titres colorés orange/magenta/ambre (ni sombre, ni bleu)
+- **PricingTable** : mêmes cartes premium empilées en responsive (suppression du swiper mobile incohérent) → `/solution` −28 kB
+- **À propos** : section « Pourquoi Uvibes ? » remontée en tête ; polaroïds côte à côte (plus superposés), sans légende, espace blanc en bas ; texte restylé
+- **Polaroïds** : espace blanc bas ajouté partout (config solution, éthique à propos)
+- **Durées** : « 3 minutes » / « 2 à 3 minutes » alignés sur « 6 minutes » / « 6 à 20 minutes »
+- **Mockup** : guillemets « » retirés de la 3ᵉ question
+
 ---
 
 ## 2026-06-03 — Session redesign premium macOS v3 — phase 2 (branche style/redesign-premium-v3)
