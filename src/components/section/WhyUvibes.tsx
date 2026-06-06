@@ -42,7 +42,7 @@ export default function WhyUvibes() {
             <p className="text-regular why-uvibes-text">
               <span className="kw kw-cyan">Uvibes</span> est une <span className="kw kw-cyan">app mobile</span> qui crée des{" "}
               <span className="kw kw-green">rencontres authentiques</span> au sein de votre équipe.
-              Des <span className="kw kw-cyan">échanges vidéo</span> guidés de 2 à 3 minutes, autour de questions{" "}
+              Des <span className="kw kw-cyan">échanges vidéo</span> guidés de 6 à 20 minutes, autour de questions{" "}
               <span className="kw kw-green">positives</span> — pour que chaque personne devienne quelqu&apos;un que vous{" "}
               <span className="kw kw-rose">connaissez vraiment</span>.
             </p>

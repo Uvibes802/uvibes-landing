@@ -134,6 +134,8 @@
 .collectifs-title-serif {
   display: inline-block;
   padding-right: 0.18em;
+  padding-bottom: 0.14em;
+  line-height: 1.1;
   font-style: italic;
   font-weight: 400;
   font-family: var(--font-instrument), "Instrument Serif", serif;

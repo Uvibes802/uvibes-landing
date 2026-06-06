@@ -78,8 +78,8 @@ export default function HowItWorks() {
             <h3 className="how-step-title v-prompt">{s.title}</h3>
             <p className="how-step-body">{s.body}</p>
             <div className="how-time-badge">
-              <span className="how-time-dot" aria-hidden="true" />
               <span className="v-mono how-time-text">{s.time}</span>
+              <VibrationLine className="how-time-vib" width={150} height={10} amplitude={3} freq={7} stroke={s.color} strokeWidth={2} speed={9} />
             </div>
           </div>
         ))}

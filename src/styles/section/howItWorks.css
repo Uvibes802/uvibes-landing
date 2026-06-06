@@ -286,20 +286,12 @@
 }
 
 .how-time-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   width: fit-content;
   margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid color-mix(in srgb, var(--step-color, var(--orange)) 22%, transparent);
-}
-
-.how-time-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--step-color, var(--orange));
-  flex-shrink: 0;
 }
 
 .how-time-text {
@@ -308,6 +300,11 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+.how-time-vib {
+  width: 150px;
+  height: 10px;
 }
 
 /* ── Responsive — roadmap verticale ─────────────────────────── */

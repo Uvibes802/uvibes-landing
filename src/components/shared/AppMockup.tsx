@@ -56,7 +56,7 @@ export default function AppMockup() {
       </div>
 
       <div className="apm-chip apm-chip--bottom-right" aria-hidden="true">
-        <span className="apm-chip-quote">« Une habitude qui vous plaît au quotidien ? »</span>
+        <span className="apm-chip-quote">Une habitude qui vous plaît au quotidien ?</span>
       </div>
     </div>
   );
