@@ -7,6 +7,7 @@ import SolutionAnchorNav from "@/components/solution/SolutionAnchorNav";
 import SolutionHero from "@/components/solution/SolutionHero";
 import SolutionHowItWorks from "@/components/solution/SolutionHowItWorks";
 import SolutionThemes from "@/components/solution/SolutionThemes";
+import SolutionSoftSkills from "@/components/solution/SolutionSoftSkills";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
@@ -37,6 +38,7 @@ export default function SolutionPage() {
       <main className="sol-main-content">
         <SolutionHowItWorks />
         <SolutionThemes />
+        <SolutionSoftSkills />
         <FeaturesCard />
         <PricingTable />
         <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)" }}>
