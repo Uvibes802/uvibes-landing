@@ -72,11 +72,7 @@
 .shiw-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: rgba(217,10,92,.07);
-  border: 1px solid rgba(217,10,92,.18);
+  gap: 10px;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
