@@ -92,7 +92,7 @@
 /* ── Titre pleine largeur ────────────────────────────────────── */
 .ci-title {
   margin: 0;
-  font-size: clamp(52px, 8vw, 118px);
+  font-size: clamp(44px, 6.5vw, 96px);
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -0.05em;
