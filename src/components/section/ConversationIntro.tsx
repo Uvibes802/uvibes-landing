@@ -109,7 +109,7 @@ export default function ConversationIntro() {
         <Reveal>
           <div className="ci-eyebrow">
             <span className="ci-eyebrow-dot" aria-hidden="true" />
-            <span className="v-mono ci-eyebrow-text">La philosophie</span>
+            <span className="v-mono ci-eyebrow-text">Le pouvoir d&apos;une organisation réside dans la qualité des relations qu&apos;elle crée.</span>
           </div>
         </Reveal>
 

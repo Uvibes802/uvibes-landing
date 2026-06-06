@@ -42,7 +42,10 @@ export default function HowItWorks() {
         <VibrationLine width={1400} height={70} amplitude={12} freq={8} stroke="rgba(217,10,92,.1)" strokeWidth={1} speed={26} />
       </div>
       <div className="how-header">
-        <p className="v-mono how-eyebrow">Comment ça fonctionne</p>
+        <p className="v-mono how-eyebrow">
+          <span className="how-eyebrow-dot" aria-hidden="true" />
+          Comment ça fonctionne
+        </p>
         <h2 className="how-title v-prompt">
           <span className="how-title-orange">Trois</span>{" "}
           <span className="v-serif how-title-gradient">étapes.</span>

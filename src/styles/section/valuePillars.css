@@ -46,7 +46,7 @@
   gap: 10px;
   font-size: 11px;
   letter-spacing: 0.22em;
-  color: rgba(120, 60, 20, 0.7);
+  color: var(--orange);
   text-transform: uppercase;
   margin: 0;
 }

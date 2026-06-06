@@ -105,11 +105,21 @@
 
 .how-eyebrow {
   margin: 0 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 12px;
   letter-spacing: 0.18em;
   color: var(--orange);
   text-transform: uppercase;
   text-align: center;
+}
+.how-eyebrow-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
 }
 
 .how-title {

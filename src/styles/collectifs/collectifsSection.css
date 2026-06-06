@@ -104,7 +104,7 @@
 .collectifs-eyebrow {
   font-size: 12px;
   letter-spacing: 0.16em;
-  color: var(--rose);
+  color: var(--orange);
   text-transform: uppercase;
   font-family: var(--font-roboto-mono), monospace;
   display: inline-flex;
