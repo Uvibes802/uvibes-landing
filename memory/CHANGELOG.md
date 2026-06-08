@@ -22,6 +22,13 @@
 **Impact SEO** : Google ne crawle plus d'URLs redirigées, indexe la vraie page `/solution`, et reçoit des URLs propres (un seul slash).
 **Impact sécu** : codes promo non énumérables, pas de spam de devis/newsletter, plus d'endpoint d'emails ouvert, secret de session unique et fort.
 
+### Lot C — audit (Vague 3, en cours)
+- **Bug toggle maintenance CRM** : `MaintenanceToggle` envoyait `{ active }` alors que `/api/maintenance` attend `{ maintenanceMode }` → l'API renvoyait 400, la bascule depuis le CRM était cassée (seule la page `/admin` legacy fonctionnait). Corrigé.
+- **Dashboard déplacé `/admin/crm/*` → `/admin/*`** : URLs plus courtes et claires (le segment « crm » était trompeur, le dashboard contient CRM + CMS + Système). L'espace API `/api/admin/*` est inchangé. Tous les liens internes (sidebar, footer, emails, redirections) mis à jour.
+- **Suppression de la page `/admin` legacy** : doublon de `/admin/crm/maintenance` avec une auth faible (mot de passe en clair, sans rate-limit). `/admin` redirige désormais vers `/admin/dashboard`.
+
+**Impact** : un seul espace admin cohérent et protégé par session ; suppression d'un chemin d'authentification faible ; toggle maintenance enfin fonctionnel depuis le CRM.
+
 ---
 
 ## 2026-06-06 — Session redesign contenu + 2 nouvelles sections (branche redesign/solution-config-themes)
