@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { generateQuotePdf } from "@/services/pdf/generateQuotePdf";
 
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
@@ -19,11 +19,15 @@ export async function GET(
 
     const pdfBuffer = await generateQuotePdf({ quote });
 
+    // ?inline=1 → affichage dans le navigateur (aperçu) au lieu du téléchargement
+    const inline = req.nextUrl.searchParams.get("inline") === "1";
+    const disposition = inline ? "inline" : "attachment";
+
     return new NextResponse(pdfBuffer as unknown as BodyInit, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="${quote.numero}.pdf"`,
+        "Content-Disposition": `${disposition}; filename="${quote.numero}.pdf"`,
         "Content-Length": String(pdfBuffer.length),
       },
     });

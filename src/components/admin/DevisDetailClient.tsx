@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Download, Mail, RefreshCw } from "lucide-react";
+import { ArrowLeft, Download, Mail, RefreshCw, Eye, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -33,6 +33,7 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
   const [saving, setSaving] = useState(false);
   const [sending, setSending] = useState(false);
   const [msg, setMsg] = useState("");
+  const [showPdf, setShowPdf] = useState(false);
 
   async function save() {
     setSaving(true); setMsg("");
@@ -46,13 +47,16 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
     } finally { setSaving(false); }
   }
 
+  const alreadySent = !!quote.sentAt || ["ENVOYE", "VU", "SIGNE"].includes(statut);
+
   async function envoyer() {
-    if (!confirm(`Envoyer ce devis à ${quote.collectif.email} ?`)) return;
+    const verbe = alreadySent ? "Renvoyer" : "Envoyer";
+    if (!confirm(`${verbe} ce devis à ${quote.collectif.email} ?`)) return;
     setSending(true); setMsg("");
     try {
       const res = await fetch(`/api/admin/devis/${quote.id}/envoyer`, { method: "POST" });
       const data = await res.json();
-      if (res.ok) { setMsg("✓ Email envoyé"); setStatut("ENVOYE"); }
+      if (res.ok) { setMsg(alreadySent ? "✓ Email renvoyé" : "✓ Email envoyé"); setStatut("ENVOYE"); }
       else setMsg("Erreur : " + data.error);
     } finally { setSending(false); }
   }
@@ -69,10 +73,13 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
         </div>
         <div style={{ display: "flex", gap: 8 }}>
           <button className="crm-btn --outline --sm" onClick={envoyer} disabled={sending}>
-            <Mail size={13} /> {sending ? "Envoi..." : "Envoyer par email"}
+            <Mail size={13} /> {sending ? "Envoi..." : alreadySent ? "Renvoyer par email" : "Envoyer par email"}
+          </button>
+          <button className="crm-btn --outline --sm" onClick={() => setShowPdf(true)}>
+            <Eye size={13} /> Aperçu PDF
           </button>
           <a href={`/api/devis/${quote.id}/pdf`} className="crm-btn --outline --sm" target="_blank">
-            <Download size={13} /> PDF
+            <Download size={13} /> Télécharger
           </a>
           <a href={`/devis/${quote.id}`} className="crm-btn --outline --sm" target="_blank">
             ↗ Vue client
@@ -216,6 +223,31 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
           </div>
         </div>
       </div>
+
+      {/* Modale aperçu PDF — affichage inline, sans téléchargement */}
+      {showPdf && (
+        <div
+          onClick={() => setShowPdf(false)}
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.55)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ background: "#fff", borderRadius: 12, width: "min(900px, 100%)", height: "90vh", display: "flex", flexDirection: "column", overflow: "hidden" }}
+          >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", borderBottom: "1px solid var(--crm-border, #eee)" }}>
+              <span style={{ fontWeight: 600, fontSize: 14 }}>Aperçu — {quote.numero}</span>
+              <button onClick={() => setShowPdf(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--crm-muted)" }}>
+                <X size={18} />
+              </button>
+            </div>
+            <iframe
+              src={`/api/devis/${quote.id}/pdf?inline=1`}
+              title={`Aperçu du devis ${quote.numero}`}
+              style={{ flex: 1, width: "100%", border: "none" }}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
