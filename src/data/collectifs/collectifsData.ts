@@ -25,8 +25,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Cinémas, salles de spectacle, événements",
     color: COLORS[0],
     flyers: [
-      { src: "/images/flyer/flyer-cinema.jpg", alt: "Spectateurs de cinéma avec Uvibes" },
-      { src: "/images/flyer/flyer-theatre.jpg", alt: "Spectateurs de théâtre avec Uvibes" },
+      { src: "/images/affiche/1.png", alt: "Affiche Uvibes — public culturel" },
+      { src: "/images/affiche/2.png", alt: "Affiche Uvibes — spectateurs réunis" },
+      { src: "/images/affiche/3.png", alt: "Affiche Uvibes — événement culturel" },
     ],
     gains: [
       "Une hausse de la fréquentation",
@@ -44,9 +45,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Universités, écoles de commerce, grandes écoles",
     color: COLORS[1],
     flyers: [
-      { src: "/images/flyer/flyer-etudiant-campus.jpg", alt: "Étudiants sur un campus avec Uvibes" },
-      { src: "/images/flyer/flyer-etudiant-expert.jpg", alt: "Étudiants en classe avec Uvibes" },
-      { src: "/images/flyer/flyer-universite.jpg", alt: "Étudiants internationaux avec Uvibes" },
+      { src: "/images/affiche/4.png", alt: "Affiche Uvibes — étudiants" },
+      { src: "/images/affiche/5.png", alt: "Affiche Uvibes — vie étudiante" },
+      { src: "/images/affiche/6.png", alt: "Affiche Uvibes — résidence universitaire" },
     ],
     gains: [
       "Une attractivité renforcée auprès des futurs étudiants",
@@ -64,7 +65,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Campings, villages vacances, sites touristiques",
     color: COLORS[2],
     flyers: [
-      { src: "/images/flyer/flyer-camping.jpg", alt: "Vacanciers en camping avec Uvibes" },
+      { src: "/images/affiche/7.png", alt: "Affiche Uvibes — vacanciers en camping" },
+      { src: "/images/affiche/8.png", alt: "Affiche Uvibes — séjour en camping" },
     ],
     gains: [
       "Une hausse de la fréquentation",
@@ -82,8 +84,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Clubs d'entreprises, dirigeants, artisans, fédérations professionnelles",
     color: COLORS[3],
     flyers: [
-      { src: "/images/flyer/flyer-artisan-reseau.jpg", alt: "Artisans en réseau avec Uvibes" },
-      { src: "/images/flyer/flyer-artisan-ville.jpg", alt: "Artisans locaux connectés par Uvibes" },
+      { src: "/images/affiche/9.png", alt: "Affiche Uvibes — réseau business" },
+      { src: "/images/affiche/10.png", alt: "Affiche Uvibes — artisans" },
+      { src: "/images/affiche/11.png", alt: "Affiche Uvibes — fédérations professionnelles" },
     ],
     gains: [
       "Une participation plus active de vos membres",
@@ -101,7 +104,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Mutuelles, entreprises coopératives, associations",
     color: COLORS[4],
     flyers: [
-      { src: "/images/flyer/flyer-association.jpg", alt: "Membres d'une association avec Uvibes" },
+      { src: "/images/affiche/12.png", alt: "Affiche Uvibes — adhérents mutuelle" },
+      { src: "/images/affiche/13.png", alt: "Affiche Uvibes — sociétaires" },
     ],
     gains: [
       "Un sentiment d'appartenance à votre organisation",
@@ -118,7 +122,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Entreprises en présentiel, télétravail, multi-sites",
     color: COLORS[5],
     flyers: [
-      { src: "/images/flyer/flyer-collaboration.jpg", alt: "Équipes en entreprise avec Uvibes" },
+      { src: "/images/affiche/14.png", alt: "Affiche Uvibes — équipes en entreprise" },
+      { src: "/images/affiche/15.png", alt: "Affiche Uvibes — collaboration en entreprise" },
+      { src: "/images/affiche/16.png", alt: "Affiche Uvibes — vie d'équipe" },
     ],
     gains: [
       "Un sentiment d'appartenance à votre organisation",
@@ -138,7 +144,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Caisses de retraites, associations, collectivités locales",
     color: COLORS[0],
     flyers: [
-      { src: "/images/flyer/flyer-senior.jpg", alt: "Seniors qui se rencontrent avec Uvibes" },
+      { src: "/images/affiche/17.png", alt: "Affiche Uvibes — seniors qui se rencontrent" },
+      { src: "/images/affiche/18.png", alt: "Affiche Uvibes — lien entre seniors" },
     ],
     gains: [
       "Un sentiment d'appartenance à votre caisse de retraite",
@@ -155,8 +162,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Collectivités, hôpitaux, cliniques, associations — parents isolés, aidants, personnes en parcours de soin",
     color: COLORS[1],
     flyers: [
-      { src: "/images/flyer/flyer-aidants-puzzle.jpg", alt: "Aidants qui s'assemblent avec Uvibes" },
-      { src: "/images/flyer/flyer-aidants-seul.jpg", alt: "Aidants soutenus par la communauté Uvibes" },
+      { src: "/images/affiche/19.png", alt: "Affiche Uvibes — échanges entre pairs" },
+      { src: "/images/affiche/20.png", alt: "Affiche Uvibes — soutien entre pairs" },
     ],
     gains: [
       "La création d'un collectif jusqu'ici inexistant",
@@ -174,7 +181,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Entreprises, établissements publics, collectivités et organisations internationales",
     color: COLORS[2],
     flyers: [
-      { src: "/images/flyer/flyer-universite.jpg", alt: "Étudiants internationaux connectés par Uvibes" },
+      { src: "/images/affiche/21.png", alt: "Affiche Uvibes — international" },
+      { src: "/images/affiche/22.png", alt: "Affiche Uvibes — échanges interculturels" },
     ],
     gains: [
       "La création de liens et d'un collectif au-delà des frontières",
@@ -192,9 +200,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Clubs sportifs, fédérations et organisateurs de compétitions",
     color: COLORS[3],
     flyers: [
-      { src: "/images/flyer/flyer-rugby-senior.jpg", alt: "Supporter rugby senior avec Uvibes" },
-      { src: "/images/flyer/flyer-rugby-jeune.jpg", alt: "Supporter rugby jeune avec Uvibes" },
-      { src: "/images/flyer/flyer-rugby-usap.jpg", alt: "Supporter USAP avec Uvibes" },
+      { src: "/images/affiche/23.png", alt: "Affiche Uvibes — clubs sportifs" },
+      { src: "/images/affiche/24.png", alt: "Affiche Uvibes — esprit d'équipe" },
     ],
     gains: [
       "Une expérience spectateur plus différenciante et engageante",
@@ -212,8 +219,9 @@ export const collectifs: Collectif[] = [
     subtitle: "France Travail, Missions Locales, Cap Emploi, APEC, AFPA, structures d'insertion",
     color: COLORS[4],
     flyers: [
-      { src: "/images/flyer/flyer-recrutement.jpg", alt: "Recrutement via Uvibes" },
-      { src: "/images/flyer/flyer-emploi-chercheur.jpg", alt: "Chercheurs d'emploi avec Uvibes" },
+      { src: "/images/affiche/25.png", alt: "Affiche Uvibes — insertion professionnelle" },
+      { src: "/images/affiche/26.png", alt: "Affiche Uvibes — recherche d'emploi" },
+      { src: "/images/affiche/27.png", alt: "Affiche Uvibes — compétences relationnelles emploi" },
     ],
     gains: [
       "Le développement des compétences relationnelles et comportementales",

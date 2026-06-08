@@ -22,17 +22,21 @@
   width: 100%;
 }
 
-/* Onglets pills */
+/* Onglets — segmented control dans un conteneur pilule */
 .uvibes-teamSection-button {
   position: relative;
   display: flex;
-  gap: 0.5rem;
-  height: auto;
-  border: none;
-  border-radius: 0;
-  overflow: visible;
-  background: transparent;
-  margin-bottom: 2.5rem;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(253,110,0,.14);
+  box-shadow: 0 4px 18px rgba(253,110,0,.08), inset 0 1px 0 rgba(255,255,255,.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin: 0 auto 2.5rem;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -41,11 +45,11 @@
 .uvibes-button-slider { display: none; }
 
 .uvibes-button {
-  padding: 0.55rem 1.4rem;
+  padding: 0.55rem 1.5rem;
   border-radius: 999px;
-  border: 2px solid rgba(253,110,0,.2);
-  background: #fff;
-  color: var(--orange);
+  border: none;
+  background: transparent;
+  color: #9c7080;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -54,20 +58,15 @@
   letter-spacing: 0.01em;
   position: relative;
   z-index: 1;
+  white-space: nowrap;
 }
 
-.uvibes-button:hover {
-  border-color: var(--orange);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(253,110,0,.18);
-}
+.uvibes-button:hover { color: var(--orange); }
 
 .uvibes-button.active {
   background: linear-gradient(135deg, var(--orange), var(--rose));
-  border-color: transparent;
   color: #fff;
-  box-shadow: 0 6px 20px rgba(217,10,92,.25);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(217,10,92,.28);
 }
 
 /* Membres — grille centrée */

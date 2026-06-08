@@ -12,21 +12,21 @@ const STEPS: { n: string; color: string; title: React.ReactNode; body: React.Rea
     color: "#FD6E00",
     title: <>Choisissez vos <span className="how-kw">expériences</span> et thématiques d&apos;échange</>,
     body: <>Le paramétrage est réalisé en <span className="how-kw">quelques minutes</span>. Aucune <span className="how-kw">compétence technique</span> n&apos;est requise.</>,
-    time: "≈ 6 min de setup",
+    time: "Prêt en quelques minutes",
   },
   {
     n: "02",
     color: "#D90A5C",
-    title: <><span className="how-kw">Deux membres.</span> Une conversation. <span className="how-kw">Trois minutes.</span></>,
+    title: <><span className="how-kw">Deux membres.</span> Une conversation. <span className="how-kw">Six minutes.</span></>,
     body: <>Les membres se rencontrent <span className="how-kw">aléatoirement</span> lors d&apos;échanges vidéo individuels. Des <span className="how-kw">questions adaptées</span> viennent guider la conversation. À la fin, les participants peuvent échanger leurs <span className="how-kw">cartes de visite</span>.</>,
-    time: "2 à 3 min par échange",
+    time: "Une rencontre guidée, en vidéo",
   },
   {
     n: "03",
     color: "#F59E0B",
     title: <>Votre collectif <span className="how-kw">vous parle.</span> Écoutez-le.</>,
     body: <>À l&apos;issue des échanges, les participants répondent à de courtes <span className="how-kw">enquêtes personnalisées</span>. Vous recueillez retours, points de vue et <span className="how-kw">données utiles</span> pour mieux comprendre votre collectif.</>,
-    time: "Dashboard temps réel",
+    time: "Des retours pour décider",
   },
 ];
 
@@ -42,12 +42,15 @@ export default function HowItWorks() {
         <VibrationLine width={1400} height={70} amplitude={12} freq={8} stroke="rgba(217,10,92,.1)" strokeWidth={1} speed={26} />
       </div>
       <div className="how-header">
-        <p className="v-mono how-eyebrow">Comment ça fonctionne</p>
+        <p className="v-mono how-eyebrow">
+          <span className="how-eyebrow-dot" aria-hidden="true" />
+          Comment ça fonctionne
+        </p>
         <h2 className="how-title v-prompt">
           <span className="how-title-orange">Trois</span>{" "}
           <span className="v-serif how-title-gradient">étapes.</span>
           <br />
-          <span className="how-title-rose">Pas une de plus.</span>
+          <span className="how-title-rose">Rien de plus simple.</span>
         </h2>
       </div>
 
@@ -75,8 +78,8 @@ export default function HowItWorks() {
             <h3 className="how-step-title v-prompt">{s.title}</h3>
             <p className="how-step-body">{s.body}</p>
             <div className="how-time-badge">
-              <span className="how-time-dot" aria-hidden="true" />
               <span className="v-mono how-time-text">{s.time}</span>
+              <VibrationLine className="how-time-vib" width={150} height={10} amplitude={3} freq={7} stroke={s.color} strokeWidth={2} speed={9} />
             </div>
           </div>
         ))}

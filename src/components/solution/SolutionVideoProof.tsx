@@ -7,7 +7,7 @@ const VIDEOS = [
     src: "https://d2a0jgcp77eoku.cloudfront.net/videos/%C3%A9tudiante.mp4",
     label: "Étudiante",
     context: "Université",
-    quote: "En 3 minutes, j'ai rencontré quelqu'un que je n'aurais jamais croisé autrement.",
+    quote: "En 6 minutes, j'ai rencontré quelqu'un que je n'aurais jamais croisé autrement.",
     color: "#FD6E00",
   },
   {

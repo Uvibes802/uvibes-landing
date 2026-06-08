@@ -1,0 +1,378 @@
+/* ── PasseportExperience ──────────────────────────────────────── */
+
+.pp-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: linear-gradient(160deg, #fdf6ef 0%, #fef9f6 50%, #fdf0f8 100%);
+}
+
+/* ── Ondes de vibration en fond — identité Uvibes ── */
+.pp-waves {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: clamp(4rem, 9vw, 7rem) 0;
+  opacity: .18;
+}
+.pp-waves > svg { width: 100%; height: clamp(64px, 9vw, 116px); flex-shrink: 0; }
+
+/* ── En-tête ─────────────────────────────────────────────────── */
+.pp-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(2.5rem, 4vw, 4rem);
+  /* Reveal scroll */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.pp-vis .pp-header { opacity: 1; transform: translateY(0); }
+
+.pp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-family: var(--font-roboto-mono), monospace;
+}
+
+.pp-eyebrow-mark {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.pp-title {
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #D90A5C;
+  margin: 0 0 1rem;
+}
+
+.pp-title-em {
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(100deg, #FD6E00 0%, #E6007E 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.pp-lead {
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.7;
+  color: #6b4455;
+  margin: 0 0 2rem;
+  font-family: var(--text-font);
+}
+
+/* ── Triptyque ── */
+.pp-trio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,.65);
+  border: 1px solid rgba(253,110,0,.14);
+  backdrop-filter: blur(6px);
+  margin-bottom: 1.25rem;
+}
+
+.pp-trio-item {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.pp-trio-num {
+  font-size: 10px;
+  font-family: var(--font-roboto-mono), monospace;
+  letter-spacing: 0.15em;
+  color: rgba(253,110,0,.55);
+}
+
+.pp-trio-label {
+  font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(14px, 1.5vw, 17px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.pp-trio-arrow {
+  font-size: 13px;
+  color: rgba(253,110,0,.4);
+  padding: 0 4px;
+}
+
+.pp-subline {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: rgba(26,23,21,.45);
+  font-family: var(--text-font);
+  margin: 0;
+}
+
+/* ── Paquet de passeports ─────────────────────────────────────── */
+.pp-deck {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 12px 30px;
+  /* Reveal scroll */
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s 0.3s ease, transform 0.8s 0.3s ease;
+}
+.pp-vis .pp-deck { opacity: 1; transform: translateY(0); }
+
+/* ── Carte — document passeport ── */
+.pp-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 16px;
+  margin-top: -16px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.04),
+    0 16px 34px -20px rgba(0,0,0,.35);
+  transform: translateX(var(--tx, 0)) rotate(var(--rot, 0deg));
+  transform-origin: center top;
+  transition:
+    transform 0.45s cubic-bezier(.2,.7,.2,1),
+    box-shadow 0.4s ease,
+    margin 0.45s cubic-bezier(.2,.7,.2,1);
+}
+.pp-card:first-child { margin-top: 0; }
+
+/* Survol */
+.pp-card:hover:not(.pp-card--open) {
+  transform: translateX(var(--tx, 0)) rotate(var(--rot, 0deg)) translateY(-4px) scale(1.015);
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.06),
+    0 24px 46px -18px color-mix(in srgb, var(--pp-accent, #FD6E00) 40%, transparent);
+}
+
+/* Carte ouverte */
+.pp-card--open {
+  transform: translateX(0) rotate(0deg) translateY(-10px) scale(1.03);
+  margin-bottom: 14px;
+  box-shadow:
+    0 6px 16px rgba(0,0,0,.08),
+    0 34px 64px -20px color-mix(in srgb, var(--pp-accent, #FD6E00) 48%, transparent);
+}
+
+/* ── Bande couleur — identité passeport (en haut) ── */
+.pp-card-band {
+  height: 5px;
+  background: linear-gradient(90deg,
+    var(--pp-accent, #FD6E00),
+    color-mix(in srgb, var(--pp-accent, #FD6E00) 60%, #D90A5C)
+  );
+  border-radius: 0;
+}
+
+/* ── En-tête de la carte — toujours visible ── */
+.pp-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.6rem 1.4rem;
+}
+
+.pp-card-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.pp-card-category {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+  color: var(--pp-accent, #FD6E00);
+  margin: 0;
+}
+
+.pp-card-title {
+  font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(17px, 2vw, 21px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pp-card-tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: #6b4455;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pp-card-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.pp-card-kw {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+  color: var(--pp-accent, #FD6E00);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--pp-accent, #FD6E00) 30%, transparent);
+  background: color-mix(in srgb, var(--pp-accent, #FD6E00) 6%, transparent);
+}
+
+.pp-card-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Numéro de série — document aesthetics */
+.pp-card-num {
+  font-size: 11px;
+  font-family: var(--font-roboto-mono), monospace;
+  letter-spacing: 0.12em;
+  color: rgba(26,23,21,.28);
+  display: block;
+}
+
+/* Bouton +/- */
+.pp-card-toggle {
+  width: 22px; height: 22px;
+  position: relative;
+  flex-shrink: 0;
+}
+.pp-card-toggle::before,
+.pp-card-toggle::after {
+  content: '';
+  position: absolute;
+  background: var(--pp-accent, #FD6E00);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1), opacity 0.3s ease;
+}
+.pp-card-toggle::before { left: 50%; top: 4px; width: 2px; height: 14px; transform: translateX(-50%); }
+.pp-card-toggle::after  { top: 50%; left: 4px; height: 2px; width: 14px; transform: translateY(-50%); }
+.pp-card--open .pp-card-toggle::before { transform: translateX(-50%) scaleY(0); opacity: 0; }
+
+/* ── Contenu révélé ── */
+.pp-card-reveal {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(.2,.7,.2,1);
+}
+.pp-card--open .pp-card-reveal { max-height: 480px; }
+
+.pp-card-reveal-inner {
+  padding: 0 1.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.pp-card-block { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.pp-card-block-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+  color: var(--pp-accent, #FD6E00);
+  margin: 0;
+}
+
+.pp-card-block-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #6b4455;
+  font-family: var(--text-font);
+  margin: 0;
+}
+
+/* Ligne perforée — séparateur document */
+.pp-card-perf {
+  height: 0;
+  border-top: 1.5px dashed rgba(26,23,21,.1);
+  margin: 0.25rem 0;
+}
+
+.pp-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pp-card-list li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4a2a38;
+  font-family: var(--text-font);
+}
+
+.pp-card-dot {
+  flex-shrink: 0;
+  margin-top: 6px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--pp-accent, #FD6E00);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .pp-deck { padding: 8px 12px; }
+  .pp-card-header { padding: 1rem 1.1rem 1.1rem; }
+  .pp-card-reveal-inner { padding: 0 1.1rem 1.2rem; }
+
+  .pp-trio {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .pp-trio-arrow { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-card { transition-duration: 0.01ms; }
+}

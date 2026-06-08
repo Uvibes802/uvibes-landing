@@ -4,10 +4,10 @@ import usePricing from "@/services/pricing/usePricing";
 import { ArrowRight, Check, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 
 import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
-import PricingMobile from "./PricingMobile";
 
 const PLAN_META = [
   {
@@ -72,12 +72,14 @@ export default function PricingTable() {
       id="offres"
       style={{ scrollMarginTop: 70 }}
     >
-      {/* Mobile — composant existant */}
-      <div className="pt-mobile-only">
-        <PricingMobile />
+      {/* Fond — ondes de vibration animées (motif uvibes), derrière les cartes */}
+      <div className="pt-waves" aria-hidden="true">
+        <GradientVibrationLine id="pt-w1" width={1800} height={70} amplitude={32} freq={5} strokeWidth={24} speed={10} colorFrom="#FD6E00" colorTo="#E6007E" style={{ width: "100%" }} />
+        <GradientVibrationLine id="pt-w2" width={1800} height={70} amplitude={26} freq={7} strokeWidth={16} speed={14} colorFrom="#00AFDD" colorTo="#D90A5C" style={{ width: "100%" }} />
+        <GradientVibrationLine id="pt-w3" width={1800} height={70} amplitude={36} freq={4} strokeWidth={20} speed={12} colorFrom="#E6007E" colorTo="#FD6E00" style={{ width: "100%" }} />
       </div>
 
-      {/* Desktop — 3 cards redesign */}
+      {/* Mêmes cartes premium sur tous les écrans (empilées en mobile) */}
       <div className="pt-desktop-only">
         {/* Header */}
         <div className="pt-head">

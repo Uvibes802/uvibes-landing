@@ -1,0 +1,228 @@
+/* ── Solution · Soft skills — section éditoriale (sans cartes) ──── */
+
+.sss-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.5rem, 6vw, 6.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: linear-gradient(160deg, #FFF0F8 0%, #FFFBF4 45%, #FFF6EC 100%);
+}
+
+/* Ondes de fond */
+.sss-waves {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16vh;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+.sss-waves svg { width: 100%; }
+
+.sss-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* ── En-tête ──────────────────────────────────────────────────── */
+.sss-head { text-align: center; margin-bottom: clamp(3rem, 6vw, 5rem); }
+
+.sss-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-family: var(--font-roboto-mono), monospace;
+  margin: 0 0 1.25rem;
+}
+.sss-eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
+}
+
+.sss-title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--orange);
+}
+.sss-title-accent {
+  background: linear-gradient(100deg, #FD6E00 0%, #E6007E 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.sss-subtitle {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+  color: rgba(26,23,21,.7);
+}
+
+/* ── Lignes éditoriales ───────────────────────────────────────── */
+.sss-rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.sss-row {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  opacity: 0;
+  transform: translateY(34px);
+}
+.sss-vis .sss-row { animation: sssRowIn 0.7s ease forwards; }
+.sss-vis .sss-row:nth-child(2) { animation-delay: 0.12s; }
+.sss-vis .sss-row:nth-child(3) { animation-delay: 0.24s; }
+@keyframes sssRowIn { to { opacity: 1; transform: none; } }
+
+/* Inverser le sens une ligne sur deux */
+.sss-row--reverse .sss-illu-col { order: 2; }
+
+.sss-illu-col { display: flex; justify-content: center; }
+
+.sss-text-col { max-width: 460px; }
+.sss-num {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--c);
+  margin-bottom: 0.6rem;
+  opacity: 0.85;
+}
+.sss-row-title {
+  margin: 0 0 0.7rem;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--c);                 /* titre coloré, jamais sombre ni bleu */
+}
+.sss-row-body {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  line-height: 1.65;
+  color: rgba(26,23,21,.68);
+}
+
+/* ── Zone illustration ────────────────────────────────────────── */
+.sss-illu {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: clamp(170px, 22vw, 220px);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--c) 8%, #fff);
+  border: 1px solid color-mix(in srgb, var(--c) 14%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--c) 12%, rgba(0,0,0,.04));
+}
+
+/* 1 · Waveform (ressources / podcast / vidéo) */
+.sss-illu--wave { gap: 18px; }
+.sss-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--c);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--c) 45%, transparent);
+}
+.sss-wave {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 64px;
+}
+.sss-wave-bar {
+  width: 6px;
+  height: calc(16px + var(--h) * 48px);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--c) 65%, #fff);
+  transform-origin: center;
+  animation: sssWave 1.4s ease-in-out infinite;
+}
+@keyframes sssWave {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.6; }
+  50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* 2 · Terrain d'entraînement quotidien (streak) */
+.sss-illu--streak { flex-direction: column; gap: 18px; }
+.sss-days { display: flex; gap: 11px; }
+.sss-day {
+  width: 20px; height: 20px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--c) 14%, #fff);
+  border: 1.5px solid color-mix(in srgb, var(--c) 22%, transparent);
+}
+.sss-day--on {
+  background: var(--c);
+  border-color: var(--c);
+}
+.sss-day--now {
+  animation: sssPulseDay 1.6s ease-in-out infinite;
+}
+@keyframes sssPulseDay {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 55%, transparent); }
+  50%      { box-shadow: 0 0 0 7px color-mix(in srgb, var(--c) 0%, transparent); }
+}
+.sss-pulse-line {
+  width: 60%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--c), transparent);
+  background-size: 200% 100%;
+  animation: sssSlide 2.2s linear infinite;
+}
+@keyframes sssSlide {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* 3 · Attestation */
+.sss-illu--cert {
+  justify-content: center;
+  align-items: center;
+}
+.sss-attestation-img {
+  display: block;
+  width: clamp(160px, 18vw, 220px);
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  transform: rotate(-3deg);
+  transition: transform 0.4s ease;
+}
+.sss-illu--cert:hover .sss-attestation-img {
+  transform: rotate(0deg) scale(1.03);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 880px) {
+  .sss-row { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; justify-items: center; }
+  .sss-row--reverse .sss-illu-col { order: 0; }
+  .sss-text-col { max-width: 520px; }
+}

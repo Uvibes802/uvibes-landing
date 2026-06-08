@@ -17,10 +17,7 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #FD6E00;
-  padding: 5px 14px;
-  background: rgba(253,110,0,.08);
-  border: 1px solid rgba(253,110,0,.16);
-  border-radius: 999px;
+  gap: 10px;
 }
 
 .fc-intro-dot {

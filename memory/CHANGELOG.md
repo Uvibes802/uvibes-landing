@@ -2,6 +2,61 @@
 
 ---
 
+## 2026-06-06 — Session redesign contenu + 2 nouvelles sections (branche redesign/solution-config-themes)
+
+### Page d'accueil
+- **Hero** : suppression de l'eyebrow « Application bien-être collectif · 2026 » (T1)
+- **Mockup** : 3 nouvelles questions flottantes — « Qu'est-ce qui vous a marqué récemment ? », « Une personne qui vous inspire ? », « Une habitude qui vous plaît au quotidien ? » (T2)
+- **ConversationIntro** : eyebrow « La philosophie » → « Le pouvoir d'une organisation réside dans la qualité des relations qu'elle crée. » ; harmonisation de tous les eyebrows home (couleur orange unifiée + point au début, ajout du point manquant sur HowItWorks) (T3)
+- **HowItWorks** : « Pas une de plus. » → « Rien de plus simple. » (T6) ; « Trois minutes » → « Six minutes » (T7) ; libellés d'étapes sortis des pilules → labels accent (point + filet supérieur) reformulés « Prêt en quelques minutes / Une rencontre guidée, en vidéo / Des retours pour décider » (T8)
+- **FeaturedArticles** : titre « Ce qu'on lit. Ce qu'on pense. » → « Ce qui nous arrive. Ce qu'on lit. Ce qu'on pense. » (T9)
+- **Titres de section** : tous uniformisés à la taille de « Trois étapes » — `clamp(44px, 6.5vw, 96px)` (ci, pillars, collectifs, video, blog) (T5)
+
+### BannerCount (home)
+- Pointillés haut/bas remplacés par **deux vagues** couleur fond (`--paper`) délimitant la section (T4)
+- Label « Déjà actifs sur Uvibes » → « en 2026 » ; mot statique « échanges engagés » → **rotation** (priorités partagées · visions croisées · inspirations nouvelles · confiance créée · bons plans échangés · objectifs alignés) (T14)
+- Suppression de « 312 avis vérifiés » (T15)
+
+### Page La solution
+- **SolutionHero** : suppression de « La solution Uvibes » (T11) ; « pour votre collectif. » → « pour votre organisation. » (T13)
+- **Eyebrows hors pilules** : Configuration / Thématiques / Fonctionnalités → texte + point (cohérent home) (T12)
+- **Nouvelle section soft skills** (après Thématiques) : « Ce que Uvibes fait aussi d'unique » / « Entraîner et valoriser les soft skills » — 3 cartes à illustrations animées originales (waveform podcast/vidéo, streak quotidien, sceau d'attestation) (T21)
+
+### Textes (ValuePillars / CollectifsSection — home)
+- Pilier 1 : nouveau paragraphe appartenance + stat « +38% » → « x4 d'engagement… » (T16, T17)
+- Pilier 2 : « pour lire le pouls » → « pour connaître chaque semaine les dynamiques de votre collectif » (T18)
+- « Chaque collectif a ses enjeux » → « Chaque organisation… » (T19) ; « Découvrez le vôtre. Onze contextes… » → « 11 secteurs d'activité auxquels Uvibes apporte… » (T20)
+
+### Page À propos
+- **Nouvelle section « Pourquoi "Uvibes" ? »** (après l'intro) : étymologie Vibes/U-You, polaroïds vidéo inclinés (style section Configuration solution) + particules animées (T10)
+- Eyebrows de la page sortis des pilules (cohérence site) (T12 étendu)
+
+### Impact
+- **UX/cohérence** : un seul style d'eyebrow sur tout le site (point + couleur orange, sans pilule) ; hiérarchie de titres homogène sur la home → lecture plus calme et premium.
+- **Contenu** : vocabulaire recentré « organisation » (vs collectif), promesses ajustées (pas de sur-promesse sur le nombre d'étapes ni le « +38% »), bannière rendue vivante par la rotation de mots.
+- **Nouveau** : 2 sections inédites valorisant le sens du nom (À propos) et l'angle soft skills + certification (Solution) — illustrations sur-mesure, non génériques, cohérentes avec l'identité vibration/gradient.
+
+### Vérifications
+- `pnpm build` ✅ (toutes les routes compilent, dont /solution et /uvibes)
+- Screenshots Playwright desktop 1280 + mobile 390 sur home, /solution, /uvibes ✅ — console 0 erreur
+
+### Corrections (retours) — même journée
+- **BannerCount** : vagues haut/bas plus marquées ; compteur stabilisé (largeur réservée → fini le tremblement pendant l'incrément)
+- **ConversationIntro** : ombre du téléphone supprimée ; point repositionné au début de la phrase philosophie
+- **ValuePillars** : titre long réduit (clamp 30/3.8vw/54) ; label de stat « x4 / … » ramené sur 2 lignes propres
+- **HowItWorks** : libellés d'étapes sans point ni filet supérieur → soulignés par une petite ligne de vibration (couleur de l'étape)
+- **CollectifsSection** : descendante du « g » d'« organisation » plus coupée
+- **SolutionHero** : contenu centré verticalement (plus collé en haut), titre agrandi (clamp 52/7vw/104), responsive
+- **SolutionHowItWorks** : passage au layout vertical dès 1024px (tablettes mieux organisées)
+- **Soft skills** : redesign sans cartes (lignes éditoriales alternées), titres colorés orange/magenta/ambre (ni sombre, ni bleu)
+- **PricingTable** : mêmes cartes premium empilées en responsive (suppression du swiper mobile incohérent) → `/solution` −28 kB
+- **À propos** : section « Pourquoi Uvibes ? » remontée en tête ; polaroïds côte à côte (plus superposés), sans légende, espace blanc en bas ; texte restylé
+- **Polaroïds** : espace blanc bas ajouté partout (config solution, éthique à propos)
+- **Durées** : « 3 minutes » / « 2 à 3 minutes » alignés sur « 6 minutes » / « 6 à 20 minutes »
+- **Mockup** : guillemets « » retirés de la 3ᵉ question
+
+---
+
 ## 2026-06-03 — Session redesign premium macOS v3 — phase 2 (branche style/redesign-premium-v3)
 
 ### Tâches terminées

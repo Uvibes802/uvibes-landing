@@ -1,7 +1,18 @@
 # TASKS — Uvibes Site Vitrine
 
 > Tableau de bord des tâches actives. Historique complet dans CHANGELOG.md.
-> **Branche active :** `style/redesign-premium-v3`
+> **Branche active :** `redesign/solution-config-themes`
+
+---
+
+## ✅ Terminées — session 2026-06-06 (redesign contenu + 2 sections)
+
+> Détail complet dans CHANGELOG.md. À valider visuellement par la tutrice.
+
+- [x] **Home** — T1 eyebrow supprimé · T2 questions mockup · T3 eyebrow philosophie + harmonisation · T5 titres uniformisés · T6 « Rien de plus simple » · T7 « Six minutes » · T8 libellés étapes hors pilules · T9 titre blog
+- [x] **BannerCount** — T4 vagues haut/bas · T14 « en 2026 » + rotation des mots · T15 suppr. avis
+- [x] **Solution** — T11 suppr. « La solution Uvibes » · T12 eyebrows hors pilules · T13 organisation · T16-T20 textes piliers/contextes · **T21 nouvelle section soft skills**
+- [x] **À propos** — **T10 nouvelle section « Pourquoi Uvibes ? »** (polaroïds + animations) + eyebrows hors pilules
 
 ---
 

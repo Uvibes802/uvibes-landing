@@ -9,6 +9,7 @@ import BannerCount from "@/components/section/BannerCount";
 import ValuePillars from "@/components/section/ValuePillars";
 import CollectifsSection from "@/components/collectifs/CollectifsSection";
 import HowItWorks from "@/components/section/HowItWorks";
+import PasseportExperience from "@/components/section/PasseportExperience";
 import VideoSection from "@/components/section/VideoSection";
 import ConversationIntro from "@/components/section/ConversationIntro";
 import { fetchPartners } from "@/services/home/fetchPartners";
@@ -37,6 +38,8 @@ export default async function Home() {
       <CollectifsSection showCta={true} />
 
       <HowItWorks />
+
+      <PasseportExperience />
 
       <PartnerCarousel logos={partners} />
       <VideoSection />

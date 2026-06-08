@@ -4,11 +4,8 @@ import { getVideoUrl } from "@/utils/videoUrl";
 import { useEffect, useRef, useState } from "react";
 import "@/styles/section/conversationIntro.css";
 
-const VIDEOS: { file: string; name: string; format: "portrait" | "landscape" }[] = [
-  // Portrait → téléphone. Landscape → MacBook (à compléter quand les vidéos PC sont prêtes)
-  { file: "Isaline-desktop.mp4", name: "Isaline", format: "portrait" },
-  // Ajouter ici les vidéos paysage quand disponibles :
-  // { file: "Lisa-desktop.mp4", name: "Lisa", format: "landscape" },
+const VIDEOS: { file: string; name: string; format: "portrait" | "landscape"; local?: boolean }[] = [
+  { file: "/videos/lisa-et-celine.mp4", name: "Lisa et Céline", format: "portrait", local: true },
 ];
 
 const PARTICLES = [
@@ -54,7 +51,7 @@ function PhoneMockup({ video }: { video: typeof VIDEOS[0] }) {
       <div className="ci-phone-halo" aria-hidden="true" />
       <div className="ci-phone">
         <div className="ci-phone-screen">
-          <video className="ci-phone-video" src={getVideoUrl(video.file)} autoPlay muted loop playsInline />
+          <video className="ci-phone-video" src={video.local ? video.file : getVideoUrl(video.file)} autoPlay muted loop playsInline />
         </div>
         <div className="ci-phone-bottom"><span className="ci-phone-bar" /></div>
       </div>
@@ -109,7 +106,7 @@ export default function ConversationIntro() {
         <Reveal>
           <div className="ci-eyebrow">
             <span className="ci-eyebrow-dot" aria-hidden="true" />
-            <span className="v-mono ci-eyebrow-text">La philosophie</span>
+            <span className="v-mono ci-eyebrow-text">Le pouvoir d&apos;une organisation réside dans la qualité des relations qu&apos;elle crée.</span>
           </div>
         </Reveal>
 

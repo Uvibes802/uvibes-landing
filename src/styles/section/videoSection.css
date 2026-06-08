@@ -67,7 +67,7 @@
 
 .vs-title {
   margin: 0;
-  font-size: clamp(26px, 3.2vw, 44px);
+  font-size: clamp(44px, 6.5vw, 96px);
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1.0;
@@ -231,6 +231,5 @@
   .vs-card-quote { font-size: clamp(18px, 5vw, 24px); }
   .vs-card-author { flex-direction: row; }
   .vs-card-author-info { text-align: left; }
-  .vs-title { font-size: clamp(28px, 8vw, 40px); }
   .vs-card-glyph { font-size: 80px; }
 }

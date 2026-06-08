@@ -34,6 +34,12 @@ const NAV_COLS = [
 export default function Footer() {
   return (
     <footer className="ft-footer">
+      {/* Blobs colorés — saturent la section */}
+      <div className="ft-blobs" aria-hidden="true">
+        <span className="ft-blob ft-blob--b" />
+        <span className="ft-blob ft-blob--c" />
+      </div>
+
       <div className="ft-inner">
         {/* Top — brand + nav côte à côte */}
         <div className="ft-top">

@@ -20,6 +20,24 @@
 
 @keyframes ftSpin  { to { transform: rotate(360deg); } }
 
+/* ── Blobs colorés — saturent le fond ─────────────────────────── */
+.ft-blobs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ft-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.ft-blob--b { width: 480px; height: 480px; bottom: -200px; right: -80px; background: radial-gradient(closest-side, rgba(230,0,126,.55), transparent 70%); }
+.ft-blob--c { width: 420px; height: 420px; top: 20%; left: 45%; background: radial-gradient(closest-side, rgba(255,90,150,.4), transparent 70%); }
+
 .ft-curve {
   position: absolute;
   top: 0; left: 0;

@@ -105,11 +105,21 @@
 
 .how-eyebrow {
   margin: 0 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 12px;
   letter-spacing: 0.18em;
   color: var(--orange);
   text-transform: uppercase;
   text-align: center;
+}
+.how-eyebrow-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
 }
 
 .how-title {
@@ -276,29 +286,25 @@
 }
 
 .how-time-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--step-color, var(--orange)) 12%, white);
-  border: 1px solid color-mix(in srgb, var(--step-color, var(--orange)) 28%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   width: fit-content;
   margin-top: auto;
-}
-
-.how-time-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--step-color, var(--orange));
-  flex-shrink: 0;
 }
 
 .how-time-text {
   font-size: 11px;
   color: var(--step-color, var(--orange));
-  letter-spacing: 0.08em;
-  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.how-time-vib {
+  width: 150px;
+  height: 10px;
 }
 
 /* ── Responsive — roadmap verticale ─────────────────────────── */
