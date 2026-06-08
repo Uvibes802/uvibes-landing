@@ -16,7 +16,7 @@ export default function MaintenanceToggle({ active }: { active: boolean }) {
       const res = await fetch("/api/maintenance", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password, active: !on }),
+        body: JSON.stringify({ password, maintenanceMode: !on }),
       });
       if (res.ok) { setOn(!on); router.refresh(); }
       else alert("Mot de passe incorrect");
