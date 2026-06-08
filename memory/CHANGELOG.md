@@ -2,6 +2,28 @@
 
 ---
 
+## 2026-06-08 — Dashboard admin + audit sécu/SEO (branche feat/dashboard-audit-polish)
+
+### Lot A — fixes ciblés
+- **Waves VideoSection (home)** : plus d'espace entre les 3 couches (translateY 9/18px → 16/32px, stack 64→80px) → l'effet de profondeur stratifié est enfin lisible.
+- **Devis — aperçu PDF** : nouvelle modale d'aperçu inline (`?inline=1` sur la route PDF → `Content-Disposition: inline`), bouton « Télécharger » distinct, et bouton « Renvoyer par email » quand le devis est déjà envoyé.
+- **Code promo** : l'aperçu de réduction utilise désormais les **vrais prix des offres** (Vibes Connection/Premium/Boost depuis la DB) au lieu d'un montant fictif de 1000 €.
+- **Isolation dashboard** : la navbar publique ne s'affiche plus jamais sur `/admin` ni `/devis` (garde-fou client via `usePathname`, le root layout ne se re-rendant pas en navigation SPA). Corrige le « retour au site » qui sortait du dashboard.
+
+**Impact UX** : l'admin reste dans son espace jusqu'au logout ; l'aperçu PDF évite un téléchargement à chaque vérification ; la réduction promo est enfin parlante (montants réels).
+
+### Lot C — audit production (Vagues 1 & 2)
+- **Sécurité — X-Frame-Options** : `DENY` → `SAMEORIGIN`. `DENY` bloquait même nos propres iframes same-origin (l'aperçu PDF s'affichait blanc). `SAMEORIGIN` garde l'anti-clickjacking cross-site.
+- **Auth — options de session factorisées** : `SESSION_OPTIONS` était dupliqué (`middleware.ts` + `session.ts`) avec un secret de fallback faible codé en dur. Source unique dans `src/lib/sessionOptions.ts` ; le middleware ne retombe plus silencieusement sur le secret faible.
+- **Sécurité — rate-limiting** des routes publiques via un helper `src/lib/rateLimit.ts` : `promo/validate` (anti brute-force d'énumération de codes), `devis/creer` et `newsletter` (anti-spam DB).
+- **Sécurité — CRON_SECRET obligatoire** sur `/api/rdv/reminders` : sans secret configuré, l'endpoint renvoyait avant un 200 déclenchable par n'importe qui (envoi d'emails) ; il renvoie maintenant 503.
+- **SEO — sitemap** : listait `/features` et `/avantages` (301 → `/solution`) et **oubliait `/solution`**. Corrigé + ajout `/rdv` et `/politique-cookies`. Normalisation du slash final (`NEXT_PUBLIC_SITE_URL` finissait par `/` → URLs en `uvibes.fr//page`).
+
+**Impact SEO** : Google ne crawle plus d'URLs redirigées, indexe la vraie page `/solution`, et reçoit des URLs propres (un seul slash).
+**Impact sécu** : codes promo non énumérables, pas de spam de devis/newsletter, plus d'endpoint d'emails ouvert, secret de session unique et fort.
+
+---
+
 ## 2026-06-06 — Session redesign contenu + 2 nouvelles sections (branche redesign/solution-config-themes)
 
 ### Page d'accueil
