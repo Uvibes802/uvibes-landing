@@ -49,6 +49,7 @@ export async function POST(req: Request) {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
+    replyTo: email,
     subject: `Nouveau message de ${lastname} ${firstname} via le site Uvibes`,
     html: `
            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">

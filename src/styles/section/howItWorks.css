@@ -319,13 +319,13 @@
     padding-left: 0;
   }
 
-  /* Ligne verticale continue entre les étapes */
+  /* Ligne verticale entre étapes 1→2→3 seulement (pas au-delà de la dernière bulle) */
   .how-grid::before {
     content: '';
     position: absolute;
     left: 35px;
-    top: 72px;
-    bottom: 72px;
+    top: 36px;
+    height: calc(100% - 108px);  /* commence au centre de la 1ère bulle, finit au centre de la 3ème */
     width: 2px;
     background: linear-gradient(to bottom, #FD6E00, #D90A5C, #F59E0B);
     border-radius: 2px;

@@ -163,7 +163,7 @@ export default function PasseportExperience() {
       <div className="pp-header">
         <div className="pp-eyebrow">
           <span className="pp-eyebrow-mark" aria-hidden="true" />
-          <span>Passeport d&apos;Expérience Uvibes</span>
+          <span>Pour chaque profil de votre collectif</span>
         </div>
 
         <h2 className="pp-title v-prompt">
@@ -178,22 +178,32 @@ export default function PasseportExperience() {
           réels et d&apos;obtenir une reconnaissance de cet engagement.
         </p>
 
-        {/* Triptyque — bulles vibrantes */}
+        {/* Triptyque — étapes éditoriales */}
         <div className="pp-trio">
-          {(["Apprendre", "Pratiquer", "Être reconnu"] as const).map((label, i) => (
-            <span key={label} className="pp-trio-group">
-              <span
-                className="pp-bubble"
-                style={{ "--pb-color": ["#FD6E00", "#D90A5C", "#00AFDD"][i], animationDelay: `${i * 0.65}s` } as React.CSSProperties}
-              >
-                <span className="pp-bubble-num v-mono">{String(i + 1).padStart(2, "0")}</span>
-                <span className="pp-bubble-label">{label}</span>
+          {(
+            [
+              { verb: "Apprendre", sub: "ressources & échanges", color: "#FD6E00" },
+              { verb: "Pratiquer", sub: "chaque rencontre compte", color: "#D90A5C" },
+              { verb: "Être reconnu", sub: "attestation incluse", color: "#00AFDD" },
+            ] as const
+          ).map((item, i) => (
+            <span key={item.verb} className="pp-trio-group">
+              <span className="pp-trio-step" style={{ "--ps-color": item.color } as React.CSSProperties}>
+                <span className="pp-trio-verb">{item.verb}</span>
+                <span className="pp-trio-sub">{item.sub}</span>
               </span>
               {i < 2 && (
-                <span className="pp-trio-chevrons" aria-hidden="true">
-                  <span style={{ animationDelay: "0s" }} />
-                  <span style={{ animationDelay: "0.18s" }} />
-                  <span style={{ animationDelay: "0.36s" }} />
+                <span className="pp-trio-path" aria-hidden="true">
+                  <svg viewBox="0 0 60 12" fill="none" preserveAspectRatio="none">
+                    <path d="M0 6 Q15 1 30 6 Q45 11 60 6" stroke="url(#ppPathGrad)" strokeWidth="1.5" strokeDasharray="4 3" fill="none" />
+                    <defs>
+                      <linearGradient id="ppPathGrad" x1="0" x2="1" y1="0" y2="0">
+                        <stop offset="0%" stopColor="#FD6E00" stopOpacity="0.5" />
+                        <stop offset="100%" stopColor="#D90A5C" stopOpacity="0.5" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <span className="pp-trio-arrow-tip" />
                 </span>
               )}
             </span>
@@ -226,14 +236,11 @@ export default function PasseportExperience() {
                 if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(p.id); }
               }}
             >
-              {/* Bande de couleur — identité du passeport */}
-              <div className="pp-card-band" aria-hidden="true" />
-
               {/* En-tête — toujours visible */}
               <div className="pp-card-header">
                 <div className="pp-card-header-left">
                   <p className="pp-card-category">{p.category}</p>
-                  <h3 className="pp-card-title">{p.title}</h3>
+                  <h3 className="pp-card-title" style={{ color: p.accent }}>{p.title}</h3>
                   <p className="pp-card-tagline">{p.tagline}</p>
                   <div className="pp-card-keywords">
                     {p.keywords.map((kw) => (
@@ -242,7 +249,6 @@ export default function PasseportExperience() {
                   </div>
                 </div>
                 <div className="pp-card-header-right">
-                  <span className="pp-card-num">{String(i + 1).padStart(2, "0")}</span>
                   <div className="pp-card-toggle" aria-hidden="true" />
                 </div>
               </div>
@@ -256,15 +262,6 @@ export default function PasseportExperience() {
                   </div>
 
                   <div className="pp-card-perf" aria-hidden="true" />
-
-                  <div className="pp-card-block">
-                    <p className="pp-card-block-label">Axes de développement</p>
-                    <ul className="pp-card-list">
-                      {p.axes.map((a) => (
-                        <li key={a}><span className="pp-card-dot" aria-hidden="true" />{a}</li>
-                      ))}
-                    </ul>
-                  </div>
 
                   <div className="pp-card-block">
                     <p className="pp-card-block-label">Que peut-on faire de ce passeport ?</p>

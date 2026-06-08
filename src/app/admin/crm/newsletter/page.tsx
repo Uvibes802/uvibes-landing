@@ -2,9 +2,16 @@ import { prisma } from "@/lib/prisma";
 import NewsletterManager from "@/components/admin/NewsletterManager";
 
 export default async function NewsletterPage() {
-  const subscribers = await prisma.newsletterSubscriber.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  let subscribers: Awaited<ReturnType<typeof prisma.newsletterSubscriber.findMany>> = [];
+  let dbError = false;
+
+  try {
+    subscribers = await prisma.newsletterSubscriber.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+  } catch {
+    dbError = true;
+  }
 
   const total = subscribers.length;
   const actifs = subscribers.filter((s) => s.actif).length;
@@ -20,6 +27,12 @@ export default async function NewsletterPage() {
         <span className="crm-topbar-user">{actifs} abonné·es actif·ves</span>
       </div>
       <div className="crm-content">
+        {dbError && (
+          <div style={{ padding: "1rem", background: "#fff3cd", borderRadius: 8, marginBottom: 16, color: "#856404", fontSize: 14 }}>
+            ⚠️ Impossible de se connecter à la base de données. Vérifiez la variable <code>DATABASE_URL</code> et que la migration Prisma a été exécutée.
+          </div>
+        )}
+
         {/* Métriques */}
         <div className="crm-metrics" style={{ gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 28 }}>
           <div className="crm-metric-card --orange">

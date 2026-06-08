@@ -5,7 +5,10 @@ import FormContact from "../form/formContact";
 export default function Contact() {
   return (
     <section className="ct-section" id="contact">
-      <div className="section-fade section-fade--top" aria-hidden="true" />
+      {/* Séparateur wavy — remplace le fondu blanc */}
+      <svg className="ct-wave ct-wave--top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 H1440 V30 C1320,56 1200,6 1080,30 C960,54 840,6 720,30 C600,54 480,6 360,30 C240,54 120,6 0,30 Z" />
+      </svg>
       {/* Blobs identiques au hero */}
       <div className="ct-blob ct-blob--a" aria-hidden="true" />
       <div className="ct-blob ct-blob--b" aria-hidden="true" />

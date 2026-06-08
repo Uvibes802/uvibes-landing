@@ -30,7 +30,7 @@ export async function POST(
       return NextResponse.json({ error: "Devis déjà signé" }, { status: 400 });
     }
 
-    // Enregistrer la signature
+    // Enregistrer la signature en base
     const quote = await prisma.quote.update({
       where: { id },
       data: {
@@ -43,19 +43,38 @@ export async function POST(
       include: { collectif: true },
     });
 
-    // Générer le PDF
-    const pdfBuffer = await generateQuotePdf({ quote });
-    const pdfDir = path.join(process.cwd(), "public", "uploads", "devis");
-    await fs.mkdir(pdfDir, { recursive: true });
-    const pdfFilename = `${quote.numero}.pdf`;
-    const pdfPath = path.join(pdfDir, pdfFilename);
-    await fs.writeFile(pdfPath, pdfBuffer);
-    const pdfUrl = `/uploads/devis/${pdfFilename}`;
+    // Générer le PDF — tenter d'abord dans public/uploads, sinon /tmp (environnements read-only)
+    let pdfUrl: string | null = null;
+    try {
+      const pdfBuffer = await generateQuotePdf({ quote });
+      const pdfFilename = `${quote.numero}.pdf`;
 
-    await prisma.quote.update({
-      where: { id },
-      data: { pdfPath: pdfUrl, pdfGeneratedAt: new Date() },
-    });
+      let pdfDir = path.join(process.cwd(), "public", "uploads", "devis");
+      let writtenToPublic = true;
+
+      try {
+        await fs.mkdir(pdfDir, { recursive: true });
+        await fs.writeFile(path.join(pdfDir, pdfFilename), pdfBuffer);
+        pdfUrl = `/uploads/devis/${pdfFilename}`;
+      } catch {
+        // Fallback /tmp (Vercel, environnements read-only)
+        writtenToPublic = false;
+        pdfDir = path.join("/tmp", "devis");
+        await fs.mkdir(pdfDir, { recursive: true });
+        await fs.writeFile(path.join(pdfDir, pdfFilename), pdfBuffer);
+        pdfUrl = `/api/devis/${id}/pdf`;
+      }
+
+      if (writtenToPublic && pdfUrl) {
+        await prisma.quote.update({
+          where: { id },
+          data: { pdfPath: pdfUrl, pdfGeneratedAt: new Date() },
+        });
+      }
+    } catch (pdfError) {
+      console.error("[devis/signer] PDF generation failed:", pdfError);
+      // La signature est enregistrée, on continue sans PDF
+    }
 
     // Emails (fire & forget)
     const emailParams = {
@@ -67,7 +86,7 @@ export async function POST(
       prixHT: quote.prixHT,
       prixTTC: quote.prixTTC,
       signed: true,
-      pdfPath: pdfUrl,
+      pdfPath: pdfUrl ?? undefined,
     };
 
     sendQuoteToCollectif(emailParams).catch(console.error);
@@ -75,7 +94,10 @@ export async function POST(
 
     return NextResponse.json({ ok: true, pdfUrl });
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
+    console.error("[devis/signer] Erreur:", e);
+    return NextResponse.json(
+      { error: e instanceof Error ? e.message : "Erreur serveur" },
+      { status: 500 }
+    );
   }
 }

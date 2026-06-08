@@ -199,7 +199,14 @@
 @media (max-width: 768px) {
   .banner-count-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
+    text-align: center;
   }
+  .banner-count-label { text-align: center; }
+  .banner-count-row {
+    justify-content: center;
+    flex-wrap: nowrap;   /* empêche le filler de casser la ligne sous le nombre */
+  }
+  .banner-count-filler { white-space: nowrap; }
 }

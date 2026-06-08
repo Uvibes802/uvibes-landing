@@ -22,7 +22,13 @@ export default function VideoSection() {
 
   return (
     <section className="vs-section">
-      <div className="section-fade section-fade--top"    aria-hidden="true" />
+      {/* Vagues wavy haut/bas — même style que BannerCount */}
+      <svg className="vs-wave vs-wave--top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 H1440 V30 C1320,56 1200,6 1080,30 C960,54 840,6 720,30 C600,54 480,6 360,30 C240,54 120,6 0,30 Z" />
+      </svg>
+      <svg className="vs-wave vs-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,60 H1440 V30 C1320,4 1200,54 1080,30 C960,6 840,54 720,30 C600,6 480,54 360,30 C240,6 120,54 0,30 Z" />
+      </svg>
       <div className="vs-blob vs-blob--a" aria-hidden="true" />
       <div className="vs-blob vs-blob--b" aria-hidden="true" />
 

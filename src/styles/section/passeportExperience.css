@@ -87,7 +87,7 @@
   font-family: var(--text-font);
 }
 
-/* ── Triptyque — bulles vibrantes ── */
+/* ── Triptyque — étapes éditoriales ── */
 .pp-trio {
   display: inline-flex;
   align-items: center;
@@ -102,78 +102,64 @@
   align-items: center;
 }
 
-/* Bulle */
-.pp-bubble {
+/* Étape — texte éditorial */
+.pp-trio-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 96px; height: 96px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.85);
-  border: 2.5px solid var(--pb-color, #FD6E00);
-  box-shadow:
-    0 0 0 6px color-mix(in srgb, var(--pb-color, #FD6E00) 12%, transparent),
-    0 6px 18px -4px color-mix(in srgb, var(--pb-color, #FD6E00) 28%, transparent);
   gap: 4px;
-  animation: ppBubbleVibe 2.4s ease-in-out infinite;
-  cursor: default;
+  padding: 14px 22px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid color-mix(in srgb, var(--ps-color, #FD6E00) 20%, transparent);
+  backdrop-filter: blur(4px);
 }
 
-@keyframes ppBubbleVibe {
-  0%, 100% {
-    transform: scale(1) translateY(0);
-    box-shadow: 0 0 0 6px color-mix(in srgb, var(--pb-color) 12%, transparent), 0 6px 18px -4px color-mix(in srgb, var(--pb-color) 28%, transparent);
-  }
-  40% {
-    transform: scale(1.07) translateY(-4px);
-    box-shadow: 0 0 0 10px color-mix(in srgb, var(--pb-color) 7%, transparent), 0 12px 24px -4px color-mix(in srgb, var(--pb-color) 36%, transparent);
-  }
-  70% {
-    transform: scale(0.97) translateY(2px);
-  }
-}
-
-.pp-bubble-num {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  color: var(--pb-color, #FD6E00);
+.pp-trio-verb {
+  font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ps-color, #FD6E00);
   line-height: 1;
 }
 
-.pp-bubble-label {
-  font-family: var(--font-prompt), sans-serif;
-  font-size: clamp(11px, 1.2vw, 13px);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--pb-color, #FD6E00);
-  text-align: center;
-  line-height: 1.2;
-  padding: 0 6px;
+.pp-trio-sub {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(26,23,21,.45);
+  font-family: var(--text-font);
+  line-height: 1;
 }
 
-/* Flèches animées entre les bulles */
-.pp-trio-chevrons {
+/* Chemin ondulé entre étapes */
+.pp-trio-path {
   display: flex;
   align-items: center;
-  gap: 3px;
-  padding: 0 10px;
+  position: relative;
+  width: 60px;
+  flex-shrink: 0;
 }
 
-.pp-trio-chevrons span {
-  display: block;
-  width: 7px; height: 7px;
-  border-right: 2px solid rgba(253,110,0,.55);
-  border-top: 2px solid rgba(253,110,0,.55);
-  transform: rotate(45deg);
-  animation: ppArrowFlow 1.2s ease-in-out infinite;
-  opacity: 0;
+.pp-trio-path svg {
+  width: 100%;
+  height: 12px;
+  stroke-dashoffset: 0;
+  animation: ppPathDash 2s linear infinite;
 }
 
-@keyframes ppArrowFlow {
-  0%   { opacity: 0; transform: rotate(45deg) translate(-2px, 2px); }
-  40%  { opacity: 1; }
-  100% { opacity: 0; transform: rotate(45deg) translate(3px, -3px); }
+@keyframes ppPathDash {
+  from { stroke-dashoffset: 28; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.pp-trio-arrow-tip {
+  position: absolute;
+  right: -1px;
+  width: 0; height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid rgba(217,10,92,.45);
 }
 
 .pp-subline {
@@ -236,14 +222,9 @@
     0 34px 64px -20px color-mix(in srgb, var(--pp-accent, #FD6E00) 48%, transparent);
 }
 
-/* ── Bande couleur — identité passeport (en haut) ── */
-.pp-card-band {
-  height: 5px;
-  background: linear-gradient(90deg,
-    var(--pp-accent, #FD6E00),
-    color-mix(in srgb, var(--pp-accent, #FD6E00) 60%, #D90A5C)
-  );
-  border-radius: 0;
+/* Bordure gauche colorée par accent — remplace la bande haut */
+.pp-card {
+  border-left: 4px solid var(--pp-accent, #FD6E00);
 }
 
 /* ── En-tête de la carte — toujours visible ── */
@@ -276,11 +257,7 @@
   font-size: clamp(17px, 2vw, 21px);
   font-weight: 700;
   letter-spacing: -0.025em;
-  background: linear-gradient(100deg, #FD6E00 0%, #D90A5C 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  /* color est passé en inline style depuis la donnée accent par carte */
   margin: 0;
   line-height: 1.2;
 }
@@ -422,8 +399,10 @@
   .pp-card-header { padding: 1rem 1.1rem 1.1rem; }
   .pp-card-reveal-inner { padding: 0 1.1rem 1.2rem; }
 
-  .pp-bubble { width: 82px; height: 82px; }
-  .pp-trio-chevrons { padding: 0 6px; }
+  .pp-trio { flex-direction: column; gap: 0.5rem; }
+  .pp-trio-group { flex-direction: column; align-items: center; gap: 0.4rem; }
+  .pp-trio-path { transform: rotate(90deg); margin: 2px 0; }
+  .pp-trio-arrow-tip { right: auto; bottom: -1px; transform: rotate(90deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
