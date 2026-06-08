@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       { source: "/features",  destination: "/solution", permanent: true },
       // Pages renommées (slugs plus clairs / SEO) — 301 pour préserver le référencement
       { source: "/uvibes", destination: "/a-propos", permanent: true },
+      { source: "/mention-legale", destination: "/mentions-legales", permanent: true },
     ];
   },
 

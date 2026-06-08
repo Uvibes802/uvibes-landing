@@ -23,7 +23,7 @@ const NAV_COLS = [
   {
     label: "Légal",
     links: [
-      { href: "/mention-legale", label: "Mentions légales" },
+      { href: "/mentions-legales", label: "Mentions légales" },
       { href: "/conditions-dutilisation", label: "CGU" },
       { href: "/politique-de-confidentialite", label: "Confidentialité" },
       { href: "/politique-cookies", label: "Cookies" },
