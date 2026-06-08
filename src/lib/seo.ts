@@ -33,7 +33,7 @@ export const PAGE_SEO: Record<string, PageSeoConfig> = {
     title: "Innovation socio-digitale à impact collectif | Uvibes",
     description:
       "Uvibes est une association à impact sociétal portée par une équipe engagée. Découvrez notre histoire, notre mission et nos valeurs éthiques.",
-    path: "/uvibes",
+    path: "/a-propos",
   },
   blog: {
     title: "Ressources sur lien social, soft skills et collectifs | Uvibes",

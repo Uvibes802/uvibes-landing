@@ -26,7 +26,7 @@ export const Items = [
         icon: <Users size={32} color="#FD6E00"/>,
         label: "À propos",
         color: "#FD6E00",
-        link: "/uvibes",
+        link: "/a-propos",
     },
     {
         id: 5,

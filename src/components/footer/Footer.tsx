@@ -8,7 +8,7 @@ const NAV_COLS = [
     links: [
       { href: "/solution", label: "La solution" },
       { href: "/solution#offres", label: "Tarifs" },
-      { href: "/uvibes", label: "À propos" },
+      { href: "/a-propos", label: "À propos" },
       { href: "/blog", label: "Blog" },
     ],
   },
@@ -16,7 +16,7 @@ const NAV_COLS = [
     label: "Ressources",
     links: [
       { href: "/blog", label: "Blog" },
-      { href: "/uvibes", label: "Cas clients" },
+      { href: "/a-propos", label: "Cas clients" },
       { href: "/#contact", label: "Contact" },
     ],
   },
