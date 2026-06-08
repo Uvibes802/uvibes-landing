@@ -1,28 +1,9 @@
 import { getIronSession, IronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { SESSION_OPTIONS, type SessionData } from "./sessionOptions";
 
-export interface SessionData {
-  adminId?: string;
-  adminEmail?: string;
-  adminNom?: string;
-  isLoggedIn: boolean;
-}
-
-if (process.env.NODE_ENV === "production" && !process.env.IRON_SESSION_SECRET) {
-  throw new Error("IRON_SESSION_SECRET doit être défini en production.");
-}
-
-const SESSION_OPTIONS = {
-  password: process.env.IRON_SESSION_SECRET ?? "uvibes-crm-dev-secret-32-chars-min!!",
-  cookieName: "uvibes_admin_session",
-  cookieOptions: {
-    secure: process.env.NODE_ENV === "production",
-    httpOnly: true,
-    sameSite: "lax" as const,
-    maxAge: 60 * 60 * 24 * 7, // 7 jours
-  },
-};
+export type { SessionData };
 
 export async function getSession(): Promise<IronSession<SessionData>> {
   const cookieStore = await cookies();

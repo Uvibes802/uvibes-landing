@@ -1,13 +1,7 @@
 import { getIronSession } from "iron-session";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { SessionData } from "./lib/session";
-
-const SESSION_OPTIONS = {
-  password: process.env.IRON_SESSION_SECRET ?? "uvibes-crm-dev-secret-32-chars-min!!",
-  cookieName: "uvibes_admin_session",
-  cookieOptions: { secure: process.env.NODE_ENV === "production" },
-};
+import { SESSION_OPTIONS, type SessionData } from "./lib/sessionOptions";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
