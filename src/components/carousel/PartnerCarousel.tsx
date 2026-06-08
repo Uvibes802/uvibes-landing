@@ -2,7 +2,6 @@
 
 import { PartnerLogo } from "@/services/home/fetchPartners";
 import VibrationLine from "@/components/shared/VibrationLine";
-import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import Image from "next/image";
 import eklore from "../../../public/images/eklore.png";
 import eclatens from "../../../public/images/LogoEclatens.png";
@@ -52,12 +51,6 @@ export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] })
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Lignes épaisses bas — dégradé orange → rose */}
-      <div className="trustees-vline trustees-vline--bottom" aria-hidden="true">
-        <GradientVibrationLine id="vline-bot-1" width={1800} height={55} amplitude={32} freq={5} strokeWidth={14} speed={11} colorFrom="#FD6E00" colorTo="#D90A5C" style={{ width: "100%" }} />
-        <GradientVibrationLine id="vline-bot-2" width={1800} height={55} amplitude={22} freq={7} strokeWidth={8}  speed={16} colorFrom="#D90A5C" colorTo="#FD6E00" style={{ width: "100%" }} />
       </div>
 
     </section>
