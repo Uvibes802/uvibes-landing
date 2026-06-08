@@ -87,7 +87,7 @@ export default function SignaturePad({ onSign, loading }: Props) {
         />
         <span>
           J&apos;ai lu et j&apos;accepte les{" "}
-          <a href="/conditions-dutilisation" target="_blank" rel="noopener noreferrer">conditions générales</a>
+          <a href="/conditions-d-utilisation" target="_blank" rel="noopener noreferrer">conditions générales</a>
           {" "}et la{" "}
           <a href="/politique-de-confidentialite" target="_blank" rel="noopener noreferrer">politique de confidentialité</a>.
         </span>
