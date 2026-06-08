@@ -66,6 +66,13 @@ model Quote {
 
   sentAt  DateTime?
   sentTo  String?
+
+  // Acceptation CGV / confidentialité à la signature
+  termsAcceptedAt DateTime?
+
+  // Code promo appliqué à la signature
+  promoCode    String?
+  promoPercent Float?
 }
 
 // ── CMS ────────────────────────────────────────────────────────
@@ -153,6 +160,20 @@ model NewsletterSubscriber {
   source      String   @default("site") // site | crm | import
   actif       Boolean  @default(true)
   unsubscribedAt DateTime?
+}
+
+// ── CODES PROMO ────────────────────────────────────────────────
+
+model PromoCode {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  code        String    @unique
+  pourcentage Float
+  description String?
+  actif       Boolean   @default(true)
+  expiresAt   DateTime?
+  usageMax    Int?
+  usageCount  Int       @default(0)
 }
 
 // ── AUTH ADMIN ─────────────────────────────────────────────────

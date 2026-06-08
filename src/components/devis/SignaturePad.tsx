@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 
 interface Props {
-  onSign: (data: { signatureData: string; signedByName: string; signedByRole: string }) => Promise<void>;
+  onSign: (data: { signatureData: string; signedByName: string; signedByRole: string; termsAccepted: boolean }) => Promise<void>;
   loading?: boolean;
 }
 
@@ -14,19 +14,22 @@ export default function SignaturePad({ onSign, loading }: Props) {
   const [role, setRole] = useState("");
   const [isEmpty, setIsEmpty] = useState(true);
   const [nameError, setNameError] = useState("");
+  const [terms, setTerms] = useState(false);
+  const [termsError, setTermsError] = useState("");
 
   const handleEnd = () => setIsEmpty(false);
   const handleClear = () => { canvasRef.current?.clear(); setIsEmpty(true); };
 
   const handleValidate = async () => {
     if (!name.trim()) { setNameError("Nom requis"); return; }
+    if (!terms) { setTermsError("Vous devez accepter les conditions pour signer."); return; }
     if (isEmpty || !canvasRef.current || canvasRef.current.isEmpty()) {
       alert("Veuillez apposer votre signature dans le cadre ci-dessus.");
       return;
     }
 
     const signatureData = canvasRef.current.toDataURL("image/png");
-    await onSign({ signatureData, signedByName: name.trim(), signedByRole: role.trim() });
+    await onSign({ signatureData, signedByName: name.trim(), signedByRole: role.trim(), termsAccepted: true });
   };
 
   return (
@@ -74,6 +77,22 @@ export default function SignaturePad({ onSign, loading }: Props) {
           <div className="dv-sign-canvas-hint">Tracez votre signature ici</div>
         )}
       </div>
+
+      {/* Acceptation CGV / confidentialité — obligatoire */}
+      <label className="dv-terms">
+        <input
+          type="checkbox"
+          checked={terms}
+          onChange={(e) => { setTerms(e.target.checked); setTermsError(""); }}
+        />
+        <span>
+          J&apos;ai lu et j&apos;accepte les{" "}
+          <a href="/conditions-dutilisation" target="_blank" rel="noopener noreferrer">conditions générales</a>
+          {" "}et la{" "}
+          <a href="/politique-de-confidentialite" target="_blank" rel="noopener noreferrer">politique de confidentialité</a>.
+        </span>
+      </label>
+      {termsError && <p className="dv-error-msg" style={{ marginTop: 4 }}>{termsError}</p>}
 
       <div className="dv-sign-actions">
         <button type="button" className="dv-sign-clear" onClick={handleClear}>

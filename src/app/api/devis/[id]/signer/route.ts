@@ -11,10 +11,14 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
-    const { signatureData, signedByName, signedByRole } = await req.json();
+    const { signatureData, signedByName, signedByRole, termsAccepted } = await req.json();
 
     if (!signatureData || !signedByName) {
       return NextResponse.json({ error: "Signature et nom requis" }, { status: 400 });
+    }
+
+    if (!termsAccepted) {
+      return NextResponse.json({ error: "Vous devez accepter les conditions générales." }, { status: 400 });
     }
 
     const existingQuote = await prisma.quote.findUnique({
@@ -38,6 +42,7 @@ export async function POST(
         signatureData,
         signedByName,
         signedByRole: signedByRole || null,
+        termsAcceptedAt: new Date(),
         statut: "SIGNE",
       },
       include: { collectif: true },

@@ -4,6 +4,7 @@ import JsonLd from "@/components/JsonLd";
 import { FeaturesCard } from "@/components/cards/FeaturesCard";
 import PricingTable from "@/components/features/PricingTable";
 import OffreEvenementielle from "@/components/features/OffreEvenementielle";
+import SmallOrgCta from "@/components/features/SmallOrgCta";
 import SolutionAnchorNav from "@/components/solution/SolutionAnchorNav";
 import SolutionHero from "@/components/solution/SolutionHero";
 import SolutionHowItWorks from "@/components/solution/SolutionHowItWorks";
@@ -43,6 +44,7 @@ export default function SolutionPage() {
         <FeaturesCard />
         <PricingTable />
         <OffreEvenementielle />
+        <SmallOrgCta />
         <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)" }}>
           <PartnerBanner />
           <Footer />

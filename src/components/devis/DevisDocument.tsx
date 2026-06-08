@@ -44,7 +44,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
   const isSigned = statut === "SIGNE";
   const isExpired = quote.validUntil && new Date(quote.validUntil) < new Date() && !isSigned;
 
-  async function handleSign(data: { signatureData: string; signedByName: string; signedByRole: string }) {
+  async function handleSign(data: { signatureData: string; signedByName: string; signedByRole: string; termsAccepted: boolean }) {
     setSigningLoading(true);
     try {
       const res = await fetch(`/api/devis/${quote.id}/signer`, {

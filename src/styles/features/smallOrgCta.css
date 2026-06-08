@@ -1,0 +1,101 @@
+/* ── SmallOrgCta — invitation petites structures ──────────────── */
+
+.soc-section {
+  position: relative;
+  padding: clamp(1rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(3.5rem, 6vw, 6rem);
+  background: transparent;
+}
+
+.soc-card {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: clamp(2.25rem, 5vw, 4rem);
+  background: linear-gradient(135deg, #FFF6EC 0%, #FFF0F8 55%, #FEF2F7 100%);
+  border: 1px solid rgba(253, 110, 0, 0.12);
+  box-shadow: 0 24px 60px -36px rgba(217, 10, 92, 0.35);
+  /* reveal */
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1);
+}
+.soc-vis .soc-card { opacity: 1; transform: translateY(0); }
+
+/* Halo gradient discret */
+.soc-glow {
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 55%; height: 140%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.14), transparent 70%);
+  pointer-events: none;
+}
+
+.soc-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.soc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin: 0 0 1.1rem;
+}
+.soc-eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
+}
+
+.soc-title {
+  margin: 0 0 1rem;
+  font-size: clamp(26px, 3.6vw, 44px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--orange);
+}
+.soc-title-accent {
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(100deg, #FD6E00 0%, #E6007E 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.soc-text {
+  margin: 0 0 1.75rem;
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+  color: rgba(26, 23, 21, 0.7);
+  max-width: 600px;
+}
+
+.soc-ctas {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.soc-cta-ghost {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rose);
+  text-decoration: none;
+  font-family: var(--font-prompt), sans-serif;
+  border-bottom: 1px solid rgba(217, 10, 92, 0.3);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.soc-cta-ghost:hover { color: var(--orange); border-color: var(--orange); }

@@ -4,14 +4,9 @@ import { TestimonyCardProps } from "@/components/cards/testimonyCard";
 import { useEffect, useState } from "react";
 import { sanitizeText } from "../blog/sanitize";
 
-export type Testimony = {
-  id: number;
-  title: { rendered: string };
-  acf: {
-    auteur_temoignage: string;
-    role_et_entreprise_temoignage: string;
-  };
-};
+// L'API /api/testimonials renvoie désormais les témoignages gérés en admin (table Testimony),
+// déjà mis en forme : { id, testimony, auteur_temoignage, role_et_entreprise_temoignage }.
+export type Testimony = TestimonyCardProps;
 
 const FALLBACK_TESTIMONIES: TestimonyCardProps[] = [
   {
@@ -46,9 +41,9 @@ export default function FetchTestimony() {
         if (!data || data.length === 0) return;
         const processed = data.map((t: Testimony) => ({
           id: t.id,
-          testimony: sanitizeText(t.title.rendered),
-          auteur_temoignage: sanitizeText(t.acf?.auteur_temoignage ?? ""),
-          role_et_entreprise_temoignage: sanitizeText(t.acf?.role_et_entreprise_temoignage ?? ""),
+          testimony: sanitizeText(t.testimony),
+          auteur_temoignage: sanitizeText(t.auteur_temoignage ?? ""),
+          role_et_entreprise_temoignage: sanitizeText(t.role_et_entreprise_temoignage ?? ""),
         }));
         setTestimonies(processed);
       } catch {

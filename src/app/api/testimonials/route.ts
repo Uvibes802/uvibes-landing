@@ -1,22 +1,26 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
+// Témoignages affichés sur le site : pilotés depuis l'admin (table Testimony).
+// Seuls les témoignages "actif = true" sont renvoyés, dans l'ordre défini.
+// Format adapté à ce qu'attend le front (testimonyCard).
 export async function GET() {
   try {
-    const api = process.env.NEXT_PUBLIC_API_URL;
+    const items = await prisma.testimony.findMany({
+      where: { actif: true },
+      orderBy: { ordre: "asc" },
+    });
 
-    const tagRes = await fetch(`${api}/wp-json/wp/v2/tags?slug=temoignage`, { next: { revalidate: 3600 } });
-    if (!tagRes.ok) return NextResponse.json([]);
+    const data = items.map((t) => ({
+      id: t.id,
+      testimony: t.texte,
+      auteur_temoignage: t.auteur,
+      role_et_entreprise_temoignage: t.role,
+    }));
 
-    const tags = await tagRes.json();
-    const tagId = tags[0]?.id;
-    if (!tagId) return NextResponse.json([]);
-
-    const postsRes = await fetch(`${api}/wp-json/wp/v2/posts?tags=${tagId}&per_page=100`, { next: { revalidate: 3600 } });
-    if (!postsRes.ok) return NextResponse.json([]);
-
-    const posts = await postsRes.json();
-    return NextResponse.json(posts);
+    return NextResponse.json(data);
   } catch {
+    // En cas d'erreur DB, on renvoie une liste vide → le front garde ses témoignages de secours.
     return NextResponse.json([]);
   }
 }

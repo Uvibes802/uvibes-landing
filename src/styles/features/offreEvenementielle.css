@@ -1,30 +1,49 @@
 /* ── OffreEvenementielle ────────────────────────────────────── */
 
+/* La section ne porte plus le fond : c'est une carte contenue, juste sous les 3 offres */
 .oe-section {
   position: relative;
-  overflow: hidden;
-  padding: clamp(4rem, 7vw, 6rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: var(--ink);
+  overflow: visible;
+  padding: clamp(0.5rem, 2vw, 1.5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(3rem, 5vw, 5rem);
+  background: transparent;
 }
 
-/* Bande déco diagonale */
-.oe-bg-stripe {
-  position: absolute;
-  top: 0; right: 0;
-  width: 45%; height: 100%;
-  background: linear-gradient(135deg, rgba(253,110,0,.12), rgba(217,10,92,.08));
-  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
-  pointer-events: none;
-}
+/* Bande déco diagonale — désactivée (la carte a son propre décor) */
+.oe-bg-stripe { display: none; }
 
+/* La carte : même largeur que la grille des 3 offres (1100px) */
 .oe-inner {
   position: relative;
   z-index: 1;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
+  background: var(--ink);
+  border-radius: 28px;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -34px rgba(217,10,92,.55);
+}
+
+/* Liseré gradient en haut de la carte */
+.oe-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FD6E00, #FF6098, #D90A5C);
+}
+
+/* Halo gradient discret en fond de carte */
+.oe-inner::after {
+  content: '';
+  position: absolute;
+  top: -40%; right: -10%;
+  width: 60%; height: 120%;
+  background: radial-gradient(closest-side, rgba(253,110,0,.18), transparent 70%);
+  pointer-events: none;
 }
 
 /* ── Scroll reveal ── */
@@ -61,10 +80,10 @@
 }
 
 .oe-title {
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(30px, 4vw, 48px);
   font-weight: 800;
   letter-spacing: -0.045em;
-  line-height: 1;
+  line-height: 1.02;
   color: #fff;
   margin: 0;
 }
