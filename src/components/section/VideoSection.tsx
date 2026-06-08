@@ -22,14 +22,17 @@ export default function VideoSection() {
 
   return (
     <section className="vs-section">
-      {/* Séparateur wavy en couches (haut) — vagues blanches superposées + ombres pour un effet de profondeur dégradé */}
+      {/* Séparateur wavy en couches (haut) — 3 formes de vagues différentes + ombres → effet de profondeur dégradé */}
       <div className="vs-wave-stack" aria-hidden="true">
+        {/* Couche 3 (arrière) — vague large et douce, 4 ondulations */}
         <svg className="vs-wave-layer vs-wave-layer--3" viewBox="0 0 1440 60" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V30 C1320,56 1200,6 1080,30 C960,54 840,6 720,30 C600,54 480,6 360,30 C240,54 120,6 0,30 Z" />
+          <path d="M0,0 H1440 V32 C1320,50 1200,14 1080,32 C960,50 840,14 720,32 C600,50 480,14 360,32 C240,50 120,14 0,32 Z" />
         </svg>
+        {/* Couche 2 (milieu) — vague en opposition de phase */}
         <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 60" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V30 C1320,56 1200,6 1080,30 C960,54 840,6 720,30 C600,54 480,6 360,30 C240,54 120,6 0,30 Z" />
+          <path d="M0,0 H1440 V28 C1320,8 1200,52 1080,28 C960,4 840,50 720,28 C600,6 480,52 360,28 C240,4 120,50 0,28 Z" />
         </svg>
+        {/* Couche 1 (avant) — vague serrée, 6 ondulations */}
         <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 60" preserveAspectRatio="none">
           <path d="M0,0 H1440 V30 C1320,56 1200,6 1080,30 C960,54 840,6 720,30 C600,54 480,6 360,30 C240,54 120,6 0,30 Z" />
         </svg>
