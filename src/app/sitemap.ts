@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uvibes.fr";
+// On retire un éventuel slash final pour éviter les URLs en double slash (uvibes.fr//page)
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://uvibes.fr").replace(/\/$/, "");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Pages statiques
@@ -18,13 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/features`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/avantages`,
+      // Page réelle (/features et /avantages sont des 301 → /solution, ne pas les lister)
+      url: `${BASE_URL}/solution`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
@@ -34,6 +30,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/rdv`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
     },
     {
       url: `${BASE_URL}/mention-legale`,
@@ -49,6 +51,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/politique-de-confidentialite`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/politique-cookies`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
