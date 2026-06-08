@@ -3,10 +3,18 @@ import PromoManager from "@/components/admin/PromoManager";
 
 export default async function PromosPage() {
   let promos: Awaited<ReturnType<typeof prisma.promoCode.findMany>> = [];
+  let plans: { nom: string; prixAnnuel: number }[] = [];
   let dbError = false;
 
   try {
-    promos = await prisma.promoCode.findMany({ orderBy: { createdAt: "desc" } });
+    [promos, plans] = await Promise.all([
+      prisma.promoCode.findMany({ orderBy: { createdAt: "desc" } }),
+      prisma.plan.findMany({
+        where: { actif: true },
+        orderBy: { ordre: "asc" },
+        select: { nom: true, prixAnnuel: true },
+      }),
+    ]);
   } catch {
     dbError = true;
   }
@@ -32,7 +40,7 @@ export default async function PromosPage() {
             ⚠️ Impossible de se connecter à la base de données.
           </div>
         )}
-        <PromoManager initial={serialized} />
+        <PromoManager initial={serialized} plans={plans} />
       </div>
     </>
   );

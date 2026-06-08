@@ -14,9 +14,12 @@ interface Promo {
   usageCount: number;
 }
 
-const SAMPLE = 1000; // montant exemple pour visualiser la réduction
+interface PlanPreview {
+  nom: string;
+  prixAnnuel: number;
+}
 
-export default function PromoManager({ initial }: { initial: Promo[] }) {
+export default function PromoManager({ initial, plans }: { initial: Promo[]; plans: PlanPreview[] }) {
   const [items, setItems] = useState<Promo[]>(initial);
   const [msg, setMsg] = useState("");
 
@@ -36,7 +39,6 @@ export default function PromoManager({ initial }: { initial: Promo[] }) {
   const [sending, setSending] = useState(false);
 
   const pctNum = Number(pct) || 0;
-  const reduction = Math.round(SAMPLE * (pctNum / 100));
 
   async function create() {
     setLoading(true); setMsg("");
@@ -171,12 +173,25 @@ export default function PromoManager({ initial }: { initial: Promo[] }) {
             </div>
           </div>
 
-          {/* Visualisation de la réduction */}
-          {pctNum > 0 && (
+          {/* Visualisation de la réduction sur les vraies offres */}
+          {pctNum > 0 && plans.length > 0 && (
             <div style={{ marginTop: 16, padding: "14px 18px", borderRadius: 12, background: "rgba(253,110,0,.07)", border: "1px solid rgba(253,110,0,.15)", fontSize: 14 }}>
-              Aperçu — sur un devis de <strong>{SAMPLE.toLocaleString("fr-FR")} €</strong> :{" "}
-              <span style={{ color: "#D90A5C", fontWeight: 700 }}>−{reduction.toLocaleString("fr-FR")} €</span>{" "}
-              → <strong>{(SAMPLE - reduction).toLocaleString("fr-FR")} €</strong>
+              <p style={{ margin: "0 0 10px", fontWeight: 600, color: "var(--crm-muted)" }}>
+                Aperçu de la réduction sur les offres :
+              </p>
+              {plans.map((p) => {
+                const reduction = Math.round(p.prixAnnuel * (pctNum / 100));
+                return (
+                  <div key={p.nom} style={{ display: "flex", justifyContent: "space-between", gap: 12, padding: "5px 0", borderTop: "1px solid rgba(253,110,0,.12)" }}>
+                    <span style={{ fontWeight: 600 }}>{p.nom}</span>
+                    <span>
+                      <span style={{ color: "var(--crm-muted)", textDecoration: "line-through" }}>{p.prixAnnuel.toLocaleString("fr-FR")} €</span>{" "}
+                      <span style={{ color: "#D90A5C", fontWeight: 700 }}>−{reduction.toLocaleString("fr-FR")} €</span>{" "}
+                      → <strong>{(p.prixAnnuel - reduction).toLocaleString("fr-FR")} €</strong>
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           )}
 
