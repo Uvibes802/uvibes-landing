@@ -34,7 +34,7 @@ export default async function CollectifsPage({ searchParams }: Props) {
         <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a className="crm-btn --outline --sm" href="/api/admin/collectifs/export">⬇ Export CSV</a>
-          <Link href="/admin/crm/collectifs/nouveau" className="crm-btn --primary --sm">+ Nouveau collectif</Link>
+          <Link href="/admin/collectifs/nouveau" className="crm-btn --primary --sm">+ Nouveau collectif</Link>
         </span>
       </div>
 
@@ -50,7 +50,7 @@ export default async function CollectifsPage({ searchParams }: Props) {
                 ))}
               </select>
               <button type="submit" className="crm-btn --outline --sm">Filtrer</button>
-              {(search || statut) && <Link href="/admin/crm/collectifs" className="crm-btn --outline --sm">✕</Link>}
+              {(search || statut) && <Link href="/admin/collectifs" className="crm-btn --outline --sm">✕</Link>}
             </form>
           </div>
 
@@ -74,7 +74,7 @@ export default async function CollectifsPage({ searchParams }: Props) {
                   <td><span className={`crm-badge ${STATUT_BADGE[c.statut] ?? "--brouillon"}`}>{c.statut}</span></td>
                   <td style={{ textAlign: "center" }}>{c._count.quotes}</td>
                   <td style={{ fontSize: 12, color: "var(--crm-muted)" }}>{new Date(c.createdAt).toLocaleDateString("fr-FR")}</td>
-                  <td><Link href={`/admin/crm/collectifs/${c.id}`} className="crm-btn --outline --sm">Voir</Link></td>
+                  <td><Link href={`/admin/collectifs/${c.id}`} className="crm-btn --outline --sm">Voir</Link></td>
                 </tr>
               ))}
             </tbody>

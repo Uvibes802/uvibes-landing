@@ -75,7 +75,7 @@ export default function Footer() {
         <div className="ft-bottom">
           <p className="v-mono ft-copy">© 2026 Uvibes · Made with love in Perpignan</p>
           <p className="ft-slogan v-serif">L&apos;inattendu commence ici.</p>
-          <Link href="/admin/crm/login" className="ft-admin-link" aria-label="Espace administration">
+          <Link href="/admin/login" className="ft-admin-link" aria-label="Espace administration">
             Admin
           </Link>
         </div>

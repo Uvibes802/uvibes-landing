@@ -85,7 +85,7 @@ export default function AdminDevisForm({ collectifs, plans }: Props) {
       const data = await res.json();
       if (!res.ok) { setError(data.error ?? "Erreur"); return; }
       setMsg(envoyerMaintenant ? `✓ Devis ${data.numero} créé et envoyé` : `✓ Devis ${data.numero} créé en brouillon`);
-      setTimeout(() => router.push(`/admin/crm/devis/${data.id}`), 1200);
+      setTimeout(() => router.push(`/admin/devis/${data.id}`), 1200);
     } finally {
       setLoading(false);
     }
@@ -95,7 +95,7 @@ export default function AdminDevisForm({ collectifs, plans }: Props) {
     <>
       <div className="crm-topbar">
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link href="/admin/crm/devis" className="crm-btn --outline --sm">
+          <Link href="/admin/devis" className="crm-btn --outline --sm">
             <ArrowLeft size={13} /> Retour
           </Link>
           <span className="crm-topbar-title">Nouveau devis</span>

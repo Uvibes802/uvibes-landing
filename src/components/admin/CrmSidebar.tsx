@@ -11,28 +11,28 @@ const NAV = [
   {
     section: "CRM",
     items: [
-      { href: "/admin/crm/dashboard", icon: Home, label: "Dashboard" },
-      { href: "/admin/crm/devis", icon: FileText, label: "Devis" },
-      { href: "/admin/crm/promos", icon: Ticket, label: "Codes promo" },
-      { href: "/admin/crm/collectifs", icon: Users, label: "Collectifs" },
-      { href: "/admin/crm/rdv", icon: CalendarDays, label: "Rendez-vous" },
-      { href: "/admin/crm/newsletter", icon: Mail, label: "Newsletter" },
+      { href: "/admin/dashboard", icon: Home, label: "Dashboard" },
+      { href: "/admin/devis", icon: FileText, label: "Devis" },
+      { href: "/admin/promos", icon: Ticket, label: "Codes promo" },
+      { href: "/admin/collectifs", icon: Users, label: "Collectifs" },
+      { href: "/admin/rdv", icon: CalendarDays, label: "Rendez-vous" },
+      { href: "/admin/newsletter", icon: Mail, label: "Newsletter" },
     ],
   },
   {
     section: "CMS",
     items: [
-      { href: "/admin/crm/cms/contenu", icon: PenLine, label: "Contenus éditoriaux" },
-      { href: "/admin/crm/cms/partenaires", icon: Layers, label: "Partenaires" },
-      { href: "/admin/crm/cms/temoignages", icon: Star, label: "Témoignages" },
-      { href: "/admin/crm/cms/equipe", icon: Users, label: "Équipe" },
-      { href: "/admin/crm/cms/tarification", icon: BarChart2, label: "Tarification" },
+      { href: "/admin/cms/contenu", icon: PenLine, label: "Contenus éditoriaux" },
+      { href: "/admin/cms/partenaires", icon: Layers, label: "Partenaires" },
+      { href: "/admin/cms/temoignages", icon: Star, label: "Témoignages" },
+      { href: "/admin/cms/equipe", icon: Users, label: "Équipe" },
+      { href: "/admin/cms/tarification", icon: BarChart2, label: "Tarification" },
     ],
   },
   {
     section: "Système",
     items: [
-      { href: "/admin/crm/maintenance", icon: Settings, label: "Maintenance" },
+      { href: "/admin/maintenance", icon: Settings, label: "Maintenance" },
     ],
   },
 ];
@@ -43,7 +43,7 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
 
   async function handleLogout() {
     await fetch("/api/admin/auth/logout", { method: "POST" });
-    router.push("/admin/crm/login");
+    router.push("/admin/login");
     router.refresh();
   }
 

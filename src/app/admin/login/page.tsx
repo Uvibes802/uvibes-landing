@@ -23,7 +23,7 @@ export default function CrmLoginPage() {
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error); return; }
-      router.push("/admin/crm/dashboard");
+      router.push("/admin/dashboard");
       router.refresh();
     } catch {
       setError("Erreur réseau, veuillez réessayer.");

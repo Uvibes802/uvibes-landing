@@ -40,7 +40,7 @@ export default function NouveauCollectifPage() {
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error ?? "Erreur"); return; }
-      router.push(`/admin/crm/collectifs/${data.id}`);
+      router.push(`/admin/collectifs/${data.id}`);
     } finally {
       setLoading(false);
     }
@@ -50,7 +50,7 @@ export default function NouveauCollectifPage() {
     <>
       <div className="crm-topbar">
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link href="/admin/crm/collectifs" className="crm-btn --outline --sm">
+          <Link href="/admin/collectifs" className="crm-btn --outline --sm">
             <ArrowLeft size={13} /> Retour
           </Link>
           <span className="crm-topbar-title">Nouveau collectif</span>

@@ -44,7 +44,7 @@ export default async function DevisListPage({ searchParams }: Props) {
     <>
       <div className="crm-topbar">
         <span className="crm-topbar-title">Devis ({total})</span>
-        <Link href="/admin/crm/devis/nouveau" className="crm-btn --primary --sm">+ Nouveau devis</Link>
+        <Link href="/admin/devis/nouveau" className="crm-btn --primary --sm">+ Nouveau devis</Link>
       </div>
 
       <div className="crm-content">
@@ -60,7 +60,7 @@ export default async function DevisListPage({ searchParams }: Props) {
               </select>
               <button type="submit" className="crm-btn --outline --sm">Filtrer</button>
               {(search || statut) && (
-                <Link href="/admin/crm/devis" className="crm-btn --outline --sm">✕ Reset</Link>
+                <Link href="/admin/devis" className="crm-btn --outline --sm">✕ Reset</Link>
               )}
             </form>
           </div>
@@ -96,7 +96,7 @@ export default async function DevisListPage({ searchParams }: Props) {
                     {new Date(q.createdAt).toLocaleDateString("fr-FR")}
                   </td>
                   <td style={{ display: "flex", gap: 6 }}>
-                    <Link href={`/admin/crm/devis/${q.id}`} className="crm-btn --outline --sm">Voir</Link>
+                    <Link href={`/admin/devis/${q.id}`} className="crm-btn --outline --sm">Voir</Link>
                     <Link href={`/devis/${q.id}`} className="crm-btn --outline --sm" target="_blank">↗</Link>
                   </td>
                 </tr>
@@ -109,7 +109,7 @@ export default async function DevisListPage({ searchParams }: Props) {
               {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
                 <Link
                   key={p}
-                  href={`/admin/crm/devis?page=${p}&q=${search}&statut=${statut}`}
+                  href={`/admin/devis?page=${p}&q=${search}&statut=${statut}`}
                   className={`crm-btn --sm ${p === page ? "--primary" : "--outline"}`}
                 >
                   {p}

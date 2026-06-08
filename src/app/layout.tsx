@@ -76,7 +76,7 @@ export default async function RootLayout({
   const isMaintenanceMode = getMaintenanceStatus();
   const headersList = await headers();
   const pathname = headersList.get("x-invoke-path") ?? headersList.get("x-pathname") ?? "";
-  const isAdminCrm = pathname.startsWith("/admin/crm") || pathname.startsWith("/devis");
+  const isAdminCrm = pathname.startsWith("/admin") || pathname.startsWith("/devis");
 
   return (
     <html lang="fr">

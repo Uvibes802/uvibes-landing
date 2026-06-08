@@ -80,7 +80,7 @@ export async function sendQuoteToCollectif(params: QuoteEmailParams) {
 
 export async function notifyDirectrice(params: QuoteEmailParams) {
   const transporter = createTransport();
-  const adminUrl = `${SITE_URL}/admin/crm/devis/${params.quoteId}`;
+  const adminUrl = `${SITE_URL}/admin/devis/${params.quoteId}`;
 
   await transporter.sendMail({
     from: `"Uvibes CRM" <${process.env.EMAIL_USER}>`,

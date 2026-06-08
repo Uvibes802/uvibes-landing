@@ -10,13 +10,13 @@ export async function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-pathname", pathname);
 
-  // Protéger toutes les routes /admin/crm/* sauf la page de login
-  if (pathname.startsWith("/admin/crm") && pathname !== "/admin/crm/login") {
+  // Protéger toutes les routes /admin/* sauf la page de login
+  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
     const res = NextResponse.next({ request: { headers: requestHeaders } });
     const session = await getIronSession<SessionData>(request, res, SESSION_OPTIONS);
 
     if (!session.isLoggedIn) {
-      return NextResponse.redirect(new URL("/admin/crm/login", request.url));
+      return NextResponse.redirect(new URL("/admin/login", request.url));
     }
     return res;
   }
@@ -36,5 +36,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/crm/:path*", "/api/admin/:path*", "/devis/:path*", "/devis"],
+  matcher: ["/admin/:path*", "/api/admin/:path*", "/devis/:path*", "/devis"],
 };

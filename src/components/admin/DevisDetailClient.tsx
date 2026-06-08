@@ -65,7 +65,7 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
     <>
       <div className="crm-topbar">
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link href="/admin/crm/devis" className="crm-btn --outline --sm">
+          <Link href="/admin/devis" className="crm-btn --outline --sm">
             <ArrowLeft size={13} /> Retour
           </Link>
           <span className="crm-topbar-title">{quote.numero}</span>
@@ -114,7 +114,7 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
                   </div>
                 ))}
               </div>
-              <Link href={`/admin/crm/collectifs/${quote.collectif.id}`} className="crm-btn --outline --sm" style={{ marginTop: 8 }}>
+              <Link href={`/admin/collectifs/${quote.collectif.id}`} className="crm-btn --outline --sm" style={{ marginTop: 8 }}>
                 Voir la fiche collectif →
               </Link>
             </div>

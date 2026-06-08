@@ -74,7 +74,7 @@ export default async function DashboardPage() {
         <div className="crm-table-wrap">
           <div className="crm-table-header">
             <span className="crm-table-title">Derniers devis</span>
-            <Link href="/admin/crm/devis" className="crm-btn --outline --sm">Voir tout →</Link>
+            <Link href="/admin/devis" className="crm-btn --outline --sm">Voir tout →</Link>
           </div>
           <table className="crm-table">
             <thead>
@@ -109,7 +109,7 @@ export default async function DashboardPage() {
                     {new Date(q.createdAt).toLocaleDateString("fr-FR")}
                   </td>
                   <td>
-                    <Link href={`/admin/crm/devis/${q.id}`} className="crm-btn --outline --sm">Voir</Link>
+                    <Link href={`/admin/devis/${q.id}`} className="crm-btn --outline --sm">Voir</Link>
                   </td>
                 </tr>
               ))}

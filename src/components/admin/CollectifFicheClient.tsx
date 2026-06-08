@@ -52,7 +52,7 @@ export default function CollectifFicheClient({ collectif: initial }: { collectif
     <>
       <div className="crm-topbar">
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link href="/admin/crm/collectifs" className="crm-btn --outline --sm">
+          <Link href="/admin/collectifs" className="crm-btn --outline --sm">
             <ArrowLeft size={13} /> Retour
           </Link>
           <span className="crm-topbar-title">{initial.nom}</span>
@@ -134,7 +134,7 @@ export default function CollectifFicheClient({ collectif: initial }: { collectif
                         <td>{q.planNom}</td>
                         <td>{q.prixHT.toLocaleString("fr-FR")} €</td>
                         <td><span className={`crm-badge ${STATUT_BADGE[q.statut] ?? "--brouillon"}`}>{q.statut}</span></td>
-                        <td><Link href={`/admin/crm/devis/${q.id}`} className="crm-btn --outline --sm">Voir</Link></td>
+                        <td><Link href={`/admin/devis/${q.id}`} className="crm-btn --outline --sm">Voir</Link></td>
                       </tr>
                     ))}
                   </tbody>
