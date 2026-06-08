@@ -330,6 +330,15 @@
 
 .dv-sign-canvas-wrap { border: 2px solid rgba(0,0,0,.12); border-radius: 12px; overflow: hidden; background: #fff; position: relative; height: 130px; cursor: crosshair; }
 .dv-sign-canvas-hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #b0a0a8; pointer-events: none; }
+/* Code promo */
+.dv-promo { margin: 1.5rem 0; padding: 1.25rem; border: 1px dashed rgba(253,110,0,.35); border-radius: 12px; background: rgba(253,110,0,.04); }
+.dv-promo-row { display: flex; gap: 10px; margin-top: 8px; }
+.dv-promo-row .dv-input { flex: 1; }
+.dv-promo-btn { padding: 10px 20px; border-radius: 10px; background: linear-gradient(135deg, #FD6E00, #D90A5C); color: #fff; border: none; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity .2s; }
+.dv-promo-btn:disabled { opacity: .5; cursor: not-allowed; }
+.dv-promo-btn.--remove { background: #fff; color: #6b4455; border: 1.5px solid rgba(0,0,0,.12); }
+.dv-promo-ok { font-size: 13px; color: #16a34a; margin: 8px 0 0; font-weight: 600; }
+
 /* Acceptation CGV / confidentialité */
 .dv-terms { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 13px; line-height: 1.5; color: #6b4455; cursor: pointer; }
 .dv-terms input { margin-top: 2px; width: 16px; height: 16px; accent-color: #D90A5C; flex-shrink: 0; cursor: pointer; }

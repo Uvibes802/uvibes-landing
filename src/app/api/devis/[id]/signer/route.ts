@@ -11,7 +11,7 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
-    const { signatureData, signedByName, signedByRole, termsAccepted } = await req.json();
+    const { signatureData, signedByName, signedByRole, termsAccepted, promoCode } = await req.json();
 
     if (!signatureData || !signedByName) {
       return NextResponse.json({ error: "Signature et nom requis" }, { status: 400 });
@@ -34,6 +34,35 @@ export async function POST(
       return NextResponse.json({ error: "Devis déjà signé" }, { status: 400 });
     }
 
+    // Vérifier et appliquer un éventuel code promo (re-validation côté serveur)
+    let promoPercent: number | null = null;
+    let appliedCode: string | null = null;
+    let newPrixHT = existingQuote.prixHT;
+    let newPrixTTC = existingQuote.prixTTC;
+
+    if (promoCode) {
+      const promo = await prisma.promoCode.findUnique({
+        where: { code: String(promoCode).trim().toUpperCase() },
+      });
+      const valid =
+        promo &&
+        promo.actif &&
+        (!promo.expiresAt || promo.expiresAt >= new Date()) &&
+        (promo.usageMax === null || promo.usageCount < promo.usageMax);
+
+      if (valid) {
+        promoPercent = promo.pourcentage;
+        appliedCode = promo.code;
+        newPrixHT = Math.round(existingQuote.prixHT * (1 - promo.pourcentage / 100) * 100) / 100;
+        newPrixTTC = Math.round(newPrixHT * 1.2 * 100) / 100;
+        // Incrémenter le compteur d'utilisation
+        await prisma.promoCode.update({
+          where: { id: promo.id },
+          data: { usageCount: { increment: 1 } },
+        });
+      }
+    }
+
     // Enregistrer la signature en base
     const quote = await prisma.quote.update({
       where: { id },
@@ -44,6 +73,10 @@ export async function POST(
         signedByRole: signedByRole || null,
         termsAcceptedAt: new Date(),
         statut: "SIGNE",
+        prixHT: newPrixHT,
+        prixTTC: newPrixTTC,
+        promoCode: appliedCode,
+        promoPercent,
       },
       include: { collectif: true },
     });

@@ -41,8 +41,44 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
   const [signingLoading, setSigningLoading] = useState(false);
   const [signedName, setSignedName] = useState(quote.signedByName ?? "");
 
+  // Code promo
+  const [promoInput, setPromoInput] = useState("");
+  const [appliedPromo, setAppliedPromo] = useState<{ code: string; pourcentage: number } | null>(null);
+  const [promoMsg, setPromoMsg] = useState("");
+  const [promoLoading, setPromoLoading] = useState(false);
+
   const isSigned = statut === "SIGNE";
   const isExpired = quote.validUntil && new Date(quote.validUntil) < new Date() && !isSigned;
+
+  // Prix affichés : recalculés si un code promo est appliqué
+  const prixHT = appliedPromo
+    ? Math.round(quote.prixHT * (1 - appliedPromo.pourcentage / 100) * 100) / 100
+    : quote.prixHT;
+  const prixTTC = Math.round(prixHT * 1.2 * 100) / 100;
+
+  async function applyPromo() {
+    if (!promoInput.trim()) return;
+    setPromoLoading(true); setPromoMsg("");
+    try {
+      const res = await fetch("/api/promo/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: promoInput }),
+      });
+      const data = await res.json();
+      if (!data.valid) {
+        setAppliedPromo(null);
+        setPromoMsg(data.error ?? "Code invalide");
+        return;
+      }
+      setAppliedPromo({ code: data.code, pourcentage: data.pourcentage });
+      setPromoMsg("");
+    } catch {
+      setPromoMsg("Erreur de vérification du code");
+    } finally {
+      setPromoLoading(false);
+    }
+  }
 
   async function handleSign(data: { signatureData: string; signedByName: string; signedByRole: string; termsAccepted: boolean }) {
     setSigningLoading(true);
@@ -50,7 +86,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
       const res = await fetch(`/api/devis/${quote.id}/signer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, promoCode: appliedPromo?.code ?? null }),
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error);
@@ -147,18 +183,24 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
                 <span className="dv-price-row-val">−{quote.remise}%</span>
               </div>
             )}
+            {appliedPromo && (
+              <div className="dv-price-row">
+                <span className="dv-price-row-label">Code promo {appliedPromo.code}</span>
+                <span className="dv-price-row-val" style={{ color: "var(--rose)" }}>−{appliedPromo.pourcentage}%</span>
+              </div>
+            )}
             <div className="dv-price-row">
               <span className="dv-price-total-label">Total HT</span>
-              <span className="dv-price-total-val">{quote.prixHT.toLocaleString("fr-FR")} €</span>
+              <span className="dv-price-total-val">{prixHT.toLocaleString("fr-FR")} €</span>
             </div>
             <hr className="dv-price-divider" />
             <div className="dv-price-row">
               <span className="dv-price-row-label">TVA 20%</span>
-              <span className="dv-price-row-val">{(quote.prixTTC - quote.prixHT).toLocaleString("fr-FR")} €</span>
+              <span className="dv-price-row-val">{(prixTTC - prixHT).toLocaleString("fr-FR")} €</span>
             </div>
             <div className="dv-price-row">
               <span className="dv-price-row-label">Total TTC</span>
-              <span className="dv-price-row-val">{quote.prixTTC.toLocaleString("fr-FR")} €</span>
+              <span className="dv-price-row-val">{prixTTC.toLocaleString("fr-FR")} €</span>
             </div>
           </div>
 
@@ -197,7 +239,46 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
               <p style={{ color: "var(--ink-3)", margin: 0 }}>Ce devis a expiré. <Link href="/devis" style={{ color: "var(--orange)" }}>Demander un nouveau devis →</Link></p>
             </div>
           ) : (
-            <SignaturePad onSign={handleSign} loading={signingLoading} />
+            <>
+              {/* Code promo */}
+              <div className="dv-promo">
+                <label className="dv-label">Vous avez un code promo&nbsp;?</label>
+                <div className="dv-promo-row">
+                  <input
+                    className="dv-input"
+                    type="text"
+                    placeholder="Ex : BIENVENUE10"
+                    value={promoInput}
+                    onChange={(e) => { setPromoInput(e.target.value.toUpperCase()); setPromoMsg(""); }}
+                    disabled={!!appliedPromo}
+                  />
+                  {appliedPromo ? (
+                    <button
+                      type="button"
+                      className="dv-promo-btn --remove"
+                      onClick={() => { setAppliedPromo(null); setPromoInput(""); }}
+                    >
+                      Retirer
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="dv-promo-btn"
+                      onClick={applyPromo}
+                      disabled={promoLoading || !promoInput.trim()}
+                    >
+                      {promoLoading ? "..." : "Appliquer"}
+                    </button>
+                  )}
+                </div>
+                {appliedPromo && (
+                  <p className="dv-promo-ok">✓ Code {appliedPromo.code} appliqué — −{appliedPromo.pourcentage}%</p>
+                )}
+                {promoMsg && <p className="dv-error-msg">{promoMsg}</p>}
+              </div>
+
+              <SignaturePad onSign={handleSign} loading={signingLoading} />
+            </>
           )}
         </div>
       </div>
