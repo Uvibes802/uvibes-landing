@@ -88,15 +88,13 @@ export default function SolutionSoftSkills() {
           {/* ── 03 · Attestation ── */}
           <div className="sss-row" style={{ "--c": "#F59E0B" } as React.CSSProperties}>
             <div className="sss-illu-col">
-              <div className="sss-illu sss-illu--cert">
-                <Image
-                  src="/images/attestation-lou.png"
-                  alt="Attestation d'entraînement Uvibes — exemple Lou"
-                  width={220}
-                  height={155}
-                  className="sss-attestation-img"
-                />
-              </div>
+              <Image
+                src="/images/attestation-lou.png"
+                alt="Attestation d'entraînement Uvibes — exemple Lou"
+                width={260}
+                height={184}
+                className="sss-attestation-img"
+              />
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">03</span>

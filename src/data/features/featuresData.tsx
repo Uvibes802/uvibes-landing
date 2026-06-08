@@ -8,7 +8,7 @@ export const FeaturesData = [
       { id: 3, item: "Sur un temps court, de 6 à 20 minutes" },
       { id: 4, item: "Sur un nombre infini de sujets" },
     ],
-    video: "%C3%A9tudiante.mp4",
+    video: "retrait%C3%A9e.mp4",
   },
   {
     id: 2,
@@ -38,6 +38,6 @@ export const FeaturesData = [
       { id: 2, item: "Plus de 5h d’entraînement en autonomie" },
       { id: 3, item: "Avec une attestation à la fin" },
     ],
-    video: "retrait%C3%A9e.mp4",
+    video: "%C3%A9tudiante.mp4",
   },
 ];

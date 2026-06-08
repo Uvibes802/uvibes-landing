@@ -178,22 +178,26 @@ export default function PasseportExperience() {
           réels et d&apos;obtenir une reconnaissance de cet engagement.
         </p>
 
-        {/* Triptyque */}
+        {/* Triptyque — bulles vibrantes */}
         <div className="pp-trio">
-          <span className="pp-trio-item">
-            <span className="pp-trio-num">01</span>
-            <span className="pp-trio-label">Apprendre</span>
-          </span>
-          <span className="pp-trio-arrow" aria-hidden="true">→</span>
-          <span className="pp-trio-item">
-            <span className="pp-trio-num">02</span>
-            <span className="pp-trio-label">Pratiquer</span>
-          </span>
-          <span className="pp-trio-arrow" aria-hidden="true">→</span>
-          <span className="pp-trio-item">
-            <span className="pp-trio-num">03</span>
-            <span className="pp-trio-label">Être reconnu</span>
-          </span>
+          {(["Apprendre", "Pratiquer", "Être reconnu"] as const).map((label, i) => (
+            <span key={label} className="pp-trio-group">
+              <span
+                className="pp-bubble"
+                style={{ "--pb-color": ["#FD6E00", "#D90A5C", "#00AFDD"][i], animationDelay: `${i * 0.65}s` } as React.CSSProperties}
+              >
+                <span className="pp-bubble-num v-mono">{String(i + 1).padStart(2, "0")}</span>
+                <span className="pp-bubble-label">{label}</span>
+              </span>
+              {i < 2 && (
+                <span className="pp-trio-chevrons" aria-hidden="true">
+                  <span style={{ animationDelay: "0s" }} />
+                  <span style={{ animationDelay: "0.18s" }} />
+                  <span style={{ animationDelay: "0.36s" }} />
+                </span>
+              )}
+            </span>
+          ))}
         </div>
 
         <p className="pp-subline">

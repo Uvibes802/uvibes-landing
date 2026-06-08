@@ -202,22 +202,19 @@
   to   { background-position: -200% 0; }
 }
 
-/* 3 · Attestation */
-.sss-illu--cert {
-  justify-content: center;
-  align-items: center;
-}
+/* 3 · Attestation — image seule, sans carte */
 .sss-attestation-img {
   display: block;
-  width: clamp(160px, 18vw, 220px);
+  width: clamp(200px, 22vw, 280px);
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 12px 32px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.14), 0 3px 8px rgba(0,0,0,.07);
   transform: rotate(-3deg);
-  transition: transform 0.4s ease;
+  transition: transform 0.45s ease, box-shadow 0.4s ease;
 }
-.sss-illu--cert:hover .sss-attestation-img {
-  transform: rotate(0deg) scale(1.03);
+.sss-attestation-img:hover {
+  transform: rotate(0deg) scale(1.04);
+  box-shadow: 0 22px 50px rgba(0,0,0,.18), 0 4px 10px rgba(0,0,0,.08);
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
