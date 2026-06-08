@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "X-Frame-Options", value: "DENY" },                                    // Anti-clickjacking
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },                              // Anti-clickjacking (autorise nos propres iframes, ex. aperçu PDF)
           { key: "X-Content-Type-Options", value: "nosniff" },                          // Anti-MIME sniffing
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },         // Contrôle du header Referer
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" }, // Désactive APIs non utilisées
