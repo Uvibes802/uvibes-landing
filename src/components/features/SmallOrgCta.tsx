@@ -32,7 +32,7 @@ export default function SmallOrgCta() {
           </p>
 
           <div className="soc-ctas">
-            <Link href="/rdv" className="btn-brand soc-cta-primary">
+            <Link href="/rendez-vous" className="btn-brand soc-cta-primary">
               Prendre rendez-vous →
             </Link>
             <Link href="/#contact" className="soc-cta-ghost">

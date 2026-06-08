@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/rdv`,
+      url: `${BASE_URL}/rendez-vous`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,

@@ -121,7 +121,7 @@ export default function Menu() {
               On en parle ?
             </a>
           ) : (
-            <Link href="/rdv" className="btn-ink v-nav-cta">On en parle ?</Link>
+            <Link href="/rendez-vous" className="btn-ink v-nav-cta">On en parle ?</Link>
           )}
         </div>
       </nav>
@@ -180,7 +180,7 @@ export default function Menu() {
               On en parle ?
             </a>
           ) : (
-            <Link href="/rdv" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>On en parle ?</Link>
+            <Link href="/rendez-vous" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>On en parle ?</Link>
           )}
         </div>
 

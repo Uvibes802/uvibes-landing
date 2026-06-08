@@ -36,7 +36,7 @@ export function PartnerBanner() {
 
         {/* CTAs fusionnés */}
         <div className="pb-ctas">
-          <Link href="/rdv" className="pb-btn-primary">
+          <Link href="/rendez-vous" className="pb-btn-primary">
             Parler à un conseiller →
           </Link>
           <Link href="/solution#offres" className="pb-btn-ghost">

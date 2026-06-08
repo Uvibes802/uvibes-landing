@@ -93,7 +93,7 @@ export default function OffreEvenementielle() {
             <strong> Parlons-en ensemble.</strong>
           </p>
           <div className="oe-ctas">
-            <Link href="/rdv" className="btn-brand oe-cta-primary">
+            <Link href="/rendez-vous" className="btn-brand oe-cta-primary">
               Prendre rendez-vous →
             </Link>
             <Link href="/#contact" className="oe-cta-ghost">

@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
       { source: "/uvibes", destination: "/a-propos", permanent: true },
       { source: "/mention-legale", destination: "/mentions-legales", permanent: true },
       { source: "/conditions-dutilisation", destination: "/conditions-d-utilisation", permanent: true },
+      { source: "/rdv", destination: "/rendez-vous", permanent: true },
     ];
   },
 

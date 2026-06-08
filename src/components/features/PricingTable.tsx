@@ -148,7 +148,7 @@ export default function PricingTable() {
                         <ArrowRight size={16} />
                       </a>
                     ) : (
-                      <Link href="/rdv" className="pt-card-cta">
+                      <Link href="/rendez-vous" className="pt-card-cta">
                         {meta.cta}
                         <ArrowRight size={16} />
                       </Link>
