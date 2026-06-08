@@ -55,6 +55,10 @@ export default function Menu() {
     return () => document.removeEventListener("mousedown", handler);
   }, [menuOpen]);
 
+  // Jamais de navbar publique sur l'admin / l'espace devis client
+  // (garde-fou côté client : le root layout ne se re-rend pas en navigation SPA)
+  if (pathname.startsWith("/admin") || pathname.startsWith("/devis")) return null;
+
   return (
     <>
       {/* ── Navbar desktop ─────────────────────────────────────── */}
