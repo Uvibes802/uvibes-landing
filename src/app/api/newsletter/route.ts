@@ -1,8 +1,14 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, getClientIp } from "@/lib/rateLimit";
 
 export async function POST(req: NextRequest) {
   try {
+    // Anti-spam : limite les inscriptions répétées depuis une même IP
+    if (!rateLimit({ key: "newsletter", ip: getClientIp(req), max: 5, windowMs: 60_000 })) {
+      return NextResponse.json({ error: "Trop de tentatives — réessayez dans une minute." }, { status: 429 });
+    }
+
     const { email, prenom, source } = await req.json();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {

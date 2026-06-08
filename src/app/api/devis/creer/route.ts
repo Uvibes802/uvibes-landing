@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { rateLimit, getClientIp } from "@/lib/rateLimit";
 import { calculateQuote } from "@/services/crm/calculateQuote";
 import { generateQuoteNumber } from "@/services/crm/generateQuoteNumber";
 import { notifyDirectrice } from "@/services/crm/sendQuoteEmail";
 
 export async function POST(req: NextRequest) {
   try {
+    // Anti-spam : limite la création publique de collectifs + devis
+    if (!rateLimit({ key: "devis-creer", ip: getClientIp(req), max: 5, windowMs: 10 * 60_000 })) {
+      return NextResponse.json({ error: "Trop de demandes — réessayez plus tard." }, { status: 429 });
+    }
+
     const body = await req.json();
     const {
       // Infos collectif

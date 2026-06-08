@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { rateLimit, getClientIp } from "@/lib/rateLimit";
 
 // Validation publique d'un code promo (utilisée à la signature du devis).
 // Renvoie le pourcentage si le code est valide.
 export async function POST(req: NextRequest) {
   try {
+    // Anti brute-force : empêche l'énumération des codes promo
+    if (!rateLimit({ key: "promo-validate", ip: getClientIp(req), max: 10, windowMs: 60_000 })) {
+      return NextResponse.json({ valid: false, error: "Trop de tentatives — réessayez dans une minute." }, { status: 429 });
+    }
+
     const { code } = await req.json();
     const cleanCode = String(code ?? "").trim().toUpperCase();
     if (!cleanCode) {
