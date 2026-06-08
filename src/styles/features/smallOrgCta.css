@@ -1,21 +1,16 @@
-/* ── SmallOrgCta — invitation petites structures ──────────────── */
+/* ── SmallOrgCta — invitation petites structures (sur le dégradé) ── */
 
 .soc-section {
   position: relative;
-  padding: clamp(1rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(3.5rem, 6vw, 6rem);
-  background: transparent;
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(2.5rem, 4vw, 4rem);
+  background: transparent; /* laisse voir le dégradé du wrapper parent */
 }
 
 .soc-card {
   position: relative;
-  max-width: 1100px;
+  max-width: 800px;
   margin: 0 auto;
-  overflow: hidden;
-  border-radius: 28px;
-  padding: clamp(2.25rem, 5vw, 4rem);
-  background: linear-gradient(135deg, #FFF6EC 0%, #FFF0F8 55%, #FEF2F7 100%);
-  border: 1px solid rgba(253, 110, 0, 0.12);
-  box-shadow: 0 24px 60px -36px rgba(217, 10, 92, 0.35);
+  text-align: center;
   /* reveal */
   opacity: 0;
   transform: translateY(28px);
@@ -23,19 +18,11 @@
 }
 .soc-vis .soc-card { opacity: 1; transform: translateY(0); }
 
-/* Halo gradient discret */
-.soc-glow {
-  position: absolute;
-  top: -50%; right: -10%;
-  width: 55%; height: 140%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.14), transparent 70%);
-  pointer-events: none;
-}
+.soc-glow { display: none; }
 
 .soc-content {
   position: relative;
   z-index: 1;
-  max-width: 720px;
 }
 
 .soc-eyebrow {
@@ -45,39 +32,38 @@
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: #FFE456;
   margin: 0 0 1.1rem;
+  justify-content: center;
 }
 .soc-eyebrow-dot {
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--orange), var(--rose));
+  background: #FFE456;
   flex-shrink: 0;
 }
 
 .soc-title {
-  margin: 0 0 1rem;
-  font-size: clamp(26px, 3.6vw, 44px);
+  margin: 0 auto 1rem;
+  max-width: 680px;
+  font-size: clamp(26px, 3.8vw, 46px);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.035em;
-  color: var(--orange);
+  color: #fff;
 }
 .soc-title-accent {
   font-style: italic;
   font-weight: 400;
-  background: linear-gradient(100deg, #FD6E00 0%, #E6007E 70%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: #FFE456;
+  -webkit-text-fill-color: #FFE456;
 }
 
 .soc-text {
-  margin: 0 0 1.75rem;
+  margin: 0 auto 1.75rem;
   font-size: clamp(0.98rem, 1.4vw, 1.12rem);
   line-height: 1.65;
-  color: rgba(26, 23, 21, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 600px;
 }
 
@@ -85,17 +71,30 @@
   display: flex;
   gap: 1.1rem;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Bouton principal — blanc sur le dégradé */
+.soc-cta-primary.btn-brand {
+  background: #fff;
+  color: #D90A5C;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
+}
+.soc-cta-primary.btn-brand:hover {
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  transform: translateY(-1px);
 }
 
 .soc-cta-ghost {
   font-size: 15px;
   font-weight: 600;
-  color: var(--rose);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-family: var(--font-prompt), sans-serif;
-  border-bottom: 1px solid rgba(217, 10, 92, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   padding-bottom: 2px;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.soc-cta-ghost:hover { color: var(--orange); border-color: var(--orange); }
+.soc-cta-ghost:hover { color: #fff; border-color: #fff; }

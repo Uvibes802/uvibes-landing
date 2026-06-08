@@ -70,3 +70,5 @@ prisma/*.db-journal
 # Uploads devis (générés en runtime)
 /public/uploads/
 1. Lisa et Céline.mp4
+.playwright-mcp/
+*.png

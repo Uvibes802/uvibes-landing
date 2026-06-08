@@ -1,4 +1,3 @@
-import { PartnerBanner } from "@/components/banner/partnerBanner";
 import Footer from "@/components/footer/Footer";
 import JsonLd from "@/components/JsonLd";
 import { FeaturesCard } from "@/components/cards/FeaturesCard";
@@ -44,9 +43,9 @@ export default function SolutionPage() {
         <FeaturesCard />
         <PricingTable />
         <OffreEvenementielle />
-        <SmallOrgCta />
+        {/* Section petites structures (remplace "Ils font confiance") + footer, sur le dégradé commun */}
         <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)" }}>
-          <PartnerBanner />
+          <SmallOrgCta />
           <Footer />
         </div>
       </main>
