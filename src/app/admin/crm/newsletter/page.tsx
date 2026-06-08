@@ -24,7 +24,10 @@ export default async function NewsletterPage() {
     <>
       <div className="crm-topbar">
         <span className="crm-topbar-title">Newsletter</span>
-        <span className="crm-topbar-user">{actifs} abonné·es actif·ves</span>
+        <span style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <span className="crm-topbar-user">{actifs} abonné·es actif·ves</span>
+          <a className="crm-btn --outline --sm" href="/api/admin/newsletter/export">⬇ Export CSV</a>
+        </span>
       </div>
       <div className="crm-content">
         {dbError && (

@@ -64,6 +64,19 @@ export default function RdvManager({ reservations: initRes, disponibilites: init
     setSaving(false);
   }
 
+  async function sendReminder(id: string) {
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/admin/rdv/reservations/${id}/reminder`, { method: "POST" });
+      setMsg(res.ok ? "✓ Rappel envoyé au client" : "Échec de l'envoi du rappel");
+    } catch {
+      setMsg("Échec de l'envoi du rappel");
+    } finally {
+      setSaving(false);
+      setTimeout(() => setMsg(""), 3000);
+    }
+  }
+
   async function saveNote(id: string) {
     setSaving(true);
     const res = await fetch(`/api/admin/rdv/reservations/${id}`, {
@@ -234,6 +247,9 @@ export default function RdvManager({ reservations: initRes, disponibilites: init
                 </button>
                 <button className="crm-btn --danger --sm" onClick={() => updateStatut(selected.id, "ANNULE")} disabled={saving || selected.statut === "ANNULE"}>
                   <X size={13} /> {selected.statut === "ANNULE" ? "Annulé" : "Annuler"}
+                </button>
+                <button className="crm-btn --outline --sm" onClick={() => sendReminder(selected.id)} disabled={saving}>
+                  <Calendar size={13} /> Envoyer un rappel
                 </button>
               </div>
 

@@ -31,7 +31,11 @@ export default async function CollectifsPage({ searchParams }: Props) {
     <>
       <div className="crm-topbar">
         <span className="crm-topbar-title">Collectifs ({items.length})</span>
-        <Link href="/admin/crm/collectifs/nouveau" className="crm-btn --primary --sm">+ Nouveau collectif</Link>
+        <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a className="crm-btn --outline --sm" href="/api/admin/collectifs/export">⬇ Export CSV</a>
+          <Link href="/admin/crm/collectifs/nouveau" className="crm-btn --primary --sm">+ Nouveau collectif</Link>
+        </span>
       </div>
 
       <div className="crm-content">
