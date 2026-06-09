@@ -25,17 +25,17 @@ export default function VideoSection() {
       {/* Séparateur wavy animé — 3 vagues blanches, formes différentes, grande amplitude,
           qui ondulent horizontalement à des vitesses différentes (effet de flux / parallaxe). */}
       <div className="vs-wave-stack" aria-hidden="true">
-        {/* Couche 3 (arrière) — vague large, 4 ondulations */}
+        {/* Couche 3 (arrière) — vagues larges, 3 ondulations très espacées */}
         <svg className="vs-wave-layer vs-wave-layer--3" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V40 C1320,72 1200,8 1080,40 C960,72 840,8 720,40 C600,72 480,8 360,40 C240,72 120,8 0,40 Z" />
+          <path d="M0,0 H1440 V40 C1280,76 1120,4 960,40 C800,76 640,4 480,40 C320,76 160,4 0,40 Z" />
         </svg>
-        {/* Couche 2 (milieu) — opposition de phase */}
+        {/* Couche 2 (milieu) — 3 ondulations, opposition de phase */}
         <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V36 C1320,6 1200,70 1080,36 C960,2 840,68 720,36 C600,4 480,70 360,36 C240,2 120,68 0,36 Z" />
+          <path d="M0,0 H1440 V36 C1280,2 1120,72 960,36 C800,2 640,72 480,36 C320,2 160,72 0,36 Z" />
         </svg>
-        {/* Couche 1 (avant) — vague serrée, 6 ondulations */}
+        {/* Couche 1 (avant) — 4 ondulations larges */}
         <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V38 C1320,74 1200,4 1080,38 C960,72 840,4 720,38 C600,72 480,4 360,38 C240,72 120,4 0,38 Z" />
+          <path d="M0,0 H1440 V38 C1320,74 1200,4 1080,38 C960,74 840,4 720,38 C600,74 480,4 360,38 C240,74 120,4 0,38 Z" />
         </svg>
       </div>
       <svg className="vs-wave vs-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
