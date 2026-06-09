@@ -26,17 +26,17 @@ export default function VideoSection() {
           verticalement (chaque couche passe sous la précédente), opacité décroissante
           vers l'arrière. Léger flux horizontal synchronisé → elles ne se croisent jamais. */}
       <div className="vs-wave-stack" aria-hidden="true">
-        {/* Couche 3 (arrière, la plus basse) — vague large et paresseuse, asymétrique */}
+        {/* Couche 3 (arrière, la plus basse) — vagues larges et paresseuses, amples */}
         <svg className="vs-wave-layer vs-wave-layer--3" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V40 C1200,52 1010,30 820,41 C600,52 380,30 0,40 Z" />
+          <path d="M0,0 H1440 V40 C1200,62 1010,20 820,42 C600,62 380,20 0,40 Z" />
         </svg>
-        {/* Couche 2 (milieu) — rythme différent, phase opposée */}
+        {/* Couche 2 (milieu) — rythme différent, phase opposée, ample */}
         <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V40 C1290,31 1160,51 980,40 C820,30 690,50 520,40 C360,31 190,51 0,40 Z" />
+          <path d="M0,0 H1440 V40 C1290,20 1160,60 980,40 C820,18 690,60 520,40 C360,20 190,60 0,40 Z" />
         </svg>
-        {/* Couche 1 (avant, la plus haute) — ondulations irrégulières */}
+        {/* Couche 1 (avant, la plus haute) — ondulations irrégulières et amples */}
         <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V40 C1330,50 1230,30 1060,40 C920,49 840,31 700,40 C560,51 440,29 300,40 C190,49 90,32 0,40 Z" />
+          <path d="M0,0 H1440 V40 C1330,60 1230,20 1060,40 C920,58 840,22 700,40 C560,61 440,19 300,40 C190,59 90,21 0,40 Z" />
         </svg>
       </div>
       <svg className="vs-wave vs-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
