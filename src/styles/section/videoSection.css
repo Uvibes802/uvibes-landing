@@ -51,40 +51,56 @@
 .vs-wave path { fill: var(--paper, #f8f9fa); }
 .vs-wave--bottom { bottom: -1px; }
 
-/* Séparateur wavy en couches (haut) — profondeur dégradée */
+/* Séparateur wavy animé (haut) — 3 vagues blanches qui ondulent horizontalement */
 .vs-wave-stack {
   position: absolute;
   top: -1px;
   left: 0;
   width: 100%;
-  height: 64px;
+  height: 88px;
   z-index: 2;
   pointer-events: none;
+  overflow: hidden; /* clippe le débordement horizontal des couches animées */
 }
 .vs-wave-layer {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 38px;
+  /* plus large que le conteneur pour que les bords restent couverts pendant l'animation */
+  left: -15%;
+  width: 130%;
+  height: 64px;
   display: block;
+  will-change: transform;
 }
-/* Chevauchement serré + opacités croissantes vers l'avant → profondeur sans laisser
-   voir le fond. Arrière (3) la plus opaque/foncée, avant (1) en couleur de page. */
+/* Vagues blanches, opacité croissante vers l'avant → profondeur. Vitesses différentes
+   par couche → effet de flux / parallaxe. Arrière (3) la plus lente. */
 .vs-wave-layer--3 {
-  transform: translateY(7px);
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.05));
+  animation: vsWaveFlowB 19s ease-in-out infinite alternate;
 }
-.vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.85); }
+.vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.6); }
 .vs-wave-layer--2 {
-  transform: translateY(4px);
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.06));
+  animation: vsWaveFlowA 13s ease-in-out infinite alternate;
 }
-.vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.93); }
+.vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.8); }
 .vs-wave-layer--1 {
   filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.08));
+  animation: vsWaveFlowB 9s ease-in-out infinite alternate;
 }
-.vs-wave-layer--1 path { fill: var(--paper, #f8f9fa); }
+.vs-wave-layer--1 path { fill: #ffffff; }
+
+@keyframes vsWaveFlowA {
+  from { transform: translateX(0); }
+  to   { transform: translateX(8%); }
+}
+@keyframes vsWaveFlowB {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-8%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vs-wave-layer { animation: none; }
+}
 
 .vs-particles { display: none; }
 

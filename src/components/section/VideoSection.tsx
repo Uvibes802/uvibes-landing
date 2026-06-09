@@ -22,20 +22,20 @@ export default function VideoSection() {
 
   return (
     <section className="vs-section">
-      {/* Séparateur wavy en couches (haut) — 3 formes de vagues différentes superposées
-          (chevauchement serré) + opacités croissantes vers l'avant → effet de profondeur. */}
+      {/* Séparateur wavy animé — 3 vagues blanches, formes différentes, grande amplitude,
+          qui ondulent horizontalement à des vitesses différentes (effet de flux / parallaxe). */}
       <div className="vs-wave-stack" aria-hidden="true">
-        {/* Couche 3 (arrière) — vague large et douce, 4 ondulations */}
-        <svg className="vs-wave-layer vs-wave-layer--3" viewBox="0 0 1440 60" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V32 C1320,50 1200,14 1080,32 C960,50 840,14 720,32 C600,50 480,14 360,32 C240,50 120,14 0,32 Z" />
+        {/* Couche 3 (arrière) — vague large, 4 ondulations */}
+        <svg className="vs-wave-layer vs-wave-layer--3" viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path d="M0,0 H1440 V40 C1320,72 1200,8 1080,40 C960,72 840,8 720,40 C600,72 480,8 360,40 C240,72 120,8 0,40 Z" />
         </svg>
-        {/* Couche 2 (milieu) — vague en opposition de phase */}
-        <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 60" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V28 C1320,8 1200,52 1080,28 C960,4 840,50 720,28 C600,6 480,52 360,28 C240,4 120,50 0,28 Z" />
+        {/* Couche 2 (milieu) — opposition de phase */}
+        <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path d="M0,0 H1440 V36 C1320,6 1200,70 1080,36 C960,2 840,68 720,36 C600,4 480,70 360,36 C240,2 120,68 0,36 Z" />
         </svg>
         {/* Couche 1 (avant) — vague serrée, 6 ondulations */}
-        <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 60" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V30 C1320,56 1200,6 1080,30 C960,54 840,6 720,30 C600,54 480,6 360,30 C240,54 120,6 0,30 Z" />
+        <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path d="M0,0 H1440 V38 C1320,74 1200,4 1080,38 C960,72 840,4 720,38 C600,72 480,4 360,38 C240,72 120,4 0,38 Z" />
         </svg>
       </div>
       <svg className="vs-wave vs-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
