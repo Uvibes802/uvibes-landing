@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import "@/styles/features/offreEvenementielle.css";
 
@@ -39,27 +41,36 @@ const INCLUSIONS = [
 
 export default function OffreEvenementielle() {
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.08 });
+  const [open, setOpen] = useState(false);
 
   return (
-    <section className={`oe-section${vis ? " oe-vis" : ""}`} ref={ref} id="offre-evenementielle">
+    <section
+      className={`oe-section oe-compact${vis ? " oe-vis" : ""}${open ? " oe-open" : ""}`}
+      ref={ref}
+      id="offre-evenementielle"
+    >
       {/* Fond déco */}
       <div className="oe-bg-stripe" aria-hidden="true" />
 
       <div className="oe-inner">
-        {/* En-tête */}
-        <div className="oe-header">
-          <div className="oe-eyebrow">
-            <span className="oe-eyebrow-pill">Offre événementielle</span>
-          </div>
-          <h2 className="oe-title v-prompt">
-            30 jours d&apos;expérience<br />
-            <span className="oe-title-accent v-serif">Uvibes</span>
-          </h2>
-          <p className="oe-subtitle">
-            Faites découvrir Uvibes à votre organisation pendant un mois complet
-            et mobilisez votre collectif autour d&apos;échanges simples et engageants.
-          </p>
-        </div>
+        {/* Barre compacte cliquable — flèche sur le côté */}
+        <button className="oe-bar" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+          <span className="oe-eyebrow-pill">Offre événementielle</span>
+          <span className="oe-bar-title v-prompt">
+            30 jours d&apos;expérience <span className="oe-title-accent v-serif">Uvibes</span>
+          </span>
+          <span className="oe-bar-arrow" aria-hidden="true">
+            <ChevronDown size={20} />
+          </span>
+        </button>
+
+        {/* Contenu repliable */}
+        <div className="oe-reveal">
+          <div className="oe-reveal-inner">
+        <p className="oe-subtitle">
+          Faites découvrir Uvibes à votre organisation pendant un mois complet
+          et mobilisez votre collectif autour d&apos;échanges simples et engageants.
+        </p>
 
         {/* Contenu de l'offre — kit visuel */}
         <div className="oe-kit">
@@ -101,6 +112,8 @@ export default function OffreEvenementielle() {
             </Link>
           </div>
         </div>
+          </div>{/* oe-reveal-inner */}
+        </div>{/* oe-reveal */}
       </div>
     </section>
   );

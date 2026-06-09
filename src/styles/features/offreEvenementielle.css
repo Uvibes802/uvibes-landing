@@ -11,6 +11,56 @@
 /* Bande déco diagonale — désactivée (la carte a son propre décor) */
 .oe-bg-stripe { display: none; }
 
+/* ── Version compacte repliable (sous les offres) ───────────── */
+.oe-compact { padding-top: 0; padding-bottom: clamp(2rem, 3vw, 3rem); }
+/* la carte gère le dégradé/padding ; pas d'écart sous la barre quand replié */
+.oe-compact .oe-inner { gap: 0; padding-block: clamp(1.1rem, 2vw, 1.6rem); }
+
+/* Barre cliquable (header de la carte) — flèche sur le côté */
+.oe-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: #fff;
+}
+.oe-bar-title {
+  flex: 1;
+  font-size: clamp(17px, 2.1vw, 23px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.oe-bar-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+}
+.oe-open .oe-bar-arrow { transform: rotate(180deg); }
+
+/* Contenu repliable (grid 0fr → 1fr) */
+.oe-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s cubic-bezier(.2,.7,.2,1);
+}
+.oe-open .oe-reveal { grid-template-rows: 1fr; }
+.oe-reveal-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.oe-open .oe-reveal-inner { padding-top: 1.5rem; }
+
 /* La carte : même largeur que la grille des 3 offres (1100px),
    même dégradé que l'offre populaire (Premium) */
 .oe-inner {
