@@ -288,11 +288,15 @@
 .how-time-badge {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;      /* texte + filet animé centrés l'un sur l'autre */
   gap: 6px;
   width: fit-content;
   margin-top: auto;
+  margin-inline: auto;      /* centre le badge dans sa colonne (desktop flex + mobile grid) */
 }
+
+/* le filet animé centré sous le libellé, et largeur calée sur le texte */
+.how-time-text { text-align: center; }
 
 .how-time-text {
   font-size: 11px;
