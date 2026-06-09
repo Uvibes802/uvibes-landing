@@ -47,7 +47,7 @@ export default function AppMockup() {
 
       {/* Couche 4 — Chips flottantes (desktop uniquement) */}
       <div className="apm-chip apm-chip--left" aria-hidden="true">
-        <span className="apm-chip-text">Qu&apos;est-ce qui vous a marqué récemment ?</span>
+        <span className="apm-chip-text">Une habitude qui vous plaît au quotidien ?</span>
       </div>
 
       <div className="apm-chip apm-chip--top-right" aria-hidden="true">
@@ -55,7 +55,7 @@ export default function AppMockup() {
       </div>
 
       <div className="apm-chip apm-chip--bottom-right" aria-hidden="true">
-        <span className="apm-chip-quote">Une habitude qui vous plaît au quotidien ?</span>
+        <span className="apm-chip-quote">Qu&apos;est-ce qui vous a marqué récemment ?</span>
       </div>
     </div>
   );
