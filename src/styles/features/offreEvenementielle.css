@@ -11,6 +11,10 @@
 /* Bande déco diagonale — désactivée (la carte a son propre décor) */
 .oe-bg-stripe { display: none; }
 
+/* Imbriquée dans la section des offres (#offres) : le padding horizontal est porté
+   par .pt-section, on l'annule ici pour aligner la barre sur les 3 cartes. */
+.pt-section > .oe-section { position: relative; z-index: 1; padding-left: 0; padding-right: 0; }
+
 /* ── Version compacte repliable (sous les offres) ───────────── */
 .oe-compact { padding-top: 0; padding-bottom: clamp(2rem, 3vw, 3rem); }
 /* la carte gère le dégradé/padding ; pas d'écart sous la barre quand replié */

@@ -40,11 +40,11 @@ const INCLUSIONS = [
 ];
 
 export default function OffreEvenementielle() {
-  const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.08 });
+  const [ref, vis] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.08 });
   const [open, setOpen] = useState(false);
 
   return (
-    <section
+    <div
       className={`oe-section oe-compact${vis ? " oe-vis" : ""}${open ? " oe-open" : ""}`}
       ref={ref}
       id="offre-evenementielle"
@@ -115,6 +115,6 @@ export default function OffreEvenementielle() {
           </div>{/* oe-reveal-inner */}
         </div>{/* oe-reveal */}
       </div>
-    </section>
+    </div>
   );
 }

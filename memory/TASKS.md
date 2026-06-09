@@ -1,7 +1,35 @@
 # TASKS — Uvibes Site Vitrine
 
 > Tableau de bord des tâches actives. Historique complet dans CHANGELOG.md.
-> **Branche active :** `redesign/solution-config-themes`
+> **Branche active :** `feat/dashboard-audit-polish`
+
+---
+
+## 🎯 Missions Falek (doc tuteur) — feuille de route
+
+> Décisions actées (voir `CLAUDE.md` § Décisions Missions Falek). À traiter par phases.
+> Prochain numéro : **FEAT-02**.
+
+### Phase 1 — Devis (le plus cadré) · branche `feat/missions-falek` ✅
+- [x] **FEAT-02 — Prix des 3 offres** : alignés sur **3 980 / 4 980 / 5 980 €/an** (`PricingData.ts` source statique, `PricingTable` ne lit plus WP, `DevisFormStepper`, `Plan.prixAnnuel` en base via seed).
+- [x] **FEAT-03 — 4ème offre dans la section offres** : `OffreEvenementielle` rendue **dans** la section `#offres` de `PricingTable`, sous les 3 cartes.
+- [x] **FEAT-04 — Code réduction dans le funnel** : déjà en place (champ promo dans `DevisDocument`, `/api/promo/validate`, re-validation à la signature). Confirmé.
+- [x] **FEAT-05 — Acceptation différenciée des documents** : une case par document requis selon l'offre (annuel = CGV+DPA+SLA, événementiel = CGV+PDD), toutes obligatoires, re-validation serveur, stockage `Quote.acceptedDocs`. Règle partagée `src/lib/legalDocs.ts`.
+
+### Phase 2 — Documents légaux + admin · branche `feat/missions-falek` ✅
+- [x] **FEAT-06 — Héberger les 4 documents** : pages **`/documents/[slug]`** (cgv, dpa, sla, pdd), version « 30 mai 2026 », rendu markdown-léger.
+- [x] **FEAT-07 — Édition des documents depuis l'admin** : modèle `LegalDocument`, module `/admin/cms/documents` (`LegalDocsManager`), API PUT protégée. Contenu en base, éditable.
+
+### Phase 3 — RDV ✅
+- [x] **FEAT-08 — Notification prise de RDV** : déjà en place — `/api/rdv/reserver` envoie la confirmation client **et** notifie l'admin (`process.env.EMAIL_USER`). Confirmé.
+
+### Phase 4 — Qualité (missions I & II)
+- [x] **A11Y (nouvelles UI)** : labels liés (`htmlFor`/wrapping `<label>`), hiérarchie h1→h2→h3 sur `/documents/*`, boutons `aria-expanded`, liens explicites.
+- [ ] **A11Y-02 — Audit accessibilité global** : passer axe-devtools / Tanaguru sur l'ensemble des pages + corriger (reste à faire).
+- [ ] **FIX-07 — Compatibilité navigateurs** : tester Chrome/Firefox/Safari/Edge + mobile, corriger les écarts (reste à faire).
+
+### Phase 5 — CRM (gros périmètre — à cadrer/phaser) · reste dans ce repo (Prisma + Supabase dédiée)
+- [ ] **FEAT-09 — Cadrage CRM** : prioriser les modules du doc (contacts/entreprises, pipeline commercial, interactions, tâches/relances, marketing, support, documents, reporting). Définir le MVP avant de coder.
 
 ---
 
@@ -23,13 +51,13 @@
 | PERF    | Performance | PERF-08 |
 | SEC     | Sécurité    | SEC-03  |
 | SEO     | Référencement | SEO-06 |
-| A11Y    | Accessibilité | A11Y-02 |
+| A11Y    | Accessibilité | A11Y-03 |
 | CODE    | Qualité code  | CODE-07 |
 | UX      | Expérience utilisateur | UX-02 |
-| FIX     | Corrections de bugs | FIX-07 |
+| FIX     | Corrections de bugs | FIX-08 |
 | UI      | Interface visuelle | UI-66 |
 | CONTENT | Contenu | CONTENT-03 |
-| FEAT    | Fonctionnalité | FEAT-02 |
+| FEAT    | Fonctionnalité | FEAT-10 |
 
 ---
 

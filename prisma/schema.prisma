@@ -67,12 +67,24 @@ model Quote {
   sentAt  DateTime?
   sentTo  String?
 
-  // Acceptation CGV / confidentialité à la signature
+  // Acceptation des documents contractuels à la signature
   termsAcceptedAt DateTime?
+  acceptedDocs    String?  // JSON : slugs des documents acceptés (ex. ["cgv","dpa","sla"])
 
   // Code promo appliqué à la signature
   promoCode    String?
   promoPercent Float?
+}
+
+// ── DOCUMENTS CONTRACTUELS (éditables depuis l'admin) ──────────
+
+model LegalDocument {
+  id        String   @id @default(cuid())
+  slug      String   @unique // cgv | dpa | sla | pdd
+  titre     String
+  version   String   // ex. "30 mai 2026"
+  contenu   String   // texte markdown-léger, rendu en page publique
+  updatedAt DateTime @updatedAt
 }
 
 // ── CMS ────────────────────────────────────────────────────────

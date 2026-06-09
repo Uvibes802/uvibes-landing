@@ -339,7 +339,9 @@
 .dv-promo-btn.--remove { background: #fff; color: #6b4455; border: 1.5px solid rgba(0,0,0,.12); }
 .dv-promo-ok { font-size: 13px; color: #16a34a; margin: 8px 0 0; font-weight: 600; }
 
-/* Acceptation CGV / confidentialité */
+/* Acceptation des documents contractuels */
+.dv-terms-group { margin-top: 16px; padding: 14px 16px; background: rgba(217,10,92,.04); border: 1px solid rgba(217,10,92,.14); border-radius: 12px; display: flex; flex-direction: column; gap: 12px; }
+.dv-terms-group .dv-terms { margin-top: 0; }
 .dv-terms { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 13px; line-height: 1.5; color: #6b4455; cursor: pointer; }
 .dv-terms input { margin-top: 2px; width: 16px; height: 16px; accent-color: #D90A5C; flex-shrink: 0; cursor: pointer; }
 .dv-terms a { color: #D90A5C; text-decoration: underline; }

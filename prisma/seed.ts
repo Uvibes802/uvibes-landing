@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { LEGAL_VERSION, CGV_CONTENU, DPA_CONTENU, SLA_CONTENU, PDD_CONTENU } from "./legalDocsContent";
 
 const prisma = new PrismaClient();
 
@@ -36,8 +37,8 @@ async function main() {
       nom: "Vibes Connection",
       couleur: "#fd6e00",
       description: "Favorisez les interactions et suivez l'état d'esprit de votre collectif.",
-      prixAnnuel: 2990,
-      mention: "Sur devis",
+      prixAnnuel: 3980,
+      mention: "HT / an · indicatif jusqu'à 1 000 utilisateurs",
       ordre: 0,
       included: ["experiences", "sondages", "barometre", "statistiques"],
     },
@@ -46,8 +47,8 @@ async function main() {
       nom: "Vibes Premium",
       couleur: "#FFE456",
       description: "Renforcez la visibilité de votre marque et l'efficacité de votre communication interne.",
-      prixAnnuel: 4990,
-      mention: "Sur devis",
+      prixAnnuel: 4980,
+      mention: "HT / an · indicatif jusqu'à 1 000 utilisateurs",
       ordre: 1,
       included: ["experiences", "sondages", "barometre", "statistiques", "logo", "kit-com"],
     },
@@ -56,8 +57,8 @@ async function main() {
       nom: "Vibes Boost",
       couleur: "#D90A5C",
       description: "Boostez la dynamique de votre collectif avec des outils de travail innovants.",
-      prixAnnuel: 7990,
-      mention: "Sur devis",
+      prixAnnuel: 5980,
+      mention: "HT / an · indicatif jusqu'à 1 000 utilisateurs",
       ordre: 2,
       included: featuresData.map((f) => f.slug),
     },
@@ -177,7 +178,23 @@ async function main() {
     }
   }
 
-  console.log("✅ Seed terminé : plans, features, CMS, partenaires, témoignages, équipe, admin, RDV créés");
+  // ── Documents contractuels (éditables depuis l'admin) ─────
+  const documentsLegaux = [
+    { slug: "cgv", titre: "Conditions générales de vente", contenu: CGV_CONTENU },
+    { slug: "dpa", titre: "Accord de traitement des données", contenu: DPA_CONTENU },
+    { slug: "sla", titre: "Annexe relative au niveau de service", contenu: SLA_CONTENU },
+    { slug: "pdd", titre: "Politique de protection des données personnelles", contenu: PDD_CONTENU },
+  ];
+  for (const d of documentsLegaux) {
+    await prisma.legalDocument.upsert({
+      where: { slug: d.slug },
+      // On ne réécrase pas le contenu si la directrice l'a déjà modifié depuis l'admin
+      update: { titre: d.titre },
+      create: { ...d, version: LEGAL_VERSION },
+    });
+  }
+
+  console.log("✅ Seed terminé : plans, features, CMS, documents légaux, partenaires, témoignages, équipe, admin, RDV créés");
 }
 
 main()

@@ -34,9 +34,9 @@ const DUREES = [
 ];
 
 const PLANS = [
-  { slug: "vibes-connection", nom: "Vibes Connection", price: "à partir de 2 990 €/an", desc: "Idéal pour démarrer" },
-  { slug: "vibes-premium", nom: "Vibes Premium", price: "à partir de 4 990 €/an", desc: "Le plus populaire", recommended: true },
-  { slug: "vibes-boost", nom: "Vibes Boost", price: "à partir de 7 990 €/an", desc: "Tout inclus" },
+  { slug: "vibes-connection", nom: "Vibes Connection", price: "3 980 €/an", desc: "Idéal pour démarrer" },
+  { slug: "vibes-premium", nom: "Vibes Premium", price: "4 980 €/an", desc: "Le plus populaire", recommended: true },
+  { slug: "vibes-boost", nom: "Vibes Boost", price: "5 980 €/an", desc: "Tout inclus" },
 ];
 
 const STEPS = ["Votre collectif", "Vos usages", "Vos coordonnées"];

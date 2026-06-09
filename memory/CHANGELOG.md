@@ -2,6 +2,35 @@
 
 ---
 
+## 2026-06-09 — Missions Falek : offres, documents contractuels, acceptation (branche feat/missions-falek)
+
+### FEAT-02 — Prix des offres alignés sur le tableau validé
+- `PricingData.ts`, `PricingTable.tsx` (source statique au lieu de WordPress), `DevisFormStepper.tsx` et `Plan.prixAnnuel` (seed + base) : **3 980 / 4 980 / 5 980 €/an** (Connection / Premium / Boost), mention « HT / an · indicatif jusqu'à 1 000 utilisateurs ».
+- **Impact** : le prix affiché sur la page offres, dans le funnel et dans le devis calculé est désormais cohérent et correct partout (avant : 3 sources divergentes — WP, 2990/4990/7990 dans le stepper, rien dans PricingData). Vérifié : un devis Premium 12 mois ressort à 4 482 € HT (4 980 − 10 % volume).
+
+### FEAT-03 — 4ème offre dans la même section que les autres
+- `OffreEvenementielle` (barre « 30 jours d'expérience ») n'est plus une section isolée : elle est rendue **à l'intérieur** de la section `#offres` de `PricingTable`, juste sous les 3 cartes (conversion `<section>`→`<div>`, padding horizontal annulé pour aligner sur les cartes).
+- **Impact** : l'offre événementielle se lit comme une 4ème offre du même bloc, sans rupture visuelle (vérifié desktop).
+
+### FEAT-06/07 — Documents contractuels éditables + pages publiques
+- Nouveau modèle Prisma `LegalDocument` (slug, titre, version, contenu) + seed des **4 documents** (CGV, DPA, SLA, PDD), version « 30 mai 2026 », transcrits depuis les PDF (`prisma/legalDocsContent.ts`).
+- Pages publiques **`/documents/[slug]`** (rendu markdown-léger sûr, sans HTML brut, réutilise le style légal existant).
+- Éditeur **admin `/admin/cms/documents`** (`LegalDocsManager`) : titre, version et contenu éditables par document, lien « Voir la page », route PUT protégée `/api/admin/cms/documents/[slug]`. Lien ajouté dans la sidebar CMS.
+- **Impact** : la directrice peut modifier les documents contractuels depuis le dashboard ; ils sont servis en pages web indexables (et non en PDF figés), et reflètent les changements immédiatement (`force-dynamic`).
+
+### FEAT-05 — Acceptation différenciée des documents à la signature
+- `src/lib/legalDocs.ts` : registre partagé + `requiredDocsForPlan()` — offres annuelles → **CGV + DPA + SLA**, offre événementielle → **CGV + PDD** (règle de la fiche missions).
+- `SignaturePad` affiche **une case par document requis** (chacune liée à sa page), toutes obligatoires ; `DevisDocument` calcule les documents selon l'offre ; la route `signer` **re-valide côté serveur** que tous les documents requis sont acceptés et stocke la liste (`Quote.acceptedDocs`).
+- **Impact** : conforme à l'exigence juridique de la tutrice — le client ne peut plus signer sans accepter explicitement chaque document propre à son offre, et l'acceptation est tracée en base. Vérifié : un devis Premium affiche bien les 3 cases CGV/DPA/SLA.
+
+### Vérifications
+- `requiredDocsForPlan` partagé client+serveur (pas de duplication de règle).
+- Code promo dans le funnel (FEAT-04) et notification de prise de RDV (FEAT-08) : **déjà en place** dans le code existant, confirmés.
+- `prisma db push` + `pnpm db:seed` appliqués sur la base Supabase (via le pooler). `pnpm build` ✅, `pnpm lint` ✅ (0 erreur), 0 erreur console. Accessibilité des nouvelles UI : labels liés, hiérarchie h1→h2→h3, boutons `aria-expanded`.
+- **Reste** : audit a11y/cross-browser global (axe/Tanaguru) et cadrage CRM — voir TASKS.md.
+
+---
+
 ## 2026-06-08 — Dashboard admin + audit sécu/SEO (branche feat/dashboard-audit-polish)
 
 ### Lot A — fixes ciblés

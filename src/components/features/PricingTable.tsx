@@ -1,10 +1,10 @@
 "use client";
 
-import usePricing from "@/services/pricing/usePricing";
 import { ArrowRight, Check, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
+import OffreEvenementielle from "./OffreEvenementielle";
 
 import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
@@ -44,17 +44,12 @@ const FRESH: Record<number, (i: number) => boolean> = {
 };
 
 export default function PricingTable() {
-  const pricingData = usePricing();
   const [rdvSysteme, setRdvSysteme] = useState<"custom" | "calendly">("custom");
-   
+
   const [calendlyUrl, setCalendlyUrl] = useState("https://calendly.com/uvibescommunication/30min");
 
-  const mergedPlans = plans.map((plan) => {
-    const dynamicPrice = pricingData.find(
-      (p) => p.planName === plan.name.toUpperCase()
-    )?.price;
-    return { ...plan, price: dynamicPrice || "Sur devis" };
-  });
+  // Prix de référence : statiques (tableau validé par la tutrice), cf. PricingData.ts
+  const mergedPlans = plans;
 
   useEffect(() => {
     fetch("/api/settings")
@@ -131,7 +126,7 @@ export default function PricingTable() {
                 {/* Prix */}
                 <div className="pt-card-price">
                   <span className="pt-card-price-value v-prompt">{plan.price}</span>
-                  <span className="v-mono pt-card-price-note">· adapté à votre taille</span>
+                  <span className="v-mono pt-card-price-note">HT / an · indicatif jusqu&apos;à 1 000 utilisateurs</span>
                 </div>
 
                 {/* CTA */}
@@ -192,6 +187,9 @@ export default function PricingTable() {
           })}
         </div>
       </div>
+
+      {/* 4ème offre — événementielle, présentée dans la même section que les 3 offres annuelles */}
+      <OffreEvenementielle />
     </section>
   );
 }

@@ -3,40 +3,55 @@
 import { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 
+export interface RequiredDoc { slug: string; titre: string; route: string; }
+
 interface Props {
-  onSign: (data: { signatureData: string; signedByName: string; signedByRole: string; termsAccepted: boolean }) => Promise<void>;
+  requiredDocs: RequiredDoc[];
+  onSign: (data: { signatureData: string; signedByName: string; signedByRole: string; acceptedDocs: string[] }) => Promise<void>;
   loading?: boolean;
 }
 
-export default function SignaturePad({ onSign, loading }: Props) {
+export default function SignaturePad({ requiredDocs, onSign, loading }: Props) {
   const canvasRef = useRef<SignatureCanvas>(null);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [isEmpty, setIsEmpty] = useState(true);
   const [nameError, setNameError] = useState("");
-  const [terms, setTerms] = useState(false);
+  const [accepted, setAccepted] = useState<Record<string, boolean>>({});
   const [termsError, setTermsError] = useState("");
+
+  const allAccepted = requiredDocs.every((d) => accepted[d.slug]);
+
+  const toggleDoc = (slug: string) => {
+    setAccepted((a) => ({ ...a, [slug]: !a[slug] }));
+    setTermsError("");
+  };
 
   const handleEnd = () => setIsEmpty(false);
   const handleClear = () => { canvasRef.current?.clear(); setIsEmpty(true); };
 
   const handleValidate = async () => {
     if (!name.trim()) { setNameError("Nom requis"); return; }
-    if (!terms) { setTermsError("Vous devez accepter les conditions pour signer."); return; }
+    if (!allAccepted) { setTermsError("Vous devez accepter tous les documents pour signer."); return; }
     if (isEmpty || !canvasRef.current || canvasRef.current.isEmpty()) {
       alert("Veuillez apposer votre signature dans le cadre ci-dessus.");
       return;
     }
 
     const signatureData = canvasRef.current.toDataURL("image/png");
-    await onSign({ signatureData, signedByName: name.trim(), signedByRole: role.trim(), termsAccepted: true });
+    await onSign({
+      signatureData,
+      signedByName: name.trim(),
+      signedByRole: role.trim(),
+      acceptedDocs: requiredDocs.map((d) => d.slug),
+    });
   };
 
   return (
     <div className="dv-sign-section">
       <h3 className="dv-sign-title">Signer ce devis</h3>
       <p style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 20 }}>
-        En signant, vous acceptez les conditions générales et engagez votre organisation.
+        En signant, vous acceptez les documents contractuels ci-dessous et engagez votre organisation.
       </p>
 
       <div className="dv-sign-fields">
@@ -78,20 +93,22 @@ export default function SignaturePad({ onSign, loading }: Props) {
         )}
       </div>
 
-      {/* Acceptation CGV / confidentialité — obligatoire */}
-      <label className="dv-terms">
-        <input
-          type="checkbox"
-          checked={terms}
-          onChange={(e) => { setTerms(e.target.checked); setTermsError(""); }}
-        />
-        <span>
-          J&apos;ai lu et j&apos;accepte les{" "}
-          <a href="/conditions-d-utilisation" target="_blank" rel="noopener noreferrer">conditions générales</a>
-          {" "}et la{" "}
-          <a href="/politique-de-confidentialite" target="_blank" rel="noopener noreferrer">politique de confidentialité</a>.
-        </span>
-      </label>
+      {/* Acceptation des documents contractuels — chacun obligatoire */}
+      <div className="dv-terms-group">
+        {requiredDocs.map((doc) => (
+          <label className="dv-terms" key={doc.slug}>
+            <input
+              type="checkbox"
+              checked={!!accepted[doc.slug]}
+              onChange={() => toggleDoc(doc.slug)}
+            />
+            <span>
+              J&apos;ai lu et j&apos;accepte{" "}
+              <a href={doc.route} target="_blank" rel="noopener noreferrer">{doc.titre}</a>.
+            </span>
+          </label>
+        ))}
+      </div>
       {termsError && <p className="dv-error-msg" style={{ marginTop: 4 }}>{termsError}</p>}
 
       <div className="dv-sign-actions">

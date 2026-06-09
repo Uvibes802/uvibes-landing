@@ -1,48 +1,61 @@
-# ARCHITECTURE.md — Uvibes Site Vitrine
+# ARCHITECTURE.md — Uvibes (vitrine + plateforme)
 
 > Source de vérité de la structure du projet.
-> Dernière mise à jour : 2026-06-04
+> Dernière mise à jour : 2026-06-09
 
 ---
 
 ## Stack technique
 
 ```
-Navigateur → Next.js 15 App Router (uvibes.fr) → WordPress Headless (wp.uvibes.fr)
-                                                → CloudFront CDN (vidéos)
-                                                → Prisma + DB (newsletter, devis, RDV)
+Navigateur → Next.js 15 App Router (uvibes.fr) → WordPress Headless (wp.uvibes.fr)  [contenu : home, blog, témoignages, partenaires, équipe]
+                                                → CloudFront CDN (vidéos témoignages)
+                                                → Prisma → PostgreSQL / Supabase dédiée  [devis, promos, RDV, newsletter, collectifs, plans/features, CMS contenu, admins]
+                                                → Nodemailer (Gmail OAuth)  [emails devis & RDV]
 ```
+
+3 briques : **(1)** site vitrine · **(2)** funnel de devis public `/devis` (formulaire → calcul → signature → PDF → email) · **(3)** dashboard admin `/admin` (CMS + devis + promos + RDV + newsletter + collectifs).
+
+DB = **Supabase propre au projet**, distincte de celle de `bizz`. Connexion via `DATABASE_URL` (pooler) + `DIRECT_URL`.
 
 ---
 
 ## Pages & Routes
 
 ```
-/                     src/app/page.tsx                ✅ Server Component
-/solution             src/app/solution/page.tsx        ✅ Server Component
-/blog                 src/app/blog/page.tsx            ✅ Server Component
-/blog/[slug]          src/app/blog/[slug]/page.tsx     ✅ Server Component + generateMetadata Yoast
-/uvibes               src/app/uvibes/page.tsx          ✅ Server Component
-/avantages            src/app/avantages/page.tsx       ✅ redirect 301 → /solution (next.config.ts)
-/features             src/app/features/page.tsx        ✅ redirect 301 → /solution (next.config.ts)
-/rdv                  src/app/rdv/page.tsx
-/devis                src/app/devis/page.tsx
-/mention-legale       src/app/mention-legale/page.tsx
-/conditions-dutilisation
-/politique-de-confidentialite
-/politique-cookies
+Public:
+/                          src/app/page.tsx                 ✅ Server Component
+/solution                  src/app/solution/page.tsx        ✅ Server Component (offres + 4ème offre)
+/blog · /blog/[slug]       src/app/blog/…                   ✅ SC + generateMetadata Yoast
+/a-propos                  src/app/a-propos/page.tsx        ✅ (ex /uvibes)
+/avantages · /features     redirect 301 → /solution (next.config.ts)
+/rendez-vous               src/app/rendez-vous/page.tsx     (ex /rdv)
+/devis · /devis/[id]       funnel devis + page devis/signature
+/mentions-legales · /conditions-d-utilisation · /politique-de-confidentialite · /politique-cookies
 
-Admin:
-/admin                src/app/admin/page.tsx           🔒 mot de passe .env.local
-/admin/crm/*          src/app/admin/crm/               ✅ CRM complet
+Admin (🔒 iron-session — layout protégé):
+/admin/login                                                login
+/admin/dashboard                                            métriques + derniers devis
+/admin/devis · /admin/devis/nouveau · /admin/devis/[id]     gestion devis
+/admin/promos                                               codes promo
+/admin/rdv                                                  réservations + disponibilités
+/admin/collectifs · /admin/collectifs/[id]                  fiches (embryon CRM)
+/admin/newsletter · /admin/maintenance
+/admin/cms/{contenu,tarification,temoignages,equipe,partenaires}
 
-API:
-/api/sendEmail        rate limiting 5 req/min
-/api/newsletter       POST inscription / DELETE désinscription
-/api/testimonials     fetch WP côté serveur (CORS fix)
-/api/featured-articles fetch WP tag homepage-article (CORS fix)
-/api/rdv/reserver     confirmation RDV
-/api/crm/*            routes CRM (devis, collectifs, partenaires, témoignages, tarification)
+API publiques:
+/api/devis/creer · /api/devis/calculer · /api/devis/[id] · /api/devis/[id]/pdf · /api/devis/[id]/signer
+/api/rdv/reserver · /api/rdv/creneaux · /api/rdv/reminders
+/api/promo/validate · /api/newsletter · /api/sendEmail (rate-limit 5/min)
+/api/testimonials · /api/featured-articles · /api/partners · /api/settings  (fetch WP côté serveur, CORS fix)
+
+API admin (🔒):
+/api/admin/auth/{login,me,logout}
+/api/admin/devis · /api/admin/devis/[id] · /api/admin/devis/[id]/envoyer
+/api/admin/promos · /api/admin/promos/[id] · /api/admin/promos/send
+/api/admin/collectifs(/[id], /export) · /api/admin/rdv/{reservations,disponibilites}(/[id], /reminder)
+/api/admin/newsletter/export
+/api/admin/cms/{content,plans,features,team,testimonials,partners}(/[id], /sync-wp)
 ```
 
 ---
@@ -107,16 +120,43 @@ Components: src/components/legal/{mention,confidentialite,conditionsUtilisation,
 
 ---
 
-## CRM (/admin/crm/*)
+## Funnel de devis (/devis)
 
 ```
-Layout   : CrmShell + CrmSidebar (glass backdrop-filter)
-Dashboard: métriques glass, tableau derniers devis
-Devis    : liste, détail, document PDF, signature
-Collectifs, Partenaires, Témoignages, Équipe, Tarification
-Newsletter: NewsletterManager (table abonnés, filtres, export CSV)
-Maintenance: mode maintenance
+DevisFormStepper   components/devis/DevisFormStepper.tsx  3 étapes : collectif → usages → coordonnées
+   → POST /api/devis/creer        crée Collectif + Quote (statut BROUILLON), calcule le prix
+   → redirection /devis/[id]
+DevisDocument      components/devis/DevisDocument.tsx     rendu du devis
+SignaturePad       components/devis/SignaturePad.tsx      signature manuscrite (canvas)
+   → POST /api/devis/[id]/signer  vérifie acceptation documents + re-valide PromoCode (serveur),
+                                  passe le devis à SIGNE, génère le PDF, envoie les emails
+calculateQuote     services/crm/calculateQuote.ts         logique de prix (utilisateurs × durée × remise)
+generateQuoteNumber services/crm/generateQuoteNumber.ts   numéro unique
+generateQuotePdf   services/pdf/generateQuotePdf.ts        PDF (React → PDF)
+sendQuoteEmail     services/crm/sendQuoteEmail.ts          email client + notifyDirectrice (nodemailer)
 ```
+
+À FAIRE (Missions Falek) : exposer le **champ code promo** dans le funnel · **acceptation différenciée des documents** (CGV+DPA+SLA pour les 3 offres annuelles, CGV+PDD pour l'événementielle) · corriger les prix (3980/4980/5980).
+
+---
+
+## Dashboard admin (/admin/*)
+
+```
+Layout   : app/admin/layout.tsx (iron-session) + components/admin/CrmSidebar.tsx (glass)
+Auth     : /admin/login → /api/admin/auth/* (iron-session)
+Dashboard: métriques glass, tableau derniers devis
+Devis    : liste, détail (DevisDetailClient), AdminDevisForm, PDF, envoi
+Promos   : PromoManager (CRUD PromoCode + envoi email)
+RDV      : RdvManager (réservations + disponibilités + relance)
+Collectifs: CollectifFicheClient (embryon CRM)
+Newsletter: NewsletterManager (table abonnés, filtres, export CSV)
+CMS      : CmsContentManager, TarificationManager, EquipeManager, CrudManager (témoignages/partenaires/…)
+            + SyncWpButton (synchro WordPress)
+Maintenance: MaintenanceToggle
+```
+
+À FAIRE (Missions Falek) : module CMS **« documents légaux »** (éditeur texte en base pour CGV/DPA/SLA/PDD) · **CRM** complet à phaser (contacts, pipeline, interactions, tâches, marketing, support, documents, reporting).
 
 ---
 
@@ -155,9 +195,15 @@ CloudFront CDN:
   getVideoUrl(file)      → src/utils/videoUrl.ts → NEXT_PUBLIC_CLOUDFRONT_URL || fallback
   Vidéos : Isaline, Lisa, Delphine, Colette, Nadine, Pierre
 
-Prisma (SQLite/PostgreSQL):
+Prisma → PostgreSQL / Supabase dédiée (modèles schema.prisma):
+  Quote                  → devis (statut, prix, signature, promo, PDF, envoi)
+  Collectif              → organisation rattachée au devis (embryon CRM)
+  PromoCode              → codes réduction (pourcentage, usage, expiration)
+  RdvReservation / RdvDisponibilite → /api/rdv/*
   NewsletterSubscriber   → /api/newsletter
-  Devis, Collectif, RDV  → /api/crm/*
+  Plan / Feature / PlanFeature → offres (source DB, en parallèle de PricingData.ts → à unifier)
+  Partner / Testimony / TeamMember / CmsContent → CMS (synchro WP possible)
+  AdminUser              → auth admin (iron-session)
 ```
 
 ---
@@ -168,9 +214,10 @@ Prisma (SQLite/PostgreSQL):
 NEXT_PUBLIC_API_URL              URL WordPress
 NEXT_PUBLIC_CLOUDFRONT_URL       CDN vidéos (fallback hardcodé)
 NEXT_PUBLIC_GOOGLE_ANALYTICS     ID GA4
-ADMIN_PASSWORD                   Page admin
-EMAIL_USER / GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET / GOOGLE_REFRESH_TOKEN
-DATABASE_URL                     Prisma
+DATABASE_URL                     Prisma — Supabase pooler (port 6543)
+DIRECT_URL                       Prisma — connexion directe (migrations ; injoignable en local → db push sur le pooler)
+SESSION_PASSWORD / ADMIN_*       iron-session + identifiants admin
+EMAIL_USER / GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET / GOOGLE_REFRESH_TOKEN   Nodemailer (Gmail OAuth)
 ```
 
 ---

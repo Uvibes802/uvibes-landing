@@ -4,6 +4,7 @@ import { ArrowLeft, Check, Download, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import SignaturePad from "./SignaturePad";
+import { LEGAL_DOCS, requiredDocsForPlan } from "@/lib/legalDocs";
 import "@/styles/devis/devis.css";
 
 interface Feature { slug: string; nom: string; inclus: boolean; }
@@ -14,7 +15,7 @@ interface Collectif {
 }
 interface QuoteData {
   id: string; numero: string; statut: string;
-  planNom: string; planCouleur: string;
+  planSlug: string; planNom: string; planCouleur: string;
   nombreUtilisateurs: number; dureeContrat: number;
   remise: number; prixHT: number; prixTTC: number;
   featuresJson: Feature[];
@@ -50,6 +51,9 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
   const isSigned = statut === "SIGNE";
   const isExpired = quote.validUntil && new Date(quote.validUntil) < new Date() && !isSigned;
 
+  // Documents à accepter selon l'offre (annuelle : CGV+DPA+SLA · événementielle : CGV+PDD)
+  const requiredDocs = requiredDocsForPlan(quote.planSlug).map((slug) => LEGAL_DOCS[slug]);
+
   // Prix affichés : recalculés si un code promo est appliqué
   const prixHT = appliedPromo
     ? Math.round(quote.prixHT * (1 - appliedPromo.pourcentage / 100) * 100) / 100
@@ -80,7 +84,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
     }
   }
 
-  async function handleSign(data: { signatureData: string; signedByName: string; signedByRole: string; termsAccepted: boolean }) {
+  async function handleSign(data: { signatureData: string; signedByName: string; signedByRole: string; acceptedDocs: string[] }) {
     setSigningLoading(true);
     try {
       const res = await fetch(`/api/devis/${quote.id}/signer`, {
@@ -277,7 +281,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
                 {promoMsg && <p className="dv-error-msg">{promoMsg}</p>}
               </div>
 
-              <SignaturePad onSign={handleSign} loading={signingLoading} />
+              <SignaturePad requiredDocs={requiredDocs} onSign={handleSign} loading={signingLoading} />
             </>
           )}
         </div>

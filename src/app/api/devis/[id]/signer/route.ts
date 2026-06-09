@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateQuotePdf } from "@/services/pdf/generateQuotePdf";
 import { sendQuoteToCollectif, notifyDirectrice } from "@/services/crm/sendQuoteEmail";
+import { requiredDocsForPlan } from "@/lib/legalDocs";
 import path from "path";
 import fs from "fs/promises";
 
@@ -11,14 +12,10 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
-    const { signatureData, signedByName, signedByRole, termsAccepted, promoCode } = await req.json();
+    const { signatureData, signedByName, signedByRole, acceptedDocs, promoCode } = await req.json();
 
     if (!signatureData || !signedByName) {
       return NextResponse.json({ error: "Signature et nom requis" }, { status: 400 });
-    }
-
-    if (!termsAccepted) {
-      return NextResponse.json({ error: "Vous devez accepter les conditions générales." }, { status: 400 });
     }
 
     const existingQuote = await prisma.quote.findUnique({
@@ -32,6 +29,17 @@ export async function POST(
 
     if (existingQuote.statut === "SIGNE") {
       return NextResponse.json({ error: "Devis déjà signé" }, { status: 400 });
+    }
+
+    // Vérifier que tous les documents requis pour cette offre sont acceptés
+    const required = requiredDocsForPlan(existingQuote.planSlug);
+    const accepted: string[] = Array.isArray(acceptedDocs) ? acceptedDocs : [];
+    const missing = required.filter((slug) => !accepted.includes(slug));
+    if (missing.length > 0) {
+      return NextResponse.json(
+        { error: "Vous devez accepter tous les documents contractuels pour signer." },
+        { status: 400 }
+      );
     }
 
     // Vérifier et appliquer un éventuel code promo (re-validation côté serveur)
@@ -72,6 +80,7 @@ export async function POST(
         signedByName,
         signedByRole: signedByRole || null,
         termsAcceptedAt: new Date(),
+        acceptedDocs: JSON.stringify(required),
         statut: "SIGNE",
         prixHT: newPrixHT,
         prixTTC: newPrixTTC,
