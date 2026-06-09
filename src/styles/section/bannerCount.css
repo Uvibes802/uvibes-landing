@@ -24,6 +24,22 @@
 
 /* Vagues de délimitation : composant partagé WaveSeparator */
 
+/* Nombres à largeur figée (le fantôme réserve la largeur max, le réel se superpose) */
+.bc-fixnum {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+.bc-num-ghost {
+  visibility: hidden;
+}
+.bc-num-real {
+  position: absolute;
+  top: 0;
+  right: 0;
+  white-space: nowrap;
+}
+
 /* Anneau tournant haut-droite */
 .banner-count::before {
   content: '';

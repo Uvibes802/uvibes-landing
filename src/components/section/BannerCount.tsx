@@ -90,9 +90,11 @@ export default function BannerCount() {
         <div className="banner-count-main">
           <span className="v-mono banner-count-label">en 2026</span>
           <div className="banner-count-row">
-            <h2 className="banner-count-number v-prompt"
-              style={{ minWidth: `${finalDisplay.length + 1.5}ch`, display: "inline-block", textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
-              {display}<span className="banner-count-plus">+</span>
+            {/* Largeur figée : fantôme invisible avec tous les chiffres au plus large ("8"),
+                le nombre animé est superposé et aligné à droite → le texte ne bouge plus. */}
+            <h2 className="banner-count-number v-prompt bc-fixnum">
+              <span className="bc-num-ghost" aria-hidden="true">{finalDisplay.replace(/\d/g, "8")}+</span>
+              <span className="bc-num-real">{display}<span className="banner-count-plus">+</span></span>
             </h2>
             <span className="banner-count-filler v-serif" style={{ opacity: fillerVisible ? 1 : 0 }}>
               {FILLERS[fillerIdx]}
@@ -106,7 +108,10 @@ export default function BannerCount() {
         {/* Score 4.9 / 5 */}
         <div className="banner-count-score">
           <div className="banner-score-top">
-            <span className="banner-score-num v-prompt">{score}</span>
+            <span className="banner-score-num v-prompt bc-fixnum">
+              <span className="bc-num-ghost" aria-hidden="true">{score.replace(/\d/g, "8")}</span>
+              <span className="bc-num-real">{score}</span>
+            </span>
             <div className="banner-score-right">
               <span className="banner-score-outof v-mono">/&thinsp;5</span>
               <div className="banner-score-stars" aria-hidden="true">
