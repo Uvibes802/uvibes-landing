@@ -91,7 +91,7 @@ export default function BannerCount() {
           <span className="v-mono banner-count-label">en 2026</span>
           <div className="banner-count-row">
             <h2 className="banner-count-number v-prompt"
-              style={{ minWidth: `${finalDisplay.length + 1.5}ch`, display: "inline-block", textAlign: "right" }}>
+              style={{ minWidth: `${finalDisplay.length + 1.5}ch`, display: "inline-block", textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
               {display}<span className="banner-count-plus">+</span>
             </h2>
             <span className="banner-count-filler v-serif" style={{ opacity: fillerVisible ? 1 : 0 }}>
