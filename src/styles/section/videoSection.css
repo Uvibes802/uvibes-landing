@@ -66,22 +66,23 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 56px;
+  height: 38px;
   display: block;
 }
-/* Couches étagées (toutes opaques pour couvrir le fond) — l'étagement vient des
-   lignes de base décalées dans les paths, l'ombre matérialise la marche entre couches.
-   Arrière (3) la plus basse → avant (1) la plus haute. */
+/* Chevauchement serré + opacités croissantes vers l'avant → profondeur sans laisser
+   voir le fond. Arrière (3) la plus opaque/foncée, avant (1) en couleur de page. */
 .vs-wave-layer--3 {
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.05));
+  transform: translateY(7px);
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.05));
 }
-.vs-wave-layer--3 path { fill: #ece9ee; }
+.vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.85); }
 .vs-wave-layer--2 {
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.06));
+  transform: translateY(4px);
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.06));
 }
-.vs-wave-layer--2 path { fill: #f4f1f4; }
+.vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.93); }
 .vs-wave-layer--1 {
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.08));
 }
 .vs-wave-layer--1 path { fill: var(--paper, #f8f9fa); }
 
