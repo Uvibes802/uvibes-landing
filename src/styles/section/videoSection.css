@@ -68,38 +68,47 @@
   /* plus large que le conteneur pour que les bords restent couverts pendant l'animation */
   left: -15%;
   width: 130%;
-  height: 64px;
+  height: 56px;
   display: block;
   will-change: transform;
 }
-/* Vagues blanches, opacité croissante vers l'avant → profondeur. Vitesses différentes
-   par couche → effet de flux / parallaxe. Arrière (3) la plus lente. */
-.vs-wave-layer--3 {
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.05));
-  animation: vsWaveFlowB 19s ease-in-out infinite alternate;
-}
-.vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.6); }
-.vs-wave-layer--2 {
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.06));
-  animation: vsWaveFlowA 13s ease-in-out infinite alternate;
-}
-.vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.8); }
+/* Empilement : chaque couche décalée vers le bas (de plus que l'amplitude de la vague,
+   donc elles ne se croisent jamais), opacité décroissante vers l'arrière. Le décalage
+   vertical est intégré aux keyframes pour cohabiter avec le flux horizontal synchronisé. */
 .vs-wave-layer--1 {
-  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.08));
-  animation: vsWaveFlowB 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.1));
+  animation: vsStack1 14s ease-in-out infinite alternate;
 }
 .vs-wave-layer--1 path { fill: #ffffff; }
-
-@keyframes vsWaveFlowA {
-  from { transform: translateX(0); }
-  to   { transform: translateX(8%); }
+.vs-wave-layer--2 {
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.08));
+  animation: vsStack2 14s ease-in-out infinite alternate;
 }
-@keyframes vsWaveFlowB {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-8%); }
+.vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.82); }
+.vs-wave-layer--3 {
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.06));
+  animation: vsStack3 14s ease-in-out infinite alternate;
+}
+.vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.62); }
+
+/* Même balancement horizontal pour les 3 (donc pas de croisement),
+   seul le décalage vertical change → empilement net qui ondule ensemble. */
+@keyframes vsStack1 {
+  from { transform: translate(-4%, 0); }
+  to   { transform: translate(4%, 0); }
+}
+@keyframes vsStack2 {
+  from { transform: translate(-4%, 22px); }
+  to   { transform: translate(4%, 22px); }
+}
+@keyframes vsStack3 {
+  from { transform: translate(-4%, 44px); }
+  to   { transform: translate(4%, 44px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .vs-wave-layer { animation: none; }
+  .vs-wave-layer--1 { transform: translateY(0); animation: none; }
+  .vs-wave-layer--2 { transform: translateY(22px); animation: none; }
+  .vs-wave-layer--3 { transform: translateY(44px); animation: none; }
 }
 
 .vs-particles { display: none; }
