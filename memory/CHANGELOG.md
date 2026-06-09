@@ -29,6 +29,16 @@
 
 **Impact** : un seul espace admin cohérent et protégé par session ; suppression d'un chemin d'authentification faible ; toggle maintenance enfin fonctionnel depuis le CRM.
 
+### Renommage de routes publiques (SEO + propreté) — chacune avec 301
+- `/uvibes` → **`/a-propos`** (le slug ne matchait pas le label « À propos »)
+- `/mention-legale` → **`/mentions-legales`** (faute : pluriel obligatoire)
+- `/conditions-dutilisation` → **`/conditions-d-utilisation`** (slug lisible)
+- `/rdv` → **`/rendez-vous`** (mot-clé SEO au lieu d'une abréviation)
+
+Pour chacune : déplacement du dossier de route, redirection 301 permanente (préserve le référencement), MAJ menu/footer/sitemap/CTA/liens internes/canonical. L'espace API `/api/rdv/*` est volontairement inchangé.
+
+**Impact SEO** : URLs sémantiques et correctes, redirections 301 qui transfèrent le jus SEO des anciennes URLs, sitemap aligné. **Validé par un `pnpm build` complet sans erreur.**
+
 ---
 
 ## 2026-06-06 — Session redesign contenu + 2 nouvelles sections (branche redesign/solution-config-themes)
