@@ -66,25 +66,24 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 38px;
+  height: 56px;
   display: block;
 }
-/* Couche avant : couleur du fond de page, ombre douce vers le bas */
+/* Couches étagées (toutes opaques pour couvrir le fond) — l'étagement vient des
+   lignes de base décalées dans les paths, l'ombre matérialise la marche entre couches.
+   Arrière (3) la plus basse → avant (1) la plus haute. */
+.vs-wave-layer--3 {
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.05));
+}
+.vs-wave-layer--3 path { fill: #ece9ee; }
+.vs-wave-layer--2 {
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.06));
+}
+.vs-wave-layer--2 path { fill: #f4f1f4; }
 .vs-wave-layer--1 {
-  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.08));
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
 }
 .vs-wave-layer--1 path { fill: var(--paper, #f8f9fa); }
-/* Couches arrière : blanches translucides, décalées vers le bas + ombre → effet dégradé */
-.vs-wave-layer--2 {
-  transform: translateY(9px);
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.06));
-}
-.vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.6); }
-.vs-wave-layer--3 {
-  transform: translateY(18px);
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.05));
-}
-.vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.32); }
 
 .vs-particles { display: none; }
 
