@@ -26,17 +26,19 @@ export default function VideoSection() {
           verticalement (chaque couche passe sous la précédente), opacité décroissante
           vers l'arrière. Léger flux horizontal synchronisé → elles ne se croisent jamais. */}
       <div className="vs-wave-stack" aria-hidden="true">
-        {/* Couche 3 (arrière, la plus basse) — vagues larges et paresseuses, amples */}
+        {/* Toutes remplies depuis le haut (y=0) jusqu'à une ligne de base étagée → la
+            couche arrière fait fond plein, l'orange n'apparaît que sous la dernière vague. */}
+        {/* Couche 3 (arrière, ligne de base basse) — vagues larges, fond plein */}
         <svg className="vs-wave-layer vs-wave-layer--3" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V40 C1200,62 1010,20 820,42 C600,62 380,20 0,40 Z" />
+          <path d="M0,0 H1440 V58 C1200,76 1010,40 820,60 C600,76 380,40 0,58 Z" />
         </svg>
-        {/* Couche 2 (milieu) — rythme différent, phase opposée, ample */}
+        {/* Couche 2 (milieu) — rythme différent, phase opposée */}
         <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V40 C1290,20 1160,60 980,40 C820,18 690,60 520,40 C360,20 190,60 0,40 Z" />
+          <path d="M0,0 H1440 V42 C1290,24 1160,60 980,42 C820,22 690,60 520,42 C360,24 190,60 0,42 Z" />
         </svg>
-        {/* Couche 1 (avant, la plus haute) — ondulations irrégulières et amples */}
+        {/* Couche 1 (avant, ligne de base haute) — ondulations irrégulières */}
         <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V40 C1330,60 1230,20 1060,40 C920,58 840,22 700,40 C560,61 440,19 300,40 C190,59 90,21 0,40 Z" />
+          <path d="M0,0 H1440 V26 C1330,44 1230,8 1060,26 C920,42 840,10 700,26 C560,45 440,7 300,26 C190,43 90,9 0,26 Z" />
         </svg>
       </div>
       <svg className="vs-wave vs-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">

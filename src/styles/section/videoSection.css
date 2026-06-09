@@ -57,7 +57,7 @@
   top: -1px;
   left: 0;
   width: 100%;
-  height: 108px;
+  height: 72px;
   z-index: 2;
   pointer-events: none;
   overflow: hidden; /* clippe le débordement horizontal des couches animées */
@@ -72,43 +72,30 @@
   display: block;
   will-change: transform;
 }
-/* Empilement : chaque couche décalée vers le bas (de plus que l'amplitude de la vague,
-   donc elles ne se croisent jamais), opacité décroissante vers l'arrière. Le décalage
-   vertical est intégré aux keyframes pour cohabiter avec le flux horizontal synchronisé. */
+/* Empilement par lignes de base étagées (dans les paths) : la couche arrière (3) fait
+   fond plein depuis le haut → aucun trou possible. Opacité décroissante vers l'arrière.
+   Animation : seul un balancement horizontal synchronisé (pas de décalage vertical animé). */
 .vs-wave-layer--1 {
   filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.1));
-  animation: vsStack1 14s ease-in-out infinite alternate;
+  animation: vsWaveSway 14s ease-in-out infinite alternate;
 }
 .vs-wave-layer--1 path { fill: #ffffff; }
 .vs-wave-layer--2 {
-  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.08));
-  animation: vsStack2 14s ease-in-out infinite alternate;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.07));
+  animation: vsWaveSway 16s ease-in-out infinite alternate;
 }
-.vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.82); }
+.vs-wave-layer--2 path { fill: #fbeef0; }
 .vs-wave-layer--3 {
-  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.06));
-  animation: vsStack3 14s ease-in-out infinite alternate;
+  animation: vsWaveSway 18s ease-in-out infinite alternate;
 }
-.vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.62); }
+.vs-wave-layer--3 path { fill: #fde4dc; }
 
-/* Même balancement horizontal pour les 3 (donc pas de croisement),
-   seul le décalage vertical change → empilement net qui ondule ensemble. */
-@keyframes vsStack1 {
-  from { transform: translate(-4%, 0); }
-  to   { transform: translate(4%, 0); }
-}
-@keyframes vsStack2 {
-  from { transform: translate(-4%, 28px); }
-  to   { transform: translate(4%, 28px); }
-}
-@keyframes vsStack3 {
-  from { transform: translate(-4%, 56px); }
-  to   { transform: translate(4%, 56px); }
+@keyframes vsWaveSway {
+  from { transform: translateX(-4%); }
+  to   { transform: translateX(4%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .vs-wave-layer--1 { transform: translateY(0); animation: none; }
-  .vs-wave-layer--2 { transform: translateY(28px); animation: none; }
-  .vs-wave-layer--3 { transform: translateY(56px); animation: none; }
+  .vs-wave-layer { animation: none; }
 }
 
 .vs-particles { display: none; }
