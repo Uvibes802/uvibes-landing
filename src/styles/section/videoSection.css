@@ -57,7 +57,7 @@
   top: -1px;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 64px;
   z-index: 2;
   pointer-events: none;
 }
@@ -76,12 +76,12 @@
 .vs-wave-layer--1 path { fill: var(--paper, #f8f9fa); }
 /* Couches arrière : blanches translucides, décalées vers le bas + ombre → effet dégradé */
 .vs-wave-layer--2 {
-  transform: translateY(16px);
+  transform: translateY(9px);
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.06));
 }
 .vs-wave-layer--2 path { fill: rgba(255, 255, 255, 0.6); }
 .vs-wave-layer--3 {
-  transform: translateY(32px);
+  transform: translateY(18px);
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.05));
 }
 .vs-wave-layer--3 path { fill: rgba(255, 255, 255, 0.32); }
