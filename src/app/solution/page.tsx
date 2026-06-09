@@ -6,6 +6,7 @@ import OffreEvenementielle from "@/components/features/OffreEvenementielle";
 import SmallOrgCta from "@/components/features/SmallOrgCta";
 import SolutionAnchorNav from "@/components/solution/SolutionAnchorNav";
 import SolutionHero from "@/components/solution/SolutionHero";
+import WaveSeparator from "@/components/shared/WaveSeparator";
 import SolutionHowItWorks from "@/components/solution/SolutionHowItWorks";
 import SolutionThemes from "@/components/solution/SolutionThemes";
 import SolutionSoftSkills from "@/components/solution/SolutionSoftSkills";
@@ -44,7 +45,8 @@ export default function SolutionPage() {
         <PricingTable />
         <OffreEvenementielle />
         {/* Section petites structures (remplace "Ils font confiance") + footer, sur le dégradé commun */}
-        <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)" }}>
+        <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
+          <WaveSeparator position="top" />
           <SmallOrgCta />
           <Footer />
         </div>

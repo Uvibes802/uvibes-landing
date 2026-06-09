@@ -1,5 +1,6 @@
 import AllArticle from "@/components/blog/allArticle";
 import Footer from "@/components/footer/Footer";
+import WaveSeparator from "@/components/shared/WaveSeparator";
 import JsonLd from "@/components/JsonLd";
 import VibrationLine from "@/components/shared/VibrationLine";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
@@ -73,7 +74,9 @@ export default function BlogPage() {
         <AllArticle />
       </section>
 
-      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%)" }}>
+      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden", paddingTop: "100px" }}>
+        {/* Séparateur wavy animé (cohérent avec les autres sections) */}
+        <WaveSeparator position="top" />
         <Footer />
       </div>
     </>
