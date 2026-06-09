@@ -84,11 +84,7 @@
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.07));
   animation: vsWaveSway 16s ease-in-out infinite alternate;
 }
-.vs-wave-layer--2 path { fill: #fbeef0; }
-.vs-wave-layer--3 {
-  animation: vsWaveSway 18s ease-in-out infinite alternate;
-}
-.vs-wave-layer--3 path { fill: #fde4dc; }
+.vs-wave-layer--2 path { fill: #fde4dc; }
 
 @keyframes vsWaveSway {
   from { transform: translateX(-4%); }

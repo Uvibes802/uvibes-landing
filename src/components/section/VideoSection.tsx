@@ -26,13 +26,9 @@ export default function VideoSection() {
           verticalement (chaque couche passe sous la précédente), opacité décroissante
           vers l'arrière. Léger flux horizontal synchronisé → elles ne se croisent jamais. */}
       <div className="vs-wave-stack" aria-hidden="true">
-        {/* Toutes remplies depuis le haut (y=0) jusqu'à une ligne de base étagée → la
-            couche arrière fait fond plein, l'orange n'apparaît que sous la dernière vague. */}
-        {/* Couche 3 (arrière, ligne de base basse) — vagues larges, fond plein */}
-        <svg className="vs-wave-layer vs-wave-layer--3" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V58 C1200,76 1010,40 820,60 C600,76 380,40 0,58 Z" />
-        </svg>
-        {/* Couche 2 (milieu) — rythme différent, phase opposée */}
+        {/* 2 couches remplies depuis le haut (y=0) jusqu'à une ligne de base étagée → la
+            couche arrière (2) fait fond plein, l'orange n'apparaît que sous sa vague. */}
+        {/* Couche 2 (arrière, ligne de base basse) — fond plein */}
         <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 80" preserveAspectRatio="none">
           <path d="M0,0 H1440 V42 C1290,24 1160,60 980,42 C820,22 690,60 520,42 C360,24 190,60 0,42 Z" />
         </svg>
