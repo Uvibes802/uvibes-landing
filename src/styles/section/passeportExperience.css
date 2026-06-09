@@ -102,17 +102,53 @@
   align-items: center;
 }
 
-/* Étape — texte éditorial */
+/* Étape — pastille ronde animée */
 .pp-trio-step {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 14px 22px;
-  border-radius: 14px;
-  background: rgba(255,255,255,.75);
-  border: 1px solid color-mix(in srgb, var(--ps-color, #FD6E00) 20%, transparent);
+  justify-content: center;
+  gap: 5px;
+  width: clamp(122px, 14vw, 146px);
+  height: clamp(122px, 14vw, 146px);
+  padding: 0 16px;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.85);
+  border: 2px solid color-mix(in srgb, var(--ps-color, #FD6E00) 40%, transparent);
+  box-shadow: 0 14px 34px -16px color-mix(in srgb, var(--ps-color, #FD6E00) 55%, transparent);
   backdrop-filter: blur(4px);
+  animation: ppFloat 5s ease-in-out infinite;
+}
+/* anneau pulsé */
+.pp-trio-step::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--ps-color, #FD6E00);
+  opacity: 0;
+  animation: ppRing 3s ease-out infinite;
+  pointer-events: none;
+}
+/* décalage des animations entre les 3 pastilles */
+.pp-trio-group:nth-of-type(2) .pp-trio-step,
+.pp-trio-group:nth-of-type(2) .pp-trio-step::after { animation-delay: 0.6s; }
+.pp-trio-group:nth-of-type(3) .pp-trio-step,
+.pp-trio-group:nth-of-type(3) .pp-trio-step::after { animation-delay: 1.2s; }
+
+@keyframes ppFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes ppRing {
+  0%       { transform: scale(1);    opacity: 0.5; }
+  70%,100% { transform: scale(1.22); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pp-trio-step { animation: none; }
+  .pp-trio-step::after { animation: none; }
 }
 
 .pp-trio-verb {
@@ -125,11 +161,11 @@
 }
 
 .pp-trio-sub {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: rgba(26,23,21,.45);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: rgba(26,23,21,.5);
   font-family: var(--text-font);
-  line-height: 1;
+  line-height: 1.25;
 }
 
 /* Chemin ondulé entre étapes */
@@ -174,9 +210,14 @@
 .pp-deck {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 12px 30px;
+  /* 2 colonnes côte à côte */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: start;
   /* Reveal scroll */
   opacity: 0;
   transform: translateY(28px);
@@ -190,13 +231,14 @@
   background: #fff;
   border: 1px solid rgba(0,0,0,.06);
   border-radius: 16px;
-  margin-top: -16px;
+  margin-top: 0;
   cursor: pointer;
   overflow: hidden;
   box-shadow:
     0 1px 2px rgba(0,0,0,.04),
     0 16px 34px -20px rgba(0,0,0,.35);
-  transform: translateX(var(--tx, 0)) rotate(var(--rot, 0deg));
+  /* pas de rotation/décalage : grille nette en 2 colonnes */
+  transform: none;
   transform-origin: center top;
   transition:
     transform 0.45s cubic-bezier(.2,.7,.2,1),
@@ -207,7 +249,7 @@
 
 /* Survol */
 .pp-card:hover:not(.pp-card--open) {
-  transform: translateX(var(--tx, 0)) rotate(var(--rot, 0deg)) translateY(-4px) scale(1.015);
+  transform: translateY(-4px) scale(1.015);
   box-shadow:
     0 4px 10px rgba(0,0,0,.06),
     0 24px 46px -18px color-mix(in srgb, var(--pp-accent, #FD6E00) 40%, transparent);
@@ -215,17 +257,14 @@
 
 /* Carte ouverte */
 .pp-card--open {
-  transform: translateX(0) rotate(0deg) translateY(-10px) scale(1.03);
-  margin-bottom: 14px;
+  transform: translateY(-6px) scale(1.02);
+  margin-bottom: 0;
   box-shadow:
     0 6px 16px rgba(0,0,0,.08),
     0 34px 64px -20px color-mix(in srgb, var(--pp-accent, #FD6E00) 48%, transparent);
 }
 
-/* Bordure gauche colorée par accent — remplace la bande haut */
-.pp-card {
-  border-left: 4px solid var(--pp-accent, #FD6E00);
-}
+/* (bordure gauche colorée retirée) */
 
 /* ── En-tête de la carte — toujours visible ── */
 .pp-card-header {
@@ -394,6 +433,10 @@
 }
 
 /* ── Responsive ── */
+@media (max-width: 820px) {
+  /* une seule colonne quand c'est trop étroit pour 2 */
+  .pp-deck { grid-template-columns: 1fr; max-width: 560px; }
+}
 @media (max-width: 600px) {
   .pp-deck { padding: 8px 12px; }
   .pp-card-header { padding: 1rem 1.1rem 1.1rem; }
