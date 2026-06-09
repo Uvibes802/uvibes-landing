@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 // Rate limiting : max 5 requêtes par minute par IP pour éviter le spam
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -53,16 +54,16 @@ export async function POST(req: Request) {
     subject: `Nouveau message de ${lastname} ${firstname} via le site Uvibes`,
     html: `
            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-             <h2 style="color: #333;">Nouveau message de contact ${lastname} ${firstname} via le site Uvibes</h2>
-             <p><strong>Nom:</strong> ${lastname}</p>
-             <p><strong>Prénom:</strong> ${firstname}</p>
-             <p><strong>Email:</strong> ${email}</p>
+             <h2 style="color: #333;">Nouveau message de contact ${escapeHtml(lastname)} ${escapeHtml(firstname)} via le site Uvibes</h2>
+             <p><strong>Nom:</strong> ${escapeHtml(lastname)}</p>
+             <p><strong>Prénom:</strong> ${escapeHtml(firstname)}</p>
+             <p><strong>Email:</strong> ${escapeHtml(email)}</p>
              <p><strong>Newsletter:</strong> ${newsletter ? "Oui" : "Non"}</p>
              <p><strong>Accepte de partager ses informations:</strong> ${
                share ? "Oui" : "Non"
              }</p>
              <p><strong>Message:</strong></p>
-             <p style="background-color: #f9f9f9; padding: 10px; border-radius: 5px;">${message}</p>
+             <p style="background-color: #f9f9f9; padding: 10px; border-radius: 5px;">${escapeHtml(message)}</p>
            </div>
     `,
   };

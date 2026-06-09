@@ -48,13 +48,14 @@
 - [ ] **PERF-07** — Ajouter woff2 pour `Supreme-Bold`
 - [ ] **CODE-02** — Renommer `mochupHome.png` → `mockupHome.png`
 
-### Audit 2026-06-08 — reste à traiter (Vagues 3 & 4)
-- [ ] **C1** — Supprimer/fusionner la page `/admin` legacy (toggle maintenance, mot de passe en clair via `/api/maintenance`) qui double `/admin/crm/maintenance` — vérifier les usages avant suppression
-- [ ] **S6** — Ajouter une Content-Security-Policy (attention MUI/Emotion inline, GA, next/script → tester finement)
-- [ ] **P1** — Passer la homepage de `force-dynamic` à ISR (`revalidate`)
-- [ ] **C2** — Unifier la source des prix : `usePricing.ts` lit WordPress, le devis/admin lit la DB (`Plan`) → double source de vérité
+### Audit 2026-06-08 — avancement
+- [x] **C1** — Page `/admin` legacy supprimée + dashboard déplacé `/admin/crm/*` → `/admin/*` (commits du 08/06)
+- [x] **Renommage routes** — /a-propos, /mentions-legales, /conditions-d-utilisation, /rendez-vous (301 + sitemap)
 - [ ] **S5** — Échapper les champs utilisateur dans les emails HTML (`rdv/reserver`, `sendEmail`)
-- [ ] **A2** — `/api/maintenance` : mot de passe comparé en clair sans rate-limit (lié à C1)
+- [ ] **S6** — Ajouter une Content-Security-Policy (report-only d'abord ; attention MUI/Emotion inline, GA, next/script)
+- [ ] **P1** — Passer la homepage de `force-dynamic` à ISR (`revalidate`) — **arbitrage fraîcheur à valider avec la tutrice**
+- [ ] **C2** — Unifier la source des prix : `usePricing.ts` lit WordPress, le devis/admin lit la DB (`Plan`) → double source de vérité
+- [ ] **A2** — `/api/maintenance` : mot de passe comparé en clair sans rate-limit
 - [ ] **PERF-fonts** — 4 familles Google Fonts → réduire le payload
 
 ---

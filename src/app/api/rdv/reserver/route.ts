@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import nodemailer from "nodemailer";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 // Rate limiting simple : 3 réservations par IP par heure
 const attempts = new Map<string, { count: number; resetAt: number }>();
@@ -48,12 +49,12 @@ export async function POST(req: NextRequest) {
             <h1 style="color:#fff;margin:0;font-size:24px">Uvibes</h1>
           </div>
           <div style="padding:32px;background:#FFFBF4;border-radius:0 0 12px 12px;border:1px solid rgba(74,21,48,.09)">
-            <h2>Bonjour ${nom},</h2>
+            <h2>Bonjour ${escapeHtml(nom)},</h2>
             <p>Votre demande de rendez-vous a bien été enregistrée. Nous confirmerons rapidement.</p>
             <table style="width:100%;border-collapse:collapse;margin:24px 0">
               <tr style="background:#FFF6EC"><td style="padding:12px;border:1px solid #E0AEC4">Date</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${dateFormatted}</strong></td></tr>
               <tr><td style="padding:12px;border:1px solid #E0AEC4">Heure</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${heure}</strong></td></tr>
-              <tr style="background:#FFF6EC"><td style="padding:12px;border:1px solid #E0AEC4">Sujet</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${sujet}</strong></td></tr>
+              <tr style="background:#FFF6EC"><td style="padding:12px;border:1px solid #E0AEC4">Sujet</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${escapeHtml(sujet)}</strong></td></tr>
             </table>
             <p style="color:#B0507E;font-size:13px">Une question ? Contactez-nous sur uvibes.fr</p>
           </div>
@@ -64,7 +65,7 @@ export async function POST(req: NextRequest) {
       from: `"Uvibes CRM" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER ?? "",
       subject: `📅 Nouveau RDV — ${nom} — ${dateFormatted} ${heure}`,
-      html: `<p>Nouveau RDV demandé :<br><strong>${nom}</strong> (${email})<br>Le ${dateFormatted} à ${heure}<br>Sujet : ${sujet}<br>${organisation ? "Org : " + organisation : ""}</p>`,
+      html: `<p>Nouveau RDV demandé :<br><strong>${escapeHtml(nom)}</strong> (${escapeHtml(email)})<br>Le ${dateFormatted} à ${heure}<br>Sujet : ${escapeHtml(sujet)}<br>${organisation ? "Org : " + escapeHtml(organisation) : ""}</p>`,
     });
   } catch (e) { console.error("Email RDV:", e); }
 

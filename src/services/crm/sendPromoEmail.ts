@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 function createTransport() {
   return nodemailer.createTransport({
@@ -30,7 +31,7 @@ export async function sendPromoEmail({ to, code, pourcentage, message }: PromoEm
       </div>
       <div style="padding:32px;background:#FFFBF4;border-radius:0 0 12px 12px;border:1px solid rgba(74,21,48,.09)">
         <h2 style="margin-top:0">Une offre rien que pour vous 🎁</h2>
-        ${message ? `<p style="white-space:pre-line">${message}</p>` : "<p>Profitez d'une réduction sur votre devis Uvibes&nbsp;:</p>"}
+        ${message ? `<p style="white-space:pre-line">${escapeHtml(message)}</p>` : "<p>Profitez d'une réduction sur votre devis Uvibes&nbsp;:</p>"}
         <div style="text-align:center;margin:28px 0">
           <div style="display:inline-block;background:#fff;border:2px dashed #FD6E00;border-radius:14px;padding:20px 36px">
             <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#B0507E;margin-bottom:6px">Votre code promo</div>
