@@ -3,6 +3,7 @@
 import FetchCitation from "@/services/citation/citation";
 import { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
+import WaveSeparator from "@/components/shared/WaveSeparator";
 import "../../styles/section/bannerCount.css";
 
 const FILLERS = [
@@ -75,13 +76,9 @@ export default function BannerCount() {
 
   return (
     <section className="banner-count" ref={ref}>
-      {/* Vagues de délimitation haut / bas (couleur du fond de page) */}
-      <svg className="bc-wave bc-wave--top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,0 H1440 V30 C1320,56 1200,6 1080,30 C960,54 840,6 720,30 C600,54 480,6 360,30 C240,54 120,6 0,30 Z" />
-      </svg>
-      <svg className="bc-wave bc-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,60 H1440 V30 C1320,4 1200,54 1080,30 C960,6 840,54 720,30 C600,6 480,54 360,30 C240,6 120,54 0,30 Z" />
-      </svg>
+      {/* Vagues de délimitation haut / bas (séparateur animé 2 couches, sans trou) */}
+      <WaveSeparator position="top" />
+      <WaveSeparator position="bottom" />
       <div className="banner-count-vlines" aria-hidden="true">
         <VibrationLine width={1400} height={70} amplitude={20} freq={6} stroke="rgba(255,255,255,.25)" strokeWidth={1.5} speed={14} />
         <VibrationLine width={1400} height={70} amplitude={14} freq={9} stroke="rgba(255,255,255,.15)" strokeWidth={1} speed={20} />

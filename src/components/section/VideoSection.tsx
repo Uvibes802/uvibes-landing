@@ -2,6 +2,7 @@
 
 import FetchTestimony from "@/services/testimony/testimony";
 import { useEffect, useState } from "react";
+import WaveSeparator from "@/components/shared/WaveSeparator";
 import "../../styles/section/videoSection.css";
 
 const ACCENTS = ["#FD6E00", "#FF9558", "#FD6E00"];
@@ -22,25 +23,9 @@ export default function VideoSection() {
 
   return (
     <section className="vs-section">
-      {/* Séparateur wavy animé — 3 couches EMPILÉES : même vague douce, décalées
-          verticalement (chaque couche passe sous la précédente), opacité décroissante
-          vers l'arrière. Léger flux horizontal synchronisé → elles ne se croisent jamais. */}
-      <div className="vs-wave-stack" aria-hidden="true">
-        {/* 2 couches remplies depuis le haut (y=0) jusqu'à une ligne de base étagée → la
-            couche arrière (2) fait fond plein (aucun trou). Écart des lignes de base
-            (32 → 87) supérieur à la somme des amplitudes → vrai espace entre les vagues. */}
-        {/* Couche 2 (arrière, ligne de base basse) — fond plein, vagues amples */}
-        <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V87 C1290,57 1160,117 980,87 C820,57 690,117 520,87 C360,57 190,117 0,87 Z" />
-        </svg>
-        {/* Couche 1 (avant, ligne de base haute) — ondulations irrégulières, amples */}
-        <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V32 C1330,62 1230,2 1060,32 C920,60 840,4 700,32 C560,62 440,2 300,32 C190,60 90,4 0,32 Z" />
-        </svg>
-      </div>
-      <svg className="vs-wave vs-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,60 H1440 V30 C1320,4 1200,54 1080,30 C960,6 840,54 720,30 C600,6 480,54 360,30 C240,6 120,54 0,30 Z" />
-      </svg>
+      {/* Séparateurs wavy animés (composant partagé — 2 couches, sans trou) */}
+      <WaveSeparator position="top" />
+      <WaveSeparator position="bottom" />
       <div className="vs-blob vs-blob--a" aria-hidden="true" />
       <div className="vs-blob vs-blob--b" aria-hidden="true" />
 
