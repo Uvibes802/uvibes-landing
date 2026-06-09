@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
 import AppMockup from "@/components/shared/AppMockup";
+import WaveSeparator from "@/components/shared/WaveSeparator";
 import "../../styles/banner/homeHero.css";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -172,7 +173,8 @@ export default function HomeHero() {
         <VibrationLine stroke="var(--rose)" strokeWidth={1.5} amplitude={18} freq={12}
           width={1400} height={70} speed={14} />
       </div>
-      <div className="section-fade section-fade--bottom" aria-hidden="true" />
+      {/* Séparateur wavy animé (remplace le fondu blanc) */}
+      <WaveSeparator position="bottom" />
     </section>
   );
 }

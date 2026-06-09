@@ -3,7 +3,7 @@
 .hero-section {
   position: relative;
   padding-top: calc(var(--nav-height) + 60px);
-  padding-bottom: 80px;
+  padding-bottom: 100px; /* dégage la vague du bas */
   overflow: hidden;
   min-height: 100svh;
   display: flex;
