@@ -68,6 +68,8 @@ export default function BlogPage() {
           <VibrationLine width={1800} height={50} amplitude={14} freq={11} stroke="rgba(255,255,255,.2)" strokeWidth={1.5} speed={22} />
           <VibrationLine width={1800} height={50} amplitude={8}  freq={15} stroke="rgba(255,255,255,.12)" strokeWidth={1} speed={30} />
         </div>
+        {/* Séparateur wavy animé en bas du hero */}
+        <WaveSeparator position="bottom" />
       </section>
 
       <section className="blog-content">

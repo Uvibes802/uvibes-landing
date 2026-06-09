@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--nav-height) + 4rem) clamp(1.5rem, 5vw, 3.5rem) 5rem;
+  padding: calc(var(--nav-height) + 4rem) clamp(1.5rem, 5vw, 3.5rem) clamp(7rem, 8vw, 8rem); /* bas dégagé pour la vague */
   background: linear-gradient(145deg, #FD6E00 0%, #FF8530 15%, #FF88B8 50%, #E6007E 80%, #D90A5C 100%);
 }
 

@@ -6,7 +6,8 @@
   min-height: 55vh;
   display: flex;
   align-items: center;
-  padding: calc(var(--nav-height, 72px) + clamp(1.5rem, 3vw, 3rem)) clamp(1.5rem, 5vw, 4rem) clamp(2.5rem, 4vw, 4rem);
+  /* bas ≥ ~92px : dégage la vague du séparateur */
+  padding: calc(var(--nav-height, 72px) + clamp(1.5rem, 3vw, 3rem)) clamp(1.5rem, 5vw, 4rem) clamp(7rem, 8vw, 8rem);
   background: transparent;
   margin-bottom: 0;
 }

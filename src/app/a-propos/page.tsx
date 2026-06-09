@@ -83,6 +83,8 @@ export default function Uvibes() {
           <VibrationLine width={1800} height={50} amplitude={18} freq={9} stroke="rgba(255,255,255,.3)" strokeWidth={1.5} speed={16} />
           <VibrationLine width={1800} height={50} amplitude={11} freq={14} stroke="rgba(255,255,255,.18)" strokeWidth={1} speed={22} />
         </div>
+        {/* Séparateur wavy animé en bas du hero */}
+        <WaveSeparator position="bottom" />
       </section>
 
       {/* ── Pourquoi « Uvibes » ? ── */}

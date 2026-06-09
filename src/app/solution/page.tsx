@@ -31,8 +31,10 @@ export default function SolutionPage() {
     <>
       <JsonLd data={breadcrumbJsonLd} />
 
-      <div style={{ background: HERO_GRADIENT }}>
+      <div style={{ background: HERO_GRADIENT, position: "relative", overflow: "hidden" }}>
         <SolutionHero />
+        {/* Séparateur wavy animé en bas du hero (cohérent avec la home) */}
+        <WaveSeparator position="bottom" />
       </div>
 
       <SolutionAnchorNav />
