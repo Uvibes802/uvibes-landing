@@ -39,6 +39,11 @@ Pour chacune : déplacement du dossier de route, redirection 301 permanente (pr�
 
 **Impact SEO** : URLs sémantiques et correctes, redirections 301 qui transfèrent le jus SEO des anciennes URLs, sitemap aligné. **Validé par un `pnpm build` complet sans erreur.**
 
+### Sécurité — échappement HTML des emails (S5)
+- Nouveau helper `src/lib/escapeHtml.ts`, appliqué aux champs saisis par l'utilisateur avant injection dans les templates d'emails HTML : contact (`sendEmail`), réservation RDV (`rdv/reserver`, client + admin), devis (`sendQuoteEmail`), code promo (`sendPromoEmail`), rappel RDV (`sendRdvReminder`).
+
+**Impact sécu** : un visiteur ne peut plus injecter de HTML/script via son nom, message, sujet, etc. dans les emails reçus (anti-injection HTML).
+
 ---
 
 ## 2026-06-06 — Session redesign contenu + 2 nouvelles sections (branche redesign/solution-config-themes)
