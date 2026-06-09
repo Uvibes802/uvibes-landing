@@ -22,8 +22,15 @@ export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] })
 
   return (
     <section className="trustees-section">
+      {/* halo de fond — identité Uvibes */}
+      <div className="trustees-bg" aria-hidden="true" />
 
       <div className="trustees-inner">
+        <p className="trustees-eyebrow v-mono">
+          <span className="trustees-eyebrow-dot" aria-hidden="true" />
+          Partenaires &amp; collectifs
+        </p>
+
         <h2 className="trustees-title v-prompt">
           <span className="trustees-t-orange">Ils </span>
           <span className="trustees-underline-wrap">
@@ -38,15 +45,14 @@ export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] })
         <div className="trustees-marquee-wrap">
           <div className="trustees-marquee-track">
             {track.map((logo, i) => (
-              <div key={i} className="trustees-logo-item">
+              <div key={i} className="trustees-logo-card">
                 <Image
                   src={logo.src || "/images/Logo UVIBES.png"}
                   alt={logo.alt}
                   width={180}
                   height={72}
-                  style={{ objectFit: "contain", height: "96px", width: "auto", maxWidth: "200px" }}
+                  style={{ objectFit: "contain", height: "64px", width: "auto", maxWidth: "170px" }}
                 />
-                <span className="trustees-sep" aria-hidden="true" />
               </div>
             ))}
           </div>
