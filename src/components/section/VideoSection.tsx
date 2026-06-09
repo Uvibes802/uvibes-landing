@@ -27,14 +27,15 @@ export default function VideoSection() {
           vers l'arrière. Léger flux horizontal synchronisé → elles ne se croisent jamais. */}
       <div className="vs-wave-stack" aria-hidden="true">
         {/* 2 couches remplies depuis le haut (y=0) jusqu'à une ligne de base étagée → la
-            couche arrière (2) fait fond plein, l'orange n'apparaît que sous sa vague. */}
-        {/* Couche 2 (arrière, ligne de base basse) — fond plein */}
-        <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V42 C1290,24 1160,60 980,42 C820,22 690,60 520,42 C360,24 190,60 0,42 Z" />
+            couche arrière (2) fait fond plein (aucun trou). Écart des lignes de base
+            (32 → 87) supérieur à la somme des amplitudes → vrai espace entre les vagues. */}
+        {/* Couche 2 (arrière, ligne de base basse) — fond plein, vagues amples */}
+        <svg className="vs-wave-layer vs-wave-layer--2" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,0 H1440 V87 C1290,57 1160,117 980,87 C820,57 690,117 520,87 C360,57 190,117 0,87 Z" />
         </svg>
-        {/* Couche 1 (avant, ligne de base haute) — ondulations irrégulières */}
-        <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,0 H1440 V26 C1330,44 1230,8 1060,26 C920,42 840,10 700,26 C560,45 440,7 300,26 C190,43 90,9 0,26 Z" />
+        {/* Couche 1 (avant, ligne de base haute) — ondulations irrégulières, amples */}
+        <svg className="vs-wave-layer vs-wave-layer--1" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,0 H1440 V32 C1330,62 1230,2 1060,32 C920,60 840,4 700,32 C560,62 440,2 300,32 C190,60 90,4 0,32 Z" />
         </svg>
       </div>
       <svg className="vs-wave vs-wave--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
