@@ -52,7 +52,7 @@ function ArticleCard({ article }: { article: Article }) {
         <p className="v-mono ba-card-date">
           {new Date(article.date).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" })}
         </p>
-        <h3 className="ba-card-title v-prompt">{article.title.rendered}</h3>
+        <h2 className="ba-card-title v-prompt">{article.title.rendered}</h2>
         <p className="ba-card-excerpt">{excerpt}</p>
         {article.acf?.auteur_custom && (
           <p className="v-mono ba-card-author">— {article.acf.auteur_custom}</p>

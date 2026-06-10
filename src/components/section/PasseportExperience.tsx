@@ -220,7 +220,7 @@ export default function PasseportExperience() {
         {PASSEPORTS.map((p, i) => {
           const open = openId === p.id;
           return (
-            <article
+            <div
               key={p.id}
               className={`pp-card${open ? " pp-card--open" : ""}`}
               style={{
@@ -273,7 +273,7 @@ export default function PasseportExperience() {
                   </div>
                 </div>
               </div>
-            </article>
+            </div>
           );
         })}
       </div>

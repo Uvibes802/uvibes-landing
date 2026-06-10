@@ -114,10 +114,10 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
         </Link>
       </header>
 
-      <div className="dv-doc-wrapper">
+      <main className="dv-doc-wrapper">
         <div className="dv-doc-header-bar">
           <div>
-            <div className="dv-doc-numero">{quote.numero}</div>
+            <h1 className="dv-doc-numero">{quote.numero}</h1>
             <p style={{ margin: "4px 0 0", fontSize: 13, color: "var(--ink-3)" }}>
               Émis le {new Date(quote.createdAt).toLocaleDateString("fr-FR")}
               {quote.validUntil && !isSigned && (
@@ -130,7 +130,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
 
         <div className="dv-doc-body">
           {/* Collectif */}
-          <h3 style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 1, color: "var(--rose)", margin: "0 0 12px" }}>Destinataire</h3>
+          <h2 style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 1, color: "var(--rose)", margin: "0 0 12px" }}>Destinataire</h2>
           <div className="dv-info-grid">
             <div className="dv-info-item">
               <span className="dv-info-label">Organisation</span>
@@ -164,7 +164,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
           {/* Features */}
           {quote.featuresJson.length > 0 && (
             <>
-              <h3 style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 1, color: "var(--rose)", margin: "20px 0 12px" }}>Fonctionnalités</h3>
+              <h2 style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 1, color: "var(--rose)", margin: "20px 0 12px" }}>Fonctionnalités</h2>
               <ul className="dv-features-list">
                 {quote.featuresJson.map((f) => (
                   <li key={f.slug} className={`dv-feature-item${!f.inclus ? " --off" : ""}`}>
@@ -209,8 +209,8 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
           </div>
 
           {/* Mentions */}
-          <p style={{ fontSize: 11, color: "var(--ink-4)", marginTop: 16, lineHeight: 1.6 }}>
-            Ce devis est valable 30 jours. La signature vaut acceptation des conditions générales de vente. TVA 20% applicable. Uvibes SAS — contact@uvibes.fr
+          <p style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 16, lineHeight: 1.6 }}>
+            Ce devis est valable 30 jours. La signature vaut acceptation des documents contractuels acceptés ci-dessous. TVA 20% applicable. Uvibes SAS — contact@uvibes.fr
           </p>
 
           <hr style={{ border: "none", borderTop: "var(--sol-divider)", margin: "24px 0" }} />
@@ -285,7 +285,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
             </>
           )}
         </div>
-      </div>
+      </main>
     </div>
   );
 }

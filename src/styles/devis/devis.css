@@ -29,6 +29,17 @@
   z-index: 0;
 }
 
+/* Titre accessible masqué visuellement (lecteurs d'écran) */
+.dv-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Header */
 .dv-header {
   padding: 16px clamp(1.5rem, 5vw, 3.5rem);
@@ -95,12 +106,12 @@
 
 .dv-step--done .dv-step-circle   { background: linear-gradient(135deg, #FD6E00, #D90A5C); color: #fff; }
 .dv-step--active .dv-step-circle { background: linear-gradient(135deg, #FD6E00, #D90A5C); color: #fff; box-shadow: 0 4px 14px rgba(217,10,92,.3); }
-.dv-step--pending .dv-step-circle { background: rgba(0,0,0,.08); color: #9c7080; }
+.dv-step--pending .dv-step-circle { background: rgba(0,0,0,.08); color: #7c5262; }
 
 .dv-step-label { font-size: 12px; font-weight: 500; white-space: nowrap; }
 .dv-step--done .dv-step-label   { color: #FD6E00; }
 .dv-step--active .dv-step-label { color: #1a0a06; font-weight: 700; }
-.dv-step--pending .dv-step-label { color: #9c7080; }
+.dv-step--pending .dv-step-label { color: #7c5262; }
 
 .dv-step-line { flex: 1; height: 2px; background: rgba(0,0,0,.08); margin: 0 8px; }
 .dv-step-line.--done { background: linear-gradient(90deg, #FD6E00, #D90A5C); }
@@ -220,13 +231,13 @@
 }
 
 .dv-plan-name { font-family: var(--font-prompt), sans-serif; font-size: 14px; font-weight: 700; color: #1a0a06; margin: 0 0 4px; }
-.dv-plan-price { font-size: 17px; font-weight: 800; font-family: var(--font-prompt), sans-serif; color: #FD6E00; }
-.dv-plan-desc { font-size: 11px; color: #9c7080; margin-top: 4px; line-height: 1.4; }
+.dv-plan-price { font-size: 17px; font-weight: 800; font-family: var(--font-prompt), sans-serif; color: #A24B00; }
+.dv-plan-desc { font-size: 11px; color: #7c5262; margin-top: 4px; line-height: 1.4; }
 
 /* Slider */
 .dv-slider { width: 100%; accent-color: #FD6E00; height: 4px; margin: 8px 0 4px; }
-.dv-slider-value { font-family: var(--font-prompt), sans-serif; font-size: 28px; font-weight: 800; color: #FD6E00; letter-spacing: -0.02em; }
-.dv-slider-hint { font-size: 12px; color: #9c7080; }
+.dv-slider-value { font-family: var(--font-prompt), sans-serif; font-size: 28px; font-weight: 800; color: #B85600; letter-spacing: -0.02em; }
+.dv-slider-hint { font-size: 12px; color: #7c5262; }
 
 /* Durées */
 .dv-durees { display: flex; gap: 9px; }
@@ -283,19 +294,19 @@
 
 .dv-doc-header-bar { display: flex; align-items: center; justify-content: space-between; margin: 2rem 0 1.5rem; flex-wrap: wrap; gap: 12px; }
 
-.dv-doc-numero { font-family: var(--font-prompt), sans-serif; font-size: 26px; font-weight: 800; color: #1a0a06; letter-spacing: -0.03em; }
+.dv-doc-numero { font-family: var(--font-prompt), sans-serif; font-size: 26px; font-weight: 800; color: #1a0a06; letter-spacing: -0.03em; margin: 0; }
 
 .dv-statut-badge { padding: 5px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
 .dv-statut-badge.--brouillon { background: rgba(0,0,0,.07); color: #6b4455; }
 .dv-statut-badge.--envoye    { background: rgba(253,110,0,.1); color: #FD6E00; }
 .dv-statut-badge.--signe     { background: rgba(22,163,74,.1); color: #16a34a; }
-.dv-statut-badge.--expire    { background: rgba(0,0,0,.07); color: #9c7080; }
+.dv-statut-badge.--expire    { background: rgba(0,0,0,.07); color: #7c5262; }
 
 .dv-doc-body { background: #fff; border-radius: 20px; padding: clamp(2rem, 4vw, 3rem); border: 1px solid rgba(0,0,0,.07); box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 8px 32px rgba(0,0,0,.07); }
 
 .dv-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1.25rem 0; }
 .dv-info-item { display: flex; flex-direction: column; gap: 2px; }
-.dv-info-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #9c7080; }
+.dv-info-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #7c5262; }
 .dv-info-value { font-size: 14px; font-weight: 500; color: #1a0a06; }
 
 .dv-plan-summary { background: #FFF6EC; border-radius: 14px; padding: 1.25rem 1.5rem; border-left: 4px solid #FD6E00; margin: 1.5rem 0; }
@@ -304,7 +315,7 @@
 
 .dv-features-list { list-style: none; padding: 0; margin: 1rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .dv-feature-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #374151; }
-.dv-feature-item.--off { color: #b0a0a8; text-decoration: line-through; }
+.dv-feature-item.--off { color: #6f5f67; text-decoration: line-through; }
 
 /* Prix final — gradient vivid orange→rose */
 .dv-price-block {

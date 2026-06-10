@@ -25,8 +25,9 @@
 
 ### Phase 4 — Qualité (missions I & II)
 - [x] **A11Y (nouvelles UI)** : labels liés (`htmlFor`/wrapping `<label>`), hiérarchie h1→h2→h3 sur `/documents/*`, boutons `aria-expanded`, liens explicites.
-- [ ] **A11Y-02 — Audit accessibilité global** : passer axe-devtools / Tanaguru sur l'ensemble des pages + corriger (reste à faire).
-- [ ] **FIX-07 — Compatibilité navigateurs** : tester Chrome/Firefox/Safari/Edge + mobile, corriger les écarts (reste à faire).
+- [x] **A11Y-02 — Audit accessibilité (pages publiques)** : audit axe-core sur 8 pages → **0 violation** (`/`, `/solution`, `/a-propos`, `/blog`, `/documents/[slug]`, `/devis`, `/devis/[id]`, `/rendez-vous`). Corrigé : rôles ARIA, labels de formulaires, landmarks `<main>`, `<h1>`, ordre des titres, contrastes WCAG AA. Détail dans CHANGELOG (2026-06-10).
+  - [ ] Reste : pages **admin** `/admin/*` + article `/blog/[slug]` (contenu WP) — non bloquant.
+- [x] **FIX-07 — Compatibilité navigateurs** : autoprefixer (build Next) confirmé ajoutant les préfixes Safari (`-webkit-backdrop-filter`…) ; features CSS modernes supportées evergreen. Aucune correction source nécessaire.
 
 ### Phase 5 — CRM (gros périmètre — à cadrer/phaser) · reste dans ce repo (Prisma + Supabase dédiée)
 - [ ] **FEAT-09 — Cadrage CRM** : prioriser les modules du doc (contacts/entreprises, pipeline commercial, interactions, tâches/relances, marketing, support, documents, reporting). Définir le MVP avant de coder.

@@ -23,7 +23,7 @@ const PARTICLES = [
 
 export default function SolutionHero() {
   return (
-    <section className="sh-section">
+    <section className="sh-section" aria-label="Présentation de la solution">
       {/* Grille de points */}
       <div className="sh-dot-grid" aria-hidden="true" />
 

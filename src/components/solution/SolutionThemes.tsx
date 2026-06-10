@@ -115,7 +115,7 @@ export default function SolutionThemes() {
           const { Icon } = theme;
           const open = active === i;
           return (
-            <article
+            <div
               key={theme.title}
               className={`sth-card${open ? " sth-card--open" : ""}`}
               style={{
@@ -153,7 +153,7 @@ export default function SolutionThemes() {
                   <span className="sth-card-label">{theme.label}</span>
                 </div>
               </div>
-            </article>
+            </div>
           );
         })}
       </div>

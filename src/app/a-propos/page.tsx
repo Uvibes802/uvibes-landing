@@ -40,7 +40,7 @@ const VALUES = [
 
 export default function Uvibes() {
   return (
-    <div className="uv-page">
+    <main className="uv-page">
       <JsonLd data={organizationJsonLd} />
 
       {/* ── Hero Uvibes ── */}
@@ -228,6 +228,6 @@ export default function Uvibes() {
 
       <Footer />
       </div>
-    </div>
+    </main>
   );
 }

@@ -23,7 +23,7 @@
   border-radius: 999px;
   border: 2px solid rgba(253,110,0,.2);
   background: #fff;
-  color: var(--orange);
+  color: #A24B00;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -104,7 +104,7 @@
 .ba-card-date {
   font-size: 10px;
   letter-spacing: 0.14em;
-  color: var(--orange);
+  color: #A24B00;
   text-transform: uppercase;
   margin: 0;
 }
@@ -112,7 +112,7 @@
 .ba-card-title {
   font-size: clamp(16px, 1.4vw, 19px);
   font-weight: 700;
-  color: var(--orange);
+  color: #A24B00;
   line-height: 1.3;
   margin: 0;
   letter-spacing: -0.02em;
@@ -129,7 +129,7 @@
 .ba-card-author {
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: var(--ink-4);
+  color: var(--ink-3);
   text-transform: uppercase;
   margin: 0;
 }
@@ -138,7 +138,7 @@
   display: inline-block;
   font-size: 12px;
   font-weight: 700;
-  color: var(--orange);
+  color: #A24B00;
   font-family: var(--text-font-bold);
   margin-top: 0.25rem;
   letter-spacing: 0.02em;
@@ -169,7 +169,7 @@
   border-radius: 999px;
   border: 2px solid rgba(253,110,0,.2);
   background: #fff;
-  color: var(--orange);
+  color: #A24B00;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;

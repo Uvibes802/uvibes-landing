@@ -23,6 +23,7 @@ export default function BlogPage() {
     <>
       <JsonLd data={breadcrumbJsonLd} />
 
+      <main>
       {/* ── Hero blog ── */}
       <section className="blog-hero">
         {/* Blobs */}
@@ -75,6 +76,7 @@ export default function BlogPage() {
       <section className="blog-content">
         <AllArticle />
       </section>
+      </main>
 
       <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden", paddingTop: "100px" }}>
         {/* Séparateur wavy animé (cohérent avec les autres sections) */}

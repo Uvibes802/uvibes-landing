@@ -137,6 +137,9 @@ export default function DevisFormStepper() {
         </Link>
       </header>
 
+      <main>
+      <h1 className="dv-sr-only">Demande de devis Uvibes</h1>
+
       {/* Stepper */}
       <div className="dv-stepper">
         {STEPS.map((label, i) => (
@@ -164,8 +167,9 @@ export default function DevisFormStepper() {
           <p className="dv-card-sub">Ces informations nous permettront de vous proposer l&apos;offre la plus adaptée.</p>
 
           <div className="dv-field">
-            <label className="dv-label">Type de collectif *</label>
+            <label className="dv-label" htmlFor="dv-type">Type de collectif *</label>
             <select
+              id="dv-type"
               className={`dv-select${errors.typeCollectif ? " --error" : ""}`}
               value={form.typeCollectif}
               onChange={(e) => set("typeCollectif", e.target.value)}
@@ -193,9 +197,10 @@ export default function DevisFormStepper() {
           </div>
 
           <div className="dv-field">
-            <label className="dv-label">Nombre d&apos;utilisateurs estimé</label>
+            <label className="dv-label" htmlFor="dv-users">Nombre d&apos;utilisateurs estimé</label>
             <div className="dv-slider-value">{form.nombreUtilisateurs}</div>
             <input
+              id="dv-users"
               type="range" min={10} max={2000} step={10}
               className="dv-slider"
               value={form.nombreUtilisateurs}
@@ -263,8 +268,9 @@ export default function DevisFormStepper() {
           </div>
 
           <div className="dv-field">
-            <label className="dv-label">Autres besoins ou questions (optionnel)</label>
+            <label className="dv-label" htmlFor="dv-notes">Autres besoins ou questions (optionnel)</label>
             <textarea
+              id="dv-notes"
               className="dv-textarea"
               placeholder="Décrivez vos besoins spécifiques..."
               value={form.besoinsNotes}
@@ -281,8 +287,9 @@ export default function DevisFormStepper() {
           <p className="dv-card-sub">Ces informations figureront sur votre devis.</p>
 
           <div className="dv-field">
-            <label className="dv-label">Nom de l&apos;organisation *</label>
+            <label className="dv-label" htmlFor="dv-nom">Nom de l&apos;organisation *</label>
             <input
+              id="dv-nom"
               className={`dv-input${errors.nom ? " --error" : ""}`}
               type="text"
               placeholder="Ex : Université Paris-Dauphine"
@@ -294,8 +301,9 @@ export default function DevisFormStepper() {
 
           <div className="dv-row-2">
             <div className="dv-field">
-              <label className="dv-label">Prénom & Nom du contact *</label>
+              <label className="dv-label" htmlFor="dv-contact">Prénom & Nom du contact *</label>
               <input
+                id="dv-contact"
                 className={`dv-input${errors.contact ? " --error" : ""}`}
                 type="text"
                 placeholder="Marie Dupont"
@@ -306,8 +314,9 @@ export default function DevisFormStepper() {
             </div>
 
             <div className="dv-field">
-              <label className="dv-label">Email *</label>
+              <label className="dv-label" htmlFor="dv-email">Email *</label>
               <input
+                id="dv-email"
                 className={`dv-input${errors.email ? " --error" : ""}`}
                 type="email"
                 placeholder="marie@organisation.fr"
@@ -320,8 +329,9 @@ export default function DevisFormStepper() {
 
           <div className="dv-row-2">
             <div className="dv-field">
-              <label className="dv-label">Téléphone (optionnel)</label>
+              <label className="dv-label" htmlFor="dv-tel">Téléphone (optionnel)</label>
               <input
+                id="dv-tel"
                 className="dv-input"
                 type="tel"
                 placeholder="06 12 34 56 78"
@@ -331,8 +341,9 @@ export default function DevisFormStepper() {
             </div>
 
             <div className="dv-field">
-              <label className="dv-label">Ville (optionnel)</label>
+              <label className="dv-label" htmlFor="dv-ville">Ville (optionnel)</label>
               <input
+                id="dv-ville"
                 className="dv-input"
                 type="text"
                 placeholder="Paris"
@@ -367,6 +378,7 @@ export default function DevisFormStepper() {
           </button>
         </div>
       </div>
+      </main>
     </div>
   );
 }

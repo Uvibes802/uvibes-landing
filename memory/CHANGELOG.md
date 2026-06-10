@@ -2,6 +2,30 @@
 
 ---
 
+## 2026-06-10 — A11Y-02 / FIX-07 : accessibilité + compatibilité navigateurs (branche feat/missions-falek)
+
+Audit **axe-core** (moteur d'axe-devtools, injecté via Playwright) sur 8 pages clés, puis corrections. Résultat : **0 violation** sur `/`, `/solution`, `/a-propos`, `/blog`, `/documents/[slug]`, `/devis`, `/devis/[id]`, `/rendez-vous`.
+
+### Corrections accessibilité
+- **Rôles ARIA invalides** : `<article role="button">` → `<div role="button">` sur les cartes dépliables (`PasseportExperience`, `SolutionThemes`) — `button` n'est pas autorisé sur `<article>`.
+- **`aria-label` sur élément sans rôle** : ajout de `role="img"` sur les étoiles `.vs-card-stars` (`VideoSection`).
+- **Champs de formulaire sans label** (critique) : association `htmlFor`/`id` sur tous les champs de `BookingForm` (RDV) et `DevisFormStepper` (funnel devis), dont `input[type=date]` et `<select>` qui étaient sans nom accessible.
+- **Landmarks `<main>` manquants** : ajoutés sur `/rendez-vous`, `/a-propos`, `/blog`, et les pages devis (`DevisDocument`, `DevisFormStepper`) → résout `landmark-one-main` + la majorité des `region`.
+- **Titre `<h1>` manquant** : `h1` sur le numéro de devis (`DevisDocument`) + `h1` masqué (`.dv-sr-only`) sur le funnel ; hero `/solution` nommé (`aria-label`).
+- **Ordre des titres** : titres de section devis et titres de cartes blog passés en `h2` (plus de saut h1→h3).
+- **Contrastes (WCAG AA)** : assombrissement des tokens/texte trop clairs — `--ink-3` `#C0607A`→`#A23A57`, mauve `#9c7080`→`#7c5262` (global), oranges sur petit texte (prix devis, filtres blog) → ambre `#A24B00`, grand titre « Ils… avec nous » → `#c85a00`, features exclues du devis `#b0a0a8`→`#6f5f67`, auteur de carte blog `--ink-4`→`--ink-3`.
+
+**Impact** : navigation lecteur d'écran fiable (chaque champ annoncé, structure de titres et landmarks cohérente), texte lisible (ratios ≥ 4,5:1 / 3:1 pour le grand texte). Conforme aux exigences des outils d'audit (axe-devtools / Tanaguru) sur les pages clés.
+
+### Compatibilité navigateurs (FIX-07)
+- Vérifié : Next.js applique **autoprefixer** au build (confirmé : `-webkit-backdrop-filter` ×42 présents dans le CSS de `.next/`). Les préfixes Safari (`backdrop-filter`, `background-clip: text`) sont donc ajoutés automatiquement — aucune correction source nécessaire.
+- Features CSS utilisées (`:has()`, `clamp()`, `100svh`, grid/flex, variables) toutes supportées par les navigateurs evergreen.
+
+### Reste
+- Audit a11y des pages **admin** (`/admin/*`) et de l'article blog `/blog/[slug]` (contenu WordPress) — non bloquant, à passer ultérieurement.
+
+---
+
 ## 2026-06-09 — Missions Falek : offres, documents contractuels, acceptation (branche feat/missions-falek)
 
 ### FEAT-02 — Prix des offres alignés sur le tableau validé

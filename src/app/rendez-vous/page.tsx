@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RdvPage() {
   return (
     <div className="rdv-page">
-      <div className="rdv-container">
+      <main className="rdv-container">
         <div className="rdv-header">
           <span className="rdv-eyebrow">· Rendez-vous ·</span>
           <h1 className="rdv-title">
@@ -22,7 +22,7 @@ export default function RdvPage() {
           </p>
         </div>
         <BookingForm />
-      </div>
+      </main>
     </div>
   );
 }

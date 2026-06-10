@@ -100,9 +100,10 @@ export default function BookingForm() {
           <p className="rdv-card-title">Choisir une date</p>
 
           <div className="rdv-field">
-            <label className="rdv-label">Date *</label>
+            <label className="rdv-label" htmlFor="rdv-date">Date *</label>
             <input
               type="date"
+              id="rdv-date"
               className="rdv-input"
               value={date}
               min={getMinDate()}
@@ -141,35 +142,35 @@ export default function BookingForm() {
           <p className="rdv-card-title">Vos informations</p>
 
           <div className="rdv-field">
-            <label className="rdv-label">Nom complet *</label>
-            <input className="rdv-input" value={nom} onChange={(e) => setNom(e.target.value)} required placeholder="Marie Dupont" />
+            <label className="rdv-label" htmlFor="rdv-nom">Nom complet *</label>
+            <input id="rdv-nom" className="rdv-input" value={nom} onChange={(e) => setNom(e.target.value)} required placeholder="Marie Dupont" />
           </div>
 
           <div className="rdv-field">
-            <label className="rdv-label">Email *</label>
-            <input type="email" className="rdv-input" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="marie@example.fr" />
+            <label className="rdv-label" htmlFor="rdv-email">Email *</label>
+            <input type="email" id="rdv-email" className="rdv-input" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="marie@example.fr" />
           </div>
 
           <div className="rdv-field">
-            <label className="rdv-label">Téléphone</label>
-            <input type="tel" className="rdv-input" value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder="+33 6 00 00 00 00" />
+            <label className="rdv-label" htmlFor="rdv-tel">Téléphone</label>
+            <input type="tel" id="rdv-tel" className="rdv-input" value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder="+33 6 00 00 00 00" />
           </div>
 
           <div className="rdv-field">
-            <label className="rdv-label">Organisation</label>
-            <input className="rdv-input" value={organisation} onChange={(e) => setOrganisation(e.target.value)} placeholder="Nom de votre collectif" />
+            <label className="rdv-label" htmlFor="rdv-org">Organisation</label>
+            <input id="rdv-org" className="rdv-input" value={organisation} onChange={(e) => setOrganisation(e.target.value)} placeholder="Nom de votre collectif" />
           </div>
 
           <div className="rdv-field">
-            <label className="rdv-label">Sujet *</label>
-            <select className="rdv-select" value={sujet} onChange={(e) => setSujet(e.target.value)} required>
+            <label className="rdv-label" htmlFor="rdv-sujet">Sujet *</label>
+            <select id="rdv-sujet" className="rdv-select" value={sujet} onChange={(e) => setSujet(e.target.value)} required>
               {SUJETS.map((s) => <option key={s}>{s}</option>)}
             </select>
           </div>
 
           <div className="rdv-field">
-            <label className="rdv-label">Message (optionnel)</label>
-            <textarea className="rdv-textarea" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Précisez votre demande..." />
+            <label className="rdv-label" htmlFor="rdv-message">Message (optionnel)</label>
+            <textarea id="rdv-message" className="rdv-textarea" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Précisez votre demande..." />
           </div>
         </div>
       </div>

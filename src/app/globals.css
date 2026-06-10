@@ -47,7 +47,7 @@
   /* Texte — bordeaux chaud (jamais sombre/violet) */
   --ink:      #8A3050;
   --ink-2:    #A0405E;
-  --ink-3:    #C0607A;
+  --ink-3:    #A23A57; /* assombri pour le contraste AA sur fond clair */
   --ink-4:    #E0AEC4;
   --rose-deep: #B5083F;
 
