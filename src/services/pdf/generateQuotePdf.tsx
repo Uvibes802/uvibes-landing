@@ -319,6 +319,8 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           <View style={styles.signSection} wrap={false}>
             <Text style={styles.signTitle}>Signature électronique</Text>
             {quote.signatureData ? (
+              // @react-pdf Image n'est pas une balise <img> HTML — la règle alt-text ne s'applique pas
+              // eslint-disable-next-line jsx-a11y/alt-text
               <Image src={quote.signatureData} style={{ width: 190, height: 56, objectFit: "contain" }} />
             ) : null}
             {quote.signedByName ? <Text style={styles.signName}>{quote.signedByName}</Text> : null}
