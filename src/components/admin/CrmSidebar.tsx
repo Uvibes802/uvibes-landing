@@ -5,7 +5,7 @@ import {
   Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const NAV = [
   {
@@ -40,13 +40,6 @@ const NAV = [
 
 export default function CrmSidebar({ nom }: { nom?: string }) {
   const pathname = usePathname();
-  const router = useRouter();
-
-  async function handleLogout() {
-    await fetch("/api/admin/auth/logout", { method: "POST" });
-    router.push("/admin/login");
-    router.refresh();
-  }
 
   return (
     <aside className="crm-sidebar">
@@ -83,9 +76,17 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
             Connecté·e : {nom}
           </p>
         )}
-        <button className="crm-logout-btn" onClick={handleLogout}>
-          <LogOut size={14} /> Déconnexion
-        </button>
+        {/* Navigation complète volontaire (pas de <Link> client/fetch) → fonctionne même si une extension casse fetch */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a href="/" className="crm-backsite-btn">
+          <Home size={14} /> Retour au site
+        </a>
+        {/* Déconnexion par formulaire natif → immunisé contre les extensions qui cassent fetch */}
+        <form action="/api/admin/auth/logout" method="post">
+          <button type="submit" className="crm-logout-btn">
+            <LogOut size={14} /> Déconnexion
+          </button>
+        </form>
       </div>
     </aside>
   );
