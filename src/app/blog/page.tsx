@@ -10,6 +10,9 @@ import "../../styles/page/blog.css";
 
 export const metadata: Metadata = buildMetadata("blog");
 
+// ISR : page régénérée au plus toutes les 60 s (les sauvegardes admin forcent un revalidatePath immédiat)
+export const revalidate = 60;
+
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",

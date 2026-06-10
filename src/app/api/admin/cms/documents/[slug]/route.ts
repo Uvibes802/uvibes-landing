@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { LEGAL_DOC_SLUGS } from "@/lib/legalDocs";
 
@@ -27,5 +28,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ slug
   if (typeof version === "string" && version.trim()) data.version = version.trim();
 
   const doc = await prisma.legalDocument.update({ where: { slug }, data });
+  revalidatePath(`/documents/${slug}`);
   return NextResponse.json(doc);
 }

@@ -9,8 +9,8 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// Contenu éditable depuis l'admin → rendu dynamique pour refléter les changements immédiatement
-export const dynamic = "force-dynamic";
+// ISR : régénéré au plus toutes les 60 s ; l'édition admin force un revalidatePath immédiat
+export const revalidate = 60;
 
 function isLegalSlug(slug: string): slug is LegalDocSlug {
   return (LEGAL_DOC_SLUGS as string[]).includes(slug);

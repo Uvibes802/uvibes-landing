@@ -1,4 +1,5 @@
 import { getMaintenanceStatus, setMaintenanceStatus } from "@/lib/maintenanceState";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 // Mot de passe stocké dans .env.local — ne jamais mettre une valeur en dur ici
@@ -25,6 +26,8 @@ export async function POST(request: Request) {
     }
 
     setMaintenanceStatus(maintenanceMode);
+    // Invalide le cache de toutes les pages (le layout lit l'état maintenance)
+    revalidatePath("/", "layout");
     return NextResponse.json({ success: true, maintenanceMode });
   } catch {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

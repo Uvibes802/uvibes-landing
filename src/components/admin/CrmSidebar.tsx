@@ -2,7 +2,7 @@
 
 import {
   BarChart2, FileText, Home, LogOut,
-  Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper,
+  Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper, KeyRound,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -34,6 +34,7 @@ const NAV = [
   {
     section: "Système",
     items: [
+      { href: "/admin/compte", icon: KeyRound, label: "Mon compte" },
       { href: "/admin/maintenance", icon: Settings, label: "Maintenance" },
     ],
   },

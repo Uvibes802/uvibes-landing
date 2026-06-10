@@ -15,7 +15,8 @@ import ConversationIntro from "@/components/section/ConversationIntro";
 import { fetchPartners } from "@/services/home/fetchPartners";
 import { getFeaturedArticles } from "@/services/blog/getArticles";
 
-export const dynamic = "force-dynamic";
+// ISR : régénérée au plus toutes les 60 s ; les sauvegardes admin (articles à la une, etc.) forcent un revalidatePath
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: { absolute: "Bienvenue | Uvibes" },

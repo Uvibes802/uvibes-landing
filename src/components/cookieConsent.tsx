@@ -8,10 +8,12 @@ declare global {
 
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import "../styles/cookie.css";
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
+  const pathname = usePathname();
   const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 
   useEffect(() => {
@@ -58,6 +60,8 @@ export default function CookieConsent() {
     }
   };
 
+  // Pas de bandeau cookies sur l'admin / le funnel devis (auto-masquage, comme le Menu)
+  if (pathname.startsWith("/admin") || pathname.startsWith("/devis")) return null;
   if (!showBanner) return null;
 
   return (

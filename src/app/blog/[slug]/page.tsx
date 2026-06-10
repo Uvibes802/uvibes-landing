@@ -7,6 +7,9 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+// ISR : article régénéré au plus toutes les 60 s (revalidatePath immédiat à l'édition admin)
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const a = await getArticleBySlug(slug);

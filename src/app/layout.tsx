@@ -5,7 +5,6 @@ import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { Instrument_Serif, Prompt, Roboto, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -74,9 +73,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isMaintenanceMode = getMaintenanceStatus();
-  const headersList = await headers();
-  const pathname = headersList.get("x-invoke-path") ?? headersList.get("x-pathname") ?? "";
-  const isAdminCrm = pathname.startsWith("/admin") || pathname.startsWith("/devis");
 
   return (
     <html lang="fr">
@@ -105,11 +101,12 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${roboto.variable} ${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
-        {!isAdminCrm && <Menu />}
-        {!isAdminCrm && <RevealObserver />}
+        {/* Menu et CookieConsent se masquent eux-mêmes sur /admin & /devis (garde-fou client usePathname) */}
+        <Menu />
+        <RevealObserver />
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
-            {!isAdminCrm && <CookieConsent />}
+            <CookieConsent />
         </MaintenanceWrapper>
       </body>
     </html>
