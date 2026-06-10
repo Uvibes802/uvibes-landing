@@ -590,7 +590,6 @@
 /* ── CTA Rejoindre — redesign impactant ───────────────────────── */
 .uv-join {
   background: linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%);
-  background-attachment: fixed;
   /* haut ≥ ~92px : dégage la vague du séparateur */
   padding: clamp(7rem, 9vw, 8rem) clamp(1.5rem, 5vw, 3.5rem) clamp(4.5rem, 7vw, 7rem);
   position: relative;
