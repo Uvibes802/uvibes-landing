@@ -2,6 +2,34 @@
 
 ---
 
+## 2026-06-10 — Élimination de WordPress + sécurité + scaling (branche feat/missions-falek)
+
+Grosse session : la base Prisma/Supabase devient la **seule source de vérité** (WP n'est plus nécessaire pour le contenu), durcissement sécurité, et passage en ISR.
+
+### Migration WP → DB (cohérence)
+- **Équipe** : import WP→DB (`scripts/import-team`), route publique `/api/team`, `TeamSection` lit la DB (fin du fetch WP client → fin des « Failed to fetch » liés aux extensions).
+- **Partenaires** : import WP→DB (`scripts/import-partners`), `fetchPartners` DB-only.
+- **Citation/compteur** (BannerCount) : valeurs en `CmsContent`, via `/api/settings`.
+- **Blog** (le gros morceau) : modèle Prisma `Article`, import des 11 articles WP (`scripts/import-blog`, HTML fidèle + image + catégorie + auteur + SEO Yoast + à la une). Pages publiques sur la DB (liste, `/blog/[slug]`, à la une homepage, sitemap). **Éditeur riche** (react-quill-new) dans `/admin/cms/blog` (CRUD + sanitisation HTML serveur à l'écriture). Suppression des fetchs WP client morts.
+- **Reste sur WP** : uniquement l'**hébergement des fichiers images** (équipe/partenaires/blog encore sur `wp.uvibes.fr/wp-content/uploads/`). À rapatrier sur S3/CloudFront pour éteindre WP définitivement.
+- **Impact** : plus aucun appel à WP pour afficher le site ; contenu 100 % éditable depuis l'admin ; robustesse (plus de CORS/extension/lenteur WP).
+
+### Sécurité
+- **Compte admin par défaut** : mot de passe seed connu (`uvibes-admin-2026`) **rotaté en base** → ne fonctionne plus. Seed ne baque plus de mot de passe en dur (`ADMIN_INITIAL_PASSWORD` ou aléatoire). `scripts/create-admin.cjs` + **écran « Mon compte »** (`/admin/compte`) pour changer son mot de passe.
+- **Headers** : ajout **HSTS** + **CSP report-only** (à passer bloquante après monitoring).
+- **Déconnexion fiable** : formulaire natif + redirection serveur (immunisé contre les extensions qui cassent `fetch`) + bouton « Retour au site ».
+- Vérifié : `.env` non suivis par git, `escapeHtml` sur les 5 routes email, rate-limiting sur les routes publiques.
+
+### Scaling (ISR)
+- Refactor du **layout racine** : ne lit plus `headers()` (le Menu et le bandeau cookies s'auto-masquent sur `/admin` & `/devis` via `usePathname`) → les pages publiques peuvent être mises en cache.
+- **ISR** activé : `/`, `/a-propos`, `/blog`, `/blog/[slug]`, `/documents/[slug]` (revalidate 60 s) + **revalidatePath** immédiat à la sauvegarde (articles, documents, bascule maintenance).
+- **Impact** : pages publiques servies depuis le cache (régénérées au plus 1×/min), charge DB Supabase fortement réduite. Vérifié : home `○ ISR (1m)` au build, isolation admin intacte.
+
+### Section /solution — soft skills
+- Rangée 01 → **cadre vidéo 9:16** (reel), rangée 02 → **podcast animé** (sans carte). Médias (vidéo + podcast) à héberger sur CloudFront (constantes `REEL_SRC`/`PODCAST_SRC` à renseigner).
+
+---
+
 ## 2026-06-10 — A11Y-02 / FIX-07 : accessibilité + compatibilité navigateurs (branche feat/missions-falek)
 
 Audit **axe-core** (moteur d'axe-devtools, injecté via Playwright) sur 8 pages clés, puis corrections. Résultat : **0 violation** sur `/`, `/solution`, `/a-propos`, `/blog`, `/documents/[slug]`, `/devis`, `/devis/[id]`, `/rendez-vous`.
