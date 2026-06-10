@@ -3,6 +3,7 @@
 import {
   BarChart2, FileText, Home, LogOut,
   Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper, KeyRound,
+  KanbanSquare, ListTodo,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,9 +13,11 @@ const NAV = [
     section: "CRM",
     items: [
       { href: "/admin/dashboard", icon: Home, label: "Dashboard" },
+      { href: "/admin/pipeline", icon: KanbanSquare, label: "Pipeline" },
+      { href: "/admin/collectifs", icon: Users, label: "Collectifs" },
+      { href: "/admin/taches", icon: ListTodo, label: "Tâches & relances" },
       { href: "/admin/devis", icon: FileText, label: "Devis" },
       { href: "/admin/promos", icon: Ticket, label: "Codes promo" },
-      { href: "/admin/collectifs", icon: Users, label: "Collectifs" },
       { href: "/admin/rdv", icon: CalendarDays, label: "Rendez-vous" },
       { href: "/admin/newsletter", icon: Mail, label: "Newsletter" },
     ],

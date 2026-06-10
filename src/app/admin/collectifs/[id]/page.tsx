@@ -8,7 +8,11 @@ export default async function CollectifFichePage({ params }: Props) {
   const { id } = await params;
   const collectif = await prisma.collectif.findUnique({
     where: { id },
-    include: { quotes: { orderBy: { createdAt: "desc" } } },
+    include: {
+      quotes: { orderBy: { createdAt: "desc" } },
+      interactions: { orderBy: { date: "desc" } },
+      tasks: { orderBy: [{ done: "asc" }, { dueDate: "asc" }] },
+    },
   });
   if (!collectif) notFound();
 

@@ -29,7 +29,9 @@ model Collectif {
   notes   String?
   source  String  @default("formulaire_site")
 
-  quotes  Quote[]
+  quotes        Quote[]
+  interactions  Interaction[]
+  tasks         Task[]
 }
 
 model Quote {
@@ -207,6 +209,37 @@ model PromoCode {
   expiresAt   DateTime?
   usageMax    Int?
   usageCount  Int       @default(0)
+}
+
+// ── CRM — activité & relances ──────────────────────────────────
+
+// Journal des échanges avec un collectif (note, appel, email, réunion)
+model Interaction {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  collectifId String
+  collectif   Collectif @relation(fields: [collectifId], references: [id], onDelete: Cascade)
+  type        String    @default("NOTE") // NOTE | APPEL | EMAIL | REUNION
+  contenu     String
+  auteur      String?
+  date        DateTime  @default(now())
+
+  @@index([collectifId])
+}
+
+// Tâche / relance, éventuellement rattachée à un collectif
+model Task {
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now())
+  titre       String
+  description String?
+  dueDate     DateTime?
+  done        Boolean    @default(false)
+  priorite    String     @default("NORMALE") // BASSE | NORMALE | HAUTE
+  collectifId String?
+  collectif   Collectif? @relation(fields: [collectifId], references: [id], onDelete: Cascade)
+
+  @@index([done, dueDate])
 }
 
 // ── AUTH ADMIN ─────────────────────────────────────────────────

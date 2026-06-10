@@ -4,6 +4,8 @@ import { ArrowLeft, Save } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import InteractionsPanel, { type Interaction } from "./InteractionsPanel";
+import TasksPanel, { type Task } from "./TasksPanel";
 
 const STATUTS_CRM = ["PROSPECT","QUALIFICATION","DEVIS_ENVOYE","NEGOCIATION","CLIENT","PERDU","INACTIF"];
 const STATUT_BADGE: Record<string, string> = {
@@ -22,6 +24,8 @@ interface Collectif {
   usagesPrevus: string[]; notes?: string | null;
   statut: string; source: string; createdAt: Date;
   quotes: Quote[];
+  interactions: Interaction[];
+  tasks: Task[];
 }
 
 export default function CollectifFicheClient({ collectif: initial }: { collectif: Collectif }) {
@@ -118,6 +122,12 @@ export default function CollectifFicheClient({ collectif: initial }: { collectif
                 placeholder="Notes visibles uniquement par la directrice..."
               />
             </div>
+
+            {/* Journal des échanges */}
+            <InteractionsPanel collectifId={initial.id} interactions={initial.interactions} />
+
+            {/* Tâches & relances */}
+            <TasksPanel collectifId={initial.id} tasks={initial.tasks} />
 
             {/* Devis */}
             {initial.quotes.length > 0 && (

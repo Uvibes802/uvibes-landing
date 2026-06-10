@@ -2,6 +2,28 @@
 
 ---
 
+## 2026-06-10 — CRM : cœur d'activité commerciale (branche feat/missions-falek)
+
+L'embryon CRM (collectifs + devis + RDV + newsletter + promos) devient un vrai outil de suivi commercial. Trois briques ajoutées : **journal des échanges**, **tâches & relances**, **pipeline visuel**.
+
+### Modèle de données
+- Nouveaux modèles Prisma `Interaction` (note/appel/email/réunion rattachée à un collectif) et `Task` (relance avec échéance + priorité, rattachable à un collectif). Relations + index ajoutés sur `Collectif`. Appliqué en base via le pooler (`scripts/db-push.cjs`).
+
+### Suivi par collectif (fiche)
+- **Journal des échanges** : timeline horodatée, ajout/suppression d'interactions typées (icône par type), via `/api/admin/crm/interactions`.
+- **Tâches & relances** : cases à cocher, échéance, priorité (badge couleur), retard signalé en rouge, via `/api/admin/crm/tasks`.
+
+### Vues transverses
+- **Pipeline** (`/admin/pipeline`) : kanban des collectifs par statut commercial (Prospect → Qualification → Devis envoyé → Négociation → Client / Perdu), cartes cliquables avec CA cumulé.
+- **Tâches & relances** (`/admin/taches`) : toutes les relances regroupées **En retard / À venir / Terminées**, lien direct vers le collectif.
+- **Dashboard** enrichi : panneau « Relances à traiter » (échéances ≤ aujourd'hui) + aperçu de la répartition du pipeline.
+- Liens **Pipeline** et **Tâches & relances** ajoutés à la sidebar admin.
+
+### Impact
+- La directrice peut désormais **historiser chaque échange**, **planifier ses relances** et **visualiser son pipeline** sans quitter l'admin — l'info commerciale n'est plus éparpillée hors-outil. Vérifié bout-en-bout (création échange + tâche → remontée dashboard + page tâches, 0 erreur console). Mutations protégées par le middleware `/api/admin/*` + `revalidatePath` sur la fiche.
+
+---
+
 ## 2026-06-10 — Élimination de WordPress + sécurité + scaling (branche feat/missions-falek)
 
 Grosse session : la base Prisma/Supabase devient la **seule source de vérité** (WP n'est plus nécessaire pour le contenu), durcissement sécurité, et passage en ISR.

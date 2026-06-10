@@ -1,6 +1,15 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
+// Colonnes du pipeline (même ordre/couleurs que la page Pipeline)
+const PIPE: { statut: string; label: string; couleur: string }[] = [
+  { statut: "PROSPECT", label: "Prospect", couleur: "#9ca3af" },
+  { statut: "QUALIFICATION", label: "Qualif.", couleur: "#00AFDD" },
+  { statut: "DEVIS_ENVOYE", label: "Devis", couleur: "#FD6E00" },
+  { statut: "NEGOCIATION", label: "Négo.", couleur: "#E6007E" },
+  { statut: "CLIENT", label: "Client", couleur: "#16a34a" },
+];
+
 const STATUT_BADGE: Record<string, string> = {
   BROUILLON: "--brouillon", ENVOYE: "--envoye", VU: "--envoye",
   SIGNE: "--signe", REFUSE: "--refuse", EXPIRE: "--expire",
@@ -14,7 +23,9 @@ export default async function DashboardPage() {
   const now = new Date();
   const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
-  const [totalDevis, devisSigne, devisMois, collectifsTotal, lastDevis] = await Promise.all([
+  const startOfTomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+  const [totalDevis, devisSigne, devisMois, collectifsTotal, lastDevis, pipeGroups, relances] = await Promise.all([
     prisma.quote.count(),
     prisma.quote.count({ where: { statut: "SIGNE" } }),
     prisma.quote.count({ where: { createdAt: { gte: startOfMonth } } }),
@@ -24,7 +35,18 @@ export default async function DashboardPage() {
       orderBy: { createdAt: "desc" },
       include: { collectif: { select: { nom: true } } },
     }),
+    // Répartition du pipeline par statut
+    prisma.collectif.groupBy({ by: ["statut"], _count: { _all: true } }),
+    // Prochaines relances (non faites, échéance < demain), en retard d'abord
+    prisma.task.findMany({
+      where: { done: false, dueDate: { lt: startOfTomorrow } },
+      orderBy: { dueDate: "asc" },
+      take: 6,
+      include: { collectif: { select: { id: true, nom: true } } },
+    }),
   ]);
+
+  const pipeCount = (s: string) => pipeGroups.find((g) => g.statut === s)?._count._all ?? 0;
 
   const tauxConversion = totalDevis > 0 ? Math.round((devisSigne / totalDevis) * 100) : 0;
 
@@ -67,6 +89,55 @@ export default async function DashboardPage() {
               {(caSigne._sum.prixHT ?? 0).toLocaleString("fr-FR")} €
             </div>
             <div className="crm-metric-sub">{collectifsTotal} collectifs</div>
+          </div>
+        </div>
+
+        {/* Relances + Pipeline */}
+        <div className="crm-detail-grid" style={{ marginBottom: 20 }}>
+          {/* Relances à traiter */}
+          <div className="crm-detail-card">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+              <p className="crm-detail-section-title" style={{ margin: 0 }}>Relances à traiter</p>
+              <Link href="/admin/taches" className="crm-btn --outline --sm">Voir tout →</Link>
+            </div>
+            {relances.length === 0 ? (
+              <p style={{ fontSize: 13, color: "var(--crm-muted)", margin: 0 }}>Aucune relance en attente 🎉</p>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {relances.map((t) => {
+                  const late = t.dueDate && new Date(t.dueDate) < new Date(new Date().toDateString());
+                  return (
+                    <div key={t.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ width: 7, height: 7, borderRadius: "50%", background: late ? "#dc2626" : "var(--crm-accent)", flexShrink: 0 }} />
+                      <span style={{ flex: 1, fontSize: 13.5 }}>{t.titre}</span>
+                      {t.collectif && (
+                        <Link href={`/admin/collectifs/${t.collectif.id}`} style={{ fontSize: 11.5, color: "var(--crm-accent)" }}>{t.collectif.nom}</Link>
+                      )}
+                      <span style={{ fontSize: 11.5, color: late ? "#dc2626" : "var(--crm-muted)", fontWeight: late ? 600 : 400, whiteSpace: "nowrap" }}>
+                        {t.dueDate ? new Date(t.dueDate).toLocaleDateString("fr-FR", { day: "2-digit", month: "short" }) : ""}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* Aperçu pipeline */}
+          <div className="crm-detail-card">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+              <p className="crm-detail-section-title" style={{ margin: 0 }}>Pipeline</p>
+              <Link href="/admin/pipeline" className="crm-btn --outline --sm">Ouvrir →</Link>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {PIPE.map((p) => (
+                <div key={p.statut} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{ width: 9, height: 9, borderRadius: "50%", background: p.couleur, flexShrink: 0 }} />
+                  <span style={{ flex: 1, fontSize: 13.5 }}>{p.label}</span>
+                  <span style={{ fontSize: 14, fontWeight: 700 }}>{pipeCount(p.statut)}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
