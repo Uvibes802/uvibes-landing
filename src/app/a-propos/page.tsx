@@ -83,8 +83,8 @@ export default function Uvibes() {
           <VibrationLine width={1800} height={50} amplitude={18} freq={9} stroke="rgba(255,255,255,.3)" strokeWidth={1.5} speed={16} />
           <VibrationLine width={1800} height={50} amplitude={11} freq={14} stroke="rgba(255,255,255,.18)" strokeWidth={1} speed={22} />
         </div>
-        {/* Séparateur wavy animé en bas du hero */}
-        <WaveSeparator position="bottom" />
+        {/* Couche avant accordée au fond chaud de la page (uv-page) sous le hero */}
+        <WaveSeparator position="bottom" color="#FFF6EC" />
       </section>
 
       {/* ── Pourquoi « Uvibes » ? ── */}
@@ -193,8 +193,8 @@ export default function Uvibes() {
       {/* Wrapper uv-join + Footer seamless */}
       <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
 
-      {/* Séparateur wavy animé (cohérent avec les autres sections) */}
-      <WaveSeparator position="top" />
+      {/* Couche avant accordée au fond de la page au-dessus du CTA */}
+      <WaveSeparator position="top" color="#FFF4EC" />
 
       {/* ── CTA rejoindre ── */}
       <section className="uv-join" style={{ background: "transparent" }}>

@@ -26,12 +26,12 @@
   filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.1));
   animation: waveSepSway 14s ease-in-out infinite alternate;
 }
-.wave-sep-layer--1 path { fill: var(--paper, #FFFBF4); }
+.wave-sep-layer--1 path { fill: var(--wave-front, var(--paper, #FFFBF4)); }
 .wave-sep-layer--2 {
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.07));
   animation: waveSepSway 16s ease-in-out infinite alternate;
 }
-.wave-sep-layer--2 path { fill: #fde4dc; }
+.wave-sep-layer--2 path { fill: var(--wave-back, #fde4dc); }
 
 @keyframes waveSepSway {
   from { transform: translateX(-4%); }

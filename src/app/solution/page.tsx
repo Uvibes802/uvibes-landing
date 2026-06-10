@@ -32,8 +32,8 @@ export default function SolutionPage() {
 
       <div style={{ background: HERO_GRADIENT, position: "relative", overflow: "hidden" }}>
         <SolutionHero />
-        {/* Séparateur wavy animé en bas du hero (cohérent avec la home) */}
-        <WaveSeparator position="bottom" />
+        {/* Séparateur wavy : la couche avant prend la couleur du haut de SolutionHowItWorks (#FFF6EC) → pas de couture */}
+        <WaveSeparator position="bottom" color="#FFF6EC" />
       </div>
 
       <SolutionAnchorNav />
@@ -46,7 +46,8 @@ export default function SolutionPage() {
         <PricingTable />
         {/* Section petites structures (remplace "Ils font confiance") + footer, sur le dégradé commun */}
         <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
-          <WaveSeparator position="top" />
+          {/* Couche avant = bas de PricingTable (#FFF0F5) pour une transition sans couture */}
+          <WaveSeparator position="top" color="#FFF0F5" />
           <SmallOrgCta />
           <Footer />
         </div>
