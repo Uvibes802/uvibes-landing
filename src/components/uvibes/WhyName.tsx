@@ -13,9 +13,6 @@ export default function WhyName() {
 
   return (
     <section className={`uvn-section${vis ? " uvn-vis" : ""}`} ref={ref}>
-      {/* Grand U décoratif en fond */}
-      <span className="uvn-bigU v-serif" aria-hidden="true">U</span>
-
       {/* Particules flottantes */}
       <div className="uvn-particles" aria-hidden="true">
         {PARTS.map((_, i) => (

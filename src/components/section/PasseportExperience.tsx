@@ -145,6 +145,9 @@ const PASSEPORTS: Passeport[] = [
 const ROT  = [-2.4, 1.6, -1.4, 2, -1.8, 1.2, -2, 1.4, -1.6, 1.8, -1.2];
 const OFFX = [-7, 6, -5, 7, -6, 5, -4, 6, -7, 5, -3];
 
+// Palette chaude alignée sur la section « Thématiques » — aucune couleur sombre ni violette
+const PALETTE = ["#FD6E00", "#E6007E", "#D90A5C", "#FFB800"];
+
 export default function PasseportExperience() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.06 });
@@ -219,12 +222,13 @@ export default function PasseportExperience() {
       <div className="pp-deck">
         {PASSEPORTS.map((p, i) => {
           const open = openId === p.id;
+          const accent = PALETTE[i % PALETTE.length];
           return (
             <div
               key={p.id}
               className={`pp-card${open ? " pp-card--open" : ""}`}
               style={{
-                "--pp-accent": p.accent,
+                "--pp-accent": accent,
                 "--rot": `${ROT[i]}deg`,
                 "--tx": `${OFFX[i]}px`,
               } as React.CSSProperties}
@@ -240,7 +244,7 @@ export default function PasseportExperience() {
               <div className="pp-card-header">
                 <div className="pp-card-header-left">
                   <p className="pp-card-category">{p.category}</p>
-                  <h3 className="pp-card-title" style={{ color: p.accent }}>{p.title}</h3>
+                  <h3 className="pp-card-title" style={{ color: accent }}>{p.title}</h3>
                   <p className="pp-card-tagline">{p.tagline}</p>
                   <div className="pp-card-keywords">
                     {p.keywords.map((kw) => (

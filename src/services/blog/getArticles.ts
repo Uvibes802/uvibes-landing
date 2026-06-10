@@ -39,26 +39,39 @@ function toPublic(a: {
 }
 
 export async function getArticles(): Promise<PublicArticle[]> {
-  const rows = await prisma.article.findMany({
-    where: { actif: true },
-    orderBy: { publishedAt: "desc" },
-  });
-  return rows.map(toPublic);
+  try {
+    const rows = await prisma.article.findMany({
+      where: { actif: true },
+      orderBy: { publishedAt: "desc" },
+    });
+    return rows.map(toPublic);
+  } catch {
+    // DB injoignable (ex. hoquet au build ISR) → liste vide, régénérée à la prochaine revalidation
+    return [];
+  }
 }
 
 export async function getArticleBySlug(slug: string): Promise<PublicArticle | null> {
-  const a = await prisma.article.findUnique({ where: { slug } });
-  if (!a || !a.actif) return null;
-  return toPublic(a);
+  try {
+    const a = await prisma.article.findUnique({ where: { slug } });
+    if (!a || !a.actif) return null;
+    return toPublic(a);
+  } catch {
+    return null;
+  }
 }
 
 export async function getFeaturedArticles(limit = 3): Promise<PublicArticle[]> {
-  const rows = await prisma.article.findMany({
-    where: { actif: true, featured: true },
-    orderBy: { publishedAt: "desc" },
-    take: limit,
-  });
-  return rows.map(toPublic);
+  try {
+    const rows = await prisma.article.findMany({
+      where: { actif: true, featured: true },
+      orderBy: { publishedAt: "desc" },
+      take: limit,
+    });
+    return rows.map(toPublic);
+  } catch {
+    return [];
+  }
 }
 
 export async function getAllArticleSlugs(): Promise<{ slug: string; updatedAt: Date }[]> {
