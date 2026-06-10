@@ -1,6 +1,5 @@
 "use client";
 
-import { sanitizeText } from "@/services/blog/sanitize";
 import "@/styles/blog/article.css";
 import type { PublicArticle } from "@/services/blog/getArticles";
 import { ArrowLeft } from "lucide-react";
@@ -11,7 +10,8 @@ export default function ArticleContent({ article }: { article: PublicArticle }) 
   const router = useRouter();
 
   const title = article.titre;
-  const content = sanitizeText(article.contenu);
+  // Contenu HTML déjà nettoyé à l'écriture (côté serveur) → rendu direct, identique SSR/client.
+  const content = article.contenu;
 
   const dateFormatted = article.publishedAt
     ? new Date(article.publishedAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })

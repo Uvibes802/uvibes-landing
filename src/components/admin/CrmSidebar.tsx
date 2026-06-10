@@ -2,7 +2,7 @@
 
 import {
   BarChart2, FileText, Home, LogOut,
-  Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText,
+  Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -23,6 +23,7 @@ const NAV = [
     section: "CMS",
     items: [
       { href: "/admin/cms/contenu", icon: PenLine, label: "Contenus éditoriaux" },
+      { href: "/admin/cms/blog", icon: Newspaper, label: "Blog" },
       { href: "/admin/cms/documents", icon: ScrollText, label: "Documents légaux" },
       { href: "/admin/cms/partenaires", icon: Layers, label: "Partenaires" },
       { href: "/admin/cms/temoignages", icon: Star, label: "Témoignages" },
