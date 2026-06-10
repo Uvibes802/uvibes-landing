@@ -1,17 +1,31 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, useState } from "react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import "@/styles/solution/solutionSoftSkills.css";
 
-/* Barres animées de la vignette "ressources" (podcast / vidéo) */
-const WAVE_BARS = [0.4, 0.7, 1, 0.55, 0.85, 0.35, 0.95, 0.6, 0.45, 0.8, 0.5];
-/* Jours du "terrain d'entraînement" — derniers = en cours */
-const DAYS = [true, true, true, true, true, false, false];
+// ── Médias hébergés sur CloudFront (fournis par la tutrice) ───────────────
+// Laisser vide tant que l'URL n'est pas connue → un placeholder propre s'affiche.
+// Vidéo : remplacer par getVideoUrl("nom-du-reel.mp4") une fois en ligne.
+const REEL_SRC = "";    // TODO reel 9:16 (CloudFront)
+const PODCAST_SRC = ""; // TODO épisode podcast .mp3 (CloudFront)
+
+/* Barres de l'onde du podcast */
+const WAVE_BARS = [0.4, 0.7, 1, 0.55, 0.85, 0.35, 0.95, 0.6, 0.45, 0.8, 0.5, 0.7, 0.3];
 
 export default function SolutionSoftSkills() {
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.12 });
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const togglePodcast = () => {
+    const a = audioRef.current;
+    if (!a || !PODCAST_SRC) return;
+    if (a.paused) { a.play(); setPlaying(true); }
+    else { a.pause(); setPlaying(false); }
+  };
 
   return (
     <section id="soft-skills" className={`sss-section${vis ? " sss-vis" : ""}`} ref={ref}>
@@ -39,48 +53,76 @@ export default function SolutionSoftSkills() {
 
         <div className="sss-rows">
 
-          {/* ── 01 · Ressources (podcast / vidéo) ── */}
+          {/* ── 01 · Vidéo — reel 9:16 dans un cadre épuré ── */}
           <div className="sss-row" style={{ "--c": "#FD6E00" } as React.CSSProperties}>
             <div className="sss-illu-col">
-              <div className="sss-illu sss-illu--wave" aria-hidden="true">
-                <span className="sss-play">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                </span>
-                <div className="sss-wave">
-                  {WAVE_BARS.map((h, i) => (
-                    <span key={i} className="sss-wave-bar" style={{ "--h": h, animationDelay: `${i * 0.09}s` } as React.CSSProperties} />
-                  ))}
-                </div>
+              <div className="sss-video-frame">
+                {REEL_SRC ? (
+                  <video
+                    className="sss-video"
+                    src={REEL_SRC}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    aria-label="Aperçu vidéo Uvibes"
+                  />
+                ) : (
+                  <div className="sss-video-ph" aria-hidden="true">
+                    <span className="sss-video-ph-play">
+                      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">01</span>
               <h3 className="sss-row-title">Des ressources à disposition</h3>
               <p className="sss-row-body">
-                Vidéos et podcasts pour comprendre, concrètement, comment progresser
-                sur chaque soft skill.
+                Des vidéos courtes et concrètes pour comprendre, pas à pas, comment
+                progresser sur chaque soft skill.
               </p>
             </div>
           </div>
 
-          {/* ── 02 · Terrain d'entraînement quotidien ── */}
+          {/* ── 02 · Podcast — sans carte, éléments animés ── */}
           <div className="sss-row sss-row--reverse" style={{ "--c": "#E6007E" } as React.CSSProperties}>
             <div className="sss-illu-col">
-              <div className="sss-illu sss-illu--streak" aria-hidden="true">
-                <div className="sss-days">
-                  {DAYS.map((on, i) => (
-                    <span key={i} className={`sss-day${on ? " sss-day--on" : ""}${i === 4 ? " sss-day--now" : ""}`} />
+              <div className={`sss-podcast${playing ? " is-playing" : ""}`}>
+                <div className="sss-podcast-discwrap">
+                  <span className="sss-podcast-halo" aria-hidden="true" />
+                  <span className="sss-podcast-halo sss-podcast-halo--2" aria-hidden="true" />
+                  <button
+                    type="button"
+                    className="sss-podcast-disc"
+                    onClick={togglePodcast}
+                    aria-pressed={playing}
+                    aria-label={playing ? "Mettre le podcast en pause" : "Écouter le podcast"}
+                  >
+                    {playing ? (
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2" /><rect x="14" y="5" width="4" height="14" rx="1.2" /></svg>
+                    ) : (
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                    )}
+                  </button>
+                </div>
+                <div className="sss-podcast-wave" aria-hidden="true">
+                  {WAVE_BARS.map((h, i) => (
+                    <span key={i} className="sss-podcast-bar" style={{ "--h": h, animationDelay: `${i * 0.08}s` } as React.CSSProperties} />
                   ))}
                 </div>
-                <div className="sss-pulse-line" />
+                {PODCAST_SRC && (
+                  <audio ref={audioRef} src={PODCAST_SRC} onEnded={() => setPlaying(false)} preload="none" />
+                )}
               </div>
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">02</span>
-              <h3 className="sss-row-title">Un terrain d&apos;entraînement quotidien</h3>
+              <h3 className="sss-row-title">Un podcast pour aller plus loin</h3>
               <p className="sss-row-body">
-                Chaque échange est une occasion de pratiquer pour de vrai — écoute,
-                prise de parole, ouverture — un peu chaque jour.
+                Des épisodes pour creuser chaque soft skill — à écouter quand vous
+                voulez, où vous voulez.
               </p>
             </div>
           </div>
