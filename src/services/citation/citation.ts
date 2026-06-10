@@ -1,8 +1,9 @@
 "use client";
 
-import DOMPurify from "dompurify";
 import { useEffect, useState } from "react";
 
+// Citation BannerCount servie par la DB (CmsContent via /api/settings) — plus de WordPress.
+// Éditable depuis l'admin (Contenus éditoriaux). FALLBACK utilisé si la DB ne répond pas.
 const FALLBACK = {
   citation: "Uvibes a transformé la façon dont nos équipes se connaissent vraiment.",
   authorCitation: "Sophie M.",
@@ -18,34 +19,18 @@ export default function FetchCitation() {
   const [userNumber, setUserNumber] = useState<string>(FALLBACK.userNumber);
   const [userNumberTitle, setUserNumberTitle] = useState<string>(FALLBACK.userNumberTitle);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
   useEffect(() => {
-    // Utilise un div (pas un p) pour éviter que le navigateur ferme le p parent
-    const sanitize = (text: string) => {
-      const result = DOMPurify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
-        .replace(/&nbsp;/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-      return result || "";
-    };
-
-    const get = (cat: number) =>
-      fetch(`${apiUrl}/wp-json/wp/v2/posts?categories=${cat}`)
-        .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); });
-
-    get(12).then((d) => { const v = sanitize(d[0].content.rendered); if (v) setCitation(v); }).catch(() => {});
-    get(13).then((d) => { const v = sanitize(d[0].content.rendered); if (v) setAuthorCitation(v); }).catch(() => {});
-    get(14).then((d) => { const v = sanitize(d[0].content.rendered); if (v) setRoleAuthor(v); }).catch(() => {});
-    get(15)
-      .then((d) => {
-        const num = sanitize(d[0].content.rendered);
-        const title = sanitize(d[0].title.rendered);
-        if (num) setUserNumber(num);
-        if (title) setUserNumberTitle(title);
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((s: Record<string, string>) => {
+        if (s["citation-texte"]) setCitation(s["citation-texte"]);
+        if (s["citation-auteur"]) setAuthorCitation(s["citation-auteur"]);
+        if (s["citation-role"]) setRoleAuthor(s["citation-role"]);
+        if (s["user-number"]) setUserNumber(s["user-number"]);
+        if (s["user-number-title"]) setUserNumberTitle(s["user-number-title"]);
       })
       .catch(() => {});
-  }, [apiUrl]);
+  }, []);
 
   return { citation, authorCitation, roleAuthor, userNumber, userNumberTitle };
 }

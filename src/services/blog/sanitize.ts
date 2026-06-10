@@ -37,7 +37,7 @@ export const sanitizeText = (text: string) => {
 };
 
 // Variante texte brut — supprime toutes les balises, retourne du texte pur
-// Utilisé par citation.ts, team.ts, usePricing.ts
+// Utilisé par les services blog (useBlogArticles, article)
 export const sanitizePlainText = (text: string): string => {
   if (typeof window === "undefined") {
     return text.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();

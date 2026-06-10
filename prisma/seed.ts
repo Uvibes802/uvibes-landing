@@ -87,10 +87,11 @@ async function main() {
     { cle: "hero-title", label: "Titre hero (homepage)", valeur: "Activez la puissance de votre collectif." },
     { cle: "hero-subtitle", label: "Sous-titre hero (homepage)", valeur: "L'outil digital qui crée les bons échanges, au bon moment." },
     // BannerCount
-    { cle: "citation-texte", label: "Citation BannerCount", valeur: "Uvibes a transformé nos échanges internes." },
-    { cle: "citation-auteur", label: "Auteur de la citation", valeur: "Marie Dupont" },
-    { cle: "citation-role", label: "Rôle de l'auteur", valeur: "DRH — Entreprise XY" },
-    { cle: "user-number", label: "Nombre d'utilisateurs (BannerCount)", valeur: "3 500" },
+    { cle: "citation-texte", label: "Citation BannerCount", valeur: "En prenant le temps de réfléchir du point de vue d’une autre personne, nous développons notre humilité intellectuelle." },
+    { cle: "citation-auteur", label: "Auteur de la citation", valeur: "Ilios Koutsou" },
+    { cle: "citation-role", label: "Rôle de l'auteur", valeur: "Docteur en psychologie et Maître de conférences à l’Université libre de Bruxelles" },
+    { cle: "user-number", label: "Nombre d'utilisateurs (BannerCount)", valeur: "+ de 3 500 utilisateurs" },
+    { cle: "user-number-title", label: "Titre du compteur (BannerCount)", valeur: "En 2026, sur Uvibes :" },
     // Page À propos
     { cle: "uvibes-mission", label: "Mission Uvibes (page À propos)", valeur: "Uvibes est la plateforme qui transforme les collectifs en communautés vivantes, engagées et efficaces." },
     { cle: "uvibes-annee-creation", label: "Année de création", valeur: "2022" },
@@ -107,7 +108,7 @@ async function main() {
     { cle: "rdv-systeme", label: "Système de prise de RDV (custom | calendly)", valeur: "custom" },
     { cle: "rdv-calendly-url", label: "URL Calendly (si système = calendly)", valeur: "https://calendly.com/uvibescommunication/30min" },
     // Catégories équipe
-    { cle: "team-categories", label: "Catégories équipe (JSON)", valeur: JSON.stringify(["Direction", "Tech", "Commercial"]) },
+    { cle: "team-categories", label: "Catégories équipe (JSON)", valeur: JSON.stringify(["Équipe projet", "Comité d'expertise", "Architectes du code"]) },
   ];
 
   for (const c of cmsDefaults) {

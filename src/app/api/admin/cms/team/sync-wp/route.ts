@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 const SLUGS = [
-  { slug: "direction", equipe: "Direction" },
-  { slug: "tech", equipe: "Tech" },
-  { slug: "commercial", equipe: "Commercial" },
+  { slug: "equipe-projet", equipe: "Équipe projet" },
+  { slug: "comite-expertise", equipe: "Comité d'expertise" },
+  { slug: "les-architectes-du-code", equipe: "Architectes du code" },
 ];
 
 export async function POST() {

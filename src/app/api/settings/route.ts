@@ -2,7 +2,15 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // Expose uniquement les settings non-sensibles nécessaires côté client
-const PUBLIC_KEYS = ["rdv-systeme", "rdv-calendly-url"];
+const PUBLIC_KEYS = [
+  "rdv-systeme",
+  "rdv-calendly-url",
+  "citation-texte",
+  "citation-auteur",
+  "citation-role",
+  "user-number",
+  "user-number-title",
+];
 
 export async function GET() {
   const items = await prisma.cmsContent.findMany({

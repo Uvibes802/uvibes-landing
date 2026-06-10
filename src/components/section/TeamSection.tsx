@@ -16,10 +16,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 export default function TeamSection() {
+  // slug = valeur exacte de TeamMember.equipe en base (filtre /api/team)
   const tabs = [
-    { label: "Equipe projet", slug: "equipe-projet" },
-    { label: "Comité d'expertise", slug: "comite-expertise" },
-    { label: "Architectes du code", slug: "les-architectes-du-code" },
+    { label: "Équipe projet", slug: "Équipe projet" },
+    { label: "Comité d'expertise", slug: "Comité d'expertise" },
+    { label: "Architectes du code", slug: "Architectes du code" },
   ];
 
   const [activeButton, setActiveButton] = useState(tabs[0].slug);
