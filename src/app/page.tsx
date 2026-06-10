@@ -13,6 +13,7 @@ import PasseportExperience from "@/components/section/PasseportExperience";
 import VideoSection from "@/components/section/VideoSection";
 import ConversationIntro from "@/components/section/ConversationIntro";
 import { fetchPartners } from "@/services/home/fetchPartners";
+import { getFeaturedArticles } from "@/services/blog/getArticles";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const partners = await fetchPartners();
+  const featured = await getFeaturedArticles();
 
   return (
     <main>
@@ -44,7 +46,7 @@ export default async function Home() {
       <PartnerCarousel logos={partners} />
       <VideoSection />
 
-      <FeaturedArticles />
+      <FeaturedArticles articles={featured} />
 
       {/* Wrapper gradient commun — contact + footer seamless */}
       <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #D90A5C 72%, #B80048 100%)" }}>

@@ -76,6 +76,27 @@ model Quote {
   promoPercent Float?
 }
 
+// ── BLOG (articles, ex-WordPress) ──────────────────────────────
+
+model Article {
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  slug           String   @unique
+  titre          String
+  excerpt        String?
+  contenu        String   // HTML fidèle (importé de WP, éditable dans l'admin)
+  imageUrl       String?
+  categorie      String?  // slug de catégorie (ex. entreprise-article)
+  categorieLabel String?
+  auteur         String?
+  seoTitre       String?
+  seoDescription String?
+  publishedAt    DateTime
+  featured       Boolean  @default(false) // "à la une" sur la homepage
+  actif          Boolean  @default(true)
+}
+
 // ── DOCUMENTS CONTRACTUELS (éditables depuis l'admin) ──────────
 
 model LegalDocument {

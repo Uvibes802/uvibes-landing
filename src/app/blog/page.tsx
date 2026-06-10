@@ -4,6 +4,7 @@ import WaveSeparator from "@/components/shared/WaveSeparator";
 import JsonLd from "@/components/JsonLd";
 import VibrationLine from "@/components/shared/VibrationLine";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
+import { getArticles } from "@/services/blog/getArticles";
 import type { Metadata } from "next";
 import "../../styles/page/blog.css";
 
@@ -18,7 +19,9 @@ const breadcrumbJsonLd = {
   ],
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const articles = await getArticles();
+
   return (
     <>
       <JsonLd data={breadcrumbJsonLd} />
@@ -74,7 +77,7 @@ export default function BlogPage() {
       </section>
 
       <section className="blog-content">
-        <AllArticle />
+        <AllArticle articles={articles} />
       </section>
       </main>
 

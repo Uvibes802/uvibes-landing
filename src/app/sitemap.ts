@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { getAllArticleSlugs } from "@/services/blog/getArticles";
 
 // On retire un éventuel slash final pour éviter les URLs en double slash (uvibes.fr//page)
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://uvibes.fr").replace(/\/$/, "");
@@ -66,22 +67,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPosts: MetadataRoute.Sitemap = [];
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/posts?per_page=100&_fields=slug,modified`,
-      { next: { revalidate: 3600 } }
-    );
-
-    if (res.ok) {
-      const posts = await res.json();
-      blogPosts = posts.map(
-        (post: { slug: string; modified: string }) => ({
-          url: `${BASE_URL}/blog/${post.slug}`,
-          lastModified: new Date(post.modified),
-          changeFrequency: "weekly" as const,
-          priority: 0.7,
-        })
-      );
-    }
+    const articles = await getAllArticleSlugs();
+    blogPosts = articles.map((a) => ({
+      url: `${BASE_URL}/blog/${a.slug}`,
+      lastModified: a.updatedAt,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
   } catch (error) {
     console.error("Erreur lors de la récupération des articles pour le sitemap:", error);
   }

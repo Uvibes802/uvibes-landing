@@ -2,38 +2,28 @@
 
 import { sanitizeText } from "@/services/blog/sanitize";
 import "@/styles/blog/article.css";
-import type { Article } from "@/types/article/article";
+import type { PublicArticle } from "@/services/blog/getArticles";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function ArticleContent({ article }: { article: Article }) {
+export default function ArticleContent({ article }: { article: PublicArticle }) {
   const router = useRouter();
 
-  const title = sanitizeText(article.title.rendered);
-  const content = sanitizeText(article.content.rendered);
+  const title = article.titre;
+  const content = sanitizeText(article.contenu);
 
-  function parse(rendered: string): import("react").ReactNode {
-    return <div dangerouslySetInnerHTML={{ __html: rendered }} />;
-  }
-
-  const dateFormatted = article.date
-    ? new Date(article.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })
+  const dateFormatted = article.publishedAt
+    ? new Date(article.publishedAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })
     : null;
 
   return (
     <main className="article-main">
       {/* ── Hero ── */}
       <div className="article-hero">
-        {article.featured_image ? (
+        {article.imageUrl ? (
           <>
-            <Image
-              src={article.featured_image}
-              alt={title}
-              fill
-              className="article-hero-image"
-              priority
-            />
+            <Image src={article.imageUrl} alt={title} fill className="article-hero-image" priority />
             <div className="article-hero-overlay" aria-hidden="true" />
           </>
         ) : (
@@ -50,21 +40,18 @@ export default function ArticleContent({ article }: { article: Article }) {
           </button>
 
           <div className="article-hero-meta">
-            <span className="article-hero-category">Article</span>
-            {dateFormatted && (
-              <span className="article-hero-date">{dateFormatted}</span>
-            )}
+            <span className="article-hero-category">{article.categorieLabel || "Article"}</span>
+            {dateFormatted && <span className="article-hero-date">{dateFormatted}</span>}
           </div>
 
           <h1 className="article-hero-title">{title}</h1>
+          {article.auteur && <p className="article-hero-author v-mono">— {article.auteur}</p>}
         </div>
       </div>
 
       {/* ── Corps ── */}
       <article className="article-body-card">
-        <div className="article-content">
-          {parse(content)}
-        </div>
+        <div className="article-content" dangerouslySetInnerHTML={{ __html: content }} />
       </article>
 
       {/* ── Retour bas ── */}
