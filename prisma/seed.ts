@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { randomBytes } from "crypto";
 import { LEGAL_VERSION, CGV_CONTENU, DPA_CONTENU, SLA_CONTENU, PDD_CONTENU } from "./legalDocsContent";
 
 const prisma = new PrismaClient();
@@ -155,17 +156,25 @@ async function main() {
   }
 
   // ── Admin par défaut ──────────────────────────────────
-  const passwordHash = await bcrypt.hash("uvibes-admin-2026", 12);
-  await prisma.adminUser.upsert({
-    where: { email: "admin@uvibes.fr" },
-    update: {},
-    create: {
-      email: "admin@uvibes.fr",
-      passwordHash,
-      nom: "Directrice Uvibes",
-      role: "SUPER_ADMIN",
-    },
-  });
+  // Jamais de mot de passe en dur : on lit ADMIN_INITIAL_PASSWORD, sinon on génère
+  // un mot de passe aléatoire (affiché une fois). Sur une base existante, le mot de
+  // passe n'est PAS réinitialisé (update vide). Pour créer un vrai compte : scripts/create-admin.cjs
+  const existingAdmin = await prisma.adminUser.findUnique({ where: { email: "admin@uvibes.fr" } });
+  if (!existingAdmin) {
+    const initialPassword =
+      process.env.ADMIN_INITIAL_PASSWORD || randomBytes(15).toString("base64url");
+    await prisma.adminUser.create({
+      data: {
+        email: "admin@uvibes.fr",
+        passwordHash: await bcrypt.hash(initialPassword, 12),
+        nom: "Directrice Uvibes",
+        role: "SUPER_ADMIN",
+      },
+    });
+    if (!process.env.ADMIN_INITIAL_PASSWORD) {
+      console.log(`⚠️  Admin créé avec un mot de passe aléatoire : ${initialPassword} (à changer)`);
+    }
+  }
 
   // ── Disponibilités RDV ────────────────────────────────
   // Lundi à Vendredi, 9h-18h, créneaux 30 min
