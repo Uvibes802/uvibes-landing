@@ -106,6 +106,29 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
           {/* Colonne principale */}
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
 
+            {/* Documents téléchargeables */}
+            <div className="crm-detail-card">
+              <p className="crm-detail-section-title">Documents téléchargeables</p>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <a href={`/api/devis/${quote.id}/pdf`} target="_blank" className="crm-btn --outline --sm">
+                  <Download size={13} /> Devis (PDF)
+                </a>
+                <a href={`/api/admin/devis/${quote.id}/facture`} target="_blank" className="crm-btn --outline --sm">
+                  <Download size={13} /> Facture (PDF)
+                </a>
+                {statut === "SIGNE" && (
+                  <a href={`/api/devis/${quote.id}/pdf`} target="_blank" className="crm-btn --outline --sm">
+                    <Download size={13} /> Contrat (devis signé)
+                  </a>
+                )}
+              </div>
+              {statut !== "SIGNE" && (
+                <p style={{ fontSize: 12, color: "var(--crm-muted)", marginTop: 8 }}>
+                  Le contrat (devis signé avec acceptation des documents) sera disponible une fois le devis signé.
+                </p>
+              )}
+            </div>
+
             {/* Collectif */}
             <div className="crm-detail-card">
               <p className="crm-detail-section-title">Collectif</p>
