@@ -2,6 +2,7 @@
 
 import { Plus, Trash2, Edit2, ToggleLeft, ToggleRight } from "lucide-react";
 import { useState } from "react";
+import ImageUpload from "./ImageUpload";
 
 interface FieldDef {
   key: string;
@@ -151,9 +152,11 @@ export default function CrudManager({ items: initial, apiBase, fields, toggleFie
           <p className="crm-detail-section-title">{isNew ? "Ajouter" : "Modifier"}</p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             {fields.map((f) => (
-              <div key={f.key} className="crm-field-row" style={f.multiline ? { gridColumn: "1 / -1" } : {}}>
+              <div key={f.key} className="crm-field-row" style={(f.multiline || f.type === "image") ? { gridColumn: "1 / -1" } : {}}>
                 <label className="crm-field-label">{f.label}{f.required && " *"}</label>
-                {f.multiline
+                {f.type === "image"
+                  ? <ImageUpload value={form[f.key] ?? ""} onChange={(url) => setForm((p) => ({ ...p, [f.key]: url }))} />
+                  : f.multiline
                   ? <textarea className="crm-field-textarea" value={form[f.key] ?? ""} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} />
                   : <input className="crm-field-input" value={form[f.key] ?? ""} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} />
                 }

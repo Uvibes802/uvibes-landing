@@ -2,6 +2,7 @@
 
 import { Plus, Trash2, Edit2, ToggleLeft, ToggleRight, Pencil, Check } from "lucide-react";
 import { useState } from "react";
+import ImageUpload from "./ImageUpload";
 
 interface Member { id: string; nom: string; poste: string; equipe: string; photoUrl?: string | null; actif: boolean; ordre: number; }
 
@@ -199,13 +200,16 @@ export default function EquipeManager({ members: initMembers, categories: initCa
                 {[
                   { key: "nom", label: "Nom *" },
                   { key: "poste", label: "Poste *" },
-                  { key: "photoUrl", label: "URL photo" },
                 ].map(({ key, label }) => (
                   <div key={key} className="crm-field-row">
                     <label className="crm-field-label">{label}</label>
                     <input className="crm-field-input" value={(form as Record<string, string>)[key] ?? ""} onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))} />
                   </div>
                 ))}
+                <div className="crm-field-row" style={{ gridColumn: "1 / -1" }}>
+                  <label className="crm-field-label">Photo</label>
+                  <ImageUpload value={form.photoUrl ?? ""} onChange={(url) => setForm((f) => ({ ...f, photoUrl: url }))} />
+                </div>
                 <div className="crm-field-row">
                   <label className="crm-field-label">Équipe</label>
                   <select className="crm-field-select" value={form.equipe ?? cat} onChange={(e) => setForm((f) => ({ ...f, equipe: e.target.value }))}>
