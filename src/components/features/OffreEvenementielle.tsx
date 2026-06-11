@@ -1,22 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import "@/styles/features/offreEvenementielle.css";
 
-const INCLUSIONS = [
-  { label: "Jusqu'à 500 vibes", detail: "expériences interactives pour mobiliser votre collectif" },
-  { label: "1 session thématique", detail: "sur le sujet de votre choix, personnalisée pour votre public" },
-  { label: "3 campagnes de sondages", detail: "3 sondages personnalisés chacune, pour recueillir ce qui compte" },
-  { label: "1 infographie clé en main", detail: "tout ce qu'il faut pour faciliter l'inscription de vos membres" },
-  { label: "2 indicateurs d'usage", detail: "pour suivre l'engagement de votre communauté", bonus: true },
-];
+interface Point { label: string; detail: string; bonus?: boolean }
+
+// Valeurs par défaut — surchargées par les réglages éditables en admin (clés oe-*).
+const DEFAULTS = {
+  titre: "Faites vivre Uvibes à votre collectif",
+  prixAccent: "dès 480 €/mois",
+  subtitle: "Le moyen le plus simple de tester Uvibes : un mois complet pour mobiliser votre collectif et mesurer l'impact, avant tout engagement annuel.",
+  prix: "480 €",
+  prixNote: "sans engagement annuel",
+  points: [
+    { label: "Jusqu'à 500 vibes", detail: "expériences interactives pour mobiliser votre collectif" },
+    { label: "1 session thématique", detail: "sur le sujet de votre choix, personnalisée pour votre public" },
+    { label: "3 campagnes de sondages", detail: "3 sondages personnalisés chacune, pour recueillir ce qui compte" },
+    { label: "1 infographie clé en main", detail: "tout ce qu'il faut pour faciliter l'inscription de vos membres" },
+    { label: "2 indicateurs d'usage", detail: "pour suivre l'engagement de votre communauté", bonus: true },
+  ] as Point[],
+};
+
+// "label | détail | bonus" (1 par ligne) → tableau de points
+function parsePoints(raw: string): Point[] {
+  return raw.split("\n").map((l) => l.trim()).filter(Boolean).map((line) => {
+    const [label = "", detail = "", flag = ""] = line.split("|").map((s) => s.trim());
+    return { label, detail, bonus: flag.toLowerCase() === "bonus" };
+  });
+}
 
 export default function OffreEvenementielle() {
   const [ref, vis] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.08 });
   const [open, setOpen] = useState(false);
+  const [c, setC] = useState(DEFAULTS);
+
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((s) => {
+        setC({
+          titre: s["oe-titre"] || DEFAULTS.titre,
+          prixAccent: s["oe-prix-accent"] || DEFAULTS.prixAccent,
+          subtitle: s["oe-subtitle"] || DEFAULTS.subtitle,
+          prix: s["oe-prix"] || DEFAULTS.prix,
+          prixNote: s["oe-prix-note"] || DEFAULTS.prixNote,
+          points: s["oe-points"] ? parsePoints(s["oe-points"]) : DEFAULTS.points,
+        });
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div
@@ -32,8 +67,8 @@ export default function OffreEvenementielle() {
         <button className="oe-bar" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
           <span className="oe-eyebrow-pill">Offre découverte · 30 jours</span>
           <span className="oe-bar-title v-prompt">
-            Faites vivre Uvibes à votre collectif{" "}
-            <span className="oe-title-accent v-serif">dès 480 €/mois</span>
+            {c.titre}{" "}
+            <span className="oe-title-accent v-serif">{c.prixAccent}</span>
           </span>
           <span className="oe-bar-arrow" aria-hidden="true">
             <ChevronDown size={20} />
@@ -43,21 +78,18 @@ export default function OffreEvenementielle() {
         {/* Contenu repliable */}
         <div className="oe-reveal">
           <div className="oe-reveal-inner">
-            <p className="oe-subtitle">
-              Le moyen le plus simple de tester Uvibes&nbsp;: un mois complet pour mobiliser
-              votre collectif et mesurer l&apos;impact, avant tout engagement annuel.
-            </p>
+            <p className="oe-subtitle">{c.subtitle}</p>
 
             {/* Prix */}
             <div className="oe-price">
-              <span className="oe-price-value v-prompt">480&nbsp;€</span>
+              <span className="oe-price-value v-prompt">{c.prix}</span>
               <span className="oe-price-unit">/ mois</span>
-              <span className="oe-price-note">sans engagement annuel</span>
+              <span className="oe-price-note">{c.prixNote}</span>
             </div>
 
             {/* Ce qui est inclus — points simples */}
             <ul className="oe-points">
-              {INCLUSIONS.map((item) => (
+              {c.points.map((item) => (
                 <li key={item.label} className={`oe-point${item.bonus ? " oe-point--bonus" : ""}`}>
                   <span className="oe-point-check" aria-hidden="true">
                     <Check size={14} strokeWidth={2.8} />

@@ -122,6 +122,19 @@ async function main() {
     { cle: "rdv-calendly-url", label: "URL Calendly (si système = calendly)", valeur: "https://calendly.com/uvibescommunication/30min" },
     // Catégories équipe
     { cle: "team-categories", label: "Catégories équipe (JSON)", valeur: JSON.stringify(["Équipe projet", "Comité d'expertise", "Architectes du code"]) },
+    // Offre découverte (4ème offre) — éditable
+    { cle: "oe-titre", label: "4ème offre — titre de la barre", valeur: "Faites vivre Uvibes à votre collectif" },
+    { cle: "oe-prix-accent", label: "4ème offre — accroche prix (barre)", valeur: "dès 480 €/mois" },
+    { cle: "oe-subtitle", label: "4ème offre — sous-titre", valeur: "Le moyen le plus simple de tester Uvibes : un mois complet pour mobiliser votre collectif et mesurer l'impact, avant tout engagement annuel." },
+    { cle: "oe-prix", label: "4ème offre — prix affiché", valeur: "480 €" },
+    { cle: "oe-prix-note", label: "4ème offre — mention sous le prix", valeur: "sans engagement annuel" },
+    { cle: "oe-points", label: "4ème offre — points inclus (1 par ligne : label | détail | bonus)", valeur: [
+      "Jusqu'à 500 vibes | expériences interactives pour mobiliser votre collectif",
+      "1 session thématique | sur le sujet de votre choix, personnalisée pour votre public",
+      "3 campagnes de sondages | 3 sondages personnalisés chacune, pour recueillir ce qui compte",
+      "1 infographie clé en main | tout ce qu'il faut pour faciliter l'inscription de vos membres",
+      "2 indicateurs d'usage | pour suivre l'engagement de votre communauté | bonus",
+    ].join("\n") },
   ];
 
   for (const c of cmsDefaults) {

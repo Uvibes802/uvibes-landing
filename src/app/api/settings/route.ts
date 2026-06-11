@@ -10,6 +10,13 @@ const PUBLIC_KEYS = [
   "citation-role",
   "user-number",
   "user-number-title",
+  // Offre découverte (4ème offre) — éditable depuis l'admin
+  "oe-titre",
+  "oe-prix-accent",
+  "oe-subtitle",
+  "oe-prix",
+  "oe-prix-note",
+  "oe-points",
 ];
 
 export async function GET() {

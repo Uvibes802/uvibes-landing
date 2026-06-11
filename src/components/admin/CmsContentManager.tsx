@@ -100,12 +100,21 @@ export default function CmsContentManager({ items }: { items: Item[] }) {
                 {item.label}
                 <div className="crm-cms-item-cle">{item.cle}</div>
               </div>
-              <input
-                className="crm-field-input"
-                style={{ flex: 1 }}
-                value={values[item.cle] ?? ""}
-                onChange={(e) => setValues((v) => ({ ...v, [item.cle]: e.target.value }))}
-              />
+              {((values[item.cle] ?? "").length > 60 || (values[item.cle] ?? "").includes("\n")) ? (
+                <textarea
+                  className="crm-field-input"
+                  style={{ flex: 1, minHeight: 90, resize: "vertical", fontFamily: "inherit", lineHeight: 1.5 }}
+                  value={values[item.cle] ?? ""}
+                  onChange={(e) => setValues((v) => ({ ...v, [item.cle]: e.target.value }))}
+                />
+              ) : (
+                <input
+                  className="crm-field-input"
+                  style={{ flex: 1 }}
+                  value={values[item.cle] ?? ""}
+                  onChange={(e) => setValues((v) => ({ ...v, [item.cle]: e.target.value }))}
+                />
+              )}
               <button
                 className="crm-cms-save-btn"
                 onClick={() => save(item.cle)}
