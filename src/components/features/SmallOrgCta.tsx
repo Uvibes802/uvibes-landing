@@ -26,9 +26,9 @@ export default function SmallOrgCta() {
           </h2>
 
           <p className="soc-text">
-            Nos offres ne correspondent pas tout à fait à votre taille ou à vos moyens&nbsp;?
-            On construit ensemble une formule adaptée à votre réalité. Pas de script de vente —
-            juste une vraie conversation pour trouver ce qui vous convient.
+            Association, petit collectif ou budget limité&nbsp;? Nos formules standard ne sont pas une fin en soi.
+            Uvibes est porté par une association à but non lucratif&nbsp;: notre priorité, c&apos;est votre lien social,
+            pas la taille du contrat. On construit ensemble une formule à votre échelle.
           </p>
 
           <div className="soc-ctas">
