@@ -246,11 +246,6 @@ export default function PasseportExperience() {
                   <p className="pp-card-category">{p.category}</p>
                   <h3 className="pp-card-title" style={{ color: accent }}>{p.title}</h3>
                   <p className="pp-card-tagline">{p.tagline}</p>
-                  <div className="pp-card-keywords">
-                    {p.keywords.map((kw) => (
-                      <span key={kw} className="pp-card-kw">{kw}</span>
-                    ))}
-                  </div>
                 </div>
                 <div className="pp-card-header-right">
                   <div className="pp-card-toggle" aria-hidden="true" />

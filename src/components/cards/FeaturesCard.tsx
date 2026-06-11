@@ -13,9 +13,9 @@ const FEATURES = [
     accent: "orange" as const,
     title: "Un voyage conversationnel",
     points: [
-      "Des échanges vidéo one-to-one, guidés par des questions adaptées à chaque thématique.",
-      "200+ sujets prêts à l'emploi — ou les vôtres, en quelques clics.",
-      "Des rencontres courtes, de 6 à 20 minutes, qui s'intègrent dans la journée.",
+      "Des échanges vidéo one-to-one, guidés par des questions.",
+      "Sur un nombre infini de sujets.",
+      "Sur un temps court, de 6 à 10 minutes.",
     ],
   },
   {
@@ -24,9 +24,9 @@ const FEATURES = [
     accent: "rose" as const,
     title: "Une connaissance approfondie de votre organisation",
     points: [
-      "Des tableaux de bord en temps réel : satisfaction, bien-être, engagement.",
-      "La perception des initiatives collectives, mesurée à la source.",
-      "Les attentes et besoins non exprimés, enfin rendus visibles.",
+      "Un éclairage nouveau sur les dynamiques individuelles et collectives.",
+      "La possibilité de recueillir régulièrement des avis sur les sujets de votre choix.",
+      "L'émergence de nouvelles réflexions et propositions.",
     ],
   },
   {
@@ -35,9 +35,9 @@ const FEATURES = [
     accent: "orange" as const,
     title: "Un parcours d'entraînement aux compétences relationnelles",
     points: [
-      "Un premier espace d'entraînement aux compétences interpersonnelles.",
-      "Des échanges bienveillants qui renforcent la confiance en soi.",
-      "Une habitude qui se cultive, échange après échange.",
+      "Une cité des savoirs incluant vidéos, podcasts et articles.",
+      "Plus de 5h d'entraînement en autonomie.",
+      "Avec une attestation à la fin.",
     ],
   },
 ];
@@ -130,11 +130,11 @@ export function FeaturesCard() {
           Fonctionnalités
         </span>
         <h2 className="fc-intro-title v-prompt">
-          Ce qu&apos;Uvibes change,{" "}
+          Ce que Uvibes change,{" "}
           <span className="fc-intro-serif v-serif">concrètement.</span>
         </h2>
         <p className="fc-intro-sub">
-          Trois regards sur une même expérience — pour votre collectif, pour vous, pour chacun.
+          Trois regards sur une même expérience : pour votre collectif, pour vous, pour chacun.
         </p>
       </div>
 

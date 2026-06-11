@@ -71,10 +71,20 @@
 
 .fa-eyebrow {
   margin: 0 0 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-size: 11px;
   letter-spacing: 0.2em;
   color: var(--orange);
   text-transform: uppercase;
+}
+.fa-eyebrow-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  flex-shrink: 0;
 }
 
 .fa-title {

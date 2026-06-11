@@ -46,8 +46,8 @@ export default function SolutionSoftSkills() {
             les <span className="sss-title-accent v-serif">soft skills.</span>
           </h2>
           <p className="sss-subtitle">
-            Au-delà des rencontres, Uvibes devient un vrai parcours&nbsp;: on apprend,
-            on s&apos;entraîne, et on repart avec une reconnaissance concrète.
+            Au-delà des rencontres, Uvibes devient un vrai parcours&nbsp;:<br />
+            on apprend, on s&apos;entraîne, et on repart avec une reconnaissance concrète.
           </p>
         </header>
 

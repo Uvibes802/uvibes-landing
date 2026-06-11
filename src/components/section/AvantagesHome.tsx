@@ -50,9 +50,9 @@ export default function AvantagesHome({ showCta = true }: { showCta?: boolean })
   return (
     <section className="avantages-home-section">
       <div className="avantages-home-header">
-        <h2 className="title-h2-orange">Ce qu&apos;Uvibes apporte à votre organisation</h2>
+        <h2 className="title-h2-orange">Ce que Uvibes apporte à votre organisation</h2>
         <p className="avantages-home-subtitle">
-          Des résultats concrets, mesurés — quel que soit votre collectif.
+          Des résultats concrets, mesurés, quel que soit votre collectif.
         </p>
       </div>
 
