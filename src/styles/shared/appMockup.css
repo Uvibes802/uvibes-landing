@@ -73,6 +73,20 @@
   50%       { transform: translateY(-10px); }
 }
 
+/* Flottement des chips — chaque keyframe préserve le transform de base de la chip */
+@keyframes apm-float-left {
+  0%, 100% { transform: translateY(-50%); }
+  50%       { transform: translateY(calc(-50% - 9px)); }
+}
+@keyframes apm-float-tr {
+  0%, 100% { transform: rotate(3deg) translateY(0); }
+  50%       { transform: rotate(3deg) translateY(-8px); }
+}
+@keyframes apm-float-br {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50%       { transform: rotate(-2deg) translateY(-7px); }
+}
+
 /* Couche 4 — Chips */
 .apm-chip {
   position: absolute;
@@ -97,6 +111,7 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  animation: apm-float-left 6s ease-in-out infinite;
 }
 
 .apm-chip-dot {
@@ -124,6 +139,8 @@
   top: 10%;
   transform: rotate(3deg);
   background: linear-gradient(135deg, var(--orange), var(--rose));
+  animation: apm-float-tr 7s ease-in-out infinite;
+  animation-delay: 0.8s;
 }
 
 .apm-chip-vibes {
@@ -142,11 +159,13 @@
 
 /* Chip bas-droite — question */
 .apm-chip--bottom-right {
-  right: 2%;
-  bottom: 12%;
+  right: 7%;
+  bottom: 14%;
   transform: rotate(-2deg);
   max-width: 190px;
   white-space: normal;
+  animation: apm-float-br 6.5s ease-in-out infinite;
+  animation-delay: 1.4s;
 }
 
 .apm-chip-live {
@@ -169,6 +188,7 @@
 .apm-wrap.--no-motion .apm-halo,
 .apm-wrap.--no-motion .apm-ring,
 .apm-wrap.--no-motion .apm-img-wrap,
+.apm-wrap.--no-motion .apm-chip,
 .apm-wrap.--no-motion .apm-chip-dot {
   animation: none;
 }
