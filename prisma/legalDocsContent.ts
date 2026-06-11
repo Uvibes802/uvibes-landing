@@ -414,6 +414,307 @@ Le fait pour l'une des Parties de ne pas se prévaloir, à un moment donné, de 
 
 Les Parties conviennent que toute notification, mise en demeure ou communication relative au contrat sera valablement adressée aux coordonnées indiquées dans le devis ou communiquées ultérieurement par écrit. Sauf stipulation contraire, elle sera réputée reçue à la date de sa première présentation ou de sa réception effective, y compris en cas de refus de réception ou de non-retrait.`;
 
+// ── CGV de l'offre découverte / essai 30 jours (version « 30 mai 2026 ») ──
+// Diffère des CGV des offres : préavis court (8 jours), régularisation 5 jours,
+// et au titre du RGPD le Prestataire agit en RESPONSABLE DE TRAITEMENT (sans DPA).
+export const CGV_ESSAI_CONTENU = `## 1. Objet et champ d'application
+
+Les présentes Conditions Générales de Vente (ci-après les « CGV ») définissent les conditions dans lesquelles l'Association Éclat'ENS (ci-après le « Prestataire ») fournit à ses clients professionnels (ci-après le « Client ») une solution numérique destinée à favoriser les interactions encadrées au sein de leurs collectifs, dans le cadre de l'offre découverte (essai de 30 jours).
+
+Les caractéristiques, fonctionnalités, modalités d'utilisation et éventuelles options du Service sont décrites dans le devis ainsi que dans la documentation commerciale associée.
+
+Toute commande ou souscription au Service est régie par les présentes CGV et emporte leur acceptation pleine et entière par le Client, sauf stipulation contraire expressément convenue entre les Parties dans le devis ou les conditions particulières applicables.
+
+## 2. Description du Service
+
+Le Prestataire propose une solution numérique permettant notamment :
+
+- la mise en place d'interactions encadrées entre utilisateurs désignés par le Client,
+- l'accès à des sondages et outils participatifs,
+- l'accès à des ressources partagées et outils de pilotage.
+
+Le Client est seul responsable de la désignation des utilisateurs autorisés, des modalités d'activation du Service et de son paramétrage interne.
+
+Les caractéristiques détaillées du Service sont susceptibles d'évoluer, sous réserve que ces évolutions ne portent pas atteinte aux fonctionnalités essentielles du Service souscrit.
+
+## 3. Commande et activation du Service
+
+Le Service est fourni à la suite de la signature d'un devis ou de toute commande validée par le Client.
+
+Le Service est réputé activé à compter de sa mise à disposition technique par le Prestataire, notamment par la transmission des accès permettant son utilisation.
+
+Sauf contestation écrite dans un délai raisonnable suivant notification, l'activation est réputée acceptée par le Client.
+
+## 4. Durée – renouvellement – résiliation
+
+### 4.1 Durée initiale
+Le contrat est conclu pour la durée indiquée dans le devis ou les conditions particulières applicables.
+
+### 4.2 Renouvellement par tacite reconduction
+Sauf stipulation contraire figurant au devis ou aux conditions particulières, le contrat est renouvelé par tacite reconduction pour des périodes successives de même durée que la période initiale.
+
+Chaque Partie peut mettre fin au contrat à son échéance en notifiant sa décision à l'autre Partie par écrit dans le respect du délai de préavis indiqué au devis ou, à défaut, moyennant un préavis de huit (8) jours avant l'échéance concernée.
+
+À défaut de notification dans ce délai, le contrat est renouvelé conformément aux dispositions ci-dessus.
+
+### 4.4 Résiliation pour manquement
+En cas de manquement d'une Partie à ses obligations contractuelles, non réparé dans un délai de huit (8) jours calendaires à compter de la réception d'une mise en demeure adressée par lettre recommandée ou tout moyen écrit permettant d'en établir la réception, l'autre Partie pourra résilier le contrat.
+
+### 4.5 Suspension ou résiliation par le Prestataire
+Sans préjudice de l'article 4.4, le Prestataire pourra suspendre tout ou partie de l'accès au Service et/ou résilier le contrat de plein droit dans les cas suivants :
+
+- non-paiement total ou partiel des sommes dues par le Client ;
+- utilisation du Service en violation des présentes CGV ou de la réglementation applicable ;
+- utilisation susceptible de compromettre la sécurité, l'intégrité ou le bon fonctionnement du Service ;
+- obligation légale, réglementaire ou administrative imposant une telle mesure.
+
+En cas de manquement du Client pouvant être régularisé, le Prestataire en informera préalablement le Client et lui accordera un délai de régularisation d'au moins cinq (5) jours, sauf urgence ou impossibilité.
+
+Par exception, toute mesure de suspension ou de résiliation pourra intervenir sans préavis, par notification écrite, en cas d'urgence, de risque pour la sécurité du Service ou d'obligation légale impérative.
+
+### 4.6 Effets de la résiliation
+La résiliation du contrat, pour quelque cause que ce soit, entraîne la cessation du droit d'accès et d'utilisation du Service à compter de sa date d'effet.
+
+Les droits et obligations nés antérieurement à la date de résiliation survivent à celle-ci.
+
+Les sommes facturées ou échues antérieurement à la date de résiliation demeurent intégralement dues.
+
+Lorsque la résiliation intervient du fait du Client ou en raison d'un manquement qui lui est imputable, notamment dans les cas prévus aux articles 4.4 et 4.5, le Client demeure tenu au paiement de l'ensemble des sommes dues au titre de la période d'engagement en cours, jusqu'à son terme initialement convenu.
+
+À titre exceptionnel, en cas de manquement avéré du Prestataire ayant directement privé le Client de l'accès au Service dans son ensemble, les sommes correspondant aux prestations non exécutées et déjà facturées peuvent faire l'objet d'un remboursement prorata temporis, calculé sur la base des montants hors taxes effectivement payés.
+
+Sauf disposition légale impérative contraire, la résiliation n'ouvre droit à aucun autre remboursement ni indemnité au profit du Client.
+
+## 5. Prix et conditions financières
+
+### 5.1 Prix
+Les prix applicables sont ceux figurant dans le devis accepté par le Client. Ils sont exprimés en euros hors taxes. Les taxes applicables sont celles en vigueur au jour de la facturation.
+
+### 5.2 Dépassement des volumes ou seuils d'utilisation
+Lorsque l'offre souscrite inclut des volumes, seuils ou limitations d'utilisation, tout dépassement constaté pourra donner lieu à une facturation complémentaire, selon les conditions prévues au devis ou, à défaut, selon la grille tarifaire en vigueur au moment du dépassement.
+
+Le Client s'engage à informer le Prestataire de toute évolution significative de son usage susceptible d'avoir un impact sur la tarification applicable.
+
+### 5.3 Remises et conditions commerciales particulières
+Toute remise, réduction ou condition tarifaire particulière consentie au Client l'est à titre exceptionnel et pour la seule durée expressément prévue au devis. Elle ne constitue en aucun cas un droit acquis et ne saurait être reconduite automatiquement.
+
+### 5.4 Facturation et conditions de paiement
+Les abonnements sont facturés selon les modalités définies dans le devis et, sauf stipulation contraire, payables d'avance pour chaque période contractuelle. En cas de renouvellement, qu'il soit exprès ou tacite, le prix correspondant à la nouvelle période est exigible dès le début de celle-ci.
+
+### 5.5 Retard de paiement
+Tout retard de paiement entraîne de plein droit, sans mise en demeure préalable :
+
+- l'application de pénalités de retard calculées au taux égal à trois (3) fois le taux de l'intérêt légal en vigueur ;
+- l'exigibilité immédiate de l'ensemble des sommes restant dues au titre du contrat ;
+- la suspension et/ou la résiliation de l'accès au Service dans les conditions prévues à l'article 4 des présentes CGV.
+
+Ces pénalités sont exigibles dès le lendemain de la date d'échéance figurant sur la facture.
+
+### 5.6 Suspension pour non-paiement
+En cas de non-paiement total ou partiel à échéance, le Prestataire se réserve le droit de suspendre l'accès au Service jusqu'à régularisation complète des sommes dues, sans préjudice de ses autres droits et actions.
+
+### 5.7 Frais de recouvrement
+Le Client est redevable de plein droit de l'indemnité forfaitaire pour frais de recouvrement de 40 euros prévue par l'article D.441-5 du Code de commerce, sans préjudice du droit pour le Prestataire de réclamer une indemnisation complémentaire lorsque les frais réellement exposés sont supérieurs à ce montant.
+
+### 5.8 Révision des prix
+Les prix sont susceptibles d'être révisés à chaque date de renouvellement du contrat. Cette révision pourra notamment être fondée sur l'évolution de l'indice SYNTEC ou de tout indice de substitution. En cas d'évolution négative de l'indice, le prix applicable restera au minimum égal à celui de la période contractuelle précédente.
+
+## 6. Responsabilité et utilisation du Service
+
+### 6.1 Responsabilité du Client
+Le Client est seul responsable de l'utilisation du Service au sein de son organisation, notamment de la gestion des accès utilisateurs, de la configuration des paramètres, et du contrôle des utilisateurs autorisés.
+
+Le Client s'engage à veiller à ce que les utilisateurs respectent les présentes CGV, les conditions générales d'utilisation qu'ils auront acceptées individuellement lors de leur inscription, ainsi que l'ensemble des lois et réglementations applicables.
+
+### 6.2 Contenus et usages
+Le Client demeure seul responsable des contenus, informations et paramétrages configurés par le Prestataire sur la base des instructions, choix et demandes qu'il a exprimés, oralement ou par écrit. Il garantit que leur utilisation est conforme à la réglementation applicable et aux droits des tiers.
+
+### 6.3 Rôle du Prestataire
+Le Prestataire fournit une solution logicielle et un service d'hébergement technique. À ce titre, il n'intervient pas dans les usages réalisés par le Client ou ses utilisateurs finaux et ne peut être tenu responsable des dommages résultant de ces usages.
+
+### 6.4 Limitation
+Le Prestataire ne pourra être tenu responsable des dommages résultant :
+
+- d'une mauvaise utilisation du Service ;
+- d'une configuration décidée par le Client ;
+- d'un accès non autorisé imputable au Client ;
+- ou plus généralement de toute utilisation du Service non conforme aux présentes CGV.
+
+## 7. Engagements du Prestataire
+
+### 7.1 Accès et fonctionnement du Service
+Le Prestataire met en œuvre les moyens nécessaires au bon fonctionnement, à l'accès et à l'utilisation du Service, conformément aux standards de l'état de l'art applicables aux services numériques. Il est tenu à une obligation de moyens concernant la disponibilité, l'accès, la performance et la continuité du Service.
+
+### 7.2 Sécurité du Service et des données
+Le Prestataire met en œuvre des mesures techniques et organisationnelles appropriées afin d'assurer la sécurité du Service ainsi que la protection des données personnelles traitées dans le cadre de son utilisation.
+
+### 7.3 Accès aux données personnelles
+Le Prestataire n'accède aux données personnelles traitées dans le cadre du Service que dans la mesure strictement nécessaire à l'exécution, à la maintenance et à l'amélioration du Service. Il s'interdit de les céder ou de les communiquer à des tiers non autorisés, sauf obligation légale ou instruction écrite du Client.
+
+### 7.4 Confidentialité des informations du Client
+Le Prestataire s'engage à conserver strictement confidentielles toutes les informations non publiques ou stratégiques du Client dont il pourrait avoir connaissance dans le cadre de l'exécution du Service. Ces informations ne peuvent être utilisées que pour les stricts besoins de l'exécution du Service et ne peuvent être divulguées à des tiers sans autorisation préalable du Client, sauf obligation légale.
+
+## 8. Engagements du Client
+
+### 8.1 Respect du contrat
+Le Client s'engage à respecter les présentes CGV ainsi que les conditions définies dans le devis ou les conditions particulières applicables.
+
+### 8.2 Paiement
+Le Client est responsable du paiement des sommes dues dans les délais convenus. Tout retard de paiement entraîne l'application des dispositions prévues aux présentes CGV.
+
+### 8.3 Confidentialité
+Le Client s'engage à assurer la confidentialité des informations non publiques auxquelles il a accès dans le cadre de l'exécution du Service. Il s'interdit toute divulgation, reproduction ou exploitation non autorisée de ces informations sans accord écrit préalable du Prestataire ou obligation légale.
+
+### 8.4 Résiliation pour manquement
+Le non-respect par le Client de ses obligations contractuelles est susceptible d'entraîner l'application des dispositions prévues à l'article 4 des présentes CGV. En outre, le Prestataire pourra solliciter des dommages et intérêts correspondant au préjudice subi.
+
+## 9. Frais de déplacement
+
+Les frais de déplacement engagés par le Prestataire dans le cadre de l'exécution des prestations peuvent être refacturés au Client lorsqu'ils sont nécessaires et justifiés. Ces frais incluent notamment les frais de transport, d'hébergement et de restauration. Sur demande du Client, le Prestataire pourra fournir les justificatifs correspondants.
+
+## 10. Communication entre les parties
+
+Les parties peuvent être amenées à communiquer sur leur relation contractuelle dans le cadre de leurs activités respectives. Toute communication portant sur des informations non publiques ou confidentielles devra faire l'objet d'un accord préalable de l'autre partie, sauf obligation légale ou réglementaire.
+
+## 11. Références commerciales et usage des marques
+
+Sauf accord écrit préalable contraire, le Prestataire est autorisé à mentionner le nom du Client à titre de référence commerciale, notamment dans ses supports de communication institutionnels ou commerciaux.
+
+Le Client s'engage à faire référence au Service sous sa dénomination commerciale « Uvibes », correspondant à son identité exclusive. Toute utilisation de la dénomination « Éclat'Ens » à des fins de communication, de promotion ou de présentation du Service est interdite, sauf obligation légale ou accord écrit préalable du Prestataire.
+
+## 12. Confidentialité
+
+### 12.1 Définition et principe
+Dans le cadre de l'exécution du présent contrat, chaque Partie peut être amenée à avoir connaissance d'informations, documents, données ou éléments de toute nature, notamment techniques, commerciaux, financiers ou organisationnels, appartenant à l'autre Partie (ci-après les « Informations Confidentielles »).
+
+Chaque Partie s'engage à préserver la confidentialité des Informations Confidentielles auxquelles elle a accès et à ne pas les divulguer à des tiers, sauf autorisation écrite préalable de l'autre Partie ou obligation légale ou réglementaire.
+
+### 12.2 Articulation avec la communication entre les Parties
+Les Parties peuvent communiquer publiquement sur l'existence et la nature de leur relation contractuelle, sous réserve de ne divulguer aucune Information Confidentielle.
+
+### 12.3 Mesures de protection
+Chaque Partie s'engage à mettre en œuvre toutes les mesures techniques et organisationnelles raisonnables afin d'assurer la sécurité, l'intégrité et la confidentialité des Informations Confidentielles, et notamment à les protéger contre toute perte, altération, divulgation ou accès non autorisé.
+
+### 12.4 Accès limité aux Informations Confidentielles
+L'accès aux Informations Confidentielles est strictement limité aux membres du personnel, prestataires, sous-traitants ou fournisseurs de chaque Partie ayant besoin d'en connaître pour les seuls besoins de l'exécution du contrat. Chaque Partie demeure responsable des manquements commis par ces personnes à leurs obligations de confidentialité.
+
+### 12.5 Durée des obligations
+Les obligations de confidentialité s'appliquent pendant toute la durée du contrat et demeurent en vigueur pendant une durée de cinq (5) ans à compter de son expiration ou de sa résiliation. Les obligations relatives aux Informations Confidentielles présentant un caractère stratégique, technique, commercial ou constituant un savoir-faire survivent sans limitation de durée.
+
+### 12.6 Restitution ou destruction des informations
+À l'expiration ou à la résiliation du contrat, chaque Partie s'engage, sur demande de l'autre Partie, à restituer ou détruire l'ensemble des Informations Confidentielles en sa possession, y compris leurs copies. Sur demande écrite, une attestation de destruction pourra être fournie.
+
+## 13. Propriété intellectuelle
+
+Le Prestataire est titulaire ou dispose des droits nécessaires sur l'ensemble des éléments composant le Service, notamment ses logiciels, interfaces, contenus, marques, bases de données, développements, savoir-faire et plus généralement tous les éléments protégés par un droit de propriété intellectuelle.
+
+L'utilisation du Service par le Client n'emporte aucun transfert, ni aucune cession de droits de propriété intellectuelle sur le Service ou l'un quelconque de ses éléments.
+
+Le Client bénéficie uniquement d'un droit d'utilisation du Service, personnel, non exclusif, non transférable et limité à la durée du contrat, pour les seuls besoins de son activité interne et conformément à sa destination.
+
+Il est strictement interdit au Client de :
+
+- reproduire, copier ou représenter tout ou partie du Service en dehors de son usage autorisé,
+- modifier, adapter, traduire ou créer des œuvres dérivées du Service,
+- procéder à toute opération de décompilation, désassemblage ou ingénierie inverse,
+- céder, louer, sous-licencier ou transférer le Service à un tiers, à titre gratuit ou onéreux,
+- utiliser le Service à des fins autres que celles prévues dans les présentes CGV.
+
+## 14. Protection des données personnelles
+
+### 14.1 Qualité des Parties
+Dans le cadre de la fourniture du Service, le Prestataire agit en qualité de responsable de traitement au sens du Règlement (UE) 2016/679 du 27 avril 2016 (RGPD) pour les traitements de données personnelles nécessaires à l'organisation, à l'exploitation et au fonctionnement du Service.
+
+Le Client agit en qualité d'utilisateur professionnel du Service et s'engage à n'utiliser celui-ci que dans le respect de la réglementation applicable.
+
+### 14.2 Traitements réalisés
+Le Prestataire traite les données personnelles nécessaires à la création et à la gestion des comptes utilisateurs, à l'organisation des expériences proposées via le Service, à la mise en relation des participants, à la gestion des accès, au support, à la sécurité du Service ainsi qu'à son amélioration.
+
+Les catégories de données traitées, les finalités poursuivies, les durées de conservation ainsi que les modalités d'exercice des droits des personnes concernées sont détaillées dans la Politique de confidentialité du Prestataire, accessible à tout moment sur simple demande.
+
+### 14.3 Obligations du Prestataire
+Le Prestataire s'engage à traiter les données personnelles conformément à la réglementation applicable. Il met en œuvre des mesures techniques et organisationnelles appropriées afin de garantir un niveau de sécurité adapté aux risques présentés par les traitements réalisés dans le cadre du Service, et veille à ce que les personnes autorisées à accéder aux données personnelles soient soumises à une obligation de confidentialité appropriée.
+
+### 14.4 Exercice des droits des personnes concernées
+Le Prestataire assure la gestion des demandes d'exercice des droits des personnes concernées conformément aux dispositions du RGPD. Toute demande relative à l'accès, la rectification, l'effacement, la limitation, la portabilité ou l'opposition au traitement peut être adressée aux coordonnées indiquées dans la Politique de confidentialité.
+
+### 14.5 Sous-traitants
+Le Prestataire peut recourir à des sous-traitants pour les besoins de l'hébergement, de la maintenance, de la sécurité, de la communication ou de l'exploitation du Service. Le Prestataire sélectionne des sous-traitants présentant des garanties suffisantes en matière de sécurité et de protection des données personnelles.
+
+### 14.6 Transferts de données
+Lorsque des données personnelles sont transférées en dehors de l'Espace économique européen, le Prestataire met en œuvre les garanties appropriées prévues par la réglementation applicable, notamment les clauses contractuelles types adoptées par la Commission européenne.
+
+### 14.7 Coopération du Client
+Le Client s'engage à coopérer de bonne foi avec le Prestataire lorsqu'une telle coopération est nécessaire au respect des obligations légales applicables à la protection des données personnelles, notamment en transmettant toute information utile lorsqu'une demande d'exercice de droits ou une réclamation concerne des données collectées dans le cadre de l'utilisation du Service.
+
+### 14.8 Évolution du dispositif de conformité
+Le Prestataire peut faire évoluer sa documentation relative à la protection des données personnelles, ses procédures internes ainsi que ses mesures de sécurité afin de tenir compte des évolutions réglementaires, techniques ou organisationnelles, sous réserve de maintenir un niveau de protection des données conforme à la réglementation applicable.
+
+## 15. Responsabilité
+
+Chaque Partie est responsable des dommages directs causés à l'autre Partie résultant d'un manquement prouvé à ses obligations contractuelles dans le cadre de l'exécution des présentes CGV. Le Prestataire est tenu à une obligation de moyens concernant la fourniture du Service.
+
+Le Prestataire ne saurait être tenu responsable des dommages résultant d'une utilisation du Service non conforme aux présentes CGV, d'un manquement du Client à ses obligations, ou d'une utilisation du Service par des tiers placés sous la responsabilité du Client. En toute hypothèse, le Prestataire ne répond que des dommages directs et prévisibles résultant d'une faute prouvée.
+
+## 16. Limitation de responsabilité
+
+### 16.1 Principe
+La responsabilité du Prestataire, toutes causes confondues, ne peut être engagée qu'en cas de faute prouvée dans l'exécution de ses obligations contractuelles et est limitée aux seuls dommages directs et prévisibles.
+
+### 16.2 Plafond de responsabilité
+En tout état de cause, la responsabilité financière du Prestataire est plafonnée au montant total hors taxes effectivement payé par le Client au titre du contrat, au cours de la période contractuelle en cours à la date du fait générateur du dommage, proratisé en fonction du nombre de mois effectivement écoulés.
+
+### 16.3 Responsabilités non exclues
+Les limitations et plafonds ne s'appliquent pas en cas de faute intentionnelle ou dolosive, de manquement aux obligations de confidentialité, de violation des dispositions impératives relatives à la protection des données personnelles, ou de non-respect d'une obligation légale d'ordre public.
+
+### 16.4 Exclusions de responsabilité
+Sous réserve de l'article 16.3, le Prestataire ne saurait être tenu responsable notamment des interruptions temporaires nécessaires à la maintenance, des dysfonctionnements résultant de l'environnement du Client, des défaillances imputables à des prestataires tiers, des intrusions ou attaques informatiques dès lors que des mesures de sécurité conformes à l'état de l'art ont été mises en œuvre, et plus généralement de tous dommages indirects.
+
+### 16.5 Obligation de coopération et limitation des dommages
+En cas d'incident affectant le Service, le Client s'engage à informer le Prestataire dans les meilleurs délais et à coopérer de bonne foi afin de permettre son analyse et sa résolution. Le signalement peut être effectué par tout moyen écrit, notamment via l'adresse e-mail de support communiquée par le Prestataire.
+
+## 17. Force majeure
+
+Aucune des Parties ne pourra être tenue responsable d'un retard, d'une suspension ou d'un manquement lorsque celui-ci résulte d'un événement de force majeure tel que défini par le droit français et la jurisprudence applicable.
+
+La Partie affectée par un événement de force majeure s'engage à informer l'autre Partie dans les meilleurs délais et à mettre en œuvre tous les moyens raisonnables pour en limiter les effets et reprendre l'exécution du contrat dès que possible.
+
+## 18. Cession du contrat
+
+### 18.1 Cession par le Prestataire
+Le Prestataire peut céder ou transférer tout ou partie de ses droits et obligations à tout tiers, notamment dans le cadre d'une restructuration, d'une fusion, d'une acquisition ou d'une cession d'activité, sans que cela n'affecte les droits du Client. Le Client en est informé dans un délai raisonnable.
+
+### 18.2 Cession par le Client
+Le Client ne peut céder ou transférer tout ou partie de ses droits et obligations sans l'accord écrit préalable du Prestataire.
+
+### 18.3 Effets de la cession
+En cas de cession régulièrement intervenue, le contrat se poursuit dans les mêmes conditions avec le cessionnaire, sans modification des droits et obligations du Client.
+
+### 18.4 Sous-traitance et évolutions techniques
+Ne constituent pas une cession du contrat : le recours à des sous-traitants techniques et leur remplacement ; les évolutions techniques ou fonctionnelles n'affectant pas substantiellement les droits du Client ; les mises à jour des annexes relatives à la protection des données personnelles.
+
+## 19. Survie des stipulations
+
+La résiliation ou l'expiration du contrat n'affecte pas les stipulations destinées à survivre à celui-ci, notamment celles relatives à la confidentialité, à la propriété intellectuelle, à la responsabilité et aux obligations de paiement. Les sommes dues antérieurement à la date de prise d'effet de la résiliation demeurent exigibles.
+
+## 20. Droit applicable et règlement des litiges
+
+Le présent contrat est régi par le droit français. En cas de différend relatif à son interprétation ou à son exécution, les Parties s'engagent à rechercher une solution amiable avant toute action judiciaire. À défaut d'accord amiable, les tribunaux compétents seront ceux du ressort de Bordeaux, sauf disposition légale impérative contraire.
+
+## 21. Dispositions diverses
+
+### 21.1 Bonne foi
+Les Parties s'engagent à exécuter le contrat de manière loyale et de bonne foi.
+
+### 21.2 Indépendance des clauses
+Si une stipulation du contrat était déclarée nulle, illégale ou inapplicable, les autres stipulations demeureront pleinement en vigueur.
+
+### 21.3 Non-renonciation
+Le fait pour l'une des Parties de ne pas se prévaloir d'une stipulation du contrat ne saurait être interprété comme une renonciation à s'en prévaloir ultérieurement. Toute renonciation ne pourra résulter que d'un écrit exprès.
+
+### 21.4 Notifications
+Toute notification, mise en demeure ou communication relative au contrat sera valablement adressée aux coordonnées indiquées dans le devis ou communiquées ultérieurement par écrit. Sauf stipulation contraire, elle sera réputée reçue à la date de sa première présentation ou de sa réception effective, y compris en cas de refus ou de non-retrait.`;
+
 export const DPA_CONTENU = `## 1. Préambule
 
 Le présent Accord de Traitement des Données (« DPA ») est conclu conformément à l'article 28 du Règlement (UE) 2016/679 du 27 avril 2016 (« RGPD »). Il constitue une annexe au Contrat principal conclu entre les Parties et en fait partie intégrante.

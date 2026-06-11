@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { randomBytes } from "crypto";
-import { LEGAL_VERSION, CGV_CONTENU, DPA_CONTENU, SLA_CONTENU, PDD_CONTENU } from "./legalDocsContent";
+import { LEGAL_VERSION, CGV_CONTENU, CGV_ESSAI_CONTENU, DPA_CONTENU, SLA_CONTENU, PDD_CONTENU } from "./legalDocsContent";
 
 const prisma = new PrismaClient();
 
@@ -62,6 +62,17 @@ async function main() {
       mention: "HT / an · indicatif jusqu'à 1 000 utilisateurs",
       ordre: 2,
       included: featuresData.map((f) => f.slug),
+    },
+    {
+      // Offre découverte / essai 30 jours — facturée au mois (prixAnnuel/12 = 480 €).
+      slug: "vibes-decouverte",
+      nom: "Offre découverte",
+      couleur: "#FD6E00",
+      description: "30 jours pour faire vivre Uvibes à votre collectif, sans engagement annuel.",
+      prixAnnuel: 5760,
+      mention: "480 € / mois · essai 30 jours",
+      ordre: 3,
+      included: ["experiences", "sondages", "barometre", "statistiques"],
     },
   ];
 
@@ -191,6 +202,7 @@ async function main() {
   // ── Documents contractuels (éditables depuis l'admin) ─────
   const documentsLegaux = [
     { slug: "cgv", titre: "Conditions générales de vente", contenu: CGV_CONTENU },
+    { slug: "cgv-essai", titre: "CGV — Offre découverte (essai 30 jours)", contenu: CGV_ESSAI_CONTENU },
     { slug: "dpa", titre: "Accord de traitement des données", contenu: DPA_CONTENU },
     { slug: "sla", titre: "Annexe relative au niveau de service", contenu: SLA_CONTENU },
     { slug: "pdd", titre: "Politique de protection des données personnelles", contenu: PDD_CONTENU },
