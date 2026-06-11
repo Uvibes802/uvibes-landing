@@ -117,6 +117,7 @@ async function main() {
     // SEO
     { cle: "og-description", label: "Description OG (réseaux sociaux)", valeur: "Uvibes, la plateforme qui active la puissance de votre collectif grâce aux expériences interactives." },
     // Système RDV
+    { cle: "rdv-notif-email", label: "Email qui reçoit les notifications de RDV (directrice)", valeur: "contact@uvibes.fr" },
     { cle: "rdv-systeme", label: "Système de prise de RDV (custom | calendly)", valeur: "custom" },
     { cle: "rdv-calendly-url", label: "URL Calendly (si système = calendly)", valeur: "https://calendly.com/uvibescommunication/30min" },
     // Catégories équipe
