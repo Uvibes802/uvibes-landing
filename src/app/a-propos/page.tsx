@@ -171,58 +171,42 @@ export default function Uvibes() {
         </div>
       </section>
 
-      {/* ── Portage Éclatens ── */}
-      <section className="uv-portage">
-        <div className="uv-portage-inner">
-          <p className="uv-eyebrow" style={{ justifyContent: "center" }}><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
-          <div className="uv-portage-card">
-            <div className="uv-portage-card__media">
-              <Image src="/images/LogoEclatens.png" alt="Logo Éclatens" width={180} height={80} className="uv-portage-logo" />
-            </div>
-            <div className="uv-portage-card__body">
-              <h3 className="uv-portage-title">Un modèle <em className="uv-em-orange">non lucratif</em></h3>
-              <p className="uv-portage-text">
-                Tous les bénéfices générés par Uvibes sont réinvestis dans le projet ou dans d&apos;autres initiatives portées par l&apos;association Éclatens — pour que la technologie serve vraiment les gens.
-              </p>
-              <HelloAssoDon />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Wrapper uv-join + Footer seamless */}
+      {/* Wrapper Don + Footer seamless (sur le dégradé) */}
       <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
 
-      {/* Couche avant accordée au fond de la page au-dessus du CTA */}
+      {/* Couche avant accordée au fond de la page au-dessus de la section don */}
       <WaveSeparator position="top" color="#FFF4EC" />
 
-      {/* ── CTA rejoindre ── */}
-      <section className="uv-join" style={{ background: "transparent" }}>
-        <div className="uv-join-inner">
-          <div className="uv-join-text">
-            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Ensemble</p>
+      {/* ── Soutien / Don — projet à but non lucratif porté par Éclatens ── */}
+      <section className="uv-don" style={{ background: "transparent" }}>
+        <div className="uv-don-inner">
+          <div className="uv-don-media">
+            <Image src="/images/LogoEclatens.png" alt="Logo de l'association Éclatens" width={300} height={132} className="uv-don-logo" />
+          </div>
+          <div className="uv-don-text">
+            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
             <h2 className="uv-join-title">
-              Rejoignez<br />
-              l&apos;<em className="uv-serif-accent uv-serif-accent--yellow">aventure</em> Uvibes
+              Soutenez un projet<br />
+              <em className="uv-serif-accent uv-serif-accent--yellow">à but non lucratif</em>
             </h2>
             <p className="uv-join-sub">
-              Prenez part à une dynamique qui réinvente nos façons d&apos;interagir — en ouvrant notre esprit à des visions nouvelles.
+              Uvibes est porté par l&apos;association Éclatens. Tous les bénéfices sont réinvestis
+              dans le projet ou dans d&apos;autres initiatives solidaires, pour que la technologie
+              serve vraiment les gens.
             </p>
-          </div>
-          <div className="uv-join-actions">
-            <Link href="mailto:contact@uvibes.fr" className="uv-join-btn uv-join-btn--primary">
-              Nous contacter
-            </Link>
-            <Link href="mailto:contact@uvibes.fr" className="uv-join-btn uv-join-btn--outline">
-              Devenir partenaire
-            </Link>
+            <div className="uv-join-actions">
+              <HelloAssoDon />
+              <Link href="mailto:contact@uvibes.fr" className="uv-join-btn uv-join-btn--outline">
+                Devenir partenaire
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* VibrationLine déco */}
         <div className="uv-join-vib" aria-hidden="true">
-          <VibrationLine width={1800} height={50} amplitude={22} freq={6} stroke="rgba(253,110,0,.18)" strokeWidth={2} speed={14} />
-          <VibrationLine width={1800} height={50} amplitude={14} freq={10} stroke="rgba(217,10,92,.12)" strokeWidth={1.2} speed={20} />
+          <VibrationLine width={1800} height={50} amplitude={22} freq={6} stroke="rgba(255,255,255,.22)" strokeWidth={2} speed={14} />
+          <VibrationLine width={1800} height={50} amplitude={14} freq={10} stroke="rgba(255,255,255,.14)" strokeWidth={1.2} speed={20} />
         </div>
       </section>
 

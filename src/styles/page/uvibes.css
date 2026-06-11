@@ -666,12 +666,76 @@
 }
 .uv-join-btn--outline:hover { background: rgba(255,255,255,.26); border-color: rgba(255,255,255,.85); transform: translateY(-3px); }
 
+/* ── Section Don (sur le dégradé, avant le footer) ── */
+.uv-don {
+  padding: clamp(7rem, 9vw, 8rem) clamp(1.5rem, 5vw, 3.5rem) clamp(4.5rem, 7vw, 7rem);
+  position: relative;
+  overflow: hidden;
+}
+.uv-don::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: 8%;
+  width: 520px; height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,228,86,.22), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.uv-don-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.uv-don-media {
+  background: #fff;
+  border-radius: 28px;
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.8rem, 3.5vw, 3rem);
+  box-shadow: 0 18px 50px rgba(0,0,0,.22);
+  display: grid;
+  place-items: center;
+}
+.uv-don-logo { width: clamp(220px, 26vw, 300px); height: auto; object-fit: contain; }
+.uv-don-text { display: flex; flex-direction: column; }
+.uv-don-text .uv-eyebrow { color: #FFE456; }
+.uv-don-text .uv-join-actions { margin-top: 1.6rem; align-items: center; }
+
+/* Le bouton don (HelloAsso) prend le look d'un bouton primaire blanc */
+.uv-don .uvibes-contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.25rem;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--text-font-bold);
+  letter-spacing: 0.01em;
+  background: #fff;
+  color: #D90A5C;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,.18);
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+.uv-don .uvibes-contact-button:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.22); }
+
 /* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .uv-intro-inner { grid-template-columns: 1fr; }
   .uv-ethics-grid { grid-template-columns: 1fr; }
   .uv-join-inner  { grid-template-columns: 1fr; }
   .uv-join-actions { flex-direction: row; flex-wrap: wrap; }
+  .uv-don-inner { grid-template-columns: 1fr; text-align: center; }
+  .uv-don-media { justify-self: center; }
+  .uv-don-text { align-items: center; }
+  .uv-don-text .uv-join-sub { max-width: 100%; }
 }
 
 /* ── Vidéo hero floating — chevauche la bas du hero ─────────── */
