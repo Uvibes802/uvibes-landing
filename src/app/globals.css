@@ -123,6 +123,9 @@ html {
 
 body {
   --title-font: var(--font-roboto), sans-serif;
+  /* Police de base Uvibes : sans elle, les éléments non-<p>/<h*> (labels, boutons,
+     spans — ex. la page devis) tombaient sur le serif par défaut du navigateur. */
+  font-family: var(--text-font), "Helvetica Neue", Arial, sans-serif;
   background: var(--paper);
   overflow-x: hidden;
   width: 100%;
