@@ -2,64 +2,47 @@
 
 import { ArrowRight, Check, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import OffreEvenementielle from "./OffreEvenementielle";
 
 import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
 
+// Ordre : Connection, Boost (populaire, au centre), Premium. Les 3 CTA mènent au devis.
 const PLAN_META = [
   {
     accent: "var(--orange)",
     featured: false,
     badge: null,
     inherit: null,
-    cta: "Démarrer",
-    ctaType: "calendly" as const,
+    cta: "Faire un devis",
   },
   {
-    accent: "#FFE456",
+    accent: "var(--rose)",
     featured: true,
     badge: "Le plus populaire",
     inherit: "Connection",
     cta: "Faire un devis",
-    ctaType: "devis" as const,
   },
   {
-    accent: "var(--rose)",
+    accent: "#FFB800",
     featured: false,
-    badge: "Tout inclus",
-    inherit: "Premium",
-    cta: "Contacter l&apos;équipe",
-    ctaType: "contact" as const,
+    badge: null,
+    inherit: "Connection",
+    cta: "Faire un devis",
   },
 ];
 
-/* Fresh features per plan (newly added vs inherited) */
+/* Fonctionnalités « nouvelles » vs le plan hérité (Connection) — pour la mise en avant */
 const FRESH: Record<number, (i: number) => boolean> = {
-  0: () => true,                    // Connection — all its features are "fresh"
-  1: (i) => i >= 4 && i < 6,       // Premium — features 4-5 are new
-  2: (i) => i >= 6,                 // Boost — features 6-10 are new
+  0: () => true,                    // Connection — base, tout est "frais"
+  1: (i) => i >= 4,                 // Boost — ajoute les features 4 à 10
+  2: (i) => i >= 4 && i < 7,        // Premium — ajoute les features 4 à 6
 };
 
 export default function PricingTable() {
-  const [rdvSysteme, setRdvSysteme] = useState<"custom" | "calendly">("custom");
-
-  const [calendlyUrl, setCalendlyUrl] = useState("https://calendly.com/uvibescommunication/30min");
-
   // Prix de référence : statiques (tableau validé par la tutrice), cf. PricingData.ts
   const mergedPlans = plans;
-
-  useEffect(() => {
-    fetch("/api/settings")
-      .then((r) => r.json())
-      .then((s) => {
-        if (s["rdv-systeme"]) setRdvSysteme(s["rdv-systeme"] as "custom" | "calendly");
-        if (s["rdv-calendly-url"]) setCalendlyUrl(s["rdv-calendly-url"]);
-      })
-      .catch(() => {});
-  }, []);
 
   return (
     <section
@@ -129,31 +112,12 @@ export default function PricingTable() {
                   <span className="v-mono pt-card-price-note">HT / an · indicatif jusqu&apos;à 1 000 utilisateurs</span>
                 </div>
 
-                {/* CTA */}
+                {/* CTA — les 3 offres mènent au devis */}
                 <div className="pt-card-cta-wrap">
-                  {meta.ctaType === "devis" ? (
-                    <Link href="/devis" className="pt-card-cta">
-                      {meta.cta}
-                      <ArrowRight size={16} />
-                    </Link>
-                  ) : meta.ctaType === "calendly" ? (
-                    rdvSysteme === "calendly" ? (
-                      <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="pt-card-cta">
-                        {meta.cta}
-                        <ArrowRight size={16} />
-                      </a>
-                    ) : (
-                      <Link href="/rendez-vous" className="pt-card-cta">
-                        {meta.cta}
-                        <ArrowRight size={16} />
-                      </Link>
-                    )
-                  ) : (
-                    <Link href="/#contact" className="pt-card-cta">
-                      Contacter l&apos;équipe
-                      <ArrowRight size={16} />
-                    </Link>
-                  )}
+                  <Link href="/devis" className="pt-card-cta">
+                    {meta.cta}
+                    <ArrowRight size={16} />
+                  </Link>
                 </div>
 
                 {/* Label héritage */}

@@ -10,7 +10,7 @@ const FILLERS = [
   "priorités partagées",
   "visions croisées",
   "inspirations nouvelles",
-  "confiance créée",
+  "utilisateurs",
   "bons plans échangés",
   "objectifs alignés",
 ];

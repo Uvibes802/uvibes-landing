@@ -22,8 +22,8 @@ const C = {
   line: "#ECD9E2",       // filets
   cardBg: "#FBF3F6",     // fond carte clair
   cardBgWarm: "#FFF6EC",
-  dark: "#2A0E1E",       // bloc prix
-  yellow: "#FFD23F",
+  dark: "#D90A5C",       // bloc prix — rose vif de la marque (au lieu du plum sombre)
+  yellow: "#FFE456",     // total mis en avant
 };
 
 const styles = StyleSheet.create({

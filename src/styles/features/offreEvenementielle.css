@@ -156,122 +156,80 @@
   max-width: 520px;
 }
 
-/* ── Kit visuel ── */
-.oe-kit {
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 18px;
-  overflow: hidden;
-  backdrop-filter: blur(8px);
-}
-
-.oe-kit-header {
+/* ── Prix ── */
+.oe-price {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,.18);
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
 }
-
-.oe-kit-label {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-family: var(--font-roboto-mono), monospace;
-  color: rgba(255,255,255,.7);
-  white-space: nowrap;
-}
-
-.oe-kit-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(255,255,255,.18);
-}
-
-/* ── Items du kit — cartes arrondies (plus de grille « tableau ») ── */
-.oe-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
-  gap: 0.7rem;
-  padding: 1.25rem;
-}
-
-.oe-item {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
-  padding: 0.95rem 1rem;
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 14px;
-  background: rgba(255,255,255,.1);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease calc(var(--oe-i, 0) * 0.08s + 0.6s), transform 0.5s ease calc(var(--oe-i, 0) * 0.08s + 0.6s);
-}
-
-.oe-vis .oe-item {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.oe-item--bonus {
-  background: rgba(255,228,86,.16);
-  border-color: rgba(255,228,86,.4);
-}
-
-.oe-item-num {
-  position: absolute;
-  top: 0.7rem;
-  right: 0.8rem;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  font-family: var(--font-roboto-mono), monospace;
-  color: rgba(255,255,255,.55);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.oe-item--bonus .oe-item-num {
-  color: #FFE456;
-  font-weight: 700;
-}
-
-.oe-item-icon {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  background: rgba(255,255,255,.16);
-  font-size: 19px;
-  flex-shrink: 0;
+.oe-price-value {
+  font-size: clamp(34px, 5vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
   line-height: 1;
 }
+.oe-price-unit {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+}
+.oe-price-note {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+  color: #FFE456;
+  margin-left: 6px;
+}
 
-.oe-item--bonus .oe-item-icon { background: rgba(255,228,86,.22); }
-
-.oe-item-body {
+/* ── Points inclus (remplace le tableau) ── */
+.oe-points {
+  list-style: none;
+  margin: 0 0 1.6rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.65rem 1.4rem;
+}
+.oe-point {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  align-items: flex-start;
+  gap: 0.6rem;
 }
-
-.oe-item-label {
-  font-family: var(--font-prompt), sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+.oe-point-check {
+  display: grid;
+  place-items: center;
+  width: 21px; height: 21px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
   color: #fff;
-  line-height: 1.2;
-  margin: 0;
 }
-
-.oe-item-detail {
-  font-size: 11.5px;
-  color: rgba(255,255,255,.7);
-  font-family: var(--text-font);
+.oe-point--bonus .oe-point-check { background: rgba(255,228,86,.28); color: #FFE456; }
+.oe-point-text {
+  font-size: 13.5px;
   line-height: 1.45;
-  margin: 0;
+  color: rgba(255,255,255,.92);
+  font-family: var(--text-font);
+}
+.oe-point-text strong { font-family: var(--font-prompt), sans-serif; font-weight: 700; color: #fff; }
+.oe-point-detail { color: rgba(255,255,255,.72); }
+.oe-point-bonus-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+  background: rgba(255,228,86,.22);
+  color: #FFE456;
+  vertical-align: middle;
 }
 
 /* ── CTA ── */

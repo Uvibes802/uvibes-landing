@@ -1,6 +1,6 @@
+// 11 fonctionnalités comparées (l'objectif et le prix sont affichés dans l'en-tête
+// de la carte, plus besoin de lignes dédiées dans le tableau).
 export const features = [
-  { name: "Objectif", type: "text" },
-  { name: "Prix hors taxes", type: "price" },
   { name: "Expériences interactives (1 000 vibes)", type: "boolean" },
   { name: "Sondages", type: "boolean" },
   { name: "Baromètre bien-être", type: "boolean" },
@@ -14,6 +14,7 @@ export const features = [
   { name: "Soft skills (parcours d'entrainement) ou médiathèque", type: "boolean" },
 ];
 
+// Ordre d'affichage : Connection, Boost (la plus populaire, au centre), Premium.
 export const plans = [
   {
     name: "VIBES CONNECTION",
@@ -23,17 +24,17 @@ export const plans = [
     values: [true, true, true, true, false, false, false, false, false, false, false],
   },
   {
-    name: "VIBES PREMIUM",
-    color: "var(--yellowUvibes)",
-    price: "4 980 €",
-    description: "Renforcez la visibilité de votre marque et l'efficacité de votre communication interne",
-    values: [true, true, true, true, true, true, true, false, false, false, false],
-  },
-  {
     name: "VIBES BOOST",
     color: "var(--pinkUvibes)",
     price: "5 980 €",
     description: "Boostez la dynamique de votre collectif avec des outils de travail innovants",
     values: [true, true, true, true, true, true, true, true, true, true, true],
+  },
+  {
+    name: "VIBES PREMIUM",
+    color: "var(--yellowUvibes)",
+    price: "4 980 €",
+    description: "Renforcez la visibilité de votre marque et l'efficacité de votre communication interne",
+    values: [true, true, true, true, true, true, true, false, false, false, false],
   },
 ];

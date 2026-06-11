@@ -15,6 +15,11 @@ export const LEGAL_DOCS = {
     titre: "Conditions générales de vente",
     route: "/documents/cgv",
   },
+  "cgv-essai": {
+    slug: "cgv-essai",
+    titre: "Conditions générales de vente — Offre découverte (30 jours)",
+    route: "/documents/cgv-essai",
+  },
   dpa: {
     slug: "dpa",
     titre: "Accord de traitement des données",
@@ -39,13 +44,20 @@ export const LEGAL_DOC_SLUGS = Object.keys(LEGAL_DOCS) as LegalDocSlug[];
 /**
  * Documents que le client doit accepter pour signer un devis, selon l'offre.
  * - Offres annuelles (Connection / Premium / Boost) : CGV + DPA + SLA
- * - Offre événementielle (devis ponctuel)           : CGV + PDD
+ * - Offre découverte / événementielle (essai 30 jours, ponctuel) : CGV essai + PDD
  * Règle définie par la tutrice (fiche missions).
  */
 export function requiredDocsForPlan(planSlug: string): LegalDocSlug[] {
   const slug = (planSlug || "").toLowerCase();
-  if (slug.includes("evenement") || slug.includes("évenement") || slug.includes("ponctuel")) {
-    return ["cgv", "pdd"];
+  if (
+    slug.includes("decouverte") ||
+    slug.includes("découverte") ||
+    slug.includes("evenement") ||
+    slug.includes("évenement") ||
+    slug.includes("ponctuel") ||
+    slug.includes("essai")
+  ) {
+    return ["cgv-essai", "pdd"];
   }
   return ["cgv", "dpa", "sla"];
 }

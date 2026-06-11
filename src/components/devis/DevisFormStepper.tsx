@@ -15,7 +15,8 @@ const TYPES_COLLECTIF = [
 const TAILLES = [
   { value: "50-250", label: "50 – 250 membres" },
   { value: "250-1000", label: "250 – 1 000 membres" },
-  { value: "+1000", label: "+ 1 000 membres" },
+  { value: "1000-10000", label: "1 000 – 10 000 membres" },
+  { value: "+10000", label: "+ 10 000 membres" },
 ];
 
 const USAGES = [
@@ -33,10 +34,13 @@ const DUREES = [
   { mois: 36, label: "36 mois", remise: "−15%" },
 ];
 
+// Ordre aligné sur la page solution : Connection, Boost (populaire), Premium,
+// puis l'offre découverte (essai 30 jours, facturée au mois).
 const PLANS = [
   { slug: "vibes-connection", nom: "Vibes Connection", price: "3 980 €/an", desc: "Idéal pour démarrer" },
-  { slug: "vibes-premium", nom: "Vibes Premium", price: "4 980 €/an", desc: "Le plus populaire", recommended: true },
-  { slug: "vibes-boost", nom: "Vibes Boost", price: "5 980 €/an", desc: "Tout inclus" },
+  { slug: "vibes-boost", nom: "Vibes Boost", price: "5 980 €/an", desc: "Le plus populaire", recommended: true },
+  { slug: "vibes-premium", nom: "Vibes Premium", price: "4 980 €/an", desc: "Communication & visibilité" },
+  { slug: "vibes-decouverte", nom: "Offre découverte", price: "480 €/mois", desc: "30 jours pour tester", trial: true },
 ];
 
 const STEPS = ["Votre collectif", "Vos usages", "Vos coordonnées"];
@@ -68,7 +72,7 @@ export default function DevisFormStepper() {
   const [form, setForm] = useState<FormData>({
     typeCollectif: "",
     tailleCollectif: "50-250",
-    planSlug: "vibes-premium",
+    planSlug: "vibes-boost",
     dureeContrat: 12,
     nombreUtilisateurs: 100,
     usagesPrevus: ["echanges"],
@@ -88,6 +92,16 @@ export default function DevisFormStepper() {
   const toggleUsage = (slug: string) => {
     const curr = form.usagesPrevus;
     set("usagesPrevus", curr.includes(slug) ? curr.filter((s) => s !== slug) : [...curr, slug]);
+  };
+
+  // L'offre découverte est facturée au mois (durée fixe = 1 mois).
+  const isTrial = form.planSlug === "vibes-decouverte";
+  const selectPlan = (slug: string) => {
+    setForm((f) => ({
+      ...f,
+      planSlug: slug,
+      dureeContrat: slug === "vibes-decouverte" ? 1 : f.dureeContrat === 1 ? 12 : f.dureeContrat,
+    }));
   };
 
   function validateStep(): boolean {
@@ -181,7 +195,7 @@ export default function DevisFormStepper() {
           </div>
 
           <div className="dv-field">
-            <label className="dv-label">Taille estimée</label>
+            <label className="dv-label">Taille de votre organisation</label>
             <div className="dv-durees">
               {TAILLES.map((t) => (
                 <button
@@ -216,7 +230,7 @@ export default function DevisFormStepper() {
                 <div
                   key={p.slug}
                   className={`dv-plan-card${form.planSlug === p.slug ? " --selected" : ""}${p.recommended ? " --recommended" : ""}`}
-                  onClick={() => set("planSlug", p.slug)}
+                  onClick={() => selectPlan(p.slug)}
                 >
                   <div className="dv-plan-name">{p.nom}</div>
                   <div className="dv-plan-price" style={{ fontSize: 13 }}>{p.price}</div>
@@ -228,19 +242,25 @@ export default function DevisFormStepper() {
 
           <div className="dv-field">
             <label className="dv-label">Durée du contrat</label>
-            <div className="dv-durees">
-              {DUREES.map((d) => (
-                <button
-                  key={d.mois}
-                  type="button"
-                  className={`dv-duree-btn${form.dureeContrat === d.mois ? " --active" : ""}`}
-                  onClick={() => set("dureeContrat", d.mois)}
-                >
-                  <div className="dv-duree-months">{d.label}</div>
-                  {d.remise && <div className="dv-duree-remise">{d.remise}</div>}
-                </button>
-              ))}
-            </div>
+            {isTrial ? (
+              <p className="dv-card-sub" style={{ margin: 0 }}>
+                Offre découverte&nbsp;: <strong>1 mois</strong>, facturée 480&nbsp;€ HT. Sans engagement annuel.
+              </p>
+            ) : (
+              <div className="dv-durees">
+                {DUREES.map((d) => (
+                  <button
+                    key={d.mois}
+                    type="button"
+                    className={`dv-duree-btn${form.dureeContrat === d.mois ? " --active" : ""}`}
+                    onClick={() => set("dureeContrat", d.mois)}
+                  >
+                    <div className="dv-duree-months">{d.label}</div>
+                    {d.remise && <div className="dv-duree-remise">{d.remise}</div>}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
