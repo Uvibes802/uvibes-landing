@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { rateLimit, getClientIp } from "@/lib/rateLimit";
 import { calculateQuote } from "@/services/crm/calculateQuote";
 import { generateQuoteNumber } from "@/services/crm/generateQuoteNumber";
-import { notifyDirectrice } from "@/services/crm/sendQuoteEmail";
+import { notifyDirectrice, sendQuoteToCollectif } from "@/services/crm/sendQuoteEmail";
 
 export async function POST(req: NextRequest) {
   try {
@@ -64,6 +64,17 @@ export async function POST(req: NextRequest) {
         validUntil,
       },
     });
+
+    // Envoyer le devis au client (lien vers la page de devis + signature) — fire & forget
+    sendQuoteToCollectif({
+      to: email,
+      collectifNom: nom,
+      quoteNumero: numero,
+      quoteId: quote.id,
+      planNom: calc.plan.nom,
+      prixHT: calc.prixHT,
+      prixTTC: calc.prixTTC,
+    }).catch(console.error);
 
     // Notifier la directrice (fire & forget)
     notifyDirectrice({

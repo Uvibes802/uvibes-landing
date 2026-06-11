@@ -51,12 +51,20 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
 
   async function envoyer() {
     const verbe = alreadySent ? "Renvoyer" : "Envoyer";
-    if (!confirm(`${verbe} ce devis à ${quote.collectif.email} ?`)) return;
+    // L'admin peut envoyer à l'email du collectif ou à une autre adresse de son choix.
+    const dest = prompt(`${verbe} ce devis — à quelle adresse email ?`, quote.collectif.email);
+    if (dest === null) return;
+    const email = dest.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setMsg("Adresse email invalide."); return; }
     setSending(true); setMsg("");
     try {
-      const res = await fetch(`/api/admin/devis/${quote.id}/envoyer`, { method: "POST" });
+      const res = await fetch(`/api/admin/devis/${quote.id}/envoyer`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
       const data = await res.json();
-      if (res.ok) { setMsg(alreadySent ? "✓ Email renvoyé" : "✓ Email envoyé"); setStatut("ENVOYE"); }
+      if (res.ok) { setMsg(`✓ Devis envoyé à ${data.sentTo ?? email}`); setStatut("ENVOYE"); }
       else setMsg("Erreur : " + data.error);
     } finally { setSending(false); }
   }
