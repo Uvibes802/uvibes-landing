@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateQuotePdf } from "@/services/pdf/generateQuotePdf";
+import { pdfResponse } from "@/lib/pdfResponse";
 
 export async function GET(
   req: NextRequest,
@@ -21,16 +22,7 @@ export async function GET(
 
     // ?inline=1 → affichage dans le navigateur (aperçu) au lieu du téléchargement
     const inline = req.nextUrl.searchParams.get("inline") === "1";
-    const disposition = inline ? "inline" : "attachment";
-
-    return new NextResponse(pdfBuffer as unknown as BodyInit, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `${disposition}; filename="${quote.numero}.pdf"`,
-        "Content-Length": String(pdfBuffer.length),
-      },
-    });
+    return pdfResponse(pdfBuffer, `${quote.numero}.pdf`, inline);
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "Erreur génération PDF" }, { status: 500 });

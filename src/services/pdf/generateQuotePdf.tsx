@@ -1,6 +1,5 @@
 import {
   Document,
-  Font,
   Image,
   Page,
   StyleSheet,
@@ -9,22 +8,7 @@ import {
   renderToBuffer,
 } from "@react-pdf/renderer";
 import { LEGAL_DOCS, type LegalDocSlug } from "@/lib/legalDocs";
-
-// Désactiver la césure automatique
-Font.registerHyphenationCallback((w) => [w]);
-
-// ── Palette (cohérente avec la marque) ──────────────────────────
-const C = {
-  ink: "#2A0E1E",        // texte principal (plum foncé)
-  orange: "#FD6E00",
-  rose: "#D90A5C",
-  muted: "#8A6B78",      // texte secondaire
-  line: "#ECD9E2",       // filets
-  cardBg: "#FBF3F6",     // fond carte clair
-  cardBgWarm: "#FFF6EC",
-  dark: "#D90A5C",       // bloc prix — rose vif de la marque (au lieu du plum sombre)
-  yellow: "#FFE456",     // total mis en avant
-};
+import { C, euro } from "./pdfTheme";
 
 const styles = StyleSheet.create({
   page: { fontFamily: "Helvetica", fontSize: 9.5, color: C.ink, backgroundColor: "#FFFFFF", paddingTop: 0, paddingHorizontal: 42, paddingBottom: 60, lineHeight: 1.45 },
@@ -103,8 +87,6 @@ const styles = StyleSheet.create({
   footer: { position: "absolute", bottom: 22, left: 42, right: 42, flexDirection: "row", justifyContent: "space-between", borderTopWidth: 1, borderTopColor: C.line, paddingTop: 7 },
   footerText: { fontSize: 7.5, color: C.muted },
 });
-
-const euro = (n: number) => `${n.toLocaleString("fr-FR", { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €`;
 
 interface PdfData {
   quote: {

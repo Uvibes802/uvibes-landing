@@ -45,11 +45,16 @@ export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
 
   if (!plan) throw new Error(`Plan "${input.planSlug}" introuvable`);
 
-  const autoRemise = Math.max(
-    remiseVolume(input.nombreUtilisateurs),
-    remiseDuree(input.dureeContrat),
-    input.remise ?? 0
-  );
+  // L'offre découverte est un prix forfaitaire mensuel : pas de remise volume/durée
+  // automatique (sinon 480 €/mois deviendrait 456 € avec la remise de volume).
+  const isTrial = plan.slug === "vibes-decouverte";
+  const autoRemise = isTrial
+    ? (input.remise ?? 0)
+    : Math.max(
+        remiseVolume(input.nombreUtilisateurs),
+        remiseDuree(input.dureeContrat),
+        input.remise ?? 0
+      );
 
   // Prix base * nombre d'utilisateurs * durée en années
   const dureeAns = input.dureeContrat / 12;

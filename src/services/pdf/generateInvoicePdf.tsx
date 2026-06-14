@@ -1,24 +1,12 @@
 import {
   Document,
-  Font,
   Page,
   StyleSheet,
   Text,
   View,
   renderToBuffer,
 } from "@react-pdf/renderer";
-
-Font.registerHyphenationCallback((w) => [w]);
-
-const C = {
-  ink: "#2A0E1E",
-  orange: "#FD6E00",
-  rose: "#D90A5C",
-  muted: "#8A6B78",
-  line: "#ECD9E2",
-  cardBg: "#FBF3F6",
-  yellow: "#FFE456",
-};
+import { C, euro } from "./pdfTheme";
 
 const styles = StyleSheet.create({
   page: { fontFamily: "Helvetica", fontSize: 9.5, color: C.ink, backgroundColor: "#FFFFFF", paddingTop: 0, paddingHorizontal: 42, paddingBottom: 56, lineHeight: 1.45 },
@@ -59,8 +47,6 @@ const styles = StyleSheet.create({
   footer: { position: "absolute", bottom: 22, left: 42, right: 42, flexDirection: "row", justifyContent: "space-between", borderTopWidth: 1, borderTopColor: C.line, paddingTop: 7 },
   footerText: { fontSize: 7.5, color: C.muted },
 });
-
-const euro = (n: number) => `${n.toLocaleString("fr-FR", { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €`;
 
 interface InvoiceData {
   quote: {

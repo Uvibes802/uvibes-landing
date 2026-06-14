@@ -55,7 +55,9 @@ export async function POST(req: NextRequest) {
     const notifSetting = await prisma.cmsContent.findUnique({ where: { cle: "rdv-notif-email" } });
     const directriceEmail = (notifSetting?.valeur || process.env.EMAIL_USER) ?? "";
 
-    await transporter.sendMail({
+    // Les deux emails partent en parallèle (chaque envoi SMTP est lent).
+    await Promise.all([
+    transporter.sendMail({
       from: `"Uvibes" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: `Confirmation de rendez-vous Uvibes — ${dateFormatted} à ${heure}`,
@@ -76,9 +78,9 @@ export async function POST(req: NextRequest) {
           </div>
         </div>`,
       attachments: [icsAttachment],
-    });
+    }),
     // Notifier la directrice (immédiat, à chaque prise de RDV) + .ics pour l'agenda
-    await transporter.sendMail({
+    transporter.sendMail({
       from: `"Uvibes CRM" <${process.env.EMAIL_USER}>`,
       to: directriceEmail,
       subject: `📅 Nouveau RDV — ${nom} — ${dateFormatted} ${heure}`,
@@ -96,7 +98,8 @@ export async function POST(req: NextRequest) {
           <p style="color:#B0507E;font-size:13px">Fichier .ics joint pour l'ajouter à votre agenda.</p>
         </div>`,
       attachments: [icsAttachment],
-    });
+    }),
+    ]);
   } catch (e) { console.error("Email RDV:", e); }
 
   return NextResponse.json({ id: rdv.id }, { status: 201 });
