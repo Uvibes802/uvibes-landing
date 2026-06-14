@@ -10,55 +10,60 @@ import {
 import { LEGAL_DOCS, type LegalDocSlug } from "@/lib/legalDocs";
 import { C, euro } from "./pdfTheme";
 
+// @react-pdf ne gère pas les dégradés CSS en backgroundColor → couleurs solides vives.
+const HEADER_FILL = "#FD6E00"; // orange vif (en-tête)
+const BRAND_FILL = "#E6007E";  // magenta vif (prix, badge, ticks)
+
 const styles = StyleSheet.create({
-  page: { fontFamily: "Helvetica", fontSize: 9.5, color: C.ink, backgroundColor: "#FFFFFF", paddingTop: 0, paddingHorizontal: 42, paddingBottom: 60, lineHeight: 1.45 },
+  page: { fontFamily: "Helvetica", fontSize: 9.5, color: C.ink, backgroundColor: "#FFFDFB", paddingTop: 0, paddingHorizontal: 42, paddingBottom: 60, lineHeight: 1.45 },
 
-  // En-tête
-  topBand: { height: 6, marginHorizontal: -42, backgroundColor: C.orange },
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginTop: 26, marginBottom: 22 },
-  brand: { fontSize: 24, fontFamily: "Helvetica-Bold", color: C.orange, letterSpacing: -0.5 },
-  brandTag: { fontSize: 8, color: C.muted, marginTop: 3, maxWidth: 200 },
+  // En-tête — bandeau plein orange pleine largeur
+  headerBand: { marginHorizontal: -42, paddingHorizontal: 42, paddingTop: 30, paddingBottom: 24, marginBottom: 22, backgroundColor: HEADER_FILL, flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
+  brand: { fontSize: 26, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: -0.5 },
+  brandTag: { fontSize: 8, color: "rgba(255,255,255,.9)", marginTop: 3, maxWidth: 220 },
   docBox: { alignItems: "flex-end" },
-  docLabel: { fontSize: 16, fontFamily: "Helvetica-Bold", color: C.ink, letterSpacing: 2 },
-  docNum: { fontSize: 10, fontFamily: "Helvetica-Bold", color: C.rose, marginTop: 3 },
-  docMeta: { fontSize: 8, color: C.muted, marginTop: 2 },
+  docLabel: { fontSize: 18, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: 2 },
+  docNum: { fontSize: 11, fontFamily: "Helvetica-Bold", color: C.yellow, marginTop: 3 },
+  docMeta: { fontSize: 8, color: "rgba(255,255,255,.85)", marginTop: 2 },
 
-  // Émetteur / Destinataire
+  // Émetteur / Destinataire (cartes teintées)
   parties: { flexDirection: "row", gap: 16, marginBottom: 20 },
-  party: { flex: 1, backgroundColor: C.cardBg, borderRadius: 8, padding: 12 },
-  partyLabel: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: C.orange, letterSpacing: 1.2, marginBottom: 6, textTransform: "uppercase" },
+  party: { flex: 1, borderRadius: 10, padding: 12 },
+  partyEmit: { backgroundColor: "#FFF1E4" },
+  partyDest: { backgroundColor: "#FFE9F2" },
+  partyLabel: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: C.rose, letterSpacing: 1.2, marginBottom: 6, textTransform: "uppercase" },
   partyName: { fontSize: 11, fontFamily: "Helvetica-Bold", marginBottom: 3 },
-  partyLine: { fontSize: 8.5, color: C.muted, marginBottom: 1.5 },
+  partyLine: { fontSize: 8.5, color: "#7A4A5E", marginBottom: 1.5 },
 
   // Phrase de valeur
   intro: { fontSize: 9.5, fontFamily: "Helvetica-Oblique", color: C.rose, marginBottom: 18, lineHeight: 1.5 },
 
   // Titres de section
-  sectionTitle: { fontSize: 9, fontFamily: "Helvetica-Bold", color: C.orange, marginBottom: 9, textTransform: "uppercase", letterSpacing: 1.2 },
+  sectionTitle: { fontSize: 9, fontFamily: "Helvetica-Bold", color: C.rose, marginBottom: 9, textTransform: "uppercase", letterSpacing: 1.2 },
   section: { marginBottom: 18 },
 
-  // Carte offre
-  offerCard: { borderWidth: 1, borderColor: C.line, borderRadius: 10, padding: 14, flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  // Carte offre (teintée + accent dégradé)
+  offerCard: { backgroundColor: "#FFF2F6", borderRadius: 12, padding: 16, flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   offerLeft: { flex: 1 },
-  offerName: { fontSize: 15, fontFamily: "Helvetica-Bold", color: C.ink },
-  offerMention: { fontSize: 8.5, color: C.muted, marginTop: 2 },
+  offerName: { fontSize: 16, fontFamily: "Helvetica-Bold", color: C.ink },
+  offerMention: { fontSize: 8.5, color: "#7A4A5E", marginTop: 2 },
   offerSpecs: { flexDirection: "row", gap: 18, marginTop: 9 },
   spec: {},
-  specVal: { fontSize: 12, fontFamily: "Helvetica-Bold", color: C.rose },
-  specLabel: { fontSize: 7.5, color: C.muted, marginTop: 1 },
-  durBadge: { backgroundColor: C.cardBgWarm, borderRadius: 20, paddingVertical: 6, paddingHorizontal: 12, alignItems: "center" },
-  durBadgeVal: { fontSize: 13, fontFamily: "Helvetica-Bold", color: C.orange },
-  durBadgeLabel: { fontSize: 7, color: C.muted, marginTop: 1, textTransform: "uppercase", letterSpacing: 0.5 },
+  specVal: { fontSize: 13, fontFamily: "Helvetica-Bold", color: C.rose },
+  specLabel: { fontSize: 7.5, color: "#7A4A5E", marginTop: 1 },
+  durBadge: { backgroundColor: BRAND_FILL, borderRadius: 14, paddingVertical: 9, paddingHorizontal: 14, alignItems: "center" },
+  durBadgeVal: { fontSize: 15, fontFamily: "Helvetica-Bold", color: "#fff" },
+  durBadgeLabel: { fontSize: 7, color: "rgba(255,255,255,.9)", marginTop: 1, textTransform: "uppercase", letterSpacing: 0.5 },
 
   // Fonctionnalités
   featGrid: { flexDirection: "row", flexWrap: "wrap" },
   featItem: { flexDirection: "row", alignItems: "flex-start", width: "50%", marginBottom: 6, paddingRight: 10 },
-  featTick: { width: 12, height: 12, borderRadius: 6, backgroundColor: C.orange, marginRight: 7, marginTop: 0.5, justifyContent: "center", alignItems: "center" },
+  featTick: { width: 13, height: 13, borderRadius: 7, backgroundColor: BRAND_FILL, marginRight: 7, marginTop: 0.5, justifyContent: "center", alignItems: "center" },
   featTickTxt: { color: "#fff", fontSize: 7, fontFamily: "Helvetica-Bold" },
   featTxt: { fontSize: 8.5, flex: 1 },
 
-  // Bloc prix
-  priceCard: { backgroundColor: C.dark, borderRadius: 10, padding: 16 },
+  // Bloc prix — magenta vif
+  priceCard: { backgroundColor: BRAND_FILL, borderRadius: 12, padding: 16 },
   priceRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: 5, alignItems: "center" },
   priceLabel: { color: "rgba(255,255,255,.62)", fontSize: 9 },
   priceValue: { color: "#fff", fontSize: 9.5, fontFamily: "Helvetica-Bold" },
@@ -158,10 +163,8 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
   const doc = (
     <Document title={`Devis ${quote.numero} — Uvibes`} author="Uvibes">
       <Page size="A4" style={styles.page}>
-        <View style={styles.topBand} />
-
-        {/* En-tête */}
-        <View style={styles.header}>
+        {/* En-tête — bandeau dégradé */}
+        <View style={styles.headerBand}>
           <View>
             <Text style={styles.brand}>Uvibes</Text>
             <Text style={styles.brandTag}>Activez les conversations positives au sein de votre collectif</Text>
@@ -178,14 +181,14 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
 
         {/* Émetteur / Destinataire */}
         <View style={styles.parties}>
-          <View style={styles.party}>
+          <View style={[styles.party, styles.partyEmit]}>
             <Text style={styles.partyLabel}>Émetteur</Text>
             <Text style={styles.partyName}>Uvibes</Text>
             <Text style={styles.partyLine}>Projet porté par l&apos;association Éclatens</Text>
             <Text style={styles.partyLine}>contact@uvibes.fr</Text>
             <Text style={styles.partyLine}>uvibes.fr</Text>
           </View>
-          <View style={styles.party}>
+          <View style={[styles.party, styles.partyDest]}>
             <Text style={styles.partyLabel}>Destinataire</Text>
             <Text style={styles.partyName}>{c.nom}</Text>
             <Text style={styles.partyLine}>{c.contact}</Text>
@@ -318,8 +321,8 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           <Text style={styles.mentionsText}>
             Devis valable 30 jours à compter de sa date d&apos;émission, sauf mention contraire ci-dessus.
             Prix en euros, TVA 20% applicable. Tout devis signé électroniquement vaut acceptation des documents
-            contractuels associés et constitue un accord ferme. Uvibes — projet porté par l&apos;association
-            Éclatens — contact@uvibes.fr — uvibes.fr
+            contractuels associés et constitue un accord ferme. Uvibes, projet porté par l&apos;association
+            Éclatens · contact@uvibes.fr · uvibes.fr
           </Text>
         </View>
 
