@@ -376,7 +376,7 @@ export default function DevisFormStepper() {
       )}
 
       {/* Actions */}
-      <div className="dv-card" style={{ padding: "0 44px 28px", background: "transparent", boxShadow: "none" }}>
+      <div className="dv-card dv-card--bare" style={{ padding: "0 44px 28px", background: "transparent", boxShadow: "none" }}>
         <div className="dv-actions">
           {step > 0 && (
             <button type="button" className="dv-btn-back" onClick={() => setStep((s) => s - 1)}>
