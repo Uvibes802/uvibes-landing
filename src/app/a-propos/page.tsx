@@ -103,7 +103,7 @@ export default function Uvibes() {
               La plus longue étude menée par Harvard montre que la qualité de nos relations est le <em className="uv-em-orange">premier facteur de bonheur</em>.
             </p>
             <p className="uv-intro-body">
-              Sur les réseaux sociaux, les algorithmes nous relient à ceux qui pensent comme nous. Dans la vraie vie, on reste entre groupes familiers — et petit à petit, on perd la richesse de la diversité humaine.
+              Sur les réseaux sociaux, les algorithmes nous relient à ceux qui pensent comme nous. Dans la vraie vie, on reste entre groupes familiers et, petit à petit, on perd la richesse de la diversité humaine.
               <br /><br />
               Uvibes facilite ces rencontres inattendues, par un jeu de questions ouvertes et positives. Parce que c&apos;est en allant vers l&apos;<em className="uv-em-rose">inconnu</em> que naissent les plus <em className="uv-em-orange">belles conversations</em>.
             </p>
@@ -180,26 +180,27 @@ export default function Uvibes() {
       {/* ── Soutien / Don — projet à but non lucratif porté par Éclatens ── */}
       <section className="uv-don" style={{ background: "transparent" }}>
         <div className="uv-don-inner">
-          <div className="uv-don-media">
+          <p className="uv-eyebrow uv-don-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
+          <h2 className="uv-join-title uv-don-title">
+            Soutenez un projet{" "}
+            <em className="uv-serif-accent uv-serif-accent--yellow">à but non lucratif</em>
+          </h2>
+          <p className="uv-join-sub uv-don-sub">
+            Uvibes est porté par l&apos;association Éclatens. Tous les bénéfices sont réinvestis
+            dans le projet ou dans d&apos;autres initiatives solidaires, pour que la technologie
+            serve vraiment les gens.
+          </p>
+
+          <div className="uv-don-badge">
+            <span className="uv-don-badge-label">Un projet porté par</span>
             <Image src="/images/LogoEclatens.png" alt="Logo de l'association Éclatens" width={300} height={132} className="uv-don-logo" />
           </div>
-          <div className="uv-don-text">
-            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
-            <h2 className="uv-join-title">
-              Soutenez un projet<br />
-              <em className="uv-serif-accent uv-serif-accent--yellow">à but non lucratif</em>
-            </h2>
-            <p className="uv-join-sub">
-              Uvibes est porté par l&apos;association Éclatens. Tous les bénéfices sont réinvestis
-              dans le projet ou dans d&apos;autres initiatives solidaires, pour que la technologie
-              serve vraiment les gens.
-            </p>
-            <div className="uv-join-actions">
-              <HelloAssoDon />
-              <Link href="mailto:contact@uvibes.fr" className="uv-join-btn uv-join-btn--outline">
-                Devenir partenaire
-              </Link>
-            </div>
+
+          <div className="uv-don-actions">
+            <HelloAssoDon />
+            <Link href="mailto:contact@uvibes.fr" className="uv-join-btn uv-join-btn--outline">
+              Devenir partenaire
+            </Link>
           </div>
         </div>
 

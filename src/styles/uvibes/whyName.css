@@ -55,18 +55,43 @@
   align-items: center;
 }
 
-/* Texte — révélation au scroll */
+/* Texte — carte dégradé de marque (texte clair, look non générique) */
 .uvn-text {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(155deg, #FD6E00 0%, #FF5A2C 22%, #FF4D8F 58%, #E6007E 82%, #D90A5C 100%);
+  border-radius: 28px;
+  padding: clamp(1.8rem, 3.5vw, 3rem);
+  box-shadow: 0 24px 60px -18px rgba(217,10,92,.5), 0 4px 16px rgba(0,0,0,.08);
+  color: #fff;
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .uvn-vis .uvn-text { opacity: 1; transform: none; }
+/* Halo blanc discret dans la carte */
+.uvn-text::after {
+  content: '';
+  position: absolute;
+  top: -30%; right: -10%;
+  width: 55%; height: 120%;
+  background: radial-gradient(closest-side, rgba(255,255,255,.16), transparent 70%);
+  pointer-events: none;
+}
+.uvn-text > * { position: relative; z-index: 1; }
+/* En-tête + titre sur la carte → clairs */
+.uvn-text .uv-eyebrow { color: #FFE456; }
+.uvn-text .uv-section-title { color: #fff; }
+.uvn-text .uv-serif-grad {
+  background: none;
+  -webkit-text-fill-color: #FFE456;
+  color: #FFE456;
+}
 
 .uvn-lead {
   font-size: clamp(1.15rem, 2vw, 1.5rem);
   line-height: 1.55;
-  color: #1a1715;
+  color: #fff;
   margin: 1.5rem 0 1.25rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -74,19 +99,24 @@
 .uvn-body {
   font-size: clamp(1rem, 1.4vw, 1.12rem);
   line-height: 1.8;
-  color: rgba(26,23,21,.72);
+  color: rgba(255,255,255,.9);
   margin: 0 0 1.1rem;
   max-width: 560px;
 }
 
-/* Mots-clés surlignés (Vibes / U) */
+/* Mots-clés surlignés (Vibes / U) — sur le dégradé */
 .uvn-hl {
   font-weight: 700;
-  padding: 0 3px;
-  border-radius: 4px;
+  padding: 0 5px;
+  border-radius: 5px;
+  background: rgba(255,255,255,.2);
+  color: #fff;
 }
-.uvn-hl--rose   { color: var(--rose);   background: rgba(217,10,92,.10); }
-.uvn-hl--orange { color: var(--orange); background: rgba(253,110,0,.12); }
+.uvn-hl--rose   { color: #fff; }
+.uvn-hl--orange { color: #2A0E1E; background: #FFE456; }
+/* Em orange/rose dans le texte → jaune lisible sur la carte */
+.uvn-text .uv-em-orange,
+.uvn-text .uv-em-rose { color: #FFE456; font-style: italic; }
 
 /* Médias — polaroïds côte à côte (pas de superposition) */
 .uvn-media {

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import "@/styles/shared/appMockup.css";
 
@@ -56,6 +57,13 @@ export default function AppMockup() {
 
       <div className="apm-chip apm-chip--bottom-right" aria-hidden="true">
         <span className="apm-chip-quote">Qu&apos;est-ce qui vous a marqué récemment ?</span>
+      </div>
+
+      {/* Éclairs « vibes » flottants — visibles sur mobile (remplacent les questions) */}
+      <div className="apm-icons" aria-hidden="true">
+        <span className="apm-icon apm-icon--1"><Zap size={20} strokeWidth={2.4} /></span>
+        <span className="apm-icon apm-icon--2"><Zap size={20} strokeWidth={2.4} /></span>
+        <span className="apm-icon apm-icon--3"><Zap size={20} strokeWidth={2.4} /></span>
       </div>
     </div>
   );

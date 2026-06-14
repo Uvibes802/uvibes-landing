@@ -252,29 +252,26 @@
   gap: 0.6rem;
   padding: 0.6rem 1.15rem;
   border-radius: 999px;
-  background: rgba(255,255,255,.85);
-  border: 1.5px solid rgba(253,110,0,.18);
+  background: linear-gradient(135deg, #FD6E00 0%, #FF4D8F 55%, #D90A5C 100%);
+  border: none;
   font-size: 14px;
   font-weight: 600;
-  color: #2a0a10;
+  color: #fff;
   font-family: var(--font-prompt), sans-serif;
   letter-spacing: -0.01em;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(253,110,0,.06);
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 6px 16px -4px rgba(217,10,92,.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .uv-value-item:hover {
-  background: #fff;
   transform: translateY(-2px);
-  border-color: rgba(253,110,0,.35);
-  box-shadow: 0 6px 18px rgba(253,110,0,.14);
+  box-shadow: 0 10px 24px -6px rgba(217,10,92,.5);
 }
 
 .uv-value-icon {
   flex-shrink: 0;
   width: 18px; height: 18px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #FD6E00, #D90A5C);
+  background: rgba(255,255,255,.28);
   display: grid;
   place-items: center;
 }
@@ -612,27 +609,40 @@
   pointer-events: none;
 }
 .uv-don-inner {
-  max-width: 1000px;
+  max-width: 760px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
   position: relative;
   z-index: 1;
 }
-.uv-don-media {
+.uv-don-eyebrow { color: #FFE456; justify-content: center; }
+.uv-don-title { margin-bottom: 0.85rem; }
+.uv-don-sub { margin: 0 auto; max-width: 560px; }
+
+/* Badge logo soigné (« Un projet porté par » + logo agrandi) */
+.uv-don-badge {
+  margin: clamp(1.8rem, 4vw, 2.6rem) 0;
   background: #fff;
-  border-radius: 28px;
-  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.8rem, 3.5vw, 3rem);
-  box-shadow: 0 18px 50px rgba(0,0,0,.22);
-  display: grid;
-  place-items: center;
+  border-radius: 24px;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem) clamp(2rem, 4vw, 3rem) clamp(1.4rem, 3vw, 2rem);
+  box-shadow: 0 22px 55px -14px rgba(0,0,0,.34);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
-.uv-don-logo { width: clamp(220px, 26vw, 300px); height: auto; object-fit: contain; }
-.uv-don-text { display: flex; flex-direction: column; }
-.uv-don-text .uv-eyebrow { color: #FFE456; }
-.uv-don-text .uv-join-actions { margin-top: 1.6rem; align-items: center; }
+.uv-don-badge-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-roboto-mono), monospace;
+  color: #8a6b78;
+}
+.uv-don-logo { width: clamp(210px, 28vw, 290px); height: auto; object-fit: contain; }
+.uv-don-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; }
 
 /* Le bouton don (HelloAsso) prend le look d'un bouton primaire blanc */
 .uv-don .uvibes-contact-button {
@@ -661,10 +671,6 @@
   .uv-ethics-grid { grid-template-columns: 1fr; }
   .uv-join-inner  { grid-template-columns: 1fr; }
   .uv-join-actions { flex-direction: row; flex-wrap: wrap; }
-  .uv-don-inner { grid-template-columns: 1fr; text-align: center; }
-  .uv-don-media { justify-self: center; }
-  .uv-don-text { align-items: center; }
-  .uv-don-text .uv-join-sub { max-width: 100%; }
 }
 
 /* ── Vidéo hero floating — chevauche la bas du hero ─────────── */

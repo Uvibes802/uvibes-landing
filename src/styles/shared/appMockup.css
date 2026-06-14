@@ -70,21 +70,21 @@
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
+  50%       { transform: translateY(-18px); }
 }
 
-/* Flottement des chips — chaque keyframe préserve le transform de base de la chip */
+/* Flottement des chips (amplitude marquée pour être bien perceptible) */
 @keyframes apm-float-left {
   0%, 100% { transform: translateY(-50%); }
-  50%       { transform: translateY(calc(-50% - 9px)); }
+  50%       { transform: translateY(calc(-50% - 16px)); }
 }
 @keyframes apm-float-tr {
   0%, 100% { transform: rotate(3deg) translateY(0); }
-  50%       { transform: rotate(3deg) translateY(-8px); }
+  50%       { transform: rotate(3deg) translateY(-15px); }
 }
 @keyframes apm-float-br {
   0%, 100% { transform: rotate(-2deg) translateY(0); }
-  50%       { transform: rotate(-2deg) translateY(-7px); }
+  50%       { transform: rotate(-2deg) translateY(-14px); }
 }
 
 /* Couche 4 — Chips */
@@ -159,10 +159,10 @@
 
 /* Chip bas-droite — question */
 .apm-chip--bottom-right {
-  right: 7%;
-  bottom: 14%;
+  right: 12%;
+  bottom: 16%;
   transform: rotate(-2deg);
-  max-width: 190px;
+  max-width: 180px;
   white-space: normal;
   animation: apm-float-br 6.5s ease-in-out infinite;
   animation-delay: 1.4s;
@@ -193,17 +193,42 @@
   animation: none;
 }
 
+/* Icônes flottantes (éclairs « vibes ») — affichées sur mobile à la place des chips */
+.apm-icons { display: none; }
+.apm-icon {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  box-shadow: 0 8px 20px -4px rgba(217,10,92,.5);
+  animation: apm-icon-float 5s ease-in-out infinite;
+}
+.apm-icon--1 { top: 8%;  left: 4%;  animation-delay: 0s; }
+.apm-icon--2 { top: 22%; right: 3%; animation-delay: .9s; background: linear-gradient(135deg, #FFB000, var(--orange)); }
+.apm-icon--3 { bottom: 20%; left: 2%; animation-delay: 1.8s; background: linear-gradient(135deg, var(--rose), #00AFDD); }
+@keyframes apm-icon-float {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50%      { transform: translateY(-14px) rotate(4deg); }
+}
+.apm-wrap.--no-motion .apm-icon { animation: none; }
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .apm-img { width: 360px; }
-  .apm-chip--left { left: -5%; }
-  .apm-chip--top-right { right: -4%; }
-  .apm-chip--bottom-right { right: -4%; }
+  .apm-chip--left { left: -3%; }
+  .apm-chip--top-right { right: -2%; }
+  .apm-chip--bottom-right { right: 4%; }
 }
 
 @media (max-width: 768px) {
   .apm-img { width: 340px; }
   .apm-chip { display: none; }
+  /* Sur mobile, les questions cèdent la place à des éclairs « vibes » flottants */
+  .apm-icons { display: block; }
 }
 
 @media (max-width: 480px) {
