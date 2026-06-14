@@ -177,7 +177,7 @@ export default function SolutionForWho() {
             <span className="sfw-title__accent v-serif">contexte.</span>
           </h2>
           <p className="sfw-subtitle">
-            Des résultats concrets, mesurés — quel que soit votre collectif.
+            Des résultats concrets, mesurés, quel que soit votre collectif.
           </p>
         </header>
 

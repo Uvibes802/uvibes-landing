@@ -43,7 +43,7 @@ const STEPS: Step[] = [
   {
     n: "04",
     title: "Les ressources explorées par votre collectif",
-    body: "Bibliothèque de 200+ sujets, tableaux de bord, guides & bonnes pratiques — tout inclus.",
+    body: "Bibliothèque de 200+ sujets, tableaux de bord, guides & bonnes pratiques, tout inclus.",
     tag: "Inclus dans tous les plans",
     accent: "#E6007E",
     video: "Colette-desktop.mp4",

@@ -121,7 +121,7 @@ export default function SolutionSoftSkills() {
               <span className="sss-num v-mono">02</span>
               <h3 className="sss-row-title">Un podcast pour aller plus loin</h3>
               <p className="sss-row-body">
-                Des épisodes pour creuser chaque soft skill — à écouter quand vous
+                Des épisodes pour creuser chaque soft skill, à écouter quand vous
                 voulez, où vous voulez.
               </p>
             </div>

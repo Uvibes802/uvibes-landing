@@ -24,7 +24,7 @@ const pillars = [
     title: "Piloter",
     titleEt: "et",
     titleSuffix: "décider",
-    body: "Accédez à des données en temps réel pour augmenter l'efficacité de vos actions. Pas un rapport de 40 pages — juste ce qu'il faut pour agir.",
+    body: "Accédez à des données en temps réel pour augmenter l'efficacité de vos actions. Pas un rapport de 40 pages, juste ce qu'il faut pour agir.",
     stat: "< 5 min",
     statLabel: "pour connaître chaque semaine les dynamiques de votre collectif",
   },
