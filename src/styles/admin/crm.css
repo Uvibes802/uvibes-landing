@@ -461,7 +461,13 @@ table.crm-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .crm-pipe-card:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.1); }
-.crm-pipe-card-nom { font-size: 13.5px; font-weight: 600; color: var(--crm-text); }
+.crm-pipe-card { cursor: grab; }
+.crm-pipe-card:active { cursor: grabbing; }
+.crm-pipe-card--dragging { opacity: .45; }
+/* Colonne survolée pendant un glisser-déposer */
+.crm-pipe-col--over { background: rgba(253,110,0,.1); outline: 2px dashed rgba(253,110,0,.5); outline-offset: -2px; }
+.crm-pipe-card-nom { font-size: 13.5px; font-weight: 600; color: var(--crm-text); text-decoration: none; }
+.crm-pipe-card-nom:hover { text-decoration: underline; }
 .crm-pipe-card-sub { font-size: 11.5px; color: var(--crm-muted); }
 .crm-pipe-card-ca { font-size: 11.5px; font-weight: 600; color: var(--crm-accent); margin-top: 3px; }
 

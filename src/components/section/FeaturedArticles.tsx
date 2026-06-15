@@ -58,7 +58,7 @@ export default function FeaturedArticles({ articles }: { articles: PublicArticle
         <div>
           <p className="v-mono fa-eyebrow"><span className="fa-eyebrow-dot" aria-hidden="true" />Le blog Uvibes</p>
           <h2 className="fa-title v-prompt">
-            <span className="fa-title-magenta">Ce qui nous arrive.</span><br />Ce qu&apos;on lit.{" "}<span className="v-serif">Ce qu&apos;on pense.</span>
+            <span className="fa-title-magenta">Ce qui nous arrive.</span><br />Ce qu&apos;on lit{" "}.{" "}<span className="v-serif">Ce qu&apos;on pense.</span>
           </h2>
         </div>
         <Link href="/blog" className="btn-brand fa-cta-btn">

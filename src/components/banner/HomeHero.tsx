@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import VibrationLine from "@/components/shared/VibrationLine";
 import AppMockup from "@/components/shared/AppMockup";
 import WaveSeparator from "@/components/shared/WaveSeparator";
+import { useSettings } from "@/hooks/useSettings";
 import "../../styles/banner/homeHero.css";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -37,6 +38,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 
 export default function HomeHero() {
+  const t = useSettings();
   return (
     <section className="hero-section" aria-label="Présentation Uvibes">
       {/* ── Backdrop animé ── */}
@@ -147,20 +149,20 @@ export default function HomeHero() {
         <div className="hero-after">
           <Reveal delay={180}>
             <p className="hero-sub">
-              Les bonnes conversations ne s&apos;improvisent pas. Elles se créent.
+              {t("hero-sub", "Les bonnes conversations ne s'improvisent pas. Elles se créent.")}
             </p>
           </Reveal>
 
           <Reveal delay={320}>
             <div className="hero-ctas">
               <Link href="/solution" className="btn-brand">
-                Découvrir l&apos;application
+                {t("hero-cta-primary", "Découvrir l'application")}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
               <Link href="/#contact" className="btn-glass">
-                Étudions votre projet
+                {t("hero-cta-secondary", "Étudions votre projet")}
               </Link>
             </div>
           </Reveal>

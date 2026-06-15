@@ -128,6 +128,16 @@ async function main() {
     { cle: "oe-subtitle", label: "4ème offre — sous-titre", valeur: "Le moyen le plus simple de tester Uvibes : un mois complet pour mobiliser votre collectif et mesurer l'impact, avant tout engagement annuel." },
     { cle: "oe-prix", label: "4ème offre — prix affiché", valeur: "480 €" },
     { cle: "oe-prix-note", label: "4ème offre — mention sous le prix", valeur: "sans engagement annuel" },
+    // Hero (accueil)
+    { cle: "hero-sub", label: "Hero accueil — sous-titre", valeur: "Les bonnes conversations ne s'improvisent pas. Elles se créent." },
+    { cle: "hero-cta-primary", label: "Hero accueil — bouton principal", valeur: "Découvrir l'application" },
+    { cle: "hero-cta-secondary", label: "Hero accueil — bouton secondaire", valeur: "Étudions votre projet" },
+    // Section « Petite structure ? »
+    { cle: "soc-text", label: "Section Petite structure — texte", valeur: "Association, petit collectif ou budget limité ? Nos formules standard ne sont pas une fin en soi. Uvibes est porté par une association à but non lucratif : notre priorité, c'est votre lien social, pas la taille du contrat. On construit ensemble une formule à votre échelle." },
+    { cle: "soc-cta", label: "Section Petite structure — bouton", valeur: "Prendre rendez-vous" },
+    // Footer
+    { cle: "footer-tagline", label: "Footer — accroche", valeur: "Activez les bonnes ondes." },
+    // Offre découverte (4ème offre) — éditable
     { cle: "oe-points", label: "4ème offre — points inclus (1 par ligne : label | détail | bonus)", valeur: [
       "Jusqu'à 500 vibes | expériences interactives pour mobiliser votre collectif",
       "1 session thématique | sur le sujet de votre choix, personnalisée pour votre public",

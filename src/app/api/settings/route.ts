@@ -17,6 +17,13 @@ const PUBLIC_KEYS = [
   "oe-prix",
   "oe-prix-note",
   "oe-points",
+  // Hero (accueil)
+  "hero-sub",
+  "hero-cta-primary",
+  "hero-cta-secondary",
+  // Section « Petite structure »
+  "soc-text",
+  "soc-cta",
 ];
 
 export async function GET() {

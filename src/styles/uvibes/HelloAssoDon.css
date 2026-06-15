@@ -28,8 +28,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.92);
+  z-index: 3000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,7 +56,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 3001;
   color: var(--mainColor);
   padding-bottom: calc(var(--spacing-ref) * 2);
 }

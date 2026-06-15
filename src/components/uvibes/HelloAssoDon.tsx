@@ -1,10 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import "../../styles/uvibes/HelloAssoDon.css";
 
 export default function HelloAssoDon() {
   const [showModal, setShowModal] = useState(false);
+
+  // La modale est rendue via un portal sur <body> : elle échappe ainsi à tout
+  // contexte d'empilement de la page (sinon une vague décorative passait par-dessus).
+  const modal = (
+    <div className="modal-overlay" onClick={() => setShowModal(false)}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="modal-close"
+          onClick={() => setShowModal(false)}
+          type="button"
+          aria-label="Fermer"
+        >
+          ✕
+        </button>
+        <iframe
+          id="haWidget"
+          src="https://www.helloasso.com/associations/eclat-ens/formulaires/1/widget"
+          title="Formulaire de don pour l'association Eclat'Ens"
+          frameBorder="0"
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -15,29 +40,7 @@ export default function HelloAssoDon() {
       >
         Aider financièrement le projet
       </button>
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <button
-              className="modal-close"
-              onClick={() => setShowModal(false)}
-              type="button"
-            >
-              ✕
-            </button>
-            <iframe
-              id="haWidget"
-              src="https://www.helloasso.com/associations/eclat-ens/formulaires/1/widget"
-              title="Formulaire de don pour l'association Eclat'Ens"
-              frameBorder="0"
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          </div>
-        </div>
-      )}
+      {showModal && typeof document !== "undefined" && createPortal(modal, document.body)}
     </>
   );
 }
