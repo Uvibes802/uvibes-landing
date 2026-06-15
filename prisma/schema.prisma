@@ -211,6 +211,33 @@ model PromoCode {
   usageCount  Int       @default(0)
 }
 
+// ── Documents commerciaux (factures & contrats rédigés dans l'admin) ──
+model BusinessDoc {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  numero        String   @unique
+  type          String   @default("FACTURE") // FACTURE | CONTRAT
+
+  // Destinataire
+  clientNom     String
+  clientContact String?
+  clientEmail   String?
+  clientAdresse String?
+
+  // Contenu
+  objet         String?   // titre / objet du document
+  dateEmission  DateTime  @default(now())
+  dateEcheance  DateTime?
+  lignesJson    String    @default("[]") // factures : [{ description, quantite, prixUnitaire }]
+  corps         String?   // contrats : texte libre (paragraphes)
+  conditions    String?   // mentions / conditions de règlement
+  tauxTva       Float     @default(20)
+
+  statut        String    @default("BROUILLON") // BROUILLON | FINALISE | PAYE
+  notes         String?
+}
+
 // ── CRM — activité & relances ──────────────────────────────────
 
 // Journal des échanges avec un collectif (note, appel, email, réunion)

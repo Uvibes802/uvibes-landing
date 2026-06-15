@@ -3,7 +3,7 @@
 import {
   BarChart2, FileText, Home, LogOut,
   Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper, KeyRound,
-  KanbanSquare, ListTodo,
+  KanbanSquare, ListTodo, FileSignature,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,6 +17,7 @@ const NAV = [
       { href: "/admin/collectifs", icon: Users, label: "Collectifs" },
       { href: "/admin/taches", icon: ListTodo, label: "Tâches & relances" },
       { href: "/admin/devis", icon: FileText, label: "Devis" },
+      { href: "/admin/documents", icon: FileSignature, label: "Contrats & factures" },
       { href: "/admin/promos", icon: Ticket, label: "Codes promo" },
       { href: "/admin/rdv", icon: CalendarDays, label: "Rendez-vous" },
       { href: "/admin/newsletter", icon: Mail, label: "Newsletter" },

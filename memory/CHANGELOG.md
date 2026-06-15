@@ -2,6 +2,26 @@
 
 ---
 
+## 2026-06-15 — Module « Contrats & factures » dans l'admin (branche feat/missions-falek)
+
+Nouvelle brique : créer/éditer des **factures** (lignes personnalisées) et des **contrats** (texte libre) depuis le dashboard, puis générer un **PDF designé aux couleurs vives** (pas de template générique).
+
+### Modèle de données
+- Nouveau modèle Prisma `BusinessDoc` (numéro auto, type FACTURE|CONTRAT, infos destinataire, objet, dates, lignes JSON, corps, conditions, taux TVA, statut). Appliqué en base via le pooler (`scripts/db-push.cjs`).
+
+### Admin
+- Page `/admin/documents` + `DocumentsManager` : liste (badge type), formulaire création/édition. Factures = lignes dynamiques (description/qté/PU) avec total HT/TVA/TTC en direct ; contrats = corps libre (paragraphes séparés par une ligne vide). Numéro auto `FAC-2026-XXXX` / `CTR-2026-XXXX`.
+- Routes `GET/POST /api/admin/documents`, `GET/PATCH/DELETE /api/admin/documents/[id]`, `GET /api/admin/documents/[id]/pdf`.
+- Lien « Contrats & factures » ajouté à la sidebar (section CRM).
+
+### PDF
+- `generateBusinessDocPdf` : bandeau orange, en-tête magenta de tableau, cartes parties teintées, total TTC en bloc magenta — même charte vive que le PDF devis. Réutilise `pdfNum` (fix des espaces fines U+202F) et `pdfResponse`.
+
+### Impact
+- La directrice peut produire une facture ou un contrat propre et à la marque Uvibes en quelques champs, sans logiciel tiers ni template Word générique. Build OK, toutes les routes présentes. (Vérif visuelle de la page admin non faite ici : route protégée par auth — le PDF reprend la charte du devis déjà validée.)
+
+---
+
 ## 2026-06-10 — CRM : cœur d'activité commerciale (branche feat/missions-falek)
 
 L'embryon CRM (collectifs + devis + RDV + newsletter + promos) devient un vrai outil de suivi commercial. Trois briques ajoutées : **journal des échanges**, **tâches & relances**, **pipeline visuel**.
