@@ -124,7 +124,7 @@
   width: calc(100% - 3rem);
   background: #ffffff;
   border-radius: 24px;
-  padding: clamp(2rem, 4vw, 3rem);
+  padding: clamp(2.2rem, 4vw, 3.2rem);
   box-shadow:
     0 2px 8px rgba(0,0,0,.04),
     0 16px 48px rgba(217,10,92,.12);
@@ -132,27 +132,17 @@
   z-index: 1;
 }
 
-/* Bords « wavy » (2 couches, comme le bandeau compteur) en haut et en bas de la carte */
-.dv-card:not(.dv-card--bare)::before,
-.dv-card:not(.dv-card--bare)::after,
-.dv-doc-body::before,
-.dv-doc-body::after {
-  content: "";
-  position: absolute;
-  left: -1px; right: -1px;
-  height: 18px;
-  background-repeat: repeat-x;
-  background-position: center bottom, center bottom;
-  background-size: 110px 18px, 132px 15px;
-  /* couche avant (blanc, raccord carte) + couche arrière (rose pâle, décalée) */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='18' preserveAspectRatio='none' viewBox='0 0 110 18'%3E%3Cpath fill='%23ffffff' d='M0,18 V9 C18,1 37,1 55,9 C73,17 92,17 110,9 V18 Z'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='15' preserveAspectRatio='none' viewBox='0 0 132 15'%3E%3Cpath fill='%23fde4ec' d='M0,15 V8 C22,1 44,1 66,8 C88,15 110,15 132,8 V15 Z'/%3E%3C/svg%3E");
+/* Effet « île flottante » : les 4 bords sont ondulés (masque SVG sur tous les côtés)
+   + ombre portée qui épouse la forme (drop-shadow, car box-shadow serait clippée). */
+.dv-card:not(.dv-card--bare),
+.dv-doc-body {
+  --dv-island: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104 104' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M4,4 Q16,0 28,4 T52,4 T76,4 T100,4 Q104,16 100,28 T100,52 T100,76 T100,100 Q88,104 76,100 T52,100 T28,100 T4,100 Q0,88 4,76 T4,52 T4,28 T4,4 Z'/%3E%3C/svg%3E");
+  -webkit-mask: var(--dv-island) center / 100% 100% no-repeat;
+  mask: var(--dv-island) center / 100% 100% no-repeat;
+  filter: drop-shadow(0 16px 30px rgba(217,10,92,.28));
+  box-shadow: none;
+  border-radius: 0;
 }
-.dv-card:not(.dv-card--bare)::before,
-.dv-doc-body::before { top: -17px; transform: scaleY(-1); }
-.dv-card:not(.dv-card--bare)::after,
-.dv-doc-body::after  { bottom: -17px; }
 
 .dv-card-title {
   font-family: var(--font-prompt), sans-serif;
