@@ -29,33 +29,50 @@ function escapeIcs(text: string) {
   return text.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
 }
 
-export function buildIcsEvent(input: IcsInput): string {
+// Lignes d'un VEVENT (sans l'enveloppe VCALENDAR) — réutilisé pour 1 ou N événements.
+function vevent(input: IcsInput): string[] {
   const { h, m } = parseHeure(input.heure);
   const duree = input.dureeMinutes ?? 30;
   const endMinutesTotal = h * 60 + m + duree;
   const endH = Math.floor(endMinutesTotal / 60) % 24;
   const endM = endMinutesTotal % 60;
-
-  const dtStart = fmtLocal(input.date, h, m);
-  const dtEnd = fmtLocal(input.date, endH, endM);
   const dtStamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 
-  const lines = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Uvibes//RDV//FR",
-    "METHOD:PUBLISH",
+  return [
     "BEGIN:VEVENT",
     `UID:${input.uid}@uvibes.fr`,
     `DTSTAMP:${dtStamp}`,
-    `DTSTART:${dtStart}`,
-    `DTEND:${dtEnd}`,
+    `DTSTART:${fmtLocal(input.date, h, m)}`,
+    `DTEND:${fmtLocal(input.date, endH, endM)}`,
     `SUMMARY:${escapeIcs(input.titre)}`,
     input.description ? `DESCRIPTION:${escapeIcs(input.description)}` : "",
     input.lieu ? `LOCATION:${escapeIcs(input.lieu)}` : "",
     "END:VEVENT",
-    "END:VCALENDAR",
   ].filter(Boolean);
+}
 
-  return lines.join("\r\n");
+// Un seul événement (fichier .ics joint aux emails).
+export function buildIcsEvent(input: IcsInput): string {
+  return [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Uvibes//RDV//FR",
+    "METHOD:PUBLISH",
+    ...vevent(input),
+    "END:VCALENDAR",
+  ].join("\r\n");
+}
+
+// Calendrier complet (flux d'abonnement : tous les RDV dans l'agenda de la directrice).
+export function buildIcsCalendar(events: IcsInput[]): string {
+  return [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Uvibes//RDV//FR",
+    "METHOD:PUBLISH",
+    "X-WR-CALNAME:Rendez-vous Uvibes",
+    "X-WR-TIMEZONE:Europe/Paris",
+    ...events.flatMap((e) => vevent(e)),
+    "END:VCALENDAR",
+  ].join("\r\n");
 }
