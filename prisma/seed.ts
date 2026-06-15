@@ -135,8 +135,6 @@ async function main() {
     // Section « Petite structure ? »
     { cle: "soc-text", label: "Section Petite structure — texte", valeur: "Association, petit collectif ou budget limité ? Nos formules standard ne sont pas une fin en soi. Uvibes est porté par une association à but non lucratif : notre priorité, c'est votre lien social, pas la taille du contrat. On construit ensemble une formule à votre échelle." },
     { cle: "soc-cta", label: "Section Petite structure — bouton", valeur: "Prendre rendez-vous" },
-    // Footer
-    { cle: "footer-tagline", label: "Footer — accroche", valeur: "Activez les bonnes ondes." },
     // Offre découverte (4ème offre) — éditable
     { cle: "oe-points", label: "4ème offre — points inclus (1 par ligne : label | détail | bonus)", valeur: [
       "Jusqu'à 500 vibes | expériences interactives pour mobiliser votre collectif",

@@ -16,6 +16,12 @@ export const C = {
   yellow: "#FFE456",     // mise en avant (total)
 };
 
+// Remplace les espaces fines/insécables (U+202F, U+00A0, U+2009) par une espace
+// normale : la police Helvetica de @react-pdf ne les rend pas (sinon « 3 980 »
+// s'affiche « 3/980 »).
+export const pdfNum = (n: number, opts?: Intl.NumberFormatOptions) =>
+  n.toLocaleString("fr-FR", opts).replace(/[\u202f\u00a0\u2009]/g, " ");
+
 // Format monétaire FR partagé.
 export const euro = (n: number) =>
-  `${n.toLocaleString("fr-FR", { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €`;
+  `${pdfNum(n, { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €`;

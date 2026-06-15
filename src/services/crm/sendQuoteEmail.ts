@@ -11,6 +11,7 @@ interface QuoteEmailParams {
   prixTTC: number;
   signed?: boolean;
   pdfPath?: string;
+  message?: string; // message personnalisé saisi par l'admin à l'envoi
 }
 
 function createTransport() {
@@ -43,6 +44,10 @@ export async function sendQuoteToCollectif(params: QuoteEmailParams) {
       </div>
       <div style="padding:32px;background:#FFFBF4;border-radius:0 0 12px 12px;border:1px solid rgba(74,21,48,.09)">
         <h2 style="margin-top:0">Bonjour,</h2>
+        ${params.message
+          ? `<div style="background:#FFF6EC;border-left:3px solid #FD6E00;padding:14px 18px;border-radius:8px;margin:0 0 20px;white-space:pre-wrap">${escapeHtml(params.message)}</div>`
+          : ""
+        }
         <p>Voici votre devis <strong>${params.quoteNumero}</strong> pour <strong>${escapeHtml(params.collectifNom)}</strong>.</p>
         <table style="width:100%;border-collapse:collapse;margin:24px 0">
           <tr style="background:#FFF6EC">

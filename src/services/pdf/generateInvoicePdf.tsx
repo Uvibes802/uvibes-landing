@@ -9,15 +9,15 @@ import {
 import { C, euro } from "./pdfTheme";
 
 const styles = StyleSheet.create({
-  page: { fontFamily: "Helvetica", fontSize: 9.5, color: C.ink, backgroundColor: "#FFFFFF", paddingTop: 0, paddingHorizontal: 42, paddingBottom: 56, lineHeight: 1.45 },
-  topBand: { height: 6, marginHorizontal: -42, backgroundColor: C.rose },
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginTop: 26, marginBottom: 22 },
-  brand: { fontSize: 24, fontFamily: "Helvetica-Bold", color: C.orange, letterSpacing: -0.5 },
-  brandTag: { fontSize: 8, color: C.muted, marginTop: 3, maxWidth: 220 },
+  page: { fontFamily: "Helvetica", fontSize: 9.5, color: C.ink, backgroundColor: "#FFFDFB", paddingTop: 0, paddingHorizontal: 42, paddingBottom: 56, lineHeight: 1.45 },
+  // En-tête — bandeau plein orange (cohérent avec le devis, couleurs vives)
+  headerBand: { marginHorizontal: -42, paddingHorizontal: 42, paddingTop: 30, paddingBottom: 24, marginBottom: 22, backgroundColor: "#FD6E00", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
+  brand: { fontSize: 26, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: -0.5, lineHeight: 1 },
+  brandTag: { fontSize: 8, color: "rgba(255,255,255,.9)", marginTop: 7, maxWidth: 230 },
   docBox: { alignItems: "flex-end" },
-  docLabel: { fontSize: 16, fontFamily: "Helvetica-Bold", color: C.ink, letterSpacing: 2 },
-  docNum: { fontSize: 10, fontFamily: "Helvetica-Bold", color: C.rose, marginTop: 3 },
-  docMeta: { fontSize: 8, color: C.muted, marginTop: 2 },
+  docLabel: { fontSize: 18, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: 2 },
+  docNum: { fontSize: 11, fontFamily: "Helvetica-Bold", color: C.yellow, marginTop: 3 },
+  docMeta: { fontSize: 8, color: "rgba(255,255,255,.85)", marginTop: 2 },
   parties: { flexDirection: "row", gap: 16, marginBottom: 22 },
   party: { flex: 1, backgroundColor: C.cardBg, borderRadius: 8, padding: 12 },
   partyLabel: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: C.rose, letterSpacing: 1.2, marginBottom: 6, textTransform: "uppercase" },
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   partyLine: { fontSize: 8.5, color: C.muted, marginBottom: 1.5 },
   sectionTitle: { fontSize: 9, fontFamily: "Helvetica-Bold", color: C.rose, marginBottom: 9, textTransform: "uppercase", letterSpacing: 1.2 },
   // Tableau lignes
-  tHead: { flexDirection: "row", backgroundColor: C.ink, borderRadius: 6, paddingVertical: 7, paddingHorizontal: 10 },
+  tHead: { flexDirection: "row", backgroundColor: "#E6007E", borderRadius: 6, paddingVertical: 7, paddingHorizontal: 10 },
   tHeadCell: { color: "#fff", fontSize: 8, fontFamily: "Helvetica-Bold", textTransform: "uppercase", letterSpacing: 0.5 },
   tRow: { flexDirection: "row", paddingVertical: 9, paddingHorizontal: 10, borderBottomWidth: 1, borderBottomColor: C.line },
   cDesc: { flex: 1 },
@@ -75,9 +75,7 @@ export async function generateInvoicePdf(data: InvoiceData): Promise<Buffer> {
   const doc = (
     <Document title={`Facture ${factureNum} — Uvibes`} author="Uvibes">
       <Page size="A4" style={styles.page}>
-        <View style={styles.topBand} />
-
-        <View style={styles.header}>
+        <View style={styles.headerBand}>
           <View>
             <Text style={styles.brand}>Uvibes</Text>
             <Text style={styles.brandTag}>Projet porté par l&apos;association Éclatens</Text>
@@ -94,7 +92,7 @@ export async function generateInvoicePdf(data: InvoiceData): Promise<Buffer> {
         <View style={styles.parties}>
           <View style={styles.party}>
             <Text style={styles.partyLabel}>Émetteur</Text>
-            <Text style={styles.partyName}>Uvibes — Association Éclatens</Text>
+            <Text style={styles.partyName}>Uvibes · Association Éclatens</Text>
             <Text style={styles.partyLine}>contact@uvibes.fr</Text>
             <Text style={styles.partyLine}>uvibes.fr</Text>
           </View>

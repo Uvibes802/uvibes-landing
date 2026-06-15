@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { prisma } from "@/lib/prisma";
 import "../../styles/footer/footer.css";
 
 const NAV_COLS = [
@@ -32,16 +31,7 @@ const NAV_COLS = [
   },
 ];
 
-export default async function Footer() {
-  // Tagline éditable depuis l'admin (CmsContent), avec repli sur le texte par défaut.
-  let tagline = "Activez les bonnes ondes.";
-  try {
-    const row = await prisma.cmsContent.findUnique({ where: { cle: "footer-tagline" } });
-    if (row?.valeur) tagline = row.valeur;
-  } catch {
-    // base indisponible → on garde le texte par défaut
-  }
-
+export default function Footer() {
   return (
     <footer className="ft-footer">
       {/* Blobs colorés — saturent la section */}
@@ -61,7 +51,7 @@ export default async function Footer() {
               height={80}
               className="ft-logo"
             />
-            <p className="ft-tagline v-serif">{tagline}</p>
+            <p className="ft-tagline v-serif">Activez les bonnes ondes.</p>
           </div>
 
           <div className="ft-nav">

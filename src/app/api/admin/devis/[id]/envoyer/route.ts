@@ -7,15 +7,19 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   const quote = await prisma.quote.findUnique({ where: { id }, include: { collectif: true } });
   if (!quote) return NextResponse.json({ error: "Introuvable" }, { status: 404 });
 
-  // Destinataire : email fourni par l'admin (envoi à une adresse au choix), sinon celui du collectif
+  // Destinataire + message personnalisé fournis par l'admin
   let destinataire = quote.collectif.email;
+  let message: string | undefined;
   try {
     const body = await req.json();
     if (body?.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(body.email))) {
       destinataire = String(body.email).trim();
     }
+    if (body?.message && String(body.message).trim()) {
+      message = String(body.message).trim().slice(0, 2000);
+    }
   } catch {
-    // pas de corps JSON → on garde l'email du collectif
+    // pas de corps JSON → valeurs par défaut
   }
 
   await sendQuoteToCollectif({
@@ -26,6 +30,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     planNom: quote.planNom,
     prixHT: quote.prixHT,
     prixTTC: quote.prixTTC,
+    message,
   });
 
   await prisma.quote.update({

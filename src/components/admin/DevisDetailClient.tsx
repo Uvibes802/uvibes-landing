@@ -34,6 +34,10 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
   const [sending, setSending] = useState(false);
   const [msg, setMsg] = useState("");
   const [showPdf, setShowPdf] = useState(false);
+  // Modale d'envoi par email (adresse + message personnalisé)
+  const [showSend, setShowSend] = useState(false);
+  const [sendTo, setSendTo] = useState(initial.collectif.email);
+  const [sendMessage, setSendMessage] = useState("");
 
   async function save() {
     setSaving(true); setMsg("");
@@ -49,22 +53,18 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
 
   const alreadySent = !!quote.sentAt || ["ENVOYE", "VU", "SIGNE"].includes(statut);
 
-  async function envoyer() {
-    const verbe = alreadySent ? "Renvoyer" : "Envoyer";
-    // L'admin peut envoyer à l'email du collectif ou à une autre adresse de son choix.
-    const dest = prompt(`${verbe} ce devis — à quelle adresse email ?`, quote.collectif.email);
-    if (dest === null) return;
-    const email = dest.trim();
+  async function doSend() {
+    const email = sendTo.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setMsg("Adresse email invalide."); return; }
     setSending(true); setMsg("");
     try {
       const res = await fetch(`/api/admin/devis/${quote.id}/envoyer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, message: sendMessage.trim() || undefined }),
       });
       const data = await res.json();
-      if (res.ok) { setMsg(`✓ Devis envoyé à ${data.sentTo ?? email}`); setStatut("ENVOYE"); }
+      if (res.ok) { setMsg(`✓ Devis envoyé à ${data.sentTo ?? email}`); setStatut("ENVOYE"); setShowSend(false); }
       else setMsg("Erreur : " + data.error);
     } finally { setSending(false); }
   }
@@ -80,7 +80,7 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
           <span className={`crm-badge ${STATUT_BADGE[statut] ?? "--brouillon"}`}>{statut}</span>
         </div>
         <div style={{ display: "flex", gap: 8 }}>
-          <button className="crm-btn --outline --sm" onClick={envoyer} disabled={sending}>
+          <button className="crm-btn --outline --sm" onClick={() => { setSendTo(quote.collectif.email); setShowSend(true); }} disabled={sending}>
             <Mail size={13} /> {sending ? "Envoi..." : alreadySent ? "Renvoyer par email" : "Envoyer par email"}
           </button>
           <button className="crm-btn --outline --sm" onClick={() => setShowPdf(true)}>
@@ -276,6 +276,56 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
               title={`Aperçu du devis ${quote.numero}`}
               style={{ flex: 1, width: "100%", border: "none" }}
             />
+          </div>
+        </div>
+      )}
+
+      {/* Modale d'envoi par email — adresse + message personnalisé */}
+      {showSend && (
+        <div
+          onClick={() => !sending && setShowSend(false)}
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.55)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ background: "#fff", borderRadius: 14, width: "min(520px, 100%)", padding: 24, boxShadow: "0 20px 60px rgba(0,0,0,.25)" }}
+          >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+              <span style={{ fontWeight: 700, fontSize: 16 }}>Envoyer le devis {quote.numero}</span>
+              <button onClick={() => setShowSend(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--crm-muted)" }}><X size={18} /></button>
+            </div>
+
+            <div className="crm-field-row" style={{ marginBottom: 14 }}>
+              <label className="crm-field-label">Adresse email du destinataire</label>
+              <input
+                className="crm-field-input"
+                type="email"
+                value={sendTo}
+                onChange={(e) => setSendTo(e.target.value)}
+                placeholder="client@organisation.fr"
+              />
+            </div>
+
+            <div className="crm-field-row" style={{ marginBottom: 18 }}>
+              <label className="crm-field-label">Message personnalisé (optionnel)</label>
+              <textarea
+                className="crm-field-textarea"
+                style={{ minHeight: 110 }}
+                value={sendMessage}
+                onChange={(e) => setSendMessage(e.target.value)}
+                placeholder="Bonjour, suite à notre échange, voici votre devis personnalisé…"
+              />
+              <span style={{ fontSize: 11, color: "var(--crm-muted)", marginTop: 4 }}>
+                Ce message apparaîtra en tête de l&apos;email, avant le récapitulatif du devis.
+              </span>
+            </div>
+
+            <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
+              <button className="crm-btn --outline" onClick={() => setShowSend(false)} disabled={sending}>Annuler</button>
+              <button className="crm-btn --primary" onClick={doSend} disabled={sending}>
+                <Mail size={13} /> {sending ? "Envoi…" : "Envoyer"}
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -8,7 +8,7 @@ import {
   renderToBuffer,
 } from "@react-pdf/renderer";
 import { LEGAL_DOCS, type LegalDocSlug } from "@/lib/legalDocs";
-import { C, euro } from "./pdfTheme";
+import { C, euro, pdfNum } from "./pdfTheme";
 
 // @react-pdf ne gère pas les dégradés CSS en backgroundColor → couleurs solides vives.
 const HEADER_FILL = "#FD6E00"; // orange vif (en-tête)
@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
 
   // En-tête — bandeau plein orange pleine largeur
   headerBand: { marginHorizontal: -42, paddingHorizontal: 42, paddingTop: 30, paddingBottom: 24, marginBottom: 22, backgroundColor: HEADER_FILL, flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
-  brand: { fontSize: 26, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: -0.5 },
-  brandTag: { fontSize: 8, color: "rgba(255,255,255,.9)", marginTop: 3, maxWidth: 220 },
+  brand: { fontSize: 26, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: -0.5, lineHeight: 1 },
+  brandTag: { fontSize: 8, color: "rgba(255,255,255,.9)", marginTop: 7, maxWidth: 230 },
   docBox: { alignItems: "flex-end" },
   docLabel: { fontSize: 18, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: 2 },
   docNum: { fontSize: 11, fontFamily: "Helvetica-Bold", color: C.yellow, marginTop: 3 },
@@ -282,7 +282,7 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           </View>
           {parMembre > 0 && (
             <Text style={styles.perMember}>
-              soit ≈ {parMembre.toLocaleString("fr-FR", { maximumFractionDigits: 2 })} € HT / membre / mois
+              soit environ {pdfNum(parMembre, { maximumFractionDigits: 2 })} € HT / membre / mois
             </Text>
           )}
         </View>
