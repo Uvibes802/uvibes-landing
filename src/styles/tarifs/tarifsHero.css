@@ -15,7 +15,7 @@
 }
 .th-vib > * { width: 100%; }
 
-/* ── Blobs colorés animés (fond organique vivant) ── */
+/* ── Blobs doux animés (même esprit que la page Méthode) ── */
 .th-blobs {
   position: absolute;
   inset: 0;
@@ -26,46 +26,38 @@
 .th-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(46px);
-  opacity: 0.55;
-  mix-blend-mode: soft-light;
-  will-change: transform;
-  animation: thBlobFloat 16s ease-in-out infinite;
+  animation: thBlobFloat 9s ease-in-out infinite;
 }
-.th-blob--1 {
-  width: 360px; height: 360px;
-  top: -90px; left: -60px;
-  background: radial-gradient(circle, #FFB300 0%, #FF7A00 70%);
-  animation-duration: 18s;
-}
-.th-blob--2 {
-  width: 300px; height: 300px;
-  top: 4%; right: -70px;
-  background: radial-gradient(circle, #FF2E6E 0%, #E6007E 70%);
-  animation-duration: 21s;
-  animation-delay: -4s;
-}
-.th-blob--3 {
-  width: 420px; height: 420px;
-  bottom: -140px; right: 12%;
-  background: radial-gradient(circle, #FF4D00 0%, #F62570 70%);
-  animation-duration: 24s;
-  animation-delay: -8s;
-}
-.th-blob--4 {
-  width: 260px; height: 260px;
-  bottom: -60px; left: 8%;
-  background: radial-gradient(circle, #FFD24D 0%, #FF8A00 70%);
-  animation-duration: 19s;
-  animation-delay: -2s;
-}
+.th-blob--a { width: 720px; height: 720px; top: -240px; right: -180px; background: radial-gradient(closest-side, rgba(255,180,40,.9),  transparent 70%); filter: blur(24px); animation-duration: 22s; }
+.th-blob--b { width: 640px; height: 640px; top: 30px;   right: 30px;   background: radial-gradient(closest-side, rgba(253,110,0,.85), transparent 70%); filter: blur(22px); animation-duration: 26s; animation-delay: 1s; }
+.th-blob--c { width: 600px; height: 600px; top: 120px;  left: -150px;  background: radial-gradient(closest-side, rgba(255,50,130,.82), transparent 70%); filter: blur(26px); animation-duration: 30s; animation-delay: 2s; }
+.th-blob--d { width: 520px; height: 520px; bottom: -160px; left: 24%;  background: radial-gradient(closest-side, rgba(230,0,126,.82), transparent 70%); filter: blur(26px); animation-duration: 34s; animation-delay: 0.5s; }
+.th-blob--e { width: 500px; height: 500px; top: 30%;    left: 36%;     background: radial-gradient(closest-side, rgba(255,200,60,.78), transparent 70%); filter: blur(28px); animation-duration: 28s; animation-delay: 3s; }
+
 @keyframes thBlobFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(36px, -28px) scale(1.12); }
-  66%      { transform: translate(-26px, 22px) scale(0.92); }
+  0%, 100% { transform: translate(0, 0)      scale(1);    }
+  33%      { transform: translate(22px, -18px) scale(1.06); }
+  66%      { transform: translate(-16px, 14px) scale(0.94); }
 }
+
+/* ── Particules flottantes ── */
+.th-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.th-particle {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.6;
+}
+@keyframes th-p-0 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-40px) } }
+@keyframes th-p-1 { 0%,100% { transform: translate(0,0) } 50% { transform: translate(20px,-30px) } }
+@keyframes th-p-2 { 0%,100% { transform: translate(0,0) } 50% { transform: translate(-15px,25px) } }
+
 @media (prefers-reduced-motion: reduce) {
-  .th-blob { animation: none; }
+  .th-blob, .th-particle { animation: none; }
 }
 
 .th-inner {
