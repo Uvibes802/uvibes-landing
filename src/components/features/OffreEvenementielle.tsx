@@ -10,7 +10,7 @@ interface Point { label: string; detail: string; bonus?: boolean }
 
 // Valeurs par défaut — surchargées par les réglages éditables en admin (clés oe-*).
 const DEFAULTS = {
-  titre: "Faites vivre Uvibes à votre collectif",
+  titre: "Vibes Découverte",
   prixAccent: "à 480 €",
   subtitle: "Le moyen le plus simple de tester Uvibes : un mois complet pour mobiliser votre collectif et mesurer l'impact, avant tout engagement annuel.",
   prix: "480 €",
@@ -120,10 +120,6 @@ export default function OffreEvenementielle() {
 
             {/* CTA */}
             <div className="oe-cta-block">
-              <p className="oe-cta-note">
-                Besoin d&apos;un format sur mesure ou structure de moins de 250 personnes&nbsp;?
-                <strong> Parlons-en.</strong>
-              </p>
               <div className="oe-ctas">
                 <Link href="/devis" className="btn-brand oe-cta-primary">
                   Faire un devis →
