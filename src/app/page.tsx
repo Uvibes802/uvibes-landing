@@ -20,11 +20,11 @@ import { sanitizeText } from "@/services/blog/sanitize";
 import { fetchHomeContent } from "@/services/home/fetchHomeContent";
 import { useEffect, useState } from "react";
 
-
 export default function Home() {
   const [heroContent, setHeroContent] = useState({
-    title: "Activez \nla puissance \nde votre collectif",
-    description: "Et si les conversations clés arrivaient enfin ? \nL’outil digital qui les déclenche, au bon moment",
+    title: "Activez \nla puiss \nde votre collectif",
+    description:
+      "Et si les conversations clés arrivaient enfin ? \nL’outil digital qui les déclenche, au bon moment",
   });
 
   useEffect(() => {
@@ -52,14 +52,17 @@ export default function Home() {
         alt="visuel application"
         className="home-hero"
       />
-            
+
       <WhyUvibes />
 
       <UserNumberCard />
       <VideoCard
         title={
           <>
-            Bien-être collectif: <br className="mobile-only" /> <span className="text-bold">elles y trouvent de <br className="mobile-only" /> la bonne humeur</span>
+            Bien-être collectif: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              elles y trouvent de <br className="mobile-only" /> la bonne humeur
+            </span>
           </>
         }
         videoSrcDdesktop={"/videos/Lisa-desktop.mp4"}
@@ -70,7 +73,10 @@ export default function Home() {
       <VideoCard
         title={
           <>
-            Développement professionnel: <br className="mobile-only" /> <span className="text-bold">ils partagent leurs <br className="mobile-only" /> points de vue</span>
+            Développement professionnel: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils partagent leurs <br className="mobile-only" /> points de vue
+            </span>
           </>
         }
         videoSrcDdesktop={"/videos/Pierre-desktop.mp4"}
@@ -80,7 +86,8 @@ export default function Home() {
       <VideoCard
         title={
           <>
-            Bien-être collectif: <br className="mobile-only" /> <span className="text-bold">ils créent du lien</span>
+            Bien-être collectif: <br className="mobile-only" />{" "}
+            <span className="text-bold">ils créent du lien</span>
           </>
         }
         videoSrcDdesktop={"/videos/Colette-desktop.mp4"}
@@ -90,7 +97,10 @@ export default function Home() {
       <VideoCard
         title={
           <>
-            Outil pédagogique: <br className="mobile-only" /> <span className="text-bold">ils y trouvent de <br className="mobile-only" /> nouvelles idées</span>
+            Outil pédagogique: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils y trouvent de <br className="mobile-only" /> nouvelles idées
+            </span>
           </>
         }
         videoSrcDdesktop={"/videos/Delphine-desktop.mp4"}
@@ -100,22 +110,28 @@ export default function Home() {
       <VideoCard
         title={
           <>
-            Développement professionnel: <br className="mobile-only" /> <span className="text-bold">ils élargissent <br className="mobile-only" /> leurs horizons</span>
+            Développement professionnel: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils élargissent <br className="mobile-only" /> leurs horizons
+            </span>
           </>
         }
         videoSrcDdesktop={"/videos/Nadine-desktop.mp4"}
         videoSrcMobile={"/videos/Nadine-mobile.mp4"}
       />
 
-
       <BenefitsHomeSection />
-      
+
       <FeaturedArticles />
 
       <VideoCard
         title={
           <>
-            Outil pédagogique: <br className="mobile-only" /> <span className="text-bold">ils se nourrissent <br className="mobile-only" /> d&apos;expériences</span>
+            Outil pédagogique: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils se nourrissent <br className="mobile-only" />{" "}
+              d&apos;expériences
+            </span>
           </>
         }
         videoSrcDdesktop={"/videos/arjun-desktop.mp4"}
