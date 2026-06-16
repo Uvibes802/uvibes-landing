@@ -1,6 +1,5 @@
+import MaintenancePage from "@/app/maintenance/page";
 import CookieConsent from "@/components/cookieConsent";
-import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
-import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Script from "next/script";
@@ -26,12 +25,30 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function getWordPressMaintenanceStatus(): Promise<boolean> {
+  try {
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/wp-json/acf/v3/pages/721`;
+    const res = await fetch(apiUrl, { cache: "no-store" });
+    if (!res.ok) return false;
+    const data = await res.json();
+    const maintenanceValue = data.acf?.maintenance_active;
+    return (
+      maintenanceValue === true ||
+      maintenanceValue === "Vrai" ||
+      (Array.isArray(maintenanceValue) && maintenanceValue.includes("Vrai"))
+    );
+  } catch (error) {
+    console.error("Erreur de vérification de la maintenance :", error);
+    return false;
+  }
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isMaintenanceMode = getMaintenanceStatus();
+  const isMaintenanceMode = await getWordPressMaintenanceStatus();
 
   return (
     <html lang="fr">
@@ -60,10 +77,14 @@ export default function RootLayout({
         />
       </head>
       <body className={roboto.variable}>
-        <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
+        {isMaintenanceMode ? (
+          <MaintenancePage />
+        ) : (
+          <>
             {children}
             <CookieConsent />
-        </MaintenanceWrapper>
+          </>
+        )}
       </body>
     </html>
   );
