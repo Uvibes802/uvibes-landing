@@ -6,7 +6,7 @@ export default function Confidentialite() {
       <h1>Politique de confidentialité</h1>
 
       <p>
-        En utilisant le site uvibes.fr, vous acceptez cette politique de
+        En utilisant le uvibes.fr, vous acceptez cette politique de
         confidentialité.
       </p>
 
@@ -22,7 +22,7 @@ export default function Confidentialite() {
         <h2>2. Utilisation des données</h2>
         <p>
           Les données collectées sont utilisées pour pouvoir répondre aux
-          demandes que vous aurez exprimées en renseignant notre formulaire.
+          demandes que vous aurez exprimé en renseignant notre formulaire.
         </p>
         <p>
           Nous ne partageons pas vos données personnelles avec des tiers, sauf
@@ -30,17 +30,16 @@ export default function Confidentialite() {
         </p>
         <ul>
           <li>
-            <strong>Fournisseurs de services</strong> : pour l&apos;hébergement
-            de notre site internet, ou l&apos;envoi de newsletters.
+            Fournisseurs de services : pour l&apos;hébergement de notre site
+            internet, ou l&apos;envoi de newsletters.
           </li>
           <li>
-            <strong>Obligations légales</strong> : si la loi nous y oblige ou
-            pour répondre à une demande légitime des autorités.
+            Obligations légales : si la loi nous y oblige ou pour répondre à une
+            demande légitime des autorités.
           </li>
           <li>
-            <strong>Fusions ou acquisitions</strong> : en cas de vente, fusion
-            ou acquisition de l&apos;entreprise, vos données pourraient être
-            transférées.
+            Fusions ou acquisitions : en cas de vente, fusion ou acquisition de
+            l&apos;entreprise, vos données pourraient être transférées.
           </li>
         </ul>
       </section>
@@ -54,9 +53,11 @@ export default function Confidentialite() {
         </p>
         <p>
           Vous pouvez demander à recevoir un fichier contenant toutes les
-          données personnelles que nous possédons à votre sujet. Vous pouvez
-          également demander la suppression des données personnelles vous
-          concernant.
+          données personnelles que nous possédons à votre sujet.
+        </p>
+        <p>
+          Vous pouvez également demander la suppression des données personnelles
+          vous concernant.
         </p>
         <p>
           Ce droit ne prend pas en compte les données stockées à des fins
@@ -64,8 +65,8 @@ export default function Confidentialite() {
         </p>
         <p>
           Pour exercer ces droits, vous pouvez nous contacter à{" "}
-          <a href="mailto:contactuvibes@gmail.com">contactuvibes@gmail.com</a>.
-          Nous répondrons à votre demande dans un délai maximum de deux mois.
+          <a href="mailto:contact@uvibes.fr">contact@uvibes.fr</a>. Nous
+          répondrons à votre demande dans un délai maximum de deux mois.
         </p>
       </section>
 
@@ -86,7 +87,7 @@ export default function Confidentialite() {
         <h2>5. Contenu embarqué depuis d’autres sites</h2>
         <p>
           Les articles de ce site peuvent inclure des contenus intégrés (par
-          exemple des vidéos, images, articles…). Le contenu intégré depuis
+          exemple des vidéos, images, articles...). Le contenu intégré depuis
           d’autres sites se comporte de la même manière que si vous vous rendiez
           sur cet autre site.
         </p>
@@ -99,12 +100,7 @@ export default function Confidentialite() {
       </section>
 
       <section>
-        <h2>6. Cookies</h2>
-        <p>Nous n’utilisons pas de cookies.</p>
-      </section>
-
-      <section>
-        <h2>7. Modifications de la politique de confidentialité</h2>
+        <h2>6. Modifications de la politique de confidentialité</h2>
         <p>
           Nous nous réservons le droit de modifier cette politique de
           confidentialité à tout moment.
@@ -112,19 +108,18 @@ export default function Confidentialite() {
       </section>
 
       <section>
-        <h2>8. Informations de contact</h2>
+        <h2>7. Informations de contact</h2>
         <p>
-          <strong>Délégué à la Protection des Données :</strong> Delphine Boyrie
-        </p>
-        <p>
-          <strong>Adresse de contact :</strong>{" "}
-          <a href="mailto:contactuvibes@gmail.com">contactuvibes@gmail.com</a>
+          Délégué à la Protection des Données : Delphine Boyrie
+          <br />
+          Adresse de contact :{" "}
+          <a href="mailto:contact@uvibes.fr">contact@uvibes.fr</a>
         </p>
       </section>
 
       <footer>
         <p>
-          <em>Mis à jour le 10 avril 2025</em>
+          <em>Mis à jour, 9 janvier 2026</em>
         </p>
       </footer>
     </main>

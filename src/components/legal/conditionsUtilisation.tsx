@@ -3,20 +3,19 @@ import "@/styles/legal/legal.css";
 export default function ConditionsDutilisation() {
   return (
     <main className="legal-page">
-      <h1>Conditions Générales d’Utilisation de Uvibes.fr</h1>
+      <h1>Conditions générales d’utilisation de Uvibes.fr</h1>
 
       <section>
         <h2>Préambule</h2>
         <p>
-          Les présentes Conditions Générales d&apos;Utilisation (ci-après
-          &quot;CGU&quot;) ont pour objet de définir les règles et obligations
-          encadrant l&apos;utilisation de Uvibes.fr, un site web présentant la
-          solution digitale de Uvibes.
+          Les présentes Conditions Générales d&apos;Utilisation (ci-après « CGU
+          ») ont pour objet de définir les règles et obligations encadrant
+          l&apos;utilisation de Uvibes.fr, un site web présentant la solution
+          digitale de Uvibes.
         </p>
         <p>
-          En accédant et en utilisant uvibes.fr, chaque utilisateur (ci-après
-          &quot;l&apos;Utilisateur&quot;) s&apos;engage à respecter les
-          présentes CGU.
+          En accédant et en utilisant uvibes.fr, chaque utilisateur (ci-après «
+          l&apos;Utilisateur ») s&apos;engage à respecter les présentes CGU.
         </p>
       </section>
 
@@ -72,18 +71,18 @@ export default function ConditionsDutilisation() {
         <p>
           Les équipes de Uvibes.fr mettent tout en œuvre pour offrir un service
           fonctionnel et sécurisé, mais elles ne sauraient être tenues
-          responsables en cas de problèmes techniques ou interruptions
+          responsable en cas de problèmes techniques ou interruptions
           temporaires du service.
         </p>
         <p>
           De plus, Uvibes.fr peut contenir des liens vers d&apos;autres sites
-          internet. Les équipes de Uvibes n&apos;exercent aucun contrôle sur ces
+          internet. Les équipes de Uvibes n&apos;exerce aucun contrôle sur ces
           sites et déclinent toute responsabilité quant à leur contenu.
         </p>
       </section>
 
       <section>
-        <h2>4. Modifications des CGU</h2>
+        <h2>5. Modifications des CGU</h2>
         <p>
           Les présentes CGU peuvent être modifiées à tout moment. La poursuite
           de l’utilisation de uvibes.fr après l’entrée en vigueur des
@@ -92,17 +91,17 @@ export default function ConditionsDutilisation() {
       </section>
 
       <section>
-        <h2>5. Propriété intellectuelle</h2>
+        <h2>6. Propriété intellectuelle</h2>
         <p>
           Tous les éléments de notre plateforme, y compris les textes,
-          graphiques, logos, et logiciels, sont la propriété exclusive de la
+          graphiques, logos, et logiciels, sont la propriété exclusives de la
           fondatrice de la marque Uvibes et sont protégés par les lois sur la
           propriété intellectuelle.
         </p>
       </section>
 
       <section>
-        <h2>6. Droit Applicable et Juridiction Compétente</h2>
+        <h2>7. Droit Applicable et Juridiction Compétente</h2>
         <p>
           Les présentes CGU sont régies par le droit français. Tout litige
           relatif à leur interprétation ou à leur exécution sera soumis à la
@@ -110,13 +109,13 @@ export default function ConditionsDutilisation() {
         </p>
         <p>
           Pour toute question concernant ces CGU, vous pouvez nous contacter à{" "}
-          <a href="mailto:contactuvibes@gmail.com">contactuvibes@gmail.com</a>.
+          <a href="mailto:contact@uvibes.fr">contact@uvibes.fr</a>
         </p>
       </section>
 
       <footer>
         <p>
-          <em>Mis à jour le 10 avril 2025</em>
+          <em>Mis à jour, le 9 janvier 2026</em>
         </p>
       </footer>
     </main>

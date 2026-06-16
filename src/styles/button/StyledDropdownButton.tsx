@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 
 export const StyledDropdownButton = styled(Accordion)(({ theme }) => ({
-  background: "white",
+  background: "#fd6e002d !important",
   color: "var(--mainColor)",
   cursor: "pointer",
   borderRadius: "calc(var(--border-radius)*1) !important",
@@ -21,6 +21,11 @@ export const StyledDropdownButton = styled(Accordion)(({ theme }) => ({
   "& h3": {
     fontSize: "var(--font-size-h3)",
     fontFamily: "var(--text-font)",
+    lineHeight: "1.2",
+    wordBreak: "break-word",
+    [theme.breakpoints.down(400)]: {
+      fontSize: "calc(var(--font-size-ref) * 1.1)",
+    },
   },
 
   "& h4": {
@@ -33,7 +38,7 @@ export const StyledDropdownButton = styled(Accordion)(({ theme }) => ({
   },
 
   "&.Mui-expanded": {
-    background: "var(--mainColor)",
+    background: "var(--mainColor) !important",
     color: "white",
     [theme.breakpoints.up(768)]: {
       margin: "auto !important",
@@ -54,22 +59,26 @@ export const StyledDropdownButton = styled(Accordion)(({ theme }) => ({
 }));
 
 export const StyledAccordionSummary = styled(AccordionSummary)`
-  padding: var(--spacing-ref);
+  padding: 0 var(--spacing-ref) 0 var(--spacing-ref) !important;
   font-family: var(--text-font);
-  font-size: calc(var(--font-size-h3) / 3);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--spacing-ref) 0 var(--spacing-ref) !important;
   margin: 0 !important;
+  min-height: 80px;
+
+  & .MuiAccordionSummary-content {
+    margin: 12px 0 !important;
+  }
 `;
 
 export const StyledSummaryContent = styled("div")`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   font-weight: bold;
   color: var(--mainColor);
+  width: 100%;
 
   .Mui-expanded & {
     color: white;
@@ -79,6 +88,7 @@ export const StyledSummaryContent = styled("div")`
 export const StyledExpandIcon = styled(ExpandMoreIcon)`
   color: var(--mainColor);
   font-size: 2rem;
+  flex-shrink: 0;
 
   .Mui-expanded & {
     color: white;

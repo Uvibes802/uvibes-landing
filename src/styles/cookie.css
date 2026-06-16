@@ -1,0 +1,126 @@
+.cookie-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent blanc */
+  padding: 3rem; /* Augmenté pour correspondre à l'image */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre plus douce */
+  z-index: 9999;
+  border-radius: 12px; /* Rayon de bordure plus doux */
+  width: 90%; /* Garde une largeur relative */
+  max-width: 550px; /* Légèrement plus large */
+}
+
+.cookie-container {
+  display: flex;
+  flex-direction: column; /* Texte au-dessus des boutons */
+  align-items: flex-start; /* Aligner le texte à gauche */
+  gap: 1.5rem; /* Espace entre le texte et les boutons */
+  text-align: left; /* Aligner le texte à gauche */
+}
+
+.cookie-text {
+  font-family: var(--text-font);
+  font-size: var(--font-size-text);
+  color: black; /* Texte noir comme sur l'image */
+  line-height: 1.6; /* Meilleure lisibilité */
+  letter-spacing: var(--spacing-letter);
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 1rem; /* Espace entre les boutons */
+  width: 100%; /* Occupe toute la largeur disponible */
+  justify-content: flex-start; /* Aligner les boutons à gauche */
+}
+
+.accept-button {
+  padding: 0.8rem 2rem; /* Taille du bouton ajustée */
+  background: var(--gradientColor-button); /* Dégradé de votre charte */
+  color: white;
+  border: none;
+  border-radius: 12px; /* Rayon de bordure plus doux */
+  cursor: pointer;
+  font-family: var(--button-font);
+  font-size: var(--font-size-text);
+  letter-spacing: var(--spacing-letter);
+  font-weight: 500;
+  min-width: 130px;
+  transition: transform 0.2s ease;
+}
+
+.accept-button:hover {
+  transform: scale(1.05);
+}
+
+.refuse-button {
+  padding: 0.8rem 2rem; /* Taille du bouton ajustée */
+  background-color: white; /* Fond blanc comme sur l'image */
+  color: var(--mainColor); /* Texte orange */
+  border: 2px solid var(--mainColor); /* Bordure orange */
+  border-radius: 12px; /* Rayon de bordure plus doux */
+  cursor: pointer;
+  font-family: var(--button-font);
+  font-size: var(--font-size-text);
+  letter-spacing: var(--spacing-letter);
+  font-weight: 500;
+  min-width: 130px;
+  transition: all 0.2s ease;
+}
+
+.refuse-button:hover {
+  background: var(--mainColor); /* Fond orange au survol */
+  color: white; /* Texte blanc au survol */
+}
+
+.cookie-banner::before {
+  content: none;
+}
+
+/* Styles pour les écrans mobiles */
+@media (max-width: 767px) {
+  .cookie-banner {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .cookie-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .cookie-text {
+    font-size: 0.85rem;
+    flex-basis: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .cookie-buttons {
+    flex-direction: row;
+    gap: 0.8rem;
+    justify-content: center;
+    width: auto;
+  }
+
+  .accept-button,
+  .refuse-button {
+    width: auto;
+    min-width: 100px;
+    padding: 0.5rem 1.2rem;
+    flex-grow: 1;
+    max-width: 150px;
+  }
+}

@@ -1,5 +1,5 @@
 .funct-orga-container {
-  padding: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
   background: var(--bckgColor);
 }
 
@@ -26,7 +26,7 @@
   width: 100%;
   gap: var(--spacing-ref);
   padding: var(--spacing-ref);
-  background: rgba(253, 110, 0, 0.1);
+  background: rgba(253, 110, 0, 0.178);
   border-radius: var(--border-radius);
 }
 
@@ -63,6 +63,35 @@
   margin: 0 10px;
   font-size: 1.6rem;
 }
+
+.funct-orga-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto; /* Force it to not shrink or grow */
+  white-space: nowrap;
+}
+
+.funct-orga-toggle span {
+  white-space: nowrap; /* Force the text itself to stay on one line */
+}
+
+/* Ensure the title text can wrap and doesn't push the toggle */
+.funct-orga-icon-container .title-text-orange {
+  min-width: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .funct-orga-toggle .text {
+    font-size: 0.8rem;
+  }
+  
+  .funct-orga-icon-container {
+    padding: var(--spacing-ref) calc(var(--spacing-ref) * 0.5);
+  }
+}
+
 
 @media screen and (min-width: 768px) {
   .funct-orga-card-container {

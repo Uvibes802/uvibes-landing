@@ -1,0 +1,198 @@
+.pricing-title-desktop {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: var(--title-font);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pricing-container {
+  margin: 32px;
+  font-family: var(--text-font);
+  background: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 32px;
+  background-image: var(--gradientColor);
+}
+
+.pricing-top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  background-color: transparent; /* Changed to match container background */
+  padding: 20px 20px 0 20px; /* Reduced bottom padding */
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.blue-note {
+  color: #38b6ff; /* Light blue from screenshot */
+  font-family: var(--text-font);
+  font-weight: bold;
+  font-size: 1.25em; /* Larger as in screenshot */
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
+
+  & span {
+    font-size: 1.1em;
+  }
+}
+
+.pricing-table-wrapper {
+  background-color: white;
+  border-radius: calc(var(--border-radius) - 2px);
+  overflow-x: auto;
+  padding: 0;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  table-layout: fixed; /* Better control over column widths */
+}
+
+.plan-header {
+  font-family: var(--title-font);
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  width: 23%; /* Distribute columns better */
+}
+
+.plan-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.plan-name {
+  font-size: 1.6em;
+}
+
+.plan-description-header {
+  font-family: var(--text-font);
+  font-weight: normal;
+  text-transform: none;
+  font-size: 1.1em; /* Much larger for prominent visibility */
+  line-height: 1.2;
+  color: #666;
+  max-width: 32ch;
+}
+
+.feature-header {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  width: 31%;
+}
+
+.feature-name {
+  font-family: var(--text-font);
+  font-weight: bold;
+  padding: 8px 15px; /* Reduced interligne */
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  color: black;
+  font-size: 0.9em;
+}
+
+.non-bold {
+  font-weight: normal;
+}
+
+.plan-price, .plan-value {
+  padding: 8px 10px; /* Reduced interligne */
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  font-family: var(--text-font);
+}
+
+.plan-price {
+  font-family: var(--text-font-bold);
+  font-weight: bold;
+  font-size: 1.1em;
+  color: black;
+}
+
+.cta-content {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3); 
+}
+
+.cta-content h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  font-family: var(--title-font);
+  font-weight: 900;
+  color: white;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-cta {
+  padding: 12px 30px;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+  font-family: var(--text-font);
+  font-weight: 900;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  transition: transform 0.2s;
+  min-width: 200px;
+}
+
+.btn-cta:hover {
+  transform: scale(1.05);
+}
+
+.btn-cta.secondary {
+  background-color: var(--yellowUvibes); /* #feb000 for 'NOUS CONTACTER' */
+  color: white;
+}
+
+.btn-cta.primary {
+  background-color: #FD6E00; /* Darker orange for 'PRENDRE RENDEZ VOUS' */ /* Matches previous orange */
+  color: white;
+  text-decoration: none;
+  
+  & a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+@media (max-width: 900px) {
+  .pricing-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .pricing-table-wrapper, .pricing-top-section, .pricing-title-desktop {
+    display: none !important;
+  }
+  
+  .cta-content h3 {
+    font-size: 1.2em;
+  }
+
+  .btn-cta {
+    width: 100%;
+  }
+}

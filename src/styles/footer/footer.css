@@ -2,9 +2,12 @@
   padding: calc(var(--spacing-ref) * 2);
   border-top: 2px solid var(--mainColor);
   display: grid;
-  height: calc(var(--spacing-ref) * 11);
+  min-height: calc(var(--spacing-ref) * 11);
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  overflow: visible;
+  position: relative;
+  z-index: 50;
   & h4 {
     font-size: calc(var(--font-size-ref) * 3);
     font-family: var(--title-font);
@@ -45,14 +48,11 @@
 }
 
 .footer-icons {
-  text-align: center;
   display: flex;
-  gap: calc(var(--spacing-ref) * 1);
-  justify-content: start;
   align-items: center;
 
   & img {
-    width: 100%;
+    min-width: 100px;
   }
 }
 
@@ -63,20 +63,32 @@
 }
 
 .footer-links {
-  height: var(--spacing-ref);
   margin: 0 auto;
   grid-column: span 3;
   grid-row-start: 2;
   padding: var(--spacing-ref) 0;
   display: flex;
-  gap: calc(var(--spacing-ref) * 0.5);
+  gap: calc(var(--spacing-ref) * 1.5);
+  position: relative;
+  z-index: 100;
 
   & a {
     text-decoration: none;
     font-family: var(--text-font);
-    font-size: calc(var(--font-size-ref) * 0.6);
+    font-size: calc(var(--font-size-ref) * 0.9);
     color: rgba(17, 17, 17, 0.719);
-    padding-bottom: var(--spacing-ref);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    pointer-events: auto;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+    z-index: 101;
+  }
+
+  & a:hover {
+    color: var(--mainColor);
+    text-decoration: underline;
   }
 }
 
@@ -92,6 +104,42 @@
     height: calc(var(--spacing-ref) * 3);
     width: 150px;
     min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc(var(--spacing-ref) * 2);
+    padding: var(--spacing-ref);
+  }
+
+  .footer h4 {
+    font-size: calc(var(--font-size-ref) * 2);
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .footer-icons img {
+    min-width: 60px !important;
+    width: 60px;
+    height: auto;
+  }
+
+  .footer-buttons {
+    width: 100%;
+  }
+
+  .footer-content, .footer-links, .footer-buttons {
+    grid-column: span 3;
+    width: 100%;
   }
 }
 

@@ -1,10 +1,9 @@
-import type { HeroBannerProps } from "../../types/banner/heroBanner";
 import Image from "next/image";
 import Link from "next/link";
-import Logo_uVibesDesktop from "../../../public/images/Logo UVIBES.png";
-import Logo_uVibes from "../../../public/images/Logo VI blanc.png";
 import "../../styles/banner/heroBanner.css";
-//import WhiteButton from "../button/WhiteButton";
+import type { HeroBannerProps } from "../../types/banner/heroBanner";
+const Logo_uVibesDesktop = "/images/Logo UVIBES.png";
+const Logo_uVibes = "/images/Logo VI blanc.png";
 
 export function HeroBanner({
   title,
@@ -12,9 +11,11 @@ export function HeroBanner({
   description,
   image,
   alt,
+  className,
 }: HeroBannerProps) {
   return (
-    <header className="hero-banner-wrapper">
+    <header className={`hero-banner-wrapper ${className || ""}`}>
+
       <div className="hero-banner-container">
         <div className="hero-banner-header-top">
           <Link href="/" passHref>
@@ -22,18 +23,19 @@ export function HeroBanner({
               src={Logo_uVibes}
               alt="Logo uVibes"
               width={80}
+              height={80}
               className="logo_mobile"
+              style={{ height: "auto" }}
             />
             <Image
               src={Logo_uVibesDesktop}
               alt="Logo uVibes desktop"
               width={400}
+              height={100}
               className="logo_desktop"
+              style={{ height: "auto" }}
             />
           </Link>
-          {/*<Link href="http://app.uvibes.fr/" passHref>
-            <WhiteButton title="Connectez-vous à Uvibes" type="button" />
-          </Link> */}
         </div>
 
         <div className="hero-banner-body">
@@ -41,7 +43,7 @@ export function HeroBanner({
             <h1 className="visually-hidden">{title}</h1>
             <h2 className="title-text">{subtitle}</h2>
             <h1 className="title-h1">{title}</h1>
-            <p className="title-text">{description}</p>
+            <p className="title-text-light">{description}</p>
           </section>
 
           {/* image unique, affichée uniquement en desktop */}
@@ -50,22 +52,31 @@ export function HeroBanner({
               src={image}
               alt={alt}
               className="hero-banner-image-desktop"
-              width={600}
-              height={900}
+              width={1000}
+              height={1000}
+              priority
+            />
+          </figure>
+          {/* image identique, affichée uniquement en mobile */}
+          <figure className="hero-banner-image-container hero-mobile-only">
+            <Image
+              src={image}
+              alt={alt}
+              className="hero-banner-image"
+              width={400}
+              height={300}
               priority
             />
           </figure>
         </div>
       </div>
-
-      {/* image identique, affichée uniquement en mobile */}
-      <figure className="hero-banner-image-container mobile-only">
+      <figure>
         <Image
-          src={image}
+          src="/images/Vibration-right.svg"
           alt={alt}
-          className="hero-banner-image"
-          width={600}
-          height={900}
+          className="hero-vibration-right"
+          width={1000}
+          height={1100}
           priority
         />
       </figure>

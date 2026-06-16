@@ -6,7 +6,7 @@
   border-radius: 999px;
   overflow: hidden;
   background-color: var(--bckgColor);
-  margin: 0 -1rem;
+  margin-bottom: 2rem;
 }
 
 .uvibes-button {
@@ -15,15 +15,19 @@
   border: none;
   color: var(--mainColor);
   font-family: var(--text-font);
-  font-size: var(--font-size-text);
+  font-size: calc(var(--font-size-text) * 0.9);
   z-index: 1;
   position: relative;
   cursor: pointer;
   transition: transform 0.2s ease, font-weight 0.2s ease;
+
+  @media screen and (max-width: 480px) {
+    font-size: calc(var(--font-size-text) * 0.7);
+  }
 }
 
 .uvibes-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   font-weight: 600;
 }
 
@@ -51,8 +55,29 @@
   justify-content: center;
   align-items: center;
   gap: var(--spacing-ref);
-  padding-top: var(--spacing-ref);
-  padding-bottom: calc(var(--spacing-ref) * 2);
+  padding: calc(var(--spacing-ref) * 2) 0;
+  width: 100%;
+}
+
+.uvibes-teamSection-members.is-carousel {
+  display: block; /* Swiper handles layout */
+  padding: calc(var(--spacing-ref) * 2) 0;
+}
+
+.team-swiper {
+  width: 100%;
+  padding-bottom: 3.5rem !important;
+  padding-top: 1rem;
+}
+
+.team-swiper .swiper-button-next,
+.team-swiper .swiper-button-prev {
+  color: var(--mainColor) !important;
+  scale: 0.8;
+}
+
+.team-swiper .swiper-pagination-bullet-active {
+  background: var(--mainColor) !important;
 }
 
 @media screen and (min-width: 768px) {
@@ -60,7 +85,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: calc(var(--spacing-ref) * 3);
-    padding-top: calc(var(--spacing-ref) * 3);
+    gap: calc(var(--spacing-ref) * 2);
+    padding: calc(var(--spacing-ref) * 4) 0;
+  }
+
+  .uvibes-teamSection-members.is-carousel {
+    display: block;
   }
 }

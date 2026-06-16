@@ -1,7 +1,7 @@
 .items-label {
   font-size: calc(var(--font-size-text) * 1.2);
   font-family: var(--text-font);
-  font-weight: 550;
+  font-weight: bold;
   white-space: nowrap;
 }
 
@@ -24,4 +24,29 @@
     gap: 0;
     padding: var(--spacing-ref);
   }
+}
+
+@media screen and (max-width: 768px) {
+  .items-link {
+    transform: scale(1.5); /* Reduced from scale(2) to save space */
+    gap: 0.5rem;
+  }
+
+  .menu-items-bottom-nav .items-label {
+    display: none; /* Hide labels on mobile bottom nav */
+  }
+
+  .menu-items-bottom-nav.items-link {
+    transform: scale(1.2); /* Even smaller for bottom nav items */
+  }
+}
+
+@media screen and (max-width: 480px) {
+    .items-link {
+        transform: scale(1.2);
+    }
+    
+    .menu-items-bottom-nav.items-link {
+        transform: scale(1);
+    }
 }

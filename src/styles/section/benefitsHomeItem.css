@@ -7,6 +7,10 @@
   gap: calc(var(--spacing-ref) / 2);
 }
 
+.text-white {
+  color: white;
+}
+
 .benefices-home-item-icon {
   background-color: white;
   border-radius: 50%;
@@ -15,7 +19,7 @@
   align-items: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-
+  margin: 1rem;
   &:hover {
     transform: scale(1.1);
   }

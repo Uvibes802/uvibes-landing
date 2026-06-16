@@ -4,7 +4,6 @@ import {
   CircleGauge,
   DotIcon,
   Handshake,
-  Heart,
   Home,
   School,
   Smile,
@@ -27,8 +26,7 @@ export default function AvantagesContent() {
             <CircleGauge style={{ color: "var(--secondaryColor)" }} size={50} />
           }
           title="Performance : améliorer sa prise de décision et renforcer l’engagement"
-          stats="42% des employés admettent ne faire que le strict minimum (Etude 2023 Observatoire 
-						de la société et de la consommation)."
+          stats="En France, 93 % des salariés sont non engagés ou activement désengagés (Etude Gallup mars 2025)"
           content="Uvibes stimule la réflexion, offre une meilleure connaissance de son collectif et suscite l’adhésion collective"
         />
         <AvantagesCard
@@ -126,7 +124,7 @@ export default function AvantagesContent() {
       <DropdownButton
         title="Collectif"
         subtitle="Dans la sphère du prendre soin, Uvibes est une nouvelle respiration "
-        icon={<Heart size={80} />}
+        icon={<Handshake size={80} />}
       >
         <AvantagesCard
           icone={

@@ -3,23 +3,36 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "../../styles/menu/MenuItem.css";
 
-export default function MenuItems({ icon, label, color, link }: MenuItemProps) {
+export default function MenuItems({ icon, label, color, link, className }: MenuItemProps) {
   const pathname = usePathname();
   const isActive = pathname === link;
+  const isGradient = color.startsWith("linear-gradient");
 
   return (
     <Link
       href={link}
       passHref
-      className="items-link"
+      className={`items-link ${className || ""}`}
       style={{
-        fontWeight: isActive ? 800 : 400,
-        transform: isActive ? "scale(1.2)" : "scale(1)",
+        fontWeight: isActive ? "bolder" : "normal",
+        transform: isActive ? "scale(1.3)" : "scale(1)",
         transition: "all 0.2s ease",
       }}
     >
       {icon}
-      <p className="items-label" style={{ color }}>
+      <p
+        className="items-label"
+        style={
+          isGradient
+            ? {
+                background: color,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }
+            : { color }
+        }
+      >
         {label}
       </p>
     </Link>

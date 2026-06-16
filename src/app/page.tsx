@@ -1,79 +1,146 @@
 "use client";
 import { HeroBanner } from "@/components/banner/heroBanner";
-import UserNumberCard from "@/components/cards/userNumberCard";
-import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
 import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/Footer";
 import FloatingMenu from "@/components/menu/Menu";
+import FeaturedArticles from "@/components/section/FeaturedArticles";
 import FunctSection from "@/components/section/functSection";
-import InspirationSection from "@/components/section/inspirationSection";
 import Uvibes from "@/components/uvibes/uvibes";
 
+import UserNumberCard from "@/components/cards/userNumberCard";
+import VideoCard from "@/components/cards/videoCard";
+import { PartnerCarousel } from "@/components/carousel/PartnerCarousel";
+import InspirationSection from "@/components/section/inspirationSection";
+import WhyUvibes from "@/components/section/WhyUvibes";
 import Testimony from "@/components/testimony/testimony";
-import Resize from "@/services/resize/resize";
-import Image from "next/image";
-import mockupHome from "../../public/images/mochupHome.png";
-import visuelHome1Mobile from "../../public/images/visuel-homepage1.jpg";
-import visuelHome2Mobile from "../../public/images/visuel-homepage2.jpg";
-import visuelHome1Desktop from "../../public/images/visuelHome1Desktop.jpg";
-import visuelHome2Desktop from "../../public/images/visuelHome2Desktop.jpg";
 import { BenefitsHomeSection } from "../components/section/BenefitsHomeSection";
+const mockupHome = "/images/mochupHome.png";
+
+import { sanitizeText } from "@/services/blog/sanitize";
+import { fetchHomeContent } from "@/services/home/fetchHomeContent";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { isMobile } = Resize();
+  const [heroContent, setHeroContent] = useState({
+    title: "Activez \nla puiss \nde votre collectif",
+    description:
+      "Et si les conversations clés arrivaient enfin ? \nL’outil digital qui les déclenche, au bon moment",
+  });
+
+  useEffect(() => {
+    const loadContent = async () => {
+      try {
+        const { title, description } = await fetchHomeContent();
+        setHeroContent({
+          title: sanitizeText(title),
+          description: sanitizeText(description),
+        });
+      } catch (error) {
+        console.error("Failed to load home content", error);
+      }
+    };
+    loadContent();
+  }, []);
+
   return (
     <main>
       <HeroBanner
         subtitle=""
-        title="Découvrir des points de vue inattendus"
-        description="Voir l'autre et ce que nous vivons autrement"
+        title={heroContent.title}
+        description={heroContent.description}
         image={mockupHome}
         alt="visuel application"
+        className="home-hero"
+      />
+
+      <WhyUvibes />
+
+      <UserNumberCard />
+      <VideoCard
+        title={
+          <>
+            Bien-être collectif: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              elles y trouvent de <br className="mobile-only" /> la bonne humeur
+            </span>
+          </>
+        }
+        videoSrcDdesktop={"/videos/Lisa-desktop.mp4"}
+        videoSrcMobile={"/videos/Lisa-mobile.mp4"}
+      />
+      <PartnerCarousel />
+
+      <VideoCard
+        title={
+          <>
+            Développement professionnel: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils partagent leurs <br className="mobile-only" /> points de vue
+            </span>
+          </>
+        }
+        videoSrcDdesktop={"/videos/Pierre-desktop.mp4"}
+        videoSrcMobile={"/videos/Pierre-mobile.mp4"}
+      />
+      <InspirationSection />
+      <VideoCard
+        title={
+          <>
+            Bien-être collectif: <br className="mobile-only" />{" "}
+            <span className="text-bold">ils créent du lien</span>
+          </>
+        }
+        videoSrcDdesktop={"/videos/Colette-desktop.mp4"}
+        videoSrcMobile={"/videos/Colette-mobile.mp4"}
+      />
+      <Testimony />
+      <VideoCard
+        title={
+          <>
+            Outil pédagogique: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils y trouvent de <br className="mobile-only" /> nouvelles idées
+            </span>
+          </>
+        }
+        videoSrcDdesktop={"/videos/Delphine-desktop.mp4"}
+        videoSrcMobile={"/videos/Delphine-mobile.mp4"}
       />
       <FunctSection />
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: isMobile ? "30dvh" : "60vh",
-        }}
-      >
-        <Image
-          src={isMobile ? visuelHome1Mobile : visuelHome1Desktop}
-          alt="visuel homme avec téléphone"
-          fill
-          style={{
-            objectFit: "cover",
-            width: "100%",
-          }}
-          loading="lazy"
-          priority={false}
-        />
-      </div>
+      <VideoCard
+        title={
+          <>
+            Développement professionnel: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils élargissent <br className="mobile-only" /> leurs horizons
+            </span>
+          </>
+        }
+        videoSrcDdesktop={"/videos/Nadine-desktop.mp4"}
+        videoSrcMobile={"/videos/Nadine-mobile.mp4"}
+      />
+
       <BenefitsHomeSection />
-      <InspirationSection />
-      {isMobile && <UserNumberCard />}
-      <Testimony />
+
+      <FeaturedArticles />
+
+      <VideoCard
+        title={
+          <>
+            Outil pédagogique: <br className="mobile-only" />{" "}
+            <span className="text-bold">
+              ils se nourrissent <br className="mobile-only" />{" "}
+              d&apos;expériences
+            </span>
+          </>
+        }
+        videoSrcDdesktop={"/videos/arjun-desktop.mp4"}
+        videoSrcMobile={"/videos/arjun-mobile.mp4"}
+        paddingTop="0"
+      />
+
       <FloatingMenu />
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: isMobile ? "30dvh" : "60vh",
-        }}
-      >
-        <Image
-          src={isMobile ? visuelHome2Mobile : visuelHome2Desktop}
-          alt="visuel homme avec téléphone"
-          fill
-          style={{
-            objectFit: "cover",
-            objectPosition: "center 50%",
-          }}
-          loading="lazy"
-        />
-      </div>
-      <PartnerCarousel />
+
       <Uvibes />
       <Contact />
       <Footer />

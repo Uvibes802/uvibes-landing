@@ -1,26 +1,27 @@
 .avantages-desktop-container {
-  padding-top: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) var(--section-padding-h);
+  
 
   & h3:first-of-type {
     text-align: left;
     font-size: var(--font-size-h2);
-    padding: calc(var(--spacing-ref) * 2);
+    padding-bottom: calc(var(--spacing-ref) * 2);
   }
 
   & h4:first-of-type {
     text-align: left;
     font-size: calc(var(--font-size-h4) * 1.5);
-    padding-left: calc(var(--spacing-ref) * 2);
+    padding-bottom: calc(var(--spacing-ref) * 2);
   }
 }
 
 .avantages-section {
-  padding-top: calc(var(--spacing-ref) * 2);
-  padding-bottom: calc(var(--spacing-ref) * 2);
+  padding: var(--section-padding-v) 0;
 }
 
 .avantages-button {
   padding: calc(var(--spacing-ref) * 2);
+  background-color: rgba(253, 110, 0, 0.178);
   margin: 0 auto;
   width: 50%;
   border: 1px solid var(--mainColor);
@@ -39,19 +40,21 @@
     justify-content: center;
 
     &:hover {
-      scale: 1.05;
+      scale: 1.1;
       transition: all 0.4s ease;
     }
 
     & p {
       color: var(--mainColor);
+      font-size: calc(var(--font-size-ref) * 1.5);
+      font-weight: bold;
     }
   }
 
   & button {
     cursor: pointer;
-    width: 7rem;
-    height: 7rem;
+    width: 8rem;
+    height: 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,6 +78,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: calc(var(--spacing-ref) * 2);
 
   & .avantages-card-container:nth-child(odd) {
     & h5 {

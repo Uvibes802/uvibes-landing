@@ -43,6 +43,36 @@
   .last-avantages-card-title {
     padding-bottom: var(--spacing-ref);
   }
+
+  @media screen and (max-width: 480px) {
+    padding: var(--spacing-ref);
+    margin-top: var(--spacing-ref);
+
+    & h5 {
+      font-size: calc(var(--font-size-title-text) * 0.65);
+      width: 100%;
+      padding-left: 0;
+    }
+
+    .last-avantages-card-title {
+      gap: 0.5rem;
+      align-items: center;
+
+      & svg {
+        width: 35px !important;
+        height: 35px !important;
+      }
+    }
+
+    .last-avantages-list {
+      font-size: calc(var(--font-size-text) * 0.85);
+      width: 100%;
+    }
+
+    .last-avantages-card-content {
+      gap: 0.25rem;
+    }
+  }
 }
 
 @media screen and (min-width: 1024px) {

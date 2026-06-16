@@ -6,4 +6,5 @@ export type HeroBannerProps = {
   description: string;
   image: string | StaticImageData;
   alt: string;
+  className?: string;
 };

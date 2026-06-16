@@ -7,24 +7,27 @@ import FunctOrganisation from "@/components/funct/functOrganisation";
 import FloatingMenu from "@/components/menu/Menu";
 import { AppointmentSection } from "@/components/section/appointmentSection";
 
-import mockupFeature from "../../../public/images/mockupFeature.png";
+import PricingTable from "@/components/features/PricingTable";
+const mockupFeature = "/images/mockupFeature.png";
 export default function FeaturesPage() {
   return (
     <>
       <main>
         <HeroBanner
-          subtitle="Les fonctionnalités"
-          title="Uvibes transforme le quotidien des échanges"
-          description="La possibilité d’accéder à des visions nouvelles"
+          subtitle=""
+          title={"Des\u00A0conversations \nqui font avancer \nvotre collectif"}
+          description="Découvrez nos fonctionnalités et choisissez l’offre adaptée à vos besoins"
           image={mockupFeature}
           alt="Fonctionnalités de l'application"
+          className="features-hero"
         />
         <nav>
           <FloatingMenu />
         </nav>
 
-        <FeaturesCard />
         <FunctOrganisation />
+        <FeaturesCard />
+        <PricingTable />
         <PartnerBanner />
         <AppointmentSection />
       </main>

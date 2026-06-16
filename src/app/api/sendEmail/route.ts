@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
-  const { lastname, firstname, email, message, newsletter } = await req.json();
+  const { lastname, firstname, email, message, newsletter, share } =
+    await req.json();
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -26,6 +27,9 @@ export async function POST(req: Request) {
              <p><strong>Prénom:</strong> ${firstname}</p>
              <p><strong>Email:</strong> ${email}</p>
              <p><strong>Newsletter:</strong> ${newsletter ? "Oui" : "Non"}</p>
+             <p><strong>Accepte de partager ses informations:</strong> ${
+               share ? "Oui" : "Non"
+             }</p>
              <p><strong>Message:</strong></p>
              <p style="background-color: #f9f9f9; padding: 10px; border-radius: 5px;">${message}</p>
            </div>

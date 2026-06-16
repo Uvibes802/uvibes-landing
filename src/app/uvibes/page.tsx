@@ -9,10 +9,10 @@ import HelloAssoDon from "@/components/uvibes/HelloAssoDon";
 import Resize from "@/services/resize/resize";
 import { DotIcon } from "lucide-react";
 import Image from "next/image";
-import logoUvibes from "../../../public/images/Logo VI blanc.png";
-import logoEclatense from "../../../public/images/LogoEclatens.svg";
-import uvibesTeam from "../../../public/images/TeamUvibes.jpg";
 import "../../styles/page/uvibes.css";
+const logoUvibes = "/images/Logo VI blanc.png";
+const logoEclatense = "/images/LogoEclatens.png";
+const uvibesTeam = "/images/TeamUvibes.jpg";
 
 export default function uvibes() {
   const { isMobile } = Resize();
@@ -20,10 +20,11 @@ export default function uvibes() {
     <>
       <HeroBanner
         subtitle=""
-        title="Qui sommes-nous ?"
-        description="Découvrez l'histoire de Uvibes, notre vision et les personnes qui donnent vie à cette dynamique innovante de renouveau relationnel"
+        title={"Qui\u00A0donne vie \nà Uvibes ?"}
+        description="Découvrez les personnes et les idées qui font grandir Uvibes"
         image={logoUvibes}
         alt="Fonctionnalités de l'application"
+        className="uvibes-hero"
       />
       <nav>
         <FloatingMenu />
@@ -31,45 +32,81 @@ export default function uvibes() {
       <main>
         <section className="uvibes-aboutUs uvibes-container">
           <h2 className="title-h2-orange uvibes-title">
-            La naissance de l&apos;idée
+            La naissance de l’idée
           </h2>
           <p className="text">
-            Interagir avec des inconnus nous rend plus heureux et nous maintient
-            en bonne santé physique. <br />
+            Et si on se parlait vraiment ? <br />
             <br />
-            Alors comment lancer cette discussion ? <br />
+            La plus longue étude menée par Harvard montre que la qualité de nos
+            relations est le premier facteur de bonheur (Vaillant, 2002). Sur
+            les réseaux sociaux traditionnels, les algorithmes nous relient à
+            ceux qui pensent comme nous. Dans la vraie vie, on reste entre
+            groupes familiers, on commente plus qu’on ne dialogue, et petit à
+            petit... on perd la richesse de la diversité humaine. <br />
             <br />
-            Après 300 enquêtes de terrain, notre solution voit le jour, amènant
-            à des échanges :
+            Chez Uvibes, nous croyons à :
           </p>
           <ul>
             <div className="uvibes-list">
               <DotIcon size={24} style={{ color: "var(--mainColor)" }} />
-              <li className="text">inattendus</li>
+              <li className="text">La magie des témoignages</li>
             </div>
             <div className="uvibes-list">
               <DotIcon size={24} style={{ color: "var(--mainColor)" }} />
-              <li className="text">brefs</li>
+              <li className="text">Au partage des expériences personnelles</li>
             </div>
             <div className="uvibes-list">
               <DotIcon size={24} style={{ color: "var(--mainColor)" }} />
-              <li className="text">ludiques et inspirants</li>
-            </div>
-            <div className="uvibes-list">
-              <DotIcon size={24} style={{ color: "var(--mainColor)" }} />
-              <li className="text">dans une dynamique bienveillante</li>
+              <li className="text">Et à la richesse des visions nouvelles.</li>
             </div>
           </ul>
+          <p className="text uvibes-intro-text">
+            Au sein d’une université, d’une entreprise, ou de tout autre
+            collectif, beaucoup aimeraient échanger ainsi, mais n’osent pas.{" "}
+            <br />
+            Uvibes facilite ces rencontres inattendues, par un jeu de questions
+            ouvertes et positives.
+            <br />
+            <br />
+            Parce que c’est en allant vers l’inconnu que naissent les plus
+            belles conversations.
+          </p>
+
+          <section className="uvibes-team-sub-section">
+            <h2 className="title-h2-orange uvibes-title">Sa concrétisation</h2>
+            <TeamSection />
+          </section>
+          <h2 className="title-h2-orange uvibes-title ethical-title">
+            Notre engagement éthique
+          </h2>
+          <ul className="uvibes-ethical-list">
+            <li className="text">
+              Un service digital respectueux, pensé pour la qualité des
+              discussions, l’inclusion et la confidentialité des données.
+            </li>
+            <li className="text">
+              Une conduite de projet alignée avec nos valeurs, basée sur
+              l’écoute, la collaboration, et la responsabilité environnementale.
+            </li>
+            <li className="text">
+              Des partenariats responsables, choisis pour leur transparence,
+              leur impact positif et leur engagement sociétal.
+            </li>
+          </ul>
+          <p className="text uvibes-outro-text">
+            Explorez la rubrique « Uvibes » de notre blog pour en savoir plus
+            sur nos principes éthiques et leur mise en œuvre concrète.
+          </p>
         </section>
-        <section className="uvibes-container ">
-          <h2 className="title-h2-orange uvibes-title">Le portage du projet</h2>
+        <section className="uvibes-container uvibes-portage-section portage-section">
+          <h2 className="title-h2-orange uvibes-title portage-title">Le portage du projet</h2>
           <div className="uvibes-portage">
             <article className="uvibes-eclatens-card">
               <Image
                 src={logoEclatense}
                 alt="team-staff"
-                width={100}
-                height={100}
+                width={500}
+                height={500}
                 className="uvibes-eclatens-logo"
               />
               <h3 className="title-h3 uvibes-title">Un modèle non lucratif</h3>
@@ -79,6 +116,32 @@ export default function uvibes() {
                 l&apos;association
               </p>
             </article>
+          </div>
+        </section>
+        <section className="uvibes-contact-container">
+          <div className="uvibes-contact-text">
+            <h2 className="title-h2-white uvibes-title">
+              Rejoignez l&apos;aventure Uvibes
+            </h2>
+            <p className="text-white">
+              Prenez part à une dynamique qui réinvente nos façons d’interagir
+              en ouvrant notre esprit à des visions nouvelles
+            </p>
+          </div>
+          <div className="uvibes-contact-button-container">
+            <a
+              href="mailto:contact@uvibes.fr"
+              className="uvibes-contact-button"
+            >
+              Nous contacter
+            </a>
+            <a
+              href="mailto:contact@uvibes.fr"
+              className="uvibes-contact-button"
+            >
+              Devenir partenaire
+            </a>
+            <HelloAssoDon />
           </div>
         </section>
         <div
@@ -99,36 +162,6 @@ export default function uvibes() {
             loading="lazy"
           />
         </div>
-        <section className="uvibes-container">
-          <h2 className="title-h2-orange uvibes-title">Sa concrétisation</h2>
-          <TeamSection />
-        </section>
-        <section className="uvibes-contact-container">
-          <div className="uvibes-contact-text">
-            <h2 className="title-h2-white uvibes-title">
-              Rejoignez l&apos;aventure Uvibes
-            </h2>
-            <p className="text-white">
-              Prenez part à une dynamique qui réinvente nos façons d’interagir
-              en ouvrant notre esprit à des visions nouvelles
-            </p>
-          </div>
-          <div className="uvibes-contact-button-container">
-            <a
-              href="mailto:contactuvibes@gmail.com"
-              className="uvibes-contact-button"
-            >
-              Nous contacter
-            </a>
-            <a
-              href="mailto:contactuvibes@gmail.com"
-              className="uvibes-contact-button"
-            >
-              Devenir partenaire
-            </a>
-            <HelloAssoDon />
-          </div>
-        </section>
         <AppointmentSection />
       </main>
       <Footer />

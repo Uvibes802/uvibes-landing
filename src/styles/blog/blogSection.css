@@ -46,7 +46,7 @@
   -moz-appearance: none;
   appearance: none;
   padding: var(--spacing-ref);
-  padding-right: 3rem; /* pour laisser de la place à la flèche */
+  padding-right: 3rem;
   margin: calc(var(--spacing-ref) * 2) auto;
   width: 80%;
   max-width: 500px;
@@ -55,7 +55,7 @@
   background: var(--gradientColor-white);
   box-shadow: 0 4px 8px #0000002f;
   font-family: var(--text-font);
-  font-size: 1.125rem; /* plus grand que var(--font-size-text) */
+  font-size: 1.125rem;
   color: #212121;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -142,11 +142,11 @@
   }
   .article-section {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   #categories {
-    grid-column: span 2;
+    grid-column: span 3;
     width: 70%;
     justify-self: center;
   }
