@@ -59,7 +59,12 @@
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-family: var(--text-font-bold, "Supreme-Bold");
   font-weight: 800;
-  color: #1a0a06;
+  /* Titre vif (dégradé brand) au lieu du noir */
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--rose);
   margin: 0 0 0.75rem;
   line-height: 1.05;
   letter-spacing: -0.04em;
