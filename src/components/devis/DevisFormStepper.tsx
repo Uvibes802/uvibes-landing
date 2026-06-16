@@ -40,7 +40,7 @@ const PLANS = [
   { slug: "vibes-connection", nom: "Vibes Connection", price: "3 980 €/an", desc: "Idéal pour démarrer" },
   { slug: "vibes-boost", nom: "Vibes Boost", price: "5 980 €/an", desc: "Le plus populaire", recommended: true },
   { slug: "vibes-premium", nom: "Vibes Premium", price: "4 980 €/an", desc: "Communication & visibilité" },
-  { slug: "vibes-decouverte", nom: "Offre découverte", price: "480 €/mois", desc: "30 jours pour tester", trial: true },
+  { slug: "vibes-decouverte", nom: "Offre découverte", price: "480 €", desc: "30 jours pour tester", trial: true },
 ];
 
 const STEPS = ["Votre collectif", "Vos usages", "Vos coordonnées"];

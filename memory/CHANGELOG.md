@@ -2,6 +2,39 @@
 
 ---
 
+## 2026-06-16 — Page Tarifs, parcours offres & polish (branche feat/missions-falek)
+
+Réorganisation du parcours « méthode → offres → devis » + plusieurs finitions demandées.
+
+### Navigation & pages
+- **« La solution » → « Méthode »** : menu, hero (« La méthode pour votre organisation »), titres SEO et breadcrumb. La page `/solution` se recentre sur la méthode (comment ça marche, thématiques, fonctionnalités).
+- **Nouvelle page `/tarifs`** : hero dédié distinct (pastilles de prix 3 980 / 4 980 / 5 980, badge « Populaire ») + section offres (`PricingTable`, dont la 4e offre) + petites structures + footer. Les offres **déménagent** de `/solution` vers `/tarifs` (plus de contenu dupliqué). Entrée menu « Tarifs » + sitemap + SEO.
+- **Pont CTA** en fin de `/solution` → `/tarifs`.
+
+### Parcours / CTAs
+- **Accueil (3 étapes)** : bouton **avant** « Découvrir la solution » → `/solution` ; bouton **après** « Découvrir nos offres Uvibes » → `/tarifs`.
+
+### 4e offre (découverte / événementielle)
+- Refonte **lumineuse** : carte claire et aérée, accents vifs (orange→magenta), texte foncé — au lieu du dégradé saturé.
+- Saut de ligne après le « : » du sous-titre ; **retrait de « /mois »** (carte + accent CMS `oe-prix-accent` mis à jour en base : « dès 480 € »).
+- **Page devis** : la découverte devient un **bandeau pleine largeur distinct** des 3 offres annuelles (layout 3+1 assumé), avec **message de valorisation** (« convaincre en interne, tester 30 jours sans engagement ») ; prix « 480 € » (sans /mois).
+
+### Formulaire de contact
+- Nouveau champ **Catégorie (passeport d'expérience)** (11 profils alignés sur `PasseportExperience`), transmis dans l'email (+ organisation).
+- Case **newsletter valorisée** : sortie en encart attractif (titre + bénéfice « 1 email/mois, zéro spam ») pour augmenter le taux d'inscription.
+
+### Mobile / sync
+- **apple-touch-icon** : fond transparent → **blanc opaque** carré 180×180 (iOS ne le posait plus en noir sur l'écran d'accueil).
+- **ICS** (sync Apple Calendar) : **pliage des lignes RFC 5545** (≤ 75 octets, accents gérés), `CALSCALE:GREGORIAN`, `REFRESH-INTERVAL`/`X-PUBLISHED-TTL` → abonnement fiable et auto-rafraîchi.
+
+### Vérifications
+- Build OK (76/76 pages). Pages publiques 200, **APIs admin 401** (middleware actif + handlers câblés). Screenshots desktop + mobile vérifiés (tarifs, solution, devis, contact, home). 0 erreur console liée à ces changements (un 400 pré-existant sur un logo partenaire `upc.png` → backlog).
+
+### Impact
+- L'utilisateur a un parcours plus clair : la **méthode** explique, la page **Tarifs** vend et mène au **devis**. La 4e offre est enfin lisible et mise en valeur (plus de « /mois » trompeur, design lumineux). Le formulaire qualifie mieux les leads (catégorie de passeport) et capte plus d'inscriptions newsletter. L'icône iPhone et la synchro agenda de la directrice deviennent propres et fiables.
+
+---
+
 ## 2026-06-15 — Module « Contrats & factures » dans l'admin (branche feat/missions-falek)
 
 Nouvelle brique : créer/éditer des **factures** (lignes personnalisées) et des **contrats** (texte libre) depuis le dashboard, puis générer un **PDF designé aux couleurs vives** (pas de template générique).
