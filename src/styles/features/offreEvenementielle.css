@@ -1,7 +1,6 @@
 /* ── OffreEvenementielle ────────────────────────────────────── */
-/* Version lumineuse : carte claire et aérée, accents vifs, texte foncé
-   (volontairement « moins chargée » que les 3 offres annuelles). */
 
+/* La section ne porte plus le fond : c'est une carte contenue, juste sous les 3 offres */
 .oe-section {
   position: relative;
   overflow: visible;
@@ -12,7 +11,9 @@
 /* Bande déco diagonale — désactivée (la carte a son propre décor) */
 .oe-bg-stripe { display: none; }
 
-/* Imbriquée dans la section des offres (#offres) : padding horizontal porté par .pt-section. */
+/* Imbriquée dans la section des offres (#offres) : le padding horizontal est porté
+   par .pt-section, on l'annule ici pour aligner la barre sur les 3 cartes.
+   margin-top = espace de respiration entre les 3 offres annuelles et la 4ème offre. */
 .pt-section > .oe-section {
   position: relative;
   z-index: 1;
@@ -23,6 +24,7 @@
 
 /* ── Version compacte repliable (sous les offres) ───────────── */
 .oe-compact { padding-top: 0; padding-bottom: clamp(2rem, 3vw, 3rem); }
+/* la carte gère le dégradé/padding ; pas d'écart sous la barre quand replié */
 .oe-compact .oe-inner { gap: 0; padding-block: clamp(1.1rem, 2vw, 1.6rem); }
 
 /* Barre cliquable (header de la carte) — flèche sur le côté */
@@ -36,7 +38,7 @@
   background: transparent;
   cursor: pointer;
   text-align: left;
-  color: #241a2e;
+  color: #fff;
 }
 .oe-bar-title {
   flex: 1;
@@ -52,8 +54,7 @@
   width: 42px; height: 42px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: rgba(253, 110, 0, 0.12);
-  color: #E6007E;
+  background: rgba(255, 255, 255, 0.22);
   transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
 }
 .oe-open .oe-bar-arrow { transform: rotate(180deg); }
@@ -71,32 +72,40 @@
 }
 .oe-open .oe-reveal-inner { padding-top: 1.5rem; }
 
-/* La carte : fond clair lumineux, fin liseré orange, ombre douce. */
+/* La carte : même largeur que la grille des 3 offres (1100px),
+   même dégradé que l'offre populaire (Premium) */
 .oe-inner {
   position: relative;
   z-index: 1;
+  /* Volontairement plus large que la grille des 3 offres (≈1100px) pour se démarquer */
   max-width: 1180px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background: linear-gradient(135deg, #FFFFFF 0%, #FFF7EF 45%, #FFF0F6 100%);
-  border: 1.5px solid rgba(253, 110, 0, 0.18);
-  border-top: 4px solid transparent;
-  border-image: linear-gradient(90deg, #FD6E00, #E6007E) 1;
+  background: linear-gradient(135deg, #FF7A00 0%, #FF2E6E 52%, #E6007E 100%);
+  border: 1.5px solid rgba(255,255,255,.32);
   border-radius: 28px;
   padding: clamp(2.1rem, 3.6vw, 3.25rem);
   overflow: hidden;
-  box-shadow: 0 18px 50px -20px rgba(217, 10, 92, 0.30);
+  box-shadow: 0 26px 70px -16px rgba(217,10,92,.55), 0 2px 10px rgba(253,110,0,.3);
+  animation: oeGlow 3.4s ease-in-out infinite;
+}
+@keyframes oeGlow {
+  0%, 100% { box-shadow: 0 26px 70px -16px rgba(217,10,92,.55), 0 2px 10px rgba(253,110,0,.3); }
+  50%      { box-shadow: 0 30px 84px -14px rgba(217,10,92,.7), 0 0 0 5px rgba(255,228,86,.16); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oe-inner { animation: none; }
 }
 
-/* Halo coloré doux en fond de carte */
+/* Halo blanc discret en fond de carte */
 .oe-inner::after {
   content: '';
   position: absolute;
   top: -40%; right: -10%;
   width: 55%; height: 120%;
-  background: radial-gradient(closest-side, rgba(255, 184, 0, 0.12), transparent 70%);
+  background: radial-gradient(closest-side, rgba(255,255,255,.14), transparent 70%);
   pointer-events: none;
 }
 
@@ -116,26 +125,21 @@
   font-family: var(--font-roboto-mono), monospace;
   padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(253, 110, 0, 0.10);
-  border: 1px solid rgba(253, 110, 0, 0.28);
-  color: #D90A5C;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+  color: #fff;
 }
 
-/* Accent du titre (prix « dès 480 € ») — dégradé vif */
 .oe-title-accent {
   font-style: italic;
-  font-weight: 700;
-  background: linear-gradient(90deg, #FD6E00, #E6007E);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #E6007E;
+  font-weight: 400;
+  color: #FFE456;
 }
 
 .oe-subtitle {
   font-size: clamp(13px, 1.3vw, 16px);
   line-height: 1.6;
-  color: #5b5b6b;
+  color: rgba(255,255,255,.85);
   font-family: var(--text-font);
   margin: 0;
   max-width: 520px;
@@ -145,7 +149,7 @@
 .oe-price {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 1.1rem;
   flex-wrap: wrap;
 }
@@ -153,22 +157,24 @@
   font-size: clamp(34px, 5vw, 46px);
   font-weight: 800;
   letter-spacing: -0.03em;
+  color: #fff;
   line-height: 1;
-  background: linear-gradient(90deg, #FD6E00, #E6007E);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #E6007E;
+}
+.oe-price-unit {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
 }
 .oe-price-note {
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: var(--font-roboto-mono), monospace;
-  color: #E6007E;
+  color: #FFE456;
+  margin-left: 6px;
 }
 
-/* ── Points inclus ── */
+/* ── Points inclus (remplace le tableau) ── */
 .oe-points {
   list-style: none;
   margin: 0 0 1.6rem;
@@ -189,18 +195,18 @@
   flex-shrink: 0;
   margin-top: 1px;
   border-radius: 50%;
-  background: rgba(253, 110, 0, 0.14);
-  color: #FD6E00;
+  background: rgba(255,255,255,.22);
+  color: #fff;
 }
-.oe-point--bonus .oe-point-check { background: rgba(255, 184, 0, 0.22); color: #E0900A; }
+.oe-point--bonus .oe-point-check { background: rgba(255,228,86,.28); color: #FFE456; }
 .oe-point-text {
   font-size: 13.5px;
   line-height: 1.45;
-  color: #4a4a5a;
+  color: rgba(255,255,255,.92);
   font-family: var(--text-font);
 }
-.oe-point-text strong { font-family: var(--font-prompt), sans-serif; font-weight: 700; color: #241a2e; }
-.oe-point-detail { color: #8a8a96; }
+.oe-point-text strong { font-family: var(--font-prompt), sans-serif; font-weight: 700; color: #fff; }
+.oe-point-detail { color: rgba(255,255,255,.72); }
 .oe-point-bonus-tag {
   display: inline-block;
   margin-left: 6px;
@@ -210,8 +216,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-family: var(--font-roboto-mono), monospace;
-  background: rgba(255, 184, 0, 0.20);
-  color: #C77A00;
+  background: rgba(255,228,86,.22);
+  color: #FFE456;
   vertical-align: middle;
 }
 
@@ -226,13 +232,16 @@
 
 .oe-cta-note {
   font-size: clamp(13px, 1.3vw, 15px);
-  color: #5b5b6b;
+  color: rgba(255,255,255,.85);
   font-family: var(--text-font);
   line-height: 1.6;
   max-width: 480px;
   margin: 0;
 }
-.oe-cta-note strong { color: #241a2e; }
+
+.oe-cta-note strong {
+  color: #fff;
+}
 
 .oe-ctas {
   display: flex;
@@ -241,28 +250,29 @@
   flex-wrap: wrap;
 }
 
-/* Bouton principal — dégradé vif de marque sur la carte claire */
+/* Bouton principal — blanc sur le dégradé (comme l'offre populaire) */
 .oe-cta-primary.btn-brand {
-  background: linear-gradient(90deg, #fd6e00 0%, #f62570 100%);
-  color: #fff;
-  box-shadow: 0 8px 22px -6px rgba(217, 10, 92, 0.45);
+  background: #fff;
+  color: #D90A5C;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
 }
 .oe-cta-primary.btn-brand:hover {
-  box-shadow: 0 12px 30px -6px rgba(217, 10, 92, 0.55);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
   transform: translateY(-1px);
 }
 
 .oe-cta-ghost {
   font-size: 15px;
   font-weight: 600;
-  color: #D90A5C;
+  color: rgba(255,255,255,.7);
   text-decoration: none;
   font-family: var(--font-prompt), sans-serif;
-  border-bottom: 1px solid rgba(217, 10, 92, 0.3);
+  border-bottom: 1px solid rgba(255,255,255,.3);
   padding-bottom: 2px;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.oe-cta-ghost:hover { color: #FD6E00; border-color: #FD6E00; }
+.oe-cta-ghost:hover { color: #fff; border-color: #fff; }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {

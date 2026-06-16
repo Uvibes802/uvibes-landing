@@ -59,7 +59,7 @@ export async function POST(req: Request) {
              <p><strong>Prénom:</strong> ${escapeHtml(firstname)}</p>
              <p><strong>Email:</strong> ${escapeHtml(email)}</p>
              <p><strong>Organisation:</strong> ${organisation ? escapeHtml(organisation) : "—"}</p>
-             <p><strong>Catégorie (passeport):</strong> ${categorie ? escapeHtml(categorie) : "—"}</p>
+             <p><strong>Catégorie newsletter:</strong> ${categorie ? escapeHtml(categorie) : "Toutes"}</p>
              <p><strong>Newsletter:</strong> ${newsletter ? "Oui" : "Non"}</p>
              <p><strong>Accepte de partager ses informations:</strong> ${
                share ? "Oui" : "Non"

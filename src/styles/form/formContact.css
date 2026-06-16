@@ -83,22 +83,42 @@
   gap: 0.6rem;
 }
 
+/* Bloc newsletter = encart + choix de catégorie, regroupés visuellement */
+.fc-newsletter-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 0.6rem;
+  border-radius: 14px;
+  border: 1.5px solid rgba(253, 110, 0, 0.3);
+  background: linear-gradient(135deg, #FFF7EF 0%, #FFF0F6 100%);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.fc-newsletter-block:hover {
+  border-color: var(--orange);
+  box-shadow: 0 4px 16px rgba(253, 110, 0, 0.12);
+}
+
 /* Encart newsletter — mis en avant pour maximiser les inscriptions */
 .fc-newsletter {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  margin-top: 0.6rem;
   padding: 0.9rem 1.1rem;
-  border-radius: 14px;
-  border: 1.5px solid rgba(253, 110, 0, 0.3);
-  background: linear-gradient(135deg, #FFF7EF 0%, #FFF0F6 100%);
   cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.fc-newsletter:hover {
-  border-color: var(--orange);
-  box-shadow: 0 4px 16px rgba(253, 110, 0, 0.12);
+
+/* Choix de la catégorie de contenu newsletter */
+.fc-newsletter-cat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0 1.1rem 0.95rem;
+  margin-left: calc(18px + 0.75rem); /* aligné sous le texte, pas sous la case */
+}
+.fc-newsletter-cat .fc-select {
+  background-color: rgba(255, 255, 255, 0.85);
 }
 .fc-newsletter input[type="checkbox"] {
   width: 18px;

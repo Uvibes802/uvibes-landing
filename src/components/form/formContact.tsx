@@ -106,17 +106,6 @@ export default function FormContact() {
         />
       </div>
 
-      {/* Catégorie — passeport d'expérience */}
-      <div className="fc-field">
-        <label className="fc-label" htmlFor="categorie">Catégorie (passeport d&apos;expérience)</label>
-        <select id="categorie" className="fc-input fc-select" defaultValue="" {...register("categorie")}>
-          <option value="">Sélectionnez votre profil…</option>
-          {CATEGORIES.map((c) => (
-            <option key={c} value={c}>{c}</option>
-          ))}
-        </select>
-      </div>
-
       {/* Message */}
       <div className="fc-field">
         <label className="fc-label" htmlFor="message">Message</label>
@@ -137,16 +126,27 @@ export default function FormContact() {
         </label>
       </div>
 
-      {/* Newsletter — encart mis en avant pour encourager l'inscription */}
-      <label className="fc-newsletter">
-        <input type="checkbox" {...register("newsletter")} />
-        <span className="fc-newsletter-body">
-          <span className="fc-newsletter-title">📬 Recevez nos meilleures idées</span>
-          <span className="fc-newsletter-sub">
-            Conseils lien social, soft skills &amp; retours d&apos;expérience de collectifs — 1 email par mois, zéro spam.
+      {/* Newsletter — encart mis en avant + choix de la catégorie de contenu */}
+      <div className="fc-newsletter-block">
+        <label className="fc-newsletter">
+          <input type="checkbox" {...register("newsletter")} />
+          <span className="fc-newsletter-body">
+            <span className="fc-newsletter-title">📬 Recevez nos meilleures idées</span>
+            <span className="fc-newsletter-sub">
+              Conseils lien social, soft skills &amp; retours d&apos;expérience de collectifs — 1 email par mois, zéro spam.
+            </span>
           </span>
-        </span>
-      </label>
+        </label>
+        <div className="fc-newsletter-cat">
+          <label className="fc-label" htmlFor="categorie">Quelle catégorie vous intéresse ?</label>
+          <select id="categorie" className="fc-input fc-select" defaultValue="" {...register("categorie")}>
+            <option value="">Toutes les catégories</option>
+            {CATEGORIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+      </div>
 
       {/* Bouton */}
       <button type="submit" className="fc-submit" disabled={isSubmitting}>

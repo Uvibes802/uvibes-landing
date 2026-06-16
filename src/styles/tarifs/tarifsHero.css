@@ -50,79 +50,16 @@
   font-style: italic;
   font-weight: 400;
   color: #FFE456;
+  /* léger débord optique pour l'italique serif */
+  padding-right: 0.08em;
 }
 
 .th-desc {
-  margin: 0 auto 2.4rem;
-  max-width: 580px;
-  font-size: clamp(1rem, 1.5vw, 1.18rem);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.92);
-}
-
-/* ── Pastilles de prix ── */
-.th-teasers {
-  display: flex;
-  gap: clamp(0.8rem, 2vw, 1.4rem);
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2.6rem;
-}
-.th-chip {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 130px;
-  padding: 1.1rem 1.5rem;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.14);
-  text-decoration: none;
-  border-top: 4px solid var(--th-accent, #FD6E00);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.th-chip:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
-}
-.th-chip--pop {
-  transform: scale(1.06);
-}
-.th-chip--pop:hover {
-  transform: scale(1.06) translateY(-3px);
-}
-.th-chip-tag {
-  position: absolute;
-  top: -11px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--th-accent, #FFB800);
-  padding: 3px 10px;
-  border-radius: 999px;
-}
-.th-chip-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: #6b6b6b;
-  margin-bottom: 4px;
-}
-.th-chip-price {
-  font-size: clamp(22px, 3vw, 28px);
-  font-weight: 800;
-  color: var(--th-accent, #FD6E00);
-  line-height: 1;
-}
-.th-chip-unit {
-  font-size: 10.5px;
-  color: #9a9a9a;
-  margin-top: 3px;
+  margin: 0 auto 2.6rem;
+  max-width: 600px;
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.94);
 }
 
 /* ── CTAs ── */
