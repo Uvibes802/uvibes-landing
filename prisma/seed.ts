@@ -160,12 +160,11 @@ async function main() {
     { nom: "Croix-Rouge Française", logoUrl: "/images/partners/croix-rouge.png", siteUrl: "https://www.croix-rouge.fr", ordre: 2 },
     { nom: "Mairie de Lyon", logoUrl: "/images/partners/lyon.png", siteUrl: "https://www.lyon.fr", ordre: 3 },
   ];
+  // Idempotent : on crée seulement si un partenaire du même nom n'existe pas déjà
+  // (Partner.id est un cuid auto → on ne peut pas dédoublonner via where:{id}).
   for (const p of partenaires) {
-    await prisma.partner.upsert({
-      where: { id: p.nom.toLowerCase().replace(/\s/g, "-") },
-      update: {},
-      create: p,
-    }).catch(() => prisma.partner.create({ data: p }));
+    const exists = await prisma.partner.findFirst({ where: { nom: p.nom } });
+    if (!exists) await prisma.partner.create({ data: p });
   }
 
   // ── Témoignages ───────────────────────────────────────
@@ -175,7 +174,8 @@ async function main() {
     { auteur: "Isabelle Leroy", role: "Responsable RH — Association Solidarité 13", texte: "Le baromètre bien-être nous a permis d'identifier des problèmes avant qu'ils ne deviennent critiques. Indispensable.", ordre: 2 },
   ];
   for (const t of temoignages) {
-    await prisma.testimony.create({ data: t }).catch(() => {});
+    const exists = await prisma.testimony.findFirst({ where: { auteur: t.auteur, texte: t.texte } });
+    if (!exists) await prisma.testimony.create({ data: t });
   }
 
   // ── Équipe ────────────────────────────────────────────
@@ -185,7 +185,8 @@ async function main() {
     { nom: "Amina Chouaib", poste: "Responsable Partenariats", equipe: "Commercial", ordre: 2 },
   ];
   for (const m of equipe) {
-    await prisma.teamMember.create({ data: m }).catch(() => {});
+    const exists = await prisma.teamMember.findFirst({ where: { nom: m.nom } });
+    if (!exists) await prisma.teamMember.create({ data: m });
   }
 
   // ── Admin par défaut ──────────────────────────────────
