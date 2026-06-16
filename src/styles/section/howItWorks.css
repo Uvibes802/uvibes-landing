@@ -161,6 +161,37 @@
   z-index: 1;
 }
 
+/* Bouton avant les 3 étapes — discret (ghost), pour ne pas voler la vedette au CTA offres */
+.how-cta-pre-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.4rem, 2.5vw, 2rem);
+  position: relative;
+  z-index: 1;
+}
+.how-cta-pre {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  font-weight: 600;
+  color: var(--rose);
+  text-decoration: none;
+  padding: 0.65rem 1.4rem;
+  border: 1.5px solid rgba(217, 10, 92, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+.how-cta-pre:hover {
+  border-color: var(--rose);
+  background: #fff;
+  transform: translateY(-1px);
+}
+.how-cta-pre svg { transition: transform 0.2s ease; }
+.how-cta-pre:hover svg { transform: translateX(3px); }
+
 .how-cta {
   white-space: nowrap;
   font-size: clamp(1rem, 1.4vw, 1.15rem);

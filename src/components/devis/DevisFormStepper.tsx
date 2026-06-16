@@ -225,8 +225,9 @@ export default function DevisFormStepper() {
 
           <div className="dv-field">
             <label className="dv-label">Plan souhaité</label>
+            {/* Les 3 offres annuelles sur une ligne */}
             <div className="dv-plans">
-              {PLANS.map((p) => (
+              {PLANS.filter((p) => !p.trial).map((p) => (
                 <div
                   key={p.slug}
                   className={`dv-plan-card${form.planSlug === p.slug ? " --selected" : ""}${p.recommended ? " --recommended" : ""}`}
@@ -238,6 +239,26 @@ export default function DevisFormStepper() {
                 </div>
               ))}
             </div>
+            {/* 4ème offre — découverte : bandeau pleine largeur, mis en valeur à part */}
+            {PLANS.filter((p) => p.trial).map((p) => (
+              <div
+                key={p.slug}
+                className={`dv-plan-trial${form.planSlug === p.slug ? " --selected" : ""}`}
+                onClick={() => selectPlan(p.slug)}
+              >
+                <div className="dv-plan-trial-text">
+                  <div className="dv-plan-trial-head">
+                    <span className="dv-plan-name">{p.nom}</span>
+                    <span className="dv-plan-trial-badge">Sans engagement</span>
+                  </div>
+                  <p className="dv-plan-trial-msg">
+                    Le moyen idéal de convaincre en interne : testez Uvibes pendant 30&nbsp;jours,
+                    puis basculez sur une formule annuelle en toute confiance.
+                  </p>
+                </div>
+                <div className="dv-plan-trial-price">{p.price}</div>
+              </div>
+            ))}
           </div>
 
           <div className="dv-field">

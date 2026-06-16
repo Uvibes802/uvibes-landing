@@ -243,6 +243,56 @@
 .dv-plan-price { font-size: 17px; font-weight: 800; font-family: var(--font-prompt), sans-serif; color: #A24B00; }
 .dv-plan-desc { font-size: 11px; color: #7c5262; margin-top: 4px; line-height: 1.4; }
 
+/* 4ème offre — bandeau découverte pleine largeur, distinct des 3 plans annuels */
+.dv-plan-trial {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  padding: 14px 18px;
+  border: 2px dashed rgba(253, 110, 0, 0.4);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #FFF7EF 0%, #FFF0F6 100%);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(.2,.7,.2,1);
+}
+.dv-plan-trial:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(253,110,0,.12); }
+.dv-plan-trial.--selected {
+  border-style: solid;
+  border-color: #FD6E00;
+  background: rgba(253, 110, 0, 0.06);
+  box-shadow: 0 6px 20px rgba(253, 110, 0, 0.15);
+}
+.dv-plan-trial-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.dv-plan-trial-head .dv-plan-name { margin: 0; }
+.dv-plan-trial-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #E6007E;
+  background: rgba(230, 0, 126, 0.1);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.dv-plan-trial-msg { font-size: 12px; color: #7c5262; line-height: 1.45; margin: 0; max-width: 460px; }
+.dv-plan-trial-price {
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--font-prompt), sans-serif;
+  background: linear-gradient(90deg, #FD6E00, #E6007E);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #E6007E;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .dv-plan-trial { flex-direction: column; align-items: flex-start; }
+}
+
 /* Slider */
 .dv-slider { width: 100%; accent-color: #FD6E00; height: 4px; margin: 8px 0 4px; }
 .dv-slider-value { font-family: var(--font-prompt), sans-serif; font-size: 28px; font-weight: 800; color: #B85600; letter-spacing: -0.02em; }

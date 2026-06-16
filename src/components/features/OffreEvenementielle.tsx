@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import "@/styles/features/offreEvenementielle.css";
@@ -11,7 +11,7 @@ interface Point { label: string; detail: string; bonus?: boolean }
 // Valeurs par défaut — surchargées par les réglages éditables en admin (clés oe-*).
 const DEFAULTS = {
   titre: "Faites vivre Uvibes à votre collectif",
-  prixAccent: "dès 480 €/mois",
+  prixAccent: "dès 480 €",
   subtitle: "Le moyen le plus simple de tester Uvibes : un mois complet pour mobiliser votre collectif et mesurer l'impact, avant tout engagement annuel.",
   prix: "480 €",
   prixNote: "sans engagement annuel",
@@ -23,6 +23,19 @@ const DEFAULTS = {
     { label: "2 indicateurs d'usage", detail: "pour suivre l'engagement de votre communauté", bonus: true },
   ] as Point[],
 };
+
+// Saut de ligne après le premier ":" du sous-titre (lisibilité)
+function subtitleWithBreak(text: string): ReactNode {
+  const idx = text.indexOf(":");
+  if (idx === -1) return text;
+  return (
+    <>
+      {text.slice(0, idx + 1)}
+      <br />
+      {text.slice(idx + 1).trimStart()}
+    </>
+  );
+}
 
 // "label | détail | bonus" (1 par ligne) → tableau de points
 function parsePoints(raw: string): Point[] {
@@ -78,12 +91,11 @@ export default function OffreEvenementielle() {
         {/* Contenu repliable */}
         <div className="oe-reveal">
           <div className="oe-reveal-inner">
-            <p className="oe-subtitle">{c.subtitle}</p>
+            <p className="oe-subtitle">{subtitleWithBreak(c.subtitle)}</p>
 
             {/* Prix */}
             <div className="oe-price">
               <span className="oe-price-value v-prompt">{c.prix}</span>
-              <span className="oe-price-unit">/ mois</span>
               <span className="oe-price-note">{c.prixNote}</span>
             </div>
 
