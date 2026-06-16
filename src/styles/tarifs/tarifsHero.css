@@ -3,7 +3,11 @@
 .th-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(7rem, 12vw, 10rem) clamp(1.5rem, 5vw, 3.5rem) clamp(5rem, 8vw, 7rem);
+  /* Hauteur ≈ moitié d'écran, centré verticalement — harmonisé avec la page Méthode */
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-height, 72px) + clamp(1.5rem, 3vw, 3rem)) clamp(1.5rem, 5vw, 3.5rem) clamp(5rem, 8vw, 7rem);
   text-align: center;
 }
 
@@ -63,6 +67,7 @@
 .th-inner {
   position: relative;
   z-index: 1;
+  width: 100%;
   max-width: 880px;
   margin: 0 auto;
 }
@@ -84,11 +89,12 @@
 }
 
 .th-title {
-  margin: 0 0 1.1rem;
-  font-size: clamp(34px, 6vw, 64px);
+  margin: 0 0 1.3rem;
+  /* Agrandi pour s'aligner sur les heros Méthode / À propos / Blog */
+  font-size: clamp(44px, 7vw, 92px);
   font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.04em;
+  line-height: 1.0;
+  letter-spacing: -0.045em;
   color: #fff;
 }
 .th-title-accent {
