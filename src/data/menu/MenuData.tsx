@@ -2,6 +2,7 @@ import {
     House,
     Newspaper,
     Puzzle,
+    Tag,
     Users,
 } from "lucide-react";
 import NextImage from "next/image";
@@ -17,9 +18,16 @@ export const Items = [
     {
         id: 2,
         icon: <Puzzle size={32} color="#D90A5C"/>,
-        label: "La solution",
+        label: "Méthode",
         color: "#D90A5C",
         link: "/solution",
+    },
+    {
+        id: 3,
+        icon: <Tag size={32} color="#FFB800"/>,
+        label: "Tarifs",
+        color: "#FFB800",
+        link: "/tarifs",
     },
     {
         id: 4,

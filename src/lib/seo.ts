@@ -42,10 +42,16 @@ export const PAGE_SEO: Record<string, PageSeoConfig> = {
     path: "/blog",
   },
   solution: {
-    title: "La solution Uvibes — Pour qui, comment ça marche, nos offres | Uvibes",
+    title: "La méthode Uvibes — Pour qui, comment ça marche | Uvibes",
     description:
-      "Découvrez comment Uvibes s'adapte à votre contexte : étudiants, entreprises, aidants, sportifs… Fonctionnalités et offres détaillées.",
+      "Découvrez la méthode Uvibes et comment elle s'adapte à votre contexte : étudiants, entreprises, aidants, sportifs… Étapes, thématiques et fonctionnalités détaillées.",
     path: "/solution",
+  },
+  tarifs: {
+    title: "Tarifs & offres Uvibes — Connection, Premium, Boost | Uvibes",
+    description:
+      "Comparez les offres Uvibes (Connection, Premium, Boost) et l'offre découverte 30 jours. Choisissez le plan adapté à votre collectif et demandez votre devis.",
+    path: "/tarifs",
   },
 };
 

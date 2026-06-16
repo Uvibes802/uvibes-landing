@@ -69,7 +69,7 @@ export default function SolutionHero() {
         {/* Texte */}
         <div className="sh-content">
           <h1 className="sh-title v-prompt">
-            La solution<br />
+            La méthode<br />
             pour votre<br />
             <span className="sh-title-accent">organisation.</span>
           </h1>
@@ -81,7 +81,7 @@ export default function SolutionHero() {
             <Link href="#solution-tabs" className="btn-brand sh-cta-primary">
               Explorer la solution →
             </Link>
-            <Link href="/solution#offres" className="sh-cta-ghost">
+            <Link href="/tarifs" className="sh-cta-ghost">
               Voir les offres
             </Link>
           </div>

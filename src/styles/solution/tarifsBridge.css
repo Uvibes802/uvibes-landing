@@ -1,0 +1,47 @@
+/* ── Pont méthode → offres : CTA de fin de page /solution (sur le dégradé) ── */
+
+.sol-tarifs-bridge {
+  position: relative;
+  /* haut ≥ ~92px : dégage la vague du séparateur */
+  padding: clamp(7rem, 9vw, 8rem) clamp(1.5rem, 5vw, 3.5rem) clamp(2.5rem, 4vw, 4rem);
+  text-align: center;
+  background: transparent; /* laisse voir le dégradé du wrapper parent */
+}
+
+.sol-bridge-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFE456;
+  margin: 0 0 1rem;
+}
+
+.sol-bridge-title {
+  margin: 0 auto 0.9rem;
+  max-width: 680px;
+  font-size: clamp(26px, 3.8vw, 46px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+
+.sol-bridge-sub {
+  margin: 0 auto 1.75rem;
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+}
+
+/* Bouton blanc sur le dégradé, comme SmallOrgCta */
+.sol-bridge-cta.btn-brand {
+  background: #fff;
+  color: #D90A5C;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+}
+.sol-bridge-cta.btn-brand:hover {
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+  transform: translateY(-1px);
+}
