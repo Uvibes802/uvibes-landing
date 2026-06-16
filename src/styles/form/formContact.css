@@ -65,11 +65,65 @@
   line-height: 1.55;
 }
 
+/* Select — même look que les inputs, avec chevron */
+.fc-select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23fd6e00' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.6rem;
+}
+
 /* Checkboxes */
 .fc-checks {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+}
+
+/* Encart newsletter — mis en avant pour maximiser les inscriptions */
+.fc-newsletter {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 14px;
+  border: 1.5px solid rgba(253, 110, 0, 0.3);
+  background: linear-gradient(135deg, #FFF7EF 0%, #FFF0F6 100%);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.fc-newsletter:hover {
+  border-color: var(--orange);
+  box-shadow: 0 4px 16px rgba(253, 110, 0, 0.12);
+}
+.fc-newsletter input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--orange);
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.fc-newsletter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.fc-newsletter-title {
+  font-family: var(--font-prompt), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a0a06;
+}
+.fc-newsletter-sub {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b4455;
+  font-family: var(--text-font);
 }
 
 .fc-check-label {
