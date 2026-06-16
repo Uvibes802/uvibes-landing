@@ -19,22 +19,6 @@ export interface QuoteResult {
   mentionPrix: string;
 }
 
-// Remises automatiques par volume
-function remiseVolume(nb: number): number {
-  if (nb >= 1000) return 20;
-  if (nb >= 500) return 15;
-  if (nb >= 250) return 10;
-  if (nb >= 100) return 5;
-  return 0;
-}
-
-// Remises automatiques par durée
-function remiseDuree(mois: number): number {
-  if (mois >= 36) return 15;
-  if (mois >= 24) return 8;
-  return 0;
-}
-
 export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
   const plan = await prisma.plan.findUnique({
     where: { slug: input.planSlug },
@@ -45,21 +29,14 @@ export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
 
   if (!plan) throw new Error(`Plan "${input.planSlug}" introuvable`);
 
-  // L'offre découverte est un prix forfaitaire mensuel : pas de remise volume/durée
-  // automatique (sinon 480 €/mois deviendrait 456 € avec la remise de volume).
-  const isTrial = plan.slug === "vibes-decouverte";
-  const autoRemise = isTrial
-    ? (input.remise ?? 0)
-    : Math.max(
-        remiseVolume(input.nombreUtilisateurs),
-        remiseDuree(input.dureeContrat),
-        input.remise ?? 0
-      );
+  // Aucune remise automatique : les seules réductions proviennent des codes promo,
+  // appliqués à la signature. `input.remise` reste possible mais vaut 0 en pratique.
+  const remise = input.remise ?? 0;
 
-  // Prix base * nombre d'utilisateurs * durée en années
+  // Prix base * durée en années
   const dureeAns = input.dureeContrat / 12;
   const prixBrut = plan.prixAnnuel * dureeAns;
-  const prixHT = Math.round(prixBrut * (1 - autoRemise / 100) * 100) / 100;
+  const prixHT = Math.round(prixBrut * (1 - remise / 100) * 100) / 100;
   const prixTTC = Math.round(prixHT * 1.2 * 100) / 100;
 
   return {
@@ -78,7 +55,7 @@ export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
     prixAnnuelBase: plan.prixAnnuel,
     prixHT,
     prixTTC,
-    remise: autoRemise,
+    remise,
     dureeContrat: input.dureeContrat,
     nombreUtilisateurs: input.nombreUtilisateurs,
     mentionPrix: plan.mention ?? "HT · adapté à votre taille",

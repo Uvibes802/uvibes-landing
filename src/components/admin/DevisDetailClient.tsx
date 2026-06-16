@@ -18,6 +18,7 @@ interface Quote {
   planNom: string; planCouleur: string;
   nombreUtilisateurs: number; dureeContrat: number;
   remise: number; prixHT: number; prixTTC: number;
+  promoCode?: string | null; promoPercent?: number | null;
   featuresJson: Feature[];
   signedAt?: Date | null; signedByName?: string | null; signedByRole?: string | null;
   pdfPath?: string | null; sentAt?: Date | null;
@@ -29,7 +30,6 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
   const router = useRouter();
   const [quote] = useState(initial);
   const [statut, setStatut] = useState(initial.statut);
-  const [remise, setRemise] = useState(String(initial.remise));
   const [saving, setSaving] = useState(false);
   const [sending, setSending] = useState(false);
   const [msg, setMsg] = useState("");
@@ -45,7 +45,7 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
       const res = await fetch(`/api/admin/devis/${quote.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ statut, remise: Number(remise) }),
+        body: JSON.stringify({ statut }),
       });
       if (res.ok) { setMsg("✓ Enregistré"); router.refresh(); }
     } finally { setSaving(false); }
@@ -169,6 +169,17 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
                 ))}
               </div>
 
+              {quote.promoPercent && quote.promoPercent > 0 ? (
+                <p style={{ marginTop: 12, fontSize: 13, fontWeight: 600, color: "var(--rose, #D90A5C)" }}>
+                  Remise appliquée : −{quote.promoPercent}%
+                  {quote.promoCode ? ` (code ${quote.promoCode})` : ""}
+                </p>
+              ) : (
+                <p style={{ marginTop: 12, fontSize: 12, color: "var(--crm-muted)" }}>
+                  Aucune remise (prix standard)
+                </p>
+              )}
+
               {quote.featuresJson.length > 0 && (
                 <>
                   <p className="crm-detail-section-title" style={{ marginTop: 16 }}>Fonctionnalités</p>
@@ -215,16 +226,6 @@ export default function DevisDetailClient({ quote: initial }: { quote: Quote }) 
                 <select className="crm-field-select" value={statut} onChange={(e) => setStatut(e.target.value)}>
                   {STATUTS.map((s) => <option key={s} value={s}>{s}</option>)}
                 </select>
-              </div>
-
-              <div className="crm-field-row">
-                <label className="crm-field-label">Remise manuelle (%)</label>
-                <input
-                  type="number" min={0} max={50} step={1}
-                  className="crm-field-input"
-                  value={remise}
-                  onChange={(e) => setRemise(e.target.value)}
-                />
               </div>
 
               <button className="crm-btn --primary" style={{ width: "100%", justifyContent: "center" }} onClick={save} disabled={saving}>

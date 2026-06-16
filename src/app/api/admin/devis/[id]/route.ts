@@ -17,7 +17,7 @@ export async function GET(_req: NextRequest, { params }: Ctx) {
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const { id } = await params;
   const body = await req.json();
-  const allowed = ["statut", "remise", "prixHT", "prixTTC", "validUntil", "mentionPrix"];
+  const allowed = ["statut", "prixHT", "prixTTC", "validUntil", "mentionPrix"];
   const data: Record<string, unknown> = {};
   for (const key of allowed) {
     if (body[key] !== undefined) data[key] = body[key];

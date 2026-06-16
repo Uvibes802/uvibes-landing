@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     const {
       collectifId, nomNouveauCollectif, contactNouveauCollectif, emailNouveauCollectif,
       telephoneNouveauCollectif, villeNouveauCollectif, typeCollectif, tailleCollectif,
-      planSlug, nombreUtilisateurs, dureeContrat, remiseManuelle, envoyerMaintenant,
+      planSlug, nombreUtilisateurs, dureeContrat, prixPersonnalise, envoyerMaintenant,
     } = body;
 
     if (!planSlug || !nombreUtilisateurs || !dureeContrat) {
@@ -50,7 +50,11 @@ export async function POST(req: NextRequest) {
     const { generateQuoteNumber } = await import("@/services/crm/generateQuoteNumber");
 
     const calc = await calculateQuote({ planSlug, nombreUtilisateurs, dureeContrat });
-    const remise = remiseManuelle != null ? Number(remiseManuelle) : calc.remise;
+
+    // Prix HT personnalisé (tarif négocié, associations) — remplace le prix de l'offre.
+    const prixPerso = prixPersonnalise != null && Number(prixPersonnalise) > 0 ? Number(prixPersonnalise) : null;
+    const prixHT = prixPerso ?? calc.prixHT;
+    const prixTTC = prixPerso != null ? Math.round(prixPerso * 1.2 * 100) / 100 : calc.prixTTC;
 
     let cId = collectifId;
     if (!cId) {
@@ -86,9 +90,9 @@ export async function POST(req: NextRequest) {
         featuresJson: JSON.stringify(calc.features),
         nombreUtilisateurs,
         dureeContrat,
-        remise,
-        prixHT: calc.prixHT,
-        prixTTC: calc.prixTTC,
+        remise: 0,
+        prixHT,
+        prixTTC,
         mentionPrix: calc.mentionPrix,
         statut: envoyerMaintenant ? "ENVOYE" : "BROUILLON",
         validUntil,
@@ -105,8 +109,8 @@ export async function POST(req: NextRequest) {
           quoteNumero: numero,
           quoteId: quote.id,
           planNom: calc.plan.nom,
-          prixHT: calc.prixHT,
-          prixTTC: calc.prixTTC,
+          prixHT,
+          prixTTC,
         }).catch(console.error);
         await prisma.quote.update({ where: { id: quote.id }, data: { sentAt: new Date(), sentTo: collectif.email } });
       }

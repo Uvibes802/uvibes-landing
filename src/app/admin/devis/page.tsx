@@ -86,7 +86,14 @@ export default async function DevisListPage({ searchParams }: Props) {
                     <div style={{ fontSize: 11, color: "var(--crm-muted)" }}>{q.collectif.email}</div>
                   </td>
                   <td style={{ fontSize: 12 }}>{q.planNom}</td>
-                  <td style={{ fontWeight: 600 }}>{q.prixHT.toLocaleString("fr-FR")} €</td>
+                  <td style={{ fontWeight: 600 }}>
+                    {q.prixHT.toLocaleString("fr-FR")} €
+                    {q.promoPercent && q.promoPercent > 0 ? (
+                      <span title={q.promoCode ? `Code ${q.promoCode}` : "Remise"} style={{ display: "inline-block", marginLeft: 6, fontSize: 11, fontWeight: 600, color: "var(--rose, #D90A5C)" }}>
+                        −{q.promoPercent}%
+                      </span>
+                    ) : null}
+                  </td>
                   <td>
                     <span className={`crm-badge ${STATUT_BADGE[q.statut] ?? "--brouillon"}`}>
                       {STATUT_LABEL[q.statut] ?? q.statut}

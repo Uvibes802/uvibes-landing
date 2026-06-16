@@ -19,8 +19,8 @@ const TAILLES = [
 
 const DUREES = [
   { mois: 12, label: "12 mois" },
-  { mois: 24, label: "24 mois (−8%)" },
-  { mois: 36, label: "36 mois (−15%)" },
+  { mois: 24, label: "24 mois" },
+  { mois: 36, label: "36 mois" },
 ];
 
 interface Collectif { id: string; nom: string; email: string; contact: string; }
@@ -54,14 +54,16 @@ export default function AdminDevisForm({ collectifs, plans }: Props) {
   const [planSlug, setPlanSlug] = useState(plans[0]?.slug ?? "");
   const [nombreUtilisateurs, setNombreUtilisateurs] = useState(100);
   const [dureeContrat, setDureeContrat] = useState(12);
-  const [remiseManuelle, setRemiseManuelle] = useState(0);
+  // Prix HT personnalisé (associations, tarif négocié) — vide = prix de l'offre
+  const [prixPersonnalise, setPrixPersonnalise] = useState("");
 
   async function submit(envoyerMaintenant: boolean) {
     setLoading(true); setMsg(""); setError("");
     try {
+      const prixPerso = prixPersonnalise.trim() === "" ? undefined : Number(prixPersonnalise);
       const body =
         mode === "existant"
-          ? { collectifId, planSlug, nombreUtilisateurs, dureeContrat, remiseManuelle, envoyerMaintenant }
+          ? { collectifId, planSlug, nombreUtilisateurs, dureeContrat, prixPersonnalise: prixPerso, envoyerMaintenant }
           : {
               nomNouveauCollectif: nom,
               contactNouveauCollectif: contact,
@@ -73,7 +75,7 @@ export default function AdminDevisForm({ collectifs, plans }: Props) {
               planSlug,
               nombreUtilisateurs,
               dureeContrat,
-              remiseManuelle,
+              prixPersonnalise: prixPerso,
               envoyerMaintenant,
             };
 
@@ -214,15 +216,16 @@ export default function AdminDevisForm({ collectifs, plans }: Props) {
               </div>
 
               <div className="crm-field-row">
-                <label className="crm-field-label">Remise supplémentaire (%)</label>
+                <label className="crm-field-label">Prix HT personnalisé (€)</label>
                 <input
-                  type="number" min={0} max={50} step={1}
+                  type="number" min={0} step={1}
                   className="crm-field-input"
-                  value={remiseManuelle}
-                  onChange={(e) => setRemiseManuelle(Number(e.target.value))}
+                  value={prixPersonnalise}
+                  onChange={(e) => setPrixPersonnalise(e.target.value)}
+                  placeholder="Laisser vide = prix de l'offre"
                 />
                 <span style={{ fontSize: 11, color: "var(--crm-muted)", marginTop: 4 }}>
-                  S&apos;ajoute à la remise automatique selon durée
+                  Tarif négocié (associations…). Remplace le prix de l&apos;offre. Vide = prix standard.
                 </span>
               </div>
             </div>
