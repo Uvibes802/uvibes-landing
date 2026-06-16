@@ -29,6 +29,36 @@ function escapeIcs(text: string) {
   return text.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
 }
 
+// Pliage des lignes (RFC 5545) : une ligne de contenu > 75 octets doit être coupée,
+// les lignes de continuation commençant par une espace. Sans ça, Apple Calendar
+// tronque/ignore les longues DESCRIPTION → le RDV ne se synchronise pas correctement.
+function foldLine(line: string): string {
+  const enc = new TextEncoder();
+  if (enc.encode(line).length <= 75) return line;
+  let out = "";
+  let current = "";
+  let bytes = 0;
+  for (const ch of line) {
+    const chBytes = enc.encode(ch).length;
+    // 74 octets max par segment (1 octet réservé à l'espace de continuation)
+    if (bytes + chBytes > 74) {
+      out += (out ? "\r\n " : "") + current;
+      current = ch;
+      bytes = chBytes;
+    } else {
+      current += ch;
+      bytes += chBytes;
+    }
+  }
+  out += (out ? "\r\n " : "") + current;
+  return out;
+}
+
+// Assemble les lignes ICS : on plie chaque ligne puis on joint en CRLF.
+function assemble(lines: string[]): string {
+  return lines.map(foldLine).join("\r\n");
+}
+
 // Lignes d'un VEVENT (sans l'enveloppe VCALENDAR) — réutilisé pour 1 ou N événements.
 function vevent(input: IcsInput): string[] {
   const { h, m } = parseHeure(input.heure);
@@ -53,26 +83,32 @@ function vevent(input: IcsInput): string[] {
 
 // Un seul événement (fichier .ics joint aux emails).
 export function buildIcsEvent(input: IcsInput): string {
-  return [
+  return assemble([
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//Uvibes//RDV//FR",
+    "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     ...vevent(input),
     "END:VCALENDAR",
-  ].join("\r\n");
+  ]);
 }
 
 // Calendrier complet (flux d'abonnement : tous les RDV dans l'agenda de la directrice).
+// REFRESH-INTERVAL / X-PUBLISHED-TTL : indiquent à Apple/Google de re-télécharger
+// le flux toutes les heures → les nouveaux RDV apparaissent automatiquement.
 export function buildIcsCalendar(events: IcsInput[]): string {
-  return [
+  return assemble([
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//Uvibes//RDV//FR",
+    "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "X-WR-CALNAME:Rendez-vous Uvibes",
     "X-WR-TIMEZONE:Europe/Paris",
+    "REFRESH-INTERVAL;VALUE=DURATION:PT1H",
+    "X-PUBLISHED-TTL:PT1H",
     ...events.flatMap((e) => vevent(e)),
     "END:VCALENDAR",
-  ].join("\r\n");
+  ]);
 }
