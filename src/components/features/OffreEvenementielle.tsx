@@ -11,7 +11,7 @@ interface Point { label: string; detail: string; bonus?: boolean }
 // Valeurs par défaut — surchargées par les réglages éditables en admin (clés oe-*).
 const DEFAULTS = {
   titre: "Faites vivre Uvibes à votre collectif",
-  prixAccent: "dès 480 €",
+  prixAccent: "à 480 €",
   subtitle: "Le moyen le plus simple de tester Uvibes : un mois complet pour mobiliser votre collectif et mesurer l'impact, avant tout engagement annuel.",
   prix: "480 €",
   prixNote: "sans engagement annuel",
@@ -24,15 +24,18 @@ const DEFAULTS = {
   ] as Point[],
 };
 
-// Saut de ligne après le premier ":" du sous-titre (lisibilité)
+// Saut de ligne après le premier ":" du sous-titre (lisibilité).
+// On colle aussi "avant tout engagement" avec des espaces insécables
+// pour éviter un saut de ligne juste après "avant tout".
 function subtitleWithBreak(text: string): ReactNode {
-  const idx = text.indexOf(":");
-  if (idx === -1) return text;
+  const glued = text.replace(/avant tout engagement annuel/gi, (m) => m.replace(/ /g, "\u00A0"));
+  const idx = glued.indexOf(":");
+  if (idx === -1) return glued;
   return (
     <>
-      {text.slice(0, idx + 1)}
+      {glued.slice(0, idx + 1)}
       <br />
-      {text.slice(idx + 1).trimStart()}
+      {glued.slice(idx + 1).trimStart()}
     </>
   );
 }

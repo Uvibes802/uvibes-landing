@@ -15,6 +15,59 @@
 }
 .th-vib > * { width: 100%; }
 
+/* ── Blobs colorés animés (fond organique vivant) ── */
+.th-blobs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.th-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  will-change: transform;
+  animation: thBlobFloat 16s ease-in-out infinite;
+}
+.th-blob--1 {
+  width: 360px; height: 360px;
+  top: -90px; left: -60px;
+  background: radial-gradient(circle, #FFB300 0%, #FF7A00 70%);
+  animation-duration: 18s;
+}
+.th-blob--2 {
+  width: 300px; height: 300px;
+  top: 4%; right: -70px;
+  background: radial-gradient(circle, #FF2E6E 0%, #E6007E 70%);
+  animation-duration: 21s;
+  animation-delay: -4s;
+}
+.th-blob--3 {
+  width: 420px; height: 420px;
+  bottom: -140px; right: 12%;
+  background: radial-gradient(circle, #FF4D00 0%, #F62570 70%);
+  animation-duration: 24s;
+  animation-delay: -8s;
+}
+.th-blob--4 {
+  width: 260px; height: 260px;
+  bottom: -60px; left: 8%;
+  background: radial-gradient(circle, #FFD24D 0%, #FF8A00 70%);
+  animation-duration: 19s;
+  animation-delay: -2s;
+}
+@keyframes thBlobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(36px, -28px) scale(1.12); }
+  66%      { transform: translate(-26px, 22px) scale(0.92); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .th-blob { animation: none; }
+}
+
 .th-inner {
   position: relative;
   z-index: 1;
@@ -69,6 +122,8 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  /* respiration sous les boutons avant la vague / section suivante */
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
 }
 .th-cta-primary.btn-brand {
   background: #fff;

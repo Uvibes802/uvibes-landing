@@ -7,6 +7,14 @@ import "@/styles/tarifs/tarifsHero.css";
 export default function TarifsHero() {
   return (
     <section className="th-section" aria-label="Tarifs et offres Uvibes">
+      {/* Blobs colorés animés — donnent un fond organique et vivant */}
+      <div className="th-blobs" aria-hidden="true">
+        <span className="th-blob th-blob--1" />
+        <span className="th-blob th-blob--2" />
+        <span className="th-blob th-blob--3" />
+        <span className="th-blob th-blob--4" />
+      </div>
+
       <div className="th-vib" aria-hidden="true">
         <VibrationLine width={1800} height={55} amplitude={22} freq={8} stroke="rgba(255,255,255,.32)" strokeWidth={1.5} speed={16} />
         <VibrationLine width={1800} height={55} amplitude={14} freq={12} stroke="rgba(255,255,255,.18)" strokeWidth={1} speed={22} />

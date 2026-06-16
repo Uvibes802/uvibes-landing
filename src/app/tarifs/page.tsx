@@ -18,7 +18,13 @@ const breadcrumbJsonLd = {
   ],
 };
 
-const HERO_GRADIENT = "linear-gradient(135deg, #FD6E00 0%, #FF8530 8%, #FFB870 20%, #FFB0A0 35%, #FF88B8 52%, #FF5898 70%, #E6007E 88%, #D90A5C 100%)";
+// Dégradé organique & saturé : plusieurs taches radiales vives superposées sur une base diagonale.
+const HERO_GRADIENT =
+  "radial-gradient(60% 55% at 16% 20%, #FF8A00 0%, transparent 55%), " +
+  "radial-gradient(55% 50% at 85% 14%, #FF1E63 0%, transparent 55%), " +
+  "radial-gradient(65% 60% at 78% 88%, #E6007E 0%, transparent 60%), " +
+  "radial-gradient(60% 55% at 18% 85%, #FF4D00 0%, transparent 58%), " +
+  "linear-gradient(135deg, #FD6E00 0%, #F62570 55%, #D90A5C 100%)";
 
 export default function TarifsPage() {
   return (
