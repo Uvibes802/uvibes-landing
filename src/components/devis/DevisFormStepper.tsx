@@ -30,8 +30,8 @@ const USAGES = [
 
 const DUREES = [
   { mois: 12, label: "12 mois", remise: "" },
-  { mois: 24, label: "24 mois", remise: "" },
-  { mois: 36, label: "36 mois", remise: "" },
+  { mois: 24, label: "24 mois", remise: "−8%" },
+  { mois: 36, label: "36 mois", remise: "−15%" },
 ];
 
 // Ordre aligné sur la page solution : Connection, Boost (populaire), Premium,

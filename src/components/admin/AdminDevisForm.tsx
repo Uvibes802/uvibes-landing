@@ -19,8 +19,8 @@ const TAILLES = [
 
 const DUREES = [
   { mois: 12, label: "12 mois" },
-  { mois: 24, label: "24 mois" },
-  { mois: 36, label: "36 mois" },
+  { mois: 24, label: "24 mois (−8%)" },
+  { mois: 36, label: "36 mois (−15%)" },
 ];
 
 interface Collectif { id: string; nom: string; email: string; contact: string; }

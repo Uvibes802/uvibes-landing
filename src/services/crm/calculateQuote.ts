@@ -29,9 +29,13 @@ export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
 
   if (!plan) throw new Error(`Plan "${input.planSlug}" introuvable`);
 
-  // Aucune remise automatique : les seules réductions proviennent des codes promo,
-  // appliqués à la signature. `input.remise` reste possible mais vaut 0 en pratique.
-  const remise = input.remise ?? 0;
+  // Remise d'engagement par durée (uniquement) : 24 mois = −8 %, 36 mois = −15 %.
+  // Pas de remise de volume. L'offre découverte (forfait mensuel) n'y a pas droit.
+  const remiseDuree = (mois: number) => (mois >= 36 ? 15 : mois >= 24 ? 8 : 0);
+  const isTrial = plan.slug === "vibes-decouverte";
+  const remise = isTrial
+    ? (input.remise ?? 0)
+    : Math.max(remiseDuree(input.dureeContrat), input.remise ?? 0);
 
   // Prix base * durée en années
   const dureeAns = input.dureeContrat / 12;
