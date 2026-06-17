@@ -36,9 +36,9 @@ export default function TarifsPage() {
         <PricingTable />
         {/* Section petites structures + footer, sur le dégradé commun */}
         <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
-          {/* Couche avant = haut de la section saturée (#FD6E00) → la wave devient le
-              sommet de cette section, sans bande claire de séparation sous la 4e offre */}
-          <WaveSeparator position="top" color="#FD6E00" />
+          {/* Les 2 couches dans le ton orange de la section (front + back) → la wave
+              devient le sommet de la section, sans bande claire de séparation. */}
+          <WaveSeparator position="top" color="#FD6E00" backColor="#FF8A3D" />
           <SmallOrgCta />
           <Footer />
         </div>
