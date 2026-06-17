@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import "@/styles/features/offreEvenementielle.css";
@@ -24,20 +24,11 @@ const DEFAULTS = {
   ] as Point[],
 };
 
-// Saut de ligne après le premier ":" du sous-titre (lisibilité).
-// On colle aussi "avant tout engagement" avec des espaces insécables
-// pour éviter un saut de ligne juste après "avant tout".
-function subtitleWithBreak(text: string): ReactNode {
+// Sous-titre sur une seule ligne (wrap naturel). On colle juste
+// "avant tout engagement annuel" avec des espaces insécables.
+function subtitleOneLine(text: string): string {
   const glued = text.replace(/avant tout engagement annuel/gi, (m) => m.replace(/ /g, "\u00A0"));
-  const idx = glued.indexOf(":");
-  if (idx === -1) return glued;
-  return (
-    <>
-      {glued.slice(0, idx + 1)}
-      <br />
-      {glued.slice(idx + 1).trimStart()}
-    </>
-  );
+  return glued;
 }
 
 // "label | détail | bonus" (1 par ligne) → tableau de points
@@ -52,6 +43,8 @@ export default function OffreEvenementielle() {
   const [ref, vis] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.08 });
   const [open, setOpen] = useState(false);
   const [c, setC] = useState(DEFAULTS);
+  // Compteur animé du prix (count-up quand la carte s'ouvre)
+  const [animPrice, setAnimPrice] = useState(0);
 
   useEffect(() => {
     fetch("/api/settings")
@@ -68,6 +61,25 @@ export default function OffreEvenementielle() {
       })
       .catch(() => {});
   }, []);
+
+  // Count-up du chiffre à l'ouverture (0 → prix), easing cubic-out
+  useEffect(() => {
+    if (!open) { setAnimPrice(0); return; }
+    const target = parseInt((c.prix.match(/\d[\d\s]*/)?.[0] ?? "0").replace(/\s/g, ""), 10);
+    if (!target) return;
+    let raf = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / 900);
+      setAnimPrice(Math.round(target * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [open, c.prix]);
+
+  // Suffixe du prix (ex. " €") conservé depuis la valeur CMS
+  const prixSuffix = c.prix.replace(/\d[\d\s]*/, "").trim();
 
   return (
     <div
@@ -94,18 +106,24 @@ export default function OffreEvenementielle() {
         {/* Contenu repliable */}
         <div className="oe-reveal">
           <div className="oe-reveal-inner">
-            <p className="oe-subtitle">{subtitleWithBreak(c.subtitle)}</p>
+            <p className="oe-subtitle">{subtitleOneLine(c.subtitle)}</p>
 
-            {/* Prix */}
+            {/* Prix — chiffre animé (count-up) */}
             <div className="oe-price">
-              <span className="oe-price-value v-prompt">{c.prix}</span>
+              <span className="oe-price-value v-prompt">
+                {animPrice.toLocaleString("fr-FR")}{prixSuffix ? ` ${prixSuffix}` : ""}
+              </span>
               <span className="oe-price-note">{c.prixNote}</span>
             </div>
 
-            {/* Ce qui est inclus — points simples */}
+            {/* Ce qui est inclus — points simples (apparition échelonnée) */}
             <ul className="oe-points">
-              {c.points.map((item) => (
-                <li key={item.label} className={`oe-point${item.bonus ? " oe-point--bonus" : ""}`}>
+              {c.points.map((item, i) => (
+                <li
+                  key={item.label}
+                  className={`oe-point${item.bonus ? " oe-point--bonus" : ""}`}
+                  style={{ "--oe-i": i } as React.CSSProperties}
+                >
                   <span className="oe-point-check" aria-hidden="true">
                     <Check size={14} strokeWidth={2.8} />
                   </span>

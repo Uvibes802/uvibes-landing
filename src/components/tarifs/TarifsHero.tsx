@@ -57,10 +57,6 @@ export default function TarifsHero() {
       </div>
 
       <div className="th-inner">
-        <p className="th-eyebrow">
-          <span className="th-eyebrow-dot" aria-hidden="true" />
-          Tarifs &amp; offres
-        </p>
         <h1 className="th-title v-prompt">
           Des offres claires,<br />
           <span className="th-title-accent v-serif">sans surprise.</span>

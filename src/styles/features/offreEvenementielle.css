@@ -47,6 +47,22 @@
   letter-spacing: -0.025em;
   line-height: 1.05;
 }
+/* Effet « lampe néon qui s'allume » sur le titre quand la section apparaît */
+.oe-vis .oe-bar-title {
+  animation: oeNeonOn 1.5s ease-out both;
+}
+@keyframes oeNeonOn {
+  0%   { opacity: .25; text-shadow: none; }
+  8%   { opacity: 1;   text-shadow: 0 0 6px rgba(255,255,255,.9), 0 0 14px rgba(255,228,86,.7); }
+  12%  { opacity: .35; text-shadow: none; }
+  18%  { opacity: 1;   text-shadow: 0 0 8px rgba(255,255,255,.95), 0 0 18px rgba(255,228,86,.8); }
+  22%  { opacity: .6;  text-shadow: 0 0 4px rgba(255,255,255,.6); }
+  30%  { opacity: 1;   text-shadow: 0 0 10px rgba(255,255,255,1), 0 0 22px rgba(255,228,86,.85), 0 0 36px rgba(255,160,60,.6); }
+  100% { opacity: 1;   text-shadow: 0 0 8px rgba(255,255,255,.85), 0 0 18px rgba(255,228,86,.55); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oe-vis .oe-bar-title { animation: none; }
+}
 .oe-bar-arrow {
   display: inline-flex;
   align-items: center;
@@ -144,7 +160,8 @@
   color: rgba(255,255,255,.85);
   font-family: var(--text-font);
   margin: 0;
-  max-width: 520px;
+  /* pas de cap : tient sur une seule ligne sur desktop (wrap naturel en mobile) */
+  max-width: none;
 }
 
 /* ── Prix ── */
@@ -189,6 +206,22 @@
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
+}
+/* Apparition échelonnée des points quand la carte s'ouvre */
+.oe-point {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.oe-open .oe-point {
+  animation: oePointIn 0.5s ease forwards;
+  animation-delay: calc(0.25s + var(--oe-i, 0) * 0.09s);
+}
+@keyframes oePointIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oe-point { opacity: 1; transform: none; }
+  .oe-open .oe-point { animation: none; }
 }
 .oe-point-check {
   display: grid;
