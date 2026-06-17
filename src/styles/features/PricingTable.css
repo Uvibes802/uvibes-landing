@@ -76,11 +76,20 @@
 .pt-title-serif {
   display: inline-block;
   padding-bottom: 0.04em;
-  background: linear-gradient(90deg, #FD6E00, #D90A5C);
+  background: linear-gradient(90deg, #FD6E00, #FF3D78, #D90A5C, #FF3D78, #FD6E00);
+  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-style: italic;
+  animation: accentShimmer 7s ease-in-out infinite;
+}
+@keyframes accentShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pt-title-serif { animation: none; }
 }
 
 .pt-subtitle {

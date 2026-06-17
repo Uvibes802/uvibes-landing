@@ -22,17 +22,26 @@
 .uv-em-orange { font-style: italic; color: #FD6E00; font-weight: 600; }
 .uv-em-rose   { font-style: italic; color: #D90A5C; font-weight: 600; }
 
-/* Mot accentué serif en dégradé orange → rose */
+/* Mot accentué en dégradé orange → rose (shimmer lent) */
 .uv-serif-grad {
   font-style: italic;
   font-weight: 600;
   font-family: var(--font-prompt), sans-serif;
-  background: linear-gradient(90deg, #FD6E00, #D90A5C);
+  background: linear-gradient(90deg, #FD6E00, #FF3D78, #D90A5C, #FF3D78, #FD6E00);
+  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   padding-right: 0.12em;
+  animation: accentShimmer 7s ease-in-out infinite;
+}
+@keyframes accentShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uv-serif-grad { animation: none; }
 }
 /* Variante magenta du titre de section */
 .uv-section-title.uv-section-title--magenta { color: var(--rose); }
