@@ -275,6 +275,7 @@
     width: 100%;
     background: linear-gradient(135deg, var(--orange), var(--rose));
     color: #fff;
+    text-decoration: none;
     border: none;
     border-radius: 14px;
     padding: 1rem;
