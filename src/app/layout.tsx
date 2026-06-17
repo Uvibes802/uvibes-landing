@@ -5,7 +5,7 @@ import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
-import { Prompt, Roboto_Mono } from "next/font/google";
+import { Instrument_Serif, Prompt, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -19,6 +19,14 @@ const robotoMono = Roboto_Mono({
   weight: ["400", "500"],
   subsets: ["latin"],
   variable: "--font-roboto-mono",
+});
+
+// Serif réservé aux mots en italique (accents) — réintroduit à la demande
+const instrumentSerif = Instrument_Serif({
+  weight: ["400"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-instrument",
 });
 
 export const metadata: Metadata = {
@@ -87,7 +95,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className={`${prompt.variable} ${robotoMono.variable}`}>
+      <body className={`${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
         {/* Menu et CookieConsent se masquent eux-mêmes sur /admin & /devis (garde-fou client usePathname) */}
         <Menu />
         <RevealObserver />

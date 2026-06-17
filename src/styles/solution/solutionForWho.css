@@ -73,7 +73,7 @@
 
 .sfw-title__accent {
   font-style: italic;
-  font-family: var(--font-prompt), sans-serif;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
   color: #D90A5C;
   -webkit-text-fill-color: #D90A5C;
 }

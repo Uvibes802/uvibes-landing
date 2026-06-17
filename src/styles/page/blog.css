@@ -91,7 +91,7 @@
 .blog-hero-em {
   font-style: italic;
   font-weight: 400;
-  font-family: var(--font-prompt), sans-serif;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
   color: #FFE456;
   -webkit-text-fill-color: #FFE456;
 }
@@ -101,7 +101,7 @@
   0%   { opacity: 0; transform: translateX(-0.6em) skewX(-16deg) scale(.88); filter: blur(6px); }
   45%  { opacity: 1; filter: blur(0); transform: translateX(0.08em) skewX(5deg) scale(1.03); }
   70%  { transform: translateX(-0.03em) skewX(-2deg) scale(1); }
-  100% { opacity: 1; transform: none; filter: blur(0); }
+  100% { opacity: 1; transform: none; filter: blur(0); text-shadow: 0 0 9px rgba(255,225,90,.6), 0 0 22px rgba(255,160,60,.35); }
 }
 .blog-hero-em {
   display: inline-block;

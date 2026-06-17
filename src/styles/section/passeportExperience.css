@@ -299,7 +299,7 @@
   font-size: 14px;
   font-style: italic;
   color: #6b4455;
-  font-family: var(--font-prompt), sans-serif;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
   margin: 0;
   line-height: 1.4;
 }

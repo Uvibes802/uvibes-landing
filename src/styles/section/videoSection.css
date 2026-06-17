@@ -81,7 +81,7 @@
 .vs-t-rose    { color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,.2); }
 
 .vs-t-gradient {
-  font-family: var(--font-prompt), sans-serif;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
   font-style: italic;
   color: #E6007E;
   -webkit-text-fill-color: #E6007E;

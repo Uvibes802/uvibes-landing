@@ -443,9 +443,11 @@ h5 {
 }
 
 .v-serif {
-  font-family: var(--font-prompt), sans-serif;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
   font-style: italic;
   font-weight: 400;
+  /* Mode néon sur les mots en italique */
+  text-shadow: 0 0 8px rgba(255,225,90,.55), 0 0 20px rgba(255,160,60,.32);
 }
 
 .v-mono {

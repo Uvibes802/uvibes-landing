@@ -319,7 +319,7 @@
   60%  { transform: translateX(-2px) scale(1); }
   70%  { transform: translateX(2px); }
   80%  { transform: translateX(-1px); }
-  100% { opacity: 1; transform: none; text-shadow: none; }
+  100% { opacity: 1; transform: none; text-shadow: 0 0 9px rgba(255,225,90,.6), 0 0 22px rgba(255,160,60,.35); }
 }
 .hero-emph-word {
   display: inline-block;
