@@ -188,12 +188,15 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  /* Média à gauche / texte à droite → rythme alterné avec la section 2 */
+  grid-template-columns: 1fr 1.1fr;
   gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
   position: relative;
   z-index: 1;
 }
+.uv-intro-inner > div:first-child { order: 2; }
+.uv-intro-media { order: 1; }
 
 /* Colonne texte — sans ligne décorative */
 .uv-intro-inner > div:first-child {
@@ -218,9 +221,11 @@
   margin: 0 0 1.5rem;
   font-style: italic;
   position: relative;
-  padding: 1.15rem 1.4rem;
+  padding: 1.15rem 1.4rem 1.15rem 1.75rem;
   background: rgba(253,110,0,.06);
-  border-radius: 20px;
+  border-left: 4px solid;
+  border-image: linear-gradient(180deg, var(--orange), var(--rose)) 1;
+  border-radius: 0 16px 16px 0;
 }
 .uv-intro-body { font-size: 15px; line-height: 1.9; color: #6b4455; margin: 0; }
 
@@ -750,6 +755,9 @@
 /* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .uv-intro-inner { grid-template-columns: 1fr; }
+  /* en 1 colonne, on remet le texte avant la vidéo (lecture naturelle) */
+  .uv-intro-inner > div:first-child { order: 0; }
+  .uv-intro-media { order: 0; }
   .uv-ethics-grid { grid-template-columns: 1fr; }
   .uv-join-inner  { grid-template-columns: 1fr; }
   .uv-join-actions { flex-direction: row; flex-wrap: wrap; }
