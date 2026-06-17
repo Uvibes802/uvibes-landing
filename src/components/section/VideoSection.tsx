@@ -2,6 +2,7 @@
 
 import FetchTestimony from "@/services/testimony/testimony";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import WaveSeparator from "@/components/shared/WaveSeparator";
 import "../../styles/section/videoSection.css";
 
@@ -49,6 +50,18 @@ export default function VideoSection() {
           <br /><span className="vs-t-orange">chose.</span>
         </h2>
       </div>
+
+      {/* Photo polaroïde — desktop : tiltée à droite ; mobile : entre le titre et la carte */}
+      <figure className="vs-polaroid" aria-hidden="true">
+        <Image
+          src="/images/TeamUvibesHome.jpg"
+          alt=""
+          width={230}
+          height={230}
+          className="vs-polaroid-img"
+        />
+        <figcaption className="vs-polaroid-cap v-serif">Vos collectifs, vivants</figcaption>
+      </figure>
 
       {/* Carte unique */}
       <div className="vs-card-wrap">

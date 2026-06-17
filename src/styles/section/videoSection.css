@@ -236,3 +236,49 @@
   .vs-card-author-info { text-align: left; }
   .vs-card-glyph { font-size: 80px; }
 }
+
+/* ── Photo polaroïde ──────────────────────────────────────────── */
+/* Desktop : flottante et tiltée sur le côté droit de la section */
+.vs-polaroid {
+  position: absolute;
+  z-index: 2;
+  top: clamp(140px, 17vw, 220px);
+  right: clamp(2%, 4vw, 6%);
+  width: clamp(190px, 17vw, 240px);
+  margin: 0;
+  padding: 12px 12px 16px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 18px 40px -10px rgba(120,5,50,.45), 0 2px 6px rgba(0,0,0,.18);
+  transform: rotate(5deg);
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+}
+.vs-polaroid:hover { transform: rotate(2deg) scale(1.02); }
+
+.vs-polaroid-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.vs-polaroid-cap {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  font-style: italic;
+  font-size: 15px;
+  color: #8A3050;
+}
+
+/* Mobile : dans le flux, entre le titre et la carte (étoiles) */
+@media (max-width: 768px) {
+  .vs-polaroid {
+    position: static;
+    width: min(200px, 60vw);
+    margin: 0 auto;
+    transform: rotate(-3deg);
+  }
+}
