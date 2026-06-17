@@ -225,12 +225,24 @@
 }
 
 @media (max-width: 768px) {
-  .apm-img { width: 340px; }
-  .apm-chip { display: none; }
-  /* Sur mobile, les questions cèdent la place à des éclairs « vibes » flottants */
-  .apm-icons { display: block; }
+  .apm-img { width: 300px; }
+  /* Sur mobile : on garde les vraies questions (comme desktop), pas d'icônes */
+  .apm-icons { display: none; }
+  .apm-chip {
+    display: flex;
+    white-space: normal;
+    max-width: 44vw;
+    padding: 7px 10px;
+    border-radius: 10px;
+  }
+  .apm-chip-text, .apm-chip-quote { font-size: 10px; line-height: 1.35; }
+  .apm-chip-hello { font-size: 11px; }
+  .apm-chip-vibes { font-size: 9px; }
+  .apm-chip--left { left: -2%; top: 28%; transform: translateY(-50%); max-width: 40vw; }
+  .apm-chip--top-right { right: -2%; top: 5%; max-width: 40vw; transform: rotate(3deg); }
+  .apm-chip--bottom-right { right: auto; left: 0; bottom: 6%; max-width: 46vw; transform: rotate(-2deg); }
 }
 
 @media (max-width: 480px) {
-  .apm-img { width: 280px; }
+  .apm-img { width: 250px; }
 }
