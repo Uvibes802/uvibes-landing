@@ -2,8 +2,8 @@
 
 .dv-page {
   min-height: 100svh;
-  /* Fond dégradé de marque, plus vif (les cartes blanches ressortent dessus) */
-  background: linear-gradient(160deg, #FFE7D2 0%, #FFC9DE 38%, #FBD0EC 62%, #E7DBFF 100%);
+  /* Fond dégradé de marque saturé (les cartes blanches ressortent dessus) */
+  background: linear-gradient(160deg, #FFB36B 0%, #FF6FA0 38%, #F23D8E 64%, #C24BC2 100%);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -111,7 +111,7 @@
 
 .dv-step-label { font-size: 12px; font-weight: 500; white-space: nowrap; }
 .dv-step--done .dv-step-label   { color: #FD6E00; }
-.dv-step--active .dv-step-label { color: #1a0a06; font-weight: 700; }
+.dv-step--active .dv-step-label { color: #D90A5C; font-weight: 700; }
 .dv-step--pending .dv-step-label { color: #7c5262; }
 
 .dv-step-line { flex: 1; height: 2px; background: rgba(0,0,0,.08); margin: 0 8px; }
@@ -149,7 +149,12 @@
   font-size: clamp(20px, 2.8vw, 28px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #1a0a06;
+  /* Titre en dégradé brand (plus de noir) */
+  background: linear-gradient(135deg, #FD6E00, #D90A5C);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #D90A5C;
   margin: 0 0 6px;
 }
 
@@ -239,7 +244,7 @@
   white-space: nowrap;
 }
 
-.dv-plan-name { font-family: var(--font-prompt), sans-serif; font-size: 14px; font-weight: 700; color: #1a0a06; margin: 0 0 4px; }
+.dv-plan-name { font-family: var(--font-prompt), sans-serif; font-size: 14px; font-weight: 700; color: #D90A5C; margin: 0 0 4px; }
 .dv-plan-price { font-size: 17px; font-weight: 800; font-family: var(--font-prompt), sans-serif; color: #A24B00; }
 .dv-plan-desc { font-size: 11px; color: #7c5262; margin-top: 4px; line-height: 1.4; }
 
@@ -312,7 +317,7 @@
   font-family: inherit;
 }
 .dv-duree-btn.--active { border-color: #FD6E00; background: rgba(253,110,0,.05); }
-.dv-duree-months { font-size: 18px; font-weight: 700; color: #1a0a06; }
+.dv-duree-months { font-size: 18px; font-weight: 700; color: #B85600; }
 .dv-duree-remise { font-size: 11px; color: #D90A5C; margin-top: 2px; }
 
 /* Actions */
@@ -353,7 +358,7 @@
 
 .dv-doc-header-bar { display: flex; align-items: center; justify-content: space-between; margin: 2rem 0 1.5rem; flex-wrap: wrap; gap: 12px; }
 
-.dv-doc-numero { font-family: var(--font-prompt), sans-serif; font-size: 26px; font-weight: 800; color: #1a0a06; letter-spacing: -0.03em; margin: 0; }
+.dv-doc-numero { font-family: var(--font-prompt), sans-serif; font-size: 26px; font-weight: 800; background: linear-gradient(135deg, #FD6E00, #D90A5C); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #D90A5C; letter-spacing: -0.03em; margin: 0; }
 
 .dv-statut-badge { padding: 5px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
 .dv-statut-badge.--brouillon { background: rgba(0,0,0,.07); color: #6b4455; }
@@ -369,7 +374,7 @@
 .dv-info-value { font-size: 14px; font-weight: 500; color: #1a0a06; }
 
 .dv-plan-summary { background: #FFF6EC; border-radius: 14px; padding: 1.25rem 1.5rem; border-left: 4px solid #FD6E00; margin: 1.5rem 0; }
-.dv-plan-summary-name { font-family: var(--font-prompt), sans-serif; font-size: 22px; font-weight: 800; color: #1a0a06; margin: 0 0 8px; }
+.dv-plan-summary-name { font-family: var(--font-prompt), sans-serif; font-size: 22px; font-weight: 800; background: linear-gradient(135deg, #FD6E00, #D90A5C); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #D90A5C; margin: 0 0 8px; }
 .dv-plan-summary-detail { font-size: 13px; color: #6b4455; margin: 2px 0; }
 
 .dv-features-list { list-style: none; padding: 0; margin: 1rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -395,7 +400,7 @@
 
 /* Signature */
 .dv-sign-section { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,.07); padding-top: 2rem; }
-.dv-sign-title { font-family: var(--font-prompt), sans-serif; font-size: 20px; font-weight: 700; color: #1a0a06; margin: 0 0 1.25rem; }
+.dv-sign-title { font-family: var(--font-prompt), sans-serif; font-size: 20px; font-weight: 700; background: linear-gradient(135deg, #FD6E00, #D90A5C); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #D90A5C; margin: 0 0 1.25rem; }
 .dv-sign-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
 
 .dv-sign-canvas-wrap { border: 2px solid rgba(0,0,0,.12); border-radius: 12px; overflow: hidden; background: #fff; position: relative; height: 130px; cursor: crosshair; }
@@ -438,4 +443,15 @@
   .dv-row-2, .dv-checks, .dv-features-list, .dv-sign-fields, .dv-info-grid { grid-template-columns: 1fr; }
   .dv-durees { flex-direction: column; }
   .dv-card { width: calc(100% - 2rem); }
+  /* Le masque « île » a des creux proportionnels à la hauteur : sur les cartes
+     longues du mobile, l'ondulation du haut mordait sur le titre. On le désactive
+     en petit écran → coins arrondis classiques, titre toujours dégagé. */
+  .dv-card:not(.dv-card--bare),
+  .dv-doc-body {
+    -webkit-mask: none;
+    mask: none;
+    border-radius: 24px;
+    filter: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05), 0 16px 40px rgba(217,10,92,.2);
+  }
 }
