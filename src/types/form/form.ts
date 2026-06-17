@@ -3,7 +3,7 @@ export type FormData = {
   firstname: string;
   email: string;
   organisation?: string;
-  categorie?: string;
+  categories?: string[];
   message: string;
   newsletter: boolean;
   share: boolean;

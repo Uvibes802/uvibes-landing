@@ -120,6 +120,39 @@
 .fc-newsletter-cat .fc-select {
   background-color: rgba(255, 255, 255, 0.85);
 }
+
+/* Cases à cocher multi-catégories (puces) */
+.fc-cat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.fc-cat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(217, 10, 92, 0.18);
+  font-size: 12px;
+  color: #6b4455;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.fc-cat-chip:hover { border-color: var(--rose); }
+.fc-cat-chip input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--rose);
+  cursor: pointer;
+}
+.fc-cat-chip:has(input:checked) {
+  background: rgba(217, 10, 92, 0.1);
+  border-color: var(--rose);
+  color: var(--rose);
+  font-weight: 600;
+}
 .fc-newsletter input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -137,7 +170,12 @@
   font-family: var(--font-prompt), sans-serif;
   font-size: 14px;
   font-weight: 700;
-  color: #1a0a06;
+  /* Titre vif (dégradé brand) — plus en noir */
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--rose);
 }
 .fc-newsletter-sub {
   font-size: 12px;

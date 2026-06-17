@@ -126,25 +126,27 @@ export default function FormContact() {
         </label>
       </div>
 
-      {/* Newsletter — encart mis en avant + choix de la catégorie de contenu */}
+      {/* Newsletter — encart mis en avant + choix des catégories de contenu */}
       <div className="fc-newsletter-block">
         <label className="fc-newsletter">
           <input type="checkbox" {...register("newsletter")} />
           <span className="fc-newsletter-body">
-            <span className="fc-newsletter-title">📬 Recevez nos meilleures idées</span>
+            <span className="fc-newsletter-title">📬 Recevoir nos meilleures idées avec la newsletter</span>
             <span className="fc-newsletter-sub">
               Conseils lien social, soft skills &amp; retours d&apos;expérience de collectifs — 1 email par mois, zéro spam.
             </span>
           </span>
         </label>
         <div className="fc-newsletter-cat">
-          <label className="fc-label" htmlFor="categorie">Quelle catégorie vous intéresse ?</label>
-          <select id="categorie" className="fc-input fc-select" defaultValue="" {...register("categorie")}>
-            <option value="">Toutes les catégories</option>
+          <span className="fc-label">Quelles catégories vous intéressent&nbsp;?</span>
+          <div className="fc-cat-grid">
             {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <label key={c} className="fc-cat-chip">
+                <input type="checkbox" value={c} {...register("categories")} />
+                <span>{c}</span>
+              </label>
             ))}
-          </select>
+          </div>
         </div>
       </div>
 

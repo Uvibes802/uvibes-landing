@@ -32,8 +32,14 @@ export async function POST(req: Request) {
     );
   }
 
-  const { lastname, firstname, email, organisation, categorie, message, newsletter, share } =
+  const { lastname, firstname, email, organisation, categories, message, newsletter, share } =
     await req.json();
+
+  // Catégories newsletter : tableau (multi-sélection) → texte lisible
+  const categoriesLabel =
+    Array.isArray(categories) && categories.length > 0
+      ? categories.map((c: string) => escapeHtml(c)).join(", ")
+      : "Toutes";
 
   // Authentification Gmail via OAuth2 — credentials dans .env.local
   const transporter = nodemailer.createTransport({
@@ -59,7 +65,7 @@ export async function POST(req: Request) {
              <p><strong>Prénom:</strong> ${escapeHtml(firstname)}</p>
              <p><strong>Email:</strong> ${escapeHtml(email)}</p>
              <p><strong>Organisation:</strong> ${organisation ? escapeHtml(organisation) : "—"}</p>
-             <p><strong>Catégorie newsletter:</strong> ${categorie ? escapeHtml(categorie) : "Toutes"}</p>
+             <p><strong>Catégories newsletter:</strong> ${categoriesLabel}</p>
              <p><strong>Newsletter:</strong> ${newsletter ? "Oui" : "Non"}</p>
              <p><strong>Accepte de partager ses informations:</strong> ${
                share ? "Oui" : "Non"
