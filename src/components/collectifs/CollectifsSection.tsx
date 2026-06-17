@@ -173,7 +173,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
         {showCta && (
           <div className="collectifs-cta">
             <Link href="/solution" className="btn-cta primary">
-              Voir toutes les solutions par collectif
+              Découvrir la solution
             </Link>
           </div>
         )}
