@@ -122,7 +122,7 @@ html {
 }
 
 body {
-  --title-font: var(--font-roboto), sans-serif;
+  --title-font: var(--font-prompt), sans-serif;
   /* Police de base Uvibes : sans elle, les éléments non-<p>/<h*> (labels, boutons,
      spans — ex. la page devis) tombaient sur le serif par défaut du navigateur. */
   font-family: var(--text-font), "Helvetica Neue", Arial, sans-serif;
@@ -443,7 +443,7 @@ h5 {
 }
 
 .v-serif {
-  font-family: var(--font-instrument), serif;
+  font-family: var(--font-prompt), sans-serif;
   font-style: italic;
   font-weight: 400;
 }

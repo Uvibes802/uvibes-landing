@@ -110,7 +110,7 @@
   display: inline-block;
   font-style: italic;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   font-size: clamp(56px, 8.5vw, 125px);
   background: linear-gradient(135deg, var(--rose), var(--orange));
   -webkit-background-clip: text;

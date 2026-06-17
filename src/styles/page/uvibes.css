@@ -6,7 +6,7 @@
 .uv-serif-accent {
   font-style: italic;
   font-weight: 600;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   color: var(--rose);
   -webkit-text-fill-color: currentColor;
   padding-right: 0.12em;
@@ -26,7 +26,7 @@
 .uv-serif-grad {
   font-style: italic;
   font-weight: 600;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   background: linear-gradient(90deg, #FD6E00, #D90A5C);
   -webkit-background-clip: text;
   background-clip: text;
@@ -78,7 +78,7 @@
 .uv-hero-em {
   font-style: italic;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   color: #FFE456;
   -webkit-text-fill-color: #FFE456;
   padding-right: 0.12em;
@@ -470,7 +470,7 @@
   display: block;
   text-align: center;
   padding: 0.7rem 0.5rem 0.85rem;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   font-style: italic;
   font-size: 16px;
   color: #6b4455;

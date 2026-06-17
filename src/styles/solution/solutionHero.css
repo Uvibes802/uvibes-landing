@@ -148,7 +148,7 @@
 .sh-title-accent {
   font-style: italic;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   color: #FFE456;
   -webkit-text-fill-color: #FFE456;
   text-shadow: none;

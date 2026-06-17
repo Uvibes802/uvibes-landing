@@ -94,7 +94,7 @@
 }
 .shiw-title-accent {
   font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   color: #D90A5C;
   -webkit-text-fill-color: #D90A5C;
 }

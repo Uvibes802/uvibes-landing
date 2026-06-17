@@ -83,7 +83,7 @@
   -webkit-text-fill-color: #D90A5C;
 }
 .sth-heading-sub {
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
   font-style: italic;
   font-weight: 400;
   background: linear-gradient(100deg, #FD6E00 0%, #E6007E 60%, #9C1AE6 100%);
@@ -233,7 +233,7 @@
   line-height: 1.5;
   color: var(--accent, #FD6E00);
   font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-prompt), sans-serif;
 }
 .sth-card-qdot {
   width: 5px; height: 5px;
