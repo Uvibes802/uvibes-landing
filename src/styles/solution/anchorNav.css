@@ -6,7 +6,7 @@
   background: rgba(255, 246, 236, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(253, 110, 0, 0.10);
+  /* pas de séparation (ni bordure ni barre) autour du menu */
   transition: backdrop-filter 300ms ease;
 }
 
@@ -44,17 +44,6 @@
 .anchor-nav__link:hover { color: var(--orange); }
 
 .anchor-nav__link--active { color: var(--orange); }
-
-.anchor-nav__link--active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 8px;
-  right: 8px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--orange), var(--rose));
-  border-radius: 2px;
-}
 
 .anchor-nav__index {
   font-size: 9px;
