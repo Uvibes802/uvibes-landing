@@ -120,10 +120,25 @@
   color: rgba(255,255,255,.6);
 }
 
+/* Conteneur à largeur figée : les mots empilés (grille 1 cellule) réservent la
+   largeur du plus long ; seul le mot courant est visible → aucun décalage. */
+.bc-filler-wrap {
+  display: inline-grid;
+  justify-items: start;
+}
+.bc-filler-wrap > * { grid-area: 1 / 1; }
+.bc-filler-ghost {
+  visibility: hidden;
+  font-size: clamp(24px, 3.5vw, 48px);
+  font-style: italic;
+  white-space: nowrap;
+  pointer-events: none;
+}
 .banner-count-filler {
   font-size: clamp(24px, 3.5vw, 48px);
   color: rgba(255,255,255,.88);
   font-style: italic;
+  white-space: nowrap;
   transition: opacity 300ms ease;
 }
 

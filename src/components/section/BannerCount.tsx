@@ -96,8 +96,15 @@ export default function BannerCount() {
               <span className="bc-num-ghost" aria-hidden="true">{finalDisplay.replace(/\d/g, "8")}+</span>
               <span className="bc-num-real">{display}<span className="banner-count-plus">+</span></span>
             </h2>
-            <span className="banner-count-filler v-serif" style={{ opacity: fillerVisible ? 1 : 0 }}>
-              {FILLERS[fillerIdx]}
+            {/* Largeur figée : tous les mots empilés (fantômes) réservent la largeur
+                du plus long → le mot qui tourne ne décale plus le reste de la ligne. */}
+            <span className="bc-filler-wrap">
+              {FILLERS.map((f) => (
+                <span key={f} className="bc-filler-ghost v-serif" aria-hidden="true">{f}</span>
+              ))}
+              <span className="banner-count-filler v-serif" style={{ opacity: fillerVisible ? 1 : 0 }}>
+                {FILLERS[fillerIdx]}
+              </span>
             </span>
           </div>
         </div>
