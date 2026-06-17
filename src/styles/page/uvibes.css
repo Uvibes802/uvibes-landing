@@ -304,6 +304,61 @@
 }
 .uv-value-icon::after { content: '✓'; font-size: 9px; color: #fff; font-weight: 800; }
 
+/* ── Fil de conversation (section « se parler vraiment ») ──────── */
+.uv-thread {
+  position: relative;
+  margin-top: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.uv-thread-eyebrow {
+  font-family: var(--font-roboto-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FD6E00;
+  margin-bottom: 0.3rem;
+}
+.uv-thread-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+/* Trait vertical reliant les numéros (fil) */
+.uv-thread-item:not(:last-child) .uv-thread-num::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: calc(1.1rem + 4px);
+  background: linear-gradient(180deg, var(--rose), rgba(217,10,92,.15));
+}
+.uv-thread-num {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-prompt), sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, #FD6E00, #D90A5C);
+  box-shadow: 0 6px 16px -4px rgba(217,10,92,.5);
+}
+.uv-thread-text {
+  font-family: var(--font-prompt), sans-serif;
+  font-weight: 600;
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: #5a1038;
+  line-height: 1.4;
+}
+
 .uv-sep-vib {
   margin-top: 3rem;
   margin-left: calc(-1 * clamp(1.5rem, 5vw, 3.5rem));

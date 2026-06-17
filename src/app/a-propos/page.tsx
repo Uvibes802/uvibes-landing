@@ -107,11 +107,12 @@ export default function Uvibes() {
               <br /><br />
               Uvibes facilite ces rencontres inattendues, par un jeu de questions ouvertes et positives. Parce que c&apos;est en allant vers l&apos;<em className="uv-em-rose">inconnu</em> que naissent les plus <em className="uv-em-orange">belles conversations</em>.
             </p>
-            <div className="uv-intro-values">
-              {VALUES.map((v) => (
-                <div key={v} className="uv-value-item">
-                  <span className="uv-value-icon" aria-hidden="true" />
-                  <span>{v}</span>
+            <div className="uv-thread">
+              <span className="uv-thread-eyebrow">Ce qui en naît</span>
+              {VALUES.map((v, i) => (
+                <div key={v} className="uv-thread-item">
+                  <span className="uv-thread-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="uv-thread-text">{v}</span>
                 </div>
               ))}
             </div>
