@@ -77,14 +77,21 @@
 .dv-header-back:hover { color: #FD6E00; }
 
 /* Stepper */
+/* Stepper « pilule » givrée — contrôle compact et premium */
 .dv-stepper {
   display: flex;
   align-items: center;
-  padding: 2rem clamp(1.5rem, 5vw, 3.5rem);
-  max-width: 720px;
-  margin: 0 auto;
-  width: 100%;
   gap: 0;
+  width: calc(100% - 3rem);
+  max-width: 600px;
+  margin: 1.8rem auto 0.4rem;
+  padding: 11px 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px -12px rgba(217, 10, 92, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .dv-step {
@@ -102,19 +109,35 @@
   font-size: 13px;
   font-weight: 700;
   flex-shrink: 0;
-  transition: all 0.25s;
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
 }
 
 .dv-step--done .dv-step-circle   { background: linear-gradient(135deg, #FD6E00, #D90A5C); color: #fff; }
-.dv-step--active .dv-step-circle { background: linear-gradient(135deg, #FD6E00, #D90A5C); color: #fff; box-shadow: 0 4px 14px rgba(217,10,92,.3); }
-.dv-step--pending .dv-step-circle { background: rgba(0,0,0,.08); color: #7c5262; }
+.dv-step--active .dv-step-circle {
+  background: linear-gradient(135deg, #FD6E00, #D90A5C);
+  color: #fff;
+  transform: scale(1.12);
+  animation: dvStepPulse 2.2s ease-in-out infinite;
+}
+@keyframes dvStepPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(253,110,0,.18), 0 6px 16px rgba(217,10,92,.4); }
+  50%      { box-shadow: 0 0 0 7px rgba(253,110,0,.10), 0 6px 22px rgba(217,10,92,.5); }
+}
+.dv-step--pending .dv-step-circle {
+  background: #fff;
+  color: #a35a74;
+  border: 1.5px solid rgba(217, 10, 92, 0.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dv-step--active .dv-step-circle { animation: none; box-shadow: 0 0 0 4px rgba(253,110,0,.18), 0 6px 16px rgba(217,10,92,.4); }
+}
 
 .dv-step-label { font-size: 12px; font-weight: 500; white-space: nowrap; }
 .dv-step--done .dv-step-label   { color: #FD6E00; }
 .dv-step--active .dv-step-label { color: #D90A5C; font-weight: 700; }
-.dv-step--pending .dv-step-label { color: #7c5262; }
+.dv-step--pending .dv-step-label { color: #9a5a72; }
 
-.dv-step-line { flex: 1; height: 2px; background: rgba(0,0,0,.08); margin: 0 8px; }
+.dv-step-line { flex: 1; height: 2px; background: rgba(217, 10, 92, 0.12); margin: 0 10px; border-radius: 2px; }
 .dv-step-line.--done { background: linear-gradient(90deg, #FD6E00, #D90A5C); }
 
 /* Card formulaire */
