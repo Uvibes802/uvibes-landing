@@ -128,7 +128,7 @@ export default function HomeHero() {
             <h1 className="hero-h1 v-prompt">
               Activez la<br />
               <span className="hero-h1-emph">
-                <span className="v-serif" style={{ color: "#FFE456" }}>puissance</span>
+                <span className="v-serif hero-emph-word" style={{ color: "#FFE456" }}>puissance</span>
                 <svg className="hero-underline" viewBox="0 0 460 30" aria-hidden="true">
                   <path d="M5 22 Q 110 4 220 16 T 455 12" fill="none"
                     stroke="var(--orange)" strokeWidth="4" strokeLinecap="round" />

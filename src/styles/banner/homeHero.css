@@ -310,6 +310,25 @@
   display: inline-block;
 }
 
+/* Apparition « vibe » de l'accent « puissance » : pop + vibration + glow */
+@keyframes heroVibeIn {
+  0%   { opacity: 0; transform: scale(.8); filter: blur(6px); text-shadow: none; }
+  30%  { opacity: 1; transform: scale(1.06); filter: blur(0); text-shadow: 0 0 16px rgba(255,228,86,.85), 0 0 30px rgba(255,160,60,.5); }
+  40%  { transform: translateX(-3px) scale(1.02); }
+  50%  { transform: translateX(3px) scale(1.02); }
+  60%  { transform: translateX(-2px) scale(1); }
+  70%  { transform: translateX(2px); }
+  80%  { transform: translateX(-1px); }
+  100% { opacity: 1; transform: none; text-shadow: none; }
+}
+.hero-emph-word {
+  display: inline-block;
+  animation: heroVibeIn 1.25s cubic-bezier(.2,.8,.25,1) 0.2s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-emph-word { animation: none; }
+}
+
 .hero-underline {
   position: absolute;
   left: -10px;
