@@ -132,16 +132,34 @@
   z-index: 1;
 }
 
-/* Effet « île flottante » : les 4 bords sont ondulés (masque SVG sur tous les côtés)
-   + ombre portée qui épouse la forme (drop-shadow, car box-shadow serait clippée). */
+/* Carte « vibrante » : plus de bords ondulés. Bordure en dégradé de marque
+   qui circule en continu (énergie / vibes), via masque (anneau seul, blanc gardé). */
 .dv-card:not(.dv-card--bare),
 .dv-doc-body {
-  --dv-island: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104 104' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M4,4 Q16,0 28,4 T52,4 T76,4 T100,4 Q104,16 100,28 T100,52 T100,76 T100,100 Q88,104 76,100 T52,100 T28,100 T4,100 Q0,88 4,76 T4,52 T4,28 T4,4 Z'/%3E%3C/svg%3E");
-  -webkit-mask: var(--dv-island) center / 100% 100% no-repeat;
-  mask: var(--dv-island) center / 100% 100% no-repeat;
-  filter: drop-shadow(0 16px 30px rgba(217,10,92,.28));
-  box-shadow: none;
-  border-radius: 0;
+  position: relative;
+}
+.dv-card:not(.dv-card--bare)::before,
+.dv-doc-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2.5px;
+  background: linear-gradient(115deg, #FD6E00, #FF3D78, #D90A5C, #FF6030, #FFB040, #FD6E00);
+  background-size: 280% 280%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  animation: dvVibeBorder 7s ease-in-out infinite;
+}
+@keyframes dvVibeBorder {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dv-card:not(.dv-card--bare)::before,
+  .dv-doc-body::before { animation: none; }
 }
 
 .dv-card-title {
@@ -443,15 +461,4 @@
   .dv-row-2, .dv-checks, .dv-features-list, .dv-sign-fields, .dv-info-grid { grid-template-columns: 1fr; }
   .dv-durees { flex-direction: column; }
   .dv-card { width: calc(100% - 2rem); }
-  /* Le masque « île » a des creux proportionnels à la hauteur : sur les cartes
-     longues du mobile, l'ondulation du haut mordait sur le titre. On le désactive
-     en petit écran → coins arrondis classiques, titre toujours dégagé. */
-  .dv-card:not(.dv-card--bare),
-  .dv-doc-body {
-    -webkit-mask: none;
-    mask: none;
-    border-radius: 24px;
-    filter: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05), 0 16px 40px rgba(217,10,92,.2);
-  }
 }
