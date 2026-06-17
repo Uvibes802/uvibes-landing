@@ -65,11 +65,13 @@ export default function WhyName() {
             <div className="uvn-polaroid-media">
               <video src={getVideoUrl("Colette-desktop.mp4")} autoPlay muted loop playsInline />
             </div>
+            <span className="uvn-polaroid-cap v-serif">Colette</span>
           </div>
           <div className="uvn-polaroid uvn-polaroid--b">
             <div className="uvn-polaroid-media">
               <video src={getVideoUrl("Delphine-desktop.mp4")} autoPlay muted loop playsInline />
             </div>
+            <span className="uvn-polaroid-cap v-serif">Delphine</span>
           </div>
         </div>
       </div>

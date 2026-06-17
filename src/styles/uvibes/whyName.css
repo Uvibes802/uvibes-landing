@@ -152,6 +152,16 @@
 .uvn-polaroid--a { rotate: -3deg; }
 .uvn-polaroid--b { rotate: 3deg; margin-top: 1.75rem; }
 
+/* Légende manuscrite dans l'espace blanc du polaroïd */
+.uvn-polaroid-cap {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  font-style: italic;
+  font-size: 17px;
+  color: #8A3050;
+}
+
 /* Révélation au scroll */
 .uvn-vis .uvn-polaroid    { animation: uvnPolaroidIn 0.7s ease forwards; }
 .uvn-vis .uvn-polaroid--a { animation-delay: 0.15s; }
