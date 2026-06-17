@@ -10,6 +10,8 @@ const PUBLIC_KEYS = [
   "citation-role",
   "user-number",
   "user-number-title",
+  // Catégories d'équipe (onglets dynamiques) — gérées depuis l'admin
+  "team-categories",
   // Offre découverte (4ème offre) — éditable depuis l'admin
   "oe-titre",
   "oe-prix-accent",

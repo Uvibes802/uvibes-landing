@@ -2,7 +2,7 @@
 
 import useTeamByTag from "@/services/team/team";
 import type { TeamProps } from "@/types/team/teamProps";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/section/TeamSection.css";
 import TeamCards from "../cards/teamCards";
 
@@ -15,16 +15,31 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-export default function TeamSection() {
-  // slug = valeur exacte de TeamMember.equipe en base (filtre /api/team)
-  const tabs = [
-    { label: "Équipe projet", slug: "Équipe projet" },
-    { label: "Comité d'expertise", slug: "Comité d'expertise" },
-    { label: "Architectes du code", slug: "Architectes du code" },
-  ];
+// Catégories par défaut si l'API ne répond pas (slug = valeur exacte de TeamMember.equipe)
+const DEFAULT_CATS = ["Équipe projet", "Comité d'expertise", "Architectes du code"];
 
-  const [activeButton, setActiveButton] = useState(tabs[0].slug);
+export default function TeamSection() {
+  // Onglets dynamiques : pilotés depuis l'admin (clé CMS "team-categories")
+  const [cats, setCats] = useState<string[]>(DEFAULT_CATS);
+  const [activeButton, setActiveButton] = useState(DEFAULT_CATS[0]);
   const team: TeamProps[] = useTeamByTag(activeButton);
+
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((s) => {
+        try {
+          const parsed = JSON.parse(s["team-categories"]);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setCats(parsed);
+            setActiveButton(parsed[0]);
+          }
+        } catch { /* garde les défauts */ }
+      })
+      .catch(() => {});
+  }, []);
+
+  const tabs = cats.map((c) => ({ label: c, slug: c }));
 
   const renderMembers = () => {
     if (team.length > 4) {
