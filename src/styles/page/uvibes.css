@@ -83,6 +83,24 @@
   -webkit-text-fill-color: #FFE456;
   padding-right: 0.12em;
 }
+
+/* Apparition « wavy magic » (mode aladin) */
+@keyframes heroMagicIn {
+  0%   { opacity: 0; transform: translateY(0.45em) rotate(-3deg) skewX(12deg) scale(.92); filter: blur(7px); text-shadow: none; }
+  40%  { opacity: 1; filter: blur(0); text-shadow: 0 0 18px rgba(255,228,86,.9), 0 0 34px rgba(255,160,60,.5); }
+  55%  { transform: translateY(-0.06em) rotate(2deg) skewX(-5deg) scale(1.03); }
+  72%  { transform: translateY(0.03em) rotate(-1.2deg) skewX(2.5deg) scale(1); }
+  86%  { transform: translateY(-0.015em) rotate(0.6deg) skewX(-1deg); }
+  100% { opacity: 1; transform: none; filter: blur(0); text-shadow: none; }
+}
+.uv-hero-em {
+  display: inline-block;
+  transform-origin: bottom left;
+  animation: heroMagicIn 1.3s cubic-bezier(.2,.8,.25,1) 0.25s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .uv-hero-em { animation: none; }
+}
 .uv-hero-sub { font-size: clamp(15px, 1.4vw, 19px); color: rgba(255,255,255,.88); line-height: 1.6; margin: 0; }
 .uv-hero-vib { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100vw; display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
 .uv-hero-vib svg { width: 100%; display: block; }
