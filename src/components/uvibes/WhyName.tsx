@@ -44,18 +44,27 @@ export default function WhyName() {
             Uvibes active la richesse des échanges humains au sein des collectifs,
             en y faisant naître des <em className="uv-em-orange">rencontres inattendues</em>.
           </p>
-          <p className="uvn-body">
-            <strong className="uvn-hl uvn-hl--rose">«&nbsp;Vibes&nbsp;»</strong>, en anglais,
-            évoque ces vibrations, ces sensations que l&apos;on ressent quand on se connecte
-            à quelqu&apos;un, notamment une personne encore inconnue. Et ce{" "}
-            <strong className="uvn-hl uvn-hl--orange">«&nbsp;U&nbsp;»</strong>, c&apos;est pour{" "}
-            <em className="uv-em-orange">You</em>, celui qui vit l&apos;expérience.
-          </p>
-          <p className="uvn-body">
-            Chaque rencontre sur Uvibes est une aventure pour{" "}
-            <em className="uv-em-rose">(re)découvrir</em> quelqu&apos;un de son collectif
-            autour de questions ouvertes et positives. L&apos;émerveillement se crée,
-            et les conversations prennent vie.
+          {/* Décodage du nom — U + Vibes */}
+          <div className="uvn-decode">
+            <div className="uvn-term">
+              <span className="uvn-term-letter">U</span>
+              <span className="uvn-term-body">
+                <span className="uvn-term-key">You</span>
+                <span className="uvn-term-def">celui qui vit l&apos;expérience. C&apos;est vous.</span>
+              </span>
+            </div>
+            <div className="uvn-term">
+              <span className="uvn-term-letter">Vibes</span>
+              <span className="uvn-term-body">
+                <span className="uvn-term-key">les vibrations</span>
+                <span className="uvn-term-def">ces sensations quand on se connecte à quelqu&apos;un, même encore inconnu.</span>
+              </span>
+            </div>
+          </div>
+
+          <p className="uvn-body uvn-closing">
+            Chaque rencontre est une aventure pour <em className="uv-em-rose">(re)découvrir</em>{" "}
+            quelqu&apos;un de son collectif — l&apos;émerveillement se crée, les conversations prennent vie.
           </p>
         </div>
 

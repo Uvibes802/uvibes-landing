@@ -104,6 +104,58 @@
   max-width: 560px;
 }
 
+/* ── Décodage du nom : U + Vibes ───────────────────────────────── */
+.uvn-decode {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 1.6rem 0 1.4rem;
+}
+.uvn-term {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(4px);
+}
+.uvn-term-letter {
+  flex-shrink: 0;
+  min-width: clamp(54px, 7vw, 84px);
+  text-align: center;
+  font-family: var(--font-prompt), sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(34px, 4.5vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #FFE456;
+  text-shadow: 0 0 18px rgba(255,228,86,.45);
+}
+.uvn-term-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.uvn-term-key {
+  font-family: var(--font-prompt), sans-serif;
+  font-weight: 700;
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: #fff;
+}
+.uvn-term-def {
+  font-size: clamp(13px, 1.3vw, 15px);
+  line-height: 1.5;
+  color: rgba(255,255,255,.85);
+}
+.uvn-closing {
+  font-style: italic;
+  color: rgba(255,255,255,.92);
+  margin: 0;
+}
+
 /* Mots-clés surlignés (Vibes / U) — sur le dégradé */
 .uvn-hl {
   font-weight: 700;
@@ -148,9 +200,14 @@
   object-fit: cover;
 }
 
-/* Inclinaison alternée, sans superposition (rotate indépendant du translate animé) */
-.uvn-polaroid--a { rotate: -3deg; }
-.uvn-polaroid--b { rotate: 3deg; margin-top: 1.75rem; }
+/* Polaroïds superposés (composition dynamique, profondeur) */
+.uvn-media { position: relative; }
+.uvn-polaroid--a { rotate: -7deg; z-index: 1; }
+.uvn-polaroid--b { rotate: 6deg; z-index: 2; margin-left: clamp(-3.5rem, -5vw, -2rem); margin-top: clamp(2rem, 5vw, 3.5rem); }
+.uvn-polaroid:hover { transform: translateY(0) scale(1.04); z-index: 3; }
+@media (max-width: 700px) {
+  .uvn-polaroid--b { margin-left: clamp(-2.5rem, -8vw, -1.5rem); }
+}
 
 /* Légende manuscrite dans l'espace blanc du polaroïd */
 .uvn-polaroid-cap {
