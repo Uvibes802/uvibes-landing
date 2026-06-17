@@ -11,15 +11,14 @@ export default function MaintenanceToggle({ active }: { active: boolean }) {
   async function toggle() {
     setLoading(true);
     try {
-      const password = prompt("Mot de passe admin requis :");
-      if (!password) return;
+      // Plus de mot de passe : l'accès est déjà protégé par la session admin.
       const res = await fetch("/api/maintenance", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password, maintenanceMode: !on }),
+        body: JSON.stringify({ maintenanceMode: !on }),
       });
       if (res.ok) { setOn(!on); router.refresh(); }
-      else alert("Mot de passe incorrect");
+      else alert("Action non autorisée — reconnectez-vous.");
     } finally { setLoading(false); }
   }
 

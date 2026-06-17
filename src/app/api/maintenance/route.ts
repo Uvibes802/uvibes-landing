@@ -1,9 +1,7 @@
 import { getMaintenanceStatus, setMaintenanceStatus } from "@/lib/maintenanceState";
+import { getSession } from "@/lib/session";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
-
-// Mot de passe stocké dans .env.local — ne jamais mettre une valeur en dur ici
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 // Retourne le statut actuel du mode maintenance
 export async function GET() {
@@ -11,15 +9,17 @@ export async function GET() {
   return NextResponse.json({ maintenanceMode: status });
 }
 
-// Active ou désactive le mode maintenance après vérification du mot de passe
+// Active ou désactive le mode maintenance — réservé à l'admin connecté (session iron-session).
+// Plus de mot de passe séparé (qui échouait si ADMIN_PASSWORD n'était pas défini).
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { password, maintenanceMode } = body;
-
-    if (password !== ADMIN_PASSWORD) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const session = await getSession();
+    if (!session.isLoggedIn) {
+      return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
     }
+
+    const body = await request.json();
+    const { maintenanceMode } = body;
 
     if (typeof maintenanceMode !== "boolean") {
       return NextResponse.json({ error: "Invalid status" }, { status: 400 });

@@ -10,8 +10,19 @@ export async function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-pathname", pathname);
 
+  // Page de login : si déjà connecté, rediriger vers le dashboard
+  // (évite l'état confus « page login + sidebar visible » qui ressemblait à un bypass).
+  if (pathname === "/admin/login") {
+    const res = NextResponse.next({ request: { headers: requestHeaders } });
+    const session = await getIronSession<SessionData>(request, res, SESSION_OPTIONS);
+    if (session.isLoggedIn) {
+      return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+    }
+    return res;
+  }
+
   // Protéger toutes les routes /admin/* sauf la page de login
-  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+  if (pathname.startsWith("/admin")) {
     const res = NextResponse.next({ request: { headers: requestHeaders } });
     const session = await getIronSession<SessionData>(request, res, SESSION_OPTIONS);
 
