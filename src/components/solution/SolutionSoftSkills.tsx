@@ -53,27 +53,56 @@ export default function SolutionSoftSkills() {
 
         <div className="sss-rows">
 
-          {/* ── 01 · Vidéo — reel 9:16 dans un cadre épuré ── */}
+          {/* ── 01 · Ressources — vidéo (reel) + podcast côte à côte ── */}
           <div className="sss-row" style={{ "--c": "#FD6E00" } as React.CSSProperties}>
             <div className="sss-illu-col">
-              <div className="sss-video-frame">
-                {REEL_SRC ? (
-                  <video
-                    className="sss-video"
-                    src={REEL_SRC}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-label="Aperçu vidéo Uvibes"
-                  />
-                ) : (
-                  <div className="sss-video-ph" aria-hidden="true">
-                    <span className="sss-video-ph-play">
-                      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                    </span>
+              <div className="sss-resources">
+                <div className="sss-video-frame sss-video-frame--mini">
+                  {REEL_SRC ? (
+                    <video
+                      className="sss-video"
+                      src={REEL_SRC}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      aria-label="Aperçu vidéo Uvibes"
+                    />
+                  ) : (
+                    <div className="sss-video-ph" aria-hidden="true">
+                      <span className="sss-video-ph-play">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className={`sss-podcast${playing ? " is-playing" : ""}`}>
+                  <div className="sss-podcast-discwrap">
+                    <span className="sss-podcast-halo" aria-hidden="true" />
+                    <span className="sss-podcast-halo sss-podcast-halo--2" aria-hidden="true" />
+                    <button
+                      type="button"
+                      className="sss-podcast-disc"
+                      onClick={togglePodcast}
+                      aria-pressed={playing}
+                      aria-label={playing ? "Mettre le podcast en pause" : "Écouter le podcast"}
+                    >
+                      {playing ? (
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2" /><rect x="14" y="5" width="4" height="14" rx="1.2" /></svg>
+                      ) : (
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                      )}
+                    </button>
                   </div>
-                )}
+                  <div className="sss-podcast-wave" aria-hidden="true">
+                    {WAVE_BARS.map((h, i) => (
+                      <span key={i} className="sss-podcast-bar" style={{ "--h": h, animationDelay: `${i * 0.08}s` } as React.CSSProperties} />
+                    ))}
+                  </div>
+                  {PODCAST_SRC && (
+                    <audio ref={audioRef} src={PODCAST_SRC} onEnded={() => setPlaying(false)} preload="none" />
+                  )}
+                </div>
               </div>
             </div>
             <div className="sss-text-col">
@@ -86,36 +115,20 @@ export default function SolutionSoftSkills() {
             </div>
           </div>
 
-          {/* ── 02 · Podcast — sans carte, éléments animés ── */}
+          {/* ── 02 · Terrain d'entraînement — vidéo polaroïd d'un vibe réel ── */}
           <div className="sss-row sss-row--reverse" style={{ "--c": "#E6007E" } as React.CSSProperties}>
             <div className="sss-illu-col">
-              <div className={`sss-podcast${playing ? " is-playing" : ""}`}>
-                <div className="sss-podcast-discwrap">
-                  <span className="sss-podcast-halo" aria-hidden="true" />
-                  <span className="sss-podcast-halo sss-podcast-halo--2" aria-hidden="true" />
-                  <button
-                    type="button"
-                    className="sss-podcast-disc"
-                    onClick={togglePodcast}
-                    aria-pressed={playing}
-                    aria-label={playing ? "Mettre le podcast en pause" : "Écouter le podcast"}
-                  >
-                    {playing ? (
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2" /><rect x="14" y="5" width="4" height="14" rx="1.2" /></svg>
-                    ) : (
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                    )}
-                  </button>
-                </div>
-                <div className="sss-podcast-wave" aria-hidden="true">
-                  {WAVE_BARS.map((h, i) => (
-                    <span key={i} className="sss-podcast-bar" style={{ "--h": h, animationDelay: `${i * 0.08}s` } as React.CSSProperties} />
-                  ))}
-                </div>
-                {PODCAST_SRC && (
-                  <audio ref={audioRef} src={PODCAST_SRC} onEnded={() => setPlaying(false)} preload="none" />
-                )}
-              </div>
+              <figure className="sss-vibe-polaroid">
+                <video
+                  className="sss-vibe-video"
+                  src="/videos/lisa-et-celine.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-label="Aperçu d'un échange Uvibes en conditions réelles"
+                />
+              </figure>
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">02</span>
