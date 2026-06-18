@@ -60,7 +60,6 @@ export default function VideoSection() {
           height={230}
           className="vs-polaroid-img"
         />
-        <figcaption className="vs-polaroid-cap v-serif">Vos collectifs, vivants</figcaption>
       </figure>
 
       {/* Carte unique */}
@@ -89,9 +88,6 @@ export default function VideoSection() {
 
           {/* Auteur */}
           <div className="vs-card-author">
-            <div className="vs-card-avatar" aria-hidden="true">
-              {(t?.auteur_temoignage || "M")[0].toUpperCase()}
-            </div>
             <div className="vs-card-author-info">
               <span className="vs-card-name v-prompt">{t?.auteur_temoignage || "Membre Uvibes"}</span>
               {t?.role_et_entreprise_temoignage && (
