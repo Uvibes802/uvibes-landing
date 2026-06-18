@@ -25,8 +25,12 @@ export default function FormContact() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<FormData>();
+
+  // Les catégories ne s'affichent que si la newsletter est cochée → formulaire plus court
+  const wantsNewsletter = watch("newsletter");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -137,17 +141,19 @@ export default function FormContact() {
             </span>
           </span>
         </label>
-        <div className="fc-newsletter-cat">
-          <span className="fc-label">Quelles catégories vous intéressent&nbsp;?</span>
-          <div className="fc-cat-grid">
-            {CATEGORIES.map((c) => (
-              <label key={c} className="fc-cat-chip">
-                <input type="checkbox" value={c} {...register("categories")} />
-                <span>{c}</span>
-              </label>
-            ))}
+        {wantsNewsletter && (
+          <div className="fc-newsletter-cat">
+            <span className="fc-label">Quelles catégories vous intéressent&nbsp;?</span>
+            <div className="fc-cat-grid">
+              {CATEGORIES.map((c) => (
+                <label key={c} className="fc-cat-chip">
+                  <input type="checkbox" value={c} {...register("categories")} />
+                  <span>{c}</span>
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Bouton */}
