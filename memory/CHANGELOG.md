@@ -2,6 +2,232 @@
 
 ---
 
+## 2026-06-18 — Gros lot demandes tutrice (branche feat/missions-falek)
+
+Lot rédactionnel + affiches par thème + refonte cartes passeport + PDF devis avec documents légaux + animations. 11 commits, build OK, vérif visuelle Playwright.
+
+### Analytics / vérifs
+- **GA — fix `page_view` sur navigation** : `GARouteTracker` (écoute `usePathname`, renvoie un `page_view` à chaque changement de route). **Impact :** App Router ne ré-émettait jamais de pageview après le 1er chargement → GA ne comptait que la page d'entrée de chaque session. Désormais toutes les pages visitées sont comptées.
+- **Maintenance** : vérifiée OK en local. **À signaler :** état écrit sur fichier (`src/data/maintenance.json`) → sur Vercel (FS read-only/éphémère) le toggle ne persiste pas ; à migrer en DB pour la prod.
+- **GA prod** : `NEXT_PUBLIC_GOOGLE_ANALYTICS` à ajouter dans les env vars Vercel (Production) + redéploiement, sinon GA inactif sur uvibes.fr.
+
+### Textes (rédactionnel — repris verbatim)
+- ValuePillars « Piloter » ; Passeport (1ʳᵉ solution, Explorateurs du Monde, eyebrow, titre « proposez », trio Apprendre/Pratiquer/Valoriser, subline « collectif ») ; Contact (msg 48h → réponse personnalisée) ; TarifsHero (titre + sous-titre) ; offres (Boost « Tout vibes premium », Premium « Tout vibes connection », dé-grassage Logo/Kit/Actualités sur Boost, retrait « tous les plans incluent ») ; SmallOrgCta (« offre surmesure » + texte + retours ligne) ; SolutionThemes (« Une infinité d'univers ») ; FeaturesCard (« Résultats », un/une→le/la, « pendant un temps court », « Uvibes » italique dégradé) ; hero méthode ; section Processus (4 étapes re-textées, chips génériques retirées) ; SoftSkills (sous-titre + 3 lignes). **Impact :** discours produit aligné sur la fiche tutrice.
+
+### Affiches & section « Pour qui »
+- **Affiches dédiées par thème** : 12 thèmes, sources ~4 Mo/PNG → **WebP 600px ~60 Ko** (`scripts/optimize-affiches.mjs`), rangées dans `public/images/affiche/<thème>/`, recâblées dans `collectifsData`. Anciennes PNG génériques (1-62) supprimées. **Impact :** chaque collectif montre ses vraies affiches (cohérence thème) et le poids des images divisé par ~50 (perf/LCP).
+- **Catégorie « Lieu de vie »** ajoutée (11 → 12 secteurs) avec affiches Habitat.
+
+### Cartes Passeport d'expérience
+- **Deck empilé → grille côte à côte**, **affiche diplôme par carte** (`scripts/optimize-diplomes.mjs` → `public/images/passeport/<id>.webp`), **carte « Attestation lieu de vie »** ajoutée. **Impact :** les 12 passeports visibles d'un coup d'œil, chacun illustré par son attestation réelle.
+
+### Soft skills (média)
+- Partie 01 : **vidéo (reel) + podcast réunis** ; partie 02 : **vidéo polaroïd** (`lisa-et-celine.mp4` en attendant le clip « vibe » dédié).
+
+### Contact / Newsletter
+- Catégories newsletter affichées **seulement si la case est cochée** (+ animation). **Impact :** formulaire de contact beaucoup plus court par défaut.
+
+### Méthode
+- Nav d'ancres → **4 onglets** : Processus / Thématiques / Soft skills / Résultats, liés aux bonnes sections.
+
+### Devis (PDF)
+- **PDF tout-en-un** : devis **+ documents contractuels de l'offre annexés en pages** (CGV+DPA+SLA annuelles ; CGV-essai+PDD découverte). Contenu lu depuis l'admin (`LegalDocument`), rendu markdown-léger (`fetchLegalDocsForQuote` + `renderLegalBlocks`). **Impact :** le devis contient désormais le cadre contractuel complet, adapté à l'offre.
+
+### Animations
+- **Glow pulsé doux** sur les italiques (`.v-serif`), via `text-shadow` animé (aucun reflow) + garde `prefers-reduced-motion`.
+
+### À confirmer / suites
+- Vidéo soft-skills partie 02 : placeholder `lisa-et-celine.mp4` → fournir le clip « des mecs qui font un vibe ».
+- Reel 9:16 + podcast (partie 01) : toujours en placeholder (CloudFront en attente).
+- Erreurs console pré-existantes : `/images/partners/*.png` en 400 (logos partenaires manquants en local) — sans rapport avec ce lot.
+
+---
+
+## 2026-06-17 — Lot finitions + sécurité + merge main (branche feat/missions-falek → main)
+
+Gros lot de réglages, correctifs sécurité, et **merge sur `main` poussé sur le fork (Vercel)**.
+
+### Devis
+- Remise d'engagement **24 mois (−8%) / 36 mois (−15%)** restaurée (`calculateQuote`, durée uniquement ; pas de volume ; offre découverte exclue) + libellés funnel/admin.
+- **Stepper** redessiné (pilule givrée, cercle actif pulsant, étapes blanches cerclées, lignes dégradées).
+- **Selects** (type de collectif, admin, rdv) : flèche native → **chevron brand custom** (`appearance:none` + SVG).
+
+### Méthode / Tarifs
+- Menu d'ancres : **séparation (bordure) + barre colorée sous les mots supprimées**.
+- **Wave après la 4e offre** : couche arrière passée en orange (`#FF8A3D`) → plus de bande claire de séparation.
+- Prix **« à 480 » animé** (pulse néon).
+
+### Accueil
+- **BannerCount** : largeur du mot en rotation **figée** (grille empilée) → le texte ne bouge plus, le chiffre incrémente toujours.
+- **Hero mobile** : les vraies **questions** (chips) autour du mockup au lieu des icônes.
+- Bouton « Découvrir la solution » **redondant retiré** (HowItWorks) ; CTA collectifs renommé « Découvrir la solution ».
+
+### Polices
+- **Serif (Instrument) restauré uniquement sur les mots en italique** (demande tutrice) + **effet néon** sur les italiques. Roboto reste retiré.
+
+### À propos
+- **Section 3 recomposée** : média à gauche / texte à droite (rythme alterné avec la section 2) + accroche en **pull-quote** (liseré dégradé).
+
+### Sécurité (signalé par la tutrice)
+- **Maintenance** : protégée par la **session admin** (plus de mot de passe env `ADMIN_PASSWORD` qui échouait → « incorrect »).
+- **Auth admin** : middleware vérifié (toutes les routes `/admin/*` → 307 login sans session, **pas de bypass**). Cause du ressenti « bypass » = un admin **déjà connecté** voyait la sidebar autour de `/admin/login` ; désormais il est **redirigé vers le dashboard**.
+
+### Build & déploiement
+- `pnpm build` OK (toutes routes). `feat/missions-falek` **mergé en fast-forward dans `main`** et **poussé sur le fork** (`fork/main` `1b17e08..cbbde52`) → déploiement Vercel.
+
+---
+
+## 2026-06-17 — Vibes, néon, polices & refonte À propos (branche feat/missions-falek)
+
+Gros lot créatif (animations, néon, harmonisation polices, refonte de 2 sections).
+
+### Animations heros (variées)
+- Accent italique de chaque hero a sa propre entrée : **vibe** (accueil « puissance » : pop + vibration), **wavy magic** (méthode, à propos), **swoop** (tarifs, blog). `prefers-reduced-motion` respecté partout.
+
+### Icônes hero mobile
+- Les 3 éclairs `Zap` flottants (mobile, AppMockup) → **MessageCircle / Sparkles / Heart** (conversation / magie / connexion), plus « vibes » et moins électrique.
+
+### Devis — forme « vibrante »
+- Suppression des **bords ondulés « île »** (masque SVG) → carte propre à coins arrondis avec **bordure dégradée animée** (énergie qui circule), via masque (anneau seul). Corrige aussi l'ondulation qui mordait le titre en mobile.
+
+### Néon (tarifs)
+- **Noms d'offres** (Connection/Boost/Premium) + **CTAs** « Faire un devis » : néon pulsant doux (text-shadow / drop-shadow), harmonisé avec la 4e offre. Featured en néon blanc.
+
+### Polices — harmonisation (6 → 4 familles)
+- **Suppression du serif** (Instrument Serif) : tous les accents italiques passent en **Prompt italique** (sans-serif). **Suppression de Roboto** (vestigial) → routé vers Prompt. Restent : Prompt, Supreme-Light, Supreme-Bold, Roboto Mono. (touche `layout.tsx` + `globals.css`.) Moins de « polices partout » + 2 fonts en moins au chargement.
+
+### Animations « vibes » légères
+- Shimmer dégradé lent (7s) sur les accents de section emblématiques (`.uv-serif-grad`, `.pt-title-serif`).
+
+### Refonte À propos — sections 2 & 3 (plus original, pas générique)
+- **Section 2 « Pourquoi Uvibes ? »** : le paragraphe sur le sens du nom devient un **décodage typographique** — chips glassy « U → You » et « Vibes → les vibrations » (gros lettrage jaune) ; **polaroïds superposés** (profondeur) au lieu du côte-à-côte.
+- **Section 3 « Et si on se parlait vraiment ? »** : les 3 valeurs en pilules génériques deviennent un **fil de conversation numéroté** (01/02/03 reliés par un trait dégradé, pastilles numérotées).
+
+### Tarifs (réglages précédents inclus)
+- Eyebrow « Tarifs & offres » retiré du hero ; sous-titre 4e offre sur une ligne ; prix animé (count-up) ; néon titre ; points en stagger ; wave sous la 4e offre harmonisée (#FD6E00).
+
+### Impact
+- Le site gagne une signature animée cohérente (« vibes ») sans surcharge, une typo plus propre (zéro serif, 4 familles), un parcours devis moderne et vibrant, et une page À propos dont les 2 sections clés sortent du gabarit générique « texte + image ».
+
+---
+
+## 2026-06-17 — Réglages 4e offre, wave & animations heros (branche feat/missions-falek)
+
+Série de finitions demandées (tarifs + heros).
+
+### 4e offre « Vibes Découverte »
+- **Sous-titre sur une seule ligne** : suppression du saut de ligne forcé après le « : » + `max-width:none` → la phrase tient sur une ligne (desktop).
+- **Prix animé (count-up)** : à l'ouverture de la carte, le chiffre s'anime de 0 jusqu'au prix (easing cubic-out, JS via `requestAnimationFrame`).
+- **Effet « lampe néon »** : le titre s'allume avec un flicker néon (text-shadow doré) à l'apparition de la section.
+- **Points en apparition échelonnée** (stagger) à l'ouverture → carte qui se révèle progressivement (moins « bloc »).
+
+### Tarifs
+- **Hero** : retrait de l'eyebrow « Tarifs & offres ».
+- **Wave sous la 4e offre harmonisée** : le `WaveSeparator` entre PricingTable et la section « petites structures » passe de `#FFF0F5` (clair) à `#FD6E00` (haut de la section saturée) → la wave devient le sommet de cette section, plus de bande claire de séparation.
+
+### Heros — apparition « wavy magic » (mode aladin)
+- Les accents italiques des heros (`.sh-title-accent`, `.th-title-accent`, `.uv-hero-em`, `.blog-hero-em` → méthode, tarifs, à propos, blog) apparaissent avec une animation ondulante + flash de glow doré, puis se posent net. Keyframe `heroMagicIn` auto-suffisant par fichier (chaque CSS hero est chargé indépendamment). `prefers-reduced-motion` respecté. *(hero d'accueil non inclus — exclusion habituelle de la page bienvenue ; à activer sur demande.)*
+
+### Impact
+- La 4e offre est plus vivante et lisible (sous-titre d'un trait, prix qui s'anime, néon et révélation progressive) sans surcharge. La transition sous la 4e offre est sans couture. Les pages gagnent une entrée « magique » sur leurs mots-accent, cohérente et accessible.
+
+---
+
+## 2026-06-17 — Polish À propos sections 2 & 3 (branche feat/missions-falek)
+
+Polish visuel ciblé (tutrice : ne pas toucher hero ni footer, bosser surtout sections 2 & 3). La page était déjà vive (titres orange/rose/dégradé, aucun noir) → on complète le motif « photo ».
+
+- **Section 2 « Pourquoi Uvibes ? » (`WhyName`)** : ajout des **légendes manuscrites** « Colette » / « Delphine » dans l'espace blanc réservé des polaroïds (look polaroïd enfin complet).
+- **Section 3 « Et si on se parlait vraiment ? » (`.uv-intro`)** : la vidéo Delphine reçoit un **cadre photo blanc** (`box-shadow` ring 7px) + ombre brand + léger tilt → cohérent avec le motif polaroïde présent ailleurs (section 2, témoignages home).
+- **Impact** : les deux sections gagnent en finition et en cohérence visuelle (motif photo/polaroïde unifié sur tout le site), sans toucher au hero ni au footer.
+
+---
+
+## 2026-06-17 — Redesign devis + tunnel (branche feat/missions-falek)
+
+Refonte visuelle des pages `/devis` (tunnel `DevisFormStepper`) et `/devis/[id]` (document + signature), pilotée par `devis.css` (aucune logique touchée).
+
+- **Fond dégradé saturé** : `.dv-page` passe d'un pastel doux à un dégradé brand vif (orange→pink→magenta→violet) — les cartes blanches ressortent davantage.
+- **Plus de titres noirs** : `#1a0a06` → dégradé brand (titres de carte, numéro de devis, nom du plan résumé, « Signer ce devis ») ou rose solide (nom de plan, label d'étape actif, durée). Polices uvibes (`var(--font-prompt)`) déjà en place.
+- **Bug mobile corrigé** : le masque SVG « île » (bords ondulés) a des creux proportionnels à la hauteur ; sur les cartes longues du mobile, l'ondulation du haut mordait sur le titre. Masque désactivé < 640px → coins arrondis classiques, titre toujours lisible.
+- **Impact** : le parcours de devis (étape commerciale clé) gagne en cohérence avec le reste du site — fond vif de marque, titres colorés vivants, et une lisibilité mobile enfin propre. (1er passage, ouvert à itération.)
+
+---
+
+## 2026-06-17 — Quick wins tuteur : témoignages, newsletter, équipe, menu, GA (branche feat/missions-falek)
+
+Lot de 5 demandes cadrées (Lots 7→11 du découpage tuteur).
+
+### Témoignages (Lot 7)
+- Photo **polaroïde** ajoutée à `VideoSection` (`.vs-polaroid`, image `TeamUvibesHome.jpg`, légende « Vos collectifs, vivants »). Desktop : flottante et tiltée sur le côté droit. Mobile : dans le flux, entre le titre et les étoiles.
+
+### Newsletter / Contact (Lot 8)
+- Titre de la case newsletter → « 📬 Recevoir nos meilleures idées avec la newsletter », en **dégradé vif** (plus en noir).
+- `<select>` mono-catégorie → **puces multi-sélection** (`categories[]`). Type `FormData` et email (`sendEmail`) adaptés (liste des catégories).
+
+### Équipe (Lot 9)
+- La gestion dynamique des catégories existait déjà côté admin (`EquipeManager` : ajout/renommage/suppression, clé CMS `team-categories`, dont « Architectes du code »). **Chaînon manquant** : `TeamSection` public hardcodait les onglets → désormais **dynamiques** (fetch `team-categories` via `/api/settings`, fallback sur 3). Ajouter/renommer une catégorie en admin se reflète maintenant sur le site.
+
+### Menu (Lot 10)
+- CTA « On en parle ? » du **menu mobile** (`.v-sheet-cta`, un `<Link>`) n'avait pas `text-decoration: none` → texte souligné. Corrigé.
+
+### Google Analytics (Lot 11)
+- Vérifié : GA4 + Consent Mode (denied par défaut → granted à l'acceptation, persisté 365j), banner masqué sur /admin & /devis, `gtag.js` chargé et `dataLayer` actif. Implémentation conforme RGPD. (Bémol mineur : 3 `console.log` de debug subsistent — non retirés, layout.tsx critique.)
+
+### Impact
+- La section témoignages gagne une touche humaine et chaleureuse (polaroïde). Le formulaire capte mieux les intérêts (plusieurs catégories newsletter) avec un encart plus engageant. L'admin peut enfin créer des équipes (ex « Architectes du code ») visibles sur le site sans toucher au code. Le bouton du menu mobile est propre. GA est confirmé fonctionnel et respectueux du consentement.
+
+---
+
+## 2026-06-16 — Hero /tarifs harmonisé avec Méthode (branche feat/missions-falek)
+
+- `.th-section` : `min-height: 55vh` + `display:flex; align-items:center` + padding nav-aware (comme `.sh-section` de Méthode) → hero ≈ moitié d'écran, centré.
+- `.th-title` : `clamp(34px,6vw,64px)` → `clamp(44px,7vw,92px)` (au niveau de Méthode 104 / Blog 96 / À propos 88).
+- `.th-inner` : `width:100%` pour rester centré dans le flex.
+- Les autres heros marketing étaient déjà à 55vh + grands titres ; legal reste compact (page juridique) ; accueil non touché.
+- **Impact** : la page Tarifs a enfin la même prestance que les autres pages — titre généreux et hero calibré à la moitié de l'écran, fini l'effet « petit titre » incohérent.
+
+---
+
+## 2026-06-16 — 4e offre « Vibes Découverte » : carte lumineuse + minimaliste (branche feat/missions-falek)
+
+Refonte visuelle de la 4e offre (ex « Faites vivre Uvibes à votre collectif »).
+
+### Changements
+- **Nouveau nom** : « Vibes Découverte » (cohérent avec Vibes Connection / Premium / Boost). Stocké en base (`oe-titre`), donc réeditable en admin (CMS) — facile de tester « L'Avant-Première » / « Coup de Foudre ».
+- **Titre plus grand** : `.oe-bar-title` passe de ~28px à ~44px max, poids 800.
+- **Carte plus lumineuse + cadre blanc** : dégradé éclairci (orange→magenta plus vif), **bordure blanche franche 4px** + double liseré, halo blanc interne renforcé, padding et gaps augmentés (carte plus aérée), `border-radius` 32px.
+- **Section minimaliste** : suppression de la note « Besoin d'un format sur mesure… Parlons-en. » à gauche des boutons ; les 2 CTA sont désormais alignés à droite.
+
+### Vérifications
+- Screenshots desktop (1280) + mobile (390) OK, carte dépliée. 0 erreur console.
+
+### Impact
+- La 4e offre se démarque enfin par sa **clarté** : un nom court et mémorisable mis en avant en gros, une carte aérée et lumineuse avec un cadre blanc premium, et moins de texte parasite autour des boutons. Le visiteur comprend l'offre d'un coup d'œil au lieu de lire une phrase-titre longue.
+
+---
+
+## 2026-06-16 — Devis : remises = codes promo uniquement + prix perso (branche feat/missions-falek)
+
+Nettoyage de la logique de remise : seules les réductions issues d'un **code promo** sont désormais possibles. Suppression des remises « fantômes » et de la remise manuelle.
+
+### Logique de calcul
+- **`calculateQuote.ts`** : suppression des barèmes automatiques `remiseVolume` (100+ = −5%, 250+ = −10%…) et `remiseDuree` (24 mois = −8%, 36 mois = −15%). La remise vaut désormais `0` ; les seules réductions proviennent des codes promo, appliqués à la signature.
+- Libellés `−8%` / `−15%` retirés des sélecteurs de durée (funnel public + formulaire admin) puisqu'ils ne correspondaient plus à aucune remise réelle.
+
+### Admin
+- **Remise manuelle supprimée** : champ retiré de la création de devis et du détail devis ; route PATCH ne traite plus `remise`.
+- **Prix HT personnalisé** : nouveau champ optionnel à la création de devis. Permet un tarif négocié (associations) qui remplace le prix de l'offre (TTC recalculé). Vide = prix standard.
+- **Indicateur de remise** : badge `−X% (code)` dans la liste des devis et dans le détail quand un code promo a été appliqué ; sinon mention « Aucune remise (prix standard) ».
+
+### Vérifications
+- `tsc --noEmit` OK, aucune référence orpheline (`remiseManuelle`).
+
+### Impact
+- Fini le « 5% » qui s'affichait sans raison : un client à 100+ utilisateurs ne voit plus de réduction fantôme, le prix affiché = le prix réel de l'offre. La directrice garde la main pour les tarifs négociés (assos) via un prix HT explicite, et repère d'un coup d'œil quels devis portent une vraie remise (code promo).
+
+---
+
 ## 2026-06-16 — Page Tarifs, parcours offres & polish (branche feat/missions-falek)
 
 Réorganisation du parcours « méthode → offres → devis » + plusieurs finitions demandées.

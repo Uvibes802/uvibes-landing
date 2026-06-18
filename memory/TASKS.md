@@ -1,7 +1,46 @@
 # TASKS — Uvibes Site Vitrine
 
 > Tableau de bord des tâches actives. Historique complet dans CHANGELOG.md.
-> **Branche active :** `feat/dashboard-audit-polish`
+> **Branche active :** `feat/missions-falek`
+
+---
+
+## 🗂️ Session 2026-06-18 — Gros lot demandes tutrice
+
+> Détail + Impact dans CHANGELOG 2026-06-18. Build OK, vérif visuelle Playwright (solution, passeport, collectifs, commentaires).
+
+- [x] GA : fix `page_view` sur navigation (`GARouteTracker`) + rapport (maintenance OK local / réserve Vercel)
+- [x] Lot textes (piloter, passeport, contact, tarifs, offres, smallorg, thèmes, FeaturesCard/Résultats, hero méthode, Processus, soft skills)
+- [x] Commentaires : cercle d'initiales + texte polaroïd retirés
+- [x] Affiches dédiées par thème (WebP) + catégorie « Lieu de vie » (12 secteurs)
+- [x] Cartes Passeport : grille côte à côte + affiche diplôme/carte + carte « Attestation lieu de vie »
+- [x] Soft skills : vidéo+podcast (01), vidéo polaroïd (02)
+- [x] Newsletter : catégories repliées tant que la case n'est pas cochée
+- [x] Méthode : nav à 4 onglets (Processus/Thématiques/Soft skills/Résultats)
+- [x] Devis PDF : tout-en-un (devis + documents légaux de l'offre annexés)
+- [x] Animations : glow pulsé doux sur les italiques (`.v-serif`)
+- [ ] **À fournir tutrice :** clip vidéo « des mecs qui font un vibe » (soft skills 02, placeholder = `lisa-et-celine.mp4`) ; URLs CloudFront reel 9:16 + podcast (soft skills 01)
+- [ ] **Prod :** ajouter `NEXT_PUBLIC_GOOGLE_ANALYTICS` dans Vercel + redéployer ; envisager état maintenance en DB (FS non persistant sur Vercel)
+- [ ] **Pré-existant (hors lot) :** `/images/partners/*.png` en 400 en local (logos partenaires manquants)
+
+---
+
+## 🗂️ Session 2026-06-16 — Demandes tuteur (11 lots)
+
+> Grosse liste découpée en lots, attaqués un par un (« tout dans l'ordre »).
+
+- [x] **Lot 1 — Devis logique/admin** : remises = codes promo uniquement (suppression remises auto + manuelle), indicateur remise (liste + détail), prix HT personnalisé (assos). Voir CHANGELOG 2026-06-16.
+- [x] **Lot 1b — Doublons & upload** : vérifié — **aucun doublon restant** (DB 12 partenaires / 3 témoignages / 8 équipe, seed idempotent, sync-wp fait `deleteMany` avant réinsertion, APIs publiques lisent la DB seule). Upload OK (route robuste, `public/uploads/` inscriptible + gitignoré). Rien à corriger côté code.
+- [x] **Lot 2 — Offre découverte (4e offre)** : renommée « Vibes Découverte » (CMS), titre agrandi, carte lumineuse + cadre blanc 4px, note de gauche supprimée (boutons à droite), plus aérée. Voir CHANGELOG 2026-06-16. *(nom réeditable en CMS — alternatives proposées : L'Avant-Première, Coup de Foudre)*
+- [x] **Lot 3 — Heros harmonisés** : hero tarifs passé en `min-height:55vh` centré + titre `clamp(44px,7vw,92px)` (façon Méthode). Les autres heros marketing (méthode 55vh/104, à propos 55vh/88, blog 55vh/96) étaient déjà harmonisés ; legal reste volontairement compact (page juridique). Accueil non touché.
+- [x] **Lot 4 — Titres noirs → couleurs vives** : audit complet. Le site utilise déjà des couleurs vives pour quasi tous les titres (orange #FD6E00, rose #D90A5C, blanc sur dégradés). Seul vrai titre noir marketing = `.rdv-title` « On en parle ? » → passé en dégradé orange→rose. Laissés : `#111` (micro-pastilles 9px, non-titres), `#1a0a06` (contenu d'article blog, lecture longue), `--ink` magenta (couleur brand de texte, pas noir). *Si la tutrice trouve le magenta `--ink` trop sombre, on peut l'éclaircir globalement en 1 ligne.*
+- [x] **Lot 5 — Redesign devis + tunnel** (1er passage, CSS only `devis.css`) : fond `.dv-page` saturé (orange→pink→magenta→violet) ; titres noirs `#1a0a06` → dégradé brand (dv-card-title, dv-doc-numero, dv-plan-summary-name, dv-sign-title) ou rose solide (dv-plan-name, step-label, durée) ; polices prompt déjà en place. Bug corrigé : masque « île » (creux ∝ hauteur) mordait le titre sur les cartes longues mobile → masque désactivé < 640px (coins arrondis classiques). *Ouvert à itération visuelle tutrice.*
+- [x] **Lot 6 — Page À propos** (polish visuel ciblé, tutrice : « ne pas toucher hero ni footer, bosser surtout sections 2 & 3 ») : page déjà vive/moderne (titres `--orange`/rose/dégradé, aucun noir). Section 2 (`WhyName`) : légendes manuscrites « Colette »/« Delphine » dans l'espace blanc des polaroïds (look complet). Section 3 (`.uv-intro`) : vidéo Delphine encadrée en **cadre photo blanc** + ombre brand (cohérent motif polaroïde). Mobile OK.
+- [x] **Lot 7 — Témoignages** : photo polaroïde dans `VideoSection` (`.vs-polaroid`). Desktop : absolue, tiltée à droite. Mobile : en flux entre le titre et les étoiles. Image `TeamUvibesHome.jpg` (remplaçable), légende « Vos collectifs, vivants ».
+- [x] **Lot 8 — Newsletter** : titre « 📬 Recevoir nos meilleures idées avec la newsletter » en dégradé vif (plus noir) ; `<select>` mono → **puces multi-catégories** (`categories[]`), propagé dans `FormData` + email (`sendEmail`).
+- [x] **Lot 9 — Admin équipe** : la gestion dynamique des catégories existait déjà dans `EquipeManager` (ajout/renommage/suppression, stockées en CMS `team-categories` — la catégorie « Architectes du code » existe déjà). **Chaînon manquant corrigé** : `TeamSection` public hardcodait les onglets → rendus dynamiques (fetch `team-categories` via `/api/settings`, fallback sur les 3). ⚠️ À signaler tutrice : 3 membres réels (Sofia Ait-Taleb CEO, Lucas Bernard CTO, Amina Chouaib) sont rangés dans des catégories fantômes `Direction`/`Tech`/`Commercial` (seed) → invisibles ; à réaffecter à une vraie catégorie ou supprimer (décision tutrice).
+- [x] **Lot 10 — Menu « on en parle »** : le CTA `.v-sheet-cta` (menu mobile, un `<Link>`) n'avait pas `text-decoration: none` → texte souligné. Ajouté. Plus de soulignement.
+- [x] **Lot 11 — Vérifier Google Analytics** : OK. GA4 (`G-9B…`), Consent Mode (`denied` par défaut → `granted` au clic Accepter, persisté 365j, restauré au retour), banner masqué sur /admin & /devis. Live : `gtag.js` chargé, `window.gtag` ok, `dataLayer` peuplé. Bémol mineur non corrigé (fichier critique layout.tsx) : 3 `console.log` de debug en prod (layout.tsx + cookieConsent.tsx) — à retirer sur feu vert tutrice.
 
 ---
 
