@@ -326,6 +326,16 @@
   object-fit: cover;
   object-position: center;
 }
+/* Variante image (capture dashboard) — fond clair, on cadre le haut du tableau de bord */
+.shiw-polaroid-media--img { background: #f4f5f7; }
+.shiw-polaroid-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+}
 
 /* ── Responsive — vertical sur mobile ───────────────────────── */
 @media (max-width: 1024px) {
@@ -334,22 +344,30 @@
     gap: 2rem;
   }
 
-  /* Ligne verticale à gauche */
-  .shiw-roadmap::before {
-    top: 24px;
-    bottom: 24px;
-    left: 23px;
-    right: auto;
-    width: 2px;
-    height: auto;
-  }
+  /* Ligne verticale pleine hauteur retirée → segments entre étapes (pas de
+     ligne après la dernière étape) */
+  .shiw-roadmap::before { display: none; }
 
   /* Chaque étape : cercle à gauche, contenu à droite */
   .shiw-hstep {
+    position: relative;
     flex-direction: row;
     align-items: flex-start;
     gap: 1rem;
     padding: 0;
+  }
+
+  /* Segment reliant le dot de cette étape à celui de la suivante.
+     Absent sur la dernière étape → la ligne ne déborde plus après l'étape 4. */
+  .shiw-hstep:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 23px;
+    top: 24px;
+    width: 2px;
+    height: calc(100% + 2rem);
+    background: linear-gradient(180deg, rgba(253,110,0,.4), rgba(217,10,92,.4));
+    z-index: 0;
   }
 
   .shiw-hstep-top,

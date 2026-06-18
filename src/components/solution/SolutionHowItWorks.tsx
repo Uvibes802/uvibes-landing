@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import { getVideoUrl } from "@/utils/videoUrl";
 import "@/styles/solution/solutionHowItWorks.css";
@@ -10,6 +11,7 @@ interface Step {
   body: string;
   accent: string;
   video?: string;
+  image?: string;
   tilt?: "left" | "right";
   videoPos?: string;
 }
@@ -41,7 +43,7 @@ const STEPS: Step[] = [
     title: "Mesurer et piloter l'impact",
     body: "Accédez à un tableau de bord en temps réel pour suivre les usages, l'engagement et l'évolution de votre collectif, et piloter vos actions avec des données concrètes.",
     accent: "#E6007E",
-    video: "Colette-desktop.mp4",
+    image: "/images/dashboard/dashboard-1.webp",
     tilt: "right",
   },
 ];
@@ -68,16 +70,26 @@ function PolaroidVideo({ step }: { step: Step }) {
       ref={ref}
       className={`shiw-polaroid shiw-polaroid--${step.tilt}${visible ? " shiw-polaroid--visible" : ""}`}
     >
-      <div className="shiw-polaroid-media">
-        <video
-          className="shiw-polaroid-video"
-          src={getVideoUrl(step.video!)}
-          style={step.videoPos ? { objectPosition: step.videoPos } : undefined}
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
+      <div className={`shiw-polaroid-media${step.image ? " shiw-polaroid-media--img" : ""}`}>
+        {step.image ? (
+          <Image
+            className="shiw-polaroid-img"
+            src={step.image}
+            alt="Tableau de bord Uvibes — suivi en temps réel"
+            width={900}
+            height={560}
+          />
+        ) : (
+          <video
+            className="shiw-polaroid-video"
+            src={getVideoUrl(step.video!)}
+            style={step.videoPos ? { objectPosition: step.videoPos } : undefined}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        )}
       </div>
     </div>
   );
@@ -119,7 +131,7 @@ export default function SolutionHowItWorks() {
                 <div className={`shiw-hstep-top${!isTop ? " shiw-hstep-slot--empty" : ""}`}>
                   {isTop
                     ? <StepContent step={step} index={i} />
-                    : step.video && <PolaroidVideo step={step} />}
+                    : (step.video || step.image) && <PolaroidVideo step={step} />}
                 </div>
 
                 {/* Cercle numéroté — toujours au centre */}
@@ -131,7 +143,7 @@ export default function SolutionHowItWorks() {
                 <div className={`shiw-hstep-bottom${isTop ? " shiw-hstep-slot--empty" : ""}`}>
                   {!isTop
                     ? <StepContent step={step} index={i} />
-                    : step.video && <PolaroidVideo step={step} />}
+                    : (step.video || step.image) && <PolaroidVideo step={step} />}
                 </div>
               </div>
             );
