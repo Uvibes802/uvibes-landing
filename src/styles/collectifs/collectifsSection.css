@@ -276,12 +276,13 @@
 
 .collectif-panel-hero {
   position: relative;
+  z-index: 2; /* au-dessus du body → les affiches peuvent chevaucher la séparation */
   padding: 44px 44px 0;
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 30px;
   align-items: flex-end;
-  overflow: hidden;
+  overflow: visible; /* laisse les affiches déborder sur le body */
   background: linear-gradient(135deg, var(--c-color), color-mix(in srgb, var(--c-color) 80%, transparent));
   color: #fff;
 }
@@ -349,12 +350,14 @@
   align-items: flex-end;
   align-self: flex-end;
   flex-shrink: 0;
+  position: relative;
+  margin-bottom: -18px; /* les affiches chevauchent la séparation et reposent sur le body */
 }
 
 .collectif-panel-flyer-wrap {
-  border-radius: 10px 10px 0 0;
+  border-radius: 9px;
   overflow: hidden;
-  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 16px 28px -8px rgba(0, 0, 0, 0.28);
   transition: transform 0.3s ease;
   margin-bottom: 0;
 }
