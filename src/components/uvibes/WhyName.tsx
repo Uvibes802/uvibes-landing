@@ -30,45 +30,37 @@ export default function WhyName() {
       </div>
 
       <div className="uvn-inner">
-        {/* Colonne texte */}
-        <div className="uvn-text">
-          <p className="uv-eyebrow">
+        {/* En-tête centré */}
+        <div className="uvn-head">
+          <p className="uv-eyebrow uvn-eyebrow">
             <span className="uv-eyebrow-dot" aria-hidden="true" />
             Le sens du nom
           </p>
-          <h2 className="uv-section-title">
+          <h2 className="uv-section-title uvn-title">
             Pourquoi <em className="uv-serif-grad">«&nbsp;Uvibes&nbsp;»</em> ?
           </h2>
-
           <p className="uvn-lead">
             Uvibes active la richesse des échanges humains au sein des collectifs,
             en y faisant naître des <em className="uv-em-orange">rencontres inattendues</em>.
           </p>
-          {/* Décodage du nom — U + Vibes */}
-          <div className="uvn-decode">
-            <div className="uvn-term">
-              <span className="uvn-term-letter">U</span>
-              <span className="uvn-term-body">
-                <span className="uvn-term-key">You</span>
-                <span className="uvn-term-def">celui qui vit l&apos;expérience. C&apos;est vous.</span>
-              </span>
-            </div>
-            <div className="uvn-term">
-              <span className="uvn-term-letter">Vibes</span>
-              <span className="uvn-term-body">
-                <span className="uvn-term-key">les vibrations</span>
-                <span className="uvn-term-def">ces sensations quand on se connecte à quelqu&apos;un, même encore inconnu.</span>
-              </span>
-            </div>
-          </div>
-
-          <p className="uvn-body uvn-closing">
-            Chaque rencontre est une aventure pour <em className="uv-em-rose">(re)découvrir</em>{" "}
-            quelqu&apos;un de son collectif — l&apos;émerveillement se crée, les conversations prennent vie.
-          </p>
         </div>
 
-        {/* Médias — polaroïds côte à côte */}
+        {/* Décodage du nom — 2 cartes vedettes */}
+        <div className="uvn-decode">
+          <div className="uvn-term">
+            <span className="uvn-term-letter">U</span>
+            <span className="uvn-term-key">You</span>
+            <span className="uvn-term-def">celui qui vit l&apos;expérience. C&apos;est vous.</span>
+          </div>
+          <span className="uvn-decode-plus" aria-hidden="true">+</span>
+          <div className="uvn-term">
+            <span className="uvn-term-letter">Vibes</span>
+            <span className="uvn-term-key">les vibrations</span>
+            <span className="uvn-term-def">ces sensations quand on se connecte à quelqu&apos;un, même encore inconnu.</span>
+          </div>
+        </div>
+
+        {/* Médias — paire de polaroïds vidéo centrée */}
         <div className="uvn-media">
           <div className="uvn-polaroid uvn-polaroid--a">
             <div className="uvn-polaroid-media">
@@ -83,6 +75,12 @@ export default function WhyName() {
             <span className="uvn-polaroid-cap v-serif">Delphine</span>
           </div>
         </div>
+
+        {/* Phrase de clôture centrée */}
+        <p className="uvn-closing">
+          Chaque rencontre est une aventure pour <em className="uv-em-rose">(re)découvrir</em>{" "}
+          quelqu&apos;un de son collectif — l&apos;émerveillement se crée, les conversations prennent vie.
+        </p>
       </div>
 
       {/* Ligne de vibration bas de section */}

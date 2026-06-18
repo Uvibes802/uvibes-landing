@@ -43,132 +43,108 @@
   50%      { transform: translateY(-26px) scale(1.25); opacity: 0.85; }
 }
 
-/* Grille principale */
+/* Composition centrée verticale */
 .uvn-inner {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
-  align-items: center;
-}
-
-/* Texte — carte dégradé de marque (texte clair, look non générique) */
-.uvn-text {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(155deg, #FD6E00 0%, #FF5A2C 22%, #FF4D8F 58%, #E6007E 82%, #D90A5C 100%);
-  border-radius: 28px;
-  padding: clamp(1.8rem, 3.5vw, 3rem);
-  box-shadow: 0 24px 60px -18px rgba(217,10,92,.5), 0 4px 16px rgba(0,0,0,.08);
-  color: #fff;
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.uvn-vis .uvn-text { opacity: 1; transform: none; }
-/* Halo blanc discret dans la carte */
-.uvn-text::after {
-  content: '';
-  position: absolute;
-  top: -30%; right: -10%;
-  width: 55%; height: 120%;
-  background: radial-gradient(closest-side, rgba(255,255,255,.16), transparent 70%);
-  pointer-events: none;
-}
-.uvn-text > * { position: relative; z-index: 1; }
-/* En-tête + titre sur la carte → clairs */
-.uvn-text .uv-eyebrow { color: #FFE456; }
-.uvn-text .uv-section-title { color: #fff; }
-.uvn-text .uv-serif-grad {
-  background: none;
-  -webkit-text-fill-color: #FFE456;
-  color: #FFE456;
-}
-
-.uvn-lead {
-  font-size: clamp(1.15rem, 2vw, 1.5rem);
-  line-height: 1.55;
-  color: #fff;
-  margin: 1.5rem 0 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-.uvn-body {
-  font-size: clamp(1rem, 1.4vw, 1.12rem);
-  line-height: 1.8;
-  color: rgba(255,255,255,.9);
-  margin: 0 0 1.1rem;
-  max-width: 560px;
-}
-
-/* ── Décodage du nom : U + Vibes ───────────────────────────────── */
-.uvn-decode {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin: 1.6rem 0 1.4rem;
+  align-items: center;
+  text-align: center;
+  gap: clamp(2rem, 4.5vw, 3.2rem);
+}
+
+/* En-tête centré (sur le fond clair de la page) */
+.uvn-head {
+  max-width: 720px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.uvn-vis .uvn-head { opacity: 1; transform: none; }
+.uvn-eyebrow { justify-content: center; }
+.uvn-title { margin-bottom: 0; }
+
+.uvn-lead {
+  font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+  line-height: 1.6;
+  color: #5a3a48;
+  margin: 1.1rem auto 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  max-width: 640px;
+}
+
+/* ── Décodage du nom : U + Vibes — 2 cartes vedettes ───────────── */
+.uvn-decode {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(0.8rem, 2.5vw, 1.8rem);
+  width: 100%;
+  max-width: 840px;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+.uvn-vis .uvn-decode { opacity: 1; transform: none; }
+.uvn-decode-plus {
+  font-family: var(--font-prompt), sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--rose);
+  opacity: 0.5;
 }
 .uvn-term {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 0.7rem 0.9rem;
-  border-radius: 16px;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.22);
-  backdrop-filter: blur(4px);
+  gap: 0.45rem;
+  padding: clamp(1.5rem, 3vw, 2.4rem) clamp(1.1rem, 2.5vw, 2rem);
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid rgba(217,10,92,.1);
+  box-shadow: 0 22px 50px -24px rgba(217,10,92,.32), 0 2px 8px rgba(0,0,0,.04);
 }
 .uvn-term-letter {
-  flex-shrink: 0;
-  min-width: clamp(54px, 7vw, 84px);
-  text-align: center;
   font-family: var(--font-prompt), sans-serif;
   font-style: italic;
   font-weight: 800;
-  font-size: clamp(34px, 4.5vw, 52px);
+  font-size: clamp(46px, 6.5vw, 82px);
   line-height: 1;
   letter-spacing: -0.03em;
-  color: #FFE456;
-  text-shadow: 0 0 18px rgba(255,228,86,.45);
-}
-.uvn-term-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  background: linear-gradient(135deg, #FD6E00, #E6007E);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .uvn-term-key {
   font-family: var(--font-prompt), sans-serif;
   font-weight: 700;
-  font-size: clamp(15px, 1.6vw, 18px);
-  color: #fff;
+  font-size: clamp(16px, 1.9vw, 21px);
+  color: var(--rose);
 }
 .uvn-term-def {
-  font-size: clamp(13px, 1.3vw, 15px);
-  line-height: 1.5;
-  color: rgba(255,255,255,.85);
+  font-size: clamp(13.5px, 1.4vw, 15.5px);
+  line-height: 1.55;
+  color: #6b4455;
+  max-width: 300px;
 }
 .uvn-closing {
   font-style: italic;
-  color: rgba(255,255,255,.92);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.6;
+  color: #5a3a48;
+  max-width: 680px;
   margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
 }
-
-/* Mots-clés surlignés (Vibes / U) — sur le dégradé */
-.uvn-hl {
-  font-weight: 700;
-  padding: 0 5px;
-  border-radius: 5px;
-  background: rgba(255,255,255,.2);
-  color: #fff;
-}
-.uvn-hl--rose   { color: #fff; }
-.uvn-hl--orange { color: #2A0E1E; background: #FFE456; }
-/* Em orange/rose dans le texte → jaune lisible sur la carte */
-.uvn-text .uv-em-orange,
-.uvn-text .uv-em-rose { color: #FFE456; font-style: italic; }
+.uvn-vis .uvn-closing { opacity: 1; transform: none; }
+.uvn-closing .uv-em-rose { font-style: italic; }
 
 /* Médias — polaroïds côte à côte (pas de superposition) */
 .uvn-media {
@@ -246,7 +222,8 @@
 .uvn-vib svg { width: 100%; }
 
 /* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .uvn-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .uvn-media { order: -1; margin-bottom: 0.5rem; }
+@media (max-width: 640px) {
+  /* Décodage empilé verticalement (U au-dessus de Vibes) */
+  .uvn-decode { grid-template-columns: 1fr; max-width: 360px; }
+  .uvn-decode-plus { transform: rotate(90deg); justify-self: center; }
 }
