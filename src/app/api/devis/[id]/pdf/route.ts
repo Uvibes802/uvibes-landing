@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateQuotePdf } from "@/services/pdf/generateQuotePdf";
+import { fetchLegalDocsForQuote } from "@/services/pdf/fetchLegalDocs";
 import { pdfResponse } from "@/lib/pdfResponse";
 
 export async function GET(
@@ -18,7 +19,8 @@ export async function GET(
       return NextResponse.json({ error: "Devis introuvable" }, { status: 404 });
     }
 
-    const pdfBuffer = await generateQuotePdf({ quote });
+    const legalDocs = await fetchLegalDocsForQuote(quote);
+    const pdfBuffer = await generateQuotePdf({ quote, legalDocs });
 
     // ?inline=1 → affichage dans le navigateur (aperçu) au lieu du téléchargement
     const inline = req.nextUrl.searchParams.get("inline") === "1";

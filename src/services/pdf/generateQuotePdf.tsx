@@ -91,6 +91,18 @@ const styles = StyleSheet.create({
   mentionsText: { fontSize: 7.5, color: C.muted, lineHeight: 1.55 },
   footer: { position: "absolute", bottom: 22, left: 42, right: 42, flexDirection: "row", justifyContent: "space-between", borderTopWidth: 1, borderTopColor: C.line, paddingTop: 7 },
   footerText: { fontSize: 7.5, color: C.muted },
+
+  // Pages des documents contractuels (annexés au devis)
+  legalPage: { fontFamily: "Helvetica", fontSize: 9, color: C.ink, backgroundColor: "#fff", paddingTop: 42, paddingHorizontal: 48, paddingBottom: 60, lineHeight: 1.5 },
+  legalKicker: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: C.orange, letterSpacing: 1.4, textTransform: "uppercase", marginBottom: 4 },
+  legalDocTitle: { fontSize: 15, fontFamily: "Helvetica-Bold", color: C.rose, marginBottom: 3 },
+  legalDocVersion: { fontSize: 8, color: C.muted, marginBottom: 16, borderBottomWidth: 1, borderBottomColor: C.line, paddingBottom: 10 },
+  legalH2: { fontSize: 11, fontFamily: "Helvetica-Bold", color: C.ink, marginTop: 12, marginBottom: 5 },
+  legalH3: { fontSize: 9.5, fontFamily: "Helvetica-Bold", color: C.ink, marginTop: 9, marginBottom: 4 },
+  legalP: { fontSize: 9, marginBottom: 6, lineHeight: 1.55, textAlign: "justify" },
+  legalLi: { flexDirection: "row", marginBottom: 3, paddingLeft: 4 },
+  legalLiBullet: { width: 10, fontSize: 9, color: C.rose },
+  legalLiText: { flex: 1, fontSize: 9, lineHeight: 1.5 },
 });
 
 interface PdfData {
@@ -123,10 +135,37 @@ interface PdfData {
       typeCollectif: string;
     };
   };
+  // Documents contractuels à joindre en pages suivantes (contenu issu de la base)
+  legalDocs?: { slug: string; titre: string; version: string; contenu: string }[];
+}
+
+// Rendu du contenu markdown-léger d'un document légal en éléments @react-pdf.
+// Mêmes conventions que LegalDocContent : `## ` titre · `### ` sous-titre · `- ` puce · ligne vide = paragraphe.
+function renderLegalBlocks(contenu: string) {
+  const blocks = contenu.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+  return blocks.map((block, i) => {
+    if (block.startsWith("### ")) return <Text key={i} style={styles.legalH3}>{block.slice(4)}</Text>;
+    if (block.startsWith("## ")) return <Text key={i} style={styles.legalH2}>{block.slice(3)}</Text>;
+    const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+    const isList = lines.length > 0 && lines.every((l) => l.startsWith("- "));
+    if (isList) {
+      return (
+        <View key={i}>
+          {lines.map((l, j) => (
+            <View key={j} style={styles.legalLi}>
+              <Text style={styles.legalLiBullet}>•</Text>
+              <Text style={styles.legalLiText}>{l.slice(2)}</Text>
+            </View>
+          ))}
+        </View>
+      );
+    }
+    return <Text key={i} style={styles.legalP}>{lines.join(" ")}</Text>;
+  });
 }
 
 export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
-  const { quote } = data;
+  const { quote, legalDocs = [] } = data;
   const c = quote.collectif;
 
   // Fonctionnalités incluses uniquement (mise en valeur de l'offre)
@@ -287,13 +326,16 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           )}
         </View>
 
-        {/* Documents contractuels */}
-        {docSlugs.length > 0 && (
+        {/* Documents contractuels — joints en pages suivantes */}
+        {(legalDocs.length > 0 || docSlugs.length > 0) && (
           <View style={[styles.section, { marginTop: 18 }]}>
-            <Text style={styles.sectionTitle}>Documents contractuels</Text>
+            <Text style={styles.sectionTitle}>Cadre contractuel applicable (joint ci-après)</Text>
             <View style={styles.docsList}>
-              {docSlugs.map((slug) => (
-                <Text key={slug} style={styles.docChip}>{LEGAL_DOCS[slug].titre}</Text>
+              {(legalDocs.length > 0
+                ? legalDocs.map((d) => ({ key: d.slug, titre: d.titre }))
+                : docSlugs.map((slug) => ({ key: slug, titre: LEGAL_DOCS[slug].titre }))
+              ).map((d) => (
+                <Text key={d.key} style={styles.docChip}>{d.titre}</Text>
               ))}
             </View>
           </View>
@@ -332,6 +374,20 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           <Text style={styles.footerText}>Devis {quote.numero}</Text>
         </View>
       </Page>
+
+      {/* Documents contractuels annexés — une page par document (contenu issu de l'admin) */}
+      {legalDocs.map((d) => (
+        <Page key={d.slug} size="A4" style={styles.legalPage}>
+          <Text style={styles.legalKicker}>Document contractuel · annexé au devis {quote.numero}</Text>
+          <Text style={styles.legalDocTitle}>{d.titre}</Text>
+          <Text style={styles.legalDocVersion}>Version du {d.version}</Text>
+          {renderLegalBlocks(d.contenu)}
+          <View style={styles.footer} fixed>
+            <Text style={styles.footerText}>Uvibes · uvibes.fr</Text>
+            <Text style={styles.footerText}>Devis {quote.numero}</Text>
+          </View>
+        </Page>
+      ))}
     </Document>
   );
 

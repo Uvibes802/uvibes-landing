@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateQuotePdf } from "@/services/pdf/generateQuotePdf";
+import { fetchLegalDocsForQuote } from "@/services/pdf/fetchLegalDocs";
 import { sendQuoteToCollectif, notifyDirectrice } from "@/services/crm/sendQuoteEmail";
 import { requiredDocsForPlan } from "@/lib/legalDocs";
 import path from "path";
@@ -93,7 +94,8 @@ export async function POST(
     // Générer le PDF — tenter d'abord dans public/uploads, sinon /tmp (environnements read-only)
     let pdfUrl: string | null = null;
     try {
-      const pdfBuffer = await generateQuotePdf({ quote });
+      const legalDocs = await fetchLegalDocsForQuote(quote);
+      const pdfBuffer = await generateQuotePdf({ quote, legalDocs });
       const pdfFilename = `${quote.numero}.pdf`;
 
       let pdfDir = path.join(process.cwd(), "public", "uploads", "devis");
