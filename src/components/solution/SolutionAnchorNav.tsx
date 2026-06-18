@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import "@/styles/solution/anchorNav.css";
 
 const links = [
-  { href: "#comment", label: "Comment ça marche", index: "01" },
+  { href: "#comment", label: "Processus", index: "01" },
   { href: "#themes", label: "Thématiques", index: "02" },
-  { href: "#fonctionnalites", label: "Fonctionnalités", index: "03" },
+  { href: "#soft-skills", label: "Soft skills", index: "03" },
+  { href: "#fonctionnalites", label: "Résultats", index: "04" },
 ];
 
 const sectionIds = links.map((l) => l.href.slice(1));
