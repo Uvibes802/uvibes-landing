@@ -46,7 +46,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
               <br />a ses enjeux.
             </h2>
             <p className="collectifs-desc">
-              11 secteurs d&apos;activité auxquels Uvibes apporte une meilleure
+              12 secteurs d&apos;activité auxquels Uvibes apporte une meilleure
               compréhension du terrain et un engagement renforcé de son collectif.
             </p>
           </div>
