@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import "@/styles/section/passeportExperience.css";
@@ -139,11 +140,18 @@ const PASSEPORTS: Passeport[] = [
     valoriser: ["Valoriser son ouverture internationale", "Démontrer sa capacité à échanger entre cultures", "Mettre en avant une expérience interculturelle"],
     accent: "#D90A5C",
   },
+  {
+    id: "lieu-de-vie",
+    category: "Lieu de vie",
+    title: "Attestation lieu de vie",
+    tagline: "Habiter, c'est aussi créer du lien.",
+    keywords: ["Voisinage", "Appartenance", "Lien social"],
+    besoin: "Les lieux de vie sont un endroit privilégié pour développer des compétences humaines et relationnelles qui s'acquièrent rarement dans les parcours académiques ou professionnels traditionnels.",
+    axes: ["Créer du lien avec ses voisins", "Développer son sentiment d'appartenance", "Participer à la vie du collectif"],
+    valoriser: ["Valoriser son engagement citoyen sur un CV ou un profil professionnel", "Mettre en avant ses compétences relationnelles", "Attester de sa participation active à la vie de son lieu de vie", "Conserver une reconnaissance concrète de sa contribution au collectif"],
+    accent: "#800080",
+  },
 ];
-
-// Légère rotation + décalage par carte — même principe que SolutionThemes
-const ROT  = [-2.4, 1.6, -1.4, 2, -1.8, 1.2, -2, 1.4, -1.6, 1.8, -1.2];
-const OFFX = [-7, 6, -5, 7, -6, 5, -4, 6, -7, 5, -3];
 
 // Palette chaude alignée sur la section « Thématiques » — aucune couleur sombre ni violette
 const PALETTE = ["#FD6E00", "#E6007E", "#D90A5C", "#FFB800"];
@@ -227,11 +235,7 @@ export default function PasseportExperience() {
             <div
               key={p.id}
               className={`pp-card${open ? " pp-card--open" : ""}`}
-              style={{
-                "--pp-accent": accent,
-                "--rot": `${ROT[i]}deg`,
-                "--tx": `${OFFX[i]}px`,
-              } as React.CSSProperties}
+              style={{ "--pp-accent": accent } as React.CSSProperties}
               onClick={() => toggle(p.id)}
               role="button"
               tabIndex={0}
@@ -240,6 +244,17 @@ export default function PasseportExperience() {
                 if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(p.id); }
               }}
             >
+              {/* Affiche du passeport (diplôme) */}
+              <div className="pp-card-media">
+                <Image
+                  src={`/images/passeport/${p.id}.webp`}
+                  alt={`Passeport d'expérience — ${p.title}`}
+                  width={360}
+                  height={254}
+                  className="pp-card-img"
+                />
+              </div>
+
               {/* En-tête — toujours visible */}
               <div className="pp-card-header">
                 <div className="pp-card-header-left">

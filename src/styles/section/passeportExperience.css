@@ -210,9 +210,14 @@
 .pp-deck {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 12px 30px;
+  padding: 12px 24px;
+  /* Grille côte à côte — les cartes s'alignent en haut, l'ouverture pousse sa rangée */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  align-items: start;
   /* Reveal scroll */
   opacity: 0;
   transform: translateY(28px);
@@ -226,24 +231,19 @@
   background: #fff;
   border: 1px solid rgba(0,0,0,.06);
   border-radius: 16px;
-  margin-top: -16px;
   cursor: pointer;
   overflow: hidden;
   box-shadow:
     0 1px 2px rgba(0,0,0,.04),
     0 16px 34px -20px rgba(0,0,0,.35);
-  transform: translateX(var(--tx, 0)) rotate(var(--rot, 0deg));
-  transform-origin: center top;
   transition:
-    transform 0.45s cubic-bezier(.2,.7,.2,1),
-    box-shadow 0.4s ease,
-    margin 0.45s cubic-bezier(.2,.7,.2,1);
+    transform 0.4s cubic-bezier(.2,.7,.2,1),
+    box-shadow 0.4s ease;
 }
-.pp-card:first-child { margin-top: 0; }
 
 /* Survol */
 .pp-card:hover:not(.pp-card--open) {
-  transform: translateX(var(--tx, 0)) rotate(var(--rot, 0deg)) translateY(-4px) scale(1.015);
+  transform: translateY(-4px) scale(1.015);
   box-shadow:
     0 4px 10px rgba(0,0,0,.06),
     0 24px 46px -18px color-mix(in srgb, var(--pp-accent, #FD6E00) 40%, transparent);
@@ -251,12 +251,28 @@
 
 /* Carte ouverte */
 .pp-card--open {
-  transform: translateX(0) rotate(0deg) translateY(-10px) scale(1.03);
-  margin-bottom: 14px;
   box-shadow:
     0 6px 16px rgba(0,0,0,.08),
     0 34px 64px -20px color-mix(in srgb, var(--pp-accent, #FD6E00) 48%, transparent);
 }
+
+/* ── Affiche (diplôme) en tête de carte ── */
+.pp-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--pp-accent, #FD6E00) 10%, #fff), #fff);
+}
+.pp-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.pp-card:hover .pp-card-img { transform: scale(1.04); }
 
 /* (bordure gauche colorée retirée) */
 
