@@ -72,3 +72,6 @@ prisma/*.db-journal
 1. Lisa et Céline.mp4
 .playwright-mcp/
 *.png
+
+# Dossier de travail des affiches (input, non versionné)
+Affiche Uvibes/

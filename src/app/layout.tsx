@@ -2,6 +2,7 @@ import CookieConsent from "@/components/cookieConsent";
 import Menu from "@/components/menu/Menu";
 import RevealObserver from "@/components/shared/RevealObserver";
 import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
+import GARouteTracker from "@/components/analytics/GARouteTracker";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -102,6 +103,7 @@ export default async function RootLayout({
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
             <CookieConsent />
+            <GARouteTracker />
         </MaintenanceWrapper>
       </body>
     </html>
