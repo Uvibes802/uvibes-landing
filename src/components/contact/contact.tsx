@@ -29,7 +29,7 @@ export default function Contact() {
             </span>
           </h2>
           <p className="ct-sub">
-            Quelques lignes suffisent. On vous répond sous 48h, sans script de vente.
+            Quelques lignes suffisent. Dites-nous ce qui vous amène vers Uvibes et les questions que vous vous posez pour votre projet&nbsp;: nous vous répondrons de façon personnalisée.
           </p>
         </div>
 

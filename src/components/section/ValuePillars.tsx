@@ -24,7 +24,7 @@ const pillars = [
     title: "Piloter",
     titleEt: "et",
     titleSuffix: "décider",
-    body: "Accédez à des données en temps réel pour augmenter l'efficacité de vos actions. Pas un rapport de 40 pages, juste ce qu'il faut pour agir.",
+    body: "Prenez les bonnes décisions au bon moment. Celles-ci naissent rarement de rapports de 40 pages : elles s'appuient sur des informations pertinentes, accessibles lorsque vous en avez besoin. Uvibes vous apporte la visibilité nécessaire pour agir efficacement.",
     stat: "< 5 min",
     statLabel: "pour connaître chaque semaine les dynamiques de votre collectif",
   },

@@ -105,8 +105,8 @@ export default function SolutionThemes() {
           <span className="sth-eyebrow-text">Thématiques</span>
         </div>
         <h2 className="sth-heading">
-          <span className="sth-heading-main">6 univers de conversation<br />pour votre{" "}</span>
-          <span className="sth-heading-sub v-serif">collectif.</span>
+          <span className="sth-heading-main">Une infinité d&apos;univers<br /></span>
+          <span className="sth-heading-sub v-serif">de conversations.</span>
         </h2>
       </div>
 

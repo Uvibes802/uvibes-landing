@@ -59,6 +59,19 @@
   color: #FFE456;
   -webkit-text-fill-color: #FFE456;
 }
+/* Segments insécables : sur mobile la phrase ne casse qu'après la ponctuation */
+.soc-title .soc-nowrap {
+  white-space: nowrap;
+}
+/* Saut de ligne réservé au desktop → titre sur 2 lignes ; masqué sur mobile */
+.soc-br-desk {
+  display: none;
+}
+@media (min-width: 768px) {
+  .soc-br-desk {
+    display: inline;
+  }
+}
 
 .soc-text {
   margin: 0 auto 1.75rem;

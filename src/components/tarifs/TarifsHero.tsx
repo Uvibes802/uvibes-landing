@@ -58,13 +58,12 @@ export default function TarifsHero() {
 
       <div className="th-inner">
         <h1 className="th-title v-prompt">
-          Des offres claires,<br />
-          <span className="th-title-accent v-serif">sans surprise.</span>
+          Des offres adaptées à votre besoin<br />
+          et <span className="th-title-accent v-serif">sans surprise.</span>
         </h1>
         <p className="th-desc">
-          Une tarification simple&nbsp;: trois formules annuelles pour équiper
-          durablement votre collectif, et une offre découverte de 30&nbsp;jours
-          pour tester Uvibes sans engagement.
+          Trois formules annuelles pour déployer Uvibes dans la durée, et une
+          offre découverte de 30&nbsp;jours pour l&apos;essayer sans engagement.
         </p>
 
         <div className="th-ctas">

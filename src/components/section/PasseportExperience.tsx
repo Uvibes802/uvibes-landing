@@ -131,7 +131,7 @@ const PASSEPORTS: Passeport[] = [
   {
     id: "international",
     category: "International",
-    title: "Explorateur du Monde",
+    title: "Explorateurs du Monde",
     tagline: "Les frontières s'effacent dans la conversation.",
     keywords: ["Interculturel", "Ouverture", "Monde"],
     besoin: "La distance, la langue et les différences culturelles limitent encore les occasions d'échanger avec des personnes vivant dans d'autres pays.",
@@ -166,28 +166,28 @@ export default function PasseportExperience() {
       <div className="pp-header">
         <div className="pp-eyebrow">
           <span className="pp-eyebrow-mark" aria-hidden="true" />
-          <span>Pour chaque profil de votre collectif</span>
+          <span>Pour structurer, développer et valoriser votre collectif</span>
         </div>
 
         <h2 className="pp-title v-prompt">
           À votre collectif,<br />
-          offrez le{" "}
+          proposez le{" "}
           <em className="pp-title-em v-serif">Passeport d&apos;Expérience</em>
         </h2>
 
         <p className="pp-lead">
-          Uvibes est la première solution qui permet non seulement de développer
-          ses compétences relationnelles, mais aussi de les entraîner dans des échanges
-          réels et d&apos;obtenir une reconnaissance de cet engagement.
+          Uvibes est la première solution qui permet à la fois de développer
+          ses compétences relationnelles, de les exercer dans des échanges
+          réels et de faire reconnaître cet engagement.
         </p>
 
         {/* Triptyque — étapes éditoriales */}
         <div className="pp-trio">
           {(
             [
-              { verb: "Apprendre", sub: "ressources & échanges", color: "#FD6E00" },
-              { verb: "Pratiquer", sub: "chaque rencontre compte", color: "#D90A5C" },
-              { verb: "Être reconnu", sub: "attestation incluse", color: "#00AFDD" },
+              { verb: "Apprendre", sub: "des ressources variées", color: "#FD6E00" },
+              { verb: "Pratiquer", sub: "un terrain d'entraînement continu", color: "#D90A5C" },
+              { verb: "Valoriser", sub: "une attestation à gagner", color: "#00AFDD" },
             ] as const
           ).map((item, i) => (
             <span key={item.verb} className="pp-trio-group">
@@ -214,7 +214,7 @@ export default function PasseportExperience() {
         </div>
 
         <p className="pp-subline">
-          Chaque passeport est adapté aux enjeux spécifiques de votre public.
+          Chaque passeport est adapté aux enjeux spécifiques de votre collectif.
         </p>
       </div>
 

@@ -19,16 +19,19 @@ export default function SmallOrgCta() {
         <div className="soc-content">
           <span className="soc-eyebrow v-mono">
             <span className="soc-eyebrow-dot" aria-hidden="true" />
-            Petite structure&nbsp;?
+            Besoin d&apos;une offre surmesure&nbsp;?
           </span>
 
           <h2 className="soc-title v-prompt">
-            Une association, un petit collectif, un budget serré&nbsp;?{" "}
+            <span className="soc-nowrap">Une association,</span>{" "}
+            <span className="soc-nowrap">un petit collectif,</span>{" "}
+            <br className="soc-br-desk" />
+            <span className="soc-nowrap">un budget serré&nbsp;?</span>{" "}
             <span className="soc-title-accent v-serif">Parlons-en.</span>
           </h2>
 
           <p className="soc-text">
-            {t("soc-text", "Association, petit collectif ou budget limité ? Nos formules standard ne sont pas une fin en soi. Uvibes est porté par une association à but non lucratif : notre priorité, c'est votre lien social, pas la taille du contrat. On construit ensemble une formule à votre échelle.")}
+            {t("soc-text", "Chez Uvibes, nous savons que chaque structure a ses réalités. En tant qu'association à but non lucratif, notre objectif est avant tout de favoriser le lien social, pas de maximiser la taille des contrats. Si nos formules standard ne correspondent pas à votre situation, nous pouvons construire ensemble une solution adaptée à vos besoins et à vos ressources.")}
           </p>
 
           <div className="soc-ctas">

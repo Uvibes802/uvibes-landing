@@ -21,14 +21,14 @@ const PLAN_META = [
     accent: "var(--rose)",
     featured: true,
     badge: "Le plus populaire",
-    inherit: "Connection",
+    inherit: "vibes premium",
     cta: "Faire un devis",
   },
   {
     accent: "#FFB800",
     featured: false,
     badge: null,
-    inherit: "Connection",
+    inherit: "vibes connection",
     cta: "Faire un devis",
   },
 ];
@@ -36,8 +36,8 @@ const PLAN_META = [
 /* Fonctionnalités « nouvelles » vs le plan hérité (Connection) — pour la mise en avant */
 const FRESH: Record<number, (i: number) => boolean> = {
   0: () => true,                    // Connection — base, tout est "frais"
-  1: (i) => i >= 4,                 // Boost — ajoute les features 4 à 10
-  2: (i) => i >= 4 && i < 7,        // Premium — ajoute les features 4 à 6
+  1: (i) => i >= 7,                 // Boost — hérite de Premium (0-6), ajoute 7 à 10
+  2: (i) => i >= 4 && i < 7,        // Premium — hérite de Connection (0-3), ajoute 4 à 6
 };
 
 export default function PricingTable() {
@@ -71,7 +71,6 @@ export default function PricingTable() {
           </h2>
           <p className="pt-subtitle">
             Choisissez le plan adapté à votre collectif.
-            Tous les plans incluent les expériences interactives.
           </p>
         </div>
 
@@ -122,7 +121,7 @@ export default function PricingTable() {
 
                 {/* Label héritage */}
                 <div className={`pt-card-inherit-label v-mono${f ? " --featured" : ""}`}>
-                  {meta.inherit ? `Tout ${meta.inherit}, et :` : "Ce qui est inclus"}
+                  {meta.inherit ? `Tout ${meta.inherit} :` : "Ce qui est inclus"}
                 </div>
 
                 {/* Liste features */}
