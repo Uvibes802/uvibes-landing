@@ -46,8 +46,8 @@ export default function SolutionSoftSkills() {
             les <span className="sss-title-accent v-serif">soft skills.</span>
           </h2>
           <p className="sss-subtitle">
-            Au-delà des rencontres, Uvibes devient un vrai parcours&nbsp;:<br />
-            on apprend, on s&apos;entraîne, et on repart avec une reconnaissance concrète.
+            Au-delà des rencontres, Uvibes devient un véritable parcours de développement&nbsp;:<br />
+            on apprend, on s&apos;exerce et on obtient une reconnaissance concrète de son engagement.
           </p>
         </header>
 
@@ -80,7 +80,7 @@ export default function SolutionSoftSkills() {
               <span className="sss-num v-mono">01</span>
               <h3 className="sss-row-title">Des ressources à disposition</h3>
               <p className="sss-row-body">
-                Des vidéos courtes et concrètes pour comprendre, pas à pas, comment
+                Des vidéos, podcasts et articles pour comprendre, pas à pas, comment
                 progresser sur chaque soft skill.
               </p>
             </div>
@@ -119,10 +119,10 @@ export default function SolutionSoftSkills() {
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">02</span>
-              <h3 className="sss-row-title">Un podcast pour aller plus loin</h3>
+              <h3 className="sss-row-title">Un terrain d&apos;entraînement continu</h3>
               <p className="sss-row-body">
-                Des épisodes pour creuser chaque soft skill, à écouter quand vous
-                voulez, où vous voulez.
+                Des mises en situation réelles pour développer et renforcer ses
+                compétences relationnelles.
               </p>
             </div>
           </div>
@@ -140,10 +140,9 @@ export default function SolutionSoftSkills() {
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">03</span>
-              <h3 className="sss-row-title">Une attestation pour se valoriser</h3>
+              <h3 className="sss-row-title">Une valorisation de l&apos;engagement</h3>
               <p className="sss-row-body">
-                Les utilisateurs obtiennent une attestation qui reconnaît leur entraînement
-                et valorise leurs soft skills.
+                Une attestation qui reconnaît le parcours réalisé.
               </p>
             </div>
           </div>

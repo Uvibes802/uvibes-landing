@@ -74,8 +74,9 @@ export default function SolutionHero() {
             <span className="sh-title-accent">organisation.</span>
           </h1>
           <p className="sh-desc">
-            Découvrez comment Uvibes s&apos;adapte à votre contexte
-            et choisissez l&apos;offre qui vous correspond.
+            Une méthode structurée pour développer l&apos;engagement, renforcer
+            le sentiment d&apos;appartenance, révéler les besoins de votre collectif
+            et accompagner durablement l&apos;évolution de votre organisation.
           </p>
           <div className="sh-ctas">
             <Link href="#solution-tabs" className="btn-brand sh-cta-primary">

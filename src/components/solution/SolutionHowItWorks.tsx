@@ -8,7 +8,6 @@ interface Step {
   n: string;
   title: string;
   body: string;
-  tag: string;
   accent: string;
   video?: string;
   tilt?: "left" | "right";
@@ -18,9 +17,8 @@ interface Step {
 const STEPS: Step[] = [
   {
     n: "01",
-    title: "Les thématiques de votre collectif",
-    body: "Choisissez parmi 6 familles de sujets. Chaque thématique est associée à des questions guidées.",
-    tag: "200+ sujets en bibliothèque",
+    title: "Engager votre collectif",
+    body: "Des expériences courtes et surprenantes, conçues pour encourager les échanges, faire circuler les bons plans et favoriser le partage d'expériences entre membres du collectif.",
     accent: "#FD6E00",
     video: "Isaline-desktop.mp4",
     tilt: "left",
@@ -28,23 +26,20 @@ const STEPS: Step[] = [
   },
   {
     n: "02",
-    title: "Le moment et la durée des échanges",
-    body: "Matin (7h–9h), pause déjeuner (12h–14h) ou après-midi (15h–17h). Chaque échange dure entre 6 et 20 minutes.",
-    tag: "Pic d'engagement : après-midi",
+    title: "Maîtriser l'expérience",
+    body: "Vous définissez les thématiques, le moment et la durée des interactions afin de créer des échanges parfaitement adaptés à votre organisation et à vos objectifs.",
     accent: "#D90A5C",
   },
   {
     n: "03",
-    title: "Les sujets sur lesquels obtenir la vision de votre collectif",
-    body: "Satisfaction et bien-être, perception des initiatives, idées d'amélioration, attentes non exprimées.",
-    tag: "Tableaux de bord temps réel",
+    title: "Comprendre votre collectif",
+    body: "Interrogez votre communauté sur tous les sujets clés pour votre organisation et faites émerger une vision claire des besoins, attentes et ressentis du terrain.",
     accent: "#F0186F",
   },
   {
     n: "04",
-    title: "Les ressources explorées par votre collectif",
-    body: "Bibliothèque de 200+ sujets, tableaux de bord, guides & bonnes pratiques, tout inclus.",
-    tag: "Inclus dans tous les plans",
+    title: "Mesurer et piloter l'impact",
+    body: "Accédez à un tableau de bord en temps réel pour suivre les usages, l'engagement et l'évolution de votre collectif, et piloter vos actions avec des données concrètes.",
     accent: "#E6007E",
     video: "Colette-desktop.mp4",
     tilt: "right",
@@ -61,10 +56,6 @@ function StepContent({ step, index }: { step: Step; index: number }) {
     >
       <h3 className="shiw-step-title">{step.title}</h3>
       <p className="shiw-step-body">{step.body}</p>
-      <span className="shiw-step-tag">
-        <span className="shiw-step-tag-dot" aria-hidden="true" />
-        {step.tag}
-      </span>
     </div>
   );
 }
@@ -102,15 +93,16 @@ export default function SolutionHowItWorks() {
         <header className="shiw-head">
           <p className="shiw-eyebrow v-mono">
             <span className="shiw-eyebrow-dot" aria-hidden="true" />
-            Configuration
+            Processus
           </p>
           <h2 className="shiw-title v-prompt">
-            Comment ça marche<br />
-            pour votre{" "}
-            <span className="shiw-title-accent v-serif">organisation ?</span>
+            Une méthode en 4 étapes<br />
+            pour{" "}
+            <span className="shiw-title-accent v-serif">activer et piloter votre collectif</span>
           </h2>
           <p className="shiw-subtitle">
-            Vous gardez le contrôle. Nous fournissons la plateforme, vous définissez le contenu.
+            De l&apos;activation des échanges à la mesure des résultats&nbsp;: une méthode
+            complète pour renforcer votre organisation.
           </p>
         </header>
 

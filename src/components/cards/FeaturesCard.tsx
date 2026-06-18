@@ -11,18 +11,18 @@ const FEATURES = [
     n: "01",
     eyebrow: "Pour votre collectif",
     accent: "orange" as const,
-    title: "Un voyage conversationnel",
+    title: "Le voyage conversationnel",
     points: [
       "Des échanges vidéo one-to-one, guidés par des questions.",
       "Sur un nombre infini de sujets.",
-      "Sur un temps court, de 6 à 10 minutes.",
+      "Pendant un temps court, de 6 à 10 minutes.",
     ],
   },
   {
     n: "02",
     eyebrow: "Pour vous",
     accent: "rose" as const,
-    title: "Une connaissance approfondie de votre organisation",
+    title: "La connaissance approfondie de votre organisation",
     points: [
       "Un éclairage nouveau sur les dynamiques individuelles et collectives.",
       "La possibilité de recueillir régulièrement des avis sur les sujets de votre choix.",
@@ -33,7 +33,7 @@ const FEATURES = [
     n: "03",
     eyebrow: "Pour tous",
     accent: "orange" as const,
-    title: "Un parcours d'entraînement aux compétences relationnelles",
+    title: "Le parcours d'entraînement aux compétences relationnelles",
     points: [
       "Une cité des savoirs incluant vidéos, podcasts et articles.",
       "Plus de 5h d'entraînement en autonomie.",
@@ -127,14 +127,14 @@ export function FeaturesCard() {
       <div className="fc-intro">
         <span className="fc-intro-eyebrow v-mono">
           <span className="fc-intro-dot" aria-hidden="true" />
-          Fonctionnalités
+          Résultats
         </span>
         <h2 className="fc-intro-title v-prompt">
-          Ce que Uvibes change,{" "}
-          <span className="fc-intro-serif v-serif">concrètement.</span>
+          Les changements concrets apportés par{" "}
+          <span className="fc-intro-serif v-serif">Uvibes</span>
         </h2>
         <p className="fc-intro-sub">
-          Trois regards sur une même expérience : pour votre collectif, pour vous, pour chacun.
+          Des retours d&apos;expérience à fort impact positif.
         </p>
       </div>
 
