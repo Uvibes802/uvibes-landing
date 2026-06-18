@@ -26,7 +26,7 @@ const STEPS: { n: string; color: string; title: React.ReactNode; body: React.Rea
     color: "#F59E0B",
     title: <>Votre collectif <span className="how-kw">vous parle.</span> Écoutez-le.</>,
     body: <>À l&apos;issue des échanges, les participants répondent à de courtes <span className="how-kw">enquêtes personnalisées</span>. Vous recueillez retours, points de vue et <span className="how-kw">données utiles</span> pour mieux comprendre votre collectif.</>,
-    time: "Des retours pour décider",
+    time: "Des données en retour pour décider",
   },
 ];
 

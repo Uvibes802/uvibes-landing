@@ -9,11 +9,23 @@
 }
 
 .sol-bridge-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #FFE456;
   margin: 0 0 1rem;
+}
+/* Point décoratif en début d'eyebrow — cohérent avec les autres sections */
+.sol-bridge-eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FFE456;
+  flex-shrink: 0;
 }
 
 .sol-bridge-title {

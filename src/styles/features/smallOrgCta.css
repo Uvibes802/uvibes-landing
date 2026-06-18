@@ -63,14 +63,13 @@
 .soc-title .soc-nowrap {
   white-space: nowrap;
 }
-/* Saut de ligne réservé au desktop → titre sur 2 lignes ; masqué sur mobile */
-.soc-br-desk {
-  display: none;
-}
+/* Saut de ligne après "un petit collectif," → présent sur desktop ET mobile
+   (desktop : 2 lignes · mobile : 3 lignes avec le saut mobile ci-dessous) */
+.soc-br-all { display: inline; }
+/* Saut de ligne supplémentaire après "Une association," → mobile uniquement (3e ligne) */
+.soc-br-mob { display: inline; }
 @media (min-width: 768px) {
-  .soc-br-desk {
-    display: inline;
-  }
+  .soc-br-mob { display: none; }
 }
 
 .soc-text {

@@ -24,8 +24,9 @@ export default function SmallOrgCta() {
 
           <h2 className="soc-title v-prompt">
             <span className="soc-nowrap">Une association,</span>{" "}
-            <span className="soc-nowrap">un petit collectif,</span>{" "}
-            <br className="soc-br-desk" />
+            <br className="soc-br-mob" />
+            <span className="soc-nowrap">un petit collectif,</span>
+            <br className="soc-br-all" />
             <span className="soc-nowrap">un budget serré&nbsp;?</span>{" "}
             <span className="soc-title-accent v-serif">Parlons-en.</span>
           </h2>

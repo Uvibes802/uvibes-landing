@@ -141,11 +141,8 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-family: var(--font-roboto-mono), monospace;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.18);
-  border: 1px solid rgba(255,255,255,.35);
-  color: #fff;
+  color: rgba(255,255,255,.92);
+  /* Texte seul, sans pilule (jugée trop générique) */
 }
 
 .oe-title-accent {

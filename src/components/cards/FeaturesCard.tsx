@@ -71,10 +71,6 @@ function FeatureRow({
 
       {/* Texte */}
       <div className="fc-text">
-        <span className="fc-eyebrow v-mono">
-          <span className="fc-eyebrow-dot" aria-hidden="true" />
-          {feature.eyebrow}
-        </span>
         <h3 className="fc-title v-prompt">{feature.title}</h3>
         <ul className="fc-list">
           {feature.points.map((p, i) => (
