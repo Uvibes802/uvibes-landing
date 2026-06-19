@@ -2,6 +2,46 @@
 
 ---
 
+## 2026-06-19 — Lot 2 demandes tutrice (PDF échange) — branche feat/missions-falek
+
+Build OK (76/76 pages), vérif Playwright (Stratégie, funnel devis, PDF devis). Textes **verbatim** (PDF tutrice).
+
+### Structure & textes
+- **Footer** : 4 colonnes (Notre solution / Notre univers / Nous contacter / Nos informations légales, libellés exacts), logo « vi » → accueil, suppression « Made with love in Perpignan ». **Impact :** navigation footer alignée sur la maquette tutrice.
+- **Newsletter** (formulaire contact) : texte « Actualités intéressant votre organisation… » + case « …et être recontacté.e ».
+- **Page RDV** : titre « Parlons de votre projet » + sous-titre, champ **organisation obligatoire**. **Hero accueil** : un seul bouton « Étudions votre projet ».
+- **À propos** : suppression eyebrow hero, cartes éthique re-titrées (Service responsable / Projet engagé / Partenariats durables) + **note blog après les 3 cartes**, don « Soutenez un modèle non lucratif » (Eclat'Ens).
+- **Tarifs** : « Prix HT / an » (retrait mention 1000 utilisateurs), **néon retiré des noms d'offres** (réservé à la découverte), CTA « Faire votre devis ».
+
+### UI/UX
+- **Collectifs (Pour qui)** : CTA « Découvrir notre méthode » agrandi ; **clic sur une affiche → lightbox animée** (grand format) ; affiches ancrées à cheval sur la séparation ; carte **« Santé et médico-social »** (placeholder affiches aidant) ; compteur de secteurs dynamique.
+- **Passeport** : carte **« Santé — Reconnaissance »** (diplôme hopital).
+- **Processus** : barres d'accent lumineuses (couleur d'étape) sur les titres.
+- **Méthode** : hero un seul bouton « Découvrir nos tarifs » + bouton « Nos offres Uvibes » avant Résultats.
+- **Section Stratégie** (nouvelle, après Thématiques) : **bento créatif** — « Les enquêtes flash » en carte vedette (nuage de pastilles thématiques), baromètre bien-être (barres animées), données de pilotage (20+). **Impact :** présente la valeur data sans visuel générique, enquêtes flash mises en avant.
+- **Carrousel équipe** : déjà en place (Swiper > 4 membres) — vérifié.
+
+### Funnel devis
+- Type d'organisation : suppr. « Fédération sportive » / « Structure de santé », ajout « Établissement de santé et médico-social / Club sportif / Structure d'insertion professionnelle / Structure d'habitat » ; **« Autre » → champ « Précisez »** (fusionné dans le type). Titre « Parlez-nous de votre organisation ».
+- **Slider retiré** (tranches de membres conservées). Offres : **dépliables « Voir le contenu de l'offre »** (la description disparaît au profit des fonctionnalités) + mention **HT** ; nouvelles descriptions (Connection « Une expérience d'engagement collectif »…).
+- **Usages enrichis** (10 : échanges, enquêtes flash, post vibes, baromètre, statistiques, kit com, actualités, cartes visite, parcours, médiathèque) — stockés pour segmentation emailing dashboard.
+- **Champs Adresse + SIRET** (form + DB `Collectif.adresse/siret` via db push) → repris dans le PDF.
+- Navbar tunnel : **logo cliquable → site**, bouton « retour au site » supprimé.
+
+### PDF de devis (refonte)
+- **Design minimaliste** (accent orange unique, cartes neutres, bloc prix sombre sobre). **Impact :** rendu pro, lisible.
+- **Logo Eclat'Ens** en en-tête ; émetteur = **Eclat'Ens** (infos exactes : loi 1901, 52 rue croix de Seguey 33000 Bordeaux, 06 60 11 71 93, eclatens@gmail.com, SIRET 938 875 002 00017, TVA FR 31938875002, APE 94.99Z) ; client avec **adresse + SIRET** ; labels Prestataire/Client (au lieu d'émetteur/destinataire).
+- **Conditions de paiement** : « Paiement en une seule fois, à la mise en place de l'abonnement. »
+- **Signature du client en bas de chaque document légal annexé** ; titres légaux colorés (articles orange / sous-articles rose) cohérents web ↔ PDF.
+
+### Reste à faire (lot 2)
+- **Tarification 4 tranches** (prix par tranche, éditable en admin, propagé tarifs/devis/PDF).
+- **Désactivation des devis** (admin) → boutons devis masqués partout.
+- **Audits** (a11y axe/Tanaguru, cross-browser, sécu, SEO/IA, métadonnées), **i18n** (langues étrangères), **responsive tablette** + design articles de blog.
+- **À fournir** : affiches « Santé » dédiées (placeholder aidant), clip vidéo soft-skills, médias CloudFront.
+
+---
+
 ## 2026-06-18 — Gros lot demandes tutrice (branche feat/missions-falek)
 
 Lot rédactionnel + affiches par thème + refonte cartes passeport + PDF devis avec documents légaux + animations. 11 commits, build OK, vérif visuelle Playwright.
