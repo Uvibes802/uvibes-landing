@@ -20,6 +20,8 @@ model Collectif {
   email           String
   telephone       String?
   ville           String?
+  adresse         String?
+  siret           String?
   typeCollectif   String
   tailleCollectif String
   usagesPrevus    String  @default("[]")

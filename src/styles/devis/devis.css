@@ -502,3 +502,46 @@
   .dv-durees { flex-direction: column; }
   .dv-card { width: calc(100% - 2rem); }
 }
+
+/* ── Header tunnel — logo cliquable ───────────────────────────── */
+.dv-header-logo { display: inline-flex; align-items: center; }
+.dv-header-logo-img { height: 34px; width: auto; display: block; }
+
+/* ── Offres dépliables (voir le contenu) ──────────────────────── */
+.dv-plan-ht { font-size: 10px; font-weight: 600; color: #9a7585; letter-spacing: 0.04em; }
+.dv-plan-toggle {
+  margin-top: 0.6rem;
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-roboto-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--rose, #D90A5C);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.dv-plan-toggle:hover { color: var(--orange, #FD6E00); }
+.dv-plan-features {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+  animation: dvPlanFeat 0.3s ease both;
+}
+@keyframes dvPlanFeat { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.dv-plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: #5c3b49;
+}
+.dv-plan-features li svg { color: var(--orange, #FD6E00); flex-shrink: 0; margin-top: 1px; }
+.dv-plan-card.--open { align-items: stretch; text-align: left; }

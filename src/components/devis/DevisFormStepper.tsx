@@ -2,14 +2,16 @@
 
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "@/styles/devis/devis.css";
 
 const TYPES_COLLECTIF = [
   "Entreprise", "Établissement d'enseignement", "Association",
-  "Collectivité territoriale", "Fédération sportive", "Réseau professionnel",
-  "Structure de santé", "Autre",
+  "Collectivité territoriale", "Réseau professionnel",
+  "Établissement de santé et médico-social", "Club sportif",
+  "Structure d'insertion professionnelle", "Structure d'habitat", "Autre",
 ];
 
 const TAILLES = [
@@ -20,12 +22,16 @@ const TAILLES = [
 ];
 
 const USAGES = [
-  { slug: "echanges", label: "Échanges conversationnels" },
-  { slug: "bien-etre", label: "Bien-être & engagement" },
-  { slug: "networking", label: "Networking interne" },
-  { slug: "brainstorming", label: "Brainstorming & enquêtes" },
-  { slug: "soft-skills", label: "Soft skills & formation" },
-  { slug: "communication", label: "Communication interne" },
+  { slug: "echanges-conversationnels", label: "Échanges conversationnels" },
+  { slug: "enquetes-flash", label: "Enquêtes flash" },
+  { slug: "enquetes-post-vibes", label: "Enquêtes post vibes" },
+  { slug: "barometre-bien-etre", label: "Baromètre bien-être" },
+  { slug: "statistiques-pilotage", label: "Statistiques et pilotage" },
+  { slug: "kit-communication", label: "Kit de communication" },
+  { slug: "actualites-internes", label: "Diffusion actualités internes" },
+  { slug: "cartes-visite", label: "Échanges cartes de visite" },
+  { slug: "parcours-entrainement", label: "Parcours d'entraînement" },
+  { slug: "mediatheque", label: "Médiathèque" },
 ];
 
 const DUREES = [
@@ -36,10 +42,30 @@ const DUREES = [
 
 // Ordre aligné sur la page solution : Connection, Boost (populaire), Premium,
 // puis l'offre découverte (essai 30 jours, facturée au mois).
+// Fonctionnalités incluses par offre (source : page Tarifs) — affichées au dépli
+const PLAN_FEATURES: Record<string, string[]> = {
+  "vibes-connection": [
+    "Expériences interactives (1 000 vibes)", "Sondages", "Baromètre bien-être", "Statistiques & pilotage",
+  ],
+  "vibes-premium": [
+    "Expériences interactives (1 000 vibes)", "Sondages", "Baromètre bien-être", "Statistiques & pilotage",
+    "Logo de votre entreprise", "Kit de communication", "Actualités internes",
+  ],
+  "vibes-boost": [
+    "Expériences interactives (1 000 vibes)", "Sondages", "Baromètre bien-être", "Statistiques & pilotage",
+    "Logo de votre entreprise", "Kit de communication", "Actualités internes",
+    "Networking (cartes de visite digitales)", "Brainstorming (enquêtes post vibes)",
+    "Employer branding (invités extérieurs)", "Soft skills (parcours d'entraînement) ou médiathèque",
+  ],
+  "vibes-decouverte": [
+    "Toutes les fonctionnalités essentielles", "Sans engagement", "Idéal pour tester en interne",
+  ],
+};
+
 const PLANS = [
-  { slug: "vibes-connection", nom: "Vibes Connection", price: "3 980 €/an", desc: "Idéal pour démarrer" },
-  { slug: "vibes-boost", nom: "Vibes Boost", price: "5 980 €/an", desc: "Le plus populaire", recommended: true },
-  { slug: "vibes-premium", nom: "Vibes Premium", price: "4 980 €/an", desc: "Communication & visibilité" },
+  { slug: "vibes-connection", nom: "Vibes Connection", price: "3 980 €/an", desc: "Une expérience d'engagement collectif" },
+  { slug: "vibes-boost", nom: "Vibes Boost", price: "5 980 €/an", desc: "Des outils de travail innovants", recommended: true },
+  { slug: "vibes-premium", nom: "Vibes Premium", price: "4 980 €/an", desc: "Une visibilité augmentée" },
   { slug: "vibes-decouverte", nom: "Offre découverte", price: "480 €", desc: "30 jours pour tester", trial: true },
 ];
 
@@ -48,6 +74,7 @@ const STEPS = ["Votre collectif", "Vos usages", "Vos coordonnées"];
 interface FormData {
   // Step 1
   typeCollectif: string;
+  typePrecision: string;
   tailleCollectif: string;
   planSlug: string;
   dureeContrat: number;
@@ -61,6 +88,8 @@ interface FormData {
   email: string;
   telephone: string;
   ville: string;
+  adresse: string;
+  siret: string;
 }
 
 export default function DevisFormStepper() {
@@ -71,18 +100,24 @@ export default function DevisFormStepper() {
 
   const [form, setForm] = useState<FormData>({
     typeCollectif: "",
+    typePrecision: "",
     tailleCollectif: "50-250",
     planSlug: "vibes-boost",
     dureeContrat: 12,
     nombreUtilisateurs: 100,
-    usagesPrevus: ["echanges"],
+    usagesPrevus: ["echanges-conversationnels"],
     besoinsNotes: "",
     nom: "",
     contact: "",
     email: "",
     telephone: "",
     ville: "",
+    adresse: "",
+    siret: "",
   });
+
+  // Offre dont les fonctionnalités sont dépliées (pour voir le contenu)
+  const [openPlan, setOpenPlan] = useState<string | null>(null);
 
   const set = (key: keyof FormData, val: unknown) => {
     setForm((f) => ({ ...f, [key]: val }));
@@ -108,6 +143,7 @@ export default function DevisFormStepper() {
     const errs: typeof errors = {};
     if (step === 0) {
       if (!form.typeCollectif) errs.typeCollectif = "Champ requis";
+      if (form.typeCollectif === "Autre" && !form.typePrecision.trim()) errs.typePrecision = "Champ requis";
     }
     if (step === 2) {
       if (!form.nom.trim()) errs.nom = "Champ requis";
@@ -145,9 +181,8 @@ export default function DevisFormStepper() {
     <div className="dv-page">
       {/* Header */}
       <header className="dv-header">
-        <span className="dv-header-brand">Uvibes</span>
-        <Link href="/" className="dv-header-back">
-          <ArrowLeft size={14} /> Retour au site
+        <Link href="/" className="dv-header-logo" aria-label="Retour au site Uvibes">
+          <Image src="/images/Logo%20UVIBES.png" alt="Uvibes" width={120} height={44} className="dv-header-logo-img" />
         </Link>
       </header>
 
@@ -177,11 +212,11 @@ export default function DevisFormStepper() {
       {/* Étape 0 — Votre collectif */}
       {step === 0 && (
         <div className="dv-card">
-          <h2 className="dv-card-title">Parlez-nous de votre collectif</h2>
-          <p className="dv-card-sub">Ces informations nous permettront de vous proposer l&apos;offre la plus adaptée.</p>
+          <h2 className="dv-card-title">Parlez-nous de votre organisation</h2>
+          <p className="dv-card-sub">Ces informations nous permettront d&apos;établir une proposition commerciale adaptée à vos besoins.</p>
 
           <div className="dv-field">
-            <label className="dv-label" htmlFor="dv-type">Type de collectif *</label>
+            <label className="dv-label" htmlFor="dv-type">Type d&apos;organisation *</label>
             <select
               id="dv-type"
               className={`dv-select${errors.typeCollectif ? " --error" : ""}`}
@@ -193,6 +228,21 @@ export default function DevisFormStepper() {
             </select>
             {errors.typeCollectif && <p className="dv-error-msg">{errors.typeCollectif}</p>}
           </div>
+
+          {form.typeCollectif === "Autre" && (
+            <div className="dv-field">
+              <label className="dv-label" htmlFor="dv-type-precision">Précisez votre type d&apos;organisation *</label>
+              <input
+                id="dv-type-precision"
+                className={`dv-input${errors.typePrecision ? " --error" : ""}`}
+                type="text"
+                placeholder="Ex : coopérative, fondation, club…"
+                value={form.typePrecision}
+                onChange={(e) => set("typePrecision", e.target.value)}
+              />
+              {errors.typePrecision && <p className="dv-error-msg">{errors.typePrecision}</p>}
+            </div>
+          )}
 
           <div className="dv-field">
             <label className="dv-label">Taille de votre organisation</label>
@@ -210,34 +260,40 @@ export default function DevisFormStepper() {
             </div>
           </div>
 
-          <div className="dv-field">
-            <label className="dv-label" htmlFor="dv-users">Nombre d&apos;utilisateurs estimé</label>
-            <div className="dv-slider-value">{form.nombreUtilisateurs}</div>
-            <input
-              id="dv-users"
-              type="range" min={10} max={2000} step={10}
-              className="dv-slider"
-              value={form.nombreUtilisateurs}
-              onChange={(e) => set("nombreUtilisateurs", Number(e.target.value))}
-            />
-            <div className="dv-slider-hint">10 à 2 000 utilisateurs</div>
-          </div>
 
           <div className="dv-field">
             <label className="dv-label">Plan souhaité</label>
             {/* Les 3 offres annuelles sur une ligne */}
             <div className="dv-plans">
-              {PLANS.filter((p) => !p.trial).map((p) => (
+              {PLANS.filter((p) => !p.trial).map((p) => {
+                const open = openPlan === p.slug;
+                return (
                 <div
                   key={p.slug}
-                  className={`dv-plan-card${form.planSlug === p.slug ? " --selected" : ""}${p.recommended ? " --recommended" : ""}`}
+                  className={`dv-plan-card${form.planSlug === p.slug ? " --selected" : ""}${p.recommended ? " --recommended" : ""}${open ? " --open" : ""}`}
                   onClick={() => selectPlan(p.slug)}
                 >
                   <div className="dv-plan-name">{p.nom}</div>
-                  <div className="dv-plan-price" style={{ fontSize: 13 }}>{p.price}</div>
-                  <div className="dv-plan-desc">{p.desc}</div>
+                  <div className="dv-plan-price" style={{ fontSize: 13 }}>{p.price} <span className="dv-plan-ht">HT</span></div>
+                  {/* La description disparaît quand on affiche le contenu de l'offre */}
+                  {!open && <div className="dv-plan-desc">{p.desc}</div>}
+                  {open && (
+                    <ul className="dv-plan-features">
+                      {(PLAN_FEATURES[p.slug] ?? []).map((f) => (
+                        <li key={f}><Check size={12} strokeWidth={3} />{f}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <button
+                    type="button"
+                    className="dv-plan-toggle"
+                    onClick={(e) => { e.stopPropagation(); setOpenPlan(open ? null : p.slug); }}
+                  >
+                    {open ? "Masquer le contenu" : "Voir le contenu de l'offre"}
+                  </button>
                 </div>
-              ))}
+                );
+              })}
             </div>
             {/* 4ème offre — découverte : bandeau pleine largeur, mis en valeur à part */}
             {PLANS.filter((p) => p.trial).map((p) => (
@@ -392,6 +448,31 @@ export default function DevisFormStepper() {
                 onChange={(e) => set("ville", e.target.value)}
               />
             </div>
+          </div>
+
+          <div className="dv-field">
+            <label className="dv-label" htmlFor="dv-adresse">Adresse complète</label>
+            <input
+              id="dv-adresse"
+              className="dv-input"
+              type="text"
+              placeholder="12 rue de l'Exemple, 75000 Paris"
+              value={form.adresse}
+              onChange={(e) => set("adresse", e.target.value)}
+            />
+          </div>
+
+          <div className="dv-field">
+            <label className="dv-label" htmlFor="dv-siret">Numéro SIRET</label>
+            <input
+              id="dv-siret"
+              className="dv-input"
+              type="text"
+              inputMode="numeric"
+              placeholder="123 456 789 00012"
+              value={form.siret}
+              onChange={(e) => set("siret", e.target.value)}
+            />
           </div>
         </div>
       )}

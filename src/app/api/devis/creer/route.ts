@@ -15,8 +15,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const {
       // Infos collectif
-      nom, contact, email, telephone, ville,
-      typeCollectif, tailleCollectif, usagesPrevus, besoinsNotes,
+      nom, contact, email, telephone, ville, adresse, siret,
+      typeCollectif, typePrecision, tailleCollectif, usagesPrevus, besoinsNotes,
       // Devis
       planSlug, nombreUtilisateurs, dureeContrat,
     } = body;
@@ -24,6 +24,11 @@ export async function POST(req: NextRequest) {
     if (!nom || !contact || !email || !planSlug || !nombreUtilisateurs || !dureeContrat) {
       return NextResponse.json({ error: "Champs obligatoires manquants" }, { status: 400 });
     }
+
+    // « Autre » → on fusionne la précision saisie dans le type d'organisation
+    const typeFinal = typeCollectif === "Autre" && typePrecision?.trim()
+      ? `Autre : ${typePrecision.trim()}`
+      : typeCollectif;
 
     // Calculer le prix
     const calc = await calculateQuote({ planSlug, nombreUtilisateurs, dureeContrat });
@@ -34,7 +39,9 @@ export async function POST(req: NextRequest) {
         nom, contact, email,
         telephone: telephone || null,
         ville: ville || null,
-        typeCollectif, tailleCollectif,
+        adresse: adresse || null,
+        siret: siret || null,
+        typeCollectif: typeFinal, tailleCollectif,
         usagesPrevus: JSON.stringify(usagesPrevus || []),
         besoinsNotes: besoinsNotes || null,
         source: "formulaire_site",
