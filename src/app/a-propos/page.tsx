@@ -27,9 +27,9 @@ const organizationJsonLd = {
 };
 
 const ETHICS = [
-  { num: "01", title: "Respect & confidentialité", text: "Un service digital respectueux, pensé pour la qualité des discussions, l'inclusion et la protection des données de chaque membre." },
-  { num: "02", title: "Collaboration & écoute", text: "Une conduite de projet alignée avec nos valeurs — basée sur l'écoute active, la co-construction et la responsabilité collective." },
-  { num: "03", title: "Partenariats responsables", text: "Des partenaires choisis pour leur transparence, leur impact positif et leur engagement sociétal — pas pour leur seule notoriété." },
+  { num: "01", title: "Service responsable", text: "Un service digital respectueux, pensé pour la qualité des discussions, l'inclusion et la confidentialité des données." },
+  { num: "02", title: "Projet engagé", text: "Une conduite de projet alignée avec nos valeurs, basée sur l'écoute, la collaboration, et la responsabilité environnementale." },
+  { num: "03", title: "Partenariats durables", text: "Des partenariats responsables, choisis pour leur transparence, leur impact positif et leur engagement sociétal." },
 ];
 
 const VALUES = [
@@ -68,7 +68,6 @@ export default function Uvibes() {
         </div>
 
         <div className="uv-hero-inner">
-          <p className="uv-hero-eyebrow">À propos d&apos;Uvibes</p>
           <h1 className="uv-hero-title v-prompt">
             Qui donne vie<br />
             <em className="uv-hero-em">à Uvibes&nbsp;?</em>
@@ -164,6 +163,11 @@ export default function Uvibes() {
             ))}
           </div>
 
+          <p className="uv-ethics-blog-note">
+            Explorez la rubrique <Link href="/blog" className="uv-ethics-blog-link">«&nbsp;Uvibes&nbsp;»</Link> de notre blog
+            pour en savoir plus sur nos principes éthiques et leur mise en œuvre concrète.
+          </p>
+
           {/* Vidéo Lisa — déplacée sous les 3 cartes */}
           <div className="uv-team-vid-wrap">
             <video src={getVideoUrl("Lisa-desktop.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
@@ -183,13 +187,12 @@ export default function Uvibes() {
         <div className="uv-don-inner">
           <p className="uv-eyebrow uv-don-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
           <h2 className="uv-join-title uv-don-title">
-            Soutenez un projet{" "}
-            <em className="uv-serif-accent uv-serif-accent--yellow">à but non lucratif</em>
+            Soutenez un{" "}
+            <em className="uv-serif-accent uv-serif-accent--yellow">modèle non lucratif</em>
           </h2>
           <p className="uv-join-sub uv-don-sub">
-            Uvibes est porté par l&apos;association Éclatens. Tous les bénéfices sont réinvestis
-            dans le projet ou dans d&apos;autres initiatives solidaires, pour que la technologie
-            serve vraiment les gens.
+            Uvibes est porté par l&apos;association Eclat&apos;Ens. Tous les bénéfices générés sont
+            réinvestis dans le projet ou dans d&apos;autres initiatives portées par l&apos;association
           </p>
 
           <div className="uv-don-badge">

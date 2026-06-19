@@ -600,6 +600,23 @@
 .uv-ethics-card:nth-child(3) .uv-ethics-card-title { color: #E0A000; }
 .uv-ethics-card-text { font-size: 14px; line-height: 1.75; color: #6b4455; margin: 0; }
 
+/* Note renvoi blog — juste sous les 3 cartes éthique */
+.uv-ethics-blog-note {
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  text-align: center;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #7a5868;
+}
+.uv-ethics-blog-link {
+  color: var(--rose);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--rose) 40%, transparent);
+  transition: border-color 0.2s ease;
+}
+.uv-ethics-blog-link:hover { border-bottom-color: var(--rose); }
+
 /* ── CTA Rejoindre — redesign impactant ───────────────────────── */
 .uv-join {
   background: linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%);
