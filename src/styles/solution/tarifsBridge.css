@@ -57,3 +57,15 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
   transform: translateY(-1px);
 }
+
+/* Renvoi tarifs avant la section Résultats (page méthode) */
+.sol-offers-cta {
+  text-align: center;
+  padding: clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(0.5rem, 2vw, 1rem);
+  background: #FFFBF4;
+}
+.sol-offers-cta-btn {
+  font-size: clamp(15px, 1.4vw, 18px);
+  padding: 0.95rem 2.3rem;
+  border-radius: 999px;
+}

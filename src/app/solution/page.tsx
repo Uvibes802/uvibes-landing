@@ -42,6 +42,12 @@ export default function SolutionPage() {
         <SolutionHowItWorks />
         <SolutionThemes />
         <SolutionSoftSkills />
+        {/* Renvoi vers les tarifs, juste avant la section Résultats */}
+        <div className="sol-offers-cta">
+          <Link href="/tarifs" className="btn-brand sol-offers-cta-btn">
+            Nos offres Uvibes →
+          </Link>
+        </div>
         <FeaturesCard />
         {/* Pont vers les offres : la tarification vit désormais sur sa propre page /tarifs */}
         <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>

@@ -79,11 +79,8 @@ export default function SolutionHero() {
             et accompagner durablement l&apos;évolution de votre organisation.
           </p>
           <div className="sh-ctas">
-            <Link href="#solution-tabs" className="btn-brand sh-cta-primary">
-              Explorer la solution →
-            </Link>
-            <Link href="/tarifs" className="sh-cta-ghost">
-              Voir les offres
+            <Link href="/tarifs" className="btn-brand sh-cta-primary">
+              Découvrir nos tarifs →
             </Link>
           </div>
 
