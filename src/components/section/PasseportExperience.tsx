@@ -151,6 +151,17 @@ const PASSEPORTS: Passeport[] = [
     valoriser: ["Valoriser son engagement citoyen sur un CV ou un profil professionnel", "Mettre en avant ses compétences relationnelles", "Attester de sa participation active à la vie de son lieu de vie", "Conserver une reconnaissance concrète de sa contribution au collectif"],
     accent: "#800080",
   },
+  {
+    id: "sante",
+    category: "Santé et médico-social",
+    title: "Reconnaissance",
+    tagline: "Chaque expérience compte et mérite d'être reconnue.",
+    keywords: ["Parcours de soin", "Reconnaissance", "Lien"],
+    besoin: "Au cours de leur parcours de soin, les patients vivent de nombreuses expériences, développent des connaissances et créent des liens qui méritent d'être reconnus et valorisés.",
+    axes: ["Échanger avec des personnes en situation similaire", "Préserver son équilibre personnel", "Créer du lien tout au long du parcours de soin"],
+    valoriser: ["Valoriser les expériences et les démarches positives réalisées.", "Conserver une trace des rencontres, échanges et moments marquants vécus.", "Reconnaître son engagement et sa contribution au sein du collectif."],
+    accent: "#00AFDD",
+  },
 ];
 
 // Palette chaude alignée sur la section « Thématiques » — aucune couleur sombre ni violette
