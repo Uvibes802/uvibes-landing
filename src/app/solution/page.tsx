@@ -7,6 +7,7 @@ import SolutionHero from "@/components/solution/SolutionHero";
 import WaveSeparator from "@/components/shared/WaveSeparator";
 import SolutionHowItWorks from "@/components/solution/SolutionHowItWorks";
 import SolutionThemes from "@/components/solution/SolutionThemes";
+import SolutionStrategie from "@/components/solution/SolutionStrategie";
 import SolutionSoftSkills from "@/components/solution/SolutionSoftSkills";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -41,6 +42,7 @@ export default function SolutionPage() {
       <main className="sol-main-content">
         <SolutionHowItWorks />
         <SolutionThemes />
+        <SolutionStrategie />
         <SolutionSoftSkills />
         {/* Renvoi vers les tarifs, juste avant la section Résultats */}
         <div className="sol-offers-cta">
