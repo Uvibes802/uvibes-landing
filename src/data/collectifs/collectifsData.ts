@@ -253,4 +253,25 @@ export const collectifs: Collectif[] = [
       "Vous répondez à une aspiration forte : améliorer le lien social",
     ],
   },
+  {
+    id: "sante",
+    name: "Santé et médico-social",
+    subtitle: "Hôpitaux, cliniques, Ehpad, maisons de santé, Instituts médico-éducatifs, Associations de patients, Centres de rééducation et de soins de suite",
+    color: COLORS[2],
+    // TODO affiches Santé dédiées — placeholders « aidant » (contexte soin) en attendant
+    flyers: [
+      { src: "/images/affiche/echanges-pairs/aidant-1.webp", alt: "Affiche Uvibes — patients et proches" },
+      { src: "/images/affiche/echanges-pairs/aidant-2.webp", alt: "Affiche Uvibes — soutien entre pairs en santé" },
+    ],
+    gains: [
+      "Une expérience plus agréable pour les patients et leurs proches pendant les temps d'attente, sans sollicitation supplémentaire de vos équipes.",
+      "Une image d'établissement moderne, innovant et attentif au bien-être de ses usagers.",
+      "une meilleure compréhension des attentes, usages et dynamiques de vos usagers et de leurs accompagnants",
+    ],
+    pourquoi: [
+      "Vous permettez à des personnes vivant des situations similaires d'échanger et de se soutenir mutuellement.",
+      "Vous transformez les temps d'attente en moments de dialogue, de partage et de lien social.",
+      "Vous soutenez les aidants familiaux qui accompagnent un proche dans son parcours de soins.",
+    ],
+  },
 ];

@@ -192,6 +192,12 @@
   text-align: center;
   margin-top: 3rem;
 }
+/* CTA agrandi (demande tutrice) */
+.collectifs-cta-btn {
+  font-size: clamp(16px, 1.5vw, 19px);
+  padding: 1rem 2.4rem;
+  border-radius: 999px;
+}
 
 /* ── Pills statiques — grille centrée ─────────────────────────── */
 
@@ -355,11 +361,36 @@
 }
 
 .collectif-panel-flyer-wrap {
+  position: relative;
+  display: block;
+  appearance: none;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: zoom-in;
   border-radius: 9px;
   overflow: hidden;
   box-shadow: 0 16px 28px -8px rgba(0, 0, 0, 0.28);
   transition: transform 0.3s ease;
   margin-bottom: 0;
+}
+/* Badge loupe — apparaît au survol de l'affiche */
+.collectif-panel-flyer-zoom {
+  position: absolute;
+  top: 7px; right: 7px;
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.collectif-panel-flyer-wrap:hover .collectif-panel-flyer-zoom {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .collectif-panel-flyer-wrap:hover {
@@ -639,4 +670,59 @@
     gap: 1.5rem;
     padding: 1.5rem;
   }
+}
+
+/* ── Lightbox — affiche en grand ──────────────────────────────── */
+.cs-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(26, 10, 6, 0.78);
+  backdrop-filter: blur(6px);
+  cursor: zoom-out;
+  animation: csLbFade 0.28s ease both;
+}
+@keyframes csLbFade { from { opacity: 0; } to { opacity: 1; } }
+
+.cs-lightbox-fig {
+  margin: 0;
+  cursor: default;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 40px 90px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08);
+  animation: csLbZoom 0.36s cubic-bezier(.2,.8,.25,1) both;
+}
+@keyframes csLbZoom {
+  from { opacity: 0; transform: scale(0.86) translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.cs-lightbox-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(86vw, 560px);
+  max-height: 86vh;
+  object-fit: contain;
+}
+.cs-lightbox-close {
+  position: fixed;
+  top: clamp(0.8rem, 3vw, 1.6rem);
+  right: clamp(0.8rem, 3vw, 1.6rem);
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cs-lightbox-close:hover { background: rgba(255,255,255,.24); transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) {
+  .cs-lightbox, .cs-lightbox-fig { animation: none; }
+  .cs-lightbox-close:hover { transform: none; }
 }

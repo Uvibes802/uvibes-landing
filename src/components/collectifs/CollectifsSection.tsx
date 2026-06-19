@@ -15,8 +15,18 @@ interface CollectifsSectionProps {
 export default function CollectifsSection({ showCta = false }: CollectifsSectionProps) {
   const [activeId, setActiveId] = useState(collectifs[0].id);
   const [isLocked, setIsLocked] = useState(false);
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const active = collectifs.find((c) => c.id === activeId)!;
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.07 });
+
+  // Fermeture de l'affiche en grand à la touche Échap + blocage du scroll
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [lightbox]);
 
   useEffect(() => {
     if (isLocked) return;
@@ -46,7 +56,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
               <br />a ses enjeux.
             </h2>
             <p className="collectifs-desc">
-              12 secteurs d&apos;activité auxquels Uvibes apporte une meilleure
+              {collectifs.length} secteurs d&apos;activité auxquels Uvibes apporte une meilleure
               compréhension du terrain et un engagement renforcé de son collectif.
             </p>
           </div>
@@ -128,7 +138,13 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
             </div>
             <div className="collectif-panel-flyers">
               {active.flyers.map((f, i) => (
-                <div key={i} className="collectif-panel-flyer-wrap">
+                <button
+                  key={i}
+                  type="button"
+                  className="collectif-panel-flyer-wrap"
+                  onClick={() => { setIsLocked(true); setLightbox(f); }}
+                  aria-label={`Agrandir l'affiche : ${f.alt}`}
+                >
                   <Image
                     src={f.src}
                     alt={f.alt}
@@ -136,7 +152,12 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
                     height={225}
                     className="collectif-panel-flyer-img"
                   />
-                </div>
+                  <span className="collectif-panel-flyer-zoom" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3M11 8v6M8 11h6" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </button>
               ))}
             </div>
           </div>
@@ -172,12 +193,38 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
 
         {showCta && (
           <div className="collectifs-cta">
-            <Link href="/solution" className="btn-cta primary">
-              Découvrir la solution
+            <Link href="/solution" className="btn-cta primary collectifs-cta-btn">
+              Découvrir notre méthode
             </Link>
           </div>
         )}
       </div>
+
+      {/* Lightbox — affiche en grand */}
+      {lightbox && (
+        <div
+          className="cs-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.alt}
+          onClick={() => setLightbox(null)}
+        >
+          <button type="button" className="cs-lightbox-close" aria-label="Fermer" onClick={() => setLightbox(null)}>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+            </svg>
+          </button>
+          <figure className="cs-lightbox-fig" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={lightbox.src}
+              alt={lightbox.alt}
+              width={900}
+              height={1270}
+              className="cs-lightbox-img"
+            />
+          </figure>
+        </div>
+      )}
     </section>
   );
 }
