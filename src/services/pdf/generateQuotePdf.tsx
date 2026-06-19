@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import {
   Document,
   Image,
@@ -10,70 +12,95 @@ import {
 import { LEGAL_DOCS, type LegalDocSlug } from "@/lib/legalDocs";
 import { C, euro, pdfNum } from "./pdfTheme";
 
-// @react-pdf ne gère pas les dégradés CSS en backgroundColor → couleurs solides vives.
-const HEADER_FILL = "#FD6E00"; // orange vif (en-tête)
-const BRAND_FILL = "#E6007E";  // magenta vif (prix, badge, ticks)
+// ── Palette minimaliste : un seul accent (orange) + neutres ──────
+const ACCENT = "#FD6E00";   // accent unique
+const INK = "#1F1B24";      // texte principal
+const MUTED = "#6B6470";    // texte secondaire
+const LINE = "#E6E2E9";     // filets
+const SURFACE = "#F6F5F8";  // fonds de carte neutres
+const DARK = "#23202B";     // carte prix (sombre, sobre)
+
+// Émetteur — association porteuse du projet (infos exactes)
+const EMETTEUR = {
+  nom: "Eclat'Ens, association loi 1901",
+  lignes: [
+    "52 rue croix de Seguey, 33000 Bordeaux",
+    "Tél : 06 60 11 71 93 · Email : eclatens@gmail.com",
+    "SIRET : 938 875 002 00017",
+    "TVA intracommunautaire : FR 31938875002 · Code APE : 94.99Z",
+  ],
+};
+
+// Logo Eclat'Ens (lu une fois, encodé en data URI pour @react-pdf)
+let ECLATENS_LOGO: string | null = null;
+function eclatensLogo(): string | null {
+  if (ECLATENS_LOGO !== null) return ECLATENS_LOGO || null;
+  try {
+    const p = path.join(process.cwd(), "public", "images", "LogoEclatens.png");
+    ECLATENS_LOGO = `data:image/png;base64,${fs.readFileSync(p).toString("base64")}`;
+  } catch {
+    ECLATENS_LOGO = "";
+  }
+  return ECLATENS_LOGO || null;
+}
 
 const styles = StyleSheet.create({
   page: { fontFamily: "Helvetica", fontSize: 9.5, color: C.ink, backgroundColor: "#FFFDFB", paddingTop: 0, paddingHorizontal: 42, paddingBottom: 60, lineHeight: 1.45 },
 
-  // En-tête — bandeau plein orange pleine largeur
-  headerBand: { marginHorizontal: -42, paddingHorizontal: 42, paddingTop: 30, paddingBottom: 24, marginBottom: 22, backgroundColor: HEADER_FILL, flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
-  brand: { fontSize: 26, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: -0.5, lineHeight: 1 },
-  brandTag: { fontSize: 8, color: "rgba(255,255,255,.9)", marginTop: 7, maxWidth: 230 },
+  // En-tête — minimaliste : logo + bloc devis, filet d'accent
+  headerBand: { paddingTop: 30, paddingBottom: 16, marginBottom: 20, borderBottomWidth: 2, borderBottomColor: ACCENT, flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
+  brandLogo: { width: 132, height: 50, objectFit: "contain" },
   docBox: { alignItems: "flex-end" },
-  docLabel: { fontSize: 18, fontFamily: "Helvetica-Bold", color: "#fff", letterSpacing: 2 },
-  docNum: { fontSize: 11, fontFamily: "Helvetica-Bold", color: C.yellow, marginTop: 3 },
-  docMeta: { fontSize: 8, color: "rgba(255,255,255,.85)", marginTop: 2 },
+  docLabel: { fontSize: 20, fontFamily: "Helvetica-Bold", color: INK, letterSpacing: 3 },
+  docNum: { fontSize: 11, fontFamily: "Helvetica-Bold", color: ACCENT, marginTop: 3 },
+  docMeta: { fontSize: 8, color: MUTED, marginTop: 2 },
 
-  // Émetteur / Destinataire (cartes teintées)
+  // Émetteur / Destinataire (cartes neutres)
   parties: { flexDirection: "row", gap: 16, marginBottom: 20 },
-  party: { flex: 1, borderRadius: 10, padding: 12 },
-  partyEmit: { backgroundColor: "#FFF1E4" },
-  partyDest: { backgroundColor: "#FFE9F2" },
-  partyLabel: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: C.rose, letterSpacing: 1.2, marginBottom: 6, textTransform: "uppercase" },
-  partyName: { fontSize: 11, fontFamily: "Helvetica-Bold", marginBottom: 3 },
-  partyLine: { fontSize: 8.5, color: "#7A4A5E", marginBottom: 1.5 },
+  party: { flex: 1, borderRadius: 8, padding: 12, backgroundColor: SURFACE, borderWidth: 1, borderColor: LINE },
+  partyLabel: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: ACCENT, letterSpacing: 1.2, marginBottom: 6, textTransform: "uppercase" },
+  partyName: { fontSize: 11, fontFamily: "Helvetica-Bold", color: INK, marginBottom: 3 },
+  partyLine: { fontSize: 8.5, color: MUTED, marginBottom: 1.5 },
 
   // Phrase de valeur
-  intro: { fontSize: 9.5, fontFamily: "Helvetica-Oblique", color: C.rose, marginBottom: 18, lineHeight: 1.5 },
+  intro: { fontSize: 9.5, fontFamily: "Helvetica-Oblique", color: MUTED, marginBottom: 18, lineHeight: 1.5 },
 
   // Titres de section
-  sectionTitle: { fontSize: 9, fontFamily: "Helvetica-Bold", color: C.rose, marginBottom: 9, textTransform: "uppercase", letterSpacing: 1.2 },
+  sectionTitle: { fontSize: 9, fontFamily: "Helvetica-Bold", color: INK, marginBottom: 9, textTransform: "uppercase", letterSpacing: 1.2 },
   section: { marginBottom: 18 },
 
-  // Carte offre (teintée + accent dégradé)
-  offerCard: { backgroundColor: "#FFF2F6", borderRadius: 12, padding: 16, flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  // Carte offre (neutre, accent sobre)
+  offerCard: { backgroundColor: SURFACE, borderRadius: 10, borderWidth: 1, borderColor: LINE, padding: 16, flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   offerLeft: { flex: 1 },
-  offerName: { fontSize: 16, fontFamily: "Helvetica-Bold", color: C.ink },
-  offerMention: { fontSize: 8.5, color: "#7A4A5E", marginTop: 2 },
+  offerName: { fontSize: 16, fontFamily: "Helvetica-Bold", color: INK },
+  offerMention: { fontSize: 8.5, color: MUTED, marginTop: 2 },
   offerSpecs: { flexDirection: "row", gap: 18, marginTop: 9 },
   spec: {},
-  specVal: { fontSize: 13, fontFamily: "Helvetica-Bold", color: C.rose },
-  specLabel: { fontSize: 7.5, color: "#7A4A5E", marginTop: 1 },
-  durBadge: { backgroundColor: BRAND_FILL, borderRadius: 14, paddingVertical: 9, paddingHorizontal: 14, alignItems: "center" },
+  specVal: { fontSize: 13, fontFamily: "Helvetica-Bold", color: ACCENT },
+  specLabel: { fontSize: 7.5, color: MUTED, marginTop: 1 },
+  durBadge: { backgroundColor: ACCENT, borderRadius: 12, paddingVertical: 9, paddingHorizontal: 14, alignItems: "center" },
   durBadgeVal: { fontSize: 15, fontFamily: "Helvetica-Bold", color: "#fff" },
   durBadgeLabel: { fontSize: 7, color: "rgba(255,255,255,.9)", marginTop: 1, textTransform: "uppercase", letterSpacing: 0.5 },
 
   // Fonctionnalités
   featGrid: { flexDirection: "row", flexWrap: "wrap" },
   featItem: { flexDirection: "row", alignItems: "flex-start", width: "50%", marginBottom: 6, paddingRight: 10 },
-  featTick: { width: 13, height: 13, borderRadius: 7, backgroundColor: BRAND_FILL, marginRight: 7, marginTop: 0.5, justifyContent: "center", alignItems: "center" },
+  featTick: { width: 13, height: 13, borderRadius: 7, backgroundColor: ACCENT, marginRight: 7, marginTop: 0.5, justifyContent: "center", alignItems: "center" },
   featTickTxt: { color: "#fff", fontSize: 7, fontFamily: "Helvetica-Bold" },
-  featTxt: { fontSize: 8.5, flex: 1 },
+  featTxt: { fontSize: 8.5, flex: 1, color: INK },
 
-  // Bloc prix — magenta vif
-  priceCard: { backgroundColor: BRAND_FILL, borderRadius: 12, padding: 16 },
+  // Bloc prix — sombre sobre, accent orange
+  priceCard: { backgroundColor: DARK, borderRadius: 10, padding: 16 },
   priceRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: 5, alignItems: "center" },
-  priceLabel: { color: "rgba(255,255,255,.62)", fontSize: 9 },
+  priceLabel: { color: "rgba(255,255,255,.6)", fontSize: 9 },
   priceValue: { color: "#fff", fontSize: 9.5, fontFamily: "Helvetica-Bold" },
-  priceDiscount: { color: C.yellow, fontSize: 9.5, fontFamily: "Helvetica-Bold" },
-  priceDivider: { borderTopWidth: 1, borderTopColor: "rgba(255,255,255,.18)", marginVertical: 8 },
+  priceDiscount: { color: "#FFC9A3", fontSize: 9.5, fontFamily: "Helvetica-Bold" },
+  priceDivider: { borderTopWidth: 1, borderTopColor: "rgba(255,255,255,.16)", marginVertical: 8 },
   totalLabel: { color: "#fff", fontSize: 11, fontFamily: "Helvetica-Bold" },
-  totalValue: { color: C.yellow, fontSize: 17, fontFamily: "Helvetica-Bold" },
-  ttcLabel: { color: "rgba(255,255,255,.62)", fontSize: 9 },
+  totalValue: { color: ACCENT, fontSize: 17, fontFamily: "Helvetica-Bold" },
+  ttcLabel: { color: "rgba(255,255,255,.6)", fontSize: 9 },
   ttcValue: { color: "#fff", fontSize: 10, fontFamily: "Helvetica-Bold" },
-  perMember: { color: "rgba(255,255,255,.85)", fontSize: 8.5, fontFamily: "Helvetica-Oblique", marginTop: 9, textAlign: "right" },
+  perMember: { color: "rgba(255,255,255,.8)", fontSize: 8.5, fontFamily: "Helvetica-Oblique", marginTop: 9, textAlign: "right" },
 
   // Documents contractuels
   docsList: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
@@ -93,16 +120,25 @@ const styles = StyleSheet.create({
   footerText: { fontSize: 7.5, color: C.muted },
 
   // Pages des documents contractuels (annexés au devis)
-  legalPage: { fontFamily: "Helvetica", fontSize: 9, color: C.ink, backgroundColor: "#fff", paddingTop: 42, paddingHorizontal: 48, paddingBottom: 60, lineHeight: 1.5 },
-  legalKicker: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: C.orange, letterSpacing: 1.4, textTransform: "uppercase", marginBottom: 4 },
-  legalDocTitle: { fontSize: 15, fontFamily: "Helvetica-Bold", color: C.rose, marginBottom: 3 },
-  legalDocVersion: { fontSize: 8, color: C.muted, marginBottom: 16, borderBottomWidth: 1, borderBottomColor: C.line, paddingBottom: 10 },
-  legalH2: { fontSize: 11, fontFamily: "Helvetica-Bold", color: C.ink, marginTop: 12, marginBottom: 5 },
-  legalH3: { fontSize: 9.5, fontFamily: "Helvetica-Bold", color: C.ink, marginTop: 9, marginBottom: 4 },
-  legalP: { fontSize: 9, marginBottom: 6, lineHeight: 1.55, textAlign: "justify" },
+  legalPage: { fontFamily: "Helvetica", fontSize: 9, color: INK, backgroundColor: "#fff", paddingTop: 42, paddingHorizontal: 48, paddingBottom: 64, lineHeight: 1.5 },
+  legalKicker: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: ACCENT, letterSpacing: 1.4, textTransform: "uppercase", marginBottom: 4 },
+  legalDocTitle: { fontSize: 15, fontFamily: "Helvetica-Bold", color: INK, marginBottom: 3 },
+  legalDocVersion: { fontSize: 8, color: MUTED, marginBottom: 16, borderBottomWidth: 1, borderBottomColor: LINE, paddingBottom: 10 },
+  // Titres d'articles (orange) · sous-articles (rose) — cohérent avec les pages web
+  legalH2: { fontSize: 11, fontFamily: "Helvetica-Bold", color: ACCENT, marginTop: 13, marginBottom: 5 },
+  legalH3: { fontSize: 9.5, fontFamily: "Helvetica-Bold", color: "#D90A5C", marginTop: 9, marginBottom: 4 },
+  legalP: { fontSize: 9, color: INK, marginBottom: 6, lineHeight: 1.55, textAlign: "justify" },
   legalLi: { flexDirection: "row", marginBottom: 3, paddingLeft: 4 },
-  legalLiBullet: { width: 10, fontSize: 9, color: C.rose },
-  legalLiText: { flex: 1, fontSize: 9, lineHeight: 1.5 },
+  legalLiBullet: { width: 10, fontSize: 9, color: ACCENT },
+  legalLiText: { flex: 1, fontSize: 9, color: INK, lineHeight: 1.5 },
+  // Bloc signature client en bas de chaque document légal
+  legalSign: { marginTop: 20, borderTopWidth: 1, borderTopColor: LINE, paddingTop: 12, flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" },
+  legalSignCol: { maxWidth: 230 },
+  legalSignLabel: { fontSize: 7.5, fontFamily: "Helvetica-Bold", color: ACCENT, letterSpacing: 1, textTransform: "uppercase", marginBottom: 6 },
+  legalSignMention: { fontSize: 8, color: MUTED, marginBottom: 6 },
+  legalSignName: { fontSize: 9.5, fontFamily: "Helvetica-Bold", color: INK },
+  legalSignMeta: { fontSize: 8, color: MUTED, marginTop: 1 },
+  legalSignImg: { width: 150, height: 46, objectFit: "contain" },
 });
 
 interface PdfData {
@@ -132,6 +168,8 @@ interface PdfData {
       email: string;
       telephone?: string | null;
       ville?: string | null;
+      adresse?: string | null;
+      siret?: string | null;
       typeCollectif: string;
     };
   };
@@ -167,6 +205,7 @@ function renderLegalBlocks(contenu: string) {
 export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
   const { quote, legalDocs = [] } = data;
   const c = quote.collectif;
+  const logo = eclatensLogo();
 
   // Fonctionnalités incluses uniquement (mise en valeur de l'offre)
   const allFeatures: { slug: string; nom: string; inclus: boolean }[] = JSON.parse(quote.featuresJson || "[]");
@@ -202,11 +241,15 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
   const doc = (
     <Document title={`Devis ${quote.numero} — Uvibes`} author="Uvibes">
       <Page size="A4" style={styles.page}>
-        {/* En-tête — bandeau dégradé */}
+        {/* En-tête — logo Eclat'Ens + bloc devis */}
         <View style={styles.headerBand}>
           <View>
-            <Text style={styles.brand}>Uvibes</Text>
-            <Text style={styles.brandTag}>Activez les conversations positives au sein de votre collectif</Text>
+            {logo ? (
+              // eslint-disable-next-line jsx-a11y/alt-text
+              <Image src={logo} style={styles.brandLogo} />
+            ) : (
+              <Text style={{ fontSize: 18, fontFamily: "Helvetica-Bold", color: INK }}>Eclat&apos;Ens</Text>
+            )}
           </View>
           <View style={styles.docBox}>
             <Text style={styles.docLabel}>DEVIS</Text>
@@ -218,25 +261,24 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           </View>
         </View>
 
-        {/* Émetteur / Destinataire */}
+        {/* Prestataire (Eclat'Ens) / Client — noms d'entreprise directs */}
         <View style={styles.parties}>
-          <View style={[styles.party, styles.partyEmit]}>
-            <Text style={styles.partyLabel}>Émetteur</Text>
-            <Text style={styles.partyName}>Uvibes</Text>
-            <Text style={styles.partyLine}>Projet porté par l&apos;association Éclatens</Text>
-            <Text style={styles.partyLine}>contact@uvibes.fr</Text>
-            <Text style={styles.partyLine}>uvibes.fr</Text>
+          <View style={styles.party}>
+            <Text style={styles.partyLabel}>Prestataire</Text>
+            <Text style={styles.partyName}>{EMETTEUR.nom}</Text>
+            {EMETTEUR.lignes.map((l, i) => (
+              <Text key={i} style={styles.partyLine}>{l}</Text>
+            ))}
           </View>
-          <View style={[styles.party, styles.partyDest]}>
-            <Text style={styles.partyLabel}>Destinataire</Text>
+          <View style={styles.party}>
+            <Text style={styles.partyLabel}>Client</Text>
             <Text style={styles.partyName}>{c.nom}</Text>
             <Text style={styles.partyLine}>{c.contact}</Text>
             <Text style={styles.partyLine}>{c.email}</Text>
             {c.telephone ? <Text style={styles.partyLine}>{c.telephone}</Text> : null}
-            <Text style={styles.partyLine}>
-              {c.typeCollectif}
-              {c.ville ? ` · ${c.ville}` : ""}
-            </Text>
+            {c.adresse ? <Text style={styles.partyLine}>{c.adresse}</Text> : (c.ville ? <Text style={styles.partyLine}>{c.ville}</Text> : null)}
+            {c.siret ? <Text style={styles.partyLine}>SIRET : {c.siret}</Text> : null}
+            <Text style={styles.partyLine}>{c.typeCollectif}</Text>
           </View>
         </View>
 
@@ -326,6 +368,14 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           )}
         </View>
 
+        {/* Conditions de paiement */}
+        <View style={[styles.section, { marginTop: 18 }]}>
+          <Text style={styles.sectionTitle}>Conditions de paiement</Text>
+          <Text style={{ fontSize: 9, color: INK, lineHeight: 1.5 }}>
+            Paiement en une seule fois, à la mise en place de l&apos;abonnement.
+          </Text>
+        </View>
+
         {/* Documents contractuels — joints en pages suivantes */}
         {(legalDocs.length > 0 || docSlugs.length > 0) && (
           <View style={[styles.section, { marginTop: 18 }]}>
@@ -364,13 +414,13 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
             Devis valable 30 jours à compter de sa date d&apos;émission, sauf mention contraire ci-dessus.
             Prix en euros, TVA 20% applicable. Tout devis signé électroniquement vaut acceptation des documents
             contractuels associés et constitue un accord ferme. Uvibes, projet porté par l&apos;association
-            Éclatens · contact@uvibes.fr · uvibes.fr
+            Eclat&apos;Ens · eclatens@gmail.com · uvibes.fr
           </Text>
         </View>
 
         {/* Footer */}
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>Uvibes · uvibes.fr</Text>
+          <Text style={styles.footerText}>Eclat&apos;Ens · uvibes.fr</Text>
           <Text style={styles.footerText}>Devis {quote.numero}</Text>
         </View>
       </Page>
@@ -382,8 +432,24 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           <Text style={styles.legalDocTitle}>{d.titre}</Text>
           <Text style={styles.legalDocVersion}>Version du {d.version}</Text>
           {renderLegalBlocks(d.contenu)}
+
+          {/* Signature du client — en bas de chaque document légal */}
+          <View style={styles.legalSign} wrap={false}>
+            <View style={styles.legalSignCol}>
+              <Text style={styles.legalSignLabel}>Signature du client</Text>
+              <Text style={styles.legalSignMention}>(précédée de la mention «&nbsp;Bon pour accord&nbsp;»)</Text>
+              {quote.signedByName ? <Text style={styles.legalSignName}>{quote.signedByName}</Text> : null}
+              {quote.signedByRole ? <Text style={styles.legalSignMeta}>{quote.signedByRole}</Text> : null}
+              {quote.signedAt ? <Text style={styles.legalSignMeta}>Le {new Date(quote.signedAt).toLocaleDateString("fr-FR")}</Text> : null}
+            </View>
+            {quote.signatureData ? (
+              // eslint-disable-next-line jsx-a11y/alt-text
+              <Image src={quote.signatureData} style={styles.legalSignImg} />
+            ) : null}
+          </View>
+
           <View style={styles.footer} fixed>
-            <Text style={styles.footerText}>Uvibes · uvibes.fr</Text>
+            <Text style={styles.footerText}>Eclat&apos;Ens · uvibes.fr</Text>
             <Text style={styles.footerText}>Devis {quote.numero}</Text>
           </View>
         </Page>
