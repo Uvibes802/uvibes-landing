@@ -15,21 +15,21 @@ const PLAN_META = [
     featured: false,
     badge: null,
     inherit: null,
-    cta: "Faire un devis",
+    cta: "Faire votre devis",
   },
   {
     accent: "var(--rose)",
     featured: true,
     badge: "Le plus populaire",
     inherit: "vibes premium",
-    cta: "Faire un devis",
+    cta: "Faire votre devis",
   },
   {
     accent: "#FFB800",
     featured: false,
     badge: null,
     inherit: "vibes connection",
-    cta: "Faire un devis",
+    cta: "Faire votre devis",
   },
 ];
 
@@ -108,7 +108,7 @@ export default function PricingTable() {
                 {/* Prix */}
                 <div className="pt-card-price">
                   <span className="pt-card-price-value v-prompt">{plan.price}</span>
-                  <span className="v-mono pt-card-price-note">HT / an · indicatif jusqu&apos;à 1 000 utilisateurs</span>
+                  <span className="v-mono pt-card-price-note">Prix HT / an</span>
                 </div>
 
                 {/* CTA — les 3 offres mènent au devis */}

@@ -213,21 +213,9 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #FD6E00;
-  /* Néon pulsant (matching la 4e offre) */
-  animation: ptNeonName 3.4s ease-in-out infinite;
+  /* Effet brillant/néon retiré → réservé à la carte de l'offre découverte */
 }
-.pt-card--featured .pt-card-name { color: #fff; animation-name: ptNeonNameLight; }
-@keyframes ptNeonName {
-  0%, 100% { text-shadow: 0 0 9px rgba(253,110,0,.30), 0 0 20px rgba(217,10,92,.15); }
-  50%      { text-shadow: 0 0 15px rgba(253,110,0,.55), 0 0 32px rgba(217,10,92,.35); }
-}
-@keyframes ptNeonNameLight {
-  0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,.45), 0 0 22px rgba(255,228,86,.25); }
-  50%      { text-shadow: 0 0 16px rgba(255,255,255,.7), 0 0 36px rgba(255,228,86,.5); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .pt-card-name { animation: none; }
-}
+.pt-card--featured .pt-card-name { color: #fff; }
 
 .pt-card-desc {
   margin: 0.75rem 0 0;
