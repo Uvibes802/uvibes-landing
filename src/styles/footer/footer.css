@@ -119,7 +119,7 @@
 }
 
 /* ── Nav colonnes ─────────────────────────────────────────────── */
-.ft-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.ft-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 
 .ft-nav-col { display: flex; flex-direction: column; gap: 0.8rem; }
 
@@ -145,7 +145,7 @@
 /* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .ft-top { grid-template-columns: 1fr; gap: 2rem; }
-  .ft-nav { grid-template-columns: repeat(3, 1fr); }
+  .ft-nav { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
   .ft-nav { grid-template-columns: 1fr 1fr; gap: 1.25rem; }

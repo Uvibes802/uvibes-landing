@@ -157,8 +157,8 @@ export default function BookingForm() {
           </div>
 
           <div className="rdv-field">
-            <label className="rdv-label" htmlFor="rdv-org">Organisation</label>
-            <input id="rdv-org" className="rdv-input" value={organisation} onChange={(e) => setOrganisation(e.target.value)} placeholder="Nom de votre collectif" />
+            <label className="rdv-label" htmlFor="rdv-org">Nom de votre organisation *</label>
+            <input id="rdv-org" className="rdv-input" value={organisation} onChange={(e) => setOrganisation(e.target.value)} required placeholder="Nom de votre organisation" />
           </div>
 
           <div className="rdv-field">

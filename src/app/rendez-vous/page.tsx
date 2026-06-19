@@ -15,10 +15,10 @@ export default function RdvPage() {
         <div className="rdv-header">
           <span className="rdv-eyebrow">· Rendez-vous ·</span>
           <h1 className="rdv-title">
-            On en parle ?
+            Parlons de votre projet
           </h1>
           <p className="rdv-subtitle">
-            Choisissez un créneau disponible. Nous confirmons dans les 24h.
+            Choisissez le créneau qui vous convient et indiquez les informations utiles à l&apos;organisation de notre échange.
           </p>
         </div>
         <BookingForm />

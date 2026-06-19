@@ -126,7 +126,7 @@ export default function FormContact() {
       <div className="fc-checks">
         <label className="fc-check-label">
           <input type="checkbox" required {...register("share")} />
-          <span>Je souhaite partager mes informations avec Uvibes</span>
+          <span>Je souhaite partager mes informations avec Uvibes et être recontacté.e</span>
         </label>
       </div>
 
@@ -137,7 +137,7 @@ export default function FormContact() {
           <span className="fc-newsletter-body">
             <span className="fc-newsletter-title">📬 Recevoir nos meilleures idées avec la newsletter</span>
             <span className="fc-newsletter-sub">
-              Conseils lien social, soft skills &amp; retours d&apos;expérience de collectifs — 1 email par mois, zéro spam.
+              Actualités intéressant votre organisation, retours d&apos;expérience d&apos;utilisateurs, astuces soft skills – 1 email par mois, zéro spam.
             </span>
           </span>
         </label>
