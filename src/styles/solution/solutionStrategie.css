@@ -133,10 +133,28 @@
   font-size: clamp(18px, 2vw, 24px);
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #1a1a2e;
+  color: var(--str-c, #FD6E00);
   font-family: var(--font-prompt), sans-serif;
 }
-.str-card--flash .str-card-title { color: var(--orange); }
+/* Couleur d'accent par brique → harmonise + retire le « noir triste » */
+.str-card--flash      { --str-c: #FD6E00; }
+.str-card--barometre  { --str-c: #E6007E; }
+.str-card--pilotage   { --str-c: #00AFDD; }
+.str-card--barometre .str-num { color: rgba(230,0,126,.55); }
+.str-card--pilotage  .str-num { color: rgba(0,175,221,.6); }
+
+/* Bandeaux d'accent colorés en haut des briques (comme la carte vedette) */
+.str-card--barometre, .str-card--pilotage { overflow: hidden; }
+.str-card--barometre::before, .str-card--pilotage::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  border-radius: 24px 24px 0 0;
+}
+.str-card--barometre::before { background: linear-gradient(90deg, #E6007E, #FD6E00); }
+.str-card--pilotage::before  { background: linear-gradient(90deg, #00AFDD, #E6007E); }
+
 .str-card-body {
   margin: 0;
   font-size: clamp(13.5px, 1.1vw, 15px);

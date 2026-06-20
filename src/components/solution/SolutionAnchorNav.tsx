@@ -6,8 +6,9 @@ import "@/styles/solution/anchorNav.css";
 const links = [
   { href: "#comment", label: "Processus", index: "01" },
   { href: "#themes", label: "Thématiques", index: "02" },
-  { href: "#soft-skills", label: "Soft skills", index: "03" },
-  { href: "#fonctionnalites", label: "Résultats", index: "04" },
+  { href: "#strategie", label: "Stratégie", index: "03" },
+  { href: "#soft-skills", label: "Soft skills", index: "04" },
+  { href: "#fonctionnalites", label: "Résultats", index: "05" },
 ];
 
 const sectionIds = links.map((l) => l.href.slice(1));

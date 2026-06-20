@@ -149,7 +149,9 @@ export default function HomeHero() {
         <div className="hero-after">
           <Reveal delay={180}>
             <p className="hero-sub">
-              {t("hero-sub", "Les bonnes conversations ne s'improvisent pas. Elles se créent.")}
+              {t("hero-sub", "Les bonnes conversations ne s'improvisent pas.")}
+              <br />
+              {t("hero-sub-2", "Elles se créent.")}
             </p>
           </Reveal>
 
