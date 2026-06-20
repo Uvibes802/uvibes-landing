@@ -189,10 +189,15 @@
   color: #8a3050;
   opacity: 0;
   transform: translateY(8px) scale(0.96);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .str-vis .str-chip {
   animation: strChipIn 0.45s ease forwards;
   animation-delay: calc(0.3s + var(--ci) * 0.045s);
+}
+.str-chip:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 14px -6px rgba(217,10,92,.35);
 }
 @keyframes strChipIn { to { opacity: 1; transform: none; } }
 .str-chip:nth-child(3n)   { background: color-mix(in srgb, var(--rose) 9%, #fff); }

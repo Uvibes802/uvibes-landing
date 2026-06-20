@@ -1,3 +1,6 @@
+"use client";
+
+import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "@/styles/solution/proofBar.css";
 
@@ -20,8 +23,10 @@ const items = [
 ];
 
 export default function SolutionProofBar() {
+  const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.2 });
+
   return (
-    <section className="proof-bar">
+    <section className={`proof-bar${vis ? " proof-bar--vis" : ""}`} ref={ref}>
       <div className="proof-bar__bg" aria-hidden="true">
         <VibrationLine
           width={1800}
@@ -36,7 +41,7 @@ export default function SolutionProofBar() {
 
       <div className="proof-bar__grid">
         {items.map((item, i) => (
-          <div key={i} className="proof-bar__item">
+          <div key={i} className="proof-bar__item" style={{ "--pb-i": i } as React.CSSProperties}>
             <span className="proof-bar__stat v-prompt">{item.stat}</span>
             <p className="proof-bar__label">{item.label}</p>
             <span className="proof-bar__source v-mono">{item.source}</span>
