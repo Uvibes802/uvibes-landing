@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
+// Le toggle admin (devis-disabled) doit être lu à chaque requête, pas figé au build.
+export const dynamic = "force-dynamic";
+
 export default async function DevisPage() {
   const setting = await prisma.cmsContent.findUnique({ where: { cle: "devis-disabled" } });
   const devisDisabled = setting?.valeur === "true";
