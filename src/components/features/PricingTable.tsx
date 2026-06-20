@@ -4,6 +4,7 @@ import { ArrowRight, Check, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
+import { useDevisStatus } from "@/hooks/useDevisStatus";
 import OffreEvenementielle from "./OffreEvenementielle";
 
 import "../../styles/features/PricingTable.css";
@@ -58,6 +59,7 @@ export default function PricingTable() {
   // Tranches de tarification (4 tranches éditables en admin) — affichées au dépli
   const [apiPlans, setApiPlans] = useState<PlanApi[]>([]);
   const [openTiers, setOpenTiers] = useState<string | null>(null);
+  const { devisEnabled } = useDevisStatus();
   useEffect(() => {
     fetch("/api/plans").then((r) => r.json()).then(setApiPlans).catch(() => {});
   }, []);
@@ -158,12 +160,19 @@ export default function PricingTable() {
                   );
                 })()}
 
-                {/* CTA — les 3 offres mènent au devis */}
+                {/* CTA — les 3 offres mènent au devis (masqué si désactivé par l'admin) */}
                 <div className="pt-card-cta-wrap">
-                  <Link href="/devis" className="pt-card-cta">
-                    {meta.cta}
-                    <ArrowRight size={16} />
-                  </Link>
+                  {devisEnabled ? (
+                    <Link href="/devis" className="pt-card-cta">
+                      {meta.cta}
+                      <ArrowRight size={16} />
+                    </Link>
+                  ) : (
+                    <Link href="/rendez-vous" className="pt-card-cta">
+                      Nous contacter
+                      <ArrowRight size={16} />
+                    </Link>
+                  )}
                 </div>
 
                 {/* Label héritage */}

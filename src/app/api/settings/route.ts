@@ -26,6 +26,8 @@ const PUBLIC_KEYS = [
   // Section « Petite structure »
   "soc-text",
   "soc-cta",
+  // Désactivation temporaire des devis (admin)
+  "devis-disabled",
 ];
 
 export async function GET() {

@@ -12,6 +12,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Trop de demandes — réessayez plus tard." }, { status: 429 });
     }
 
+    // Garde serveur : refuse la création si les devis sont désactivés par l'admin
+    // (en complément du masquage UI, pour empêcher tout contournement via appel direct à l'API)
+    const devisDisabled = (await prisma.cmsContent.findUnique({ where: { cle: "devis-disabled" } }))?.valeur === "true";
+    if (devisDisabled) {
+      return NextResponse.json({ error: "Les demandes de devis sont temporairement suspendues." }, { status: 403 });
+    }
+
     const body = await req.json();
     const {
       // Infos collectif

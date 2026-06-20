@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import VibrationLine from "@/components/shared/VibrationLine";
+import { useDevisStatus } from "@/hooks/useDevisStatus";
 import "@/styles/tarifs/tarifsHero.css";
 
 // Particules flottantes (déco) — mêmes teintes que la page Méthode
@@ -21,6 +22,7 @@ const PARTICLES: Particle[] = [
 ];
 
 export default function TarifsHero() {
+  const { devisEnabled } = useDevisStatus();
   return (
     <section className="th-section" aria-label="Tarifs et offres Uvibes">
       {/* Décor animé (même esprit que la page Méthode) : blobs doux + particules */}
@@ -67,9 +69,11 @@ export default function TarifsHero() {
         </p>
 
         <div className="th-ctas">
-          <Link href="/devis" className="btn-brand th-cta-primary">
-            Faire un devis →
-          </Link>
+          {devisEnabled && (
+            <Link href="/devis" className="btn-brand th-cta-primary">
+              Faire un devis →
+            </Link>
+          )}
           <Link href="#offres" className="th-cta-ghost">
             Comparer les offres
           </Link>

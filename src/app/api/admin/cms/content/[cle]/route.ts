@@ -11,6 +11,11 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ cle
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ cle: string }> }) {
   const { cle } = await params;
   const { valeur } = await req.json();
-  const item = await prisma.cmsContent.update({ where: { cle }, data: { valeur } });
+  // upsert : crée la clé si elle n'existe pas encore (ex. nouveaux toggles ajoutés après le seed)
+  const item = await prisma.cmsContent.upsert({
+    where: { cle },
+    create: { cle, label: cle, valeur },
+    update: { valeur },
+  });
   return NextResponse.json(item);
 }

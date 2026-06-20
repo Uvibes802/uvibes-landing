@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import SignaturePad from "./SignaturePad";
 import { LEGAL_DOCS, requiredDocsForPlan } from "@/lib/legalDocs";
+import { useDevisStatus } from "@/hooks/useDevisStatus";
 import "@/styles/devis/devis.css";
 
 interface Feature { slug: string; nom: string; inclus: boolean; }
@@ -40,6 +41,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
   const [statut, setStatut] = useState(quote.statut);
   const [pdfPath, setPdfPath] = useState(quote.pdfPath);
   const [signingLoading, setSigningLoading] = useState(false);
+  const { devisEnabled } = useDevisStatus();
   const [signedName, setSignedName] = useState(quote.signedByName ?? "");
 
   // Code promo
@@ -240,7 +242,14 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
             </div>
           ) : isExpired ? (
             <div style={{ padding: 20, background: "rgba(176,80,126,.08)", borderRadius: 12, textAlign: "center" }}>
-              <p style={{ color: "var(--ink-3)", margin: 0 }}>Ce devis a expiré. <Link href="/devis" style={{ color: "var(--orange)" }}>Demander un nouveau devis →</Link></p>
+              <p style={{ color: "var(--ink-3)", margin: 0 }}>
+                Ce devis a expiré.{" "}
+                {devisEnabled ? (
+                  <Link href="/devis" style={{ color: "var(--orange)" }}>Demander un nouveau devis →</Link>
+                ) : (
+                  <Link href="/rendez-vous" style={{ color: "var(--orange)" }}>Nous contacter →</Link>
+                )}
+              </p>
             </div>
           ) : (
             <>

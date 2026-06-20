@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
+import { useDevisStatus } from "@/hooks/useDevisStatus";
 import "@/styles/features/offreEvenementielle.css";
 
 interface Point { label: string; detail: string; bonus?: boolean }
@@ -43,6 +44,7 @@ export default function OffreEvenementielle() {
   const [ref, vis] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.08 });
   const [open, setOpen] = useState(false);
   const [c, setC] = useState(DEFAULTS);
+  const { devisEnabled } = useDevisStatus();
   // Compteur animé du prix (count-up quand la carte s'ouvre)
   const [animPrice, setAnimPrice] = useState(0);
 
@@ -139,9 +141,11 @@ export default function OffreEvenementielle() {
             {/* CTA */}
             <div className="oe-cta-block">
               <div className="oe-ctas">
-                <Link href="/devis" className="btn-brand oe-cta-primary">
-                  Faire un devis →
-                </Link>
+                {devisEnabled && (
+                  <Link href="/devis" className="btn-brand oe-cta-primary">
+                    Faire un devis →
+                  </Link>
+                )}
                 <Link href="/#contact" className="oe-cta-ghost">
                   Nous contacter
                 </Link>

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import DevisToggle from "@/components/admin/DevisToggle";
 
 const STATUT_BADGE: Record<string, string> = {
   BROUILLON: "--brouillon", ENVOYE: "--envoye", VU: "--envoye",
@@ -39,6 +40,7 @@ export default async function DevisListPage({ searchParams }: Props) {
   ]);
 
   const pages = Math.ceil(total / limit);
+  const devisDisabled = (await prisma.cmsContent.findUnique({ where: { cle: "devis-disabled" } }))?.valeur === "true";
 
   return (
     <>
@@ -48,6 +50,11 @@ export default async function DevisListPage({ searchParams }: Props) {
       </div>
 
       <div className="crm-content">
+        <div className="crm-detail-card" style={{ marginBottom: 20 }}>
+          <p className="crm-detail-section-title">Demandes de devis depuis le site</p>
+          <DevisToggle active={devisDisabled} />
+        </div>
+
         <div className="crm-table-wrap">
           <div className="crm-table-header">
             <form style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
