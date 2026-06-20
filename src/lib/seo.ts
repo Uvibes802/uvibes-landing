@@ -53,6 +53,26 @@ export const PAGE_SEO: Record<string, PageSeoConfig> = {
       "Comparez les offres Uvibes (Connection, Premium, Boost) et l'offre découverte 30 jours. Choisissez le plan adapté à votre collectif et demandez votre devis.",
     path: "/tarifs",
   },
+  "mentions-legales": {
+    title: "Mentions légales | Uvibes",
+    description: "Mentions légales du site Uvibes : éditeur, hébergeur et informations légales.",
+    path: "/mentions-legales",
+  },
+  "conditions-d-utilisation": {
+    title: "Conditions générales d'utilisation | Uvibes",
+    description: "Conditions générales d'utilisation du site et des services Uvibes.",
+    path: "/conditions-d-utilisation",
+  },
+  "politique-de-confidentialite": {
+    title: "Politique de confidentialité | Uvibes",
+    description: "Politique de confidentialité et protection des données personnelles sur Uvibes.",
+    path: "/politique-de-confidentialite",
+  },
+  "politique-cookies": {
+    title: "Politique de cookies | Uvibes",
+    description: "Politique de gestion des cookies utilisés sur le site Uvibes.",
+    path: "/politique-cookies",
+  },
 };
 
 export function buildMetadata(page: keyof typeof PAGE_SEO): Metadata {
