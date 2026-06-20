@@ -5,7 +5,8 @@ import { useState } from "react";
 
 interface Feature { id: string; slug: string; nom: string; ordre: number; }
 interface PlanFeature { id: string; featureId: string; valeur: boolean; feature: Feature; }
-interface Plan { id: string; slug: string; nom: string; couleur: string; description: string; prixAnnuel: number; mention: string | null; planFeatures: PlanFeature[]; }
+interface PlanTier { id: string; label: string; min: number; max: number | null; prixAnnuel: number; }
+interface Plan { id: string; slug: string; nom: string; couleur: string; description: string; prixAnnuel: number; mention: string | null; planFeatures: PlanFeature[]; tiers: PlanTier[]; }
 
 export default function TarificationManager({ plans: initial }: { plans: Plan[] }) {
   const [plans, setPlans] = useState(initial);
@@ -17,6 +18,13 @@ export default function TarificationManager({ plans: initial }: { plans: Plan[] 
 
   function updatePlan(planId: string, key: string, value: unknown) {
     setPlans((prev) => prev.map((p) => p.id === planId ? { ...p, [key]: value } : p));
+  }
+
+  function updateTierPrice(planId: string, tierId: string, prix: number) {
+    setPlans((prev) => prev.map((p) => {
+      if (p.id !== planId) return p;
+      return { ...p, tiers: p.tiers.map((t) => t.id === tierId ? { ...t, prixAnnuel: prix } : t) };
+    }));
   }
 
   function toggleFeature(planId: string, featureId: string) {
@@ -43,6 +51,7 @@ export default function TarificationManager({ plans: initial }: { plans: Plan[] 
           prixAnnuel: Number(plan.prixAnnuel),
           mention: plan.mention,
           features: plan.planFeatures.map((pf) => ({ featureId: pf.featureId, valeur: pf.valeur })),
+          tiers: plan.tiers.map((t) => ({ id: t.id, prixAnnuel: Number(t.prixAnnuel) })),
         }),
       });
       setSaved((s) => ({ ...s, [plan.id]: true }));
@@ -148,9 +157,27 @@ export default function TarificationManager({ plans: initial }: { plans: Plan[] 
             </div>
 
             <div className="crm-field-row">
-              <label className="crm-field-label">Prix annuel HT (€)</label>
+              <label className="crm-field-label">Prix annuel HT (€) — si pas de tranches</label>
               <input type="number" className="crm-field-input" value={plan.prixAnnuel} onChange={(e) => updatePlan(plan.id, "prixAnnuel", Number(e.target.value))} />
             </div>
+
+            {plan.tiers.length > 0 && (
+              <div style={{ marginTop: 4, marginBottom: 8 }}>
+                <p className="crm-detail-section-title">Tarif par tranche de membres (HT / an)</p>
+                {plan.tiers.map((t) => (
+                  <div key={t.id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 0" }}>
+                    <span style={{ fontSize: 12, color: "var(--crm-muted)", flex: 1 }}>{t.label}</span>
+                    <input
+                      type="number"
+                      className="crm-field-input"
+                      style={{ width: 100 }}
+                      value={t.prixAnnuel}
+                      onChange={(e) => updateTierPrice(plan.id, t.id, Number(e.target.value))}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div className="crm-field-row">
               <label className="crm-field-label">Mention prix</label>

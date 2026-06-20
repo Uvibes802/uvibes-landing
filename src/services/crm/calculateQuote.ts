@@ -24,6 +24,7 @@ export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
     where: { slug: input.planSlug },
     include: {
       planFeatures: { include: { feature: true }, orderBy: { feature: { ordre: "asc" } } },
+      tiers: { orderBy: { ordre: "asc" } },
     },
   });
 
@@ -37,9 +38,15 @@ export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
     ? (input.remise ?? 0)
     : Math.max(remiseDuree(input.dureeContrat), input.remise ?? 0);
 
+  // Prix de base selon la tranche de membres (4 tranches éditables en admin) ;
+  // si le plan n'a pas de tranches définies (ex. offre découverte), on garde le prix fixe.
+  const n = input.nombreUtilisateurs;
+  const tier = plan.tiers.find((t) => n >= t.min && (t.max === null || n < t.max));
+  const prixAnnuelBase = tier ? tier.prixAnnuel : plan.prixAnnuel;
+
   // Prix base * durée en années
   const dureeAns = input.dureeContrat / 12;
-  const prixBrut = plan.prixAnnuel * dureeAns;
+  const prixBrut = prixAnnuelBase * dureeAns;
   const prixHT = Math.round(prixBrut * (1 - remise / 100) * 100) / 100;
   const prixTTC = Math.round(prixHT * 1.2 * 100) / 100;
 
@@ -56,7 +63,7 @@ export async function calculateQuote(input: QuoteInput): Promise<QuoteResult> {
       nom: pf.feature.nom,
       inclus: pf.valeur,
     })),
-    prixAnnuelBase: plan.prixAnnuel,
+    prixAnnuelBase,
     prixHT,
     prixTTC,
     remise,

@@ -164,6 +164,23 @@ model Plan {
   ordre       Int     @default(0)
 
   planFeatures PlanFeature[]
+  tiers        PlanTier[]
+}
+
+// Tarification par tranche de membres (4 tranches) — éditable en admin.
+// Un plan sans tiers (ex. offre découverte) garde son prixAnnuel fixe.
+model PlanTier {
+  id         String @id @default(cuid())
+  planId     String
+  label      String // ex. "50 – 250 membres"
+  min        Int
+  max        Int? // null = pas de plafond (dernière tranche : "+ 10 000")
+  prixAnnuel Float
+  ordre      Int    @default(0)
+
+  plan Plan @relation(fields: [planId], references: [id], onDelete: Cascade)
+
+  @@index([planId])
 }
 
 model Feature {

@@ -9,6 +9,7 @@ export default async function TarificationPage() {
         include: { feature: true },
         orderBy: { feature: { ordre: "asc" } },
       },
+      tiers: { orderBy: { ordre: "asc" } },
     },
   });
   return (

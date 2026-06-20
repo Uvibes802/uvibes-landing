@@ -254,6 +254,43 @@
 }
 .pt-card--featured .pt-card-price-note { color: rgba(255,255,255,.6); }
 
+/* Tarif selon la taille — bloc dépliable */
+.pt-card-tiers { margin-top: 0.6rem; }
+.pt-card-tiers-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-roboto-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--pt-accent, #FD6E00);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.pt-card--featured .pt-card-tiers-toggle { color: #fff; }
+.pt-card-tiers-toggle:hover { opacity: 0.8; }
+.pt-card-tiers-list {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  animation: ptTiersIn 0.3s ease both;
+}
+@keyframes ptTiersIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.pt-card-tiers-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11.5px;
+  color: #6b4455;
+}
+.pt-card--featured .pt-card-tiers-list li { color: rgba(255,255,255,.85); }
+.pt-card-tiers-list li span:last-child { font-weight: 700; color: var(--pt-accent, #FD6E00); }
+.pt-card--featured .pt-card-tiers-list li span:last-child { color: #fff; }
+
 /* ── CTA ──────────────────────────────────────────────────────── */
 .pt-card-cta-wrap { margin-top: 1.5rem; }
 

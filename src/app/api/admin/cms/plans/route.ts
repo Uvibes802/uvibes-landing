@@ -9,6 +9,7 @@ export async function GET() {
         include: { feature: true },
         orderBy: { feature: { ordre: "asc" } },
       },
+      tiers: { orderBy: { ordre: "asc" } },
     },
   });
   return NextResponse.json(plans);

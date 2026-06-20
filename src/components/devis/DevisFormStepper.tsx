@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "@/styles/devis/devis.css";
 
 const TYPES_COLLECTIF = [
@@ -14,12 +14,23 @@ const TYPES_COLLECTIF = [
   "Structure d'insertion professionnelle", "Structure d'habitat", "Autre",
 ];
 
+// Tranches alignées sur les PlanTier en base (repValue = effectif envoyé à l'API
+// pour que le bon tarif soit sélectionné par calculateQuote).
 const TAILLES = [
-  { value: "50-250", label: "50 – 250 membres" },
-  { value: "250-1000", label: "250 – 1 000 membres" },
-  { value: "1000-10000", label: "1 000 – 10 000 membres" },
-  { value: "+10000", label: "+ 10 000 membres" },
+  { value: "50-250", label: "50 – 250 membres", repValue: 50 },
+  { value: "250-2000", label: "250 – 2 000 membres", repValue: 250 },
+  { value: "2000-10000", label: "2 000 – 10 000 membres", repValue: 2000 },
+  { value: "+10000", label: "+ 10 000 membres", repValue: 10000 },
 ];
+
+interface PlanTierApi { label: string; min: number; max: number | null; prixAnnuel: number; }
+interface PlanApi { slug: string; nom: string; prixAnnuel: number; tiers: PlanTierApi[]; }
+
+function tierPriceFor(plan: PlanApi | undefined, n: number): number | null {
+  if (!plan) return null;
+  const tier = plan.tiers.find((t) => n >= t.min && (t.max === null || n < t.max));
+  return tier ? tier.prixAnnuel : (plan.tiers.length ? null : plan.prixAnnuel);
+}
 
 const USAGES = [
   { slug: "echanges-conversationnels", label: "Échanges conversationnels" },
@@ -104,7 +115,7 @@ export default function DevisFormStepper() {
     tailleCollectif: "50-250",
     planSlug: "vibes-boost",
     dureeContrat: 12,
-    nombreUtilisateurs: 100,
+    nombreUtilisateurs: TAILLES[0].repValue,
     usagesPrevus: ["echanges-conversationnels"],
     besoinsNotes: "",
     nom: "",
@@ -119,9 +130,19 @@ export default function DevisFormStepper() {
   // Offre dont les fonctionnalités sont dépliées (pour voir le contenu)
   const [openPlan, setOpenPlan] = useState<string | null>(null);
 
+  // Plans + tranches de tarification (prix live selon la tranche sélectionnée)
+  const [apiPlans, setApiPlans] = useState<PlanApi[]>([]);
+  useEffect(() => {
+    fetch("/api/plans").then((r) => r.json()).then(setApiPlans).catch(() => {});
+  }, []);
+
   const set = (key: keyof FormData, val: unknown) => {
     setForm((f) => ({ ...f, [key]: val }));
     setErrors((e) => ({ ...e, [key]: undefined }));
+  };
+
+  const selectTaille = (t: typeof TAILLES[number]) => {
+    setForm((f) => ({ ...f, tailleCollectif: t.value, nombreUtilisateurs: t.repValue }));
   };
 
   const toggleUsage = (slug: string) => {
@@ -252,7 +273,7 @@ export default function DevisFormStepper() {
                   key={t.value}
                   type="button"
                   className={`dv-duree-btn${form.tailleCollectif === t.value ? " --active" : ""}`}
-                  onClick={() => set("tailleCollectif", t.value)}
+                  onClick={() => selectTaille(t)}
                 >
                   <div className="dv-duree-months" style={{ fontSize: 14 }}>{t.label}</div>
                 </button>
@@ -267,6 +288,11 @@ export default function DevisFormStepper() {
             <div className="dv-plans">
               {PLANS.filter((p) => !p.trial).map((p) => {
                 const open = openPlan === p.slug;
+                const apiPlan = apiPlans.find((ap) => ap.slug === p.slug);
+                const livePrice = tierPriceFor(apiPlan, form.nombreUtilisateurs);
+                const priceLabel = livePrice != null
+                  ? `${livePrice.toLocaleString("fr-FR")} €/an`
+                  : p.price;
                 return (
                 <div
                   key={p.slug}
@@ -274,7 +300,7 @@ export default function DevisFormStepper() {
                   onClick={() => selectPlan(p.slug)}
                 >
                   <div className="dv-plan-name">{p.nom}</div>
-                  <div className="dv-plan-price" style={{ fontSize: 13 }}>{p.price} <span className="dv-plan-ht">HT</span></div>
+                  <div className="dv-plan-price" style={{ fontSize: 13 }}>{priceLabel} <span className="dv-plan-ht">HT</span></div>
                   {/* La description disparaît quand on affiche le contenu de l'offre */}
                   {!open && <div className="dv-plan-desc">{p.desc}</div>}
                   {open && (

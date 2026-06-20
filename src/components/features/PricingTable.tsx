@@ -2,11 +2,22 @@
 
 import { ArrowRight, Check, X } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import OffreEvenementielle from "./OffreEvenementielle";
 
 import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
+
+interface PlanTierApi { label: string; min: number; max: number | null; prixAnnuel: number; }
+interface PlanApi { slug: string; tiers: PlanTierApi[]; }
+
+// PricingData n'a pas de slug — on le déduit du nom pour relier aux tranches en base.
+const SLUG_BY_NAME: Record<string, string> = {
+  "VIBES CONNECTION": "vibes-connection",
+  "VIBES BOOST": "vibes-boost",
+  "VIBES PREMIUM": "vibes-premium",
+};
 
 // Ordre : Connection, Boost (populaire, au centre), Premium. Les 3 CTA mènent au devis.
 const PLAN_META = [
@@ -43,6 +54,13 @@ const FRESH: Record<number, (i: number) => boolean> = {
 export default function PricingTable() {
   // Prix de référence : statiques (tableau validé par la tutrice), cf. PricingData.ts
   const mergedPlans = plans;
+
+  // Tranches de tarification (4 tranches éditables en admin) — affichées au dépli
+  const [apiPlans, setApiPlans] = useState<PlanApi[]>([]);
+  const [openTiers, setOpenTiers] = useState<string | null>(null);
+  useEffect(() => {
+    fetch("/api/plans").then((r) => r.json()).then(setApiPlans).catch(() => {});
+  }, []);
 
   return (
     <section
@@ -110,6 +128,35 @@ export default function PricingTable() {
                   <span className="pt-card-price-value v-prompt">{plan.price}</span>
                   <span className="v-mono pt-card-price-note">Prix HT / an</span>
                 </div>
+
+                {/* Tarif selon la taille — 4 tranches éditables en admin */}
+                {(() => {
+                  const slug = SLUG_BY_NAME[plan.name];
+                  const tiers = apiPlans.find((ap) => ap.slug === slug)?.tiers ?? [];
+                  if (!tiers.length) return null;
+                  const open = openTiers === slug;
+                  return (
+                    <div className="pt-card-tiers">
+                      <button
+                        type="button"
+                        className="pt-card-tiers-toggle"
+                        onClick={() => setOpenTiers(open ? null : slug)}
+                      >
+                        {open ? "Masquer les tarifs par taille" : "Voir les tarifs par taille"}
+                      </button>
+                      {open && (
+                        <ul className="pt-card-tiers-list">
+                          {tiers.map((t) => (
+                            <li key={t.label}>
+                              <span>{t.label}</span>
+                              <span>{t.prixAnnuel.toLocaleString("fr-FR")} €</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 {/* CTA — les 3 offres mènent au devis */}
                 <div className="pt-card-cta-wrap">

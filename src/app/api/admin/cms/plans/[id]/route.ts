@@ -17,6 +17,16 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
     }
   }
 
+  // Mise à jour des tranches de tarification (tableau [{id, prixAnnuel}])
+  if (body.tiers) {
+    for (const t of body.tiers as { id: string; prixAnnuel: number }[]) {
+      await prisma.planTier.update({
+        where: { id: t.id },
+        data: { prixAnnuel: t.prixAnnuel },
+      });
+    }
+  }
+
   const allowed = ["nom", "description", "prixAnnuel", "mention", "actif", "couleur"];
   const data: Record<string, unknown> = {};
   for (const key of allowed) {
