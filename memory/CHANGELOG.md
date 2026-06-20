@@ -2,6 +2,46 @@
 
 ---
 
+## 2026-06-20 — Observations tutrice + tarification 4 tranches + désactivation devis + audits — branche feat/missions-falek
+
+Build OK (77 pages, exit 0), vérif Playwright desktop + tablette (768px). 13 commits.
+
+### Observations tutrice (PDF « Observations dernière version site web »)
+1. Retour à la ligne sur « Les bonnes conversations ne s'improvisent pas. / Elles se créent. » (hero accueil).
+2. Cartes Passeport : les affiches sont remises en **forme réelle** (portrait, `object-fit: contain`, plus de crop 16/11) + grille plus compacte (colonnes 208px). **Impact :** le charme des affiches est restauré, comme demandé.
+3. Section Stratégie harmonisée : titres des briques **colorés par accent** (orange / rose / bleu) + bandeaux dégradés en haut de chaque carte — fini le « noir et triste ».
+4. Onglet **« Stratégie »** ajouté dans la nav de la page méthode (entre Thématiques et Soft skills, 5 onglets au total).
+
+### Tarification par tranche (4 tranches, demande tutrice + PDF échange)
+- Nouveau modèle **`PlanTier`** (Prisma) : 4 tranches par offre annuelle (50–250 / 250–2 000 / 2 000–10 000 / +10 000), valeurs exactes du tableau tutrice, seedées via `prisma/seedPlanTiers.ts`.
+- **`calculateQuote`** sélectionne automatiquement le bon tarif selon `nombreUtilisateurs`.
+- **Admin** (`/admin/cms/tarification`) : prix de chaque tranche éditables et sauvegardables par plan.
+- **API publique `/api/plans`** : expose les plans + tranches (consommée côté client).
+- **Funnel devis** : le prix affiché sur les 3 cartes d'offre se met à jour **en direct** selon la tranche de taille sélectionnée (vérifié : 2 000–10 000 → 4 500 / 6 500 / 5 500 €, conforme au tableau tutrice).
+- **Page /tarifs** : bouton « Voir les tarifs par taille » sous chaque offre, déplie les 4 tranches.
+- Le **PDF de devis** reflète déjà le bon prix de tranche (calcul centralisé dans `calculateQuote`, aucune modif PDF nécessaire).
+
+### Désactivation des devis (demande : « il faudrait que je puisse depuis mon dashboard désactiver les devis »)
+- Toggle admin (`/admin/devis`, composant `DevisToggle`) — stocké en base (`CmsContent.devis-disabled`, fiable en prod, contrairement à un toggle fichier).
+- Quand désactivé : **boutons « Faire un devis » masqués** sur `/tarifs`, `OffreEvenementielle`, `TarifsHero` (remplacés par un lien de contact) ; page `/devis` affiche un message de suspension à la place du formulaire ; **garde serveur** sur `/api/devis/creer` (refuse même en appel direct à l'API).
+- Page `/devis` passée en **rendu dynamique** (`force-dynamic`) — corrige un échec de build où Next tentait de pré-rendre la page au build avec une requête DB (le toggle doit être lu en temps réel, pas figé à la compilation).
+
+### Audits
+- **Sécurité** : vérifié `escapeHtml` déjà appliqué sur tous les champs utilisateur injectés dans les emails (RDV, contact, devis, promo) ; aucun secret exposé côté client (`NEXT_PUBLIC_*` tous non-sensibles) ; seul `dangerouslySetInnerHTML` restant est le contenu blog (source WordPress admin-only, pas une entrée utilisateur).
+- **SEO** : 4 pages légales (mentions, CGU, confidentialité, cookies) n'avaient **aucune métadonnée** (title/description par défaut Next.js) → ajoutées via `buildMetadata`. **Impact :** ces 4 pages étaient invisibles/mal indexées par Google, elles ont maintenant un titre et une description dédiés.
+- **Accessibilité** : vérifié — aucune balise `<Image>` sans `alt` (parsing exhaustif), boutons interactifs tous accessibles (texte visible ou `aria-hidden` correctement scoping sur un parent `role="button"`), pas de suppression globale du focus clavier.
+- **Responsive tablette (768px)** : vérifié sur /solution (5 onglets, bento Stratégie empilé proprement) et /devis (3 offres + 4 tranches lisibles) — aucun débordement.
+
+### Animations complémentaires
+- ProofBar (chiffres clés) : reveal séquencé au scroll.
+- Chips de thématiques (Stratégie) : hover avec léger soulèvement.
+- Cartes Stratégie : hover lift cohérent avec le reste du site.
+
+### i18n — non traité, bloqué sur des décisions tutrice (voir TASKS.md)
+Langues cibles non précisées dans la demande ; implémenter une traduction partielle aurait été pire que de ne rien faire. Périmètre documenté dans TASKS.md, prêt à démarrer dès les décisions prises.
+
+---
+
 ## 2026-06-19 — Lot 2 demandes tutrice (PDF échange) — branche feat/missions-falek
 
 Build OK (76/76 pages), vérif Playwright (Stratégie, funnel devis, PDF devis). Textes **verbatim** (PDF tutrice).

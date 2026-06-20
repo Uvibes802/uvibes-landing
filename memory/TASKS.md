@@ -5,6 +5,18 @@
 
 ---
 
+## 🌍 i18n (traduction multilingue) — bloqué, besoin d'une décision
+
+Demandé dans la liste « À intégrer » du tuteur, **non implémenté ce tour-ci** volontairement : implémenter une traduction multilingue partielle/bâclée serait pire que de ne rien faire (pages mi-traduites, structure cassée). Décisions nécessaires avant de commencer :
+1. **Langues cibles ?** (anglais seul, ou anglais + espagnol… ?)
+2. **Quel contenu traduire ?** Tout (WordPress + devis + emails + documents légaux) ou juste les pages marketing publiques ?
+3. **Qui traduit ?** Traduction humaine à fournir, ou traduction automatique acceptée en attendant ?
+4. **Stratégie technique** : sous-domaines/sous-chemins (`/en/...`) via `next-intl`, ou duplication de contenu WordPress par langue ?
+
+Une fois ces points tranchés, le travail technique (routing, extraction des chaînes, `next-intl`) peut démarrer proprement.
+
+---
+
 ## 🗂️ Session 2026-06-18 — Gros lot demandes tutrice
 
 > Détail + Impact dans CHANGELOG 2026-06-18. Build OK, vérif visuelle Playwright (solution, passeport, collectifs, commentaires).
