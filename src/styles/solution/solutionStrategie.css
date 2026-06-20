@@ -84,6 +84,11 @@
 }
 .str-vis .str-card { opacity: 1; transform: none; }
 .str-vis .str-card--barometre { transition-delay: 0.1s; }
+.str-vis .str-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 64px -26px rgba(217,10,92,.4), 0 4px 12px rgba(0,0,0,.06);
+  transition: transform 0.3s cubic-bezier(.2,.7,.2,1), box-shadow 0.3s ease;
+}
 .str-vis .str-card--pilotage { transition-delay: 0.2s; }
 
 /* La carte « enquêtes flash » occupe les 2 rangées de gauche → plus grande */
