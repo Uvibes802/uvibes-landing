@@ -33,9 +33,9 @@ const ETHICS = [
 ];
 
 const VALUES = [
-  "La magie des témoignages partagés",
-  "La richesse des expériences personnelles",
-  "La force des visions nouvelles et inattendues",
+  "La magie des témoignages",
+  "Au partage des expériences personnelles",
+  "Et à la richesse des visions nouvelles.",
 ];
 
 export default function Uvibes() {
@@ -95,7 +95,8 @@ export default function Uvibes() {
         <p className="uv-intro-statement">
           <span className="uv-intro-quote-mark" aria-hidden="true">&ldquo;</span>
           La plus longue étude menée par Harvard montre que la qualité de nos relations
-          est le <em className="uv-em-orange">premier facteur de bonheur</em>.
+          est le <em className="uv-em-orange">premier facteur de bonheur</em>{" "}
+          <span className="uv-intro-statement-cite">(Vaillant, 2002)</span>.
         </p>
 
         <div className="uv-intro-inner">
@@ -106,19 +107,22 @@ export default function Uvibes() {
               <em className="uv-serif-accent">parlait vraiment&nbsp;?</em>
             </h2>
             <p className="uv-intro-body">
-              Sur les réseaux sociaux, les algorithmes nous relient à ceux qui pensent comme nous. Dans la vraie vie, on reste entre groupes familiers et, petit à petit, on perd la richesse de la diversité humaine.
-              <br /><br />
-              Uvibes facilite ces rencontres inattendues, par un jeu de questions ouvertes et positives. Parce que c&apos;est en allant vers l&apos;<em className="uv-em-rose">inconnu</em> que naissent les plus <em className="uv-em-orange">belles conversations</em>.
+              Sur les réseaux sociaux traditionnels, les algorithmes nous relient à ceux qui pensent comme nous. Dans la vraie vie, on reste entre groupes familiers, on commente plus qu&apos;on ne dialogue, et petit à petit&hellip; on perd la richesse de la diversité humaine.
             </p>
-            {/* Ce qui en naît — phrase filée, sans liste ni numéros */}
+            {/* Chez Uvibes, nous croyons à — phrase filée, sans liste ni numéros */}
             <p className="uv-thread">
-              <span className="uv-thread-eyebrow">Ce qui en naît&nbsp;</span>
+              <span className="uv-thread-eyebrow">Chez Uvibes, nous croyons à&nbsp;:&nbsp;</span>
               {VALUES.map((v, i) => (
                 <span key={v}>
                   <span className="uv-thread-text">{v}</span>
                   {i < VALUES.length - 1 && <span className="uv-thread-sep" aria-hidden="true" />}
                 </span>
               ))}
+            </p>
+            <p className="uv-intro-body">
+              Au sein d&apos;une université, d&apos;une entreprise, ou de tout autre collectif, beaucoup aimeraient échanger ainsi, mais n&apos;osent pas.
+              <br /><br />
+              Uvibes facilite ces rencontres inattendues, par un jeu de questions ouvertes et positives. Parce que c&apos;est en allant vers l&apos;<em className="uv-em-rose">inconnu</em> que naissent les plus <em className="uv-em-orange">belles conversations</em>.
             </p>
           </div>
           {/* Vidéo témoignage — Delphine */}

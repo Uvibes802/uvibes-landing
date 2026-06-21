@@ -356,6 +356,7 @@
 .dv-duree-btn.--active { border-color: #FD6E00; background: rgba(253,110,0,.05); }
 .dv-duree-months { font-size: 18px; font-weight: 700; color: #B85600; }
 .dv-duree-remise { font-size: 11px; color: #D90A5C; margin-top: 2px; }
+.dv-duree-price { font-size: 12px; font-weight: 600; color: #5c3b49; margin-top: 4px; }
 
 /* Actions */
 .dv-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 2rem; }

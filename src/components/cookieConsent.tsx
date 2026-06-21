@@ -32,6 +32,14 @@ export default function CookieConsent() {
     }
   }, [GA_ID]);
 
+  // Permet de rouvrir le bandeau depuis le lien "Gérer les cookies" du footer,
+  // même si un choix a déjà été enregistré (changement d'avis possible).
+  useEffect(() => {
+    const reopen = () => setShowBanner(true);
+    window.addEventListener("uvibes:manage-cookies", reopen);
+    return () => window.removeEventListener("uvibes:manage-cookies", reopen);
+  }, []);
+
   const acceptCookies = () => {
     Cookies.set("cookie-consent", "accepted", { expires: 365 });
     setShowBanner(false);

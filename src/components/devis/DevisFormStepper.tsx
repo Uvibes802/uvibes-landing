@@ -32,6 +32,17 @@ function tierPriceFor(plan: PlanApi | undefined, n: number): number | null {
   return tier ? tier.prixAnnuel : (plan.tiers.length ? null : plan.prixAnnuel);
 }
 
+// Prix total du contrat pour une durée donnée — même formule que calculateQuote
+// (remise d'engagement : 24 mois = -8%, 36 mois = -15%), pour afficher le prix
+// avant de passer à l'étape suivante.
+function totalPriceFor(plan: PlanApi | undefined, n: number, mois: number): number | null {
+  const base = tierPriceFor(plan, n);
+  if (base == null) return null;
+  const remise = mois >= 36 ? 15 : mois >= 24 ? 8 : 0;
+  const dureeAns = mois / 12;
+  return Math.round(base * dureeAns * (1 - remise / 100) * 100) / 100;
+}
+
 const USAGES = [
   { slug: "echanges-conversationnels", label: "Échanges conversationnels" },
   { slug: "enquetes-flash", label: "Enquêtes flash" },
@@ -352,17 +363,24 @@ export default function DevisFormStepper() {
               </p>
             ) : (
               <div className="dv-durees">
-                {DUREES.map((d) => (
-                  <button
-                    key={d.mois}
-                    type="button"
-                    className={`dv-duree-btn${form.dureeContrat === d.mois ? " --active" : ""}`}
-                    onClick={() => set("dureeContrat", d.mois)}
-                  >
-                    <div className="dv-duree-months">{d.label}</div>
-                    {d.remise && <div className="dv-duree-remise">{d.remise}</div>}
-                  </button>
-                ))}
+                {DUREES.map((d) => {
+                  const apiPlan = apiPlans.find((ap) => ap.slug === form.planSlug);
+                  const total = totalPriceFor(apiPlan, form.nombreUtilisateurs, d.mois);
+                  return (
+                    <button
+                      key={d.mois}
+                      type="button"
+                      className={`dv-duree-btn${form.dureeContrat === d.mois ? " --active" : ""}`}
+                      onClick={() => set("dureeContrat", d.mois)}
+                    >
+                      <div className="dv-duree-months">{d.label}</div>
+                      {d.remise && <div className="dv-duree-remise">{d.remise}</div>}
+                      {total != null && (
+                        <div className="dv-duree-price">{total.toLocaleString("fr-FR")} € HT</div>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>

@@ -168,12 +168,113 @@ const PASSEPORTS: Passeport[] = [
 // Palette chaude alignée sur la section « Thématiques » — aucune couleur sombre ni violette
 const PALETTE = ["#FD6E00", "#E6007E", "#D90A5C", "#FFB800"];
 
+// Légère rotation par carte (effet paquet) — cycle de 6 valeurs
+const ROT = [-2.2, 1.6, -1.2, 2, -1.6, 1.2];
+
+type PassportItem = Passeport | (typeof PASSEPORTS_EN)[number];
+
+function PassportCard({
+  p, i, open, toggle, locale,
+}: { p: PassportItem; i: number; open: boolean; toggle: (id: string) => void; locale: "fr" | "en" }) {
+  const accent = PALETTE[i % PALETTE.length];
+  return (
+    <div
+      className={`pp-card${open ? " pp-card--open" : ""}`}
+      style={{ "--pp-accent": accent, "--pp-rot": `${ROT[i % ROT.length]}deg` } as React.CSSProperties}
+      onClick={(e) => { e.stopPropagation(); toggle(p.id); }}
+      role="button"
+      tabIndex={0}
+      aria-expanded={open}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(p.id); }
+      }}
+    >
+      <div className="pp-card-front">
+        {/* Affiche du passeport (diplôme) */}
+        <div className="pp-card-media">
+          <Image
+            src={`/images/passeport/${p.id}.webp`}
+            alt={locale === "en" ? `Experience Passport — ${p.title}` : `Passeport d'expérience — ${p.title}`}
+            width={360}
+            height={254}
+            className="pp-card-img"
+          />
+        </div>
+
+        {/* En-tête — toujours visible */}
+        <div className="pp-card-header">
+          <div className="pp-card-header-left">
+            <p className="pp-card-category">{p.category}</p>
+            <h3 className="pp-card-title" style={{ color: accent }}>{p.title}</h3>
+            <p className="pp-card-tagline">{p.tagline}</p>
+          </div>
+          <div className="pp-card-header-right">
+            <div className="pp-card-toggle" aria-hidden="true" />
+          </div>
+        </div>
+      </div>
+
+      {/* Contenu révélé — horizontal sur desktop, vertical en mobile (cf. CSS) */}
+      <div className="pp-card-reveal">
+        <div className="pp-card-reveal-inner">
+          <div className="pp-card-block">
+            <p className="pp-card-block-label">{locale === "en" ? "The need" : "Le besoin"}</p>
+            <p className="pp-card-block-text">{p.besoin}</p>
+          </div>
+
+          <div className="pp-card-perf" aria-hidden="true" />
+
+          <div className="pp-card-block">
+            <p className="pp-card-block-label">{locale === "en" ? "What can you do with this passport?" : "Que peut-on faire de ce passeport ?"}</p>
+            <ul className="pp-card-list">
+              {p.valoriser.map((v) => (
+                <li key={v}><span className="pp-card-dot" aria-hidden="true" />{v}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PassportRow({
+  items, direction, openId, toggle, locale, rowIndex,
+}: {
+  items: PassportItem[]; direction: "left" | "right"; openId: string | null;
+  toggle: (id: string) => void; locale: "fr" | "en"; rowIndex: number;
+}) {
+  // Doublé pour la boucle infinie sans coupure (même principe que les autres tickers du site)
+  const track = [...items, ...items];
+  return (
+    <div className={`pp-row pp-row--${direction}`}>
+      <div className="pp-row-track">
+        {track.map((p, i) => (
+          <PassportCard
+            key={`${p.id}-${i}`}
+            p={p}
+            i={rowIndex === 0 ? i * 2 : i * 2 + 1}
+            open={openId === p.id}
+            toggle={toggle}
+            locale={locale}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function PasseportExperience({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const PASSEPORTS_LIST = locale === "en" ? PASSEPORTS_EN : PASSEPORTS;
   const [openId, setOpenId] = useState<string | null>(null);
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.06 });
 
   const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id));
+
+  // Deux rangées (paire/impaire) qui défilent en sens inverse ; en mobile, une seule
+  // rangée (CSS masque la 2e) avec tous les passeports pour ne rien perdre.
+  const rowA = PASSEPORTS_LIST.filter((_, i) => i % 2 === 0);
+  const rowB = PASSEPORTS_LIST.filter((_, i) => i % 2 === 1);
 
   return (
     <section className={`pp-section${vis ? " pp-vis" : ""}`} ref={ref}>
@@ -247,70 +348,24 @@ export default function PasseportExperience({ locale = "fr" }: { locale?: "fr" |
         </p>
       </div>
 
-      {/* ── Paquet de passeports ── */}
-      <div className="pp-deck">
-        {PASSEPORTS_LIST.map((p, i) => {
-          const open = openId === p.id;
-          const accent = PALETTE[i % PALETTE.length];
-          return (
-            <div
-              key={p.id}
-              className={`pp-card${open ? " pp-card--open" : ""}`}
-              style={{ "--pp-accent": accent } as React.CSSProperties}
-              onClick={() => toggle(p.id)}
-              role="button"
-              tabIndex={0}
-              aria-expanded={open}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(p.id); }
-              }}
-            >
-              {/* Affiche du passeport (diplôme) */}
-              <div className="pp-card-media">
-                <Image
-                  src={`/images/passeport/${p.id}.webp`}
-                  alt={locale === "en" ? `Experience Passport — ${p.title}` : `Passeport d'expérience — ${p.title}`}
-                  width={360}
-                  height={254}
-                  className="pp-card-img"
-                />
-              </div>
-
-              {/* En-tête — toujours visible */}
-              <div className="pp-card-header">
-                <div className="pp-card-header-left">
-                  <p className="pp-card-category">{p.category}</p>
-                  <h3 className="pp-card-title" style={{ color: accent }}>{p.title}</h3>
-                  <p className="pp-card-tagline">{p.tagline}</p>
-                </div>
-                <div className="pp-card-header-right">
-                  <div className="pp-card-toggle" aria-hidden="true" />
-                </div>
-              </div>
-
-              {/* Contenu révélé */}
-              <div className="pp-card-reveal">
-                <div className="pp-card-reveal-inner">
-                  <div className="pp-card-block">
-                    <p className="pp-card-block-label">{locale === "en" ? "The need" : "Le besoin"}</p>
-                    <p className="pp-card-block-text">{p.besoin}</p>
-                  </div>
-
-                  <div className="pp-card-perf" aria-hidden="true" />
-
-                  <div className="pp-card-block">
-                    <p className="pp-card-block-label">{locale === "en" ? "What can you do with this passport?" : "Que peut-on faire de ce passeport ?"}</p>
-                    <ul className="pp-card-list">
-                      {p.valoriser.map((v) => (
-                        <li key={v}><span className="pp-card-dot" aria-hidden="true" />{v}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {/* ── Paquet de passeports — 2 rangées en défilement opposé (1 seule en mobile) ── */}
+      <div className={`pp-carousel${openId ? " pp-carousel--paused" : ""}`}>
+        <PassportRow
+          items={rowA}
+          direction="left"
+          openId={openId}
+          toggle={toggle}
+          locale={locale}
+          rowIndex={0}
+        />
+        <PassportRow
+          items={rowB}
+          direction="right"
+          openId={openId}
+          toggle={toggle}
+          locale={locale}
+          rowIndex={1}
+        />
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ManageCookiesLink from "./ManageCookiesLink";
 import "../../styles/footer/footer.css";
 
 const NAV_COLS_FR = [
@@ -109,6 +110,9 @@ export default function Footer({ locale = "fr" }: { locale?: "fr" | "en" }) {
                       <Link href={l.href} className="ft-nav-link">{l.label}</Link>
                     </li>
                   ))}
+                  {col.label === NAV_COLS[3].label && (
+                    <li><ManageCookiesLink locale={locale} /></li>
+                  )}
                 </ul>
               </div>
             ))}

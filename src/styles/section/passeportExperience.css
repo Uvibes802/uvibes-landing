@@ -206,28 +206,49 @@
   margin: 0;
 }
 
-/* ── Paquet de passeports ─────────────────────────────────────── */
-.pp-deck {
+/* ── Carousel — 2 rangées en défilement opposé (1 seule en mobile) ── */
+.pp-carousel {
   position: relative;
   z-index: 1;
-  max-width: 1180px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 12px 24px;
-  /* Grille côte à côte — cartes plus étroites (affiches portrait) + compactes */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
-  gap: 14px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
   /* Reveal scroll */
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.8s 0.3s ease, transform 0.8s 0.3s ease;
 }
-.pp-vis .pp-deck { opacity: 1; transform: translateY(0); }
+.pp-vis .pp-carousel { opacity: 1; transform: translateY(0); }
+
+.pp-row {
+  overflow: hidden;
+  /* Marge négative pour laisser les cartes tiltées déborder un peu sans tronquer l'ombre */
+  padding: 14px 0;
+}
+.pp-row-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: ppRowScrollLeft 48s linear infinite;
+}
+.pp-row--right .pp-row-track { animation-name: ppRowScrollRight; }
+@keyframes ppRowScrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ppRowScrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+/* Pause au survol et dès qu'une carte est ouverte — pour lire sans que le tapis défile */
+.pp-row:hover .pp-row-track,
+.pp-carousel--paused .pp-row-track {
+  animation-play-state: paused;
+}
 
 /* ── Carte — document passeport ── */
 .pp-card {
   position: relative;
+  flex-shrink: 0;
+  width: 240px;
+  display: flex;
   background: #fff;
   border: 1px solid rgba(0,0,0,.06);
   border-radius: 16px;
@@ -236,21 +257,27 @@
   box-shadow:
     0 1px 2px rgba(0,0,0,.04),
     0 16px 34px -20px rgba(0,0,0,.35);
+  transform: rotate(var(--pp-rot, 0deg));
   transition:
     transform 0.4s cubic-bezier(.2,.7,.2,1),
-    box-shadow 0.4s ease;
+    box-shadow 0.4s ease,
+    width 0.45s cubic-bezier(.2,.7,.2,1);
 }
+.pp-card-front { flex-shrink: 0; width: 240px; }
 
 /* Survol */
 .pp-card:hover:not(.pp-card--open) {
-  transform: translateY(-4px) scale(1.015);
+  transform: rotate(0deg) translateY(-4px) scale(1.02);
   box-shadow:
     0 4px 10px rgba(0,0,0,.06),
     0 24px 46px -18px color-mix(in srgb, var(--pp-accent, #FD6E00) 40%, transparent);
 }
 
-/* Carte ouverte */
+/* Carte ouverte — déploi horizontal du contenu à droite, carte remise à plat */
 .pp-card--open {
+  z-index: 2;
+  width: 520px;
+  transform: rotate(0deg);
   box-shadow:
     0 6px 16px rgba(0,0,0,.08),
     0 34px 64px -20px color-mix(in srgb, var(--pp-accent, #FD6E00) 48%, transparent);
@@ -375,16 +402,20 @@
 .pp-card-toggle::after  { top: 50%; left: 4px; height: 2px; width: 14px; transform: translateY(-50%); }
 .pp-card--open .pp-card-toggle::before { transform: translateX(-50%) scaleY(0); opacity: 0; }
 
-/* ── Contenu révélé ── */
+/* ── Contenu révélé — déplié horizontalement à droite de la carte (desktop) ── */
 .pp-card-reveal {
-  max-height: 0;
+  flex-shrink: 0;
+  width: 0;
+  max-height: none;
   overflow: hidden;
-  transition: max-height 0.45s cubic-bezier(.2,.7,.2,1);
+  transition: width 0.45s cubic-bezier(.2,.7,.2,1);
 }
-.pp-card--open .pp-card-reveal { max-height: 480px; }
+.pp-card--open .pp-card-reveal { width: 280px; }
 
 .pp-card-reveal-inner {
-  padding: 0 1.6rem 1.6rem;
+  width: 280px;
+  height: 100%;
+  padding: 1.2rem 1.4rem 1.4rem;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
@@ -443,9 +474,23 @@
   background: var(--pp-accent, #FD6E00);
 }
 
-/* ── Responsive ── */
+/* ── Responsive — une seule rangée, contenu révélé verticalement ── */
+@media (max-width: 700px) {
+  /* Une seule ligne de carousel : la 2e rangée est masquée, rien n'est perdu
+     puisque rowA contient déjà la moitié des passeports — voir aussi le fallback ci-dessous */
+  .pp-row--right { display: none; }
+
+  .pp-card { width: 220px; }
+  .pp-card-front { width: 220px; }
+
+  /* Le contenu se déplie en dessous (vertical), pas à droite (horizontal) */
+  .pp-card--open { width: 220px; flex-direction: column; }
+  .pp-card-reveal { width: 220px !important; max-height: 0; transition: max-height 0.45s cubic-bezier(.2,.7,.2,1); }
+  .pp-card--open .pp-card-reveal { max-height: 480px; }
+  .pp-card-reveal-inner { width: 220px; height: auto; }
+}
+
 @media (max-width: 600px) {
-  .pp-deck { padding: 8px 12px; }
   .pp-card-header { padding: 1rem 1.1rem 1.1rem; }
   .pp-card-reveal-inner { padding: 0 1.1rem 1.2rem; }
 

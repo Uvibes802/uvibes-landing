@@ -5,7 +5,7 @@
 /* ── Utilitaires typographiques ────────────────────────────────── */
 .uv-serif-accent {
   font-style: italic;
-  font-weight: 600;
+  font-weight: 400;
   font-family: var(--font-instrument), "Instrument Serif", serif;
   color: var(--rose);
   -webkit-text-fill-color: currentColor;
@@ -225,6 +225,14 @@
   font-size: clamp(24px, 3.4vw, 40px);
   line-height: 1.35;
   color: #5a3a48;
+}
+.uv-intro-statement-cite {
+  font-size: 0.5em;
+  font-style: normal;
+  font-family: var(--font-roboto-mono), monospace;
+  letter-spacing: 0.04em;
+  color: #a8788a;
+  vertical-align: middle;
 }
 .uv-intro-quote-mark {
   position: absolute;

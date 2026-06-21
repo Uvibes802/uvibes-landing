@@ -34,8 +34,8 @@ const ETHICS = [
 
 const VALUES = [
   "The magic of shared stories",
-  "The richness of personal experiences",
-  "The power of new, unexpected perspectives",
+  "The joy of sharing personal experiences",
+  "And the richness of fresh perspectives.",
 ];
 
 export default function AboutEn() {
@@ -95,7 +95,8 @@ export default function AboutEn() {
         <p className="uv-intro-statement">
           <span className="uv-intro-quote-mark" aria-hidden="true">&ldquo;</span>
           Harvard&apos;s longest-running study found that the quality of our relationships
-          is the <em className="uv-em-orange">strongest predictor of happiness</em>.
+          is the <em className="uv-em-orange">strongest predictor of happiness</em>{" "}
+          <span className="uv-intro-statement-cite">(Vaillant, 2002)</span>.
         </p>
 
         <div className="uv-intro-inner">
@@ -106,19 +107,22 @@ export default function AboutEn() {
               <em className="uv-serif-accent">really talked to each other?</em>
             </h2>
             <p className="uv-intro-body">
-              On social media, algorithms connect us with people who think like us. In real life, we stay within familiar circles and, little by little, lose the richness of human diversity.
-              <br /><br />
-              Uvibes makes these unexpected encounters happen, through a game of open, positive questions. Because it&apos;s by stepping toward the <em className="uv-em-rose">unknown</em> that the most <em className="uv-em-orange">beautiful conversations</em> are born.
+              On traditional social media, algorithms connect us with people who think like us. In real life, we stay within familiar circles, comment more than we actually talk, and little by little&hellip; we lose the richness of human diversity.
             </p>
-            {/* Ce qui en naît — phrase filée, sans liste ni numéros */}
+            {/* Chez Uvibes, nous croyons à — phrase filée, sans liste ni numéros */}
             <p className="uv-thread">
-              <span className="uv-thread-eyebrow">What comes out of it&nbsp;</span>
+              <span className="uv-thread-eyebrow">At Uvibes, we believe in&nbsp;:&nbsp;</span>
               {VALUES.map((v, i) => (
                 <span key={v}>
                   <span className="uv-thread-text">{v}</span>
                   {i < VALUES.length - 1 && <span className="uv-thread-sep" aria-hidden="true" />}
                 </span>
               ))}
+            </p>
+            <p className="uv-intro-body">
+              In a university, a company, or any other community, plenty of people would love to connect this way, but don&apos;t dare to.
+              <br /><br />
+              Uvibes makes these unexpected encounters happen, through a game of open, positive questions. Because it&apos;s by stepping toward the <em className="uv-em-rose">unknown</em> that the most <em className="uv-em-orange">beautiful conversations</em> are born.
             </p>
           </div>
           {/* Vidéo témoignage — Delphine */}

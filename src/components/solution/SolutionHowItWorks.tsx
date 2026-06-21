@@ -29,7 +29,7 @@ const STEPS_FR: Step[] = [
     n: "02",
     title: "Maîtriser l'expérience",
     body: "Vous définissez les thématiques, le moment et la durée des interactions afin de créer des échanges parfaitement adaptés à votre organisation et à vos objectifs.",
-    accent: "#00AFDD",
+    accent: "#E6007E",
   },
   {
     n: "03",
@@ -60,7 +60,7 @@ const STEPS_EN: Step[] = [
     n: "02",
     title: "Shape the experience",
     body: "You set the topics, timing and length of each interaction to create exchanges perfectly suited to your organization and your goals.",
-    accent: "#00AFDD",
+    accent: "#E6007E",
   },
   {
     n: "03",

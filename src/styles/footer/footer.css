@@ -130,6 +130,16 @@
 .ft-nav-link { font-size: 13.5px; color: rgba(255,255,255,.78); text-decoration: none; transition: color 0.18s; }
 .ft-nav-link:hover { color: #fff; }
 
+/* Bouton (pas un lien) — même look que ft-nav-link, pour rouvrir le bandeau cookies */
+.ft-manage-cookies {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
 /* ── Divider ──────────────────────────────────────────────────── */
 .ft-divider { height: 1px; background: rgba(255,255,255,.16); margin-bottom: clamp(1rem, 2vw, 1.5rem); }
 
@@ -148,8 +158,6 @@
   .ft-nav { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
-  .ft-nav { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-}
-@media (max-width: 380px) {
-  .ft-nav { grid-template-columns: 1fr; gap: 1.25rem; }
+  /* Une section après l'autre, plus dynamique qu'une grille 2x2 serrée */
+  .ft-nav { grid-template-columns: 1fr; gap: 1.5rem; }
 }
