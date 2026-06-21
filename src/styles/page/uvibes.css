@@ -213,29 +213,33 @@
   font-family: var(--font-prompt), sans-serif;
 }
 
-/* Pullquote — grand guillemet éditorial en filigrane, sans encadré coloré */
-.uv-intro-lead {
-  font-size: clamp(17px, 1.6vw, 21px);
-  line-height: 1.55;
-  color: #5a3a48;
-  margin: 0 0 1.5rem;
-  font-style: italic;
+/* Statement Harvard — citation plein écran en ouverture de section, sans encadré */
+.uv-intro-statement {
   position: relative;
-  padding-top: 0.3rem;
+  max-width: 920px;
+  margin: 0 auto clamp(3.5rem, 6vw, 5.5rem);
+  padding-top: 2.2rem;
+  text-align: center;
+  font-style: italic;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-size: clamp(24px, 3.4vw, 40px);
+  line-height: 1.35;
+  color: #5a3a48;
 }
 .uv-intro-quote-mark {
   position: absolute;
-  top: -1.6rem;
-  left: -0.4rem;
+  top: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: var(--font-instrument), "Instrument Serif", serif;
   font-style: normal;
-  font-size: 4.5rem;
+  font-size: 6rem;
   line-height: 1;
   background: linear-gradient(135deg, #FD6E00, #E6007E);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  opacity: 0.22;
+  opacity: 0.25;
   pointer-events: none;
   user-select: none;
 }
@@ -322,47 +326,34 @@
 .uv-value-icon::after { content: '✓'; font-size: 9px; color: #fff; font-weight: 800; }
 
 /* ── Fil de conversation (section « se parler vraiment ») ──────── */
+/* « Ce qui en naît » — phrase filée, sans liste ni numéros */
 .uv-thread {
   position: relative;
-  margin-top: 2.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
+  margin: 2.25rem 0 0;
+  font-size: clamp(14.5px, 1.4vw, 16.5px);
+  line-height: 1.8;
 }
 .uv-thread-eyebrow {
+  display: block;
   font-family: var(--font-roboto-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #FD6E00;
-  margin-bottom: 0.3rem;
-}
-.uv-thread-item {
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  gap: 1.1rem;
-}
-/* Grand chiffre éditorial en filigrane — pas de badge circulaire */
-.uv-thread-num {
-  flex-shrink: 0;
-  width: 2.1rem;
-  font-style: italic;
-  font-size: clamp(28px, 3vw, 36px);
-  line-height: 1;
-  text-align: right;
-  background: linear-gradient(135deg, #FD6E00, #D90A5C);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  opacity: 0.55;
+  margin-bottom: 0.5rem;
 }
 .uv-thread-text {
-  font-family: var(--font-prompt), sans-serif;
-  font-weight: 600;
-  font-size: clamp(15px, 1.5vw, 18px);
+  font-style: italic;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
   color: #5a1038;
-  line-height: 1.4;
+}
+.uv-thread-sep {
+  display: inline-block;
+  width: 4px; height: 4px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  vertical-align: middle;
 }
 
 .uv-sep-vib {

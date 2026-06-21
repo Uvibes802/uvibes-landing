@@ -91,6 +91,13 @@ export default function Uvibes() {
 
       {/* ── Intro ── */}
       <section className="uv-intro">
+        {/* Citation Harvard — statement plein écran en ouverture */}
+        <p className="uv-intro-statement">
+          <span className="uv-intro-quote-mark" aria-hidden="true">&ldquo;</span>
+          La plus longue étude menée par Harvard montre que la qualité de nos relations
+          est le <em className="uv-em-orange">premier facteur de bonheur</em>.
+        </p>
+
         <div className="uv-intro-inner">
           <div>
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />La naissance de l&apos;idée</p>
@@ -98,24 +105,21 @@ export default function Uvibes() {
               Et si on se<br />
               <em className="uv-serif-accent">parlait vraiment&nbsp;?</em>
             </h2>
-            <p className="uv-intro-lead">
-              <span className="uv-intro-quote-mark" aria-hidden="true">&ldquo;</span>
-              La plus longue étude menée par Harvard montre que la qualité de nos relations est le <em className="uv-em-orange">premier facteur de bonheur</em>.
-            </p>
             <p className="uv-intro-body">
               Sur les réseaux sociaux, les algorithmes nous relient à ceux qui pensent comme nous. Dans la vraie vie, on reste entre groupes familiers et, petit à petit, on perd la richesse de la diversité humaine.
               <br /><br />
               Uvibes facilite ces rencontres inattendues, par un jeu de questions ouvertes et positives. Parce que c&apos;est en allant vers l&apos;<em className="uv-em-rose">inconnu</em> que naissent les plus <em className="uv-em-orange">belles conversations</em>.
             </p>
-            <div className="uv-thread">
-              <span className="uv-thread-eyebrow">Ce qui en naît</span>
+            {/* Ce qui en naît — phrase filée, sans liste ni numéros */}
+            <p className="uv-thread">
+              <span className="uv-thread-eyebrow">Ce qui en naît&nbsp;</span>
               {VALUES.map((v, i) => (
-                <div key={v} className="uv-thread-item">
-                  <span className="uv-thread-num v-serif" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <span key={v}>
                   <span className="uv-thread-text">{v}</span>
-                </div>
+                  {i < VALUES.length - 1 && <span className="uv-thread-sep" aria-hidden="true" />}
+                </span>
               ))}
-            </div>
+            </p>
           </div>
           {/* Vidéo témoignage — Delphine */}
           <div className="uv-intro-media">
