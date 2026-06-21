@@ -99,6 +99,7 @@ export default function Uvibes() {
               <em className="uv-serif-accent">parlait vraiment&nbsp;?</em>
             </h2>
             <p className="uv-intro-lead">
+              <span className="uv-intro-quote-mark" aria-hidden="true">&ldquo;</span>
               La plus longue étude menée par Harvard montre que la qualité de nos relations est le <em className="uv-em-orange">premier facteur de bonheur</em>.
             </p>
             <p className="uv-intro-body">
@@ -110,7 +111,7 @@ export default function Uvibes() {
               <span className="uv-thread-eyebrow">Ce qui en naît</span>
               {VALUES.map((v, i) => (
                 <div key={v} className="uv-thread-item">
-                  <span className="uv-thread-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="uv-thread-num v-serif" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                   <span className="uv-thread-text">{v}</span>
                 </div>
               ))}
