@@ -106,49 +106,45 @@
   white-space: nowrap;
 }
 
-/* ── Grid ────────────────────────────────────────────────────── */
+/* ── Grid — 3 cartes empilées, chacune moitié photo / moitié texte ──── */
 .fa-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: clamp(1rem, 2vw, 1.5rem);
-  align-items: stretch;
   position: relative;
   z-index: 1;
 }
 
-.fa-side {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
-
-/* ── Card ────────────────────────────────────────────────────── */
+/* ── Card — toujours 2 moitiés égales, l'image alterne de côté ──────── */
 .fa-card {
-  display: block;
+  display: flex;
   border-radius: 20px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  position: relative;
+  min-height: 280px;
+  background: #fff8f2;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 20px 44px -24px rgba(0,0,0,.25);
   animation: faCardIn 0.65s cubic-bezier(.2,.7,.2,1) both;
 }
-.fa-card--main { min-height: 420px; animation-delay: 0.05s; }
-.fa-card--side { flex: 1; min-height: 200px; }
-.fa-side .fa-card:nth-child(1) { animation-delay: 0.2s; }
-.fa-side .fa-card:nth-child(2) { animation-delay: 0.35s; }
+.fa-grid .fa-card:nth-child(1) { animation-delay: 0.05s; }
+.fa-grid .fa-card:nth-child(2) { animation-delay: 0.2s; }
+.fa-grid .fa-card:nth-child(3) { animation-delay: 0.35s; }
+
+/* Image à gauche par défaut, à droite en alternance (ordre visuel inversé) */
+.fa-card--img-right { flex-direction: row-reverse; }
 
 @keyframes faCardIn {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Image ───────────────────────────────────────────────────── */
+/* ── Image — moitié de la carte ──────────────────────────────────── */
 .fa-card-img {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  flex: 1 1 50%;
   overflow: hidden;
 }
-
 .fa-card-img img {
   transition: transform 0.55s cubic-bezier(.2,.7,.2,1);
 }
@@ -161,66 +157,18 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #FD6E00 0%, #ff4d7a 50%, #D90A5C 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.88;
 }
 
-/* Shine warm — remplace l'overlay sombre */
-.fa-card-shine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--fa-accent) 22%, #fff8f2) 0%,
-    rgba(255,252,248,0.3) 45%,
-    transparent 75%
-  );
-  pointer-events: none;
-}
-
-/* ── Info — visible en permanence, cache au hover ────────────── */
+/* ── Texte — autre moitié, fond plein (jamais sur l'image → toujours lisible) ── */
 .fa-card-info {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 1.25rem 1.5rem 1.5rem;
-  background: linear-gradient(
-    to top,
-    rgba(255,248,242,0.96) 0%,
-    rgba(255,248,242,0.85) 60%,
-    transparent 100%
-  );
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: transform 0.38s cubic-bezier(.4,0,.2,1), opacity 0.38s ease;
-  z-index: 2;
-}
-.fa-card:hover .fa-card-info {
-  transform: translateY(10px);
-  opacity: 0;
-}
-
-/* ── Reveal — monte au hover ─────────────────────────────────── */
-.fa-card-reveal {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 1.5rem;
-  background: rgba(255,250,246,0.97);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transform: translateY(100%);
-  transition: transform 0.38s cubic-bezier(.2,.7,.2,1);
-  z-index: 3;
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.5rem;
-}
-.fa-card:hover .fa-card-reveal {
-  transform: translateY(0);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-/* ── Typographie commune ─────────────────────────────────────── */
 .fa-card-date {
   margin: 0;
   font-size: 10px;
@@ -232,15 +180,12 @@
 
 .fa-card-title {
   margin: 0;
-  font-size: clamp(16px, 1.6vw, 23px);
+  font-size: clamp(18px, 2vw, 26px);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.15;
   color: var(--ink);
   font-family: var(--font-prompt), sans-serif;
-}
-.fa-card--side .fa-card-title {
-  font-size: clamp(14px, 1.25vw, 18px);
 }
 
 .fa-card-excerpt {
@@ -249,6 +194,10 @@
   line-height: 1.68;
   color: var(--ink-2);
   font-family: var(--text-font), sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .fa-card-cta {
@@ -268,52 +217,15 @@
   gap: 9px;
 }
 
-/* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .fa-grid { grid-template-columns: 1fr 1fr; }
-}
-
+/* ── Responsive — image en haut, texte en dessous, plus d'alternance ── */
 @media (max-width: 768px) {
   .fa-header { flex-direction: column; align-items: flex-start; }
-  .fa-grid { grid-template-columns: 1fr; }
 
-  /* Sur mobile : layout vertical — image en haut, texte en dessous */
-  .fa-card {
-    display: flex;
+  .fa-card,
+  .fa-card--img-right {
     flex-direction: column;
-    min-height: 0;
   }
 
-  .fa-card-img {
-    position: relative;
-    inset: auto;
-    height: 220px;
-    flex-shrink: 0;
-  }
-
-  .fa-card--side .fa-card-img { height: 180px; }
-
-  /* Cache le shine et l'info overlay (inutiles avec layout vertical) */
-  .fa-card-shine { display: none; }
-  .fa-card-info  { display: none; }
-
-  /* Reveal en flux normal — apparaît après l'image */
-  .fa-card-reveal {
-    position: static;
-    transform: none;
-    padding: 1rem 1.25rem 1.25rem;
-    background: rgba(255,250,246,1);
-    opacity: 0;
-    animation: faRevealIn 0.5s 0.35s ease forwards;
-  }
-
-  @keyframes faRevealIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-}
-
-@media (max-width: 480px) {
-  .fa-card-img { height: 180px; }
-  .fa-card--side .fa-card-img { height: 150px; }
+  .fa-card-img { flex: none; height: 200px; }
+  .fa-card-info { padding: 1.25rem 1.5rem 1.5rem; }
 }

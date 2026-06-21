@@ -1,4 +1,3 @@
-import VibrationLine from "@/components/shared/VibrationLine";
 import type { PublicArticle } from "@/services/blog/getArticles";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,36 +9,31 @@ function formatDate(d: string) {
   return new Date(d).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
 }
 
-function ArticleCard({ article: a, accent, isMain }: { article: PublicArticle; accent: string; isMain?: boolean }) {
+// L'image alterne de côté à chaque carte (1ère à droite, 2e à gauche, etc.) —
+// le texte vit toujours sur un fond plein (plus de superposition sur la photo,
+// donc plus de problème de lisibilité sur les photos sombres).
+function ArticleCard({ article: a, accent, imageOnRight }: { article: PublicArticle; accent: string; imageOnRight: boolean }) {
   return (
     <Link
       href={`/blog/${a.slug}`}
-      className={`fa-card${isMain ? " fa-card--main" : " fa-card--side"}`}
+      className={`fa-card${imageOnRight ? " fa-card--img-right" : " fa-card--img-left"}`}
       style={{ "--fa-accent": accent } as React.CSSProperties}
     >
       <div className="fa-card-img">
         {a.imageUrl ? (
           <Image src={a.imageUrl} alt={a.titre} fill style={{ objectFit: "cover" }} />
         ) : (
-          <div className="fa-card-wave-bg" aria-hidden="true">
-            <VibrationLine width={480} height={60} amplitude={22} freq={4} stroke={accent} strokeWidth={2} speed={16} />
-          </div>
+          <div className="fa-card-wave-bg" aria-hidden="true" />
         )}
-        <div className="fa-card-shine" aria-hidden="true" />
+      </div>
 
-        <div className="fa-card-info">
-          <p className="v-mono fa-card-date">{formatDate(a.publishedAt)}</p>
-          <h3 className="fa-card-title v-prompt">{a.titre}</h3>
-        </div>
-
-        <div className="fa-card-reveal">
-          <p className="v-mono fa-card-date">{formatDate(a.publishedAt)}</p>
-          <h3 className="fa-card-title v-prompt">{a.titre}</h3>
-          <p className="fa-card-excerpt">{a.excerpt}</p>
-          <span className="fa-card-cta">
-            {isMain ? "Lire l'article" : "Lire"} <span aria-hidden="true">→</span>
-          </span>
-        </div>
+      <div className="fa-card-info">
+        <p className="v-mono fa-card-date">{formatDate(a.publishedAt)}</p>
+        <h3 className="fa-card-title v-prompt">{a.titre}</h3>
+        <p className="fa-card-excerpt">{a.excerpt}</p>
+        <span className="fa-card-cta">
+          Lire l&apos;article <span aria-hidden="true">→</span>
+        </span>
       </div>
     </Link>
   );
@@ -48,7 +42,7 @@ function ArticleCard({ article: a, accent, isMain }: { article: PublicArticle; a
 export default function FeaturedArticles({ articles }: { articles: PublicArticle[] }) {
   if (!articles || articles.length === 0) return null;
 
-  const [main, ...rest] = articles;
+  const shown = articles.slice(0, 3);
 
   return (
     <section className="fa-section">
@@ -58,7 +52,7 @@ export default function FeaturedArticles({ articles }: { articles: PublicArticle
         <div>
           <p className="v-mono fa-eyebrow"><span className="fa-eyebrow-dot" aria-hidden="true" />Le blog Uvibes</p>
           <h2 className="fa-title v-prompt">
-            <span className="fa-title-magenta">Ce qui nous arrive.</span><br />Ce qu&apos;on lit{" "}.{" "}<span className="v-serif">Ce qu&apos;on pense.</span>
+            <span className="fa-title-magenta">Ce qui nous arrive.</span><br />Ce qu&apos;on lit{" "}.{" "}<span className="v-serif">Ce qu&apos;on pense.</span>
           </h2>
         </div>
         <Link href="/blog" className="btn-brand fa-cta-btn">
@@ -67,12 +61,9 @@ export default function FeaturedArticles({ articles }: { articles: PublicArticle
       </div>
 
       <div className="fa-grid">
-        {main && <ArticleCard article={main} accent={ACCENTS[0]} isMain />}
-        <div className="fa-side">
-          {rest.slice(0, 2).map((a, i) => (
-            <ArticleCard key={a.slug} article={a} accent={ACCENTS[i + 1]} />
-          ))}
-        </div>
+        {shown.map((a, i) => (
+          <ArticleCard key={a.slug} article={a} accent={ACCENTS[i % ACCENTS.length]} imageOnRight={i % 2 === 1} />
+        ))}
       </div>
     </section>
   );

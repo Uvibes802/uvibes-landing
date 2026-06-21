@@ -94,7 +94,7 @@ export default function CookieConsent() {
             {locale === "en" ? "Accept" : "Accepter"}
           </button>
           <button onClick={refuseCookies} className="cookie-btn cookie-btn--refuse">
-            {locale === "en" ? "Decline" : "Refuser"}
+            {locale === "en" ? "Accept essential cookies only" : "Accepter les cookies essentiels"}
           </button>
         </div>
       </div>
