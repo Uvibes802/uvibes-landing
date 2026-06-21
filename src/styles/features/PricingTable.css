@@ -257,6 +257,9 @@
 /* Tarif selon la taille — bloc dépliable */
 .pt-card-tiers { margin-top: 0.6rem; }
 .pt-card-tiers-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: none;
   border: none;
   padding: 0;
@@ -264,12 +267,17 @@
   font-size: 11px;
   letter-spacing: 0.02em;
   color: var(--pt-accent, #FD6E00);
-  text-decoration: underline;
-  text-underline-offset: 3px;
   cursor: pointer;
 }
 .pt-card--featured .pt-card-tiers-toggle { color: #fff; }
 .pt-card-tiers-toggle:hover { opacity: 0.8; }
+.pt-card-tiers-toggle-arrow {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.pt-card-tiers-toggle[aria-expanded="true"] .pt-card-tiers-toggle-arrow {
+  transform: rotate(180deg);
+}
 .pt-card-tiers-list {
   list-style: none;
   margin: 0.6rem 0 0;

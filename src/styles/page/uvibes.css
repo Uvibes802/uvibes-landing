@@ -402,6 +402,9 @@
    Sélecteur composé (.uv-section-title.uv-team-title) pour garantir la priorité
    sur .uv-section-title (orange) déclarée plus bas, même spécificité sinon. */
 .uv-team-eyebrow { color: #FFE456; justify-content: center; }
+/* Le point orange par défaut se fond dans le dégradé orange/rose à cet endroit → jaune, comme le texte */
+.uv-team-eyebrow .uv-eyebrow-dot,
+.uv-don-eyebrow .uv-eyebrow-dot { background: #FFE456; }
 .uv-section-title.uv-team-title {
   color: #fff;
   text-shadow: 0 2px 20px rgba(0,0,0,.15);

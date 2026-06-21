@@ -73,14 +73,15 @@ export default function TarifsHero({ locale = "fr" }: { locale?: "fr" | "en" }) 
         </p>
 
         <div className="th-ctas">
-          {devisEnabled && (
+          {devisEnabled ? (
             <Link href="/devis" className="btn-brand th-cta-primary">
-              {locale === "en" ? "Get your quote →" : "Faire un devis →"}
+              {locale === "en" ? "Get your quote →" : "Faire votre devis →"}
+            </Link>
+          ) : (
+            <Link href="/rendez-vous" className="btn-brand th-cta-primary">
+              {locale === "en" ? "Contact us →" : "Nous contacter →"}
             </Link>
           )}
-          <Link href="#offres" className="th-cta-ghost">
-            {locale === "en" ? "Compare plans" : "Comparer les offres"}
-          </Link>
         </div>
       </div>
     </section>

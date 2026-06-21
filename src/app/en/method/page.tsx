@@ -42,7 +42,14 @@ export default function MethodPageEn() {
       <main className="sol-main-content">
         <SolutionHowItWorks locale="en" />
         <SolutionThemes locale="en" />
-        <SolutionStrategie locale="en" />
+
+        {/* Stratégie — sur fond dégradé (même esprit que la section équipe / à propos), encadrée par 2 vagues */}
+        <div className="str-gradient-wrap" style={{ background: HERO_GRADIENT, position: "relative", overflow: "hidden" }}>
+          <WaveSeparator position="top" color="#FFF0F8" />
+          <SolutionStrategie locale="en" />
+          <WaveSeparator position="bottom" color="#FFF0F8" />
+        </div>
+
         <SolutionSoftSkills locale="en" />
         {/* Renvoi vers les tarifs, juste avant la section Résultats */}
         <div className="sol-offers-cta">

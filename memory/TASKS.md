@@ -124,6 +124,7 @@
 
 ## 🟡 Prochaines tâches identifiées
 
+- [ ] **BUG hero accueil** — texte dupliqué (« Elles se créent. » apparaît deux fois). Cause : la valeur CMS `hero-sub` contient déjà les deux phrases complètes (« Les bonnes conversations ne s'improvisent pas. Elles se créent. »), mais `HomeHero.tsx` affiche `hero-sub` + `<br/>` + `hero-sub-2` (qui retombe sur le défaut « Elles se créent. ») → la 2e phrase s'affiche deux fois. Fix simple : soit nettoyer la valeur CMS `hero-sub` (ne garder que la 1ère phrase), soit retirer l'affichage forcé de `hero-sub-2` dans le code. À trancher avec la tutrice (impacte le contenu éditable en admin).
 - [ ] **MacBook vidéos paysage** — ajouter dans `VIDEOS` de `ConversationIntro.tsx` quand disponibles
 - [ ] **PERF** — 3 vidéos uvibes autoPlay sans lazy-loading → optimiser (IntersectionObserver)
 - [ ] **PERF-06** — Remplacer hook `Resize` dans `AvantagesPageClient` par CSS media queries

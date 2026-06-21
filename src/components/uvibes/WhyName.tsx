@@ -83,15 +83,15 @@ export default function WhyName({ locale = "fr" }: { locale?: "fr" | "en" }) {
         <div className="uvn-media">
           <div className="uvn-polaroid uvn-polaroid--a">
             <div className="uvn-polaroid-media">
-              <video src={getVideoUrl("Colette-desktop.mp4")} autoPlay muted loop playsInline />
+              <video src={getVideoUrl("Nadine-mobile.mp4")} autoPlay muted loop playsInline />
             </div>
-            <span className="uvn-polaroid-cap v-serif">Colette</span>
+            <span className="uvn-polaroid-cap v-serif">Nadine</span>
           </div>
           <div className="uvn-polaroid uvn-polaroid--b">
             <div className="uvn-polaroid-media">
-              <video src={getVideoUrl("Delphine-desktop.mp4")} autoPlay muted loop playsInline />
+              <video src={getVideoUrl("Isaline-desktop.mp4")} autoPlay muted loop playsInline />
             </div>
-            <span className="uvn-polaroid-cap v-serif">Delphine</span>
+            <span className="uvn-polaroid-cap v-serif">Isaline</span>
           </div>
         </div>
 

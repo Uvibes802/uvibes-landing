@@ -479,6 +479,17 @@ h5 {
   box-shadow: 0 24px 50px -12px rgba(217, 10, 92, 0.55);
 }
 
+/* Variante blanche — utilisée sur fonds déjà très saturés (héros orange/rose) */
+.btn-brand--white {
+  background: #fff;
+  color: var(--rose);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+}
+.btn-brand--white:hover {
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+
 /* Bouton verre dépoli */
 .btn-glass {
   background: rgba(255, 255, 255, 0.55);

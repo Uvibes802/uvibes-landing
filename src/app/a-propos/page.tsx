@@ -181,7 +181,7 @@ export default function Uvibes() {
 
           {/* Vidéo Pierre — déplacée sous les 3 cartes */}
           <div className="uv-team-vid-wrap">
-            <video src={getVideoUrl("Pierre-mobile.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
+            <video src={getVideoUrl("Pierre-desktop.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
           </div>
         </div>
       </section>
@@ -198,7 +198,7 @@ export default function Uvibes() {
           <p className="uv-eyebrow uv-don-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Le portage du projet</p>
           <h2 className="uv-join-title uv-don-title">
             Soutenez un{" "}
-            <em className="uv-serif-accent uv-serif-accent--yellow">modèle non lucratif</em>
+            <em className="uv-serif-accent uv-serif-accent--yellow v-serif">modèle non lucratif</em>
           </h2>
           <p className="uv-join-sub uv-don-sub">
             Uvibes est porté par l&apos;association Eclat&apos;Ens. Tous les bénéfices générés sont

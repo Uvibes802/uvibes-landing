@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check, X } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
@@ -172,11 +172,13 @@ export default function PricingTable({ locale = "fr" }: { locale?: "fr" | "en" }
                       <button
                         type="button"
                         className="pt-card-tiers-toggle"
+                        aria-expanded={open}
                         onClick={() => setOpenTiers(open ? null : slug)}
                       >
                         {locale === "en"
                           ? (open ? "Hide pricing by size" : "See pricing by size")
                           : (open ? "Masquer les tarifs par taille" : "Voir les tarifs par taille")}
+                        <ChevronDown size={13} className="pt-card-tiers-toggle-arrow" aria-hidden="true" />
                       </button>
                       {open && (
                         <ul className="pt-card-tiers-list">

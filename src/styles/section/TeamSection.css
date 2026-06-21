@@ -102,5 +102,14 @@
 }
 
 @media (max-width: 640px) {
-  .uvibes-teamSection-button { justify-content: flex-start; }
+  /* Défilement horizontal au lieu du retour à la ligne — la section reste compacte */
+  .uvibes-teamSection-button {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .uvibes-teamSection-button::-webkit-scrollbar { display: none; }
+  .uvibes-button { flex-shrink: 0; }
 }

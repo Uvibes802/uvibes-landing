@@ -31,6 +31,16 @@ export default function TeamSection({ locale = "fr" }: { locale?: "fr" | "en" })
   const [activeButton, setActiveButton] = useState(DEFAULT_CATS[0]);
   const team: TeamProps[] = useTeamByTag(activeButton);
 
+  // Carrousel forcé en mobile (même avec peu de membres) → la section prend moins de place
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   useEffect(() => {
     fetch("/api/settings")
       .then((r) => r.json())
@@ -48,9 +58,10 @@ export default function TeamSection({ locale = "fr" }: { locale?: "fr" | "en" })
 
   // Le slug (utilisé pour filtrer en base) reste la valeur FR — seul le libellé affiché change.
   const tabs = cats.map((c) => ({ label: locale === "en" ? (CAT_LABELS_EN[c] ?? c) : c, slug: c }));
+  const useCarousel = team.length > 4 || (isMobile && team.length > 1);
 
   const renderMembers = () => {
-    if (team.length > 4) {
+    if (useCarousel) {
       return (
         <Swiper
           modules={[Pagination, Navigation]}
@@ -122,7 +133,7 @@ export default function TeamSection({ locale = "fr" }: { locale?: "fr" | "en" })
           </button>
         ))}
       </div>
-      <div className={`uvibes-teamSection-members ${team.length > 4 ? 'is-carousel' : ''}`}>
+      <div className={`uvibes-teamSection-members ${useCarousel ? 'is-carousel' : ''}`}>
         {renderMembers()}
       </div>
     </section>

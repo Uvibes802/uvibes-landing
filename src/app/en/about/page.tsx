@@ -181,7 +181,7 @@ export default function AboutEn() {
 
           {/* Vidéo Pierre — déplacée sous les 3 cartes */}
           <div className="uv-team-vid-wrap">
-            <video src={getVideoUrl("Pierre-mobile.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
+            <video src={getVideoUrl("Pierre-desktop.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
           </div>
         </div>
       </section>
@@ -198,7 +198,7 @@ export default function AboutEn() {
           <p className="uv-eyebrow uv-don-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Who runs the project</p>
           <h2 className="uv-join-title uv-don-title">
             Support a{" "}
-            <em className="uv-serif-accent uv-serif-accent--yellow">non-profit model</em>
+            <em className="uv-serif-accent uv-serif-accent--yellow v-serif">non-profit model</em>
           </h2>
           <p className="uv-join-sub uv-don-sub">
             Uvibes is run by the Eclat&apos;Ens association. All proceeds generated are

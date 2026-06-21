@@ -81,7 +81,7 @@ export default function SolutionHero({ locale = "fr" }: { locale?: "fr" | "en" }
               : <>Une méthode structurée pour développer l&apos;engagement, renforcer le sentiment d&apos;appartenance, révéler les besoins de votre collectif et accompagner durablement l&apos;évolution de votre organisation.</>}
           </p>
           <div className="sh-ctas">
-            <Link href={locale === "en" ? "/en/pricing" : "/tarifs"} className="btn-brand sh-cta-primary">
+            <Link href={locale === "en" ? "/en/pricing" : "/tarifs"} className="btn-brand btn-brand--white sh-cta-primary">
               {locale === "en" ? "Discover our pricing →" : "Découvrir nos tarifs →"}
             </Link>
           </div>

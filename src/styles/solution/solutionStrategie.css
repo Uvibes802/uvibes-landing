@@ -2,8 +2,19 @@
 .str-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(3.5rem, 7vw, 6.5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(165deg, #FFF6EC 0%, #FFFBF4 50%, #FFF0F6 100%);
+  padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1.5rem, 5vw, 3.5rem);
+}
+
+/* Sur fond dégradé saturé (même esprit que la section équipe / à propos) :
+   le fond crème local est retiré, le texte d'en-tête passe en blanc/jaune. */
+.str-gradient-wrap .str-eyebrow { color: #FFE456; justify-content: center; }
+.str-gradient-wrap .str-eyebrow-dot { background: #FFE456; }
+.str-gradient-wrap .str-title { color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,.15); }
+.str-gradient-wrap .str-title-accent {
+  background: linear-gradient(90deg, #FFE456, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .str-inner {
