@@ -64,28 +64,29 @@ export default function CookieConsent() {
   if (pathname.startsWith("/admin") || pathname.startsWith("/devis")) return null;
   if (!showBanner) return null;
 
+  const locale: "fr" | "en" = pathname.startsWith("/en") ? "en" : "fr";
+
   return (
     <>
       <div className="cookie-backdrop" aria-hidden="true" />
-      <div className="cookie-banner" role="dialog" aria-label="Gestion des cookies">
+      <div className="cookie-banner" role="dialog" aria-label={locale === "en" ? "Cookie settings" : "Gestion des cookies"}>
         <div className="cookie-top">
           <span className="cookie-icon" aria-hidden="true">🍪</span>
           <div>
-            <p className="cookie-title">Votre confidentialité</p>
+            <p className="cookie-title">{locale === "en" ? "Your privacy" : "Votre confidentialité"}</p>
             <p className="cookie-text">
-              Nous utilisons des cookies pour améliorer votre expérience.{" "}
-              <a href="/politique-cookies" className="cookie-link">
-                En savoir plus
-              </a>
+              {locale === "en"
+                ? <>We use cookies to improve your experience.{" "}<a href="/politique-cookies" className="cookie-link">Learn more</a></>
+                : <>Nous utilisons des cookies pour améliorer votre expérience.{" "}<a href="/politique-cookies" className="cookie-link">En savoir plus</a></>}
             </p>
           </div>
         </div>
         <div className="cookie-buttons">
           <button onClick={acceptCookies} className="cookie-btn cookie-btn--accept">
-            Accepter
+            {locale === "en" ? "Accept" : "Accepter"}
           </button>
           <button onClick={refuseCookies} className="cookie-btn cookie-btn--refuse">
-            Refuser
+            {locale === "en" ? "Decline" : "Refuser"}
           </button>
         </div>
       </div>

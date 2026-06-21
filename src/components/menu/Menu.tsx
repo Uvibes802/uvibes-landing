@@ -6,12 +6,28 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { Items } from "../../data/menu/MenuData";
+import { getLocaleSwitchHref } from "../../lib/i18nRoutes";
 import "../../styles/menu/Menu.css";
 
-const navItems = Items.filter((item) => item.id !== 6 && item.id !== 7);
+const baseNavItems = Items.filter((item) => item.id !== 6 && item.id !== 7);
+
+// Libellés + liens EN des pages traduites — les ids 1 à 5 correspondent à baseNavItems.
+const EN_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "Home", link: "/en" },
+  2: { label: "Method", link: "/en/method" },
+  3: { label: "Pricing", link: "/en/pricing" },
+  4: { label: "About", link: "/en/about" },
+  5: { label: "Blog", link: "/blog" },
+};
 
 export default function Menu() {
   const pathname = usePathname();
+  // Rendu une seule fois dans le layout racine (FR + EN) → la langue se déduit du chemin
+  const locale: "fr" | "en" = pathname.startsWith("/en") ? "en" : "fr";
+  const navItems = locale === "en"
+    ? baseNavItems.map((item) => ({ ...item, ...EN_NAV[item.id] }))
+    : baseNavItems;
+  const switchHref = getLocaleSwitchHref(pathname, locale);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
@@ -103,25 +119,28 @@ export default function Menu() {
         </ul>
 
         <div className="v-nav-right">
+          <Link href={switchHref} className="v-nav-lang" aria-label={locale === "en" ? "Switch to French" : "Passer en anglais"}>
+            {locale === "en" ? "FR" : "EN"}
+          </Link>
           <a
             href="https://app.uvibes.fr/welcome"
             className="v-nav-connexion"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Se connecter à la plateforme Uvibes"
+            aria-label={locale === "en" ? "Log in to the Uvibes platform" : "Se connecter à la plateforme Uvibes"}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
             </svg>
-            Connexion
+            {locale === "en" ? "Log in" : "Connexion"}
           </a>
           {rdvSysteme === "calendly" && isClient ? (
             <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-ink v-nav-cta">
-              On en parle ?
+              {locale === "en" ? "Let's talk" : "On en parle ?"}
             </a>
           ) : (
-            <Link href="/rendez-vous" className="btn-ink v-nav-cta">On en parle ?</Link>
+            <Link href="/rendez-vous" className="btn-ink v-nav-cta">{locale === "en" ? "Let's talk" : "On en parle ?"}</Link>
           )}
         </div>
       </nav>
@@ -173,15 +192,18 @@ export default function Menu() {
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
             </svg>
-            Connexion à la plateforme
+            {locale === "en" ? "Log in to the platform" : "Connexion à la plateforme"}
           </a>
           {rdvSysteme === "calendly" && isClient ? (
             <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>
-              On en parle ?
+              {locale === "en" ? "Let's talk" : "On en parle ?"}
             </a>
           ) : (
-            <Link href="/rendez-vous" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>On en parle ?</Link>
+            <Link href="/rendez-vous" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>{locale === "en" ? "Let's talk" : "On en parle ?"}</Link>
           )}
+          <Link href={switchHref} className="v-sheet-lang" onClick={() => setMenuOpen(false)}>
+            {locale === "en" ? "Voir en français" : "View in English"}
+          </Link>
         </div>
 
         {/* FAB */}

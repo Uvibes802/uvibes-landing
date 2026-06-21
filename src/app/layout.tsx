@@ -1,5 +1,6 @@
 import CookieConsent from "@/components/cookieConsent";
 import Menu from "@/components/menu/Menu";
+import HtmlLangSync from "@/components/shared/HtmlLangSync";
 import RevealObserver from "@/components/shared/RevealObserver";
 import MaintenanceWrapper from "@/components/maintenance/MaintenanceWrapper";
 import GARouteTracker from "@/components/analytics/GARouteTracker";
@@ -99,6 +100,7 @@ export default async function RootLayout({
       </head>
       <body className={`${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
         {/* Menu et CookieConsent se masquent eux-mêmes sur /admin & /devis (garde-fou client usePathname) */}
+        <HtmlLangSync />
         <Menu />
         <RevealObserver />
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>

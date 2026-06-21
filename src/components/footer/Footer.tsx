@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import "../../styles/footer/footer.css";
 
-const NAV_COLS = [
+const NAV_COLS_FR = [
   {
     label: "Notre solution",
     links: [
@@ -35,7 +35,44 @@ const NAV_COLS = [
   },
 ];
 
-export default function Footer() {
+// Mêmes cibles que la version FR (les pages légales restent en français) — labels traduits.
+const NAV_COLS_EN = [
+  {
+    label: "Our solution",
+    links: [
+      { href: "/en/method", label: "Method" },
+      { href: "/en/pricing", label: "Pricing" },
+    ],
+  },
+  {
+    label: "Our world",
+    links: [
+      { href: "/blog", label: "Blog" },
+      { href: "/en/about", label: "About" },
+    ],
+  },
+  {
+    label: "Get in touch",
+    links: [
+      { href: "/en#contact", label: "Write to us" },
+      { href: "/rendez-vous", label: "Book a call" },
+    ],
+  },
+  {
+    label: "Legal (FR)",
+    links: [
+      { href: "/mentions-legales", label: "Legal notice" },
+      { href: "/conditions-d-utilisation", label: "Terms of use" },
+      { href: "/politique-de-confidentialite", label: "Privacy policy" },
+      { href: "/politique-cookies", label: "Cookies" },
+    ],
+  },
+];
+
+export default function Footer({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const NAV_COLS = locale === "en" ? NAV_COLS_EN : NAV_COLS_FR;
+  const homeHref = locale === "en" ? "/en" : "/";
+
   return (
     <footer className="ft-footer">
       {/* Blobs colorés — saturent la section */}
@@ -48,7 +85,7 @@ export default function Footer() {
         {/* Top — brand + nav côte à côte */}
         <div className="ft-top">
           <div className="ft-brand">
-            <Link href="/" aria-label="Retour à l'accueil Uvibes">
+            <Link href={homeHref} aria-label={locale === "en" ? "Back to Uvibes home" : "Retour à l'accueil Uvibes"}>
               <Image
                 src="/images/Logo%20VI%20blanc.png"
                 alt="Uvibes"
@@ -57,7 +94,9 @@ export default function Footer() {
                 className="ft-logo"
               />
             </Link>
-            <p className="ft-tagline v-serif">Activez les bonnes ondes.</p>
+            <p className="ft-tagline v-serif">
+              {locale === "en" ? "Switch on the right vibes." : "Activez les bonnes ondes."}
+            </p>
           </div>
 
           <div className="ft-nav">
@@ -80,7 +119,9 @@ export default function Footer() {
 
         <div className="ft-bottom">
           <p className="v-mono ft-copy">© 2026 Uvibes</p>
-          <p className="ft-slogan v-serif">L&apos;inattendu commence ici.</p>
+          <p className="ft-slogan v-serif">
+            {locale === "en" ? "The unexpected starts here." : "L'inattendu commence ici."}
+          </p>
           <Link href="/admin/login" className="ft-admin-link" aria-label="Espace administration">
             Admin
           </Link>

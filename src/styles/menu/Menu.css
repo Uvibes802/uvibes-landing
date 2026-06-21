@@ -110,6 +110,30 @@
   box-shadow: 0 8px 20px -8px rgba(217, 10, 92, 0.45);
 }
 
+/* Switcher de langue desktop — petite pastille discrète avant Connexion */
+.v-nav-lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(74, 21, 48, 0.22);
+  font-family: var(--font-prompt), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: all 220ms var(--ease, ease);
+}
+
+.v-nav-lang:hover {
+  background: var(--gradient-brand, linear-gradient(135deg, #FD6E00, #D90A5C));
+  color: #fff;
+  border-color: transparent;
+}
+
 /* Connexion dans le sheet mobile */
 .v-sheet-connexion {
   display: flex;
@@ -133,6 +157,18 @@
   background: var(--gradient-brand, linear-gradient(135deg, #FD6E00, #D90A5C));
   color: #fff;
   border-color: transparent;
+}
+
+/* Switcher de langue dans le sheet mobile — simple lien texte sous les CTA */
+.v-sheet-lang {
+  display: block;
+  text-align: center;
+  font-family: var(--font-prompt), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(74, 21, 48, 0.6);
+  text-decoration: underline;
+  text-decoration-color: rgba(74, 21, 48, 0.3);
 }
 
 /* ── Mobile — caché par défaut ──────────────────────────────────── */
