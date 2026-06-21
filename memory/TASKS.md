@@ -117,6 +117,7 @@
 
 ## 🔴 En attente de validation tutrice
 
+- [ ] **BUG CRITIQUE — Formulaire de contact ne part pas** : `/api/sendEmail` renvoie 500. Cause confirmée par test direct nodemailer : `EAUTH invalid_grant: Bad Request` → le `GOOGLE_REFRESH_TOKEN` (OAuth2 Gmail) est expiré ou révoqué. Ce n'est pas un bug de code — il faut régénérer un refresh token côté Google Cloud Console (compte du propriétaire de `EMAIL_USER`) et l'ajouter dans `.env.local` + Vercel. Vérifier aussi que l'écran de consentement OAuth est en mode **Production** (pas Testing) sinon le token expire à nouveau après 7 jours.
 - [ ] **Vérifier /blog en prod** — articles WordPress s'affichent correctement
 - [ ] **Vérifier CORS CloudFront** — vidéos témoignages visibles en prod
 

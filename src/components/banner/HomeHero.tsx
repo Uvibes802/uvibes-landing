@@ -169,7 +169,7 @@ export default function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
               {locale === "en" ? (
                 <>Good conversations don&apos;t happen by chance.<br />They&apos;re made.</>
               ) : (
-                <>{t("hero-sub", "Les bonnes conversations ne s'improvisent pas.")}<br />{t("hero-sub-2", "Elles se créent.")}</>
+                t("hero-sub", "Les bonnes conversations ne s'improvisent pas. Elles se créent.")
               )}
             </p>
           </Reveal>

@@ -69,7 +69,7 @@ export default function HowItWorks({ locale = "fr" }: { locale?: "fr" | "en" }) 
       <div className="how-header">
         <p className="v-mono how-eyebrow">
           <span className="how-eyebrow-dot" aria-hidden="true" />
-          {locale === "en" ? "How it works" : "Comment ça fonctionne"}
+          {locale === "en" ? "How it works?" : "Comment ça fonctionne ?"}
         </p>
         <h2 className="how-title v-prompt">
           {locale === "en" ? (

@@ -50,7 +50,7 @@ const USAGES = [
   { slug: "barometre-bien-etre", label: "Baromètre bien-être" },
   { slug: "statistiques-pilotage", label: "Statistiques et pilotage" },
   { slug: "kit-communication", label: "Kit de communication" },
-  { slug: "actualites-internes", label: "Diffusion actualités internes" },
+  { slug: "actualites-internes", label: "Diffusion d'actualités internes" },
   { slug: "cartes-visite", label: "Échanges cartes de visite" },
   { slug: "parcours-entrainement", label: "Parcours d'entraînement" },
   { slug: "mediatheque", label: "Médiathèque" },
@@ -67,15 +67,15 @@ const DUREES = [
 // Fonctionnalités incluses par offre (source : page Tarifs) — affichées au dépli
 const PLAN_FEATURES: Record<string, string[]> = {
   "vibes-connection": [
-    "Expériences interactives (1 000 vibes)", "Sondages", "Baromètre bien-être", "Statistiques & pilotage",
+    "Expériences interactives (1 000 vibes)", "Enquêtes flash", "Baromètre bien-être", "Statistiques & pilotage",
   ],
   "vibes-premium": [
-    "Expériences interactives (1 000 vibes)", "Sondages", "Baromètre bien-être", "Statistiques & pilotage",
-    "Logo de votre entreprise", "Kit de communication", "Actualités internes",
+    "Expériences interactives (1 000 vibes)", "Enquêtes flash", "Baromètre bien-être", "Statistiques & pilotage",
+    "Logo de votre entreprise", "Kit de communication", "Diffusion d'actualités internes",
   ],
   "vibes-boost": [
-    "Expériences interactives (1 000 vibes)", "Sondages", "Baromètre bien-être", "Statistiques & pilotage",
-    "Logo de votre entreprise", "Kit de communication", "Actualités internes",
+    "Expériences interactives (1 000 vibes)", "Enquêtes flash", "Baromètre bien-être", "Statistiques & pilotage",
+    "Logo de votre entreprise", "Kit de communication", "Diffusion d'actualités internes",
     "Networking (cartes de visite digitales)", "Brainstorming (enquêtes post vibes)",
     "Employer branding (invités extérieurs)", "Soft skills (parcours d'entraînement) ou médiathèque",
   ],

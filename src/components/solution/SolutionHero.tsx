@@ -78,7 +78,7 @@ export default function SolutionHero({ locale = "fr" }: { locale?: "fr" | "en" }
           <p className="sh-desc">
             {locale === "en"
               ? "A structured method to build engagement, strengthen the sense of belonging, surface what your community really needs, and support your organization's growth over the long run."
-              : <>Une méthode structurée pour développer l&apos;engagement, renforcer le sentiment d&apos;appartenance, révéler les besoins de votre collectif et accompagner durablement l&apos;évolution de votre organisation.</>}
+              : <>Une méthode structurée pour développer l&apos;engagement,<br className="v-br-desktop" /> renforcer le sentiment d&apos;appartenance, révéler les besoins de votre collectif et accompagner durablement l&apos;évolution de votre organisation.</>}
           </p>
           <div className="sh-ctas">
             <Link href={locale === "en" ? "/en/pricing" : "/tarifs"} className="btn-brand btn-brand--white sh-cta-primary">

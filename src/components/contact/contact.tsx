@@ -46,7 +46,7 @@ export default function Contact({ locale = "fr" }: { locale?: "fr" | "en" }) {
           <p className="ct-sub">
             {locale === "en"
               ? "A few lines are enough. Tell us what brings you to Uvibes and the questions you have about your project — we'll get back to you personally."
-              : <>Quelques lignes suffisent. Dites-nous ce qui vous amène vers Uvibes et les questions que vous vous posez pour votre projet&nbsp;: nous vous répondrons de façon personnalisée.</>}
+              : <>Quelques lignes suffisent. Dites-nous ce qui vous amène vers Uvibes et les questions que vous vous posez pour votre projet&nbsp;:<br className="ct-br-desktop" /> nous vous répondrons de façon personnalisée.</>}
           </p>
         </div>
 

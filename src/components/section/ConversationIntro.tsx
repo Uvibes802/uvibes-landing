@@ -150,14 +150,12 @@ export default function ConversationIntro({ locale = "fr" }: { locale?: "fr" | "
               {locale === "en" ? (
                 <>
                   <p>Uvibes gets the good stuff moving — {kw(0,"tips")}, {kw(1,"experiences")} and {kw(2,"perspectives")} — through short, human, engaging conversations.</p>
-                  <p>Built for organizations, Uvibes strengthens the {kw(3,"bond between people")}, raises the {kw(4,"quality of every exchange")} and keeps {kw(5,"useful information flowing")} day to day.</p>
                   <p>In plenty of communities, we hesitate to start the conversation — and we underestimate what simple {kw(6,"peer-to-peer exchanges")} can do.</p>
                   <p>Uvibes makes the {kw(7,"right conversations")} happen, between the {kw(8,"right people")}, at the {kw(9,"right time")}. Your organization becomes more {kw(10,"connected")}, more {kw(11,"fluid")} and more {kw(12,"effective")}.</p>
                 </>
               ) : (
                 <>
                   <p>Uvibes fait circuler les {kw(0,"bons plans")}, les {kw(1,"expériences")} et les {kw(2,"points de vue")} à travers des discussions courtes, humaines et engageantes.</p>
-                  <p>Conçue pour les organisations, Uvibes renforce le {kw(3,"lien entre les personnes")}, améliore la {kw(4,"qualité des échanges")} et facilite la {kw(5,"circulation des informations utiles")} au quotidien.</p>
                   <p>Dans de nombreux collectifs, nous n&apos;osons pas toujours engager la conversation et sous-estimons souvent les bénéfices de simples {kw(6,"échanges entre pairs")}.</p>
                   <p>Uvibes facilite les {kw(7,"bonnes conversations")}, entre les {kw(8,"bonnes personnes")}, au {kw(9,"bon moment")}. Votre organisation devient ainsi plus {kw(10,"en lien")}, plus {kw(11,"fluide")} et plus {kw(12,"efficace")}.</p>
                 </>

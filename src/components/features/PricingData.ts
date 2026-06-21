@@ -2,12 +2,12 @@
 // de la carte, plus besoin de lignes dédiées dans le tableau).
 export const features = [
   { name: "Expériences interactives (1 000 vibes)", type: "boolean" },
-  { name: "Sondages", type: "boolean" },
+  { name: "Enquêtes flash", type: "boolean" },
   { name: "Baromètre bien-être", type: "boolean" },
   { name: "Statistiques & pilotage", type: "boolean" },
   { name: "Logo de votre entreprise", type: "boolean" },
   { name: "Kit de communication", type: "boolean" },
-  { name: "Actualités internes", type: "boolean" },
+  { name: "Diffusion d'actualités internes", type: "boolean" },
   { name: "Networking (cartes de visite digitales)", type: "boolean" },
   { name: "Brainstorming (enquêtes post vibes)", type: "boolean" },
   { name: "Employer branding (invités extérieurs)", type: "boolean" },
