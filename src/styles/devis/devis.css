@@ -485,17 +485,7 @@
 /* ── Header tunnel — logo cliquable ───────────────────────────── */
 .dv-header-logo { display: inline-flex; align-items: center; transition: transform 0.2s ease; }
 .dv-header-logo:hover { transform: scale(1.06); }
-/* Le logo « vi » est blanc → badge dégradé pour rester visible sur l'en-tête clair du tunnel */
-.dv-header-logo-badge {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #fd6e00, #d90a5c);
-  box-shadow: 0 6px 16px -4px rgba(217,10,92,.45);
-}
-.dv-header-logo-img { height: 22px; width: auto; display: block; }
+.dv-header-logo-img { height: 40px; width: auto; display: block; }
 
 /* ── Offres dépliables (voir le contenu) ──────────────────────── */
 .dv-plan-ht { font-size: 10px; font-weight: 600; color: #9a7585; letter-spacing: 0.04em; }

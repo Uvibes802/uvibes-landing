@@ -201,12 +201,10 @@ export default function DevisFormStepper() {
 
   return (
     <div className="dv-page">
-      {/* Header — logo « vi » seul, cliquable, renvoie au site */}
+      {/* Header — logo « vi » seul (dégradé, sans fond), cliquable, renvoie au site */}
       <header className="dv-header">
         <Link href="/" className="dv-header-logo" aria-label="Retour au site Uvibes">
-          <span className="dv-header-logo-badge">
-            <Image src="/images/Logo%20VI%20blanc.png" alt="Uvibes" width={28} height={28} className="dv-header-logo-img" />
-          </span>
+          <Image src="/images/favicon.png" alt="Uvibes" width={40} height={35} className="dv-header-logo-img" />
         </Link>
       </header>
 
