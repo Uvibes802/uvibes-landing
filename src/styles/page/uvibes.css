@@ -396,11 +396,13 @@
 /* Marge de respiration au-dessus/dessous des vagues (même logique que .uv-don) */
 .uv-team--on-gradient {
   padding-top: clamp(6rem, 8vw, 7.5rem);
-  padding-bottom: clamp(5rem, 7vw, 6.5rem);
+  padding-bottom: clamp(7.5rem, 10vw, 9.5rem);
 }
-/* Contraste texte sur le dégradé — mêmes codes que la section Don */
+/* Contraste texte sur le dégradé — mêmes codes que la section Don.
+   Sélecteur composé (.uv-section-title.uv-team-title) pour garantir la priorité
+   sur .uv-section-title (orange) déclarée plus bas, même spécificité sinon. */
 .uv-team-eyebrow { color: #FFE456; justify-content: center; }
-.uv-team-title {
+.uv-section-title.uv-team-title {
   color: #fff;
   text-shadow: 0 2px 20px rgba(0,0,0,.15);
 }

@@ -149,7 +149,8 @@ export default function Uvibes() {
           </div>
         </section>
 
-        <WaveSeparator position="bottom" color="#FFF6EC" />
+        {/* Couleur calée sur le fond réel de la section suivante à cette profondeur de page (plus rosé que le haut) */}
+        <WaveSeparator position="bottom" color="#FFEFF6" backColor="#FFD9E8" />
       </div>
 
       {/* ── Éthique ── */}
