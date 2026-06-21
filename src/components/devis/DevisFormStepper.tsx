@@ -170,6 +170,7 @@ export default function DevisFormStepper() {
       if (!form.nom.trim()) errs.nom = "Champ requis";
       if (!form.contact.trim()) errs.contact = "Champ requis";
       if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errs.email = "Email invalide";
+      if (!form.siret.trim()) errs.siret = "Champ requis";
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -200,10 +201,12 @@ export default function DevisFormStepper() {
 
   return (
     <div className="dv-page">
-      {/* Header */}
+      {/* Header — logo « vi » seul, cliquable, renvoie au site */}
       <header className="dv-header">
         <Link href="/" className="dv-header-logo" aria-label="Retour au site Uvibes">
-          <Image src="/images/Logo%20UVIBES.png" alt="Uvibes" width={120} height={44} className="dv-header-logo-img" />
+          <span className="dv-header-logo-badge">
+            <Image src="/images/Logo%20VI%20blanc.png" alt="Uvibes" width={28} height={28} className="dv-header-logo-img" />
+          </span>
         </Link>
       </header>
 
@@ -489,16 +492,17 @@ export default function DevisFormStepper() {
           </div>
 
           <div className="dv-field">
-            <label className="dv-label" htmlFor="dv-siret">Numéro SIRET</label>
+            <label className="dv-label" htmlFor="dv-siret">Numéro SIRET *</label>
             <input
               id="dv-siret"
-              className="dv-input"
+              className={`dv-input${errors.siret ? " --error" : ""}`}
               type="text"
               inputMode="numeric"
               placeholder="123 456 789 00012"
               value={form.siret}
               onChange={(e) => set("siret", e.target.value)}
             />
+            {errors.siret && <p className="dv-error-msg">{errors.siret}</p>}
           </div>
         </div>
       )}

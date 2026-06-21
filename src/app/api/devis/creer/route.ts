@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       planSlug, nombreUtilisateurs, dureeContrat,
     } = body;
 
-    if (!nom || !contact || !email || !planSlug || !nombreUtilisateurs || !dureeContrat) {
+    if (!nom || !contact || !email || !siret || !planSlug || !nombreUtilisateurs || !dureeContrat) {
       return NextResponse.json({ error: "Champs obligatoires manquants" }, { status: 400 });
     }
 
