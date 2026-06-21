@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import "@/styles/solution/solutionStrategie.css";
 
@@ -119,6 +120,15 @@ export default function SolutionStrategie({ locale = "fr" }: { locale?: "fr" | "
             <div className="str-stat">
               <span className="str-stat-num v-serif">20+</span>
               <span className="str-stat-label">{locale === "en" ? <>indicators tracked<br />in real time</> : <>indicateurs suivis<br />en temps réel</>}</span>
+            </div>
+            <div className="str-dashboard-shot">
+              <Image
+                src="/images/dashboard/dashboard-1.webp"
+                alt={locale === "en" ? "Uvibes dashboard — real-time tracking" : "Tableau de bord Uvibes — suivi en temps réel"}
+                width={900}
+                height={511}
+                className="str-dashboard-img"
+              />
             </div>
           </article>
         </div>

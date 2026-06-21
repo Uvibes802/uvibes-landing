@@ -2,7 +2,7 @@
 .str-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1.5rem, 5vw, 3.5rem) clamp(6.5rem, 10vw, 9.5rem);
 }
 
 /* Sur fond dégradé saturé (même esprit que la section équipe / à propos) :
@@ -225,6 +225,19 @@
   -webkit-text-fill-color: transparent;
 }
 .str-stat-label { font-size: 12.5px; line-height: 1.4; color: #6b4455; }
+
+.str-dashboard-shot {
+  margin-top: 1.1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 28px -14px rgba(0,0,0,.25);
+}
+.str-dashboard-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .str-ticker-track { animation: none; }
