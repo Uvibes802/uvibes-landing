@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
+import { getVideoUrl } from "@/utils/videoUrl";
 import "@/styles/solution/solutionSoftSkills.css";
 
 // ── Médias hébergés sur CloudFront (fournis par la tutrice) ───────────────
@@ -128,7 +129,7 @@ export default function SolutionSoftSkills({ locale = "fr" }: { locale?: "fr" | 
               <figure className="sss-vibe-polaroid">
                 <video
                   className="sss-vibe-video"
-                  src="/videos/lisa-et-celine.mp4"
+                  src={getVideoUrl("arjun-mobile.mp4")}
                   autoPlay
                   muted
                   loop

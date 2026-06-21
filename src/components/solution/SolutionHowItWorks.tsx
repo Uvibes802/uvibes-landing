@@ -22,9 +22,8 @@ const STEPS_FR: Step[] = [
     title: "Engager votre collectif",
     body: "Des expériences courtes et surprenantes, conçues pour encourager les échanges, faire circuler les bons plans et favoriser le partage d'expériences entre membres du collectif.",
     accent: "#FD6E00",
-    video: "Isaline-desktop.mp4",
+    video: "Nadine-mobile.mp4",
     tilt: "left",
-    videoPos: "center 22%",
   },
   {
     n: "02",
@@ -43,7 +42,7 @@ const STEPS_FR: Step[] = [
     title: "Mesurer et piloter l'impact",
     body: "Accédez à un tableau de bord en temps réel pour suivre les usages, l'engagement et l'évolution de votre collectif, et piloter vos actions avec des données concrètes.",
     accent: "#E6007E",
-    image: "/images/dashboard/dashboard-1.webp",
+    video: "Lisa-desktop.mp4",
     tilt: "right",
   },
 ];
@@ -54,9 +53,8 @@ const STEPS_EN: Step[] = [
     title: "Engage your community",
     body: "Short, surprising experiences designed to spark exchanges, pass on good tips and encourage members to share what they know.",
     accent: "#FD6E00",
-    video: "Isaline-desktop.mp4",
+    video: "Nadine-mobile.mp4",
     tilt: "left",
-    videoPos: "center 22%",
   },
   {
     n: "02",
@@ -75,7 +73,7 @@ const STEPS_EN: Step[] = [
     title: "Measure and steer the impact",
     body: "Access a real-time dashboard to track usage, engagement and how your community evolves — and steer your actions with real data.",
     accent: "#E6007E",
-    image: "/images/dashboard/dashboard-1.webp",
+    video: "Lisa-desktop.mp4",
     tilt: "right",
   },
 ];

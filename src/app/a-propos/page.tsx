@@ -124,7 +124,6 @@ export default function Uvibes() {
           {/* Vidéo témoignage — Delphine */}
           <div className="uv-intro-media">
             <video src={getVideoUrl("Delphine-desktop.mp4")} autoPlay muted loop playsInline className="uv-intro-media__el" />
-            <div className="uv-intro-media__label">Delphine · Responsable collectif</div>
           </div>
         </div>
       </section>
@@ -162,7 +161,7 @@ export default function Uvibes() {
               <h2 className="uv-section-title">Une <em className="uv-serif-grad">éthique</em> au cœur du projet</h2>
             </div>
             <div className="uv-ethics-polaroid">
-              <video src={getVideoUrl("Isaline-desktop.mp4")} autoPlay muted loop playsInline className="uv-ethics-polaroid__img" />
+              <video src={getVideoUrl("Colette-desktop.mp4")} autoPlay muted loop playsInline className="uv-ethics-polaroid__img" />
             </div>
           </div>
           <div className="uv-ethics-grid">
@@ -180,10 +179,9 @@ export default function Uvibes() {
             pour en savoir plus sur nos principes éthiques et leur mise en œuvre concrète.
           </p>
 
-          {/* Vidéo Lisa — déplacée sous les 3 cartes */}
+          {/* Vidéo Pierre — déplacée sous les 3 cartes */}
           <div className="uv-team-vid-wrap">
-            <video src={getVideoUrl("Lisa-desktop.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
-            <div className="uv-team-vid-label">Lisa · Professionnelle RH</div>
+            <video src={getVideoUrl("Pierre-mobile.mp4")} autoPlay muted loop playsInline className="uv-team-vid-el" />
           </div>
         </div>
       </section>
