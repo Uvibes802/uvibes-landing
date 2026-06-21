@@ -33,10 +33,10 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: PAGE_SEO.home.title,
+    default: PAGE_SEO.home.fr.title,
     template: `%s | ${SITE_NAME}`,
   },
-  description: PAGE_SEO.home.description,
+  description: PAGE_SEO.home.fr.description,
   robots: {
     index: true,
     follow: true,
@@ -44,12 +44,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
     languages: {
-      fr: SITE_URL,
+      "fr-FR": SITE_URL,
+      "en-US": `${SITE_URL}${PAGE_SEO.home.en?.path ?? "/en"}`,
     },
   },
   openGraph: {
-    title: PAGE_SEO.home.title,
-    description: PAGE_SEO.home.description,
+    title: PAGE_SEO.home.fr.title,
+    description: PAGE_SEO.home.fr.description,
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "fr_FR",
