@@ -125,22 +125,28 @@ export default function Uvibes() {
         </div>
       </section>
 
-      {/* ── Équipe ── */}
-      <section className="uv-team">
-        {/* Ondes de vibration animées en fond */}
-        <div className="uv-waves" aria-hidden="true">
-          <GradientVibrationLine id="uv-tw1" width={1800} height={70} amplitude={30} freq={5} strokeWidth={22} speed={10} colorFrom="#FD6E00" colorTo="#E6007E" style={{ width: "100%" }} />
-          <GradientVibrationLine id="uv-tw2" width={1800} height={70} amplitude={24} freq={7} strokeWidth={15} speed={14} colorFrom="#00AFDD" colorTo="#D90A5C" style={{ width: "100%" }} />
-          <GradientVibrationLine id="uv-tw3" width={1800} height={70} amplitude={34} freq={4} strokeWidth={18} speed={12} colorFrom="#E6007E" colorTo="#FD6E00" style={{ width: "100%" }} />
-        </div>
-        <div className="uv-team-inner">
-          <div className="uv-section-header">
-            <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Sa concrétisation</p>
-            <h2 className="uv-section-title uv-section-title--magenta">L&apos;équipe derrière <em className="uv-serif-grad">Uvibes</em></h2>
+      {/* ── Équipe — sur fond dégradé (même gradient que le hero), encadrée par 2 vagues ── */}
+      <div className="uv-team-gradient-wrap" style={{ background: "linear-gradient(145deg, #FF5894 0%, #FF7A60 30%, #FFB040 60%, #FD6E00 85%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
+        <WaveSeparator position="top" color="#FFF6EC" />
+
+        <section className="uv-team uv-team--on-gradient">
+          {/* Ondes de vibration animées en fond */}
+          <div className="uv-waves" aria-hidden="true">
+            <GradientVibrationLine id="uv-tw1" width={1800} height={70} amplitude={30} freq={5} strokeWidth={22} speed={10} colorFrom="#fff" colorTo="#FFE456" style={{ width: "100%" }} />
+            <GradientVibrationLine id="uv-tw2" width={1800} height={70} amplitude={24} freq={7} strokeWidth={15} speed={14} colorFrom="#fff" colorTo="#FFE456" style={{ width: "100%" }} />
+            <GradientVibrationLine id="uv-tw3" width={1800} height={70} amplitude={34} freq={4} strokeWidth={18} speed={12} colorFrom="#FFE456" colorTo="#fff" style={{ width: "100%" }} />
           </div>
-          <TeamSection />
-        </div>
-      </section>
+          <div className="uv-team-inner">
+            <div className="uv-section-header">
+              <p className="uv-eyebrow uv-team-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />Sa concrétisation</p>
+              <h2 className="uv-section-title uv-team-title">L&apos;équipe derrière <em className="uv-serif-accent uv-serif-accent--yellow">Uvibes</em></h2>
+            </div>
+            <TeamSection />
+          </div>
+        </section>
+
+        <WaveSeparator position="bottom" color="#FFF6EC" />
+      </div>
 
       {/* ── Éthique ── */}
       <section className="uv-ethics">
