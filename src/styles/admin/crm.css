@@ -60,16 +60,14 @@
 }
 
 .crm-sidebar-brand {
-  padding: 20px 18px 16px;
-  font-family: var(--font-prompt, sans-serif);
-  font-size: 17px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #FD6E00, #D90A5C);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  padding: 18px 18px 16px;
   border-bottom: 1px solid rgba(0,0,0,.07);
-  letter-spacing: -0.02em;
+}
+
+.crm-sidebar-logo {
+  display: block;
+  height: 26px;
+  width: auto;
 }
 
 .crm-sidebar-sub {

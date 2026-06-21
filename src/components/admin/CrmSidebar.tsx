@@ -5,6 +5,7 @@ import {
   Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper, KeyRound,
   KanbanSquare, ListTodo, FileSignature,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -50,7 +51,7 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
   return (
     <aside className="crm-sidebar">
       <div className="crm-sidebar-brand">
-        Uvibes
+        <Image src="/images/favicon.png" alt="Uvibes" width={28} height={24} className="crm-sidebar-logo" />
         <span className="crm-sidebar-sub">CRM & Gestion</span>
       </div>
 
