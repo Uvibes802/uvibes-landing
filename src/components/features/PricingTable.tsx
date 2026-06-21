@@ -9,6 +9,7 @@ import OffreEvenementielle from "./OffreEvenementielle";
 
 import "../../styles/features/PricingTable.css";
 import { features, plans } from "./PricingData";
+import { featuresEn, plansEn } from "./PricingDataEn";
 
 interface PlanTierApi { label: string; min: number; max: number | null; prixAnnuel: number; }
 interface PlanApi { slug: string; tiers: PlanTierApi[]; }
@@ -21,7 +22,7 @@ const SLUG_BY_NAME: Record<string, string> = {
 };
 
 // Ordre : Connection, Boost (populaire, au centre), Premium. Les 3 CTA mènent au devis.
-const PLAN_META = [
+const PLAN_META_FR = [
   {
     accent: "var(--orange)",
     featured: false,
@@ -45,6 +46,30 @@ const PLAN_META = [
   },
 ];
 
+const PLAN_META_EN = [
+  {
+    accent: "var(--orange)",
+    featured: false,
+    badge: null,
+    inherit: null,
+    cta: "Get your quote",
+  },
+  {
+    accent: "var(--rose)",
+    featured: true,
+    badge: "Most popular",
+    inherit: "vibes premium",
+    cta: "Get your quote",
+  },
+  {
+    accent: "#FFB800",
+    featured: false,
+    badge: null,
+    inherit: "vibes connection",
+    cta: "Get your quote",
+  },
+];
+
 /* Fonctionnalités « nouvelles » vs le plan hérité (Connection) — pour la mise en avant */
 const FRESH: Record<number, (i: number) => boolean> = {
   0: () => true,                    // Connection — base, tout est "frais"
@@ -52,9 +77,11 @@ const FRESH: Record<number, (i: number) => boolean> = {
   2: (i) => i >= 4 && i < 7,        // Premium — hérite de Connection (0-3), ajoute 4 à 6
 };
 
-export default function PricingTable() {
+export default function PricingTable({ locale = "fr" }: { locale?: "fr" | "en" }) {
   // Prix de référence : statiques (tableau validé par la tutrice), cf. PricingData.ts
-  const mergedPlans = plans;
+  const mergedPlans = locale === "en" ? plansEn : plans;
+  const FEATURES_LIST = locale === "en" ? featuresEn : features;
+  const PLAN_META = locale === "en" ? PLAN_META_EN : PLAN_META_FR;
 
   // Tranches de tarification (4 tranches éditables en admin) — affichées au dépli
   const [apiPlans, setApiPlans] = useState<PlanApi[]>([]);
@@ -83,14 +110,17 @@ export default function PricingTable() {
         <div className="pt-head">
           <span className="pt-eyebrow v-mono">
             <span className="pt-eyebrow-dot" aria-hidden="true" />
-            Tarification
+            {locale === "en" ? "Pricing" : "Tarification"}
           </span>
           <h2 className="pt-title v-prompt">
-            Nos offres{" "}
-            <span className="pt-title-serif v-serif">Vibes.</span>
+            {locale === "en" ? (
+              <>Our Vibes{" "}<span className="pt-title-serif v-serif">plans.</span></>
+            ) : (
+              <>Nos offres{" "}<span className="pt-title-serif v-serif">Vibes.</span></>
+            )}
           </h2>
           <p className="pt-subtitle">
-            Choisissez le plan adapté à votre collectif.
+            {locale === "en" ? "Find the plan that fits your community." : "Choisissez le plan adapté à votre collectif."}
           </p>
         </div>
 
@@ -128,7 +158,7 @@ export default function PricingTable() {
                 {/* Prix */}
                 <div className="pt-card-price">
                   <span className="pt-card-price-value v-prompt">{plan.price}</span>
-                  <span className="v-mono pt-card-price-note">Prix HT / an</span>
+                  <span className="v-mono pt-card-price-note">{locale === "en" ? "Excl. VAT / year" : "Prix HT / an"}</span>
                 </div>
 
                 {/* Tarif selon la taille — 4 tranches éditables en admin */}
@@ -144,14 +174,16 @@ export default function PricingTable() {
                         className="pt-card-tiers-toggle"
                         onClick={() => setOpenTiers(open ? null : slug)}
                       >
-                        {open ? "Masquer les tarifs par taille" : "Voir les tarifs par taille"}
+                        {locale === "en"
+                          ? (open ? "Hide pricing by size" : "See pricing by size")
+                          : (open ? "Masquer les tarifs par taille" : "Voir les tarifs par taille")}
                       </button>
                       {open && (
                         <ul className="pt-card-tiers-list">
                           {tiers.map((t) => (
                             <li key={t.label}>
                               <span>{t.label}</span>
-                              <span>{t.prixAnnuel.toLocaleString("fr-FR")} €</span>
+                              <span>{t.prixAnnuel.toLocaleString(locale === "en" ? "en-US" : "fr-FR")} €</span>
                             </li>
                           ))}
                         </ul>
@@ -169,7 +201,7 @@ export default function PricingTable() {
                     </Link>
                   ) : (
                     <Link href="/rendez-vous" className="pt-card-cta">
-                      Nous contacter
+                      {locale === "en" ? "Contact us" : "Nous contacter"}
                       <ArrowRight size={16} />
                     </Link>
                   )}
@@ -177,12 +209,14 @@ export default function PricingTable() {
 
                 {/* Label héritage */}
                 <div className={`pt-card-inherit-label v-mono${f ? " --featured" : ""}`}>
-                  {meta.inherit ? `Tout ${meta.inherit} :` : "Ce qui est inclus"}
+                  {meta.inherit
+                    ? (locale === "en" ? `Everything in ${meta.inherit} :` : `Tout ${meta.inherit} :`)
+                    : (locale === "en" ? "What's included" : "Ce qui est inclus")}
                 </div>
 
                 {/* Liste features */}
                 <ul className="pt-card-list">
-                  {features.map((feat, fi) => {
+                  {FEATURES_LIST.map((feat, fi) => {
                     const included = plan.values[fi] ?? false;
                     const fresh = meta.inherit ? freshFn(fi) : included;
                     return (
@@ -208,7 +242,7 @@ export default function PricingTable() {
       </div>
 
       {/* 4ème offre — événementielle, présentée dans la même section que les 3 offres annuelles */}
-      <OffreEvenementielle />
+      <OffreEvenementielle locale={locale} />
     </section>
   );
 }

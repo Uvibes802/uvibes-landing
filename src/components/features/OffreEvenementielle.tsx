@@ -25,10 +25,28 @@ const DEFAULTS = {
   ] as Point[],
 };
 
+// Équivalent EN — les réglages admin (CMS, en français) ne sont pas appliqués sur la page anglaise.
+const DEFAULTS_EN = {
+  titre: "Vibes Discovery",
+  prixAccent: "from €480",
+  subtitle: "The simplest way to try Uvibes: a full month to mobilize your community and measure the impact, before any annual commitment.",
+  prix: "480 €",
+  prixNote: "no annual commitment",
+  points: [
+    { label: "Up to 500 vibes", detail: "interactive experiences to mobilize your community" },
+    { label: "1 themed session", detail: "on the topic of your choice, tailored to your audience" },
+    { label: "3 survey campaigns", detail: "3 custom surveys each, to gather what matters" },
+    { label: "1 ready-to-use infographic", detail: "everything needed to make signing up easy for your members" },
+    { label: "2 usage indicators", detail: "to track your community's engagement", bonus: true },
+  ] as Point[],
+};
+
 // Sous-titre sur une seule ligne (wrap naturel). On colle juste
 // "avant tout engagement annuel" avec des espaces insécables.
 function subtitleOneLine(text: string): string {
-  const glued = text.replace(/avant tout engagement annuel/gi, (m) => m.replace(/ /g, "\u00A0"));
+  const glued = text
+    .replace(/avant tout engagement annuel/gi, (m) => m.replace(/ /g, "\u00A0"))
+    .replace(/before any annual commitment/gi, (m) => m.replace(/ /g, "\u00A0"));
   return glued;
 }
 
@@ -40,15 +58,17 @@ function parsePoints(raw: string): Point[] {
   });
 }
 
-export default function OffreEvenementielle() {
+export default function OffreEvenementielle({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const [ref, vis] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.08 });
   const [open, setOpen] = useState(false);
-  const [c, setC] = useState(DEFAULTS);
+  const [c, setC] = useState(locale === "en" ? DEFAULTS_EN : DEFAULTS);
   const { devisEnabled } = useDevisStatus();
   // Compteur animé du prix (count-up quand la carte s'ouvre)
   const [animPrice, setAnimPrice] = useState(0);
 
   useEffect(() => {
+    // Réglages admin = contenu CMS en français uniquement → pas appliqués sur la page EN.
+    if (locale === "en") return;
     fetch("/api/settings")
       .then((r) => r.json())
       .then((s) => {
@@ -62,7 +82,7 @@ export default function OffreEvenementielle() {
         });
       })
       .catch(() => {});
-  }, []);
+  }, [locale]);
 
   // Count-up du chiffre à l'ouverture (0 → prix), easing cubic-out
   useEffect(() => {
@@ -95,7 +115,7 @@ export default function OffreEvenementielle() {
       <div className="oe-inner">
         {/* Barre compacte cliquable — le prix accroche dès l'état replié */}
         <button className="oe-bar" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-          <span className="oe-eyebrow-pill">Offre découverte · 30 jours</span>
+          <span className="oe-eyebrow-pill">{locale === "en" ? "Discovery offer · 30 days" : "Offre découverte · 30 jours"}</span>
           <span className="oe-bar-title v-prompt">
             {c.titre}{" "}
             <span className="oe-title-accent v-serif">{c.prixAccent}</span>
@@ -143,11 +163,11 @@ export default function OffreEvenementielle() {
               <div className="oe-ctas">
                 {devisEnabled && (
                   <Link href="/devis" className="btn-brand oe-cta-primary">
-                    Faire un devis →
+                    {locale === "en" ? "Get your quote →" : "Faire un devis →"}
                   </Link>
                 )}
-                <Link href="/#contact" className="oe-cta-ghost">
-                  Nous contacter
+                <Link href={locale === "en" ? "/en#contact" : "/#contact"} className="oe-cta-ghost">
+                  {locale === "en" ? "Contact us" : "Nous contacter"}
                 </Link>
               </div>
             </div>

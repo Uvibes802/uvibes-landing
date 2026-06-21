@@ -21,10 +21,10 @@ const PARTICLES: Particle[] = [
   { c: "#FFE456", s: 7,  top: "48%", right: "30%", anim: "th-p-1", dur: "8s",  del: "0.1s" },
 ];
 
-export default function TarifsHero() {
+export default function TarifsHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const { devisEnabled } = useDevisStatus();
   return (
-    <section className="th-section" aria-label="Tarifs et offres Uvibes">
+    <section className="th-section" aria-label={locale === "en" ? "Uvibes pricing and plans" : "Tarifs et offres Uvibes"}>
       {/* Décor animé (même esprit que la page Méthode) : blobs doux + particules */}
       <div className="th-blobs" aria-hidden="true">
         <span className="th-blob th-blob--a" />
@@ -60,22 +60,26 @@ export default function TarifsHero() {
 
       <div className="th-inner">
         <h1 className="th-title v-prompt">
-          Des offres adaptées à votre besoin<br />
-          et <span className="th-title-accent v-serif">sans surprise.</span>
+          {locale === "en" ? (
+            <>Plans built for your needs<br />and <span className="th-title-accent v-serif">zero surprises.</span></>
+          ) : (
+            <>Des offres adaptées à votre besoin<br />et <span className="th-title-accent v-serif">sans surprise.</span></>
+          )}
         </h1>
         <p className="th-desc">
-          Trois formules annuelles pour déployer Uvibes dans la durée, et une
-          offre découverte de 30&nbsp;jours pour l&apos;essayer sans engagement.
+          {locale === "en"
+            ? "Three annual plans to deploy Uvibes for the long run, plus a 30-day trial offer to test it with no commitment."
+            : <>Trois formules annuelles pour déployer Uvibes dans la durée, et une offre découverte de 30&nbsp;jours pour l&apos;essayer sans engagement.</>}
         </p>
 
         <div className="th-ctas">
           {devisEnabled && (
             <Link href="/devis" className="btn-brand th-cta-primary">
-              Faire un devis →
+              {locale === "en" ? "Get your quote →" : "Faire un devis →"}
             </Link>
           )}
           <Link href="#offres" className="th-cta-ghost">
-            Comparer les offres
+            {locale === "en" ? "Compare plans" : "Comparer les offres"}
           </Link>
         </div>
       </div>
