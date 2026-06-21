@@ -71,7 +71,7 @@ export default function BannerCount({ locale = "fr" }: { locale?: "fr" | "en" })
       }, 300);
     }, 2600);
     return () => clearInterval(iv);
-  }, []);
+  }, [FILLERS.length]);
 
   useEffect(() => {
     const el = ref.current;

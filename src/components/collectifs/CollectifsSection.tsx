@@ -40,7 +40,7 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
       });
     }, 3500);
     return () => clearInterval(t);
-  }, [isLocked]);
+  }, [isLocked, collectifs]);
 
   return (
     <section className={`collectifs-section${vis ? " c-vis" : ""}`} ref={ref}>
