@@ -45,18 +45,22 @@ export default function WhyName() {
           </p>
         </div>
 
-        {/* Décodage du nom — 2 cartes vedettes */}
+        {/* Décodage du nom — composition éditoriale, sans cartes */}
         <div className="uvn-decode">
-          <div className="uvn-term">
-            <span className="uvn-term-letter">U</span>
-            <span className="uvn-term-key">You</span>
-            <span className="uvn-term-def">celui qui vit l&apos;expérience. C&apos;est vous.</span>
+          <div className="uvn-row">
+            <span className="uvn-row-letter v-serif">U</span>
+            <span className="uvn-row-body">
+              <span className="uvn-row-key">You</span>
+              <span className="uvn-row-def">celui qui vit l&apos;expérience. C&apos;est vous.</span>
+            </span>
           </div>
-          <span className="uvn-decode-plus" aria-hidden="true">+</span>
-          <div className="uvn-term">
-            <span className="uvn-term-letter">Vibes</span>
-            <span className="uvn-term-key">les vibrations</span>
-            <span className="uvn-term-def">ces sensations quand on se connecte à quelqu&apos;un, même encore inconnu.</span>
+          <div className="uvn-row-divider" aria-hidden="true" />
+          <div className="uvn-row">
+            <span className="uvn-row-letter v-serif">Vibes</span>
+            <span className="uvn-row-body">
+              <span className="uvn-row-key">les vibrations</span>
+              <span className="uvn-row-def">ces sensations quand on se connecte à quelqu&apos;un, même encore inconnu.</span>
+            </span>
           </div>
         </div>
 
