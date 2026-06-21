@@ -12,12 +12,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
+      alternates: { languages: { "fr-FR": BASE_URL, "en-US": `${BASE_URL}/en` } },
+    },
+    {
+      url: `${BASE_URL}/en`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+      alternates: { languages: { "fr-FR": BASE_URL, "en-US": `${BASE_URL}/en` } },
     },
     {
       url: `${BASE_URL}/a-propos`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
+      alternates: { languages: { "fr-FR": `${BASE_URL}/a-propos`, "en-US": `${BASE_URL}/en/about` } },
+    },
+    {
+      url: `${BASE_URL}/en/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+      alternates: { languages: { "fr-FR": `${BASE_URL}/a-propos`, "en-US": `${BASE_URL}/en/about` } },
     },
     {
       // Page réelle (/features et /avantages sont des 301 → /solution, ne pas les lister)
@@ -25,12 +41,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
+      alternates: { languages: { "fr-FR": `${BASE_URL}/solution`, "en-US": `${BASE_URL}/en/method` } },
+    },
+    {
+      url: `${BASE_URL}/en/method`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: { languages: { "fr-FR": `${BASE_URL}/solution`, "en-US": `${BASE_URL}/en/method` } },
     },
     {
       url: `${BASE_URL}/tarifs`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
+      alternates: { languages: { "fr-FR": `${BASE_URL}/tarifs`, "en-US": `${BASE_URL}/en/pricing` } },
+    },
+    {
+      url: `${BASE_URL}/en/pricing`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: { languages: { "fr-FR": `${BASE_URL}/tarifs`, "en-US": `${BASE_URL}/en/pricing` } },
     },
     {
       url: `${BASE_URL}/blog`,
