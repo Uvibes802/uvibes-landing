@@ -52,11 +52,10 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* ── Bento : flash en grand (2 rangées) + 2 blocs à droite ─────── */
+/* ── Bento : flash en grand en haut (pleine largeur) + 2 blocs côte à côte en dessous ── */
 .str-bento {
   display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
   gap: clamp(1rem, 2vw, 1.5rem);
   align-items: stretch;
 }
@@ -79,7 +78,7 @@
   box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 34px 70px -28px rgba(217,10,92,.32);
 }
 
-.str-card--flash { grid-row: span 2; }
+.str-card--flash { grid-column: 1 / -1; }
 
 /* Couleur d'accent par bloc */
 .str-card--flash      { --str-c: #FD6E00; }
@@ -225,6 +224,5 @@
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 820px) {
   .str-bento { grid-template-columns: 1fr; }
-  .str-card--flash { grid-row: auto; }
   .str-card-title { max-width: 100%; }
 }
