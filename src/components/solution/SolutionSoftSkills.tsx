@@ -15,7 +15,7 @@ const PODCAST_SRC = ""; // TODO épisode podcast .mp3 (CloudFront)
 /* Barres de l'onde du podcast */
 const WAVE_BARS = [0.4, 0.7, 1, 0.55, 0.85, 0.35, 0.95, 0.6, 0.45, 0.8, 0.5, 0.7, 0.3];
 
-export default function SolutionSoftSkills() {
+export default function SolutionSoftSkills({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.12 });
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -39,15 +39,21 @@ export default function SolutionSoftSkills() {
         <header className="sss-head">
           <p className="sss-eyebrow">
             <span className="sss-eyebrow-dot" aria-hidden="true" />
-            Ce que Uvibes fait aussi d&apos;unique
+            {locale === "en" ? "Something else Uvibes does uniquely" : <>Ce que Uvibes fait aussi d&apos;unique</>}
           </p>
           <h2 className="sss-title v-prompt">
-            Entraîner et valoriser<br />
-            les <span className="sss-title-accent v-serif">soft skills.</span>
+            {locale === "en" ? (
+              <>Train and showcase<br />your <span className="sss-title-accent v-serif">soft skills.</span></>
+            ) : (
+              <>Entraîner et valoriser<br />les <span className="sss-title-accent v-serif">soft skills.</span></>
+            )}
           </h2>
           <p className="sss-subtitle">
-            Au-delà des rencontres, Uvibes devient un véritable parcours de développement&nbsp;:<br />
-            on apprend, on s&apos;exerce et on obtient une reconnaissance concrète de son engagement.
+            {locale === "en" ? (
+              <>Beyond the encounters themselves, Uvibes becomes a real development path:<br />you learn, you practice, and your commitment gets concretely recognized.</>
+            ) : (
+              <>Au-delà des rencontres, Uvibes devient un véritable parcours de développement&nbsp;:<br />on apprend, on s&apos;exerce et on obtient une reconnaissance concrète de son engagement.</>
+            )}
           </p>
         </header>
 
@@ -66,7 +72,7 @@ export default function SolutionSoftSkills() {
                       muted
                       loop
                       playsInline
-                      aria-label="Aperçu vidéo Uvibes"
+                      aria-label={locale === "en" ? "Uvibes video preview" : "Aperçu vidéo Uvibes"}
                     />
                   ) : (
                     <div className="sss-video-ph" aria-hidden="true">
@@ -85,7 +91,7 @@ export default function SolutionSoftSkills() {
                       className="sss-podcast-disc"
                       onClick={togglePodcast}
                       aria-pressed={playing}
-                      aria-label={playing ? "Mettre le podcast en pause" : "Écouter le podcast"}
+                      aria-label={playing ? (locale === "en" ? "Pause the podcast" : "Mettre le podcast en pause") : (locale === "en" ? "Listen to the podcast" : "Écouter le podcast")}
                     >
                       {playing ? (
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2" /><rect x="14" y="5" width="4" height="14" rx="1.2" /></svg>
@@ -107,10 +113,11 @@ export default function SolutionSoftSkills() {
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">01</span>
-              <h3 className="sss-row-title">Des ressources à disposition</h3>
+              <h3 className="sss-row-title">{locale === "en" ? "Resources at your fingertips" : "Des ressources à disposition"}</h3>
               <p className="sss-row-body">
-                Des vidéos, podcasts et articles pour comprendre, pas à pas, comment
-                progresser sur chaque soft skill.
+                {locale === "en"
+                  ? "Videos, podcasts and articles to understand, step by step, how to grow each soft skill."
+                  : <>Des vidéos, podcasts et articles pour comprendre, pas à pas, comment progresser sur chaque soft skill.</>}
               </p>
             </div>
           </div>
@@ -126,16 +133,17 @@ export default function SolutionSoftSkills() {
                   muted
                   loop
                   playsInline
-                  aria-label="Aperçu d'un échange Uvibes en conditions réelles"
+                  aria-label={locale === "en" ? "Preview of a real Uvibes conversation" : "Aperçu d'un échange Uvibes en conditions réelles"}
                 />
               </figure>
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">02</span>
-              <h3 className="sss-row-title">Un terrain d&apos;entraînement continu</h3>
+              <h3 className="sss-row-title">{locale === "en" ? "An ongoing training ground" : <>Un terrain d&apos;entraînement continu</>}</h3>
               <p className="sss-row-body">
-                Des mises en situation réelles pour développer et renforcer ses
-                compétences relationnelles.
+                {locale === "en"
+                  ? "Real-life situations to build and strengthen relational skills."
+                  : <>Des mises en situation réelles pour développer et renforcer ses compétences relationnelles.</>}
               </p>
             </div>
           </div>
@@ -145,7 +153,7 @@ export default function SolutionSoftSkills() {
             <div className="sss-illu-col">
               <Image
                 src="/images/attestation-lou.png"
-                alt="Attestation d'entraînement Uvibes — exemple Lou"
+                alt={locale === "en" ? "Uvibes training certificate — Lou's example" : "Attestation d'entraînement Uvibes — exemple Lou"}
                 width={260}
                 height={184}
                 className="sss-attestation-img"
@@ -153,9 +161,9 @@ export default function SolutionSoftSkills() {
             </div>
             <div className="sss-text-col">
               <span className="sss-num v-mono">03</span>
-              <h3 className="sss-row-title">Une valorisation de l&apos;engagement</h3>
+              <h3 className="sss-row-title">{locale === "en" ? "Recognition for your commitment" : <>Une valorisation de l&apos;engagement</>}</h3>
               <p className="sss-row-body">
-                Une attestation qui reconnaît le parcours réalisé.
+                {locale === "en" ? "A certificate that recognizes the journey completed." : "Une attestation qui reconnaît le parcours réalisé."}
               </p>
             </div>
           </div>

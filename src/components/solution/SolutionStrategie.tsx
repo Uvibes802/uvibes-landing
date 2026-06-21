@@ -4,7 +4,7 @@ import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import "@/styles/solution/solutionStrategie.css";
 
 // Exemples de thématiques (verbatim) — défilent en ticker, pas en pastilles
-const THEMES = [
+const THEMES_FR = [
   "motivation et engagement",
   "équilibre vie professionnelle / vie personnelle",
   "sentiment d'appartenance",
@@ -19,7 +19,23 @@ const THEMES = [
   "évaluation d'un projet, d'un événement ou d'une initiative",
 ];
 
-export default function SolutionStrategie() {
+const THEMES_EN = [
+  "motivation and engagement",
+  "work-life balance",
+  "sense of belonging",
+  "quality of relationships within the community",
+  "social connection and risk of isolation",
+  "training needs",
+  "digital habits",
+  "confidence in the future",
+  "company culture and strategic priorities",
+  "perception of internal communication",
+  "suggestion box",
+  "evaluation of a project, event or initiative",
+];
+
+export default function SolutionStrategie({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const THEMES = locale === "en" ? THEMES_EN : THEMES_FR;
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.08 });
 
   return (
@@ -28,11 +44,14 @@ export default function SolutionStrategie() {
         <header className="str-head">
           <p className="str-eyebrow">
             <span className="str-eyebrow-dot" aria-hidden="true" />
-            Stratégie
+            {locale === "en" ? "Strategy" : "Stratégie"}
           </p>
           <h2 className="str-title v-prompt">
-            Disposez de <em className="str-title-accent v-serif">données inédites</em>
-            <br />pour mieux comprendre votre collectif
+            {locale === "en" ? (
+              <>Get <em className="str-title-accent v-serif">unique data</em><br />to better understand your community</>
+            ) : (
+              <>Disposez de <em className="str-title-accent v-serif">données inédites</em><br />pour mieux comprendre votre collectif</>
+            )}
           </h2>
         </header>
 
@@ -40,16 +59,15 @@ export default function SolutionStrategie() {
           {/* 01 — Les enquêtes flash (bloc vedette, plus grand) */}
           <article className="str-card str-card--flash">
             <span className="str-numeral v-serif" aria-hidden="true">01</span>
-            <h3 className="str-card-title">Les enquêtes flash</h3>
+            <h3 className="str-card-title">{locale === "en" ? "Flash surveys" : "Les enquêtes flash"}</h3>
             <p className="str-card-body">
-              Transformez chaque participation en source d&apos;insights. Grâce à de courtes
-              enquêtes personnalisables, recueillez des données anonymisées sur les sujets qui
-              comptent pour votre organisation et disposez d&apos;une meilleure compréhension des
-              attentes et des dynamiques de votre collectif.
+              {locale === "en"
+                ? "Turn every participation into a source of insight. Short, customizable surveys gather anonymized data on the topics that matter to your organization, giving you a sharper read on your community's expectations and dynamics."
+                : <>Transformez chaque participation en source d&apos;insights. Grâce à de courtes enquêtes personnalisables, recueillez des données anonymisées sur les sujets qui comptent pour votre organisation et disposez d&apos;une meilleure compréhension des attentes et des dynamiques de votre collectif.</>}
             </p>
-            <p className="str-themes-label">Exemples de thématiques</p>
+            <p className="str-themes-label">{locale === "en" ? "Example topics" : "Exemples de thématiques"}</p>
             {/* Ticker défilant — pas de pastilles, juste une ligne éditoriale en mouvement */}
-            <div className="str-ticker" role="list" aria-label="Exemples de thématiques">
+            <div className="str-ticker" role="list" aria-label={locale === "en" ? "Example topics" : "Exemples de thématiques"}>
               <div className="str-ticker-track">
                 {[...THEMES, ...THEMES].map((t, i) => (
                   <span key={i} className="str-ticker-item" role="listitem">
@@ -64,11 +82,11 @@ export default function SolutionStrategie() {
           {/* 02 — Le baromètre bien-être */}
           <article className="str-card str-card--barometre">
             <span className="str-numeral v-serif" aria-hidden="true">02</span>
-            <h3 className="str-card-title">Le baromètre bien-être</h3>
+            <h3 className="str-card-title">{locale === "en" ? "The wellbeing barometer" : "Le baromètre bien-être"}</h3>
             <p className="str-card-body">
-              Recueillez l&apos;évaluation du bien-être de votre collectif à chaque expérience.
-              Ces évaluations anonymisées et agrégées vous permettent de suivre son évolution dans
-              le temps et d&apos;objectiver l&apos;impact des actions menées.
+              {locale === "en"
+                ? "Collect wellbeing ratings from your community after every experience. Anonymized, aggregated data lets you track how it evolves over time and measure the real impact of the actions you take."
+                : <>Recueillez l&apos;évaluation du bien-être de votre collectif à chaque expérience. Ces évaluations anonymisées et agrégées vous permettent de suivre son évolution dans le temps et d&apos;objectiver l&apos;impact des actions menées.</>}
             </p>
             {/* Sparkline ascendante — écho du motif "vibration" de la marque, pas un bar-chart générique */}
             <svg className="str-spark" viewBox="0 0 220 64" fill="none" aria-hidden="true">
@@ -92,15 +110,15 @@ export default function SolutionStrategie() {
           {/* 03 — Les données de pilotage de l'expérience */}
           <article className="str-card str-card--pilotage">
             <span className="str-numeral v-serif" aria-hidden="true">03</span>
-            <h3 className="str-card-title">Les données de pilotage de l&apos;expérience</h3>
+            <h3 className="str-card-title">{locale === "en" ? "Experience tracking data" : <>Les données de pilotage de l&apos;expérience</>}</h3>
             <p className="str-card-body">
-              Accédez à plus de 20 indicateurs de suivi pour piloter efficacement votre programme.
-              Visualisez en temps réel le nombre d&apos;inscrits, le taux de participation, le taux
-              de réengagement et de nombreux autres indicateurs clés.
+              {locale === "en"
+                ? "Access more than 20 tracking indicators to steer your program effectively. See sign-ups, participation rate, re-engagement rate and many other key metrics in real time."
+                : <>Accédez à plus de 20 indicateurs de suivi pour piloter efficacement votre programme. Visualisez en temps réel le nombre d&apos;inscrits, le taux de participation, le taux de réengagement et de nombreux autres indicateurs clés.</>}
             </p>
             <div className="str-stat">
               <span className="str-stat-num v-serif">20+</span>
-              <span className="str-stat-label">indicateurs suivis<br />en temps réel</span>
+              <span className="str-stat-label">{locale === "en" ? <>indicators tracked<br />in real time</> : <>indicateurs suivis<br />en temps réel</>}</span>
             </div>
           </article>
         </div>

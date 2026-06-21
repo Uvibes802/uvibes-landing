@@ -6,7 +6,7 @@ import { Check, CirclePlay, PauseCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import "../../styles/cards/FeaturesCard.css";
 
-const FEATURES = [
+const FEATURES_FR = [
   {
     n: "01",
     eyebrow: "Pour votre collectif",
@@ -42,14 +42,52 @@ const FEATURES = [
   },
 ];
 
+const FEATURES_EN = [
+  {
+    n: "01",
+    eyebrow: "For your community",
+    accent: "orange" as const,
+    title: "The conversational journey",
+    points: [
+      "One-to-one video exchanges, guided by questions.",
+      "On an endless range of topics.",
+      "In a short window, from 6 to 10 minutes.",
+    ],
+  },
+  {
+    n: "02",
+    eyebrow: "For you",
+    accent: "rose" as const,
+    title: "A deep understanding of your organization",
+    points: [
+      "Fresh insight into individual and collective dynamics.",
+      "The ability to regularly gather opinions on the topics you choose.",
+      "New ideas and proposals emerging naturally.",
+    ],
+  },
+  {
+    n: "03",
+    eyebrow: "For everyone",
+    accent: "orange" as const,
+    title: "A training path for relational skills",
+    points: [
+      "A knowledge hub with videos, podcasts and articles.",
+      "Over 5 hours of self-paced training.",
+      "With a certificate at the end.",
+    ],
+  },
+];
+
 function FeatureRow({
   feature,
   videoSrc,
   index,
+  locale = "fr",
 }: {
-  feature: typeof FEATURES[0];
+  feature: typeof FEATURES_FR[0];
   videoSrc: string;
   index: number;
+  locale?: "fr" | "en";
 }) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -95,7 +133,7 @@ function FeatureRow({
           onClick={playing ? handlePause : handlePlay}
           role="button"
           tabIndex={0}
-          aria-label={playing ? "Mettre en pause" : `Lire : ${feature.title}`}
+          aria-label={playing ? (locale === "en" ? "Pause" : "Mettre en pause") : `${locale === "en" ? "Play" : "Lire"} : ${feature.title}`}
           onKeyUp={(e) => { if (e.key === "Enter" || e.key === " ") { if (playing) { handlePause(); } else { handlePlay(); } } }}
         >
           <video
@@ -116,21 +154,25 @@ function FeatureRow({
   );
 }
 
-export function FeaturesCard() {
+export function FeaturesCard({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const FEATURES = locale === "en" ? FEATURES_EN : FEATURES_FR;
   return (
     <section className="fc-section" id="fonctionnalites" style={{ scrollMarginTop: 70 }}>
       {/* Intro centré */}
       <div className="fc-intro">
         <span className="fc-intro-eyebrow v-mono">
           <span className="fc-intro-dot" aria-hidden="true" />
-          Résultats
+          {locale === "en" ? "Results" : "Résultats"}
         </span>
         <h2 className="fc-intro-title v-prompt">
-          Les changements concrets apportés par{" "}
-          <span className="fc-intro-serif v-serif">Uvibes</span>
+          {locale === "en" ? (
+            <>The real change brought by{" "}<span className="fc-intro-serif v-serif">Uvibes</span></>
+          ) : (
+            <>Les changements concrets apportés par{" "}<span className="fc-intro-serif v-serif">Uvibes</span></>
+          )}
         </h2>
         <p className="fc-intro-sub">
-          Des retours d&apos;expérience à fort impact positif.
+          {locale === "en" ? "Real, high-impact feedback from the field." : <>Des retours d&apos;expérience à fort impact positif.</>}
         </p>
       </div>
 
@@ -141,6 +183,7 @@ export function FeaturesCard() {
           feature={f}
           videoSrc={FeaturesData[i]?.video ?? ""}
           index={i}
+          locale={locale}
         />
       ))}
     </section>

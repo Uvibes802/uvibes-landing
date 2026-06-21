@@ -21,9 +21,9 @@ const PARTICLES = [
   { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
 ];
 
-export default function SolutionHero() {
+export default function SolutionHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
   return (
-    <section className="sh-section" aria-label="Présentation de la solution">
+    <section className="sh-section" aria-label={locale === "en" ? "Solution overview" : "Présentation de la solution"}>
       {/* Grille de points */}
       <div className="sh-dot-grid" aria-hidden="true" />
 
@@ -69,18 +69,20 @@ export default function SolutionHero() {
         {/* Texte */}
         <div className="sh-content">
           <h1 className="sh-title v-prompt">
-            La méthode<br />
-            pour votre<br />
-            <span className="sh-title-accent">organisation.</span>
+            {locale === "en" ? (
+              <>The method<br />for your<br /><span className="sh-title-accent">organization.</span></>
+            ) : (
+              <>La méthode<br />pour votre<br /><span className="sh-title-accent">organisation.</span></>
+            )}
           </h1>
           <p className="sh-desc">
-            Une méthode structurée pour développer l&apos;engagement, renforcer
-            le sentiment d&apos;appartenance, révéler les besoins de votre collectif
-            et accompagner durablement l&apos;évolution de votre organisation.
+            {locale === "en"
+              ? "A structured method to build engagement, strengthen the sense of belonging, surface what your community really needs, and support your organization's growth over the long run."
+              : <>Une méthode structurée pour développer l&apos;engagement, renforcer le sentiment d&apos;appartenance, révéler les besoins de votre collectif et accompagner durablement l&apos;évolution de votre organisation.</>}
           </p>
           <div className="sh-ctas">
-            <Link href="/tarifs" className="btn-brand sh-cta-primary">
-              Découvrir nos tarifs →
+            <Link href={locale === "en" ? "/en/pricing" : "/tarifs"} className="btn-brand sh-cta-primary">
+              {locale === "en" ? "Discover our pricing →" : "Découvrir nos tarifs →"}
             </Link>
           </div>
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import "@/styles/solution/anchorNav.css";
 
-const links = [
+const linksFr = [
   { href: "#comment", label: "Processus", index: "01" },
   { href: "#themes", label: "Thématiques", index: "02" },
   { href: "#strategie", label: "Stratégie", index: "03" },
@@ -11,9 +11,18 @@ const links = [
   { href: "#fonctionnalites", label: "Résultats", index: "05" },
 ];
 
-const sectionIds = links.map((l) => l.href.slice(1));
+const linksEn = [
+  { href: "#comment", label: "Process", index: "01" },
+  { href: "#themes", label: "Topics", index: "02" },
+  { href: "#strategie", label: "Strategy", index: "03" },
+  { href: "#soft-skills", label: "Soft skills", index: "04" },
+  { href: "#fonctionnalites", label: "Results", index: "05" },
+];
 
-export default function SolutionAnchorNav() {
+const sectionIds = linksFr.map((l) => l.href.slice(1));
+
+export default function SolutionAnchorNav({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const links = locale === "en" ? linksEn : linksFr;
   const [pinned, setPinned] = useState(false);
   const [activeId, setActiveId] = useState<string>("");
 

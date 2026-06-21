@@ -16,7 +16,7 @@ interface Step {
   videoPos?: string;
 }
 
-const STEPS: Step[] = [
+const STEPS_FR: Step[] = [
   {
     n: "01",
     title: "Engager votre collectif",
@@ -48,6 +48,38 @@ const STEPS: Step[] = [
   },
 ];
 
+const STEPS_EN: Step[] = [
+  {
+    n: "01",
+    title: "Engage your community",
+    body: "Short, surprising experiences designed to spark exchanges, pass on good tips and encourage members to share what they know.",
+    accent: "#FD6E00",
+    video: "Isaline-desktop.mp4",
+    tilt: "left",
+    videoPos: "center 22%",
+  },
+  {
+    n: "02",
+    title: "Shape the experience",
+    body: "You set the topics, timing and length of each interaction to create exchanges perfectly suited to your organization and your goals.",
+    accent: "#D90A5C",
+  },
+  {
+    n: "03",
+    title: "Understand your community",
+    body: "Ask your community about every topic that matters to your organization, and get a clear picture of needs, expectations and feelings on the ground.",
+    accent: "#F0186F",
+  },
+  {
+    n: "04",
+    title: "Measure and steer the impact",
+    body: "Access a real-time dashboard to track usage, engagement and how your community evolves — and steer your actions with real data.",
+    accent: "#E6007E",
+    image: "/images/dashboard/dashboard-1.webp",
+    tilt: "right",
+  },
+];
+
 function StepContent({ step, index }: { step: Step; index: number }) {
   const [ref, visible] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.1 });
   return (
@@ -63,7 +95,7 @@ function StepContent({ step, index }: { step: Step; index: number }) {
 }
 
 /* Vignette vidéo style polaroïd — légèrement inclinée, fondu au scroll */
-function PolaroidVideo({ step }: { step: Step }) {
+function PolaroidVideo({ step, locale = "fr" }: { step: Step; locale?: "fr" | "en" }) {
   const [ref, visible] = useIntersectionOnce<HTMLDivElement>({ threshold: 0.1 });
   return (
     <div
@@ -75,7 +107,7 @@ function PolaroidVideo({ step }: { step: Step }) {
           <Image
             className="shiw-polaroid-img"
             src={step.image}
-            alt="Tableau de bord Uvibes — suivi en temps réel"
+            alt={locale === "en" ? "Uvibes dashboard — real-time tracking" : "Tableau de bord Uvibes — suivi en temps réel"}
             width={900}
             height={560}
           />
@@ -95,7 +127,8 @@ function PolaroidVideo({ step }: { step: Step }) {
   );
 }
 
-export default function SolutionHowItWorks() {
+export default function SolutionHowItWorks({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const STEPS = locale === "en" ? STEPS_EN : STEPS_FR;
   return (
     <section id="comment" className="shiw-section">
       <div className="shiw-xblob shiw-xblob--1" aria-hidden="true" />
@@ -105,16 +138,19 @@ export default function SolutionHowItWorks() {
         <header className="shiw-head">
           <p className="shiw-eyebrow v-mono">
             <span className="shiw-eyebrow-dot" aria-hidden="true" />
-            Processus
+            {locale === "en" ? "Process" : "Processus"}
           </p>
           <h2 className="shiw-title v-prompt">
-            Une méthode en 4 étapes<br />
-            pour{" "}
-            <span className="shiw-title-accent v-serif">activer et piloter votre collectif</span>
+            {locale === "en" ? (
+              <>A method in 4 steps<br />to{" "}<span className="shiw-title-accent v-serif">activate and steer your community</span></>
+            ) : (
+              <>Une méthode en 4 étapes<br />pour{" "}<span className="shiw-title-accent v-serif">activer et piloter votre collectif</span></>
+            )}
           </h2>
           <p className="shiw-subtitle">
-            De l&apos;activation des échanges à la mesure des résultats&nbsp;: une méthode
-            complète pour renforcer votre organisation.
+            {locale === "en"
+              ? "From sparking exchanges to measuring results: a complete method to strengthen your organization."
+              : <>De l&apos;activation des échanges à la mesure des résultats&nbsp;: une méthode complète pour renforcer votre organisation.</>}
           </p>
         </header>
 
@@ -131,7 +167,7 @@ export default function SolutionHowItWorks() {
                 <div className={`shiw-hstep-top${!isTop ? " shiw-hstep-slot--empty" : ""}`}>
                   {isTop
                     ? <StepContent step={step} index={i} />
-                    : (step.video || step.image) && <PolaroidVideo step={step} />}
+                    : (step.video || step.image) && <PolaroidVideo step={step} locale={locale} />}
                 </div>
 
                 {/* Cercle numéroté — toujours au centre */}
@@ -143,7 +179,7 @@ export default function SolutionHowItWorks() {
                 <div className={`shiw-hstep-bottom${isTop ? " shiw-hstep-slot--empty" : ""}`}>
                   {!isTop
                     ? <StepContent step={step} index={i} />
-                    : (step.video || step.image) && <PolaroidVideo step={step} />}
+                    : (step.video || step.image) && <PolaroidVideo step={step} locale={locale} />}
                 </div>
               </div>
             );

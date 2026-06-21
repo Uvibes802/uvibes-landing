@@ -23,7 +23,7 @@ interface Theme {
   color: string;
 }
 
-const THEMES: Theme[] = [
+const THEMES_FR: Theme[] = [
   {
     Icon: Sparkles,
     title: "Réflexions & loisirs",
@@ -80,11 +80,69 @@ const THEMES: Theme[] = [
   },
 ];
 
+const THEMES_EN: Theme[] = [
+  {
+    Icon: Sparkles,
+    title: "Musings & hobbies",
+    desc: "Conversations about passions, inspirations and life moments.",
+    q1: "Which movie character inspires you?",
+    q2: "What hobby would you like to start?",
+    label: "Open conversation",
+    color: "#FFB800",
+  },
+  {
+    Icon: GraduationCap,
+    title: "Expertise & learning",
+    desc: "Sharing ideas, learning and thinking together.",
+    q1: "What will management look like in the future?",
+    q2: "Which skill will become essential?",
+    label: "Discussion & reflection",
+    color: "#FD6E00",
+  },
+  {
+    Icon: Lightbulb,
+    title: "Tips & tricks",
+    desc: "Practical advice and useful everyday ideas.",
+    q1: "Any seasonal recipes to share?",
+    q2: "A habit that saves you time?",
+    label: "Sharing experiences",
+    color: "#E6007E",
+  },
+  {
+    Icon: Globe,
+    title: "Events & current affairs",
+    desc: "Talking about trends, cultures and events.",
+    q1: "Your region's favorite tradition?",
+    q2: "An event that struck you recently?",
+    label: "Spontaneous exchanges",
+    color: "#D90A5C",
+  },
+  {
+    Icon: Gamepad2,
+    title: "Games & role play",
+    desc: "Creating fun, dynamic interactions.",
+    q1: "Name 6 jobs starting with the letter M",
+    q2: "Which team would survive on a desert island?",
+    label: "Playful moments",
+    color: "#FD6E00",
+  },
+  {
+    Icon: Flame,
+    title: "Debates",
+    desc: "Confronting viewpoints, intelligently.",
+    q1: "The benefits and limits of progress",
+    q2: "Is remote work the future?",
+    label: "Opinions & perspectives",
+    color: "#FFB800",
+  },
+];
+
 // Légère rotation + décalage par carte pour l'effet "paquet" empilé
 const ROT = [-2.4, 1.6, -1.4, 2, -1.8, 1.2];
 const OFFX = [-7, 6, -5, 7, -6, 5];
 
-export default function SolutionThemes() {
+export default function SolutionThemes({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const THEMES = locale === "en" ? THEMES_EN : THEMES_FR;
   // Une seule carte ouverte à la fois — null = tas fermé, tous les titres visibles
   const [active, setActive] = useState<number | null>(null);
   const toggle = (i: number) => setActive((prev) => (prev === i ? null : i));
@@ -102,11 +160,20 @@ export default function SolutionThemes() {
       <div className="sth-header">
         <div className="sth-eyebrow-wrap">
           <span className="sth-eyebrow-dot" aria-hidden="true" />
-          <span className="sth-eyebrow-text">Thématiques</span>
+          <span className="sth-eyebrow-text">{locale === "en" ? "Topics" : "Thématiques"}</span>
         </div>
         <h2 className="sth-heading">
-          <span className="sth-heading-main">Une infinité d&apos;univers<br /></span>
-          <span className="sth-heading-sub v-serif">de conversations.</span>
+          {locale === "en" ? (
+            <>
+              <span className="sth-heading-main">A whole universe<br /></span>
+              <span className="sth-heading-sub v-serif">of conversations.</span>
+            </>
+          ) : (
+            <>
+              <span className="sth-heading-main">Une infinité d&apos;univers<br /></span>
+              <span className="sth-heading-sub v-serif">de conversations.</span>
+            </>
+          )}
         </h2>
       </div>
 
