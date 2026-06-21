@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import "@/styles/admin/crm.css";
 
@@ -35,7 +37,9 @@ export default function CrmLoginPage() {
   return (
     <div className="crm-login-page">
       <div className="crm-login-card">
-        <h1 className="crm-login-brand">Uvibes CRM</h1>
+        <Link href="/" className="crm-login-logo" aria-label="Retour au site Uvibes">
+          <Image src="/images/favicon.png" alt="Uvibes" width={44} height={38} />
+        </Link>
         <p className="crm-login-sub">Espace directrice — accès réservé</p>
 
         {error && <div className="crm-login-error">{error}</div>}
