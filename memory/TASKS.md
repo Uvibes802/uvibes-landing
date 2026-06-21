@@ -5,15 +5,17 @@
 
 ---
 
-## 🌍 i18n (traduction multilingue) — bloqué, besoin d'une décision
+## 🌍 i18n (traduction multilingue) — version anglaise live, voir CHANGELOG 2026-06-21
 
-Demandé dans la liste « À intégrer » du tuteur, **non implémenté ce tour-ci** volontairement : implémenter une traduction multilingue partielle/bâclée serait pire que de ne rien faire (pages mi-traduites, structure cassée). Décisions nécessaires avant de commencer :
-1. **Langues cibles ?** (anglais seul, ou anglais + espagnol… ?)
-2. **Quel contenu traduire ?** Tout (WordPress + devis + emails + documents légaux) ou juste les pages marketing publiques ?
-3. **Qui traduit ?** Traduction humaine à fournir, ou traduction automatique acceptée en attendant ?
-4. **Stratégie technique** : sous-domaines/sous-chemins (`/en/...`) via `next-intl`, ou duplication de contenu WordPress par langue ?
+**Décision prise** (sans bloquer sur le tuteur, vu l'urgence fin de stage) : routing parallèle `/en/...` (pas de restructuration `[locale]`, zéro risque pour les routes FR existantes), composants partagés avec prop `locale?: "fr" | "en"` (défaut `"fr"` → aucun appel existant cassé), traduction créative (pas littérale) faite par Claude. 4 pages prioritaires livrées et vérifiées Playwright : `/en` (accueil), `/en/method`, `/en/pricing`, `/en/about`. Switcher de langue FR⇄EN dans le menu (desktop pill + lien mobile), `<html lang>` dynamique, hreflang croisés (metadata + sitemap.xml).
 
-Une fois ces points tranchés, le travail technique (routing, extraction des chaînes, `next-intl`) peut démarrer proprement.
+**Hors scope (limitation assumée, à trancher avec le tuteur si besoin) :**
+- Contenu CMS admin (témoignages, articles de blog, tranches de tarification par taille, libellés équipe hors les 3 catégories par défaut) reste en français — nécessiterait un champ EN par contenu en base, pas juste une traduction de code.
+- Funnel `/devis` (signature, CGV/DPA/SLA/PDD) volontairement non traduit — processus légal/contractuel français, risqué à traduire sans validation juridique.
+- Pages légales (mentions, CGU, confidentialité, cookies) et `/blog` non traduits — liés en `/en` à la version FR pour l'instant.
+- Widget de don HelloAsso (iframe tiers) reste en français.
+
+**Reste à faire si on veut élargir :** légal EN (au moins confidentialité/CGU), blog EN (dépend du CMS), funnel devis EN si le tuteur valide la traduction des documents contractuels.
 
 ---
 

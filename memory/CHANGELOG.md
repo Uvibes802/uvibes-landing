@@ -2,6 +2,36 @@
 
 ---
 
+## 2026-06-21 — Fixes section équipe/stratégie + version anglaise du site (i18n) — branche feat/missions-falek
+
+`pnpm build` OK (84 pages, exit 0), vérif Playwright desktop + mobile (390px) sur toutes les pages FR et EN. 13 commits.
+
+### Fixes section équipe (« Sa concrétisation », /a-propos)
+- **Bug CSS corrigé** : le titre « L'équipe derrière Uvibes » était invisible (orange sur fond orange/rose) — `.uv-team-title` (blanc) était déclaré avant `.uv-section-title` (orange) dans `uvibes.css`, donc écrasé malgré une spécificité égale. Fix : sélecteur composé `.uv-section-title.uv-team-title`. **Impact :** le titre est maintenant lisible (blanc) sur le dégradé, sans repasser au noir comme demandé.
+- Espace ajouté entre les cartes équipe et la vague de sortie (`padding-bottom` du bloc dégradé augmenté).
+- Vérifié : ajout de membres depuis l'admin fonctionnel (CRUD `/api/admin/cms/team`), carrousel Swiper appliqué automatiquement dès qu'une catégorie dépasse 4 membres (`TeamSection.tsx`).
+- Vague de sortie harmonisée : couleur calée sur le ton rosé réel du dégradé de page à cette profondeur de scroll (`#FFEFF6`/`#FFD9E8` mesurés au pixel), au lieu du crème doré utilisé en haut de page qui créait un bicolore disgracieux.
+
+### Page Méthode — section Stratégie réorganisée
+- Bento : carte « Les enquêtes flash » passée en pleine largeur en haut, « Baromètre bien-être » et « Données de pilotage » côte à côte en dessous (au lieu de la flash carte en colonne gauche sur 2 lignes).
+
+### Version anglaise du site (i18n)
+- **Architecture** : routing parallèle `/en/...` (pas de restructuration `[locale]`) — zéro risque pour les routes FR existantes. Composants partagés (Menu, Footer, CookieConsent, et tous les composants de section réutilisés) reçoivent une prop `locale?: "fr" | "en"` (défaut `"fr"`, donc aucun appel existant n'est cassé). `src/lib/i18nRoutes.ts` centralise la correspondance FR↔EN des chemins.
+- **Structure** : Menu et CookieConsent (rendus une fois dans le layout racine pour toutes les pages) déduisent la langue du chemin via `usePathname()` ; switcher de langue FR⇄EN dans le menu (pill desktop + lien mobile) ; `HtmlLangSync` met à jour `<html lang>` côté client selon la route.
+- **4 pages traduites et vérifiées** (texte créatif, pas littéral — expressions et accroches adaptées à l'anglais, pas du mot-à-mot) :
+  - `/en` — accueil complet (hero, intro conversation, compteurs, piliers de valeur, 13 secteurs « pour qui », comment ça marche, passeports d'expérience, partenaires, contact, footer)
+  - `/en/method` — méthode (hero, 4 étapes, 6 thématiques, stratégie, soft skills, résultats)
+  - `/en/pricing` — tarifs (hero, 3 offres Connection/Boost/Premium, offre événementielle Vibes Discovery, section petites structures)
+  - `/en/about` — à propos (hero, pourquoi « Uvibes », citation Harvard, naissance de l'idée, équipe, éthique, soutien association)
+- **SEO** : `src/lib/seo.ts` restructuré pour porter title/description FR **et** EN par page ; `buildMetadata(page, locale)` émet les hreflang dans les deux sens automatiquement ; `sitemap.ts` liste les 4 routes `/en/*` avec `alternates.languages` croisés ; vérifié au build que les 8 pages (4 FR + 4 EN) ont un `<link rel="canonical">` et des `<link rel="alternate" hreflang>` corrects dans les deux sens.
+- **Hors scope (limitation assumée)** : contenu CMS admin (témoignages, blog, tranches de tarification par taille) reste en français — nécessiterait un champ EN par contenu en base ; funnel `/devis` (signature, CGV/DPA/SLA/PDD) non traduit — processus contractuel français, à valider avec le tuteur avant traduction ; pages légales et blog non traduits. Détail complet dans TASKS.md.
+- **Impact :** le site est maintenant consultable en anglais sur ses 4 pages les plus stratégiques (accueil, méthode, tarifs, à propos), avec un référencement international correct (Google peut indexer les deux versions séparément et proposer la bonne langue selon l'utilisateur grâce aux hreflang).
+
+### Lint
+- 2 warnings `react-hooks/exhaustive-deps` introduits par les props `locale` (tableaux `collectifs`/`FILLERS` désormais dépendants du rendu) — corrigés en ajoutant les dépendances manquantes.
+
+---
+
 ## 2026-06-20 — Observations tutrice + tarification 4 tranches + désactivation devis + audits — branche feat/missions-falek
 
 Build OK (77 pages, exit 0), vérif Playwright desktop + tablette (768px). 13 commits.
