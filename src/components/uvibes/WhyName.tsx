@@ -8,7 +8,7 @@ import "@/styles/uvibes/whyName.css";
 // Petites particules flottantes — déco animée
 const PARTS = Array.from({ length: 9 });
 
-export default function WhyName() {
+export default function WhyName({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.12 });
 
   return (
@@ -34,14 +34,21 @@ export default function WhyName() {
         <div className="uvn-head">
           <p className="uv-eyebrow uvn-eyebrow">
             <span className="uv-eyebrow-dot" aria-hidden="true" />
-            Le sens du nom
+            {locale === "en" ? "What's in the name" : "Le sens du nom"}
           </p>
           <h2 className="uv-section-title uvn-title">
-            Pourquoi <em className="uv-serif-grad">«&nbsp;Uvibes&nbsp;»</em> ?
+            {locale === "en" ? (
+              <>Why <em className="uv-serif-grad">&ldquo;Uvibes&rdquo;</em>?</>
+            ) : (
+              <>Pourquoi <em className="uv-serif-grad">«&nbsp;Uvibes&nbsp;»</em> ?</>
+            )}
           </h2>
           <p className="uvn-lead">
-            Uvibes active la richesse des échanges humains au sein des collectifs,
-            en y faisant naître des <em className="uv-em-orange">rencontres inattendues</em>.
+            {locale === "en" ? (
+              <>Uvibes brings out the richness of human exchange within communities, sparking <em className="uv-em-orange">unexpected encounters</em>.</>
+            ) : (
+              <>Uvibes active la richesse des échanges humains au sein des collectifs, en y faisant naître des <em className="uv-em-orange">rencontres inattendues</em>.</>
+            )}
           </p>
         </div>
 
@@ -52,11 +59,23 @@ export default function WhyName() {
             <span className="uvn-emblem-vibes v-serif">Vibes</span>
           </div>
           <p className="uvn-statement">
-            <strong className="uvn-statement-key">U</strong>, comme <em className="uvn-statement-em">You</em> —
-            celui qui vit l&apos;expérience, c&apos;est vous.{" "}
-            <strong className="uvn-statement-key">Vibes</strong>, comme{" "}
-            <em className="uvn-statement-em">les vibrations</em> — ces sensations qui naissent
-            quand on se connecte à quelqu&apos;un, même encore inconnu.
+            {locale === "en" ? (
+              <>
+                <strong className="uvn-statement-key">U</strong>, as in <em className="uvn-statement-em">You</em> —
+                you&apos;re the one living the experience.{" "}
+                <strong className="uvn-statement-key">Vibes</strong>, as in{" "}
+                <em className="uvn-statement-em">vibrations</em> — those feelings that arise
+                when you connect with someone, even a total stranger.
+              </>
+            ) : (
+              <>
+                <strong className="uvn-statement-key">U</strong>, comme <em className="uvn-statement-em">You</em> —
+                celui qui vit l&apos;expérience, c&apos;est vous.{" "}
+                <strong className="uvn-statement-key">Vibes</strong>, comme{" "}
+                <em className="uvn-statement-em">les vibrations</em> — ces sensations qui naissent
+                quand on se connecte à quelqu&apos;un, même encore inconnu.
+              </>
+            )}
           </p>
         </div>
 
@@ -78,8 +97,13 @@ export default function WhyName() {
 
         {/* Phrase de clôture centrée */}
         <p className="uvn-closing">
-          Chaque rencontre est une aventure pour <em className="uv-em-rose">(re)découvrir</em>{" "}
-          quelqu&apos;un de son collectif — l&apos;émerveillement se crée, les conversations prennent vie.
+          {locale === "en" ? (
+            <>Every encounter is a chance to <em className="uv-em-rose">(re)discover</em>{" "}
+            someone in your community — where wonder is created and conversations come alive.</>
+          ) : (
+            <>Chaque rencontre est une aventure pour <em className="uv-em-rose">(re)découvrir</em>{" "}
+            quelqu&apos;un de son collectif — l&apos;émerveillement se crée, les conversations prennent vie.</>
+          )}
         </p>
       </div>
 

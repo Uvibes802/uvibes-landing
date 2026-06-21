@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import "../../styles/uvibes/HelloAssoDon.css";
 
-export default function HelloAssoDon() {
+export default function HelloAssoDon({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const [showModal, setShowModal] = useState(false);
 
   // La modale est rendue via un portal sur <body> : elle échappe ainsi à tout
@@ -16,14 +16,14 @@ export default function HelloAssoDon() {
           className="modal-close"
           onClick={() => setShowModal(false)}
           type="button"
-          aria-label="Fermer"
+          aria-label={locale === "en" ? "Close" : "Fermer"}
         >
           ✕
         </button>
         <iframe
           id="haWidget"
           src="https://www.helloasso.com/associations/eclat-ens/formulaires/1/widget"
-          title="Formulaire de don pour l'association Eclat'Ens"
+          title={locale === "en" ? "Donation form for the Eclat'Ens association" : "Formulaire de don pour l'association Eclat'Ens"}
           frameBorder="0"
           style={{ width: "100%", height: "100%" }}
         />
@@ -38,7 +38,7 @@ export default function HelloAssoDon() {
         onClick={() => setShowModal(true)}
         type="button"
       >
-        Aider financièrement le projet
+        {locale === "en" ? "Support the project financially" : "Aider financièrement le projet"}
       </button>
       {showModal && typeof document !== "undefined" && createPortal(modal, document.body)}
     </>

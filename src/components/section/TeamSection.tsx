@@ -18,7 +18,14 @@ import 'swiper/css/navigation';
 // Catégories par défaut si l'API ne répond pas (slug = valeur exacte de TeamMember.equipe)
 const DEFAULT_CATS = ["Équipe projet", "Comité d'expertise", "Architectes du code"];
 
-export default function TeamSection() {
+// Libellés affichés en anglais — le slug (valeur DB TeamMember.equipe) reste en français.
+const CAT_LABELS_EN: Record<string, string> = {
+  "Équipe projet": "Project team",
+  "Comité d'expertise": "Advisory board",
+  "Architectes du code": "Code architects",
+};
+
+export default function TeamSection({ locale = "fr" }: { locale?: "fr" | "en" }) {
   // Onglets dynamiques : pilotés depuis l'admin (clé CMS "team-categories")
   const [cats, setCats] = useState<string[]>(DEFAULT_CATS);
   const [activeButton, setActiveButton] = useState(DEFAULT_CATS[0]);
@@ -39,7 +46,8 @@ export default function TeamSection() {
       .catch(() => {});
   }, []);
 
-  const tabs = cats.map((c) => ({ label: c, slug: c }));
+  // Le slug (utilisé pour filtrer en base) reste la valeur FR — seul le libellé affiché change.
+  const tabs = cats.map((c) => ({ label: locale === "en" ? (CAT_LABELS_EN[c] ?? c) : c, slug: c }));
 
   const renderMembers = () => {
     if (team.length > 4) {
@@ -72,7 +80,7 @@ export default function TeamSection() {
       return (
         <div className="team-empty-state">
           <span className="team-empty-state__icon">🔄</span>
-          Données en cours de mise à jour
+          {locale === "en" ? "Data is being updated" : "Données en cours de mise à jour"}
         </div>
       );
     }
