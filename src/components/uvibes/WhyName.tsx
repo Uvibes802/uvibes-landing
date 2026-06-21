@@ -45,23 +45,19 @@ export default function WhyName() {
           </p>
         </div>
 
-        {/* Décodage du nom — composition éditoriale, sans cartes */}
+        {/* Décodage du nom — emblème typographique + paragraphe filé, sans cartes ni lignes */}
         <div className="uvn-decode">
-          <div className="uvn-row">
-            <span className="uvn-row-letter v-serif">U</span>
-            <span className="uvn-row-body">
-              <span className="uvn-row-key">You</span>
-              <span className="uvn-row-def">celui qui vit l&apos;expérience. C&apos;est vous.</span>
-            </span>
+          <div className="uvn-emblem" aria-hidden="true">
+            <span className="uvn-emblem-u v-serif">U</span>
+            <span className="uvn-emblem-vibes v-serif">Vibes</span>
           </div>
-          <div className="uvn-row-divider" aria-hidden="true" />
-          <div className="uvn-row">
-            <span className="uvn-row-letter v-serif">Vibes</span>
-            <span className="uvn-row-body">
-              <span className="uvn-row-key">les vibrations</span>
-              <span className="uvn-row-def">ces sensations quand on se connecte à quelqu&apos;un, même encore inconnu.</span>
-            </span>
-          </div>
+          <p className="uvn-statement">
+            <strong className="uvn-statement-key">U</strong>, comme <em className="uvn-statement-em">You</em> —
+            celui qui vit l&apos;expérience, c&apos;est vous.{" "}
+            <strong className="uvn-statement-key">Vibes</strong>, comme{" "}
+            <em className="uvn-statement-em">les vibrations</em> — ces sensations qui naissent
+            quand on se connecte à quelqu&apos;un, même encore inconnu.
+          </p>
         </div>
 
         {/* Médias — paire de polaroïds vidéo centrée */}
