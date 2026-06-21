@@ -16,7 +16,7 @@ const FALLBACK: PartnerLogo[] = [
   { id: 4, src: eclatens.src,       alt: "Éclatens" },
 ];
 
-export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] }) {
+export function PartnerCarousel({ logos = FALLBACK, locale = "fr" }: { logos?: PartnerLogo[]; locale?: "fr" | "en" }) {
   const display = logos.length > 0 ? logos : FALLBACK;
   const track = [...display, ...display, ...display];
 
@@ -25,14 +25,29 @@ export function PartnerCarousel({ logos = FALLBACK }: { logos?: PartnerLogo[] })
 
       <div className="trustees-inner">
         <h2 className="trustees-title v-prompt">
-          <span className="trustees-t-orange">Ils </span>
-          <span className="trustees-underline-wrap">
-            <span className="v-serif trustees-t-gradient">avancent</span>
-            <span className="trustees-vline-under" aria-hidden="true">
-              <VibrationLine width={400} height={18} amplitude={5} freq={5} stroke="#D90A5C" strokeWidth={3} speed={5} style={{ width: "100%" }} />
-            </span>
-          </span>
-          {" "}<span className="trustees-t-orange">avec nous.</span>
+          {locale === "en" ? (
+            <>
+              <span className="trustees-t-orange">They </span>
+              <span className="trustees-underline-wrap">
+                <span className="v-serif trustees-t-gradient">move forward</span>
+                <span className="trustees-vline-under" aria-hidden="true">
+                  <VibrationLine width={400} height={18} amplitude={5} freq={5} stroke="#D90A5C" strokeWidth={3} speed={5} style={{ width: "100%" }} />
+                </span>
+              </span>
+              {" "}<span className="trustees-t-orange">with us.</span>
+            </>
+          ) : (
+            <>
+              <span className="trustees-t-orange">Ils </span>
+              <span className="trustees-underline-wrap">
+                <span className="v-serif trustees-t-gradient">avancent</span>
+                <span className="trustees-vline-under" aria-hidden="true">
+                  <VibrationLine width={400} height={18} amplitude={5} freq={5} stroke="#D90A5C" strokeWidth={3} speed={5} style={{ width: "100%" }} />
+                </span>
+              </span>
+              {" "}<span className="trustees-t-orange">avec nous.</span>
+            </>
+          )}
         </h2>
 
         <div className="trustees-marquee-wrap">

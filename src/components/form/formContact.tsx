@@ -6,7 +6,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import "../../styles/form/formContact.css";
 
 // Catégories alignées sur les Passeports d'Expérience (cf. PasseportExperience)
-const CATEGORIES = [
+const CATEGORIES_FR = [
   "Insertion professionnelle",
   "Enseignement",
   "Business",
@@ -20,7 +20,22 @@ const CATEGORIES = [
   "International",
 ];
 
-export default function FormContact() {
+const CATEGORIES_EN = [
+  "Career support",
+  "Education",
+  "Business",
+  "Peer support",
+  "Members & policyholders",
+  "Seniors",
+  "Sports clubs",
+  "Cinemas, theatres & cultural venues",
+  "Campsites & holiday resorts",
+  "Companies & teams",
+  "International",
+];
+
+export default function FormContact({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const CATEGORIES = locale === "en" ? CATEGORIES_EN : CATEGORIES_FR;
   const {
     register,
     handleSubmit,
@@ -65,22 +80,22 @@ export default function FormContact() {
       {/* Nom + Prénom */}
       <div className="fco-row">
         <div className="fc-field">
-          <label className="fc-label" htmlFor="lastname">Nom</label>
+          <label className="fc-label" htmlFor="lastname">{locale === "en" ? "Last name" : "Nom"}</label>
           <input
             id="lastname"
             className={`fc-input${errors.lastname ? " --error" : ""}`}
-            placeholder="Dupont"
-            {...register("lastname", { required: "Requis" })}
+            placeholder={locale === "en" ? "Smith" : "Dupont"}
+            {...register("lastname", { required: locale === "en" ? "Required" : "Requis" })}
           />
           {errors.lastname && <span className="fc-error">{errors.lastname.message}</span>}
         </div>
         <div className="fc-field">
-          <label className="fc-label" htmlFor="firstname">Prénom</label>
+          <label className="fc-label" htmlFor="firstname">{locale === "en" ? "First name" : "Prénom"}</label>
           <input
             id="firstname"
             className={`fc-input${errors.firstname ? " --error" : ""}`}
-            placeholder="Marie"
-            {...register("firstname", { required: "Requis" })}
+            placeholder={locale === "en" ? "Mary" : "Marie"}
+            {...register("firstname", { required: locale === "en" ? "Required" : "Requis" })}
           />
           {errors.firstname && <span className="fc-error">{errors.firstname.message}</span>}
         </div>
@@ -93,19 +108,19 @@ export default function FormContact() {
           id="email"
           type="email"
           className={`fc-input${errors.email ? " --error" : ""}`}
-          placeholder="vous@organisation.fr"
-          {...register("email", { required: "Requis" })}
+          placeholder={locale === "en" ? "you@organization.com" : "vous@organisation.fr"}
+          {...register("email", { required: locale === "en" ? "Required" : "Requis" })}
         />
         {errors.email && <span className="fc-error">{errors.email.message}</span>}
       </div>
 
       {/* Organisation */}
       <div className="fc-field">
-        <label className="fc-label" htmlFor="organisation">Organisation</label>
+        <label className="fc-label" htmlFor="organisation">{locale === "en" ? "Organization" : "Organisation"}</label>
         <input
           id="organisation"
           className="fc-input"
-          placeholder="Nom de votre structure"
+          placeholder={locale === "en" ? "Your organization's name" : "Nom de votre structure"}
           {...register("organisation")}
         />
       </div>
@@ -116,8 +131,8 @@ export default function FormContact() {
         <textarea
           id="message"
           className={`fc-input fc-textarea${errors.message ? " --error" : ""}`}
-          placeholder="Décrivez votre collectif et vos objectifs..."
-          {...register("message", { required: "Requis" })}
+          placeholder={locale === "en" ? "Tell us about your community and your goals..." : "Décrivez votre collectif et vos objectifs..."}
+          {...register("message", { required: locale === "en" ? "Required" : "Requis" })}
         />
         {errors.message && <span className="fc-error">{errors.message.message}</span>}
       </div>
@@ -126,7 +141,7 @@ export default function FormContact() {
       <div className="fc-checks">
         <label className="fc-check-label">
           <input type="checkbox" required {...register("share")} />
-          <span>Je souhaite partager mes informations avec Uvibes et être recontacté.e</span>
+          <span>{locale === "en" ? "I agree to share my information with Uvibes and be contacted back." : "Je souhaite partager mes informations avec Uvibes et être recontacté.e"}</span>
         </label>
       </div>
 
@@ -135,15 +150,17 @@ export default function FormContact() {
         <label className="fc-newsletter">
           <input type="checkbox" {...register("newsletter")} />
           <span className="fc-newsletter-body">
-            <span className="fc-newsletter-title">📬 Recevoir nos meilleures idées avec la newsletter</span>
+            <span className="fc-newsletter-title">{locale === "en" ? "📬 Get our best ideas in our newsletter" : "📬 Recevoir nos meilleures idées avec la newsletter"}</span>
             <span className="fc-newsletter-sub">
-              Actualités intéressant votre organisation, retours d&apos;expérience d&apos;utilisateurs, astuces soft skills – 1 email par mois, zéro spam.
+              {locale === "en"
+                ? "News relevant to your organization, real user stories, soft-skills tips — 1 email a month, zero spam."
+                : <>Actualités intéressant votre organisation, retours d&apos;expérience d&apos;utilisateurs, astuces soft skills – 1 email par mois, zéro spam.</>}
             </span>
           </span>
         </label>
         {wantsNewsletter && (
           <div className="fc-newsletter-cat">
-            <span className="fc-label">Quelles catégories vous intéressent&nbsp;?</span>
+            <span className="fc-label">{locale === "en" ? "Which topics interest you?" : "Quelles catégories vous intéressent ?"}</span>
             <div className="fc-cat-grid">
               {CATEGORIES.map((c) => (
                 <label key={c} className="fc-cat-chip">
@@ -158,15 +175,15 @@ export default function FormContact() {
 
       {/* Bouton */}
       <button type="submit" className="fc-submit" disabled={isSubmitting}>
-        {isSubmitting ? "Envoi en cours…" : "Envoyer"}
+        {isSubmitting ? (locale === "en" ? "Sending…" : "Envoi en cours…") : (locale === "en" ? "Send" : "Envoyer")}
         {!isSubmitting && <span className="fc-submit-dot" aria-hidden="true" />}
       </button>
 
       {submitSuccess && (
-        <p className="fc-success">Message envoyé ! On revient vers vous sous 48h.</p>
+        <p className="fc-success">{locale === "en" ? "Message sent! We'll get back to you within 48h." : "Message envoyé ! On revient vers vous sous 48h."}</p>
       )}
       {submitError && (
-        <p className="fc-error-global">Une erreur est survenue, veuillez réessayer.</p>
+        <p className="fc-error-global">{locale === "en" ? "Something went wrong, please try again." : "Une erreur est survenue, veuillez réessayer."}</p>
       )}
     </form>
   );

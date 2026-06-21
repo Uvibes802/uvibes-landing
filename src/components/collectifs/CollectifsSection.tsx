@@ -5,14 +5,17 @@ import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import Image from "next/image";
 import Link from "next/link";
 import VibrationLine from "@/components/shared/VibrationLine";
-import { collectifs } from "@/data/collectifs/collectifsData";
+import { collectifs as collectifsFr } from "@/data/collectifs/collectifsData";
+import { collectifsEn } from "@/data/collectifs/collectifsDataEn";
 import "@/styles/collectifs/collectifsSection.css";
 
 interface CollectifsSectionProps {
   showCta?: boolean;
+  locale?: "fr" | "en";
 }
 
-export default function CollectifsSection({ showCta = false }: CollectifsSectionProps) {
+export default function CollectifsSection({ showCta = false, locale = "fr" }: CollectifsSectionProps) {
+  const collectifs = locale === "en" ? collectifsEn : collectifsFr;
   const [activeId, setActiveId] = useState(collectifs[0].id);
   const [isLocked, setIsLocked] = useState(false);
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
@@ -48,22 +51,25 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
           <div className="collectifs-header-left">
             <span className="collectifs-eyebrow">
               <span className="collectifs-eyebrow-dot" aria-hidden="true" />
-              Pour qui ?
+              {locale === "en" ? "Who's it for?" : "Pour qui ?"}
             </span>
             <h2 className="collectifs-title">
-              Chaque{" "}
-              <span className="collectifs-title-serif">organisation</span>
-              <br />a ses enjeux.
+              {locale === "en" ? (
+                <>Every <span className="collectifs-title-serif">organization</span><br />has its own challenges.</>
+              ) : (
+                <>Chaque{" "}<span className="collectifs-title-serif">organisation</span><br />a ses enjeux.</>
+              )}
             </h2>
             <p className="collectifs-desc">
-              {collectifs.length} secteurs d&apos;activité auxquels Uvibes apporte une meilleure
-              compréhension du terrain et un engagement renforcé de son collectif.
+              {locale === "en"
+                ? `${collectifs.length} sectors where Uvibes brings a sharper read of the field and a stronger engaged community.`
+                : <>{collectifs.length} secteurs d&apos;activité auxquels Uvibes apporte une meilleure compréhension du terrain et un engagement renforcé de son collectif.</>}
             </p>
           </div>
         </div>
 
         {/* ── Ticker de pills cliquables ── */}
-        <div className="collectifs-pills-ticker" aria-label="Sélecteur de collectif">
+        <div className="collectifs-pills-ticker" aria-label={locale === "en" ? "Community selector" : "Sélecteur de collectif"}>
           <div className="collectifs-pills-track">
             {collectifs.map((c) => (
               <button
@@ -131,7 +137,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
             ))}
             <div className="collectif-panel-meta">
               <span className="collectif-panel-tag">
-                Cas {String(collectifs.findIndex(c => c.id === activeId) + 1).padStart(2, "0")} / {collectifs.length}
+                {locale === "en" ? "Case" : "Cas"} {String(collectifs.findIndex(c => c.id === activeId) + 1).padStart(2, "0")} / {collectifs.length}
               </span>
               <h3 className="collectif-panel-title">{active.name}</h3>
               <p className="collectif-panel-subtitle">{active.subtitle}</p>
@@ -143,7 +149,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
                   type="button"
                   className="collectif-panel-flyer-wrap"
                   onClick={() => { setIsLocked(true); setLightbox(f); }}
-                  aria-label={`Agrandir l'affiche : ${f.alt}`}
+                  aria-label={locale === "en" ? `Enlarge poster: ${f.alt}` : `Agrandir l'affiche : ${f.alt}`}
                 >
                   <Image
                     src={f.src}
@@ -164,7 +170,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
 
           <div className="collectif-panel-body">
             <div className="collectif-panel-col collectif-panel-col--gains">
-              <div className="collectif-panel-col-title">→ Ce que vous y gagnez</div>
+              <div className="collectif-panel-col-title">{locale === "en" ? "→ What you gain" : "→ Ce que vous y gagnez"}</div>
               <ul className="collectif-panel-list collectif-panel-list--gains">
                 {active.gains.map((g, i) => (
                   <li key={i}>
@@ -175,7 +181,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
               </ul>
             </div>
             <div className="collectif-panel-col collectif-panel-col--pourquoi">
-              <div className="collectif-panel-col-title">→ Pourquoi ça fonctionne</div>
+              <div className="collectif-panel-col-title">{locale === "en" ? "→ Why it works" : "→ Pourquoi ça fonctionne"}</div>
               <ul className="collectif-panel-list collectif-panel-list--pourquoi">
                 {active.pourquoi.map((p, i) => (
                   <li key={i}>
@@ -193,8 +199,8 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
 
         {showCta && (
           <div className="collectifs-cta">
-            <Link href="/solution" className="btn-cta primary collectifs-cta-btn">
-              Découvrir notre méthode
+            <Link href={locale === "en" ? "/en/method" : "/solution"} className="btn-cta primary collectifs-cta-btn">
+              {locale === "en" ? "Discover our method" : "Découvrir notre méthode"}
             </Link>
           </div>
         )}
@@ -209,7 +215,7 @@ export default function CollectifsSection({ showCta = false }: CollectifsSection
           aria-label={lightbox.alt}
           onClick={() => setLightbox(null)}
         >
-          <button type="button" className="cs-lightbox-close" aria-label="Fermer" onClick={() => setLightbox(null)}>
+          <button type="button" className="cs-lightbox-close" aria-label={locale === "en" ? "Close" : "Fermer"} onClick={() => setLightbox(null)}>
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2">
               <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
             </svg>

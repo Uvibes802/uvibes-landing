@@ -3,7 +3,7 @@ import VibrationLine from "@/components/shared/VibrationLine";
 import WaveSeparator from "@/components/shared/WaveSeparator";
 import FormContact from "../form/formContact";
 
-export default function Contact() {
+export default function Contact({ locale = "fr" }: { locale?: "fr" | "en" }) {
   return (
     <section className="ct-section" id="contact">
       {/* Séparateur wavy animé (2 couches, sans trou) */}
@@ -17,19 +17,36 @@ export default function Contact() {
       <div className="ct-inner">
         {/* Colonne gauche */}
         <div className="ct-left">
-          <p className="ct-eyebrow v-mono">Étudions votre projet</p>
+          <p className="ct-eyebrow v-mono">{locale === "en" ? "Let's talk about your project" : "Étudions votre projet"}</p>
           <h2 className="ct-title">
-            <span className="v-prompt">Votre projet mérite</span>
-            <br />
-            <span className="ct-underline-wrap">
-              <span className="v-serif ct-title-serif">une vraie conversation.</span>
-              <span className="ct-vline-under" aria-hidden="true">
-                <VibrationLine width={500} height={20} amplitude={6} freq={5} stroke="rgba(255,255,255,.6)" strokeWidth={3} speed={5} style={{ width: "100%" }} />
-              </span>
-            </span>
+            {locale === "en" ? (
+              <>
+                <span className="v-prompt">Your project deserves</span>
+                <br />
+                <span className="ct-underline-wrap">
+                  <span className="v-serif ct-title-serif">a real conversation.</span>
+                  <span className="ct-vline-under" aria-hidden="true">
+                    <VibrationLine width={500} height={20} amplitude={6} freq={5} stroke="rgba(255,255,255,.6)" strokeWidth={3} speed={5} style={{ width: "100%" }} />
+                  </span>
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="v-prompt">Votre projet mérite</span>
+                <br />
+                <span className="ct-underline-wrap">
+                  <span className="v-serif ct-title-serif">une vraie conversation.</span>
+                  <span className="ct-vline-under" aria-hidden="true">
+                    <VibrationLine width={500} height={20} amplitude={6} freq={5} stroke="rgba(255,255,255,.6)" strokeWidth={3} speed={5} style={{ width: "100%" }} />
+                  </span>
+                </span>
+              </>
+            )}
           </h2>
           <p className="ct-sub">
-            Quelques lignes suffisent. Dites-nous ce qui vous amène vers Uvibes et les questions que vous vous posez pour votre projet&nbsp;: nous vous répondrons de façon personnalisée.
+            {locale === "en"
+              ? "A few lines are enough. Tell us what brings you to Uvibes and the questions you have about your project — we'll get back to you personally."
+              : <>Quelques lignes suffisent. Dites-nous ce qui vous amène vers Uvibes et les questions que vous vous posez pour votre projet&nbsp;: nous vous répondrons de façon personnalisée.</>}
           </p>
         </div>
 
@@ -44,7 +61,7 @@ export default function Contact() {
             <span className="ct-sonar-dot" />
           </div>
           <div className="ct-form-card">
-            <FormContact />
+            <FormContact locale={locale} />
           </div>
         </div>
       </div>

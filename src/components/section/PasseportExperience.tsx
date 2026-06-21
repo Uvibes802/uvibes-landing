@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
+import { PASSEPORTS_EN } from "@/data/passeport/passeportExperienceEn";
 import "@/styles/section/passeportExperience.css";
 
 interface Passeport {
@@ -167,7 +168,8 @@ const PASSEPORTS: Passeport[] = [
 // Palette chaude alignée sur la section « Thématiques » — aucune couleur sombre ni violette
 const PALETTE = ["#FD6E00", "#E6007E", "#D90A5C", "#FFB800"];
 
-export default function PasseportExperience() {
+export default function PasseportExperience({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const PASSEPORTS_LIST = locale === "en" ? PASSEPORTS_EN : PASSEPORTS;
   const [openId, setOpenId] = useState<string | null>(null);
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.06 });
 
@@ -185,25 +187,31 @@ export default function PasseportExperience() {
       <div className="pp-header">
         <div className="pp-eyebrow">
           <span className="pp-eyebrow-mark" aria-hidden="true" />
-          <span>Pour structurer, développer et valoriser votre collectif</span>
+          <span>{locale === "en" ? "To structure, develop and showcase your community" : "Pour structurer, développer et valoriser votre collectif"}</span>
         </div>
 
         <h2 className="pp-title v-prompt">
-          À votre collectif,<br />
-          proposez le{" "}
-          <em className="pp-title-em v-serif">Passeport d&apos;Expérience</em>
+          {locale === "en" ? (
+            <>Give your community<br />the{" "}<em className="pp-title-em v-serif">Experience Passport</em></>
+          ) : (
+            <>À votre collectif,<br />proposez le{" "}<em className="pp-title-em v-serif">Passeport d&apos;Expérience</em></>
+          )}
         </h2>
 
         <p className="pp-lead">
-          Uvibes est la première solution qui permet à la fois de développer
-          ses compétences relationnelles, de les exercer dans des échanges
-          réels et de faire reconnaître cet engagement.
+          {locale === "en"
+            ? "Uvibes is the first solution that lets people build relational skills, practice them in real exchanges, and get that commitment recognized."
+            : "Uvibes est la première solution qui permet à la fois de développer ses compétences relationnelles, de les exercer dans des échanges réels et de faire reconnaître cet engagement."}
         </p>
 
         {/* Triptyque — étapes éditoriales */}
         <div className="pp-trio">
           {(
-            [
+            locale === "en" ? [
+              { verb: "Learn", sub: "from varied resources", color: "#FD6E00" },
+              { verb: "Practice", sub: "an ongoing training ground", color: "#D90A5C" },
+              { verb: "Showcase", sub: "a certificate to earn", color: "#00AFDD" },
+            ] as const : [
               { verb: "Apprendre", sub: "des ressources variées", color: "#FD6E00" },
               { verb: "Pratiquer", sub: "un terrain d'entraînement continu", color: "#D90A5C" },
               { verb: "Valoriser", sub: "une attestation à gagner", color: "#00AFDD" },
@@ -233,13 +241,15 @@ export default function PasseportExperience() {
         </div>
 
         <p className="pp-subline">
-          Chaque passeport est adapté aux enjeux spécifiques de votre collectif.
+          {locale === "en"
+            ? "Each passport is tailored to the specific challenges of your community."
+            : "Chaque passeport est adapté aux enjeux spécifiques de votre collectif."}
         </p>
       </div>
 
       {/* ── Paquet de passeports ── */}
       <div className="pp-deck">
-        {PASSEPORTS.map((p, i) => {
+        {PASSEPORTS_LIST.map((p, i) => {
           const open = openId === p.id;
           const accent = PALETTE[i % PALETTE.length];
           return (
@@ -259,7 +269,7 @@ export default function PasseportExperience() {
               <div className="pp-card-media">
                 <Image
                   src={`/images/passeport/${p.id}.webp`}
-                  alt={`Passeport d'expérience — ${p.title}`}
+                  alt={locale === "en" ? `Experience Passport — ${p.title}` : `Passeport d'expérience — ${p.title}`}
                   width={360}
                   height={254}
                   className="pp-card-img"
@@ -282,14 +292,14 @@ export default function PasseportExperience() {
               <div className="pp-card-reveal">
                 <div className="pp-card-reveal-inner">
                   <div className="pp-card-block">
-                    <p className="pp-card-block-label">Le besoin</p>
+                    <p className="pp-card-block-label">{locale === "en" ? "The need" : "Le besoin"}</p>
                     <p className="pp-card-block-text">{p.besoin}</p>
                   </div>
 
                   <div className="pp-card-perf" aria-hidden="true" />
 
                   <div className="pp-card-block">
-                    <p className="pp-card-block-label">Que peut-on faire de ce passeport ?</p>
+                    <p className="pp-card-block-label">{locale === "en" ? "What can you do with this passport?" : "Que peut-on faire de ce passeport ?"}</p>
                     <ul className="pp-card-list">
                       {p.valoriser.map((v) => (
                         <li key={v}><span className="pp-card-dot" aria-hidden="true" />{v}</li>

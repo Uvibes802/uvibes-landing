@@ -3,7 +3,7 @@ import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import "@/styles/section/valuePillars.css";
 
-const pillars = [
+const pillarsFr = [
   {
     id: "federer",
     num: "01",
@@ -30,7 +30,35 @@ const pillars = [
   },
 ];
 
-export default function ValuePillars() {
+const pillarsEn = [
+  {
+    id: "federer",
+    num: "01",
+    accentColor: "#F4621F",
+    label: "01 · Pillar",
+    title: "Unite",
+    titleEt: "and",
+    titleSuffix: "engage",
+    body: "Build a real sense of belonging in your organization. It rarely happens in meetings — it's built day after day, through informal exchanges. Uvibes strengthens collective identity and rallies people around a shared vision.",
+    stat: "x4",
+    statLabel: "more engagement in organizations with a strong sense of belonging",
+  },
+  {
+    id: "piloter",
+    num: "02",
+    accentColor: "#E8196A",
+    label: "02 · Pillar",
+    title: "Steer",
+    titleEt: "and",
+    titleSuffix: "decide",
+    body: "Make the right call at the right time. Good decisions rarely come from 40-page reports — they rely on relevant information, available exactly when you need it. Uvibes gives you the visibility to act effectively.",
+    stat: "< 5 min",
+    statLabel: "a week to know exactly how your community is doing",
+  },
+];
+
+export default function ValuePillars({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const pillars = locale === "en" ? pillarsEn : pillarsFr;
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.12 });
 
   return (
@@ -39,13 +67,26 @@ export default function ValuePillars() {
       <div className="pillars-header">
         <p className="pillars-kicker v-mono">
           <span className="pillars-kicker-dot" aria-hidden="true" />
-          Uvibes, moteur d&apos;engagement et de performance dans votre organisation
+          {locale === "en"
+            ? "Uvibes, an engagement and performance engine for your organization"
+            : <>Uvibes, moteur d&apos;engagement et de performance dans votre organisation</>}
         </p>
         <h2 className="pillars-title">
-          Un seul outil pour{" "}
-          <strong className="pillars-strong--gradient">renforcer votre collectif</strong>
-          {" "}et{" "}
-          <strong className="pillars-strong--gradient">guider vos choix stratégiques</strong>.
+          {locale === "en" ? (
+            <>
+              One tool to{" "}
+              <strong className="pillars-strong--gradient">strengthen your community</strong>
+              {" "}and{" "}
+              <strong className="pillars-strong--gradient">guide your strategic choices</strong>.
+            </>
+          ) : (
+            <>
+              Un seul outil pour{" "}
+              <strong className="pillars-strong--gradient">renforcer votre collectif</strong>
+              {" "}et{" "}
+              <strong className="pillars-strong--gradient">guider vos choix stratégiques</strong>.
+            </>
+          )}
         </h2>
       </div>
 

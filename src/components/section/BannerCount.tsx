@@ -6,13 +6,22 @@ import VibrationLine from "@/components/shared/VibrationLine";
 import WaveSeparator from "@/components/shared/WaveSeparator";
 import "../../styles/section/bannerCount.css";
 
-const FILLERS = [
+const FILLERS_FR = [
   "priorités partagées",
   "visions croisées",
   "inspirations nouvelles",
   "utilisateurs",
   "bons plans échangés",
   "objectifs alignés",
+];
+
+const FILLERS_EN = [
+  "shared priorities",
+  "crossed perspectives",
+  "fresh inspiration",
+  "users",
+  "tips exchanged",
+  "aligned goals",
 ];
 
 function useCountUp(target: number, duration: number, started: boolean) {
@@ -33,7 +42,8 @@ function useCountUp(target: number, duration: number, started: boolean) {
   return v;
 }
 
-export default function BannerCount() {
+export default function BannerCount({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const FILLERS = locale === "en" ? FILLERS_EN : FILLERS_FR;
   const { userNumber } = FetchCitation();
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -42,9 +52,9 @@ export default function BannerCount() {
   const target = numericMatch ? parseInt(numericMatch[0].replace(/\s/g, ""), 10) : 12480;
 
   const animated = useCountUp(target, 2200, started);
-  const display = animated.toLocaleString("fr-FR");
+  const display = animated.toLocaleString(locale === "en" ? "en-US" : "fr-FR");
   // Largeur réservée d'avance pour éviter que la ligne tremble pendant le comptage
-  const finalDisplay = target.toLocaleString("fr-FR");
+  const finalDisplay = target.toLocaleString(locale === "en" ? "en-US" : "fr-FR");
 
   const rawScore = useCountUp(49, 1800, started);
   const score = (rawScore / 10).toFixed(1);
@@ -88,7 +98,7 @@ export default function BannerCount() {
 
         {/* Compteur principal */}
         <div className="banner-count-main">
-          <span className="v-mono banner-count-label">en 2026</span>
+          <span className="v-mono banner-count-label">{locale === "en" ? "in 2026" : "en 2026"}</span>
           <div className="banner-count-row">
             {/* Largeur figée : fantôme invisible avec tous les chiffres au plus large ("8"),
                 le nombre animé est superposé et aligné à droite → le texte ne bouge plus. */}

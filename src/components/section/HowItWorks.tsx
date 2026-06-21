@@ -6,7 +6,7 @@ import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import VibrationLine from "@/components/shared/VibrationLine";
 import "../../styles/section/howItWorks.css";
 
-const STEPS: { n: string; color: string; title: React.ReactNode; body: React.ReactNode; time: string }[] = [
+const STEPS_FR: { n: string; color: string; title: React.ReactNode; body: React.ReactNode; time: string }[] = [
   {
     n: "01",
     color: "#FD6E00",
@@ -30,7 +30,32 @@ const STEPS: { n: string; color: string; title: React.ReactNode; body: React.Rea
   },
 ];
 
-export default function HowItWorks() {
+const STEPS_EN: { n: string; color: string; title: React.ReactNode; body: React.ReactNode; time: string }[] = [
+  {
+    n: "01",
+    color: "#FD6E00",
+    title: <>Pick your <span className="how-kw">experiences</span> and conversation topics</>,
+    body: <>Set up takes <span className="how-kw">a few minutes</span>. No <span className="how-kw">technical skills</span> required.</>,
+    time: "Ready in minutes",
+  },
+  {
+    n: "02",
+    color: "#D90A5C",
+    title: <><span className="how-kw">Two members.</span> One conversation. <span className="how-kw">Six minutes.</span></>,
+    body: <>Members are matched <span className="how-kw">at random</span> for one-on-one video chats. <span className="how-kw">Tailored questions</span> guide the conversation. At the end, participants can swap their <span className="how-kw">contact cards</span>.</>,
+    time: "A guided, face-to-face video meeting",
+  },
+  {
+    n: "03",
+    color: "#F59E0B",
+    title: <>Your community <span className="how-kw">talks back.</span> Listen to it.</>,
+    body: <>After each exchange, participants answer short <span className="how-kw">tailored surveys</span>. You gather feedback, perspectives and <span className="how-kw">useful data</span> to better understand your community.</>,
+    time: "Data in return, to help you decide",
+  },
+];
+
+export default function HowItWorks({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const STEPS = locale === "en" ? STEPS_EN : STEPS_FR;
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.08 });
 
   return (
@@ -44,13 +69,24 @@ export default function HowItWorks() {
       <div className="how-header">
         <p className="v-mono how-eyebrow">
           <span className="how-eyebrow-dot" aria-hidden="true" />
-          Comment ça fonctionne
+          {locale === "en" ? "How it works" : "Comment ça fonctionne"}
         </p>
         <h2 className="how-title v-prompt">
-          <span className="how-title-orange">Trois</span>{" "}
-          <span className="v-serif how-title-gradient">étapes.</span>
-          <br />
-          <span className="how-title-rose">Rien de plus simple.</span>
+          {locale === "en" ? (
+            <>
+              <span className="how-title-orange">Three</span>{" "}
+              <span className="v-serif how-title-gradient">steps.</span>
+              <br />
+              <span className="how-title-rose">Nothing simpler.</span>
+            </>
+          ) : (
+            <>
+              <span className="how-title-orange">Trois</span>{" "}
+              <span className="v-serif how-title-gradient">étapes.</span>
+              <br />
+              <span className="how-title-rose">Rien de plus simple.</span>
+            </>
+          )}
         </h2>
       </div>
 
@@ -86,8 +122,8 @@ export default function HowItWorks() {
       </div>
 
       <div className="how-cta-wrap">
-        <Link href="/tarifs" className="btn-brand how-cta">
-          Découvrir nos offres Uvibes
+        <Link href={locale === "en" ? "/en/pricing" : "/tarifs"} className="btn-brand how-cta">
+          {locale === "en" ? "Discover Uvibes plans" : "Découvrir nos offres Uvibes"}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
