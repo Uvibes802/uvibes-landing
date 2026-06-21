@@ -181,6 +181,8 @@ export default function DevisFormStepper() {
       if (!form.nom.trim()) errs.nom = "Champ requis";
       if (!form.contact.trim()) errs.contact = "Champ requis";
       if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errs.email = "Email invalide";
+      if (!form.adresse.trim()) errs.adresse = "Champ requis";
+      if (!form.ville.trim()) errs.ville = "Champ requis";
       if (!form.siret.trim()) errs.siret = "Champ requis";
     }
     setErrors(errs);
@@ -483,28 +485,30 @@ export default function DevisFormStepper() {
             </div>
 
             <div className="dv-field">
-              <label className="dv-label" htmlFor="dv-ville">Ville (optionnel)</label>
+              <label className="dv-label" htmlFor="dv-ville">Ville *</label>
               <input
                 id="dv-ville"
-                className="dv-input"
+                className={`dv-input${errors.ville ? " --error" : ""}`}
                 type="text"
                 placeholder="Paris"
                 value={form.ville}
                 onChange={(e) => set("ville", e.target.value)}
               />
+              {errors.ville && <p className="dv-error-msg">{errors.ville}</p>}
             </div>
           </div>
 
           <div className="dv-field">
-            <label className="dv-label" htmlFor="dv-adresse">Adresse complète</label>
+            <label className="dv-label" htmlFor="dv-adresse">Adresse complète *</label>
             <input
               id="dv-adresse"
-              className="dv-input"
+              className={`dv-input${errors.adresse ? " --error" : ""}`}
               type="text"
               placeholder="12 rue de l'Exemple, 75000 Paris"
               value={form.adresse}
               onChange={(e) => set("adresse", e.target.value)}
             />
+            {errors.adresse && <p className="dv-error-msg">{errors.adresse}</p>}
           </div>
 
           <div className="dv-field">

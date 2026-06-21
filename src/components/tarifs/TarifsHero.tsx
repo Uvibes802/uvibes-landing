@@ -69,7 +69,7 @@ export default function TarifsHero({ locale = "fr" }: { locale?: "fr" | "en" }) 
         <p className="th-desc">
           {locale === "en"
             ? "Three annual plans to deploy Uvibes for the long run, plus a 30-day trial offer to test it with no commitment."
-            : <>Trois formules annuelles pour déployer Uvibes dans la durée, et une offre découverte de 30&nbsp;jours pour l&apos;essayer sans engagement.</>}
+            : <>Trois formules annuelles pour déployer Uvibes dans la durée,<br className="v-br-desktop" /> et une offre découverte de 30&nbsp;jours pour l&apos;essayer sans engagement.</>}
         </p>
 
         <div className="th-ctas">
