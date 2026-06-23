@@ -84,7 +84,8 @@
   padding: 1rem 0;
 }
 
-/* Swiper */
+/* Swiper — flèches en bouton rond dégradé (même esprit que le carousel
+   Passeport d'expérience), au lieu des chevrons nus par défaut */
 .team-swiper {
   width: 100%;
   padding-bottom: 3.5rem !important;
@@ -93,23 +94,47 @@
 
 .team-swiper .swiper-button-next,
 .team-swiper .swiper-button-prev {
-  color: var(--orange) !important;
-  scale: 0.8;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  box-shadow: 0 10px 24px -10px rgba(217,10,92,.55);
+  transition: transform 0.2s ease;
 }
+.team-swiper .swiper-button-next:hover,
+.team-swiper .swiper-button-prev:hover {
+  transform: scale(1.08);
+}
+.team-swiper .swiper-button-next::after,
+.team-swiper .swiper-button-prev::after {
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: 800;
+}
+.team-swiper .swiper-button-disabled { opacity: 0.32; }
 
+.team-swiper .swiper-pagination-bullet {
+  width: 7px; height: 7px;
+  opacity: 0.4;
+  background: var(--rose);
+}
 .team-swiper .swiper-pagination-bullet-active {
+  width: 20px;
+  border-radius: 4px;
+  opacity: 1;
   background: linear-gradient(135deg, var(--orange), var(--rose)) !important;
+  transition: width 0.25s ease;
 }
 
 @media (max-width: 640px) {
-  /* Défilement horizontal au lieu du retour à la ligne — la section reste compacte */
+  /* Le défilement horizontal laissait le dernier onglet visuellement coupé,
+     même avec un fondu. On passe à un retour à la ligne : chaque libellé reste
+     toujours entièrement lisible, quel que soit le nombre de catégories. */
   .uvibes-teamSection-button {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: calc(100% - 1.5rem);
+    row-gap: 6px;
   }
-  .uvibes-teamSection-button::-webkit-scrollbar { display: none; }
-  .uvibes-button { flex-shrink: 0; }
+  .uvibes-button { padding: 0.5rem 1.1rem; font-size: 12.5px; white-space: normal; }
 }

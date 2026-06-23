@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import DevisToggle from "@/components/admin/DevisToggle";
+import DevisNumeroSetting from "@/components/admin/DevisNumeroSetting";
 
 const STATUT_BADGE: Record<string, string> = {
   BROUILLON: "--brouillon", ENVOYE: "--envoye", VU: "--envoye",
@@ -41,6 +42,7 @@ export default async function DevisListPage({ searchParams }: Props) {
 
   const pages = Math.ceil(total / limit);
   const devisDisabled = (await prisma.cmsContent.findUnique({ where: { cle: "devis-disabled" } }))?.valeur === "true";
+  const prochainNumero = (await prisma.cmsContent.findUnique({ where: { cle: "devis-prochain-numero" } }))?.valeur ?? "";
 
   return (
     <>
@@ -50,9 +52,15 @@ export default async function DevisListPage({ searchParams }: Props) {
       </div>
 
       <div className="crm-content">
-        <div className="crm-detail-card" style={{ marginBottom: 20 }}>
-          <p className="crm-detail-section-title">Demandes de devis depuis le site</p>
-          <DevisToggle active={devisDisabled} />
+        <div className="crm-detail-card" style={{ marginBottom: 20, display: "flex", gap: 40, flexWrap: "wrap" }}>
+          <div>
+            <p className="crm-detail-section-title">Demandes de devis depuis le site</p>
+            <DevisToggle active={devisDisabled} />
+          </div>
+          <div>
+            <p className="crm-detail-section-title">Numérotation</p>
+            <DevisNumeroSetting initial={prochainNumero || "D2600001"} />
+          </div>
         </div>
 
         <div className="crm-table-wrap">

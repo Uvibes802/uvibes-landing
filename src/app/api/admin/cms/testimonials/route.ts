@@ -7,8 +7,8 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { texte, auteur, role } = await req.json();
+  const { texte, auteur, role, photoUrl, logoUrl } = await req.json();
   if (!texte || !auteur) return NextResponse.json({ error: "texte et auteur requis" }, { status: 400 });
-  const item = await prisma.testimony.create({ data: { texte, auteur, role: role ?? "" } });
+  const item = await prisma.testimony.create({ data: { texte, auteur, role: role ?? "", photoUrl, logoUrl } });
   return NextResponse.json(item);
 }

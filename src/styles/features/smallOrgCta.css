@@ -72,6 +72,16 @@
   .soc-br-mob { display: none; }
 }
 
+/* "Une association, un petit collectif," groupées sur une seule ligne en
+   desktop (le saut mobile ci-dessus reprend le dessus en dessous de 768px) */
+@media (min-width: 768px) {
+  .soc-line1 { white-space: nowrap; }
+}
+/* Virgule de fin de ligne — inutile une fois qu'on a sauté à la ligne suivante */
+@media (max-width: 767px) {
+  .soc-comma { display: none; }
+}
+
 .soc-text {
   margin: 0 auto 1.75rem;
   font-size: clamp(0.98rem, 1.4vw, 1.12rem);

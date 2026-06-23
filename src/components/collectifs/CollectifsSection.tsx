@@ -7,15 +7,167 @@ import Link from "next/link";
 import VibrationLine from "@/components/shared/VibrationLine";
 import { collectifs as collectifsFr } from "@/data/collectifs/collectifsData";
 import { collectifsEn } from "@/data/collectifs/collectifsDataEn";
+import { collectifsEs } from "@/data/collectifs/collectifsDataEs";
+import { collectifsDe } from "@/data/collectifs/collectifsDataDe";
+import { collectifsIt } from "@/data/collectifs/collectifsDataIt";
+import { collectifsPt } from "@/data/collectifs/collectifsDataPt";
+import { collectifsRu } from "@/data/collectifs/collectifsDataRu";
+import { collectifsZh } from "@/data/collectifs/collectifsDataZh";
+import { collectifsJa } from "@/data/collectifs/collectifsDataJa";
+import { collectifsHi } from "@/data/collectifs/collectifsDataHi";
+import { collectifsAr } from "@/data/collectifs/collectifsDataAr";
 import "@/styles/collectifs/collectifsSection.css";
 
 interface CollectifsSectionProps {
   showCta?: boolean;
-  locale?: "fr" | "en";
+  locale?: string;
 }
 
+const COLLECTIFS_BY_LOCALE: Record<string, typeof collectifsFr> = {
+  en: collectifsEn, es: collectifsEs, de: collectifsDe, it: collectifsIt, pt: collectifsPt,
+  ru: collectifsRu, zh: collectifsZh, ja: collectifsJa, hi: collectifsHi, ar: collectifsAr,
+};
+
+const CS_TXT: Record<string, {
+  eyebrow: string; title: React.ReactNode; descFn: (n: number) => React.ReactNode;
+  pillsAria: string; caseLabel: string; enlargeFn: (alt: string) => string;
+  gains: string; pourquoi: string; cta: string; methodHref: string; close: string;
+}> = {
+  en: {
+    eyebrow: "Who's it for?",
+    title: <>Every <span className="collectifs-title-serif">organization</span><br />has its own challenges.</>,
+    descFn: (n) => `${n} sectors where Uvibes brings a sharper read of the field and a stronger engaged community.`,
+    pillsAria: "Community selector",
+    caseLabel: "Case",
+    enlargeFn: (alt) => `Enlarge poster: ${alt}`,
+    gains: "→ What you gain",
+    pourquoi: "→ Why it works",
+    cta: "Discover our method",
+    methodHref: "/en/method",
+    close: "Close",
+  },
+  es: {
+    eyebrow: "¿Para quién?",
+    title: <>Cada <span className="collectifs-title-serif">organización</span><br />tiene sus propios retos.</>,
+    descFn: (n) => <>{n} sectores en los que Uvibes aporta una mejor lectura del terreno y un colectivo más comprometido.</>,
+    pillsAria: "Selector de colectivo",
+    caseLabel: "Caso",
+    enlargeFn: (alt) => `Ampliar cartel: ${alt}`,
+    gains: "→ Lo que ganas",
+    pourquoi: "→ Por qué funciona",
+    cta: "Descubrir nuestro método",
+    methodHref: "/es/method",
+    close: "Cerrar",
+  },
+  de: {
+    eyebrow: "Für wen?",
+    title: <>Jede <span className="collectifs-title-serif">Organisation</span><br />hat ihre eigenen Herausforderungen.</>,
+    descFn: (n) => <>{n} Branchen, in denen Uvibes ein schärferes Bild der Lage und ein stärker engagiertes Kollektiv ermöglicht.</>,
+    pillsAria: "Kollektiv-Auswahl",
+    caseLabel: "Fall",
+    enlargeFn: (alt) => `Plakat vergrößern: ${alt}`,
+    gains: "→ Was du gewinnst",
+    pourquoi: "→ Warum es funktioniert",
+    cta: "Unsere Methode entdecken",
+    methodHref: "/de/method",
+    close: "Schließen",
+  },
+  it: {
+    eyebrow: "Per chi?",
+    title: <>Ogni <span className="collectifs-title-serif">organizzazione</span><br />ha le sue sfide.</>,
+    descFn: (n) => <>{n} settori in cui Uvibes offre una lettura più precisa del terreno e una comunità più coinvolta.</>,
+    pillsAria: "Selettore di comunità",
+    caseLabel: "Caso",
+    enlargeFn: (alt) => `Ingrandisci il poster: ${alt}`,
+    gains: "→ Cosa ci guadagni",
+    pourquoi: "→ Perché funziona",
+    cta: "Scopri il nostro metodo",
+    methodHref: "/it/method",
+    close: "Chiudi",
+  },
+  pt: {
+    eyebrow: "Para quem?",
+    title: <>Cada <span className="collectifs-title-serif">organização</span><br />tem os seus próprios desafios.</>,
+    descFn: (n) => <>{n} setores onde a Uvibes traz uma leitura mais precisa do terreno e um coletivo mais comprometido.</>,
+    pillsAria: "Seletor de coletivo",
+    caseLabel: "Caso",
+    enlargeFn: (alt) => `Ampliar cartaz: ${alt}`,
+    gains: "→ O que ganhas",
+    pourquoi: "→ Porque funciona",
+    cta: "Descobrir o nosso método",
+    methodHref: "/pt/method",
+    close: "Fechar",
+  },
+  ru: {
+    eyebrow: "Для кого?",
+    title: <>У каждой <span className="collectifs-title-serif">организации</span><br />свои вызовы.</>,
+    descFn: (n) => <>{n} сфер, где Uvibes даёт более точное понимание ситуации и более вовлечённый коллектив.</>,
+    pillsAria: "Выбор коллектива",
+    caseLabel: "Случай",
+    enlargeFn: (alt) => `Увеличить плакат: ${alt}`,
+    gains: "→ Что вы получаете",
+    pourquoi: "→ Почему это работает",
+    cta: "Узнать наш метод",
+    methodHref: "/ru/method",
+    close: "Закрыть",
+  },
+  zh: {
+    eyebrow: "适合谁？",
+    title: <>每个<span className="collectifs-title-serif">组织</span><br />都有自己的挑战。</>,
+    descFn: (n) => <>{n}个行业，Uvibes 在这些领域提供更精准的现场洞察和更投入的集体。</>,
+    pillsAria: "集体选择器",
+    caseLabel: "案例",
+    enlargeFn: (alt) => `放大海报：${alt}`,
+    gains: "→ 你将获得",
+    pourquoi: "→ 为何有效",
+    cta: "了解我们的方法",
+    methodHref: "/zh/method",
+    close: "关闭",
+  },
+  ja: {
+    eyebrow: "どなたに向けて？",
+    title: <>どの<span className="collectifs-title-serif">組織</span><br />にもそれぞれの課題があります。</>,
+    descFn: (n) => <>{n}の分野で、Uvibesは現場をより的確に理解し、より積極的なコミュニティづくりを支えます。</>,
+    pillsAria: "コミュニティ選択",
+    caseLabel: "ケース",
+    enlargeFn: (alt) => `ポスターを拡大：${alt}`,
+    gains: "→ 得られるもの",
+    pourquoi: "→ なぜ効果的か",
+    cta: "私たちのメソッドを見る",
+    methodHref: "/ja/method",
+    close: "閉じる",
+  },
+  hi: {
+    eyebrow: "किसके लिए?",
+    title: <>हर <span className="collectifs-title-serif">संगठन</span><br />की अपनी चुनौतियां होती हैं।</>,
+    descFn: (n) => <>{n} क्षेत्र जहां Uvibes ज़मीनी हकीकत की बेहतर समझ और एक अधिक सक्रिय समुदाय लाता है।</>,
+    pillsAria: "समुदाय चयनकर्ता",
+    caseLabel: "केस",
+    enlargeFn: (alt) => `पोस्टर बड़ा करें: ${alt}`,
+    gains: "→ आपको क्या मिलता है",
+    pourquoi: "→ यह क्यों काम करता है",
+    cta: "हमारा तरीका जानें",
+    methodHref: "/hi/method",
+    close: "बंद करें",
+  },
+  ar: {
+    eyebrow: "لمن هذا؟",
+    title: <>كل <span className="collectifs-title-serif">منظمة</span><br />لها تحدياتها الخاصة.</>,
+    descFn: (n) => <>{n} قطاعًا يوفر فيها Uvibes فهمًا أدق للواقع ومجتمعًا أكثر تفاعلًا.</>,
+    pillsAria: "محدد المجتمع",
+    caseLabel: "حالة",
+    enlargeFn: (alt) => `تكبير الملصق: ${alt}`,
+    gains: "→ ما الذي تكسبه",
+    pourquoi: "→ لماذا ينجح ذلك",
+    cta: "اكتشف طريقتنا",
+    methodHref: "/ar/method",
+    close: "إغلاق",
+  },
+};
+
 export default function CollectifsSection({ showCta = false, locale = "fr" }: CollectifsSectionProps) {
-  const collectifs = locale === "en" ? collectifsEn : collectifsFr;
+  const collectifs = COLLECTIFS_BY_LOCALE[locale] ?? collectifsFr;
+  const cs = locale !== "fr" ? CS_TXT[locale] : undefined;
   const [activeId, setActiveId] = useState(collectifs[0].id);
   const [isLocked, setIsLocked] = useState(false);
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
@@ -51,25 +203,23 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
           <div className="collectifs-header-left">
             <span className="collectifs-eyebrow">
               <span className="collectifs-eyebrow-dot" aria-hidden="true" />
-              {locale === "en" ? "Who's it for?" : "Pour qui ?"}
+              {cs ? cs.eyebrow : "Pour qui ?"}
             </span>
             <h2 className="collectifs-title">
-              {locale === "en" ? (
-                <>Every <span className="collectifs-title-serif">organization</span><br />has its own challenges.</>
-              ) : (
+              {cs ? cs.title : (
                 <>Chaque{" "}<span className="collectifs-title-serif">organisation</span><br />a ses enjeux.</>
               )}
             </h2>
             <p className="collectifs-desc">
-              {locale === "en"
-                ? `${collectifs.length} sectors where Uvibes brings a sharper read of the field and a stronger engaged community.`
+              {cs
+                ? cs.descFn(collectifs.length)
                 : <>{collectifs.length} secteurs d&apos;activité auxquels Uvibes apporte une meilleure compréhension du terrain et un engagement renforcé de son collectif.</>}
             </p>
           </div>
         </div>
 
         {/* ── Ticker de pills cliquables ── */}
-        <div className="collectifs-pills-ticker" aria-label={locale === "en" ? "Community selector" : "Sélecteur de collectif"}>
+        <div className="collectifs-pills-ticker" aria-label={cs ? cs.pillsAria : "Sélecteur de collectif"}>
           <div className="collectifs-pills-track">
             {collectifs.map((c) => (
               <button
@@ -137,7 +287,7 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
             ))}
             <div className="collectif-panel-meta">
               <span className="collectif-panel-tag">
-                {locale === "en" ? "Case" : "Cas"} {String(collectifs.findIndex(c => c.id === activeId) + 1).padStart(2, "0")} / {collectifs.length}
+                {cs ? cs.caseLabel : "Cas"} {String(collectifs.findIndex(c => c.id === activeId) + 1).padStart(2, "0")} / {collectifs.length}
               </span>
               <h3 className="collectif-panel-title">{active.name}</h3>
               <p className="collectif-panel-subtitle">{active.subtitle}</p>
@@ -149,7 +299,7 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
                   type="button"
                   className="collectif-panel-flyer-wrap"
                   onClick={() => { setIsLocked(true); setLightbox(f); }}
-                  aria-label={locale === "en" ? `Enlarge poster: ${f.alt}` : `Agrandir l'affiche : ${f.alt}`}
+                  aria-label={cs ? cs.enlargeFn(f.alt) : `Agrandir l'affiche : ${f.alt}`}
                 >
                   <Image
                     src={f.src}
@@ -170,7 +320,7 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
 
           <div className="collectif-panel-body">
             <div className="collectif-panel-col collectif-panel-col--gains">
-              <div className="collectif-panel-col-title">{locale === "en" ? "→ What you gain" : "→ Ce que vous y gagnez"}</div>
+              <div className="collectif-panel-col-title">{cs ? cs.gains : "→ Ce que vous y gagnez"}</div>
               <ul className="collectif-panel-list collectif-panel-list--gains">
                 {active.gains.map((g, i) => (
                   <li key={i}>
@@ -181,7 +331,7 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
               </ul>
             </div>
             <div className="collectif-panel-col collectif-panel-col--pourquoi">
-              <div className="collectif-panel-col-title">{locale === "en" ? "→ Why it works" : "→ Pourquoi ça fonctionne"}</div>
+              <div className="collectif-panel-col-title">{cs ? cs.pourquoi : "→ Pourquoi ça fonctionne"}</div>
               <ul className="collectif-panel-list collectif-panel-list--pourquoi">
                 {active.pourquoi.map((p, i) => (
                   <li key={i}>
@@ -199,8 +349,8 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
 
         {showCta && (
           <div className="collectifs-cta">
-            <Link href={locale === "en" ? "/en/method" : "/solution"} className="btn-cta primary collectifs-cta-btn">
-              {locale === "en" ? "Discover our method" : "Découvrir notre méthode"}
+            <Link href={cs ? cs.methodHref : "/solution"} className="btn-cta primary collectifs-cta-btn">
+              {cs ? cs.cta : "Découvrir notre méthode"}
             </Link>
           </div>
         )}
@@ -215,7 +365,7 @@ export default function CollectifsSection({ showCta = false, locale = "fr" }: Co
           aria-label={lightbox.alt}
           onClick={() => setLightbox(null)}
         >
-          <button type="button" className="cs-lightbox-close" aria-label={locale === "en" ? "Close" : "Fermer"} onClick={() => setLightbox(null)}>
+          <button type="button" className="cs-lightbox-close" aria-label={cs ? cs.close : "Fermer"} onClick={() => setLightbox(null)}>
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2">
               <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
             </svg>

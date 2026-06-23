@@ -123,7 +123,26 @@
 
 .ft-nav-col { display: flex; flex-direction: column; gap: 0.8rem; }
 
-.ft-nav-label { margin: 0; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,.48); text-transform: uppercase; }
+.ft-nav-label-wrap { display: flex; flex-direction: column; gap: 5px; }
+
+.ft-nav-label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,.48);
+  text-transform: uppercase;
+}
+.ft-nav-label-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE456, #FD6E00);
+  flex-shrink: 0;
+}
+
+.ft-nav-underline { width: 48px; margin-left: 13px; }
 
 .ft-nav-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
 
@@ -156,8 +175,29 @@
 @media (max-width: 900px) {
   .ft-top { grid-template-columns: 1fr; gap: 2rem; }
   .ft-nav { grid-template-columns: repeat(2, 1fr); }
+
+  /* Brand seul au-dessus de la nav — centré, plus équilibré qu'aligné à gauche */
+  .ft-brand { align-items: center; text-align: center; }
+  .nl-row { justify-content: center; }
 }
 @media (max-width: 560px) {
   /* Une section après l'autre, plus dynamique qu'une grille 2x2 serrée */
-  .ft-nav { grid-template-columns: 1fr; gap: 1.5rem; }
+  .ft-nav { grid-template-columns: 1fr; gap: 1.75rem; }
+
+  .ft-nav-col {
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .ft-nav-col:last-child { border-bottom: none; padding-bottom: 0; }
+
+  /* Catégories plus lisibles : taille et contraste relevés */
+  .ft-nav-label-wrap { align-items: center; }
+  .ft-nav-label { justify-content: center; font-size: 12px; letter-spacing: 0.12em; color: rgba(255,255,255,.85); }
+  .ft-nav-label-dot { width: 7px; height: 7px; }
+  .ft-nav-underline { margin-left: 0; }
+  .ft-nav-link { font-size: 14.5px; }
+
+  .ft-bottom { flex-direction: column; text-align: center; }
 }

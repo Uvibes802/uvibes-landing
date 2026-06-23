@@ -1,0 +1,23 @@
+# Uvibes
+
+> Uvibes est une innovation socio-digitale qui active les conversations positives au sein des collectifs (entreprises, associations, écoles, clubs sportifs, lieux de vie) pour renforcer le lien social, le bien-être et l'engagement humain. Le projet est porté par l'association Éclat'Ens.
+
+Uvibes repose sur des « vibes » (expériences interactives courtes et guidées), des enquêtes flash, un baromètre bien-être et un tableau de bord de pilotage. La solution aide les organisations à faire parler leurs collectifs, à mesurer le ressenti du terrain et à développer les compétences relationnelles (soft skills).
+
+## Pages principales
+- [Accueil](https://uvibes.fr/): présentation de la solution et de ses bénéfices
+- [La méthode](https://uvibes.fr/solution): pour qui, comment ça fonctionne, thématiques de conversation et fonctionnalités
+- [Tarifs](https://uvibes.fr/tarifs): comparatif des offres et demande de devis
+- [À propos](https://uvibes.fr/a-propos): histoire, mission, valeurs et équipe
+- [Blog](https://uvibes.fr/blog): ressources sur le lien social, les soft skills et la vie des collectifs
+- [Prendre rendez-vous](https://uvibes.fr/rendez-vous): échanger avec l'équipe
+
+## Offres
+- Vibes Connection — 3 980 €/an : favoriser les interactions et suivre l'état d'esprit du collectif
+- Vibes Premium — 4 980 €/an : renforcer la visibilité de la marque et la communication interne
+- Vibes Boost — 5 980 €/an : tous les outils, networking, employer branding et soft skills
+- Vibes Découverte — 480 € : un mois complet pour tester, sans engagement annuel
+
+## Contact
+- Email : contact@uvibes.fr
+- Site : https://uvibes.fr

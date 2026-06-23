@@ -54,6 +54,7 @@ export async function POST(req: NextRequest) {
     session.adminId = user.id;
     session.adminEmail = user.email;
     session.adminNom = user.nom;
+    session.lastSeen = Date.now();
     await session.save();
 
     return NextResponse.json({ ok: true, nom: user.nom });

@@ -91,13 +91,16 @@ export default function AboutEn() {
 
       {/* ── Intro ── */}
       <section className="uv-intro">
-        {/* Citation Harvard — statement plein écran en ouverture */}
-        <p className="uv-intro-statement">
+        {/* Citation Harvard — dans un écrin doux, cohérent avec la section « sens du nom » */}
+        <div className="uv-intro-statement-card">
+          <span className="uv-intro-statement-glow" aria-hidden="true" />
+          <p className="uv-intro-statement">
           <span className="uv-intro-quote-mark" aria-hidden="true">&ldquo;</span>
           Harvard&apos;s longest-running study found that the quality of our relationships
           is the <em className="uv-em-orange">strongest predictor of happiness</em>{" "}
           <span className="uv-intro-statement-cite">(Vaillant, 2002)</span>.
-        </p>
+          </p>
+        </div>
 
         <div className="uv-intro-inner">
           <div>

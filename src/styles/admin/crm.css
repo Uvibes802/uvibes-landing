@@ -2,6 +2,7 @@
 
 :root {
   --crm-sidebar-w: 240px;
+  --crm-sidebar-w-collapsed: 64px;
   --crm-header-h: 56px;
   --crm-bg: linear-gradient(145deg, #FFFBF4 0%, #FFF6EC 40%, #FFF0F8 100%);
   --crm-surface: rgba(255,255,255,.82);
@@ -57,7 +58,33 @@
   top: 0; bottom: 0; left: 0;
   z-index: 50;
   overflow-y: auto;
+  transition: width 200ms ease;
 }
+
+/* ── Sidebar repliée — icônes seules ──────────────────────────── */
+.crm-sidebar.--collapsed { width: var(--crm-sidebar-w-collapsed); overflow-x: hidden; }
+.crm-sidebar.--collapsed .crm-nav-item { justify-content: center; margin: 1px 6px; padding: 9px; }
+.crm-sidebar.--collapsed .crm-sidebar-brand { display: flex; justify-content: center; }
+body.crm-sidebar-collapsed .crm-main { margin-left: var(--crm-sidebar-w-collapsed); }
+
+.crm-collapse-btn {
+  width: 100%;
+  padding: 9px;
+  margin-top: 8px;
+  border-radius: 9px;
+  border: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+  color: #6b4455;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 150ms;
+}
+.crm-collapse-btn:hover { background: rgba(0,0,0,.05); color: #1a0a06; }
+@media (max-width: 768px) { .crm-collapse-btn { display: none; } }
 
 .crm-sidebar-brand {
   padding: 18px 18px 16px;
@@ -164,6 +191,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100svh;
+  transition: margin-left 200ms ease;
 }
 
 .crm-topbar {

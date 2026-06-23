@@ -366,19 +366,6 @@
     padding-left: 0;
   }
 
-  /* Ligne verticale entre étapes 1→2→3 seulement (pas au-delà de la dernière bulle) */
-  .how-grid::before {
-    content: '';
-    position: absolute;
-    left: 35px;
-    top: 36px;
-    height: calc(100% - 108px);  /* commence au centre de la 1ère bulle, finit au centre de la 3ème */
-    width: 2px;
-    background: linear-gradient(to bottom, #FD6E00, #D90A5C, #F59E0B);
-    border-radius: 2px;
-    z-index: 0;
-  }
-
   /* Chaque étape en layout horizontal : cercle à gauche, texte à droite */
   .how-step {
     display: grid;
@@ -388,6 +375,21 @@
     row-gap: 0.5rem;
     padding: 1.75rem 0;
     position: relative;
+  }
+
+  /* Segment reliant le centre de cette bulle au centre de la suivante.
+     Absent sur la dernière étape → la ligne ne déborde plus après l'étape 3
+     (chaque segment s'adapte à la hauteur réelle de son étape, plus de calc() figé). */
+  .how-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 35px;
+    top: 63px;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to bottom, #FD6E00, #D90A5C, #F59E0B);
+    border-radius: 2px;
+    z-index: 0;
   }
 
   .how-circle-wrap {

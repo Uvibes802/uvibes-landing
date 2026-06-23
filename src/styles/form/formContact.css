@@ -122,41 +122,32 @@
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: none; }
 }
-.fc-newsletter-cat .fc-select {
-  background-color: rgba(255, 255, 255, 0.85);
-}
 
-/* Cases à cocher multi-catégories (puces) */
-.fc-cat-grid {
+/* Tags cliquables — directement visibles, pas de menu à dérouler en plus.
+   Pas de case à cocher : l'état sélectionné se lit dans le remplissage du tag. */
+.fc-cat-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
-.fc-cat-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
+.fc-cat-tag {
+  padding: 5px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(217, 10, 92, 0.18);
-  font-size: 12px;
+  border: 1px solid rgba(217, 10, 92, 0.16);
+  font-family: inherit;
+  font-size: 11.5px;
   color: #6b4455;
   cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.15s ease;
 }
-.fc-cat-chip:hover { border-color: var(--rose); }
-.fc-cat-chip input[type="checkbox"] {
-  width: 14px;
-  height: 14px;
-  accent-color: var(--rose);
-  cursor: pointer;
-}
-.fc-cat-chip:has(input:checked) {
-  background: rgba(217, 10, 92, 0.1);
-  border-color: var(--rose);
-  color: var(--rose);
+.fc-cat-tag:hover { border-color: var(--rose); transform: translateY(-1px); }
+.fc-cat-tag.--active {
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  border-color: transparent;
+  color: #fff;
   font-weight: 600;
+  box-shadow: 0 4px 12px rgba(217, 10, 92, 0.25);
 }
 .fc-newsletter input[type="checkbox"] {
   width: 18px;

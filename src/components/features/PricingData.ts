@@ -11,7 +11,7 @@ export const features = [
   { name: "Networking (cartes de visite digitales)", type: "boolean" },
   { name: "Brainstorming (enquêtes post vibes)", type: "boolean" },
   { name: "Employer branding (invités extérieurs)", type: "boolean" },
-  { name: "Soft skills (parcours d'entrainement) ou médiathèque", type: "boolean" },
+  { name: "Soft skills (parcours d'entraînement) ou médiathèque", type: "boolean" },
 ];
 
 // Ordre d'affichage : Connection, Boost (la plus populaire, au centre), Premium.

@@ -109,6 +109,17 @@
   margin: 0 auto;
 }
 
+/* ── Note commune aux 3 offres (engagement + dépassement de volume) ── */
+.pt-overage-note {
+  max-width: 760px;
+  margin: 1.75rem auto 0;
+  padding: 0 1rem;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #6b4455;
+  text-align: center;
+}
+
 /* ── Card base ────────────────────────────────────────────────── */
 .pt-card {
   position: relative;

@@ -99,10 +99,14 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
+        {/* Lien d'évitement clavier — masqué jusqu'au focus (accessibilité) */}
+        <a href="#main-content" className="skip-link">Aller au contenu</a>
         {/* Menu et CookieConsent se masquent eux-mêmes sur /admin & /devis (garde-fou client usePathname) */}
         <HtmlLangSync />
         <Menu />
         <RevealObserver />
+        {/* Cible du lien d'évitement (span sans boîte → aucun impact de mise en page) */}
+        <span id="main-content" tabIndex={-1} />
         <MaintenanceWrapper isMaintenanceMode={isMaintenanceMode}>
             {children}
             <CookieConsent />

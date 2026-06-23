@@ -16,25 +16,39 @@ const FALLBACK: PartnerLogo[] = [
   { id: 4, src: eclatens.src,       alt: "Éclatens" },
 ];
 
-export function PartnerCarousel({ logos = FALLBACK, locale = "fr" }: { logos?: PartnerLogo[]; locale?: "fr" | "en" }) {
+const TRUSTEES_TXT: Record<string, { before: string; underlined: string; after: string }> = {
+  en: { before: "They ", underlined: "move forward", after: " with us." },
+  es: { before: "Ellos ", underlined: "avanzan", after: " con nosotros." },
+  de: { before: "Sie ", underlined: "gehen voran", after: " mit uns." },
+  it: { before: "Loro ", underlined: "avanzano", after: " con noi." },
+  pt: { before: "Eles ", underlined: "avançam", after: " connosco." },
+  ru: { before: "Они ", underlined: "идут вперёд", after: " с нами." },
+  zh: { before: "", underlined: "他们与我们一起", after: "前行。" },
+  ja: { before: "", underlined: "私たちと共に", after: "歩んでいます。" },
+  hi: { before: "वे ", underlined: "हमारे साथ", after: " आगे बढ़ रहे हैं।" },
+  ar: { before: "إنهم ", underlined: "يتقدمون", after: " معنا." },
+};
+
+export function PartnerCarousel({ logos = FALLBACK, locale = "fr" }: { logos?: PartnerLogo[]; locale?: string }) {
   const display = logos.length > 0 ? logos : FALLBACK;
   const track = [...display, ...display, ...display];
+  const trustees = locale !== "fr" ? TRUSTEES_TXT[locale] : undefined;
 
   return (
     <section className="trustees-section">
 
       <div className="trustees-inner">
         <h2 className="trustees-title v-prompt">
-          {locale === "en" ? (
+          {trustees ? (
             <>
-              <span className="trustees-t-orange">They </span>
+              <span className="trustees-t-orange">{trustees.before}</span>
               <span className="trustees-underline-wrap">
-                <span className="v-serif trustees-t-gradient">move forward</span>
+                <span className="v-serif trustees-t-gradient">{trustees.underlined}</span>
                 <span className="trustees-vline-under" aria-hidden="true">
                   <VibrationLine width={400} height={18} amplitude={5} freq={5} stroke="#D90A5C" strokeWidth={3} speed={5} style={{ width: "100%" }} />
                 </span>
               </span>
-              {" "}<span className="trustees-t-orange">with us.</span>
+              <span className="trustees-t-orange">{trustees.after}</span>
             </>
           ) : (
             <>

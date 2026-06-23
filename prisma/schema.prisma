@@ -78,6 +78,8 @@ model Quote {
   // Code promo appliqué à la signature
   promoCode    String?
   promoPercent Float?
+
+  tasks Task[]
 }
 
 // ── BLOG (articles, ex-WordPress) ──────────────────────────────
@@ -132,12 +134,14 @@ model Partner {
 }
 
 model Testimony {
-  id     String  @id @default(cuid())
-  texte  String
-  auteur String
-  role   String
-  actif  Boolean @default(true)
-  ordre  Int     @default(0)
+  id       String  @id @default(cuid())
+  texte    String
+  auteur   String
+  role     String
+  photoUrl String?
+  logoUrl  String?
+  actif    Boolean @default(true)
+  ordre    Int     @default(0)
 }
 
 model TeamMember {
@@ -228,6 +232,8 @@ model PromoCode {
   expiresAt   DateTime?
   usageMax    Int?
   usageCount  Int       @default(0)
+  // null = valable sur toutes les offres ; sinon restreint à un slug de Plan précis
+  planSlug    String?
 }
 
 // ── Documents commerciaux (factures & contrats rédigés dans l'admin) ──
@@ -284,6 +290,8 @@ model Task {
   priorite    String     @default("NORMALE") // BASSE | NORMALE | HAUTE
   collectifId String?
   collectif   Collectif? @relation(fields: [collectifId], references: [id], onDelete: Cascade)
+  quoteId     String?
+  quote       Quote?     @relation(fields: [quoteId], references: [id], onDelete: Cascade)
 
   @@index([done, dueDate])
 }

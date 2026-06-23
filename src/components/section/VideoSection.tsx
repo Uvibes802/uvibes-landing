@@ -88,6 +88,18 @@ export default function VideoSection() {
 
           {/* Auteur */}
           <div className="vs-card-author">
+            <span className="vs-card-avatar-wrap">
+              {t?.photoUrl ? (
+                <Image src={t.photoUrl} alt={t.auteur_temoignage || ""} width={48} height={48} className="vs-card-avatar-img" />
+              ) : (
+                <span className="vs-card-avatar" aria-hidden="true">
+                  {(t?.auteur_temoignage || "U").trim().charAt(0).toUpperCase()}
+                </span>
+              )}
+              {t?.logoUrl && (
+                <Image src={t.logoUrl} alt="" width={20} height={20} className="vs-card-org-logo" />
+              )}
+            </span>
             <div className="vs-card-author-info">
               <span className="vs-card-name v-prompt">{t?.auteur_temoignage || "Membre Uvibes"}</span>
               {t?.role_et_entreprise_temoignage && (

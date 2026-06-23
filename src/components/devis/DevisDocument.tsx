@@ -69,7 +69,7 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
       const res = await fetch("/api/promo/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: promoInput }),
+        body: JSON.stringify({ code: promoInput, planSlug: quote.planSlug }),
       });
       const data = await res.json();
       if (!data.valid) {
@@ -209,11 +209,6 @@ export default function DevisDocument({ quote }: { quote: QuoteData }) {
               <span className="dv-price-row-val">{prixTTC.toLocaleString("fr-FR")} €</span>
             </div>
           </div>
-
-          {/* Mentions */}
-          <p style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 16, lineHeight: 1.6 }}>
-            Ce devis est valable 30 jours. La signature vaut acceptation des documents contractuels acceptés ci-dessous. TVA 20% applicable. Uvibes SAS — contact@uvibes.fr
-          </p>
 
           <hr style={{ border: "none", borderTop: "var(--sol-divider)", margin: "24px 0" }} />
 

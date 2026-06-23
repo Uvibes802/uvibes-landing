@@ -6,12 +6,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { Items } from "../../data/menu/MenuData";
-import { getLocaleSwitchHref } from "../../lib/i18nRoutes";
+import { SUPPORTED_LOCALES, LOCALE_LABELS, detectLocale, getLocaleSwitchHref } from "../../lib/i18nRoutes";
 import "../../styles/menu/Menu.css";
 
 const baseNavItems = Items.filter((item) => item.id !== 6 && item.id !== 7);
 
-// Libellés + liens EN des pages traduites — les ids 1 à 5 correspondent à baseNavItems.
+// Libellés + liens des pages traduites par langue — les ids 1 à 5 correspondent à baseNavItems.
 const EN_NAV: Record<number, { label: string; link: string }> = {
   1: { label: "Home", link: "/en" },
   2: { label: "Method", link: "/en/method" },
@@ -19,21 +19,106 @@ const EN_NAV: Record<number, { label: string; link: string }> = {
   4: { label: "About", link: "/en/about" },
   5: { label: "Blog", link: "/blog" },
 };
+const ES_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "Inicio", link: "/es" },
+  2: { label: "Método", link: "/es/method" },
+  3: { label: "Precios", link: "/es/pricing" },
+  4: { label: "Sobre nosotros", link: "/es/about" },
+  5: { label: "Blog", link: "/blog" },
+};
+const DE_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "Startseite", link: "/de" },
+  2: { label: "Methode", link: "/de/method" },
+  3: { label: "Preise", link: "/de/pricing" },
+  4: { label: "Über uns", link: "/de/about" },
+  5: { label: "Blog", link: "/blog" },
+};
+const IT_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "Home", link: "/it" },
+  2: { label: "Metodo", link: "/it/method" },
+  3: { label: "Prezzi", link: "/it/pricing" },
+  4: { label: "Chi siamo", link: "/it/about" },
+  5: { label: "Blog", link: "/blog" },
+};
+const PT_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "Início", link: "/pt" },
+  2: { label: "Método", link: "/pt/method" },
+  3: { label: "Preços", link: "/pt/pricing" },
+  4: { label: "Sobre nós", link: "/pt/about" },
+  5: { label: "Blog", link: "/blog" },
+};
+const RU_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "Главная", link: "/ru" },
+  2: { label: "Метод", link: "/ru/method" },
+  3: { label: "Цены", link: "/ru/pricing" },
+  4: { label: "О нас", link: "/ru/about" },
+  5: { label: "Блог", link: "/blog" },
+};
+const ZH_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "首页", link: "/zh" },
+  2: { label: "方法", link: "/zh/method" },
+  3: { label: "价格", link: "/zh/pricing" },
+  4: { label: "关于我们", link: "/zh/about" },
+  5: { label: "博客", link: "/blog" },
+};
+const JA_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "ホーム", link: "/ja" },
+  2: { label: "メソッド", link: "/ja/method" },
+  3: { label: "料金", link: "/ja/pricing" },
+  4: { label: "私たちについて", link: "/ja/about" },
+  5: { label: "ブログ", link: "/blog" },
+};
+const HI_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "होम", link: "/hi" },
+  2: { label: "तरीका", link: "/hi/method" },
+  3: { label: "मूल्य", link: "/hi/pricing" },
+  4: { label: "हमारे बारे में", link: "/hi/about" },
+  5: { label: "ब्लॉग", link: "/blog" },
+};
+const AR_NAV: Record<number, { label: string; link: string }> = {
+  1: { label: "الرئيسية", link: "/ar" },
+  2: { label: "الطريقة", link: "/ar/method" },
+  3: { label: "الأسعار", link: "/ar/pricing" },
+  4: { label: "من نحن", link: "/ar/about" },
+  5: { label: "المدونة", link: "/blog" },
+};
+const NAV_BY_LOCALE: Record<string, Record<number, { label: string; link: string }>> = {
+  en: EN_NAV, es: ES_NAV, de: DE_NAV, it: IT_NAV, pt: PT_NAV, ru: RU_NAV, zh: ZH_NAV, ja: JA_NAV, hi: HI_NAV, ar: AR_NAV,
+};
+
+const MENU_TXT: Record<string, { login: string; loginMobile: string; talk: string; loginAria: string }> = {
+  en: { login: "Log in", loginMobile: "Log in to the platform", talk: "Let's talk", loginAria: "Log in to the Uvibes platform" },
+  es: { login: "Conectarse", loginMobile: "Conectarse a la plataforma", talk: "Hablemos", loginAria: "Iniciar sesión en la plataforma Uvibes" },
+  de: { login: "Anmelden", loginMobile: "Zur Plattform anmelden", talk: "Sprechen wir", loginAria: "Bei der Uvibes-Plattform anmelden" },
+  it: { login: "Accedi", loginMobile: "Accedi alla piattaforma", talk: "Parliamone", loginAria: "Accedi alla piattaforma Uvibes" },
+  pt: { login: "Entrar", loginMobile: "Entrar na plataforma", talk: "Vamos falar", loginAria: "Entrar na plataforma Uvibes" },
+  ru: { login: "Войти", loginMobile: "Войти в платформу", talk: "Поговорим", loginAria: "Войти в платформу Uvibes" },
+  zh: { login: "登录", loginMobile: "登录平台", talk: "聊一聊", loginAria: "登录 Uvibes 平台" },
+  ja: { login: "ログイン", loginMobile: "プラットフォームにログイン", talk: "話しましょう", loginAria: "Uvibesプラットフォームにログイン" },
+  hi: { login: "लॉग इन करें", loginMobile: "प्लेटफ़ॉर्म में लॉग इन करें", talk: "बात करें", loginAria: "Uvibes प्लेटफ़ॉर्म में लॉग इन करें" },
+  ar: { login: "تسجيل الدخول", loginMobile: "تسجيل الدخول إلى المنصة", talk: "لنتحدث", loginAria: "تسجيل الدخول إلى منصة Uvibes" },
+};
+const LOCALE_NAME: Record<string, string> = {
+  fr: "Français", en: "English", es: "Español", de: "Deutsch", it: "Italiano", pt: "Português",
+  ru: "Русский", zh: "中文", ja: "日本語", hi: "हिन्दी", ar: "العربية",
+};
 
 export default function Menu() {
   const pathname = usePathname();
-  // Rendu une seule fois dans le layout racine (FR + EN) → la langue se déduit du chemin
-  const locale: "fr" | "en" = pathname.startsWith("/en") ? "en" : "fr";
-  const navItems = locale === "en"
-    ? baseNavItems.map((item) => ({ ...item, ...EN_NAV[item.id] }))
+  // Rendu une seule fois dans le layout racine (FR + EN + ES…) → la langue se déduit du chemin
+  const locale = detectLocale(pathname);
+  const navItems = locale !== "fr"
+    ? baseNavItems.map((item) => ({ ...item, ...NAV_BY_LOCALE[locale][item.id] }))
     : baseNavItems;
-  const switchHref = getLocaleSwitchHref(pathname, locale);
+  const mt = locale !== "fr" ? MENU_TXT[locale] : undefined;
+  const [langOpen, setLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [rdvSysteme, setRdvSysteme] = useState<"custom" | "calendly">("custom");
   const [calendlyUrl, setCalendlyUrl] = useState("https://calendly.com/uvibescommunication/30min");
   const navRef = useRef<HTMLElement>(null);
+  const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -70,6 +155,16 @@ export default function Menu() {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [menuOpen]);
+
+  // Ferme le sélecteur de langue si clic en dehors
+  useEffect(() => {
+    if (!langOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [langOpen]);
 
   // Jamais de navbar publique sur l'admin / l'espace devis client
   // (garde-fou côté client : le root layout ne se re-rend pas en navigation SPA)
@@ -119,28 +214,50 @@ export default function Menu() {
         </ul>
 
         <div className="v-nav-right">
-          <Link href={switchHref} className="v-nav-lang" aria-label={locale === "en" ? "Switch to French" : "Passer en anglais"}>
-            {locale === "en" ? "FR" : "EN"}
-          </Link>
+          <div className="v-nav-lang-wrap" ref={langRef}>
+            <button
+              type="button"
+              className="v-nav-lang"
+              onClick={() => setLangOpen((o) => !o)}
+              aria-label="Changer de langue"
+              aria-expanded={langOpen}
+            >
+              {LOCALE_LABELS[locale]}
+            </button>
+            {langOpen && (
+              <div className="v-nav-lang-menu" role="menu">
+                {SUPPORTED_LOCALES.filter((l) => l !== locale).map((l) => (
+                  <Link
+                    key={l}
+                    href={getLocaleSwitchHref(pathname, locale, l)}
+                    className="v-nav-lang-option"
+                    onClick={() => setLangOpen(false)}
+                  >
+                    {LOCALE_NAME[l]}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
           <a
             href="https://app.uvibes.fr/welcome"
             className="v-nav-connexion"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={locale === "en" ? "Log in to the Uvibes platform" : "Se connecter à la plateforme Uvibes"}
+            aria-label={mt ? mt.loginAria : "Se connecter à la plateforme Uvibes"}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
             </svg>
-            {locale === "en" ? "Log in" : "Connexion"}
+            {mt ? mt.login : "Connexion"}
           </a>
           {rdvSysteme === "calendly" && isClient ? (
             <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-ink v-nav-cta">
-              {locale === "en" ? "Let's talk" : "On en parle ?"}
+              {mt ? mt.talk : "On en parle ?"}
             </a>
           ) : (
-            <Link href="/rendez-vous" className="btn-ink v-nav-cta">{locale === "en" ? "Let's talk" : "On en parle ?"}</Link>
+            <Link href="/rendez-vous" className="btn-ink v-nav-cta">{mt ? mt.talk : "On en parle ?"}</Link>
           )}
         </div>
       </nav>
@@ -192,18 +309,27 @@ export default function Menu() {
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
             </svg>
-            {locale === "en" ? "Log in to the platform" : "Connexion à la plateforme"}
+            {mt ? mt.loginMobile : "Connexion à la plateforme"}
           </a>
           {rdvSysteme === "calendly" && isClient ? (
             <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>
-              {locale === "en" ? "Let's talk" : "On en parle ?"}
+              {mt ? mt.talk : "On en parle ?"}
             </a>
           ) : (
-            <Link href="/rendez-vous" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>{locale === "en" ? "Let's talk" : "On en parle ?"}</Link>
+            <Link href="/rendez-vous" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>{mt ? mt.talk : "On en parle ?"}</Link>
           )}
-          <Link href={switchHref} className="v-sheet-lang" onClick={() => setMenuOpen(false)}>
-            {locale === "en" ? "Voir en français" : "View in English"}
-          </Link>
+          <div className="v-sheet-lang-list">
+            {SUPPORTED_LOCALES.filter((l) => l !== locale).map((l) => (
+              <Link
+                key={l}
+                href={getLocaleSwitchHref(pathname, locale, l)}
+                className="v-sheet-lang"
+                onClick={() => setMenuOpen(false)}
+              >
+                {LOCALE_NAME[l]}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* FAB */}

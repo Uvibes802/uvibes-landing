@@ -16,6 +16,10 @@ export default function NewsletterManager({
   const [addPrenom, setAddPrenom] = useState("");
   const [adding, setAdding] = useState(false);
   const [addMsg, setAddMsg] = useState("");
+  // Bornes optionnelles pour l'export par période (ex : préparer un import Brevo
+  // d'une plage de dates précise). Vides = tous les abonnés actifs.
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   const filtered = subscribers.filter((s) => {
     const matchSearch =
@@ -61,16 +65,36 @@ export default function NewsletterManager({
   }
 
   function exportCsv() {
-    const actifs = subscribers.filter((s) => s.actif);
+    // Échappe une cellule CSV (prénom avec virgule/guillemet ne doit pas casser
+    // l'import Brevo) — même logique que le helper serveur lib/csv.ts.
+    const cell = (v: string) => /[",\n;]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+
+    // Bornes optionnelles : début de journée pour "du", fin de journée pour "au".
+    const fromTs = fromDate ? new Date(fromDate + "T00:00:00").getTime() : -Infinity;
+    const toTs = toDate ? new Date(toDate + "T23:59:59.999").getTime() : Infinity;
+
+    const actifs = subscribers.filter((s) => {
+      if (!s.actif) return false;
+      const ts = new Date(s.createdAt).getTime();
+      return ts >= fromTs && ts <= toTs;
+    });
+
     const csv = ["Prénom,Email,Source,Date inscription"]
       .concat(actifs.map((s) =>
-        `${s.prenom ?? ""},${s.email},${s.source},${new Date(s.createdAt).toLocaleDateString("fr-FR")}`
+        [
+          cell(s.prenom ?? ""),
+          cell(s.email),
+          cell(s.source),
+          cell(new Date(s.createdAt).toLocaleDateString("fr-FR")),
+        ].join(",")
       ))
       .join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    // BOM UTF-8 pour qu'Excel ouvre correctement les accents
+    const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `newsletter-${new Date().toISOString().slice(0, 10)}.csv`;
+    const suffix = fromDate || toDate ? `${fromDate || "debut"}_${toDate || "fin"}` : new Date().toISOString().slice(0, 10);
+    a.download = `newsletter-${suffix}.csv`;
     a.click();
   }
 
@@ -138,9 +162,31 @@ export default function NewsletterManager({
               />
             </div>
 
-            <button className="crm-btn --outline --sm" onClick={exportCsv}>
-              <Download size={13} /> Export CSV
-            </button>
+            {/* Export par période — bornes optionnelles (vides = tous les actifs) */}
+            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <input
+                type="date"
+                className="crm-field-input"
+                value={fromDate}
+                max={toDate || undefined}
+                onChange={(e) => setFromDate(e.target.value)}
+                title="Inscrits à partir du (optionnel)"
+                style={{ width: 138, padding: "5px 9px", fontSize: 12 }}
+              />
+              <span style={{ color: "var(--crm-muted)", fontSize: 12 }}>→</span>
+              <input
+                type="date"
+                className="crm-field-input"
+                value={toDate}
+                min={fromDate || undefined}
+                onChange={(e) => setToDate(e.target.value)}
+                title="Inscrits jusqu'au (optionnel)"
+                style={{ width: 138, padding: "5px 9px", fontSize: 12 }}
+              />
+              <button className="crm-btn --outline --sm" onClick={exportCsv}>
+                <Download size={13} /> Export CSV
+              </button>
+            </div>
           </div>
         </div>
 

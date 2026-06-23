@@ -127,7 +127,8 @@
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1;
-  color: var(--orange);
+  /* orange vif accessible (passe AA texte large ≥ 3:1) — cohérent avec les autres titres */
+  color: #EF6500;
   font-family: var(--font-prompt), sans-serif;
 }
 
@@ -634,36 +635,22 @@
   /* Masque les pills dupliquées (la 2e copie des 11 collectifs) */
   .collectifs-pills-track > button:nth-child(n + 12) { display: none; }
 
-  /* Masque les flyers dans le panneau collectif — pas assez d'espace */
-  .collectif-panel-flyers { display: none; }
-}
-
-@media (max-width: 700px) {
+  /* Le panneau passe sur une seule colonne : le texte n'est plus écrasé dans
+     1.4fr de la largeur (ancien bug — .collectif-panel-hero est en grid, pas
+     en flex, donc « flex-direction: column » n'avait jamais d'effet ici). */
   .collectif-panel-hero {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-bottom: 0;
-    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-bottom: 1.5rem;
+    align-items: start;
   }
 
-  .collectif-panel-meta { padding-bottom: 1rem; }
+  .collectif-panel-meta { padding-bottom: 0; }
 
-  .collectif-panel-flyers {
-    width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
+  /* Sous-titre en majuscules : plus petit pour éviter les lignes trop étroites */
+  .collectif-panel-subtitle { font-size: 12.5px; letter-spacing: 0.01em; }
 
-  /* Un seul flyer visible en mobile */
-  .collectif-panel-flyer-wrap:not(:first-child) {
-    display: none;
-  }
-
-  .collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child) {
-    transform: none;
-  }
-
-  .collectif-panel-flyer-img { width: 100px; }
+  /* Pas d'affiches en responsive : trop à l'étroit, on garde juste le texte */
+  .collectif-panel-flyers { display: none; }
 
   .collectif-panel-body {
     grid-template-columns: 1fr;

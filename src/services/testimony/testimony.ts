@@ -44,6 +44,8 @@ export default function FetchTestimony() {
           testimony: sanitizeText(t.testimony),
           auteur_temoignage: sanitizeText(t.auteur_temoignage ?? ""),
           role_et_entreprise_temoignage: sanitizeText(t.role_et_entreprise_temoignage ?? ""),
+          photoUrl: t.photoUrl ?? null,
+          logoUrl: t.logoUrl ?? null,
         }));
         setTestimonies(processed);
       } catch {

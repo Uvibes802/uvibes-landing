@@ -57,7 +57,8 @@ export async function POST(
         promo &&
         promo.actif &&
         (!promo.expiresAt || promo.expiresAt >= new Date()) &&
-        (promo.usageMax === null || promo.usageCount < promo.usageMax);
+        (promo.usageMax === null || promo.usageCount < promo.usageMax) &&
+        (!promo.planSlug || promo.planSlug === existingQuote.planSlug);
 
       if (valid) {
         promoPercent = promo.pourcentage;

@@ -18,6 +18,8 @@ export default async function TemoignagesPage() {
             { key: "auteur", label: "Auteur", required: true },
             { key: "role", label: "Rôle & Entreprise" },
             { key: "texte", label: "Citation", multiline: true, required: true },
+            { key: "photoUrl", label: "Photo du commentateur", type: "image" },
+            { key: "logoUrl", label: "Logo de l'organisation", type: "image" },
           ]}
           displayField="auteur"
           toggleField="actif"

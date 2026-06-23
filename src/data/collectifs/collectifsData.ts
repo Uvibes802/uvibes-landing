@@ -106,7 +106,7 @@ export const collectifs: Collectif[] = [
     flyers: [
       { src: "/images/affiche/adherents/mutuelle-1.webp", alt: "Affiche Uvibes — adhérents mutuelle" },
       { src: "/images/affiche/adherents/banque-1.webp", alt: "Affiche Uvibes — sociétaires" },
-      { src: "/images/affiche/adherents/mutuelle-2.webp", alt: "Affiche Uvibes — collectif mutualiste" },
+      { src: "/images/affiche/adherents/banque-2.webp", alt: "Affiche Uvibes — ouvrir un compte, ouvrir une relation" },
     ],
     gains: [
       "Un sentiment d'appartenance à votre organisation",

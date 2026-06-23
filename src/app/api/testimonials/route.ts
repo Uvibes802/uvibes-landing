@@ -16,6 +16,8 @@ export async function GET() {
       testimony: t.texte,
       auteur_temoignage: t.auteur,
       role_et_entreprise_temoignage: t.role,
+      photoUrl: t.photoUrl,
+      logoUrl: t.logoUrl,
     }));
 
     return NextResponse.json(data);

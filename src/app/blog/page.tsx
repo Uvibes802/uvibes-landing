@@ -58,7 +58,6 @@ export default async function BlogPage() {
         </div>
 
         <div className="blog-hero-inner">
-          <p className="blog-hero-eyebrow">Le blog Uvibes · Idées & conversations</p>
           <h1 className="blog-hero-title v-prompt">
             Explorez<br />
             <em className="blog-hero-em">des contenus</em>

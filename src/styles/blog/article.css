@@ -109,6 +109,15 @@
   text-shadow: 0 1px 8px rgba(0,0,0,.2);
 }
 
+/* Auteur/source cité sous le titre — sans couleur définie, il héritait du noir
+   par défaut et devenait illisible sur l'overlay sombre du hero */
+.article-hero-author {
+  font-size: 12.5px;
+  color: rgba(255,255,255,.75);
+  letter-spacing: 0.02em;
+  margin: -1.25rem 0 0;
+}
+
 /* ── Card corps de l'article ─────────────────────────────────── */
 .article-body-card {
   max-width: 780px;
@@ -137,7 +146,8 @@
   font-size: clamp(22px, 2.5vw, 30px);
   font-weight: 800;
   letter-spacing: -0.025em;
-  color: #FD6E00;
+  /* orange vif accessible (titre large, passe AA ≥ 3:1) */
+  color: #EF6500;
   margin: 2.5rem 0 1rem;
   line-height: 1.2;
 }
@@ -145,9 +155,18 @@
 .article-content h3 {
   font-size: clamp(18px, 2vw, 22px);
   font-weight: 700;
-  color: #1a0a06;
+  /* sous-titre : rose de marque (coloré + accessible) — plus de titres noirs incohérents
+     entre articles ; hiérarchie claire sous le h2 orange. */
+  color: #D90A5C;
   margin: 2rem 0 0.75rem;
   letter-spacing: -0.01em;
+}
+/* h4 éventuels des articles WP : même rose, pour rester cohérent quel que soit le niveau utilisé */
+.article-content h4 {
+  font-size: clamp(16px, 1.7vw, 19px);
+  font-weight: 700;
+  color: #D90A5C;
+  margin: 1.75rem 0 0.6rem;
 }
 
 .article-content ul, .article-content ol {
@@ -183,7 +202,8 @@
 }
 
 .article-content a {
-  color: #FD6E00;
+  /* petit texte : rose de marque, vif ET accessible (≈5:1 sur blanc, passe AA 4.5:1) */
+  color: #D90A5C;
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 200ms;
@@ -200,7 +220,7 @@
   padding: 12px 24px;
   border-radius: 12px;
   background: #fff;
-  color: #FD6E00;
+  color: #D90A5C;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;

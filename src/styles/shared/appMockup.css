@@ -240,7 +240,7 @@
   .apm-chip-vibes { font-size: 9px; }
   .apm-chip--left { left: -2%; top: 28%; transform: translateY(-50%); max-width: 40vw; }
   .apm-chip--top-right { right: -2%; top: 5%; max-width: 40vw; transform: rotate(3deg); }
-  .apm-chip--bottom-right { right: auto; left: 0; bottom: 6%; max-width: 46vw; transform: rotate(-2deg); }
+  .apm-chip--bottom-right { right: auto; left: 50%; bottom: 6%; max-width: 46vw; transform: translateX(-50%) rotate(-2deg); }
 }
 
 @media (max-width: 480px) {

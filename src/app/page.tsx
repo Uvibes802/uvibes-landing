@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, PAGE_SEO, hreflangFor } from "@/lib/seo";
 import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/Footer";
 import FeaturedArticles from "@/components/section/FeaturedArticles";
@@ -18,10 +20,46 @@ import { getFeaturedArticles } from "@/services/blog/getArticles";
 // ISR : régénérée au plus toutes les 60 s ; les sauvegardes admin (articles à la une, etc.) forcent un revalidatePath
 export const revalidate = 60;
 
+// Données structurées de la page d'accueil — l'entité Organization + le WebSite.
+// Aident Google ET les moteurs IA (GEO) à identifier clairement Uvibes comme entité.
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Uvibes",
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/Logo UVIBES.png`,
+      description:
+        "Uvibes est une innovation socio-digitale qui active les conversations positives au sein des collectifs pour renforcer le lien social, le bien-être et l'engagement humain.",
+      sameAs: [
+        "https://www.linkedin.com/company/uvibes",
+        "https://www.instagram.com/uvibes_app",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Uvibes",
+      url: SITE_URL,
+      inLanguage: "fr-FR",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
-  title: { absolute: "Bienvenue | Uvibes" },
-  description:
-    "Uvibes active les conversations positives au sein des collectifs pour renforcer le lien social, le bien-être et l'engagement humain.",
+  // Titre riche en mots-clés (source unique : PAGE_SEO) plutôt que « Bienvenue »,
+  // qui n'apportait aucun signal SEO sur la page la plus importante du site.
+  title: { absolute: PAGE_SEO.home.fr.title },
+  description: PAGE_SEO.home.fr.description,
+  // hreflang complet (11 langues + x-default) : les pages d'accueil traduites se
+  // référencent déjà mutuellement via buildMetadata ; on rend la réciprocité côté FR.
+  alternates: {
+    canonical: SITE_URL,
+    languages: hreflangFor("home"),
+  },
 };
 
 export default async function Home() {
@@ -30,6 +68,7 @@ export default async function Home() {
 
   return (
     <main>
+      <JsonLd data={homeJsonLd} />
       <HomeHero />
 
       <ConversationIntro />

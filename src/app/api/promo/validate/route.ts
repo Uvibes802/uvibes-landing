@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ valid: false, error: "Trop de tentatives — réessayez dans une minute." }, { status: 429 });
     }
 
-    const { code } = await req.json();
+    const { code, planSlug } = await req.json();
     const cleanCode = String(code ?? "").trim().toUpperCase();
     if (!cleanCode) {
       return NextResponse.json({ valid: false, error: "Code vide" }, { status: 400 });
@@ -27,6 +27,9 @@ export async function POST(req: NextRequest) {
     }
     if (promo.usageMax !== null && promo.usageCount >= promo.usageMax) {
       return NextResponse.json({ valid: false, error: "Code épuisé" });
+    }
+    if (promo.planSlug && promo.planSlug !== planSlug) {
+      return NextResponse.json({ valid: false, error: "Ce code ne s'applique pas à cette offre" });
     }
 
     return NextResponse.json({ valid: true, code: promo.code, pourcentage: promo.pourcentage });

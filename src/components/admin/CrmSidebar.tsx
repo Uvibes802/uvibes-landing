@@ -3,11 +3,14 @@
 import {
   BarChart2, FileText, Home, LogOut,
   Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper, KeyRound,
-  KanbanSquare, ListTodo, FileSignature,
+  KanbanSquare, ListTodo, FileSignature, ChevronsLeft, ChevronsRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
+const COLLAPSE_KEY = "crm-sidebar-collapsed";
 
 const NAV = [
   {
@@ -47,18 +50,34 @@ const NAV = [
 
 export default function CrmSidebar({ nom }: { nom?: string }) {
   const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Préférence mémorisée — appliquée aussi à .crm-main via une classe sur <body>
+  // (la sidebar et le contenu sont des frères dans le layout, pas de prop à faire descendre)
+  useEffect(() => {
+    const saved = localStorage.getItem(COLLAPSE_KEY) === "1";
+    setCollapsed(saved);
+    document.body.classList.toggle("crm-sidebar-collapsed", saved);
+  }, []);
+
+  function toggle() {
+    const next = !collapsed;
+    setCollapsed(next);
+    localStorage.setItem(COLLAPSE_KEY, next ? "1" : "0");
+    document.body.classList.toggle("crm-sidebar-collapsed", next);
+  }
 
   return (
-    <aside className="crm-sidebar">
+    <aside className={`crm-sidebar${collapsed ? " --collapsed" : ""}`}>
       <div className="crm-sidebar-brand">
         <Image src="/images/favicon.png" alt="Uvibes" width={28} height={24} className="crm-sidebar-logo" />
-        <span className="crm-sidebar-sub">CRM & Gestion</span>
+        {!collapsed && <span className="crm-sidebar-sub">CRM & Gestion</span>}
       </div>
 
       <nav className="crm-nav">
         {NAV.map((group) => (
           <div key={group.section}>
-            <div className="crm-nav-section">{group.section}</div>
+            {!collapsed && <div className="crm-nav-section">{group.section}</div>}
             {group.items.map((item) => {
               const Icon = item.icon;
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
@@ -67,9 +86,10 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
                   key={item.href}
                   href={item.href}
                   className={`crm-nav-item${active ? " --active" : ""}`}
+                  title={collapsed ? item.label : undefined}
                 >
                   <Icon size={16} className="crm-nav-icon" />
-                  {item.label}
+                  {!collapsed && item.label}
                 </Link>
               );
             })}
@@ -78,22 +98,25 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
       </nav>
 
       <div className="crm-sidebar-footer">
-        {nom && (
+        {nom && !collapsed && (
           <p style={{ fontSize: 12, color: "var(--crm-muted)", marginBottom: 8, paddingLeft: 4 }}>
             Connecté·e : {nom}
           </p>
         )}
         {/* Navigation complète volontaire (pas de <Link> client/fetch) → fonctionne même si une extension casse fetch */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" className="crm-backsite-btn">
-          <Home size={14} /> Retour au site
+        <a href="/" className="crm-backsite-btn" title={collapsed ? "Retour au site" : undefined}>
+          <Home size={14} /> {!collapsed && "Retour au site"}
         </a>
         {/* Déconnexion par formulaire natif → immunisé contre les extensions qui cassent fetch */}
         <form action="/api/admin/auth/logout" method="post">
-          <button type="submit" className="crm-logout-btn">
-            <LogOut size={14} /> Déconnexion
+          <button type="submit" className="crm-logout-btn" title={collapsed ? "Déconnexion" : undefined}>
+            <LogOut size={14} /> {!collapsed && "Déconnexion"}
           </button>
         </form>
+        <button type="button" className="crm-collapse-btn" onClick={toggle} title={collapsed ? "Déplier le menu" : "Replier le menu"}>
+          {collapsed ? <ChevronsRight size={14} /> : <><ChevronsLeft size={14} /> Replier</>}
+        </button>
       </div>
     </aside>
   );

@@ -67,19 +67,9 @@
   text-align: center;
 }
 
-.blog-hero-eyebrow {
-  font-family: var(--font-roboto-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  color: rgba(255,255,255,.75);
-  text-transform: uppercase;
-  margin: 0 0 1rem;
-  display: block;
-}
-
 .blog-hero-title {
   font-family: var(--font-prompt), sans-serif;
-  font-size: clamp(40px, 7vw, 96px);
+  font-size: clamp(50px, 9vw, 96px);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.95;
@@ -87,11 +77,13 @@
   margin: 0 0 1.5rem;
 }
 
-/* Italique accent — sans serif */
+/* Italique accent — légèrement agrandi pour compenser le poids visuel plus
+   léger de l'italique serif face aux lignes bold qui l'entourent */
 .blog-hero-em {
   font-style: italic;
   font-weight: 400;
   font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-size: 1.12em;
   color: #FFE456;
   -webkit-text-fill-color: #FFE456;
 }

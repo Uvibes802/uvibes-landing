@@ -9,7 +9,7 @@ export async function GET() {
 
 // Création d'un code promo
 export async function POST(req: NextRequest) {
-  const { code, pourcentage, description, expiresAt, usageMax } = await req.json();
+  const { code, pourcentage, description, expiresAt, usageMax, planSlug } = await req.json();
 
   const cleanCode = String(code ?? "").trim().toUpperCase();
   const pct = Number(pourcentage);
@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
       description: description?.trim() || null,
       expiresAt: expiresAt ? new Date(expiresAt) : null,
       usageMax: usageMax ? Number(usageMax) : null,
+      planSlug: planSlug || null,
     },
   });
 

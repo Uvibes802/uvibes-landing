@@ -6,7 +6,12 @@ export interface SessionData {
   adminEmail?: string;
   adminNom?: string;
   isLoggedIn: boolean;
+  lastSeen?: number; // timestamp de la dernière activité → timeout d'inactivité
 }
+
+// Déconnexion automatique après 2 h d'inactivité (sécurité : une session admin
+// oubliée sur un poste partagé ne reste plus valable indéfiniment).
+export const IDLE_TIMEOUT_MS = 2 * 60 * 60 * 1000;
 
 const secret = process.env.IRON_SESSION_SECRET;
 
@@ -22,6 +27,6 @@ export const SESSION_OPTIONS = {
     secure: process.env.NODE_ENV === "production",
     httpOnly: true,
     sameSite: "lax" as const,
-    maxAge: 60 * 60 * 24 * 7, // 7 jours
+    maxAge: 60 * 60 * 24, // 1 jour (plafond absolu ; l'inactivité coupe avant via IDLE_TIMEOUT_MS)
   },
 };

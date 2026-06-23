@@ -15,7 +15,10 @@ export async function GET(req: NextRequest) {
       ...(doneParam !== null ? { done: doneParam === "true" } : {}),
     },
     orderBy: [{ done: "asc" }, { dueDate: "asc" }],
-    include: { collectif: { select: { id: true, nom: true } } },
+    include: {
+      collectif: { select: { id: true, nom: true } },
+      quote: { select: { id: true, numero: true } },
+    },
   });
   return NextResponse.json(tasks);
 }
@@ -32,6 +35,11 @@ export async function POST(req: NextRequest) {
       dueDate: body.dueDate ? new Date(body.dueDate) : null,
       priorite: PRIORITES.includes(body.priorite) ? body.priorite : "NORMALE",
       collectifId: body.collectifId ? String(body.collectifId) : null,
+      quoteId: body.quoteId ? String(body.quoteId) : null,
+    },
+    include: {
+      collectif: { select: { id: true, nom: true } },
+      quote: { select: { id: true, numero: true } },
     },
   });
   if (task.collectifId) revalidatePath(`/admin/collectifs/${task.collectifId}`);

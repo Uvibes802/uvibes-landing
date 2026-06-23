@@ -1,3 +1,4 @@
+import VibrationLine from "@/components/shared/VibrationLine";
 import type { PublicArticle } from "@/services/blog/getArticles";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,9 +10,45 @@ function formatDate(d: string) {
   return new Date(d).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
 }
 
-// L'image alterne de côté à chaque carte (1ère à droite, 2e à gauche, etc.) —
-// le texte vit toujours sur un fond plein (plus de superposition sur la photo,
-// donc plus de problème de lisibilité sur les photos sombres).
+// Desktop — design d'origine : 1 carte principale + 2 cartes latérales,
+// texte superposé à la photo (visible en permanence, détail complet au survol).
+function ArticleCardOld({ article: a, accent, isMain }: { article: PublicArticle; accent: string; isMain?: boolean }) {
+  return (
+    <Link
+      href={`/blog/${a.slug}`}
+      className={`fa-card-old${isMain ? " fa-card-old--main" : " fa-card-old--side"}`}
+      style={{ "--fa-accent": accent } as React.CSSProperties}
+    >
+      <div className="fa-card-old-img">
+        {a.imageUrl ? (
+          <Image src={a.imageUrl} alt={a.titre} fill style={{ objectFit: "cover" }} />
+        ) : (
+          <div className="fa-card-old-wave-bg" aria-hidden="true">
+            <VibrationLine width={480} height={60} amplitude={22} freq={4} stroke={accent} strokeWidth={2} speed={16} />
+          </div>
+        )}
+        <div className="fa-card-old-shine" aria-hidden="true" />
+
+        <div className="fa-card-old-info">
+          <p className="v-mono fa-card-old-date">{formatDate(a.publishedAt)}</p>
+          <h3 className="fa-card-old-title v-prompt">{a.titre}</h3>
+        </div>
+
+        <div className="fa-card-old-reveal">
+          <p className="v-mono fa-card-old-date">{formatDate(a.publishedAt)}</p>
+          <h3 className="fa-card-old-title v-prompt">{a.titre}</h3>
+          <p className="fa-card-old-excerpt">{a.excerpt}</p>
+          <span className="fa-card-old-cta">
+            {isMain ? "Lire l'article" : "Lire"} <span aria-hidden="true">→</span>
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+// Mobile — image en haut sur fond plein, texte en dessous (jamais superposé à
+// la photo → pas de souci de lisibilité sur les images sombres en responsive).
 function ArticleCard({ article: a, accent, imageOnRight }: { article: PublicArticle; accent: string; imageOnRight: boolean }) {
   return (
     <Link
@@ -42,6 +79,7 @@ function ArticleCard({ article: a, accent, imageOnRight }: { article: PublicArti
 export default function FeaturedArticles({ articles }: { articles: PublicArticle[] }) {
   if (!articles || articles.length === 0) return null;
 
+  const [main, ...rest] = articles;
   const shown = articles.slice(0, 3);
 
   return (
@@ -60,7 +98,18 @@ export default function FeaturedArticles({ articles }: { articles: PublicArticle
         </Link>
       </div>
 
-      <div className="fa-grid">
+      {/* Desktop (≥768px) : design d'origine, 1 carte principale + 2 latérales */}
+      <div className="fa-grid fa-grid--desktop">
+        {main && <ArticleCardOld article={main} accent={ACCENTS[0]} isMain />}
+        <div className="fa-side-old">
+          {rest.slice(0, 2).map((a, i) => (
+            <ArticleCardOld key={a.slug} article={a} accent={ACCENTS[i + 1]} />
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile (<768px) : cartes empilées, moitié photo / moitié texte */}
+      <div className="fa-grid fa-grid--mobile">
         {shown.map((a, i) => (
           <ArticleCard key={a.slug} article={a} accent={ACCENTS[i % ACCENTS.length]} imageOnRight={i % 2 === 1} />
         ))}

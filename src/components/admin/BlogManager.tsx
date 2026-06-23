@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Plus, Pencil, Trash2, ArrowLeft, Star, ExternalLink } from "lucide-react";
 import RichEditor from "./RichEditor";
+import ImageUpload from "./ImageUpload";
 import { BLOG_CATEGORIES } from "@/lib/blogCategories";
 
 interface Article {
@@ -126,8 +127,8 @@ export default function BlogManager({ articles: initial }: { articles: Article[]
           </div>
 
           <div style={{ marginTop: 14 }}>
-            <label className="crm-cms-item-label" htmlFor="a-img">URL de l&apos;image (illustration)</label>
-            <input id="a-img" className="crm-field-input" style={{ width: "100%" }} value={editing.imageUrl ?? ""} onChange={(e) => set("imageUrl", e.target.value)} placeholder="https://…" />
+            <label className="crm-cms-item-label" htmlFor="a-img">Image (illustration)</label>
+            <ImageUpload value={editing.imageUrl ?? ""} onChange={(url) => set("imageUrl", url)} />
           </div>
 
           <div style={{ display: "flex", gap: 24, marginTop: 16, flexWrap: "wrap" }}>

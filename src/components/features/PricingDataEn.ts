@@ -1,12 +1,12 @@
 // Traduction créative de PricingData.ts — mêmes prix et mêmes valeurs booléennes.
 export const featuresEn = [
   { name: "Interactive experiences (1,000 vibes)", type: "boolean" },
-  { name: "Surveys", type: "boolean" },
+  { name: "Flash surveys", type: "boolean" },
   { name: "Wellbeing barometer", type: "boolean" },
   { name: "Stats & tracking dashboard", type: "boolean" },
   { name: "Your company logo", type: "boolean" },
   { name: "Communication kit", type: "boolean" },
-  { name: "Internal news", type: "boolean" },
+  { name: "Internal news broadcasting", type: "boolean" },
   { name: "Networking (digital business cards)", type: "boolean" },
   { name: "Brainstorming (post-vibe surveys)", type: "boolean" },
   { name: "Employer branding (outside guests)", type: "boolean" },

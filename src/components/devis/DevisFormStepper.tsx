@@ -44,14 +44,16 @@ function totalPriceFor(plan: PlanApi | undefined, n: number, mois: number): numb
 }
 
 const USAGES = [
-  { slug: "echanges-conversationnels", label: "Échanges conversationnels" },
+  { slug: "echanges-conversationnels", label: "Expérience interactive" },
   { slug: "enquetes-flash", label: "Enquêtes flash" },
   { slug: "enquetes-post-vibes", label: "Enquêtes post vibes" },
   { slug: "barometre-bien-etre", label: "Baromètre bien-être" },
   { slug: "statistiques-pilotage", label: "Statistiques et pilotage" },
   { slug: "kit-communication", label: "Kit de communication" },
   { slug: "actualites-internes", label: "Diffusion d'actualités internes" },
+  { slug: "logo-entreprise", label: "Affichage logo de votre entreprise" },
   { slug: "cartes-visite", label: "Échanges cartes de visite" },
+  { slug: "invites-exterieurs", label: "Invités extérieurs" },
   { slug: "parcours-entrainement", label: "Parcours d'entraînement" },
   { slug: "mediatheque", label: "Médiathèque" },
 ];
@@ -80,7 +82,9 @@ const PLAN_FEATURES: Record<string, string[]> = {
     "Employer branding (invités extérieurs)", "Soft skills (parcours d'entraînement) ou médiathèque",
   ],
   "vibes-decouverte": [
-    "Toutes les fonctionnalités essentielles", "Sans engagement", "Idéal pour tester en interne",
+    "Jusqu'à 500 vibes", "Une session sur mesure",
+    "3 campagnes d'enquêtes flash (jusqu'à 9 sondages)", "1 infographie dédiée",
+    "2 statistiques d'usage (bonus)", "2 heures d'accompagnement et d'assistance offertes",
   ],
 };
 
@@ -88,7 +92,7 @@ const PLANS = [
   { slug: "vibes-connection", nom: "Vibes Connection", price: "3 980 €/an", desc: "Une expérience d'engagement collectif" },
   { slug: "vibes-boost", nom: "Vibes Boost", price: "5 980 €/an", desc: "Des outils de travail innovants", recommended: true },
   { slug: "vibes-premium", nom: "Vibes Premium", price: "4 980 €/an", desc: "Une visibilité augmentée" },
-  { slug: "vibes-decouverte", nom: "Offre découverte", price: "480 €", desc: "30 jours pour tester", trial: true },
+  { slug: "vibes-decouverte", nom: "Vibes Découverte", price: "480 €", desc: "30 jours pour tester", trial: true },
 ];
 
 const STEPS = ["Votre collectif", "Vos usages", "Vos coordonnées"];
@@ -347,10 +351,11 @@ export default function DevisFormStepper() {
                     <span className="dv-plan-name">{p.nom}</span>
                     <span className="dv-plan-trial-badge">Sans engagement</span>
                   </div>
-                  <p className="dv-plan-trial-msg">
-                    Le moyen idéal de convaincre en interne : testez Uvibes pendant 30&nbsp;jours,
-                    puis basculez sur une formule annuelle en toute confiance.
-                  </p>
+                  <ul className="dv-plan-trial-features">
+                    {(PLAN_FEATURES[p.slug] ?? []).map((f) => (
+                      <li key={f}><Check size={12} strokeWidth={3} />{f}</li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="dv-plan-trial-price">{p.price}</div>
               </div>

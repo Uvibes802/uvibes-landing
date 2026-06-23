@@ -64,7 +64,9 @@
 .uv-hero {
   position: relative;
   overflow: hidden;
-  min-height: 55vh;
+  /* Titre court (2 mots) → section moins haute que les autres heros pour ne pas
+     paraître vide en mobile/tablette */
+  min-height: 46vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,7 +85,7 @@
 
 .uv-hero-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; text-align: center; }
 .uv-hero-eyebrow { font-family: var(--font-roboto-mono), monospace; font-size: 11px; letter-spacing: 0.22em; color: rgba(255,255,255,.78); text-transform: uppercase; margin: 0 0 1rem; display: block; background: none; border: none; padding: 0; }
-.uv-hero-title { font-family: var(--font-prompt), sans-serif; font-size: clamp(42px, 7vw, 88px); font-weight: 800; letter-spacing: -0.05em; line-height: .95; color: #fff; margin: 0 0 1.5rem; }
+.uv-hero-title { font-family: var(--font-prompt), sans-serif; font-size: clamp(50px, 9vw, 92px); font-weight: 800; letter-spacing: -0.05em; line-height: .95; color: #fff; margin: 0 0 1.5rem; }
 .uv-hero-em {
   font-style: italic;
   font-weight: 400;
@@ -213,18 +215,37 @@
   font-family: var(--font-prompt), sans-serif;
 }
 
-/* Statement Harvard — citation plein écran en ouverture de section, sans encadré */
+/* Écrin doux autour de la citation Harvard — même esprit que .uvn-decode */
+.uv-intro-statement-card {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto clamp(3.5rem, 6vw, 5.5rem);
+  padding: clamp(2.4rem, 4vw, 3.4rem) clamp(1.5rem, 4vw, 3rem) clamp(1.6rem, 3vw, 2.2rem);
+  border-radius: 28px;
+  background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(255,255,255,.32));
+  border: 1px solid rgba(217,10,92,.14);
+  box-shadow: 0 30px 70px -40px rgba(217,10,92,.3);
+  backdrop-filter: blur(6px);
+}
+.uv-intro-statement-glow {
+  position: absolute;
+  inset: -8%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(217,10,92,.14), transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+/* Statement Harvard — citation, désormais posée dans l'écrin ci-dessus */
 .uv-intro-statement {
   position: relative;
-  max-width: 920px;
-  margin: 0 auto clamp(3.5rem, 6vw, 5.5rem);
-  padding-top: 2.2rem;
   text-align: center;
   font-style: italic;
   font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-size: clamp(24px, 3.4vw, 40px);
+  font-size: clamp(22px, 3vw, 36px);
   line-height: 1.35;
   color: #5a3a48;
+  margin: 0;
 }
 .uv-intro-statement-cite {
   font-size: 0.5em;

@@ -1,7 +1,7 @@
 # ARCHITECTURE.md — Uvibes (vitrine + plateforme)
 
 > Source de vérité de la structure du projet.
-> Dernière mise à jour : 2026-06-09
+> Dernière mise à jour : 2026-06-23
 
 ---
 
@@ -24,14 +24,21 @@ DB = **Supabase propre au projet**, distincte de celle de `bizz`. Connexion via 
 
 ```
 Public:
-/                          src/app/page.tsx                 ✅ Server Component
-/solution                  src/app/solution/page.tsx        ✅ Server Component (offres + 4ème offre)
+/                          src/app/page.tsx                 ✅ Server Component (+ JSON-LD Organization/WebSite)
+/solution                  src/app/solution/page.tsx        ✅ Server Component (offres + 4ème offre Vibes Découverte)
+/tarifs                    src/app/tarifs/page.tsx          ✅ PricingTable + SmallOrgCta
 /blog · /blog/[slug]       src/app/blog/…                   ✅ SC + generateMetadata Yoast
 /a-propos                  src/app/a-propos/page.tsx        ✅ (ex /uvibes)
-/avantages · /features     redirect 301 → /solution (next.config.ts)
+/avantages · /features     redirect 301 → /solution (next.config.ts) — pages mortes, jamais servies
 /rendez-vous               src/app/rendez-vous/page.tsx     (ex /rdv)
+/documents/[slug]          src/app/documents/[slug]/page.tsx — CGV/DPA/SLA/PDD servies depuis la base (LegalDocument)
 /devis · /devis/[id]       funnel devis + page devis/signature
 /mentions-legales · /conditions-d-utilisation · /politique-de-confidentialite · /politique-cookies
+
+i18n (11 langues) :
+/{en,es,de,it,pt,ru,zh,ja,hi,ar}            accueil traduit
+/{lang}/method · /about · /pricing          méthode · à propos · tarifs (blog + légales restent FR)
+   → hreflang complet + x-default via buildMetadata() / hreflangFor() (src/lib/seo.ts)
 
 Admin (🔒 iron-session — layout protégé):
 /admin/login                                                login
@@ -43,19 +50,21 @@ Admin (🔒 iron-session — layout protégé):
 /admin/newsletter · /admin/maintenance
 /admin/cms/{contenu,tarification,temoignages,equipe,partenaires}
 
-API publiques:
+API publiques (rate-limit sur les routes à écriture/email) :
 /api/devis/creer · /api/devis/calculer · /api/devis/[id] · /api/devis/[id]/pdf · /api/devis/[id]/signer
-/api/rdv/reserver · /api/rdv/creneaux · /api/rdv/reminders
-/api/promo/validate · /api/newsletter · /api/sendEmail (rate-limit 5/min)
-/api/testimonials · /api/featured-articles · /api/partners · /api/settings  (fetch WP côté serveur, CORS fix)
+/api/rdv/reserver (3/h) · /api/rdv/creneaux · /api/rdv/calendar · /api/rdv/reminders
+/api/promo/validate · /api/newsletter · /api/sendEmail  (escapeHtml sur les emails)
+/api/testimonials · /api/partners · /api/team · /api/plans · /api/settings · /api/maintenance  (fetch WP/DB côté serveur)
 
-API admin (🔒):
-/api/admin/auth/{login,me,logout}
-/api/admin/devis · /api/admin/devis/[id] · /api/admin/devis/[id]/envoyer
-/api/admin/promos · /api/admin/promos/[id] · /api/admin/promos/send
-/api/admin/collectifs(/[id], /export) · /api/admin/rdv/{reservations,disponibilites}(/[id], /reminder)
+API admin (🔒 middleware iron-session) :
+/api/admin/auth/{login,me,logout} · /api/admin/account/change-password
+/api/admin/devis · /api/admin/devis/[id] · /[id]/envoyer · /[id]/facture
+/api/admin/promos(/[id], /send) · /api/admin/collectifs(/[id], /export)
+/api/admin/rdv/{reservations,disponibilites}(/[id], /reminder)
+/api/admin/crm/{interactions,tasks}(/[id])           — embryon CRM
+/api/admin/documents(/[id], /[id]/pdf) · /api/admin/upload
 /api/admin/newsletter/export
-/api/admin/cms/{content,plans,features,team,testimonials,partners}(/[id], /sync-wp)
+/api/admin/cms/{articles,content,plans,features,team,testimonials,partners,documents}(/[id], /sync-wp)
 ```
 
 ---
@@ -96,7 +105,7 @@ PricingTable         components/features/PricingTable.tsx    "use client" — 3 
 
 ---
 
-## Page /uvibes
+## Page /a-propos (ex /uvibes)
 
 ```
 Hero gradient (4 blobs rose/pêche, particules lignes + ronds animés CSS-only)
@@ -132,11 +141,11 @@ SignaturePad       components/devis/SignaturePad.tsx      signature manuscrite (
                                   passe le devis à SIGNE, génère le PDF, envoie les emails
 calculateQuote     services/crm/calculateQuote.ts         logique de prix (utilisateurs × durée × remise)
 generateQuoteNumber services/crm/generateQuoteNumber.ts   numéro unique
-generateQuotePdf   services/pdf/generateQuotePdf.ts        PDF (React → PDF)
+generateQuotePdf   services/pdf/generateQuotePdf.tsx       PDF (React → PDF) + annexes documents légaux
 sendQuoteEmail     services/crm/sendQuoteEmail.ts          email client + notifyDirectrice (nodemailer)
 ```
 
-À FAIRE (Missions Falek) : exposer le **champ code promo** dans le funnel · **acceptation différenciée des documents** (CGV+DPA+SLA pour les 3 offres annuelles, CGV+PDD pour l'événementielle) · corriger les prix (3980/4980/5980).
+✅ Fait (Missions Falek) : champ **code promo** exposé · **acceptation différenciée des documents** (CGV+DPA+SLA pour les 3 offres annuelles, CGV+PDD pour Vibes Découverte — voir `requiredDocsForPlan` dans `lib/legalDocs`) · prix corrigés (3980/4980/5980).
 
 ---
 
@@ -156,7 +165,7 @@ CMS      : CmsContentManager, TarificationManager, EquipeManager, CrudManager (t
 Maintenance: MaintenanceToggle
 ```
 
-À FAIRE (Missions Falek) : module CMS **« documents légaux »** (éditeur texte en base pour CGV/DPA/SLA/PDD) · **CRM** complet à phaser (contacts, pipeline, interactions, tâches, marketing, support, documents, reporting).
+✅ Fait : module CMS **« documents légaux »** (éditeur texte en base — `LegalDocument`, servis en `/documents/[slug]` + annexés au PDF). Embryon **CRM** en place : `crm/interactions`, `crm/tasks`. À phaser ensuite : pipeline, marketing, support, reporting.
 
 ---
 
@@ -216,7 +225,8 @@ NEXT_PUBLIC_CLOUDFRONT_URL       CDN vidéos (fallback hardcodé)
 NEXT_PUBLIC_GOOGLE_ANALYTICS     ID GA4
 DATABASE_URL                     Prisma — Supabase pooler (port 6543)
 DIRECT_URL                       Prisma — connexion directe (migrations ; injoignable en local → db push sur le pooler)
-SESSION_PASSWORD / ADMIN_*       iron-session + identifiants admin
+IRON_SESSION_SECRET              iron-session (≥ 32 car. ; obligatoire en prod, sinon l'app refuse de démarrer)
+NEXT_PUBLIC_SITE_URL             URL de base pour sitemap/robots/hreflang (défaut https://uvibes.fr)
 EMAIL_USER / GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET / GOOGLE_REFRESH_TOKEN   Nodemailer (Gmail OAuth)
 ```
 
@@ -237,9 +247,21 @@ section-fade : fondu 120px en haut/bas des sections vivid vers --paper
 
 ---
 
+## Sécurité (résumé)
+
+- Middleware (`src/middleware.ts`) protège `/admin/*` (hors login) et `/api/admin/*` (hors `/auth/*`).
+- **Timeout d'inactivité 2 h** (`IDLE_TIMEOUT_MS`), plafond cookie 1 j ; iron-session chiffré `httpOnly`+`secure`+`sameSite=lax` ; mots de passe bcrypt.
+- Headers (`next.config.ts`) : X-Frame-Options, nosniff, HSTS, Referrer/Permissions-Policy, **CSP en report-only** (à basculer bloquant).
+- Rate-limit : login, RDV, newsletter, promo, devis, contact. `escapeHtml` sur les emails.
+- SEO/GEO : `public/llms.txt`, JSON-LD Organization/WebSite sur l'accueil, hreflang + x-default.
+
+---
+
 ## Points d'attention (BACKLOG)
 
-- Hook `Resize` dans `AvantagesPageClient` → remplacer par CSS media queries (PERF-06)
+- **Upload admin** (`/api/admin/upload`) écrit sur disque local → **KO en serverless (Vercel, FS read-only)** ; seul le collage d'URL marche. Cible : Supabase Storage / S3.
+- Hook `Resize` → remplacer par CSS media queries (PERF-06)
 - `Supreme-Bold` n'a pas de woff2 (PERF-07)
 - Typo fichier `mochupHome.png` → renommer `mockupHome.png` (CODE-02)
+- Logos partenaires `upc.png`/`ffhb.png` → 400 (MEDIA-01)
 - 3 vidéos uvibes chargent toutes en `autoPlay` sans lazy-loading → optimiser (PERF)

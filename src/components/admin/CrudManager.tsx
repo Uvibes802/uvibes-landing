@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, Trash2, Edit2, ToggleLeft, ToggleRight } from "lucide-react";
+import { Plus, Search, Trash2, Edit2, ToggleLeft, ToggleRight } from "lucide-react";
 import { useState } from "react";
 import ImageUpload from "./ImageUpload";
 
@@ -28,6 +28,11 @@ export default function CrudManager({ items: initial, apiBase, fields, toggleFie
   const [isNew, setIsNew] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  const [query, setQuery] = useState("");
+
+  const filtered = query.trim()
+    ? items.filter((item) => fields.some((f) => String(item[f.key] ?? "").toLowerCase().includes(query.trim().toLowerCase())))
+    : items;
 
   function openNew() {
     setForm(Object.fromEntries(fields.map((f) => [f.key, ""])));
@@ -96,8 +101,43 @@ export default function CrudManager({ items: initial, apiBase, fields, toggleFie
     <div>
       {msg && <div style={{ marginBottom: 12, padding: "8px 14px", background: "rgba(217,10,92,.08)", borderRadius: 8, fontSize: 13, color: "var(--rose, #D90A5C)" }}>{msg}</div>}
 
+      {/* Formulaire d'ajout/édition affiché en premier — visible sans avoir à descendre dans la liste */}
+      {editId && (
+        <div className="crm-detail-card" style={{ marginBottom: 20 }}>
+          <p className="crm-detail-section-title">{isNew ? "Ajouter" : "Modifier"}</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            {fields.map((f) => (
+              <div key={f.key} className="crm-field-row" style={(f.multiline || f.type === "image") ? { gridColumn: "1 / -1" } : {}}>
+                <label className="crm-field-label">{f.label}{f.required && " *"}</label>
+                {f.type === "image"
+                  ? <ImageUpload value={form[f.key] ?? ""} onChange={(url) => setForm((p) => ({ ...p, [f.key]: url }))} />
+                  : f.multiline
+                  ? <textarea className="crm-field-textarea" value={form[f.key] ?? ""} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} />
+                  : <input className="crm-field-input" value={form[f.key] ?? ""} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} />
+                }
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
+            <button className="crm-btn --primary" onClick={save} disabled={loading}>{loading ? "..." : "Enregistrer"}</button>
+            <button className="crm-btn --outline" onClick={cancel}>Annuler</button>
+          </div>
+        </div>
+      )}
+
       <div className="crm-table-wrap" style={{ marginBottom: 16 }}>
-        <div className="crm-table-header" style={{ justifyContent: "flex-end" }}>
+        <div className="crm-table-header">
+          <div style={{ position: "relative" }}>
+            <Search size={13} style={{ position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)", color: "var(--crm-muted)" }} />
+            <input
+              className="crm-search"
+              style={{ paddingLeft: 30 }}
+              type="search"
+              placeholder="Rechercher..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </div>
           <button className="crm-btn --primary --sm" onClick={openNew}>
             <Plus size={13} /> Ajouter
           </button>
@@ -111,10 +151,10 @@ export default function CrudManager({ items: initial, apiBase, fields, toggleFie
             </tr>
           </thead>
           <tbody>
-            {items.length === 0 && (
+            {filtered.length === 0 && (
               <tr><td colSpan={fields.length + 2} style={{ textAlign: "center", padding: 24, color: "var(--crm-muted)" }}>Aucun élément</td></tr>
             )}
-            {items.map((item) => (
+            {filtered.map((item) => (
               <tr key={String(item.id)}>
                 {fields.slice(0, 2).map((f) => (
                   <td key={f.key} style={{ maxWidth: 260, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: 13 }}>
@@ -145,30 +185,6 @@ export default function CrudManager({ items: initial, apiBase, fields, toggleFie
           </tbody>
         </table>
       </div>
-
-      {/* Formulaire inline */}
-      {editId && (
-        <div className="crm-detail-card" style={{ marginBottom: 20 }}>
-          <p className="crm-detail-section-title">{isNew ? "Ajouter" : "Modifier"}</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-            {fields.map((f) => (
-              <div key={f.key} className="crm-field-row" style={(f.multiline || f.type === "image") ? { gridColumn: "1 / -1" } : {}}>
-                <label className="crm-field-label">{f.label}{f.required && " *"}</label>
-                {f.type === "image"
-                  ? <ImageUpload value={form[f.key] ?? ""} onChange={(url) => setForm((p) => ({ ...p, [f.key]: url }))} />
-                  : f.multiline
-                  ? <textarea className="crm-field-textarea" value={form[f.key] ?? ""} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} />
-                  : <input className="crm-field-input" value={form[f.key] ?? ""} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} />
-                }
-              </div>
-            ))}
-          </div>
-          <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            <button className="crm-btn --primary" onClick={save} disabled={loading}>{loading ? "..." : "Enregistrer"}</button>
-            <button className="crm-btn --outline" onClick={cancel}>Annuler</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import PromoManager from "@/components/admin/PromoManager";
 
 export default async function PromosPage() {
   let promos: Awaited<ReturnType<typeof prisma.promoCode.findMany>> = [];
-  let plans: { nom: string; prixAnnuel: number }[] = [];
+  let plans: { slug: string; nom: string; prixAnnuel: number }[] = [];
   let dbError = false;
 
   try {
@@ -12,7 +12,7 @@ export default async function PromosPage() {
       prisma.plan.findMany({
         where: { actif: true },
         orderBy: { ordre: "asc" },
-        select: { nom: true, prixAnnuel: true },
+        select: { slug: true, nom: true, prixAnnuel: true },
       }),
     ]);
   } catch {

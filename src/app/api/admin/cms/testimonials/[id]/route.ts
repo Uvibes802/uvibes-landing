@@ -6,7 +6,7 @@ type Ctx = { params: Promise<{ id: string }> };
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const { id } = await params;
   const body = await req.json();
-  const allowed = ["texte", "auteur", "role", "actif", "ordre"];
+  const allowed = ["texte", "auteur", "role", "photoUrl", "logoUrl", "actif", "ordre"];
   const data: Record<string, unknown> = {};
   for (const key of allowed) {
     if (body[key] !== undefined) data[key] = body[key];

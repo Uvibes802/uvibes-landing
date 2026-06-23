@@ -62,9 +62,6 @@ const styles = StyleSheet.create({
   partyName: { fontSize: 11, fontFamily: "Helvetica-Bold", color: INK, marginBottom: 3 },
   partyLine: { fontSize: 8.5, color: MUTED, marginBottom: 1.5 },
 
-  // Phrase de valeur
-  intro: { fontSize: 9.5, fontFamily: "Helvetica-Oblique", color: MUTED, marginBottom: 18, lineHeight: 1.5 },
-
   // Titres de section
   sectionTitle: { fontSize: 9, fontFamily: "Helvetica-Bold", color: INK, marginBottom: 9, textTransform: "uppercase", letterSpacing: 1.2 },
   section: { marginBottom: 18 },
@@ -73,11 +70,6 @@ const styles = StyleSheet.create({
   offerCard: { backgroundColor: SURFACE, borderRadius: 10, borderWidth: 1, borderColor: LINE, padding: 16, flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   offerLeft: { flex: 1 },
   offerName: { fontSize: 16, fontFamily: "Helvetica-Bold", color: INK },
-  offerMention: { fontSize: 8.5, color: MUTED, marginTop: 2 },
-  offerSpecs: { flexDirection: "row", gap: 18, marginTop: 9 },
-  spec: {},
-  specVal: { fontSize: 13, fontFamily: "Helvetica-Bold", color: ACCENT },
-  specLabel: { fontSize: 7.5, color: MUTED, marginTop: 1 },
   durBadge: { backgroundColor: ACCENT, borderRadius: 12, paddingVertical: 9, paddingHorizontal: 14, alignItems: "center" },
   durBadgeVal: { fontSize: 15, fontFamily: "Helvetica-Bold", color: "#fff" },
   durBadgeLabel: { fontSize: 7, color: "rgba(255,255,255,.9)", marginTop: 1, textTransform: "uppercase", letterSpacing: 0.5 },
@@ -282,29 +274,12 @@ export async function generateQuotePdf(data: PdfData): Promise<Buffer> {
           </View>
         </View>
 
-        {/* Phrase de valeur */}
-        <Text style={styles.intro}>
-          Uvibes est une solution socio-digitale qui renforce le lien social, le bien-être et l&apos;engagement
-          au sein de votre collectif, par des conversations positives et des rencontres inattendues.
-        </Text>
-
         {/* Offre */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Votre offre</Text>
           <View style={styles.offerCard}>
             <View style={styles.offerLeft}>
               <Text style={styles.offerName}>{quote.planNom}</Text>
-              {quote.mentionPrix ? <Text style={styles.offerMention}>{quote.mentionPrix}</Text> : null}
-              <View style={styles.offerSpecs}>
-                <View style={styles.spec}>
-                  <Text style={styles.specVal}>{quote.nombreUtilisateurs}</Text>
-                  <Text style={styles.specLabel}>Membres</Text>
-                </View>
-                <View style={styles.spec}>
-                  <Text style={styles.specVal}>{Math.round((quote.dureeContrat / 12) * 10) / 10} an{quote.dureeContrat >= 24 ? "s" : ""}</Text>
-                  <Text style={styles.specLabel}>Engagement</Text>
-                </View>
-              </View>
             </View>
             <View style={styles.durBadge}>
               <Text style={styles.durBadgeVal}>{quote.dureeContrat}</Text>

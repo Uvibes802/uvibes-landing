@@ -24,6 +24,102 @@ const FILLERS_EN = [
   "aligned goals",
 ];
 
+const FILLERS_ES = [
+  "prioridades compartidas",
+  "visiones cruzadas",
+  "nuevas inspiraciones",
+  "usuarios",
+  "buenos consejos compartidos",
+  "objetivos alineados",
+];
+
+const FILLERS_DE = [
+  "gemeinsame Prioritäten",
+  "unterschiedliche Sichtweisen",
+  "neue Inspirationen",
+  "Nutzer",
+  "ausgetauschte Tipps",
+  "abgestimmte Ziele",
+];
+
+const FILLERS_IT = [
+  "priorità condivise",
+  "punti di vista incrociati",
+  "nuove ispirazioni",
+  "utenti",
+  "consigli condivisi",
+  "obiettivi allineati",
+];
+
+const FILLERS_PT = [
+  "prioridades partilhadas",
+  "visões cruzadas",
+  "novas inspirações",
+  "utilizadores",
+  "dicas partilhadas",
+  "objetivos alinhados",
+];
+
+const FILLERS_RU = [
+  "общие приоритеты",
+  "разные взгляды",
+  "новые вдохновения",
+  "пользователей",
+  "советы, которыми поделились",
+  "согласованные цели",
+];
+
+const FILLERS_ZH = [
+  "共同的优先事项",
+  "交流的观点",
+  "新的灵感",
+  "用户",
+  "互换的好建议",
+  "一致的目标",
+];
+
+const FILLERS_JA = [
+  "共有された優先事項",
+  "交わる視点",
+  "新たなひらめき",
+  "ユーザー",
+  "交換されたヒント",
+  "一致した目標",
+];
+
+const FILLERS_HI = [
+  "साझा प्राथमिकताएं",
+  "आपस में मिले नज़रिए",
+  "नई प्रेरणाएं",
+  "उपयोगकर्ता",
+  "साझा किए गए सुझाव",
+  "संरेखित लक्ष्य",
+];
+
+const FILLERS_AR = [
+  "أولويات مشتركة",
+  "وجهات نظر متقاطعة",
+  "إلهام جديد",
+  "مستخدمين",
+  "نصائح متبادلة",
+  "أهداف متوافقة",
+];
+
+const FILLERS_BY_LOCALE: Record<string, string[]> = {
+  en: FILLERS_EN, es: FILLERS_ES, de: FILLERS_DE, it: FILLERS_IT, pt: FILLERS_PT,
+  ru: FILLERS_RU, zh: FILLERS_ZH, ja: FILLERS_JA, hi: FILLERS_HI, ar: FILLERS_AR,
+};
+
+const INTL_LOCALE: Record<string, string> = {
+  fr: "fr-FR", en: "en-US", es: "es-ES", de: "de-DE", it: "it-IT", pt: "pt-PT",
+  ru: "ru-RU", zh: "zh-CN", ja: "ja-JP", hi: "hi-IN", ar: "ar-SA",
+};
+
+const YEAR_LABEL: Record<string, string> = {
+  fr: "en 2026", en: "in 2026", es: "en 2026", de: "im Jahr 2026", it: "nel 2026",
+  pt: "em 2026", ru: "в 2026", zh: "2026年", ja: "2026年", hi: "2026 में", ar: "في 2026",
+};
+
 function useCountUp(target: number, duration: number, started: boolean) {
   const [v, setV] = useState(0);
   useEffect(() => {
@@ -42,8 +138,8 @@ function useCountUp(target: number, duration: number, started: boolean) {
   return v;
 }
 
-export default function BannerCount({ locale = "fr" }: { locale?: "fr" | "en" }) {
-  const FILLERS = locale === "en" ? FILLERS_EN : FILLERS_FR;
+export default function BannerCount({ locale = "fr" }: { locale?: string }) {
+  const FILLERS = FILLERS_BY_LOCALE[locale] ?? FILLERS_FR;
   const { userNumber } = FetchCitation();
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -51,10 +147,11 @@ export default function BannerCount({ locale = "fr" }: { locale?: "fr" | "en" })
   const numericMatch = userNumber?.match(/\d(?:[\s\d]*\d)?|\d/);
   const target = numericMatch ? parseInt(numericMatch[0].replace(/\s/g, ""), 10) : 12480;
 
+  const intlLocale = INTL_LOCALE[locale] ?? "fr-FR";
   const animated = useCountUp(target, 2200, started);
-  const display = animated.toLocaleString(locale === "en" ? "en-US" : "fr-FR");
+  const display = animated.toLocaleString(intlLocale);
   // Largeur réservée d'avance pour éviter que la ligne tremble pendant le comptage
-  const finalDisplay = target.toLocaleString(locale === "en" ? "en-US" : "fr-FR");
+  const finalDisplay = target.toLocaleString(intlLocale);
 
   const rawScore = useCountUp(49, 1800, started);
   const score = (rawScore / 10).toFixed(1);
@@ -98,7 +195,7 @@ export default function BannerCount({ locale = "fr" }: { locale?: "fr" | "en" })
 
         {/* Compteur principal */}
         <div className="banner-count-main">
-          <span className="v-mono banner-count-label">{locale === "en" ? "in 2026" : "en 2026"}</span>
+          <span className="v-mono banner-count-label">{YEAR_LABEL[locale] ?? "en 2026"}</span>
           <div className="banner-count-row">
             {/* Largeur figée : fantôme invisible avec tous les chiffres au plus large ("8"),
                 le nombre animé est superposé et aligné à droite → le texte ne bouge plus. */}

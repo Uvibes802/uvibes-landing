@@ -27,8 +27,8 @@
   text-align: center;
 }
 
-/* "Ils" et "avec nous." — orange assombri pour le contraste AA (texte large ≥ 3:1) */
-.trustees-t-orange { color: #FD6E00; }
+/* "Ils" et "avec nous." — orange vif accessible (passe AA texte large ≥ 3:1) */
+.trustees-t-orange { color: #EF6500; }
 
 /* "avancent" — gradient orange clair → pêche (serif italic) */
 .trustees-t-gradient {

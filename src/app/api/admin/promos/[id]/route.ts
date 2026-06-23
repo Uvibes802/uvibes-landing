@@ -9,6 +9,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   const body = await req.json();
   const data: Record<string, unknown> = {};
   if (body.actif !== undefined) data.actif = body.actif;
+  if (body.planSlug !== undefined) data.planSlug = body.planSlug || null;
   const item = await prisma.promoCode.update({ where: { id }, data });
   return NextResponse.json(item);
 }

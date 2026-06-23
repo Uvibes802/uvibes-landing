@@ -21,9 +21,83 @@ const PARTICLES = [
   { color: "#FFE456", size: 8,  top: "48%", left:"18%",  anim: "particle-1", dur: "8s",  del: "0.1s"  },
 ];
 
-export default function SolutionHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
+const SH_TXT: Record<string, { ariaLabel: string; title: React.ReactNode; desc: React.ReactNode; cta: string; ctaHref: string }> = {
+  en: {
+    ariaLabel: "Solution overview",
+    title: <>The method<br />for your<br /><span className="sh-title-accent">organization.</span></>,
+    desc: "A structured method to build engagement, strengthen the sense of belonging, surface what your community really needs, and support your organization's growth over the long run.",
+    cta: "Discover our pricing →",
+    ctaHref: "/en/pricing",
+  },
+  es: {
+    ariaLabel: "Presentación de la solución",
+    title: <>El método<br />para tu<br /><span className="sh-title-accent">organización.</span></>,
+    desc: <>Un método estructurado para desarrollar el compromiso,<br className="v-br-desktop" /> reforzar el sentido de pertenencia, revelar las necesidades de tu colectivo y acompañar de forma duradera la evolución de tu organización.</>,
+    cta: "Descubrir nuestros precios →",
+    ctaHref: "/es/pricing",
+  },
+  de: {
+    ariaLabel: "Lösungsübersicht",
+    title: <>Die Methode<br />für Ihre<br /><span className="sh-title-accent">Organisation.</span></>,
+    desc: <>Eine strukturierte Methode, um Engagement aufzubauen,<br className="v-br-desktop" /> das Zugehörigkeitsgefühl zu stärken, die Bedürfnisse Ihres Kollektivs aufzudecken und die Entwicklung Ihrer Organisation langfristig zu begleiten.</>,
+    cta: "Unsere Preise entdecken →",
+    ctaHref: "/de/pricing",
+  },
+  it: {
+    ariaLabel: "Presentazione della soluzione",
+    title: <>Il metodo<br />per la tua<br /><span className="sh-title-accent">organizzazione.</span></>,
+    desc: <>Un metodo strutturato per sviluppare l&apos;impegno,<br className="v-br-desktop" /> rafforzare il senso di appartenenza, rivelare i bisogni della tua comunità e accompagnare nel tempo l&apos;evoluzione della tua organizzazione.</>,
+    cta: "Scopri i nostri prezzi →",
+    ctaHref: "/it/pricing",
+  },
+  pt: {
+    ariaLabel: "Apresentação da solução",
+    title: <>O método<br />para a sua<br /><span className="sh-title-accent">organização.</span></>,
+    desc: <>Um método estruturado para desenvolver o compromisso,<br className="v-br-desktop" /> reforçar o sentido de pertença, revelar as necessidades do seu coletivo e acompanhar de forma duradoura a evolução da sua organização.</>,
+    cta: "Descobrir os nossos preços →",
+    ctaHref: "/pt/pricing",
+  },
+  ru: {
+    ariaLabel: "Обзор решения",
+    title: <>Метод<br />для вашей<br /><span className="sh-title-accent">организации.</span></>,
+    desc: <>Структурированный метод для развития вовлечённости,<br className="v-br-desktop" /> укрепления чувства принадлежности, выявления потребностей вашего коллектива и долгосрочного сопровождения развития вашей организации.</>,
+    cta: "Узнать наши цены →",
+    ctaHref: "/ru/pricing",
+  },
+  zh: {
+    ariaLabel: "解决方案概览",
+    title: <>专属于您<br />组织的<br /><span className="sh-title-accent">方法。</span></>,
+    desc: "一套结构化的方法，用于培养参与感、增强归属感、揭示你的集体的真实需求，并长期支持你组织的发展。",
+    cta: "了解我们的价格 →",
+    ctaHref: "/zh/pricing",
+  },
+  ja: {
+    ariaLabel: "ソリューション概要",
+    title: <>あなたの組織<br />のための<br /><span className="sh-title-accent">メソッド。</span></>,
+    desc: "エンゲージメントを育み、帰属意識を強化し、あなたのコレクティフの本当のニーズを明らかにし、組織の発展を長期的にサポートするための体系的なメソッドです。",
+    cta: "料金を見る →",
+    ctaHref: "/ja/pricing",
+  },
+  hi: {
+    ariaLabel: "समाधान का अवलोकन",
+    title: <>आपके संगठन<br />के लिए<br /><span className="sh-title-accent">तरीका।</span></>,
+    desc: "एक संरचित तरीका जो सहभागिता बढ़ाने, अपनेपन की भावना को मज़बूत करने, आपके समूह की वास्तविक ज़रूरतों को सामने लाने, और आपके संगठन के विकास में लंबे समय तक साथ देने के लिए बनाया गया है।",
+    cta: "हमारी कीमतें देखें →",
+    ctaHref: "/hi/pricing",
+  },
+  ar: {
+    ariaLabel: "عرض الحل",
+    title: <>المنهجية<br />الخاصة<br /><span className="sh-title-accent">بمؤسستك.</span></>,
+    desc: "منهجية منظمة لتنمية الالتزام، وتعزيز الشعور بالانتماء، والكشف عن الحاجات الحقيقية لمجموعتك، ومواكبة تطور مؤسستك على المدى الطويل.",
+    cta: "اكتشف أسعارنا ←",
+    ctaHref: "/ar/pricing",
+  },
+};
+
+export default function SolutionHero({ locale = "fr" }: { locale?: string }) {
+  const sh = locale !== "fr" ? SH_TXT[locale] : undefined;
   return (
-    <section className="sh-section" aria-label={locale === "en" ? "Solution overview" : "Présentation de la solution"}>
+    <section className="sh-section" aria-label={sh ? sh.ariaLabel : "Présentation de la solution"}>
       {/* Grille de points */}
       <div className="sh-dot-grid" aria-hidden="true" />
 
@@ -69,20 +143,18 @@ export default function SolutionHero({ locale = "fr" }: { locale?: "fr" | "en" }
         {/* Texte */}
         <div className="sh-content">
           <h1 className="sh-title v-prompt">
-            {locale === "en" ? (
-              <>The method<br />for your<br /><span className="sh-title-accent">organization.</span></>
-            ) : (
+            {sh ? sh.title : (
               <>La méthode<br />pour votre<br /><span className="sh-title-accent">organisation.</span></>
             )}
           </h1>
           <p className="sh-desc">
-            {locale === "en"
-              ? "A structured method to build engagement, strengthen the sense of belonging, surface what your community really needs, and support your organization's growth over the long run."
+            {sh
+              ? sh.desc
               : <>Une méthode structurée pour développer l&apos;engagement,<br className="v-br-desktop" /> renforcer le sentiment d&apos;appartenance, révéler les besoins de votre collectif et accompagner durablement l&apos;évolution de votre organisation.</>}
           </p>
           <div className="sh-ctas">
-            <Link href={locale === "en" ? "/en/pricing" : "/tarifs"} className="btn-brand btn-brand--white sh-cta-primary">
-              {locale === "en" ? "Discover our pricing →" : "Découvrir nos tarifs →"}
+            <Link href={sh ? sh.ctaHref : "/tarifs"} className="btn-brand btn-brand--white sh-cta-primary">
+              {sh ? sh.cta : "Découvrir nos tarifs →"}
             </Link>
           </div>
 

@@ -4,7 +4,47 @@ import { getAllArticleSlugs } from "@/services/blog/getArticles";
 // On retire un éventuel slash final pour éviter les URLs en double slash (uvibes.fr//page)
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://uvibes.fr").replace(/\/$/, "");
 
+// Codes BCP47 + préfixe de route, alignés sur src/lib/seo.ts (BCP47) — mêmes 11 langues.
+const LOCALES = [
+  { bcp47: "en-US", prefix: "/en" },
+  { bcp47: "es-ES", prefix: "/es" },
+  { bcp47: "de-DE", prefix: "/de" },
+  { bcp47: "it-IT", prefix: "/it" },
+  { bcp47: "pt-PT", prefix: "/pt" },
+  { bcp47: "ru-RU", prefix: "/ru" },
+  { bcp47: "zh-CN", prefix: "/zh" },
+  { bcp47: "ja-JP", prefix: "/ja" },
+  { bcp47: "hi-IN", prefix: "/hi" },
+  { bcp47: "ar-SA", prefix: "/ar" },
+];
+
+// Construit le dict `alternates.languages` d'un groupe de pages équivalentes
+// (ex. home, /about, /method, /pricing) : chemin FR + même suffixe pour les 10 autres langues.
+function altLanguages(frPath: string, suffix: string): Record<string, string> {
+  const languages: Record<string, string> = { "fr-FR": `${BASE_URL}${frPath}` };
+  for (const { bcp47, prefix } of LOCALES) {
+    languages[bcp47] = `${BASE_URL}${prefix}${suffix}`;
+  }
+  return languages;
+}
+
+// Une page traduite par langue, pour un suffixe de route donné (ex. "/about").
+function localizedPages(suffix: string, alternates: Record<string, string>, changeFrequency: "weekly" | "monthly", priority: number): MetadataRoute.Sitemap {
+  return LOCALES.map(({ prefix }) => ({
+    url: `${BASE_URL}${prefix}${suffix}`,
+    lastModified: new Date(),
+    changeFrequency,
+    priority,
+    alternates: { languages: alternates },
+  }));
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const homeAlternates = altLanguages("", "");
+  const aboutAlternates = altLanguages("/a-propos", "/about");
+  const methodAlternates = altLanguages("/solution", "/method");
+  const pricingAlternates = altLanguages("/tarifs", "/pricing");
+
   // Pages statiques
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -12,58 +52,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
-      alternates: { languages: { "fr-FR": BASE_URL, "en-US": `${BASE_URL}/en` } },
+      alternates: { languages: homeAlternates },
     },
-    {
-      url: `${BASE_URL}/en`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-      alternates: { languages: { "fr-FR": BASE_URL, "en-US": `${BASE_URL}/en` } },
-    },
+    ...localizedPages("", homeAlternates, "weekly", 1),
     {
       url: `${BASE_URL}/a-propos`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
-      alternates: { languages: { "fr-FR": `${BASE_URL}/a-propos`, "en-US": `${BASE_URL}/en/about` } },
+      alternates: { languages: aboutAlternates },
     },
-    {
-      url: `${BASE_URL}/en/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-      alternates: { languages: { "fr-FR": `${BASE_URL}/a-propos`, "en-US": `${BASE_URL}/en/about` } },
-    },
+    ...localizedPages("/about", aboutAlternates, "monthly", 0.9),
     {
       // Page réelle (/features et /avantages sont des 301 → /solution, ne pas les lister)
       url: `${BASE_URL}/solution`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: { languages: { "fr-FR": `${BASE_URL}/solution`, "en-US": `${BASE_URL}/en/method` } },
+      alternates: { languages: methodAlternates },
     },
-    {
-      url: `${BASE_URL}/en/method`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: { languages: { "fr-FR": `${BASE_URL}/solution`, "en-US": `${BASE_URL}/en/method` } },
-    },
+    ...localizedPages("/method", methodAlternates, "monthly", 0.8),
     {
       url: `${BASE_URL}/tarifs`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: { languages: { "fr-FR": `${BASE_URL}/tarifs`, "en-US": `${BASE_URL}/en/pricing` } },
+      alternates: { languages: pricingAlternates },
     },
-    {
-      url: `${BASE_URL}/en/pricing`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: { languages: { "fr-FR": `${BASE_URL}/tarifs`, "en-US": `${BASE_URL}/en/pricing` } },
-    },
+    ...localizedPages("/pricing", pricingAlternates, "monthly", 0.8),
     {
       url: `${BASE_URL}/blog`,
       lastModified: new Date(),

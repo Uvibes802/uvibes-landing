@@ -37,10 +37,89 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 
-export default function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
+// Découpage en petits morceaux de texte plutôt qu'en blocs JSX dupliqués —
+// plus simple à étendre langue après langue (cf. les ternaires FR/EN d'origine).
+const HERO_TXT: Record<string, {
+  ariaLabel: string; line1: string; emph: string; line3: string; emphRose: string;
+  sub: React.ReactNode; cta: string; contactHref: string;
+}> = {
+  en: {
+    ariaLabel: "Uvibes — overview",
+    line1: "Switch on your", emph: "community's", line3: "real", emphRose: "power.",
+    sub: <>Good conversations don&apos;t happen by chance.<br />They&apos;re made.</>,
+    cta: "Let's talk about your project",
+    contactHref: "/en#contact",
+  },
+  es: {
+    ariaLabel: "Presentación de Uvibes",
+    line1: "Activa la", emph: "fuerza", line3: "de tu", emphRose: "colectivo.",
+    sub: <>Las buenas conversaciones no surgen por casualidad.<br />Se crean.</>,
+    cta: "Hablemos de tu proyecto",
+    contactHref: "/es#contact",
+  },
+  de: {
+    ariaLabel: "Uvibes — Überblick",
+    line1: "Aktiviere die", emph: "Kraft", line3: "deines", emphRose: "Kollektivs.",
+    sub: <>Gute Gespräche entstehen nicht zufällig.<br />Sie werden gemacht.</>,
+    cta: "Lass uns über dein Projekt sprechen",
+    contactHref: "/de#contact",
+  },
+  it: {
+    ariaLabel: "Uvibes — Panoramica",
+    line1: "Attiva la", emph: "forza", line3: "del tuo", emphRose: "collettivo.",
+    sub: <>Le buone conversazioni non nascono per caso.<br />Si creano.</>,
+    cta: "Parliamo del tuo progetto",
+    contactHref: "/it#contact",
+  },
+  pt: {
+    ariaLabel: "Uvibes — Visão geral",
+    line1: "Ativa a", emph: "força", line3: "do teu", emphRose: "coletivo.",
+    sub: <>As boas conversas não acontecem por acaso.<br />Criam-se.</>,
+    cta: "Vamos falar do teu projeto",
+    contactHref: "/pt#contact",
+  },
+  ru: {
+    ariaLabel: "Uvibes — обзор",
+    line1: "Включи", emph: "силу", line3: "своего", emphRose: "коллектива.",
+    sub: <>Хорошие разговоры не случаются сами по себе.<br />Их создают.</>,
+    cta: "Поговорим о вашем проекте",
+    contactHref: "/ru#contact",
+  },
+  zh: {
+    ariaLabel: "Uvibes — 概览",
+    line1: "唤醒你", emph: "集体的", line3: "真正", emphRose: "力量。",
+    sub: <>好的对话不是偶然发生的。<br />它们是被创造出来的。</>,
+    cta: "聊聊你的项目",
+    contactHref: "/zh#contact",
+  },
+  ja: {
+    ariaLabel: "Uvibes — 概要",
+    line1: "あなたの", emph: "コミュニティ", line3: "の本当の", emphRose: "力を解き放て。",
+    sub: <>良い会話は偶然には生まれません。<br />つくられるものです。</>,
+    cta: "あなたのプロジェクトについて話しましょう",
+    contactHref: "/ja#contact",
+  },
+  hi: {
+    ariaLabel: "Uvibes — परिचय",
+    line1: "अपने", emph: "समुदाय की", line3: "असली", emphRose: "शक्ति को जगाएं।",
+    sub: <>अच्छी बातचीत संयोग से नहीं होती।<br />वे बनाई जाती हैं।</>,
+    cta: "अपने प्रोजेक्ट के बारे में बात करें",
+    contactHref: "/hi#contact",
+  },
+  ar: {
+    ariaLabel: "Uvibes — نظرة عامة",
+    line1: "فعّل", emph: "قوة", line3: "مجتمعك", emphRose: "الحقيقية.",
+    sub: <>المحادثات الجيدة لا تحدث بالصدفة.<br />إنها تُصنع.</>,
+    cta: "لنتحدث عن مشروعك",
+    contactHref: "/ar#contact",
+  },
+};
+
+export default function HomeHero({ locale = "fr" }: { locale?: string }) {
   const t = useSettings();
+  const hero = locale !== "fr" ? HERO_TXT[locale] : undefined;
   return (
-    <section className="hero-section" aria-label={locale === "en" ? "Uvibes — overview" : "Présentation Uvibes"}>
+    <section className="hero-section" aria-label={hero?.ariaLabel ?? "Présentation Uvibes"}>
       {/* ── Backdrop animé ── */}
       <div className="hero-backdrop" aria-hidden="true">
         <div className="hero-blob hero-blob-p" />
@@ -126,18 +205,18 @@ export default function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
         <div className="hero-text-col">
           <Reveal delay={0}>
             <h1 className="hero-h1 v-prompt">
-              {locale === "en" ? (
+              {hero ? (
                 <>
-                  Switch on your<br />
+                  {hero.line1}<br />
                   <span className="hero-h1-emph">
-                    <span className="v-serif hero-emph-word" style={{ color: "#FFE456" }}>community&apos;s</span>
+                    <span className="v-serif hero-emph-word" style={{ color: "#FFE456" }}>{hero.emph}</span>
                     <svg className="hero-underline" viewBox="0 0 460 30" aria-hidden="true">
                       <path d="M5 22 Q 110 4 220 16 T 455 12" fill="none"
                         stroke="var(--orange)" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </span>
-                  <br />real{" "}
-                  <span style={{ color: "var(--rose)" }}>power.</span>
+                  <br />{hero.line3}{" "}
+                  <span style={{ color: "var(--rose)" }}>{hero.emphRose}</span>
                 </>
               ) : (
                 <>
@@ -159,25 +238,21 @@ export default function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
 
         {/* Colonne visuelle */}
         <div className="hero-visual-col">
-          <AppMockup />
+          <AppMockup locale={locale} />
         </div>
 
         {/* Sub + CTAs + social proof — desktop: col1 row2 / mobile: après mockup */}
         <div className="hero-after">
           <Reveal delay={180}>
             <p className="hero-sub">
-              {locale === "en" ? (
-                <>Good conversations don&apos;t happen by chance.<br />They&apos;re made.</>
-              ) : (
-                t("hero-sub", "Les bonnes conversations ne s'improvisent pas. Elles se créent.")
-              )}
+              {hero ? hero.sub : t("hero-sub", "Les bonnes conversations ne s'improvisent pas. Elles se créent.")}
             </p>
           </Reveal>
 
           <Reveal delay={320}>
             <div className="hero-ctas">
-              <Link href={locale === "en" ? "/en#contact" : "/#contact"} className="btn-brand btn-brand--white">
-                {locale === "en" ? "Let's talk about your project" : t("hero-cta-secondary", "Étudions votre projet")}
+              <Link href={hero?.contactHref ?? "/#contact"} className="btn-brand btn-brand--white">
+                {hero ? hero.cta : t("hero-cta-secondary", "Étudions votre projet")}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>

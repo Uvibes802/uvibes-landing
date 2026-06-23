@@ -87,134 +87,100 @@
   font-family: var(--text-font);
 }
 
-/* ── Triptyque — étapes éditoriales ── */
+/* ── Triptyque — le parcours posé sur la « vibe » (onde signature uvibes) ── */
 .pp-trio {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.pp-trio-group {
-  display: flex;
-  align-items: center;
-}
-
-/* Étape — pastille ronde animée */
-.pp-trio-step {
   position: relative;
+  max-width: 660px;
+  margin: 0 auto 1.75rem;
+  padding-top: 16px; /* espace pour l'onde au-dessus des jalons */
+}
+
+/* Onde de vibration = le fil du parcours, derrière les jalons */
+.pp-trio-thread {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pp-trio-steps {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.pp-trio-step {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: clamp(122px, 14vw, 146px);
-  height: clamp(122px, 14vw, 146px);
-  padding: 0 16px;
   text-align: center;
-  border-radius: 50%;
-  background: rgba(255,255,255,.85);
-  border: 2px solid color-mix(in srgb, var(--ps-color, #FD6E00) 40%, transparent);
-  box-shadow: 0 14px 34px -16px color-mix(in srgb, var(--ps-color, #FD6E00) 55%, transparent);
-  backdrop-filter: blur(4px);
-  animation: ppFloat 5s ease-in-out infinite;
+  gap: 6px;
 }
-/* anneau pulsé */
-.pp-trio-step::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  border: 2px solid var(--ps-color, #FD6E00);
-  opacity: 0;
-  animation: ppRing 3s ease-out infinite;
-  pointer-events: none;
-}
-/* décalage des animations entre les 3 pastilles */
-.pp-trio-group:nth-of-type(2) .pp-trio-step,
-.pp-trio-group:nth-of-type(2) .pp-trio-step::after { animation-delay: 0.6s; }
-.pp-trio-group:nth-of-type(3) .pp-trio-step,
-.pp-trio-group:nth-of-type(3) .pp-trio-step::after { animation-delay: 1.2s; }
 
-@keyframes ppFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+/* Jalon — pastille dégradée chaude posée sur l'onde */
+.pp-trio-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  box-shadow: 0 0 0 5px rgba(253, 110, 0, 0.1);
+  margin-bottom: 4px;
 }
-@keyframes ppRing {
-  0%       { transform: scale(1);    opacity: 0.5; }
-  70%,100% { transform: scale(1.22); opacity: 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .pp-trio-step { animation: none; }
-  .pp-trio-step::after { animation: none; }
-}
+/* Variation chaude par étape (pas de bleu — palette 100% chaude) */
+.pp-trio-step:nth-child(1) .pp-trio-dot { background: linear-gradient(135deg, #FD6E00, #FF9248); }
+.pp-trio-step:nth-child(2) .pp-trio-dot { background: linear-gradient(135deg, #F62570, #E6007E); }
+.pp-trio-step:nth-child(3) .pp-trio-dot { background: linear-gradient(135deg, #E6007E, #D90A5C); }
 
 .pp-trio-verb {
   font-family: var(--font-prompt), sans-serif;
-  font-size: clamp(15px, 1.6vw, 19px);
+  font-size: clamp(17px, 2vw, 21px);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  color: var(--ps-color, #FD6E00);
-  line-height: 1;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .pp-trio-sub {
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
-  color: rgba(26,23,21,.5);
-  font-family: var(--text-font);
-  line-height: 1.25;
+  max-width: 190px;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(26, 23, 21, 0.55);
 }
 
-/* Chemin ondulé entre étapes */
-.pp-trio-path {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 60px;
-  flex-shrink: 0;
-}
-
-.pp-trio-path svg {
-  width: 100%;
-  height: 12px;
-  stroke-dashoffset: 0;
-  animation: ppPathDash 2s linear infinite;
-}
-
-@keyframes ppPathDash {
-  from { stroke-dashoffset: 28; }
-  to   { stroke-dashoffset: 0; }
-}
-
-.pp-trio-arrow-tip {
-  position: absolute;
-  right: -1px;
-  width: 0; height: 0;
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 6px solid rgba(217,10,92,.45);
+@media (max-width: 600px) {
+  .pp-trio { padding-top: 0; max-width: 320px; }
+  .pp-trio-thread { display: none; }
+  .pp-trio-steps { flex-direction: column; gap: 1.4rem; }
 }
 
 .pp-subline {
   font-size: 13px;
   letter-spacing: 0.05em;
-  color: rgba(26,23,21,.45);
+  color: #6b4455;
   font-family: var(--text-font);
   margin: 0;
 }
 
-/* ── Carousel — 2 rangées en défilement opposé (1 seule en mobile) ── */
+/* ── Carousel — une seule rangée, défilement manuel (glisser / flèches / molette) ── */
 .pp-carousel {
   position: relative;
   z-index: 1;
   max-width: 100%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 22px;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
   /* Reveal scroll */
   opacity: 0;
   transform: translateY(28px);
@@ -222,25 +188,59 @@
 }
 .pp-vis .pp-carousel { opacity: 1; transform: translateY(0); }
 
-.pp-row {
-  overflow: hidden;
-  /* Marge négative pour laisser les cartes tiltées déborder un peu sans tronquer l'ombre */
-  padding: 14px 0;
-}
-.pp-row-track {
+.pp-track {
+  flex: 1;
+  min-width: 0;
   display: flex;
   gap: 18px;
-  width: max-content;
-  animation: ppRowScrollLeft 48s linear infinite;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding: 14px 6px 22px;
+  cursor: grab;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  /* Fondu sur les bords — suggère qu'il y a plus de contenu à glisser */
+  mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
 }
-.pp-row--right .pp-row-track { animation-name: ppRowScrollRight; }
-@keyframes ppRowScrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@keyframes ppRowScrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.pp-track::-webkit-scrollbar { display: none; }
+.pp-track:active { cursor: grabbing; }
 
-/* Pause au survol et dès qu'une carte est ouverte — pour lire sans que le tapis défile */
-.pp-row:hover .pp-row-track,
-.pp-carousel--paused .pp-row-track {
-  animation-play-state: paused;
+.pp-card { scroll-snap-align: start; }
+
+/* Flèches de navigation */
+.pp-nav-btn {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: none;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #FD6E00, #E6007E);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -10px rgba(217,10,92,.55);
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+.pp-nav-btn:hover:not(:disabled) { transform: scale(1.08); }
+.pp-nav-btn:disabled { opacity: .32; cursor: default; box-shadow: none; }
+
+/* Barre de progression du défilement */
+.pp-progress {
+  position: absolute;
+  left: 58px; right: 58px; bottom: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(26,23,21,.08);
+  overflow: hidden;
+}
+.pp-progress-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, #FD6E00, #E6007E);
+  transition: transform 0.15s ease;
 }
 
 /* ── Carte — document passeport ── */
@@ -476,9 +476,9 @@
 
 /* ── Responsive — une seule rangée, contenu révélé verticalement ── */
 @media (max-width: 700px) {
-  /* Une seule ligne de carousel : la 2e rangée est masquée, rien n'est perdu
-     puisque rowA contient déjà la moitié des passeports — voir aussi le fallback ci-dessous */
-  .pp-row--right { display: none; }
+  /* Les flèches prennent de la place inutilement sur mobile — le glisser au doigt suffit */
+  .pp-nav-btn { display: none; }
+  .pp-progress { left: 6px; right: 6px; }
 
   .pp-card { width: 220px; }
   .pp-card-front { width: 220px; }
@@ -493,11 +493,6 @@
 @media (max-width: 600px) {
   .pp-card-header { padding: 1rem 1.1rem 1.1rem; }
   .pp-card-reveal-inner { padding: 0 1.1rem 1.2rem; }
-
-  .pp-trio { flex-direction: column; gap: 0.5rem; }
-  .pp-trio-group { flex-direction: column; align-items: center; gap: 0.4rem; }
-  .pp-trio-path { transform: rotate(90deg); margin: 2px 0; }
-  .pp-trio-arrow-tip { right: auto; bottom: -1px; transform: rotate(90deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

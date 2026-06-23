@@ -25,7 +25,79 @@ const CAT_LABELS_EN: Record<string, string> = {
   "Architectes du code": "Code architects",
 };
 
-export default function TeamSection({ locale = "fr" }: { locale?: "fr" | "en" }) {
+const CAT_LABELS_ES: Record<string, string> = {
+  "Équipe projet": "Equipo del proyecto",
+  "Comité d'expertise": "Comité de expertos",
+  "Architectes du code": "Arquitectos del código",
+};
+
+const CAT_LABELS_DE: Record<string, string> = {
+  "Équipe projet": "Projektteam",
+  "Comité d'expertise": "Expertengremium",
+  "Architectes du code": "Code-Architekten",
+};
+
+const CAT_LABELS_IT: Record<string, string> = {
+  "Équipe projet": "Team del progetto",
+  "Comité d'expertise": "Comitato di esperti",
+  "Architectes du code": "Architetti del codice",
+};
+
+const CAT_LABELS_PT: Record<string, string> = {
+  "Équipe projet": "Equipa do projeto",
+  "Comité d'expertise": "Comité de especialistas",
+  "Architectes du code": "Arquitetos do código",
+};
+
+const CAT_LABELS_RU: Record<string, string> = {
+  "Équipe projet": "Команда проекта",
+  "Comité d'expertise": "Экспертный совет",
+  "Architectes du code": "Архитекторы кода",
+};
+
+const CAT_LABELS_ZH: Record<string, string> = {
+  "Équipe projet": "项目团队",
+  "Comité d'expertise": "专家委员会",
+  "Architectes du code": "代码架构师",
+};
+
+const CAT_LABELS_JA: Record<string, string> = {
+  "Équipe projet": "プロジェクトチーム",
+  "Comité d'expertise": "専門委員会",
+  "Architectes du code": "コードアーキテクト",
+};
+
+const CAT_LABELS_HI: Record<string, string> = {
+  "Équipe projet": "प्रोजेक्ट टीम",
+  "Comité d'expertise": "विशेषज्ञ समिति",
+  "Architectes du code": "कोड आर्किटेक्ट",
+};
+
+const CAT_LABELS_AR: Record<string, string> = {
+  "Équipe projet": "فريق المشروع",
+  "Comité d'expertise": "لجنة الخبراء",
+  "Architectes du code": "مهندسو الشيفرة البرمجية",
+};
+
+const CAT_LABELS_BY_LOCALE: Record<string, Record<string, string>> = {
+  en: CAT_LABELS_EN, es: CAT_LABELS_ES, de: CAT_LABELS_DE, it: CAT_LABELS_IT, pt: CAT_LABELS_PT,
+  ru: CAT_LABELS_RU, zh: CAT_LABELS_ZH, ja: CAT_LABELS_JA, hi: CAT_LABELS_HI, ar: CAT_LABELS_AR,
+};
+
+const TS_EMPTY_TXT: Record<string, string> = {
+  en: "Data is being updated",
+  es: "Datos en proceso de actualización",
+  de: "Daten werden aktualisiert",
+  it: "Dati in fase di aggiornamento",
+  pt: "Dados em atualização",
+  ru: "Данные обновляются",
+  zh: "数据正在更新中",
+  ja: "データを更新中です",
+  hi: "डेटा अपडेट किया जा रहा है",
+  ar: "البيانات قيد التحديث",
+};
+
+export default function TeamSection({ locale = "fr" }: { locale?: string }) {
   // Onglets dynamiques : pilotés depuis l'admin (clé CMS "team-categories")
   const [cats, setCats] = useState<string[]>(DEFAULT_CATS);
   const [activeButton, setActiveButton] = useState(DEFAULT_CATS[0]);
@@ -57,7 +129,8 @@ export default function TeamSection({ locale = "fr" }: { locale?: "fr" | "en" })
   }, []);
 
   // Le slug (utilisé pour filtrer en base) reste la valeur FR — seul le libellé affiché change.
-  const tabs = cats.map((c) => ({ label: locale === "en" ? (CAT_LABELS_EN[c] ?? c) : c, slug: c }));
+  const catLabels = CAT_LABELS_BY_LOCALE[locale];
+  const tabs = cats.map((c) => ({ label: catLabels ? (catLabels[c] ?? c) : c, slug: c }));
   const useCarousel = team.length > 4 || (isMobile && team.length > 1);
 
   const renderMembers = () => {
@@ -91,7 +164,7 @@ export default function TeamSection({ locale = "fr" }: { locale?: "fr" | "en" })
       return (
         <div className="team-empty-state">
           <span className="team-empty-state__icon">🔄</span>
-          {locale === "en" ? "Data is being updated" : "Données en cours de mise à jour"}
+          {TS_EMPTY_TXT[locale] ?? "Données en cours de mise à jour"}
         </div>
       );
     }

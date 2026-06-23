@@ -3,6 +3,8 @@ export type TestimonyCardProps = {
   testimony: string;
   auteur_temoignage: string;
   role_et_entreprise_temoignage: string;
+  photoUrl?: string | null;
+  logoUrl?: string | null;
   id: number | string;
 };
 export default function TestimonyCard({

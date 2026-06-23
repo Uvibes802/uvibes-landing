@@ -272,6 +272,18 @@
   transition: opacity .3s ease;
 }
 
+/* Légende sous la vidéo témoignage (nom + lieu de la personne) */
+.fc-caption {
+  margin: 1rem 0 0;
+  max-width: clamp(240px, 28vw, 340px);
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #7c5262;
+  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: italic;
+}
+
 .fc-play-icon {
   position: absolute;
   top: 50%; left: 50%;
@@ -293,7 +305,9 @@
   transform: none;
   width: 32px; height: 32px;
 }
-.fc-pause-icon:hover { transform: scale(1.1); }
+/* Garde le centrage (translate) en plus du zoom au survol — sinon l'icône pause,
+   qui n'apparaît qu'au survol, perdait son translate(-50%,-50%) et se décalait. */
+.fc-pause-icon:hover { transform: translate(-50%, -50%) scale(1.1); }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 860px) {
@@ -303,10 +317,11 @@
     padding-right: 32px;
   }
 
+  /* Vidéo toujours après le texte, pour les 3 parties (y compris la rangée inversée) */
   .fc-row--reverse .fc-text,
   .fc-row--reverse .fc-visual { order: unset; }
 
-  .fc-visual { order: -1; justify-self: center; }
+  .fc-visual { justify-self: center; }
   .fc-item { max-width: 100%; }
   .fc-watermark { opacity: .03; }
 }

@@ -77,61 +77,142 @@
   max-width: 640px;
 }
 
-/* ── Décodage du nom : emblème typographique + paragraphe filé ─── */
+/* ── Décodage du nom : deux révélations animées + punchline ─────── */
 .uvn-decode {
-  display: grid;
-  grid-template-columns: clamp(180px, 22vw, 260px) 1fr;
-  align-items: center;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.4rem, 3vw, 2.2rem);
   width: 100%;
-  max-width: 900px;
-  text-align: left;
+  max-width: 720px;
+  padding: clamp(1.8rem, 3.8vw, 3rem) clamp(1.6rem, 4vw, 3.4rem);
+  border-radius: 28px;
+  background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(255,255,255,.32));
+  border: 1px solid rgba(253,110,0,.14);
+  box-shadow: 0 30px 70px -40px rgba(217,10,92,.35);
+  backdrop-filter: blur(6px);
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
 }
 .uvn-vis .uvn-decode { opacity: 1; transform: none; }
 
-/* Emblème — U et Vibes empilés, comme une signature typographique */
-.uvn-emblem {
-  display: flex;
-  flex-direction: column;
-  line-height: 0.82;
+/* Halo doux derrière l'écrin */
+.uvn-decode-glow {
+  position: absolute;
+  inset: -10%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(253,110,0,.16), transparent 70%);
+  filter: blur(28px);
+  pointer-events: none;
 }
-.uvn-emblem-u,
-.uvn-emblem-vibes {
+
+/* Une révélation : grande lettre/mot → connecteur animé → son sens */
+.uvn-rev {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 2.5vw, 1.8rem);
+  text-align: left;
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(.2,.7,.2,1);
+}
+.uvn-vis .uvn-rev { opacity: 1; transform: none; }
+.uvn-vis .uvn-rev:nth-of-type(2) { transition-delay: 0.18s; }
+
+/* Grande lettre/mot en dégradé serif italique */
+.uvn-rev-big {
+  position: relative;
+  flex-shrink: 0;
+  min-width: clamp(86px, 13vw, 138px);
   font-style: italic;
   letter-spacing: -0.03em;
+  line-height: 0.9;
+  font-size: clamp(62px, 8.5vw, 104px);
   background: linear-gradient(135deg, #FD6E00, #E6007E);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.uvn-emblem-u { font-size: clamp(90px, 11vw, 138px); }
-.uvn-emblem-vibes {
-  font-size: clamp(46px, 5.6vw, 70px);
-  margin-left: 0.1em;
-  opacity: 0.88;
+/* "Vibes" : plus large que "U", et on garde de la place pour l'onde */
+.uvn-rev--wave .uvn-rev-big {
+  font-size: clamp(42px, 6vw, 74px);
+  min-width: clamp(150px, 22vw, 240px);
+  padding-bottom: 0.18em;
 }
 
-/* Paragraphe filé — une seule phrase, sans liste ni encadré */
-.uvn-statement {
-  margin: 0;
-  font-size: clamp(15px, 1.5vw, 18px);
-  line-height: 1.75;
-  color: #5a3a48;
-  font-family: var(--text-font);
-  max-width: 480px;
+/* L'onde vivante qui traverse le mot "Vibes" → incarne « vibrations » */
+.uvn-rev-line {
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: 0.02em;
+  height: 0.55em;
+  opacity: 0.92;
+  pointer-events: none;
 }
-.uvn-statement-key {
-  font-family: var(--font-prompt), sans-serif;
-  font-weight: 800;
+
+/* Connecteur : 3 points qui « voyagent » de la lettre vers le sens */
+.uvn-rev-arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.uvn-rev-arrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
+  opacity: 0.3;
+  animation: uvnDotTravel 1.7s ease-in-out infinite;
+}
+.uvn-rev-arrow-dot:nth-child(2) { animation-delay: 0.18s; }
+.uvn-rev-arrow-dot:nth-child(3) { animation-delay: 0.36s; }
+@keyframes uvnDotTravel {
+  0%, 100% { opacity: 0.25; transform: translateX(0) scale(0.9); }
+  50%      { opacity: 1;    transform: translateX(5px) scale(1.1); }
+}
+
+/* Le sens : mot (serif rose) + petite note */
+.uvn-rev-mean {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.uvn-rev-word {
+  font-style: italic;
+  font-size: clamp(25px, 3.2vw, 38px);
+  line-height: 1;
   color: var(--rose);
 }
-.uvn-statement-em {
+.uvn-rev-note {
+  font-size: clamp(13.5px, 1.35vw, 16px);
+  line-height: 1.45;
+  color: #6b4455;
+  font-family: var(--text-font);
+}
+
+/* Punchline qui « boucle » le sens du nom */
+.uvn-punch {
+  margin: clamp(0.3rem, 1.2vw, 0.8rem) 0 0;
+  text-align: center;
   font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  color: var(--orange);
+  font-size: clamp(19px, 2.5vw, 29px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #8A3050;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease 0.45s, transform 0.7s ease 0.45s;
+}
+.uvn-vis .uvn-punch { opacity: 1; transform: none; }
+.uvn-punch .uv-em-rose {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--orange), var(--rose));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .uvn-closing {
   font-style: italic;
@@ -223,10 +304,20 @@
 .uvn-vib svg { width: 100%; }
 
 /* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 640px) {
-  /* Emblème au-dessus, paragraphe centré dessous */
-  .uvn-decode { grid-template-columns: 1fr; justify-items: center; text-align: center; }
-  .uvn-emblem { align-items: center; }
-  .uvn-emblem-vibes { margin-left: 0; }
-  .uvn-statement { max-width: 360px; }
+@media (max-width: 560px) {
+  /* Lettre au-dessus, sens en dessous — chaque révélation devient verticale et centrée */
+  .uvn-rev {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .uvn-rev-big { min-width: 0; }
+  .uvn-rev--wave .uvn-rev-big { min-width: 0; }
+  .uvn-rev-arrow { transform: rotate(90deg); }
+  .uvn-rev-mean { align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uvn-rev-arrow-dot { animation: none; }
 }
