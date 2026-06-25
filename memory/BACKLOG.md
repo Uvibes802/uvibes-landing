@@ -38,6 +38,21 @@
 
 ---
 
+## Sécurité / hygiène dépôt (audit 2026-06-25, migration vers org)
+
+- [ ] **SEC-01** 🔴 — **Tokens GitHub en clair dans `.git/config`** (remotes `origin` et `fork`, `ghp_…` / `gho_…`). Non poussés (le `.git/` reste local) mais à risque si partage du config / capture d'écran. → Révoquer ces tokens sur GitHub et passer à un *credential helper* (ou token en variable d'env), jamais dans l'URL du remote.
+- [ ] **SEC-02** — **`origin` était mal configuré** (fetch = org `u-vibes`, push = fork `fvlekk`). Corrigé le 2026-06-25 (`set-url --push` vers l'org). À garder en tête : vérifier `git remote -v` avant tout push.
+- [ ] **CLEAN-01** — **`.audit/` (23 Mo, 55 screenshots Playwright) suivi par git** alors qu'il est dans `.gitignore` : committé avant l'ajout de la règle. Dé-suivi via `git rm -r --cached .audit` le 2026-06-25 (commit sur `dev`). Note : les fichiers restent dans l'**historique** — purge complète (poids du repo) = `git filter-repo`, à faire seulement si nécessaire et en équipe.
+- [ ] **PROCESS-01** — Workflow d'équipe : privilégier **branche feature → Pull Request → review** plutôt que push direct sur `dev`. Aussi : `feat/missions-falek` suit `fork/…`, `dev` suit `origin/…` (org) → travailler sur `dev` pour éviter la confusion de remotes.
+
+### Vérifié OK lors de l'audit (aucune fuite)
+- Aucun `.env` suivi ni dans l'historique ; `.env.example` sans vraies valeurs.
+- Aucun secret en dur dans le code (`ghp_`, `sk_`, `xkeysib-`, clés privées, URL DB avec mot de passe).
+- `.mcp.json` sans token ; aucun fichier `.pem`/`.key`/cert suivi.
+- Fichiers perso (`Attestation Lou.png`, captures locales, `public/uploads/`) bien gitignorés → non poussés.
+
+---
+
 ## Résolu (2026-06-23)
 
 - [x] **CODE-01 / CODE-02** — Typos `videoSrcDdesktop` et `mochupHome.png` : déjà disparues du code (entrées périmées).
