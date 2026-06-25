@@ -90,9 +90,10 @@ export async function POST(req: NextRequest) {
       prixTTC: calc.prixTTC,
     }).catch(console.error);
 
-    // Notifier la directrice (fire & forget)
+    // Notifier la directrice (fire & forget). `to` est ignoré par notifyDirectrice
+    // (envoi en dur vers MAIL_TO_ADMIN) → on passe une chaîne vide.
     notifyDirectrice({
-      to: process.env.EMAIL_USER ?? "",
+      to: "",
       collectifNom: nom,
       quoteNumero: numero,
       quoteId: quote.id,

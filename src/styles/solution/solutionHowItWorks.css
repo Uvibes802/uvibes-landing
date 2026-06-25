@@ -2,7 +2,9 @@
 
 .shiw-section {
   scroll-margin-top: 70px;
-  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 50%, #FFF0F8 100%);
+  /* Dégradé vertical symétrique (mêmes teintes en haut et en bas) → aucune
+     couture visible avec la section thématiques qui partage le même fond. */
+  background: linear-gradient(180deg, #FFF4EF 0%, #FFEFF7 50%, #FFF4EF 100%);
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
   position: relative;
   overflow: hidden;
@@ -93,8 +95,8 @@
   margin: 0 0 1.25rem;
 }
 .shiw-title-accent {
-  font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: normal;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   color: #D90A5C;
   -webkit-text-fill-color: #D90A5C;
 }

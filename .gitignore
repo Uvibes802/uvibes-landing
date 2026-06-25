@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# …mais on livre le modèle (sans secrets) pour la reprise du projet
+!.env.example
 
 # vercel
 .vercel
@@ -41,7 +43,8 @@ yarn-error.log*
 next-env.d.ts
 
 
-CLAUDE.md
+# CLAUDE.md est versionné : c'est le point d'entrée auto-lu par Claude Code
+# (index de reprise + contexte projet). On garde seulement le fichier perso local ignoré.
 CLAUDE.local.md
 .claudeignore
 .claude/

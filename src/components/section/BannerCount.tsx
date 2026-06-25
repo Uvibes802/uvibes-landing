@@ -156,16 +156,12 @@ export default function BannerCount({ locale = "fr" }: { locale?: string }) {
   const rawScore = useCountUp(49, 1800, started);
   const score = (rawScore / 10).toFixed(1);
 
-  // Mot en rotation à côté du compteur
+  // Mot en rotation à côté du compteur — chaque mot entre avec une animation
+  // (le changement de `key` rejoue l'animation d'entrée, cf. .banner-count-filler).
   const [fillerIdx, setFillerIdx] = useState(0);
-  const [fillerVisible, setFillerVisible] = useState(true);
   useEffect(() => {
     const iv = setInterval(() => {
-      setFillerVisible(false);
-      setTimeout(() => {
-        setFillerIdx((i) => (i + 1) % FILLERS.length);
-        setFillerVisible(true);
-      }, 300);
+      setFillerIdx((i) => (i + 1) % FILLERS.length);
     }, 2600);
     return () => clearInterval(iv);
   }, [FILLERS.length]);
@@ -209,7 +205,7 @@ export default function BannerCount({ locale = "fr" }: { locale?: string }) {
               {FILLERS.map((f) => (
                 <span key={f} className="bc-filler-ghost v-serif" aria-hidden="true">{f}</span>
               ))}
-              <span className="banner-count-filler v-serif" style={{ opacity: fillerVisible ? 1 : 0 }}>
+              <span key={fillerIdx} className="banner-count-filler v-serif">
                 {FILLERS[fillerIdx]}
               </span>
             </span>

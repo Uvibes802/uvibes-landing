@@ -365,8 +365,6 @@ export default function ValuePillars({ locale = "fr" }: { locale?: string }) {
             className="pillar-card"
             style={{ "--p-accent": p.accentColor } as React.CSSProperties}
           >
-            <span className="pillar-watermark" aria-hidden="true">{p.num}</span>
-
             <h3 className="pillar-title">
               {p.title}{" "}
               <span className="pillar-title-et v-serif">{p.titleEt}</span>{" "}

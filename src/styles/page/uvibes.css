@@ -4,9 +4,9 @@
 
 /* ── Utilitaires typographiques ────────────────────────────────── */
 .uv-serif-accent {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   color: var(--rose);
   -webkit-text-fill-color: currentColor;
   padding-right: 0.12em;
@@ -24,16 +24,20 @@
 
 /* Mot accentué en dégradé orange → rose (shimmer lent) */
 .uv-serif-grad {
-  font-style: italic;
+  /* inline-block + line-height/padding : Pacifico a de grandes hampes (le « b »
+     et le « U » de « Uvibes ») qui étaient rognés en haut/bas par la ligne du titre */
+  display: inline-block;
+  line-height: 1.18;
+  font-style: normal;
   font-weight: 600;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   background: linear-gradient(90deg, #FD6E00, #FF3D78, #D90A5C, #FF3D78, #FD6E00);
   background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  padding-right: 0.12em;
+  padding: 0.04em 0.12em 0.12em 0.02em;
   animation: accentShimmer 7s ease-in-out infinite;
 }
 @keyframes accentShimmer {
@@ -87,9 +91,9 @@
 .uv-hero-eyebrow { font-family: var(--font-roboto-mono), monospace; font-size: 11px; letter-spacing: 0.22em; color: rgba(255,255,255,.78); text-transform: uppercase; margin: 0 0 1rem; display: block; background: none; border: none; padding: 0; }
 .uv-hero-title { font-family: var(--font-prompt), sans-serif; font-size: clamp(50px, 9vw, 92px); font-weight: 800; letter-spacing: -0.05em; line-height: .95; color: #fff; margin: 0 0 1.5rem; }
 .uv-hero-em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   color: #FFE456;
   -webkit-text-fill-color: #FFE456;
   padding-right: 0.12em;
@@ -215,7 +219,8 @@
   font-family: var(--font-prompt), sans-serif;
 }
 
-/* Écrin doux autour de la citation Harvard — même esprit que .uvn-decode */
+/* Écrin doux autour de la citation Harvard — encore utilisé par les pages
+   traduites (/xx/about). La page FR utilise désormais la bande dégradée ci-dessous. */
 .uv-intro-statement-card {
   position: relative;
   max-width: 980px;
@@ -235,13 +240,11 @@
   filter: blur(30px);
   pointer-events: none;
 }
-
-/* Statement Harvard — citation, désormais posée dans l'écrin ci-dessus */
 .uv-intro-statement {
   position: relative;
   text-align: center;
-  font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: normal;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   font-size: clamp(22px, 3vw, 36px);
   line-height: 1.35;
   color: #5a3a48;
@@ -260,7 +263,7 @@
   top: -1.2rem;
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   font-style: normal;
   font-size: 6rem;
   line-height: 1;
@@ -271,6 +274,73 @@
   opacity: 0.25;
   pointer-events: none;
   user-select: none;
+}
+
+/* ── Particules flottantes de la bande citation ─────────────────── */
+.uv-quote-parts { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.uv-qp {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.7);
+  box-shadow: 0 0 8px rgba(255,255,255,.5);
+  animation: uvQpFloat ease-in-out infinite;
+}
+.uv-qp--1  { top: 22%; left: 8%;  width: 7px; height: 7px; animation-duration: 9s;  }
+.uv-qp--2  { top: 68%; left: 16%; width: 5px; height: 5px; animation-duration: 11s; animation-delay: 1.2s; }
+.uv-qp--3  { top: 38%; left: 28%; width: 4px; height: 4px; animation-duration: 8s;  animation-delay: .6s; opacity: .8; }
+.uv-qp--4  { top: 80%; left: 40%; width: 6px; height: 6px; animation-duration: 12s; animation-delay: 2s; }
+.uv-qp--5  { top: 18%; left: 52%; width: 5px; height: 5px; animation-duration: 10s; animation-delay: .9s; }
+.uv-qp--6  { top: 60%; left: 62%; width: 8px; height: 8px; animation-duration: 13s; animation-delay: 1.6s; }
+.uv-qp--7  { top: 30%; right: 16%; width: 5px; height: 5px; animation-duration: 9.5s; animation-delay: 2.4s; }
+.uv-qp--8  { top: 74%; right: 10%; width: 6px; height: 6px; animation-duration: 11.5s; animation-delay: .4s; }
+.uv-qp--9  { top: 46%; right: 30%; width: 4px; height: 4px; animation-duration: 8.5s; animation-delay: 3s; opacity: .75; }
+.uv-qp--10 { top: 12%; left: 76%; width: 5px; height: 5px; animation-duration: 12.5s; animation-delay: 1.1s; }
+@keyframes uvQpFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: .35; }
+  50%      { transform: translateY(-26px) scale(1.3); opacity: .9; }
+}
+@media (prefers-reduced-motion: reduce) { .uv-qp { animation: none !important; } }
+
+/* ── Citation Harvard — bande dégradée encadrée de vagues ───────── */
+.uv-quote-band {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin: 0 auto;
+  /* Padding vertical généreux : dépasse la hauteur des vagues (92px) pour que
+     la citation ne soit jamais chevauchée par les ondes. */
+  padding: clamp(6rem, 10vw, 8rem) clamp(1.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+.uv-quote-statement {
+  position: relative;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-style: normal;
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.4;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 18px rgba(120,0,40,.25);
+}
+.uv-quote-em {
+  font-style: normal;
+  color: #FFE456; /* jaune lumineux — même accent que la section équipe */
+}
+.uv-quote-cite {
+  display: inline-block;
+  font-size: 0.42em;
+  font-family: var(--font-roboto-mono), monospace;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,.82);
+  vertical-align: middle;
+}
+.uv-quote-mark {
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-size: 1.2em;
+  line-height: 0;
+  color: rgba(255,255,255,.55);
+  margin-right: 0.1em;
+  vertical-align: -0.15em;
 }
 .uv-intro-body { font-size: 15px; line-height: 1.9; color: #6b4455; margin: 0; }
 
@@ -364,17 +434,22 @@
 }
 .uv-thread-eyebrow {
   display: block;
-  font-family: var(--font-roboto-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #FD6E00;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--rose);
+  margin-bottom: 0.7rem;
 }
 .uv-thread-text {
-  font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  color: #5a1038;
+  font-style: normal;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  /* Valeurs en dégradé chaud (au lieu du bordeaux sombre) pour ressortir */
+  background: linear-gradient(120deg, var(--orange), var(--rose));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .uv-thread-sep {
   display: inline-block;
@@ -579,8 +654,8 @@
   display: block;
   text-align: center;
   padding: 0.7rem 0.5rem 0.85rem;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-style: normal;
   font-size: 16px;
   color: #6b4455;
 }
@@ -640,22 +715,105 @@
 .uv-ethics-card:nth-child(3) .uv-ethics-card-title { color: #E0A000; }
 .uv-ethics-card-text { font-size: 14px; line-height: 1.75; color: #6b4455; margin: 0; }
 
-/* Note renvoi blog — juste sous les 3 cartes éthique */
-.uv-ethics-blog-note {
-  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+/* Bouton renvoi blog — juste sous les 3 cartes éthique */
+.uv-ethics-blog-cta {
+  margin: clamp(1.8rem, 3.5vw, 2.75rem) 0 0;
   text-align: center;
-  font-size: 14.5px;
-  line-height: 1.7;
-  color: #7a5868;
 }
-.uv-ethics-blog-link {
-  color: var(--rose);
+.uv-ethics-blog-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
   font-weight: 600;
+  font-size: 15px;
+  color: #fff;
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--rose) 40%, transparent);
-  transition: border-color 0.2s ease;
+  background: var(--gradientColor);
+  box-shadow: 0 12px 28px -12px rgba(217,10,92,.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.uv-ethics-blog-link:hover { border-bottom-color: var(--rose); }
+.uv-ethics-blog-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px -14px rgba(217,10,92,.65);
+}
+.uv-ethics-blog-btn-arrow { transition: transform 0.25s ease; }
+.uv-ethics-blog-btn:hover .uv-ethics-blog-btn-arrow { transform: translateX(4px); }
+
+/* ── Éléments animés en fond de la section éthique ─────────────── */
+.uv-ethics-deco { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.uv-ethics-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.5;
+  animation: uvEthicsFloat ease-in-out infinite;
+}
+.uv-ethics-orb--1 { top: 18%; left: 6%; width: 16px; height: 16px; background: var(--orange); animation-duration: 8s; }
+.uv-ethics-orb--2 { top: 62%; left: 12%; width: 11px; height: 11px; background: var(--rose); animation-duration: 11s; animation-delay: 1.5s; }
+.uv-ethics-orb--3 { top: 40%; right: 8%; width: 14px; height: 14px; background: #FFB040; animation-duration: 9.5s; animation-delay: .8s; }
+.uv-ethics-orb--4 { top: 78%; right: 26%; width: 9px; height: 9px; background: var(--rose); animation-duration: 10.5s; animation-delay: 2.2s; }
+.uv-ethics-orb--5 { top: 30%; left: 40%; width: 7px; height: 7px; background: var(--orange); animation-duration: 12s; animation-delay: 3s; }
+
+.uv-ethics-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--rose) 30%, transparent);
+  animation: uvEthicsDrift ease-in-out infinite;
+}
+.uv-ethics-ring--1 { bottom: 8%; right: 14%; width: 70px; height: 70px; animation-duration: 14s; }
+.uv-ethics-ring--2 { top: 12%; left: 22%; width: 44px; height: 44px; border-color: color-mix(in srgb, var(--orange) 32%, transparent); animation-duration: 17s; animation-delay: 2s; }
+.uv-ethics-ring--3 { bottom: 26%; left: 8%; width: 28px; height: 28px; border-color: color-mix(in srgb, #FFB040 40%, transparent); animation-duration: 12s; animation-delay: 1s; }
+
+/* Halos doux qui respirent en fond */
+.uv-ethics-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: uvEthicsBreathe ease-in-out infinite;
+}
+.uv-ethics-glow--1 { top: -6%; left: 30%; width: 320px; height: 320px; background: radial-gradient(closest-side, rgba(253,110,0,.18), transparent 70%); animation-duration: 13s; }
+.uv-ethics-glow--2 { bottom: -10%; right: 4%; width: 360px; height: 360px; background: radial-gradient(closest-side, rgba(217,10,92,.16), transparent 70%); animation-duration: 16s; animation-delay: 2s; }
+
+/* Petites étincelles + qui scintillent */
+.uv-ethics-spark {
+  position: absolute;
+  width: 14px; height: 14px;
+  background:
+    linear-gradient(var(--rose), var(--rose)) center/100% 2px no-repeat,
+    linear-gradient(var(--rose), var(--rose)) center/2px 100% no-repeat;
+  opacity: 0;
+  animation: uvEthicsTwinkle ease-in-out infinite;
+}
+.uv-ethics-spark--1 { top: 22%; right: 30%; animation-duration: 4s; }
+.uv-ethics-spark--2 { top: 70%; left: 28%; animation-duration: 5s; animation-delay: 1.3s; background:
+    linear-gradient(var(--orange), var(--orange)) center/100% 2px no-repeat,
+    linear-gradient(var(--orange), var(--orange)) center/2px 100% no-repeat; }
+.uv-ethics-spark--3 { top: 48%; right: 18%; animation-duration: 4.6s; animation-delay: 2.4s; }
+.uv-ethics-spark--4 { top: 14%; left: 14%; animation-duration: 5.4s; animation-delay: .6s; background:
+    linear-gradient(#FFB040, #FFB040) center/100% 2px no-repeat,
+    linear-gradient(#FFB040, #FFB040) center/2px 100% no-repeat; }
+
+@keyframes uvEthicsFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: .45; }
+  50%      { transform: translateY(-30px) scale(1.2); opacity: .8; }
+}
+@keyframes uvEthicsDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50%      { transform: translate(-18px, 14px) rotate(20deg); }
+}
+@keyframes uvEthicsBreathe {
+  0%, 100% { transform: scale(1); opacity: .7; }
+  50%      { transform: scale(1.25); opacity: 1; }
+}
+@keyframes uvEthicsTwinkle {
+  0%, 100% { opacity: 0; transform: scale(.4) rotate(0deg); }
+  50%      { opacity: .9; transform: scale(1) rotate(45deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uv-ethics-orb, .uv-ethics-ring, .uv-ethics-glow, .uv-ethics-spark { animation: none !important; }
+}
 
 /* ── CTA Rejoindre — redesign impactant ───────────────────────── */
 .uv-join {
@@ -851,9 +1009,8 @@
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  /* Cadre photo blanc + ombre brand (cohérent avec les polaroïds du site) */
+  /* Ombre brand sans liseré blanc */
   box-shadow:
-    0 0 0 7px #fff,
     0 18px 44px -10px rgba(217,10,92,.4),
     0 4px 14px rgba(0,0,0,.12);
   transform: rotate(2deg);

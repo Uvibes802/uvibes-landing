@@ -22,7 +22,7 @@ const DEFAULTS = {
     { label: "3 campagnes d'enquêtes flash", detail: "jusqu'à 9 sondages personnalisés pour recueillir les informations dont vous avez besoin" },
     { label: "1 infographie dédiée", detail: "pour promouvoir facilement votre initiative et favoriser les inscriptions" },
     { label: "2 statistiques d'usage", detail: "pour mieux comprendre les dynamiques et l'engagement de votre collectif", bonus: true },
-    { label: "2 heures d'accompagnement et d'assistance", detail: "offertes" },
+    { label: "2 heures d'accompagnement et d'assistance", detail: "offertes pour prendre la plateforme en main sereinement et lever toutes vos questions" },
   ] as Point[],
 };
 
@@ -39,7 +39,7 @@ const DEFAULTS_EN = {
     { label: "3 survey campaigns", detail: "3 custom surveys each, to gather what matters" },
     { label: "1 ready-to-use infographic", detail: "everything needed to make signing up easy for your members" },
     { label: "2 usage indicators", detail: "to track your community's engagement", bonus: true },
-    { label: "2 hours of guidance and support", detail: "included" },
+    { label: "2 hours of guidance and support", detail: "included — to get you up and running and answer all your questions" },
   ] as Point[],
 };
 
@@ -56,7 +56,7 @@ const DEFAULTS_ES = {
     { label: "3 campañas de encuestas", detail: "3 encuestas personalizadas cada una, para recoger lo que importa" },
     { label: "1 infografía lista para usar", detail: "todo lo necesario para facilitar la inscripción de tus miembros" },
     { label: "2 indicadores de uso", detail: "para seguir el compromiso de tu comunidad", bonus: true },
-    { label: "2 horas de acompañamiento y asistencia", detail: "incluidas" },
+    { label: "2 horas de acompañamiento y asistencia", detail: "incluidas, para empezar con buen pie y resolver todas tus dudas" },
   ] as Point[],
 };
 
@@ -73,7 +73,7 @@ const DEFAULTS_DE = {
     { label: "3 Umfragekampagnen", detail: "jeweils 3 individuelle Umfragen, um zu erfassen, was zählt" },
     { label: "1 schlüsselfertige Infografik", detail: "alles, um die Anmeldung Ihrer Mitglieder zu erleichtern" },
     { label: "2 Nutzungsindikatoren", detail: "um das Engagement Ihrer Community zu verfolgen", bonus: true },
-    { label: "2 Stunden Begleitung und Unterstützung", detail: "inklusive" },
+    { label: "2 Stunden Begleitung und Unterstützung", detail: "inklusive, für einen reibungslosen Start und alle Ihre Fragen" },
   ] as Point[],
 };
 
@@ -89,7 +89,7 @@ const DEFAULTS_IT = {
     { label: "3 campagne di sondaggi", detail: "3 sondaggi personalizzati ciascuna, per raccogliere ciò che conta" },
     { label: "1 infografica pronta all'uso", detail: "tutto il necessario per facilitare l'iscrizione dei tuoi membri" },
     { label: "2 indicatori di utilizzo", detail: "per monitorare l'impegno della tua comunità", bonus: true },
-    { label: "2 ore di accompagnamento e assistenza", detail: "incluse" },
+    { label: "2 ore di accompagnamento e assistenza", detail: "incluse, per partire col piede giusto e rispondere a ogni domanda" },
   ] as Point[],
 };
 
@@ -105,7 +105,7 @@ const DEFAULTS_PT = {
     { label: "3 campanhas de inquéritos", detail: "3 inquéritos personalizados cada, para recolher o que importa" },
     { label: "1 infografia pronta a usar", detail: "tudo o que é preciso para facilitar a inscrição dos seus membros" },
     { label: "2 indicadores de utilização", detail: "para acompanhar o envolvimento da sua comunidade", bonus: true },
-    { label: "2 horas de acompanhamento e assistência", detail: "incluídas" },
+    { label: "2 horas de acompanhamento e assistência", detail: "incluídas, para começar bem e esclarecer todas as suas dúvidas" },
   ] as Point[],
 };
 
@@ -121,7 +121,7 @@ const DEFAULTS_RU = {
     { label: "3 кампании опросов", detail: "по 3 индивидуальных опроса каждая, чтобы собрать важное" },
     { label: "1 готовая инфографика", detail: "всё необходимое, чтобы упростить регистрацию ваших участников" },
     { label: "2 показателя использования", detail: "чтобы отслеживать вовлечённость вашего сообщества", bonus: true },
-    { label: "2 часа сопровождения и поддержки", detail: "бесплатно" },
+    { label: "2 часа сопровождения и поддержки", detail: "бесплатно — чтобы уверенно начать и ответить на все вопросы" },
   ] as Point[],
 };
 
@@ -137,7 +137,7 @@ const DEFAULTS_ZH = {
     { label: "3次调查活动", detail: "每次包含3个定制调查，收集真正重要的信息" },
     { label: "1份现成的信息图", detail: "助力你的成员轻松完成注册的一切所需" },
     { label: "2项使用指标", detail: "用于追踪你社群的参与度", bonus: true },
-    { label: "2小时陪伴与协助", detail: "免费提供" },
+    { label: "2小时陪伴与协助", detail: "免费提供，助你顺利上手并解答所有疑问" },
   ] as Point[],
 };
 
@@ -153,7 +153,7 @@ const DEFAULTS_JA = {
     { label: "3回の調査キャンペーン", detail: "それぞれカスタム調査3件で、重要なことを収集" },
     { label: "1つの完成済みインフォグラフィック", detail: "メンバーの登録を簡単にするために必要なすべて" },
     { label: "2つの利用指標", detail: "コミュニティのエンゲージメントを追跡するために", bonus: true },
-    { label: "2時間の伴走サポート", detail: "無料提供" },
+    { label: "2時間の伴走サポート", detail: "無料提供。スムーズな立ち上げとあらゆる疑問の解消を支援" },
   ] as Point[],
 };
 
@@ -169,7 +169,7 @@ const DEFAULTS_HI = {
     { label: "3 सर्वेक्षण अभियान", detail: "प्रत्येक में 3 कस्टम सर्वेक्षण, जो ज़रूरी है उसे इकट्ठा करने के लिए" },
     { label: "1 तैयार इन्फोग्राफिक", detail: "आपके सदस्यों के पंजीकरण को आसान बनाने के लिए सब कुछ" },
     { label: "2 उपयोग संकेतक", detail: "आपके समुदाय की सहभागिता को ट्रैक करने के लिए", bonus: true },
-    { label: "2 घंटे का मार्गदर्शन और सहायता", detail: "नि:शुल्क" },
+    { label: "2 घंटे का मार्गदर्शन और सहायता", detail: "नि:शुल्क — सहज शुरुआत और आपके सभी सवालों के जवाब के लिए" },
   ] as Point[],
 };
 
@@ -185,7 +185,7 @@ const DEFAULTS_AR = {
     { label: "3 حملات استبيانات", detail: "3 استبيانات مخصصة في كل حملة، لجمع ما يهم" },
     { label: "إنفوغرافيك جاهز للاستخدام", detail: "كل ما يلزم لتسهيل تسجيل أعضائك" },
     { label: "مؤشرا استخدام", detail: "لتتبع تفاعل مجتمعك", bonus: true },
-    { label: "ساعتان من المرافقة والدعم", detail: "مجانًا" },
+    { label: "ساعتان من المرافقة والدعم", detail: "مجانًا، لبداية سلسة وللإجابة عن كل أسئلتك" },
   ] as Point[],
 };
 
@@ -286,7 +286,11 @@ export default function OffreEvenementielle({ locale = "fr" }: { locale?: string
       <div className="oe-inner">
         {/* Barre compacte cliquable — le prix accroche dès l'état replié */}
         <button className="oe-bar" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-          <span className="oe-eyebrow-pill">{oe ? oe.pill : "Offre découverte · 30 jours"}</span>
+          <span className="oe-eyebrow-pill">
+            {(oe ? oe.pill : "Offre découverte · 30 jours").split("·").map((part, i) => (
+              <span key={i} className="oe-pill-line">{part.trim()}</span>
+            ))}
+          </span>
           <span className="oe-bar-title v-prompt">
             {c.titre}{" "}
             <span className="oe-title-accent v-serif">{c.prixAccent}</span>

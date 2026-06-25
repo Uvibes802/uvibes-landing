@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import NewsletterManager from "@/components/admin/NewsletterManager";
+import NewsletterCompose from "@/components/admin/NewsletterCompose";
 
 export default async function NewsletterPage() {
   let subscribers: Awaited<ReturnType<typeof prisma.newsletterSubscriber.findMany>> = [];
@@ -54,6 +55,9 @@ export default async function NewsletterPage() {
             <div className="crm-metric-sub">nouvelles inscriptions</div>
           </div>
         </div>
+
+        {/* Composer + envoyer une newsletter via Brevo */}
+        <NewsletterCompose actifs={actifs} />
 
         <NewsletterManager initialSubscribers={subscribers} />
       </div>

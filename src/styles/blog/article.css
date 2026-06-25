@@ -210,7 +210,8 @@
 }
 .article-content a:hover { color: #D90A5C; }
 
-.article-content strong { color: #1a0a06; font-weight: 700; }
+/* Gras en rose de marque (sous-titres « 3.1… » + emphase) → harmonisé avec les titres */
+.article-content strong { color: #D90A5C; font-weight: 700; }
 
 /* ── Bouton retour ────────────────────────────────────────────── */
 .article-back-button {

@@ -1,0 +1,86 @@
+/* ── Menu déroulant custom (rendu identique tous OS) ──────────────── */
+.uv-select { position: relative; width: 100%; }
+
+.uv-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(217, 10, 92, 0.18);
+  background: #fff;
+  font-family: var(--text-font, "Supreme-Light"), sans-serif;
+  font-size: 15px;
+  color: #3a2630;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.uv-select-trigger:hover { border-color: rgba(217, 10, 92, 0.4); }
+.uv-select.--open .uv-select-trigger,
+.uv-select-trigger:focus-visible {
+  outline: none;
+  border-color: var(--orange, #FD6E00);
+  box-shadow: 0 0 0 3px rgba(253, 110, 0, 0.14);
+}
+.uv-select-placeholder { color: #9a7d88; }
+.uv-select-trigger.--error { border-color: #e0245e; box-shadow: 0 0 0 3px rgba(224, 36, 94, 0.12); }
+
+.uv-select-arrow {
+  flex-shrink: 0;
+  color: var(--rose, #D90A5C);
+  transition: transform 0.2s ease;
+}
+.uv-select.--open .uv-select-arrow { transform: rotate(180deg); }
+
+/* La liste déroulante — entièrement custom, même look partout */
+.uv-select-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  max-height: 280px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(217, 10, 92, 0.1);
+  box-shadow: 0 18px 44px -16px rgba(217, 10, 92, 0.4);
+  animation: uvSelectIn 0.16s cubic-bezier(.2, .7, .2, 1);
+}
+@keyframes uvSelectIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.uv-select-option {
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-family: var(--text-font, "Supreme-Light"), sans-serif;
+  font-size: 14.5px;
+  color: #4a2a38;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.uv-select-option.--active {
+  background: linear-gradient(135deg, rgba(253, 110, 0, 0.12), rgba(217, 10, 92, 0.12));
+  color: #1a0a06;
+}
+.uv-select-option.--selected {
+  background: linear-gradient(135deg, var(--orange, #FD6E00), var(--rose, #E6007E));
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Scrollbar discrète si beaucoup d'options */
+.uv-select-list::-webkit-scrollbar { width: 8px; }
+.uv-select-list::-webkit-scrollbar-thumb {
+  background: rgba(217, 10, 92, 0.3);
+  border-radius: 99px;
+}
+.uv-select-list { scrollbar-width: thin; scrollbar-color: rgba(217, 10, 92, 0.3) transparent; }

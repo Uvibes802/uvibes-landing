@@ -235,7 +235,8 @@
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.15;
-  color: var(--ink);
+  /* Même orange que les titres de la liste blog (.ba-card-title) → cohérence */
+  color: #A24B00;
   font-family: var(--font-prompt), sans-serif;
 }
 .fa-card-old--side .fa-card-old-title {
@@ -345,7 +346,8 @@
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.15;
-  color: var(--ink);
+  /* Même orange que les titres de la liste blog (.ba-card-title) → cohérence */
+  color: #A24B00;
   font-family: var(--font-prompt), sans-serif;
 }
 

@@ -280,8 +280,8 @@
   font-size: 13.5px;
   line-height: 1.4;
   color: #7c5262;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-style: normal;
 }
 
 .fc-play-icon {

@@ -1,263 +1,312 @@
-/* ── Page RDV — macOS premium ─────────────────────────────────── */
+/* ── Page Prise de RDV — fond dégradé saturé + blobs, formulaire clair ── */
+
 .rdv-page {
-  min-height: 100vh;
-  background: linear-gradient(145deg, #FFFBF4 0%, #FFF6EC 40%, #FFF0F8 70%, #F8F4FF 100%);
-  padding: calc(var(--nav-height, 68px) + 3rem) clamp(1rem, 3vw, 2rem) 5rem;
   position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: calc(var(--nav-height, 68px) + clamp(2.5rem, 6vw, 4.5rem)) clamp(1rem, 5vw, 2rem) clamp(3rem, 6vw, 5rem);
+  /* dégradé saturé, foncé en haut (en-tête blanc lisible) → orange en bas */
+  background: linear-gradient(165deg, #C9004F 0%, #E6007E 28%, #FF5E98 58%, #FF7A2E 100%);
 }
 
-/* Blobs déco */
-.rdv-page::before {
-  content: '';
-  position: fixed;
-  top: -120px; left: -120px;
-  width: 480px; height: 480px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.09), transparent);
-  pointer-events: none;
-  z-index: 0;
-}
-.rdv-page::after {
-  content: '';
-  position: fixed;
-  bottom: -80px; right: -80px;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.07), transparent);
-  pointer-events: none;
-  z-index: 0;
+/* Backdrop blobs animés (esprit hero) */
+.rdv-page-backdrop { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.rdv-pblob { position: absolute; border-radius: 50%; filter: blur(60px); }
+.rdv-pblob-1 { width: 620px; height: 620px; top: -220px; left: -160px;
+  background: radial-gradient(closest-side, rgba(255,60,0,.85), transparent 70%); animation: rdvBlobA 24s ease-in-out infinite; }
+.rdv-pblob-2 { width: 560px; height: 560px; top: -120px; right: -140px;
+  background: radial-gradient(closest-side, rgba(255,100,170,.9), transparent 70%); animation: rdvBlobB 28s ease-in-out infinite; }
+.rdv-pblob-3 { width: 520px; height: 520px; bottom: -180px; left: 10%;
+  background: radial-gradient(closest-side, rgba(230,0,126,.9), transparent 70%); animation: rdvBlobA 30s ease-in-out infinite reverse; }
+.rdv-pblob-4 { width: 600px; height: 600px; bottom: -220px; right: -120px;
+  background: radial-gradient(closest-side, rgba(255,150,40,.85), transparent 70%); animation: rdvBlobB 26s ease-in-out infinite reverse; }
+.rdv-pblob-5 { width: 420px; height: 420px; top: 36%; left: -120px;
+  background: radial-gradient(closest-side, rgba(255,90,90,.7), transparent 70%); animation: rdvBlobA 32s ease-in-out infinite; }
+.rdv-pblob-6 { width: 380px; height: 380px; top: 30%; right: 8%;
+  background: radial-gradient(closest-side, rgba(255,200,60,.6), transparent 70%); animation: rdvBlobB 34s ease-in-out infinite; }
+@keyframes rdvBlobA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(50px,-40px) scale(1.12); } }
+@keyframes rdvBlobB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-44px,36px) scale(1.1); } }
+
+/* Éléments flottants décoratifs — anneaux, pastilles, petites croix */
+.rdv-float { position: absolute; opacity: .55; animation: rdvFloat 14s ease-in-out infinite; }
+.rdv-float-ring { border-radius: 50%; border: 2.5px solid rgba(255,255,255,.6); }
+.rdv-float-dot { border-radius: 50%; background: rgba(255,255,255,.55); }
+.rdv-float-plus { background:
+    linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,.7)) center/100% 2.5px no-repeat,
+    linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,.7)) center/2.5px 100% no-repeat; }
+.rdv-f1 { width: 64px; height: 64px; top: 16%; left: 8%; animation-duration: 17s; }
+.rdv-f2 { width: 38px; height: 38px; top: 64%; left: 14%; animation-duration: 13s; animation-direction: reverse; }
+.rdv-f3 { width: 12px; height: 12px; top: 26%; right: 12%; animation-duration: 11s; }
+.rdv-f4 { width: 8px; height: 8px; top: 72%; right: 18%; animation-duration: 15s; animation-direction: reverse; }
+.rdv-f5 { width: 90px; height: 90px; bottom: 12%; right: 7%; opacity: .35; animation-duration: 20s; }
+.rdv-f6 { width: 14px; height: 14px; top: 46%; left: 5%; animation-duration: 12s; }
+.rdv-f7 { width: 22px; height: 22px; top: 12%; right: 26%; animation-duration: 16s; animation-direction: reverse; }
+.rdv-f8 { width: 16px; height: 16px; bottom: 22%; left: 22%; animation-duration: 18s; }
+@keyframes rdvFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-26px) rotate(12deg); }
 }
 
-.rdv-container { position: relative; z-index: 1; }
+.rdv-container { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
 
-.rdv-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* ── Header ───────────────────────────────────────────────────── */
-.rdv-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
+/* En-tête — texte blanc sur le fond saturé */
+.rdv-header { text-align: center; margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
 .rdv-eyebrow {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #FD6E00;
-  margin-bottom: 1rem;
-  font-family: var(--text-font-bold, "Supreme-Bold");
-  background: rgba(253,110,0,.08);
-  padding: 5px 14px;
-  border-radius: 999px;
+  display: inline-block; font-family: var(--font-roboto-mono), monospace;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,.85); margin-bottom: 0.8rem;
+}
+.rdv-title {
+  margin: 0; font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(34px, 6vw, 58px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02;
+  color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,.18);
+}
+.rdv-subtitle {
+  max-width: 520px; margin: 1rem auto 0; font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6; color: rgba(255,255,255,.9);
+}
+
+/* ── Carte (claire) ────────────────────────────────────────────── */
+.rdv-booking {
+  position: relative; z-index: 0; isolation: isolate;
+  padding: clamp(1.9rem, 4vw, 3rem); color: #3a2630;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 34px 80px -40px rgba(217,10,92,.5);
+}
+
+/* ── Progression ───────────────────────────────────────────────── */
+.rdv-progress { display: flex; align-items: center; gap: 12px; margin: 2px 0 1.8rem; }
+.rdv-progress-step { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: #6b5560; transition: color 0.3s ease; }
+.rdv-progress-step.--on { color: #1a0a06; }
+.rdv-progress-num {
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
+  font-size: 12px; background: rgba(26,10,6,.08); color: rgba(26,10,6,.5); transition: all 0.3s ease;
+}
+.rdv-progress-step.--on .rdv-progress-num { background: linear-gradient(135deg, var(--orange), var(--rose)); color: #fff; }
+.rdv-progress-bar { flex: 1; height: 3px; border-radius: 3px; background: rgba(26,10,6,.08); overflow: hidden; }
+.rdv-progress-fill { display: block; height: 100%; width: 0; border-radius: 3px; background: linear-gradient(90deg, var(--orange), var(--rose)); transition: width 0.5s cubic-bezier(.2,.7,.2,1); }
+.rdv-progress-fill.--on { width: 100%; }
+
+/* ── Panneau d'étape ───────────────────────────────────────────── */
+.rdv-fade { animation: rdvFadeUp 0.45s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rdvFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+/* Titre d'étape en dégradé (pas de noir) */
+.rdv-step-title {
+  margin: 0 0 1.1rem; font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(17px, 2.1vw, 21px); font-weight: 800; letter-spacing: -0.02em;
+  background: linear-gradient(120deg, var(--orange), var(--rose));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* ── Slider de jours (barre stylée) ────────────────────────────── */
+.rdv-days {
+  display: flex; gap: 9px; overflow-x: auto; overflow-y: hidden; padding: 6px 2px 12px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217,10,92,.5) rgba(217,10,92,.12);
+}
+.rdv-days::-webkit-scrollbar { height: 7px; }
+.rdv-days::-webkit-scrollbar-track { background: rgba(217,10,92,.1); border-radius: 99px; }
+.rdv-days::-webkit-scrollbar-thumb { background: linear-gradient(90deg, var(--orange), var(--rose)); border-radius: 99px; }
+
+.rdv-day {
+  flex: 0 0 auto; scroll-snap-align: start;
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  width: 62px; padding: 11px 0 9px; border-radius: 16px;
+  background: #FFF1F6; border: 1.5px solid rgba(253,110,0,.16); cursor: pointer;
+  transition: transform 0.2s cubic-bezier(.2,.7,.2,1), border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  animation: rdvFadeUp 0.4s both; animation-delay: calc(var(--i, 0) * 0.035s);
+}
+.rdv-day:hover { transform: translateY(-3px); border-color: var(--orange); background: #FFE9DC; }
+.rdv-day-dow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #C25600; }
+.rdv-day-num { font-family: var(--font-prompt), sans-serif; font-size: 22px; font-weight: 800; color: #B0003F; line-height: 1; }
+.rdv-day-month { font-size: 10.5px; color: #C25600; }
+.rdv-day.--active { background: linear-gradient(150deg, #FD6E00 0%, #FF3D78 55%, #E6007E 100%); border-color: transparent; box-shadow: 0 12px 24px -8px rgba(253,110,0,.55); }
+.rdv-day.--active .rdv-day-dow, .rdv-day.--active .rdv-day-num, .rdv-day.--active .rdv-day-month { color: #fff; }
+
+/* ── Créneaux ──────────────────────────────────────────────────── */
+.rdv-slots-wrap { margin-top: 1.4rem; }
+.rdv-slots-label { margin: 0 0 0.7rem; font-size: 13px; color: #6b4455; }
+.rdv-slots-label::first-letter { text-transform: uppercase; }
+.rdv-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); gap: 8px; }
+.rdv-slot {
+  padding: 11px 6px; border-radius: 12px; background: #fff; border: 1.5px solid rgba(26,10,6,.12);
+  font-size: 14px; font-weight: 600; color: #3a2630; cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+  animation: rdvFadeUp 0.35s both; animation-delay: calc(var(--i, 0) * 0.03s);
+}
+.rdv-slot:hover { transform: translateY(-2px); border-color: var(--rose); }
+.rdv-slot.--selected { background: linear-gradient(150deg, #E6007E, #D90A5C); border-color: transparent; color: #fff; box-shadow: 0 8px 18px -6px rgba(217,10,92,.5); }
+
+.rdv-slots-loading { display: flex; gap: 7px; padding: 8px 0; }
+.rdv-dot-pulse { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--rose)); animation: rdvDotPulse 1s ease-in-out infinite; }
+.rdv-dot-pulse:nth-child(2) { animation-delay: 0.15s; }
+.rdv-dot-pulse:nth-child(3) { animation-delay: 0.3s; }
+@keyframes rdvDotPulse { 0%,100% { opacity: 0.35; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.15); } }
+.rdv-empty { font-size: 14px; color: var(--rose); margin: 4px 0 0; }
+
+/* ── Boutons ───────────────────────────────────────────────────── */
+.rdv-next, .rdv-submit {
+  margin-top: 1.6rem; width: 100%; padding: 15px 20px; border: none; border-radius: 14px;
+  font-family: var(--font-prompt), sans-serif; font-size: 15px; font-weight: 700;
+  color: #fff; background: linear-gradient(135deg, #FD6E00, #E6007E); cursor: pointer;
+  transition: transform 0.2s cubic-bezier(.2,.7,.2,1), box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 14px 30px -12px rgba(217,10,92,.55);
+}
+.rdv-next:hover:not(:disabled), .rdv-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 20px 40px -12px rgba(217,10,92,.6); }
+.rdv-next:disabled, .rdv-submit:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+
+.rdv-back {
+  display: inline-flex; align-items: center; gap: 7px; margin-bottom: 1.2rem;
+  padding: 0; border: none; background: none; font-size: 13.5px; font-weight: 600;
+  color: var(--rose); cursor: pointer; transition: gap 0.2s ease, opacity 0.2s ease;
+}
+.rdv-back:hover { gap: 10px; opacity: 0.8; }
+
+/* ── Récap du créneau ──────────────────────────────────────────── */
+.rdv-recap {
+  display: flex; align-items: center; gap: 12px; padding: 13px 16px; margin-bottom: 1.6rem;
+  border-radius: 14px; background: linear-gradient(135deg, rgba(253,110,0,.08), rgba(217,10,92,.06));
   border: 1px solid rgba(253,110,0,.18);
 }
+.rdv-recap-icon { font-size: 20px; }
+.rdv-recap-text { display: flex; flex-direction: column; line-height: 1.3; }
+.rdv-recap-text strong { font-size: 14.5px; color: #3a2630; }
+.rdv-recap-text strong::first-letter { text-transform: uppercase; }
+.rdv-recap-hour { font-size: 13px; font-weight: 700; color: var(--rose); }
 
-.rdv-title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-family: var(--text-font-bold, "Supreme-Bold");
-  font-weight: 800;
-  /* Titre vif (dégradé brand) au lieu du noir */
-  background: linear-gradient(135deg, var(--orange), var(--rose));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: var(--rose);
-  margin: 0 0 0.75rem;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+/* ── Formulaire ────────────────────────────────────────────────── */
+.rdv-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.rdv-field { display: flex; flex-direction: column; gap: 6px; }
+.rdv-field--full { grid-column: 1 / -1; }
+.rdv-label { font-size: 12.5px; font-weight: 600; color: #6b4455; }
+.rdv-input, .rdv-textarea {
+  width: 100%; padding: 11px 13px; border-radius: 11px;
+  border: 1.5px solid rgba(26,10,6,.14); background: #FFFCF8;
+  font-size: 14px; color: #1a0a06; font-family: inherit;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
-
-.rdv-subtitle {
-  color: #6b4455;
-  font-size: 1.05rem;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.65;
+.rdv-input::placeholder, .rdv-textarea::placeholder { color: #b09aa4; }
+.rdv-input:focus, .rdv-textarea:focus {
+  outline: none; border-color: var(--rose); background: #fff; box-shadow: 0 0 0 3px rgba(217,10,92,.1);
 }
+.rdv-textarea { min-height: 84px; resize: vertical; }
 
-/* ── Grid ─────────────────────────────────────────────────────── */
-.rdv-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
-@media (max-width: 680px) { .rdv-grid { grid-template-columns: 1fr; } }
-
-/* ── Cards macOS ──────────────────────────────────────────────── */
-.rdv-card {
-  background: rgba(255,255,255,.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 1.75rem;
-  border: 1px solid rgba(255,255,255,.9);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.8) inset,
-    0 2px 8px rgba(0,0,0,.04),
-    0 16px 48px rgba(0,0,0,.08);
-}
-
-.rdv-card-title {
-  font-size: 11px;
-  font-family: var(--text-font-bold, "Supreme-Bold");
-  color: #FD6E00;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.rdv-card-title::before {
-  content: '';
-  display: inline-block;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #FD6E00;
-  flex-shrink: 0;
-}
-
-/* ── Fields ───────────────────────────────────────────────────── */
-.rdv-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 0.9rem; }
-
-.rdv-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: #6b4455;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-
-.rdv-input, .rdv-select, .rdv-textarea {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1.5px solid rgba(0,0,0,.1);
-  border-radius: 10px;
-  font-size: 14px;
-  color: #1a0a06;
-  background: #FAFAFA;
-  transition: all 0.18s;
-  font-family: inherit;
-  box-sizing: border-box;
-  -webkit-appearance: none;
-}
-.rdv-input:focus, .rdv-select:focus, .rdv-textarea:focus {
-  outline: none;
-  border-color: #FD6E00;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(253,110,0,.1);
-}
-.rdv-textarea { min-height: 88px; resize: vertical; }
-
-/* Select custom : chevron brand */
-.rdv-select {
-  cursor: pointer;
-  padding-right: 40px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23D90A5C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-}
-.rdv-select:focus {
-  background-color: #fff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23FD6E00' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-}
-
-/* ── Slots ────────────────────────────────────────────────────── */
-.rdv-slots { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
-
-.rdv-slot {
-  padding: 8px 16px;
-  border: 1.5px solid rgba(253,110,0,.2);
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.16s;
-  background: #fff;
-  color: #FD6E00;
-  font-family: inherit;
-}
-.rdv-slot:hover { border-color: #FD6E00; background: rgba(253,110,0,.06); transform: translateY(-1px); }
-.rdv-slot.--selected {
-  background: linear-gradient(90deg, #FD6E00, #D90A5C);
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(217,10,92,.3);
-}
-
-/* ── Submit ───────────────────────────────────────────────────── */
-.rdv-submit {
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(90deg, #FD6E00, #D90A5C);
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: var(--text-font-bold, "Supreme-Bold");
-  box-shadow: 0 4px 16px rgba(217,10,92,.3);
-}
-.rdv-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(217,10,92,.4); }
-.rdv-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-/* ── Erreur ───────────────────────────────────────────────────── */
-.rdv-error {
-  padding: 11px 15px;
-  background: rgba(217,10,92,.06);
-  border: 1px solid rgba(217,10,92,.16);
-  border-radius: 10px;
-  font-size: 13px;
-  color: #D90A5C;
-  margin-bottom: 1rem;
-}
-
-/* ── Success macOS ────────────────────────────────────────────── */
+/* ── Écran de succès (carte claire sur le fond saturé) ─────────── */
 .rdv-success {
-  text-align: center;
-  padding: 3.5rem 2.5rem;
-  background: rgba(255,255,255,.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,.9);
-  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 4px 16px rgba(0,0,0,.06), 0 24px 64px rgba(0,0,0,.1);
-  max-width: 540px;
-  margin: 0 auto;
+  position: relative; text-align: center; isolation: isolate;
+  background: #fff; border-radius: 30px; padding: clamp(2.4rem, 5vw, 3.6rem) clamp(1.6rem, 4vw, 3rem);
+  box-shadow: 0 34px 80px -44px rgba(217,10,92,.5); max-width: 480px; margin: 0 auto;
 }
-
-.rdv-success-icon { margin-bottom: 1.5rem; display: flex; justify-content: center; }
-
+.rdv-pop { animation: rdvPop 0.5s cubic-bezier(.2,.8,.25,1.2) both; }
+@keyframes rdvPop { from { opacity: 0; transform: scale(0.94) translateY(12px); } to { opacity: 1; transform: none; } }
+.rdv-success-check {
+  position: relative; z-index: 1; display: grid; place-items: center; width: 64px; height: 64px;
+  margin: 0 auto 1.2rem; border-radius: 50%;
+  background: linear-gradient(135deg, #FD6E00, #E6007E); box-shadow: 0 14px 30px -10px rgba(217,10,92,.5);
+}
+.rdv-check-path { stroke: #fff; stroke-dasharray: 48; stroke-dashoffset: 48; animation: rdvCheckDraw 0.5s 0.25s ease forwards; }
+@keyframes rdvCheckDraw { to { stroke-dashoffset: 0; } }
+.rdv-success-ring {
+  position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--rose); opacity: 0;
+  animation: rdvRing 1.4s 0.4s ease-out infinite; pointer-events: none;
+}
+@keyframes rdvRing { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 0; transform: scale(1.9); } }
 .rdv-success-title {
-  font-family: var(--text-font-bold, "Supreme-Bold");
-  font-size: 1.8rem;
-  color: #16a34a;
-  margin: 0 0 0.75rem;
-  letter-spacing: -0.025em;
+  margin: 0 0 0.6rem; font-family: var(--font-prompt), sans-serif;
+  font-size: clamp(24px, 4vw, 32px); font-weight: 800; letter-spacing: -0.02em;
+  background: linear-gradient(120deg, var(--orange), var(--rose));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.rdv-success-text { margin: 0 0 0.5rem; font-size: 15px; line-height: 1.6; color: #3a2630; }
+.rdv-success-text strong { color: var(--rose); }
+.rdv-success-sub { margin: 1.3rem 0 0; font-size: 13.5px; line-height: 1.6; color: #6b4455; }
+.rdv-success-sub strong { color: #1a0a06; }
+
+/* Carte récap du RDV confirmé */
+.rdv-success-card {
+  margin: 1.4rem auto 0; max-width: 340px;
+  display: flex; flex-direction: column; gap: 2px;
+  background: #FFF6F0; border: 1px solid rgba(217,10,92,.1); border-radius: 16px;
+  padding: 6px 14px; text-align: left;
+}
+.rdv-success-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+.rdv-success-row:not(:last-child) { border-bottom: 1px dashed rgba(217,10,92,.14); }
+.rdv-success-ico { font-size: 18px; flex-shrink: 0; }
+.rdv-success-row-text { display: flex; flex-direction: column; line-height: 1.3; }
+.rdv-success-row-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #C25600; }
+.rdv-success-row-text strong { font-size: 14.5px; color: #3a2630; text-transform: capitalize; }
+
+/* Confettis (légers, non bloquants) */
+.rdv-confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; border-radius: 30px; }
+.rdv-confetti-bit { position: absolute; top: -12px; width: 9px; height: 9px; border-radius: 2px; opacity: 0; animation: rdvConfetti 2.6s ease-in forwards; }
+.rdv-cf-0 { left: 8%;  background: #FD6E00; animation-delay: .05s; }
+.rdv-cf-1 { left: 20%; background: #E6007E; animation-delay: .25s; }
+.rdv-cf-2 { left: 32%; background: #FFB800; animation-delay: .12s; }
+.rdv-cf-3 { left: 44%; background: #00AFDD; animation-delay: .35s; }
+.rdv-cf-4 { left: 56%; background: #E6007E; animation-delay: .18s; }
+.rdv-cf-5 { left: 66%; background: #FD6E00; animation-delay: .42s; }
+.rdv-cf-6 { left: 76%; background: #FFB800; animation-delay: .08s; }
+.rdv-cf-7 { left: 86%; background: #00AFDD; animation-delay: .3s; }
+.rdv-cf-8 { left: 14%; background: #FFB800; animation-delay: .5s; }
+.rdv-cf-9 { left: 92%; background: #E6007E; animation-delay: .2s; }
+@keyframes rdvConfetti {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(360px) rotate(420deg); }
 }
 
-.rdv-success-text { color: #374151; font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.65; }
-.rdv-success-sub  { color: #6b7280; font-size: 0.875rem; margin-bottom: 1.75rem; line-height: 1.65; }
+/* ── Écran de finalisation (chargement animé avant la confirmation) ── */
+.rdv-finalizing {
+  text-align: center; background: #fff; border-radius: 30px;
+  padding: clamp(3rem, 7vw, 4.5rem) clamp(1.6rem, 4vw, 3rem);
+  box-shadow: 0 34px 80px -44px rgba(217,10,92,.5); max-width: 480px; margin: 0 auto;
+  animation: rdvFadeUp 0.4s both;
+}
+.rdv-final-orbit { position: relative; width: 96px; height: 96px; margin: 0 auto 1.6rem; }
+.rdv-final-core {
+  position: absolute; top: 50%; left: 50%; width: 26px; height: 26px; transform: translate(-50%,-50%);
+  border-radius: 50%; background: linear-gradient(135deg, #FD6E00, #E6007E);
+  box-shadow: 0 0 18px rgba(230,0,126,.55); animation: rdvCorePulse 1.4s ease-in-out infinite;
+}
+@keyframes rdvCorePulse { 0%,100% { transform: translate(-50%,-50%) scale(1); } 50% { transform: translate(-50%,-50%) scale(1.25); } }
+.rdv-final-ring {
+  position: absolute; inset: 0; border-radius: 50%; border: 2.5px solid transparent;
+}
+.rdv-final-ring--1 { border-top-color: #FD6E00; border-right-color: #FD6E00; animation: rdvSpin 1s linear infinite; }
+.rdv-final-ring--2 { inset: 14px; border-bottom-color: #E6007E; border-left-color: #E6007E; animation: rdvSpin 1.4s linear infinite reverse; }
+@keyframes rdvSpin { to { transform: rotate(360deg); } }
+.rdv-final-dot { position: absolute; top: 50%; left: 50%; width: 7px; height: 7px; border-radius: 50%; background: #FFB800; }
+.rdv-final-dot--1 { animation: rdvOrbit 2s linear infinite; }
+.rdv-final-dot--2 { background: #00AFDD; animation: rdvOrbit 2s linear infinite; animation-delay: -0.66s; }
+.rdv-final-dot--3 { background: #E6007E; animation: rdvOrbit 2s linear infinite; animation-delay: -1.33s; }
+@keyframes rdvOrbit {
+  from { transform: translate(-50%,-50%) rotate(0deg) translateX(48px); }
+  to   { transform: translate(-50%,-50%) rotate(360deg) translateX(48px); }
+}
+.rdv-final-title {
+  margin: 0 0 0.4rem; font-family: var(--font-prompt), sans-serif; font-size: clamp(19px, 3vw, 23px); font-weight: 800;
+  background: linear-gradient(120deg, var(--orange), var(--rose));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.rdv-final-sub { margin: 0; font-size: 14px; color: #6b4455; }
 
-.rdv-success-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 18px;
-  background: rgba(22,163,74,.07);
-  border: 1px solid rgba(22,163,74,.18);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #16a34a;
+/* ── Erreur ────────────────────────────────────────────────────── */
+.rdv-error {
+  padding: 11px 15px; margin-bottom: 1.2rem; border-radius: 12px;
+  background: rgba(217,10,92,.08); border: 1px solid rgba(217,10,92,.2); color: #b00a4c; font-size: 13.5px;
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .rdv-fields { grid-template-columns: 1fr; }
+  .rdv-booking { padding: 1.6rem 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rdv-fade, .rdv-day, .rdv-slot, .rdv-pop, .rdv-dot-pulse,
+  .rdv-check-path, .rdv-success-ring, .rdv-pblob, .rdv-float,
+  .rdv-confetti-bit, .rdv-final-core, .rdv-final-ring, .rdv-final-dot { animation: none; }
+  .rdv-confetti-bit { display: none; }
+  .rdv-check-path { stroke-dashoffset: 0; }
 }

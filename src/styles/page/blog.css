@@ -80,9 +80,9 @@
 /* Italique accent — légèrement agrandi pour compenser le poids visuel plus
    léger de l'italique serif face aux lignes bold qui l'entourent */
 .blog-hero-em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   font-size: 1.12em;
   color: #FFE456;
   -webkit-text-fill-color: #FFE456;

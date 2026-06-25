@@ -112,6 +112,7 @@ export default function Menu() {
     : baseNavItems;
   const mt = locale !== "fr" ? MENU_TXT[locale] : undefined;
   const [langOpen, setLangOpen] = useState(false);
+  const [sheetLangOpen, setSheetLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
@@ -147,7 +148,7 @@ export default function Menu() {
   useEffect(() => {
     if (!menuOpen) return;
     const handler = (e: MouseEvent) => {
-      if (window.innerWidth <= 768) return; // le backdrop gère la fermeture en mobile
+      if (window.innerWidth <= 1024) return; // le backdrop gère la fermeture en mobile/tablette
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setMenuOpen(false);
       }
@@ -318,17 +319,34 @@ export default function Menu() {
           ) : (
             <Link href="/rendez-vous" className="v-sheet-cta" onClick={() => setMenuOpen(false)}>{mt ? mt.talk : "On en parle ?"}</Link>
           )}
-          <div className="v-sheet-lang-list">
-            {SUPPORTED_LOCALES.filter((l) => l !== locale).map((l) => (
-              <Link
-                key={l}
-                href={getLocaleSwitchHref(pathname, locale, l)}
-                className="v-sheet-lang"
-                onClick={() => setMenuOpen(false)}
-              >
-                {LOCALE_NAME[l]}
-              </Link>
-            ))}
+          {/* Langues — menu déroulant (plus propre qu'une rangée de pastilles) */}
+          <div className={`v-sheet-lang-dd${sheetLangOpen ? " --open" : ""}`}>
+            <button
+              type="button"
+              className="v-sheet-lang-trigger"
+              onClick={() => setSheetLangOpen((o) => !o)}
+              aria-expanded={sheetLangOpen}
+            >
+              <span className="v-sheet-lang-globe" aria-hidden="true">🌐</span>
+              <span className="v-sheet-lang-current">{LOCALE_NAME[locale]}</span>
+              <svg className="v-sheet-lang-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            {sheetLangOpen && (
+              <div className="v-sheet-lang-menu" role="menu">
+                {SUPPORTED_LOCALES.filter((l) => l !== locale).map((l) => (
+                  <Link
+                    key={l}
+                    href={getLocaleSwitchHref(pathname, locale, l)}
+                    className="v-sheet-lang-opt"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {LOCALE_NAME[l]}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

@@ -3,7 +3,7 @@
 import {
   BarChart2, FileText, Home, LogOut,
   Settings, Users, Layers, PenLine, Star, CalendarDays, Mail, Ticket, ScrollText, Newspaper, KeyRound,
-  KanbanSquare, ListTodo, FileSignature, ChevronsLeft, ChevronsRight,
+  KanbanSquare, ListTodo, FileSignature, ChevronsLeft, ChevronsRight, Menu, X,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,6 +51,8 @@ const NAV = [
 export default function CrmSidebar({ nom }: { nom?: string }) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   // Préférence mémorisée — appliquée aussi à .crm-main via une classe sur <body>
   // (la sidebar et le contenu sont des frères dans le layout, pas de prop à faire descendre)
@@ -60,6 +62,18 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
     document.body.classList.toggle("crm-sidebar-collapsed", saved);
   }, []);
 
+  // Détecte le mobile → sur petit écran, on ignore l'état replié (menu plein + labels)
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Ferme le panneau mobile au changement de page
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
+
   function toggle() {
     const next = !collapsed;
     setCollapsed(next);
@@ -67,17 +81,21 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
     document.body.classList.toggle("crm-sidebar-collapsed", next);
   }
 
+  // Sur mobile on n'applique jamais le mode replié (on veut les libellés)
+  const effCollapsed = collapsed && !isMobile;
+
   return (
-    <aside className={`crm-sidebar${collapsed ? " --collapsed" : ""}`}>
+   <>
+    <aside className={`crm-sidebar${effCollapsed ? " --collapsed" : ""}${mobileOpen ? " --mobile-open" : ""}`}>
       <div className="crm-sidebar-brand">
         <Image src="/images/favicon.png" alt="Uvibes" width={28} height={24} className="crm-sidebar-logo" />
-        {!collapsed && <span className="crm-sidebar-sub">CRM & Gestion</span>}
+        {!effCollapsed && <span className="crm-sidebar-sub">CRM & Gestion</span>}
       </div>
 
       <nav className="crm-nav">
         {NAV.map((group) => (
           <div key={group.section}>
-            {!collapsed && <div className="crm-nav-section">{group.section}</div>}
+            {!effCollapsed && <div className="crm-nav-section">{group.section}</div>}
             {group.items.map((item) => {
               const Icon = item.icon;
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
@@ -86,10 +104,11 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
                   key={item.href}
                   href={item.href}
                   className={`crm-nav-item${active ? " --active" : ""}`}
-                  title={collapsed ? item.label : undefined}
+                  title={effCollapsed ? item.label : undefined}
+                  onClick={() => setMobileOpen(false)}
                 >
                   <Icon size={16} className="crm-nav-icon" />
-                  {!collapsed && item.label}
+                  {!effCollapsed && item.label}
                 </Link>
               );
             })}
@@ -98,20 +117,20 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
       </nav>
 
       <div className="crm-sidebar-footer">
-        {nom && !collapsed && (
+        {nom && !effCollapsed && (
           <p style={{ fontSize: 12, color: "var(--crm-muted)", marginBottom: 8, paddingLeft: 4 }}>
             Connecté·e : {nom}
           </p>
         )}
         {/* Navigation complète volontaire (pas de <Link> client/fetch) → fonctionne même si une extension casse fetch */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" className="crm-backsite-btn" title={collapsed ? "Retour au site" : undefined}>
-          <Home size={14} /> {!collapsed && "Retour au site"}
+        <a href="/" className="crm-backsite-btn" title={effCollapsed ? "Retour au site" : undefined}>
+          <Home size={14} /> {!effCollapsed && "Retour au site"}
         </a>
         {/* Déconnexion par formulaire natif → immunisé contre les extensions qui cassent fetch */}
         <form action="/api/admin/auth/logout" method="post">
-          <button type="submit" className="crm-logout-btn" title={collapsed ? "Déconnexion" : undefined}>
-            <LogOut size={14} /> {!collapsed && "Déconnexion"}
+          <button type="submit" className="crm-logout-btn" title={effCollapsed ? "Déconnexion" : undefined}>
+            <LogOut size={14} /> {!effCollapsed && "Déconnexion"}
           </button>
         </form>
         <button type="button" className="crm-collapse-btn" onClick={toggle} title={collapsed ? "Déplier le menu" : "Replier le menu"}>
@@ -119,5 +138,22 @@ export default function CrmSidebar({ nom }: { nom?: string }) {
         </button>
       </div>
     </aside>
+
+    {/* ── Mobile : bouton flottant + voile pour ouvrir le menu (comme le site) ── */}
+    <div
+      className={`crm-mob-backdrop${mobileOpen ? " --in" : ""}`}
+      onClick={() => setMobileOpen(false)}
+      aria-hidden="true"
+    />
+    <button
+      type="button"
+      className="crm-mob-fab"
+      onClick={() => setMobileOpen((o) => !o)}
+      aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+      aria-expanded={mobileOpen}
+    >
+      {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+    </button>
+   </>
   );
 }

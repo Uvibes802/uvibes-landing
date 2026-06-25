@@ -89,19 +89,30 @@ export default function Uvibes() {
       {/* ── Pourquoi « Uvibes » ? ── */}
       <WhyName />
 
-      {/* ── Intro ── */}
-      <section className="uv-intro">
-        {/* Citation Harvard — dans un écrin doux, cohérent avec la section « sens du nom » */}
-        <div className="uv-intro-statement-card">
-          <span className="uv-intro-statement-glow" aria-hidden="true" />
-          <p className="uv-intro-statement">
-            <span className="uv-intro-quote-mark" aria-hidden="true">&ldquo;</span>
+      {/* ── Citation Harvard — bande dégradée (même esprit que le hero/équipe), encadrée de 2 vagues ── */}
+      <div className="uv-quote-wrap" style={{ background: "linear-gradient(145deg, #FF5894 0%, #FF7A60 30%, #FFB040 60%, #FD6E00 85%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
+        <WaveSeparator position="top" color="#FFEFF6" />
+        {/* Particules flottantes (cohérent avec les autres sections à dégradé) */}
+        <div className="uv-quote-parts" aria-hidden="true">
+          <span className="uv-qp uv-qp--1" /><span className="uv-qp uv-qp--2" />
+          <span className="uv-qp uv-qp--3" /><span className="uv-qp uv-qp--4" />
+          <span className="uv-qp uv-qp--5" /><span className="uv-qp uv-qp--6" />
+          <span className="uv-qp uv-qp--7" /><span className="uv-qp uv-qp--8" />
+          <span className="uv-qp uv-qp--9" /><span className="uv-qp uv-qp--10" />
+        </div>
+        <div className="uv-quote-band">
+          <p className="uv-quote-statement">
+            <span className="uv-quote-mark" aria-hidden="true">&ldquo;</span>
             La plus longue étude menée par Harvard montre que la qualité de nos relations
-            est le <em className="uv-em-orange">premier facteur de bonheur</em>{" "}
-            <span className="uv-intro-statement-cite">(Vaillant, 2002)</span>.
+            est le <em className="uv-quote-em">premier facteur de bonheur</em>{" "}
+            <span className="uv-quote-cite">(Vaillant, 2002)</span>.
           </p>
         </div>
+        <WaveSeparator position="bottom" color="#FFEFF6" />
+      </div>
 
+      {/* ── Intro ── */}
+      <section className="uv-intro">
         <div className="uv-intro-inner">
           <div>
             <p className="uv-eyebrow"><span className="uv-eyebrow-dot" aria-hidden="true" />La naissance de l&apos;idée</p>
@@ -161,6 +172,23 @@ export default function Uvibes() {
 
       {/* ── Éthique ── */}
       <section className="uv-ethics">
+        {/* Éléments animés en fond — donne du rythme à la section */}
+        <div className="uv-ethics-deco" aria-hidden="true">
+          <span className="uv-ethics-glow uv-ethics-glow--1" />
+          <span className="uv-ethics-glow uv-ethics-glow--2" />
+          <span className="uv-ethics-orb uv-ethics-orb--1" />
+          <span className="uv-ethics-orb uv-ethics-orb--2" />
+          <span className="uv-ethics-orb uv-ethics-orb--3" />
+          <span className="uv-ethics-orb uv-ethics-orb--4" />
+          <span className="uv-ethics-orb uv-ethics-orb--5" />
+          <span className="uv-ethics-ring uv-ethics-ring--1" />
+          <span className="uv-ethics-ring uv-ethics-ring--2" />
+          <span className="uv-ethics-ring uv-ethics-ring--3" />
+          <span className="uv-ethics-spark uv-ethics-spark--1" />
+          <span className="uv-ethics-spark uv-ethics-spark--2" />
+          <span className="uv-ethics-spark uv-ethics-spark--3" />
+          <span className="uv-ethics-spark uv-ethics-spark--4" />
+        </div>
         <div className="uv-ethics-inner">
           <div className="uv-ethics-header">
             <div className="uv-ethics-header__text">
@@ -181,10 +209,12 @@ export default function Uvibes() {
             ))}
           </div>
 
-          <p className="uv-ethics-blog-note">
-            Explorez la rubrique <Link href="/blog" className="uv-ethics-blog-link">«&nbsp;Uvibes&nbsp;»</Link> de notre blog
-            pour en savoir plus sur nos principes éthiques et leur mise en œuvre concrète.
-          </p>
+          <div className="uv-ethics-blog-cta">
+            <Link href="/blog" className="uv-ethics-blog-btn">
+              Découvrir la rubrique «&nbsp;Uvibes&nbsp;» du blog
+              <span className="uv-ethics-blog-btn-arrow" aria-hidden="true">→</span>
+            </Link>
+          </div>
 
           {/* Vidéo Pierre — déplacée sous les 3 cartes */}
           <div className="uv-team-vid-wrap">
@@ -194,7 +224,7 @@ export default function Uvibes() {
       </section>
 
       {/* Wrapper Don + Footer seamless (sur le dégradé) */}
-      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
+      <div style={{ background: "linear-gradient(165deg, #FD6E00 0%, #FF7A38 14%, #FF6098 42%, #E6007E 70%, #C20057 100%)", position: "relative", overflow: "hidden" }}>
 
       {/* Couche avant accordée au fond de la page au-dessus de la section don */}
       <WaveSeparator position="top" color="#FFF4EC" />

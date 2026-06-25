@@ -11,8 +11,12 @@ export async function GET(req: NextRequest) {
     // Sécurité : sans secret configuré, on refuse plutôt que d'exposer l'envoi d'emails
     return NextResponse.json({ error: "Endpoint non configuré (CRON_SECRET manquant)" }, { status: 503 });
   }
-  const key = req.nextUrl.searchParams.get("key");
-  if (key !== secret) {
+  // Deux façons d'autoriser :
+  //  - Vercel Cron envoie automatiquement « Authorization: Bearer <CRON_SECRET> »
+  //  - déclenchement manuel/externe : ?key=<CRON_SECRET>
+  const bearer = req.headers.get("authorization") === `Bearer ${secret}`;
+  const key = req.nextUrl.searchParams.get("key") === secret;
+  if (!bearer && !key) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
 

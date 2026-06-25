@@ -352,14 +352,36 @@
 
 /* ── Label héritage ───────────────────────────────────────────── */
 .pt-card-inherit-label {
+  width: 100%;
   margin-top: 1.5rem;
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  text-align: left;
   color: #FD6E00;
+  cursor: default;
 }
 .pt-card-inherit-label.--featured { color: rgba(255,228,86,.9); }
+/* Flèche de dépli — visible seulement en mobile (desktop : liste toujours ouverte) */
+.pt-card-incl-arrow { display: none; flex-shrink: 0; transition: transform 0.25s ease; }
+.pt-card-included.--open .pt-card-incl-arrow { transform: rotate(180deg); }
+
+@media (max-width: 1023px) {
+  .pt-card-inherit-label { cursor: pointer; }
+  .pt-card-incl-arrow { display: inline-block; }
+  /* Replié par défaut → cartes compactes ; déplié au clic */
+  .pt-card-included .pt-card-list { display: none; }
+  .pt-card-included.--open .pt-card-list { display: flex; }
+}
 
 /* ── Liste features ───────────────────────────────────────────── */
 .pt-card-list {

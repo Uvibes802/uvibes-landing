@@ -51,11 +51,11 @@ export default function VideoSection() {
         </h2>
       </div>
 
-      {/* Photo polaroïde — desktop : tiltée à droite ; mobile : entre le titre et la carte */}
-      <figure className="vs-polaroid" aria-hidden="true">
+      {/* Photo polaroïde — photo du commentateur si fournie, sinon photo d'équipe par défaut */}
+      <figure className="vs-polaroid" aria-hidden={!t?.photoUrl}>
         <Image
-          src="/images/TeamUvibesHome.jpg"
-          alt=""
+          src={t?.photoUrl || "/images/TeamUvibesHome.jpg"}
+          alt={t?.photoUrl ? (t.auteur_temoignage || "") : ""}
           width={230}
           height={230}
           className="vs-polaroid-img"
@@ -89,15 +89,13 @@ export default function VideoSection() {
           {/* Auteur */}
           <div className="vs-card-author">
             <span className="vs-card-avatar-wrap">
-              {t?.photoUrl ? (
-                <Image src={t.photoUrl} alt={t.auteur_temoignage || ""} width={48} height={48} className="vs-card-avatar-img" />
+              {/* Logo de l'organisation à la place du cercle d'initiales (sinon initiale) */}
+              {t?.logoUrl ? (
+                <Image src={t.logoUrl} alt="" width={48} height={48} className="vs-card-avatar-img" />
               ) : (
                 <span className="vs-card-avatar" aria-hidden="true">
                   {(t?.auteur_temoignage || "U").trim().charAt(0).toUpperCase()}
                 </span>
-              )}
-              {t?.logoUrl && (
-                <Image src={t.logoUrl} alt="" width={20} height={20} className="vs-card-org-logo" />
               )}
             </span>
             <div className="vs-card-author-info">

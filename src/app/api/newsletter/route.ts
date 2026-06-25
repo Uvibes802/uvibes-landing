@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit, getClientIp } from "@/lib/rateLimit";
+import { syncBrevoContact, unsubscribeBrevoContact } from "@/lib/brevo";
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,6 +27,7 @@ export async function POST(req: NextRequest) {
         where: { email },
         data: { actif: true, unsubscribedAt: null },
       });
+      await syncBrevoContact(email, existing.prenom);
       return NextResponse.json({ success: true, reactivated: true });
     }
 
@@ -37,6 +39,9 @@ export async function POST(req: NextRequest) {
         actif: true,
       },
     });
+
+    // Pousse l'inscrit dans la liste Brevo (best-effort, ne bloque pas la réponse)
+    await syncBrevoContact(email, prenom?.trim() || null);
 
     return NextResponse.json({ success: true });
   } catch {
@@ -53,6 +58,7 @@ export async function DELETE(req: NextRequest) {
       where: { email },
       data: { actif: false, unsubscribedAt: new Date() },
     });
+    await unsubscribeBrevoContact(email);
 
     return NextResponse.json({ success: true });
   } catch {

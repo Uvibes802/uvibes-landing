@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { createMailTransport, MAIL_FROM, MAIL_TO_ADMIN, emailShell } from "@/lib/mailer";
 import { escapeHtml } from "@/lib/escapeHtml";
 
 interface QuoteEmailParams {
@@ -14,35 +14,17 @@ interface QuoteEmailParams {
   message?: string; // message personnalisé saisi par l'admin à l'envoi
 }
 
-function createTransport() {
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: process.env.EMAIL_USER,
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-    },
-  });
-}
-
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://uvibes.fr";
 
 export async function sendQuoteToCollectif(params: QuoteEmailParams) {
-  const transporter = createTransport();
+  const transporter = createMailTransport();
   const devisUrl = `${SITE_URL}/devis/${params.quoteId}`;
 
   const subject = params.signed
     ? `Votre devis signé Uvibes — ${params.quoteNumero}`
     : `Votre devis Uvibes — ${params.quoteNumero}`;
 
-  const html = `
-    <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#4A1530">
-      <div style="background:linear-gradient(135deg,#FD6E00,#D90A5C);padding:32px;border-radius:12px 12px 0 0">
-        <h1 style="color:#fff;margin:0;font-size:24px">Uvibes</h1>
-      </div>
-      <div style="padding:32px;background:#FFFBF4;border-radius:0 0 12px 12px;border:1px solid rgba(74,21,48,.09)">
+  const html = emailShell(`
         <h2 style="margin-top:0">Bonjour,</h2>
         ${params.message
           ? `<div style="background:#FFF6EC;border-left:3px solid #FD6E00;padding:14px 18px;border-radius:8px;margin:0 0 20px;white-space:pre-wrap">${escapeHtml(params.message)}</div>`
@@ -72,12 +54,10 @@ export async function sendQuoteToCollectif(params: QuoteEmailParams) {
         </a>
         <hr style="border:none;border-top:1px dashed rgba(74,21,48,.16);margin:24px 0"/>
         <p style="color:#B0507E;font-size:13px">Une question ? Répondez à cet email ou contactez-nous sur uvibes.fr</p>
-      </div>
-    </div>
-  `;
+  `);
 
   await transporter.sendMail({
-    from: `"Uvibes" <${process.env.EMAIL_USER}>`,
+    from: MAIL_FROM,
     to: params.to,
     subject,
     html,
@@ -85,12 +65,12 @@ export async function sendQuoteToCollectif(params: QuoteEmailParams) {
 }
 
 export async function notifyDirectrice(params: QuoteEmailParams) {
-  const transporter = createTransport();
+  const transporter = createMailTransport();
   const adminUrl = `${SITE_URL}/admin/devis/${params.quoteId}`;
 
   await transporter.sendMail({
-    from: `"Uvibes CRM" <${process.env.EMAIL_USER}>`,
-    to: process.env.EMAIL_USER ?? "",
+    from: MAIL_FROM,
+    to: MAIL_TO_ADMIN,
     subject: `${params.signed ? "✅ Devis signé" : "📄 Nouveau devis"} — ${params.collectifNom} — ${params.quoteNumero}`,
     html: `
       <p>Un devis vient d'être ${params.signed ? "signé" : "créé"}.</p>

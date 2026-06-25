@@ -452,9 +452,6 @@ function FeatureRow({
 
   return (
     <div className={`fc-row fc-row--${feature.accent}${reverse ? " fc-row--reverse" : ""}`}>
-      {/* Filigrane numéro */}
-      <span className="fc-watermark" aria-hidden="true">{feature.n}</span>
-
       {/* Texte */}
       <div className="fc-text">
         <h3 className="fc-title v-prompt">{feature.title}</h3>

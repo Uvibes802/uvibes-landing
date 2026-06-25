@@ -25,9 +25,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Cinémas, salles de spectacle, événements",
     color: COLORS[0],
     flyers: [
-      { src: "/images/affiche/culture/cinema-1.webp", alt: "Affiche Uvibes — public de cinéma" },
-      { src: "/images/affiche/culture/spectacle-1.webp", alt: "Affiche Uvibes — spectateurs réunis" },
-      { src: "/images/affiche/culture/spectacle-avignon.webp", alt: "Affiche Uvibes — événement culturel" },
+      { src: "/images/affiche/culture/culture-1.webp", alt: "Affiche Uvibes — public de cinéma" },
+      { src: "/images/affiche/culture/culture-2.webp", alt: "Affiche Uvibes — spectateurs réunis" },
+      { src: "/images/affiche/culture/culture-3.webp", alt: "Affiche Uvibes — événement culturel" },
     ],
     gains: [
       "Une hausse de la fréquentation",
@@ -45,9 +45,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Universités, écoles de commerce, grandes écoles",
     color: COLORS[1],
     flyers: [
-      { src: "/images/affiche/enseignement/etudiant.webp", alt: "Affiche Uvibes — étudiants" },
-      { src: "/images/affiche/enseignement/jpo.webp", alt: "Affiche Uvibes — journée portes ouvertes" },
-      { src: "/images/affiche/enseignement/bon-plan.webp", alt: "Affiche Uvibes — vie étudiante" },
+      { src: "/images/affiche/enseignement/enseignement-1.webp", alt: "Affiche Uvibes — étudiants" },
+      { src: "/images/affiche/enseignement/enseignement-2.webp", alt: "Affiche Uvibes — journée portes ouvertes" },
+      { src: "/images/affiche/enseignement/enseignement-3.webp", alt: "Affiche Uvibes — vie étudiante" },
     ],
     gains: [
       "Une attractivité renforcée auprès des futurs étudiants",
@@ -65,8 +65,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Campings, villages vacances, sites touristiques",
     color: COLORS[2],
     flyers: [
-      { src: "/images/affiche/tourisme/camping-1.webp", alt: "Affiche Uvibes — vacanciers en camping" },
-      { src: "/images/affiche/tourisme/camoing-2.webp", alt: "Affiche Uvibes — séjour en camping" },
+      { src: "/images/affiche/tourisme/tourisme-1.webp", alt: "Affiche Uvibes — vacanciers en camping" },
+      { src: "/images/affiche/tourisme/tourisme-2.webp", alt: "Affiche Uvibes — séjour en camping" },
     ],
     gains: [
       "Une hausse de la fréquentation",
@@ -84,9 +84,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Clubs d'entreprises, dirigeants, artisans, fédérations professionnelles",
     color: COLORS[3],
     flyers: [
-      { src: "/images/affiche/reseaux-business/medef.webp", alt: "Affiche Uvibes — réseau business" },
-      { src: "/images/affiche/reseaux-business/artisan-1.webp", alt: "Affiche Uvibes — artisans" },
-      { src: "/images/affiche/reseaux-business/artisan-2.webp", alt: "Affiche Uvibes — fédérations professionnelles" },
+      { src: "/images/affiche/reseaux-business/reseaux-business-1.webp", alt: "Affiche Uvibes — réseau business" },
+      { src: "/images/affiche/reseaux-business/reseaux-business-2.webp", alt: "Affiche Uvibes — artisans" },
+      { src: "/images/affiche/reseaux-business/reseaux-business-3.webp", alt: "Affiche Uvibes — fédérations professionnelles" },
     ],
     gains: [
       "Une participation plus active de vos membres",
@@ -104,9 +104,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Mutuelles, entreprises coopératives, associations",
     color: COLORS[4],
     flyers: [
-      { src: "/images/affiche/adherents/mutuelle-1.webp", alt: "Affiche Uvibes — adhérents mutuelle" },
-      { src: "/images/affiche/adherents/banque-1.webp", alt: "Affiche Uvibes — sociétaires" },
-      { src: "/images/affiche/adherents/banque-2.webp", alt: "Affiche Uvibes — ouvrir un compte, ouvrir une relation" },
+      { src: "/images/affiche/adherents/adherents-1.webp", alt: "Affiche Uvibes — adhérents mutuelle" },
+      { src: "/images/affiche/adherents/adherents-2.webp", alt: "Affiche Uvibes — sociétaires" },
+      { src: "/images/affiche/adherents/adherents-3.webp", alt: "Affiche Uvibes — ouvrir un compte, ouvrir une relation" },
     ],
     gains: [
       "Un sentiment d'appartenance à votre organisation",
@@ -123,9 +123,9 @@ export const collectifs: Collectif[] = [
     subtitle: "Entreprises en présentiel, télétravail, multi-sites",
     color: COLORS[5],
     flyers: [
-      { src: "/images/affiche/entreprises/equipe.webp", alt: "Affiche Uvibes — équipes en entreprise" },
-      { src: "/images/affiche/entreprises/equipe-2.webp", alt: "Affiche Uvibes — collaboration en entreprise" },
-      { src: "/images/affiche/entreprises/procedure.webp", alt: "Affiche Uvibes — vie d'équipe" },
+      { src: "/images/affiche/entreprises/entreprises-1.webp", alt: "Affiche Uvibes — équipes en entreprise" },
+      { src: "/images/affiche/entreprises/entreprises-2.webp", alt: "Affiche Uvibes — collaboration en entreprise" },
+      { src: "/images/affiche/entreprises/entreprises-3.webp", alt: "Affiche Uvibes — vie d'équipe" },
     ],
     gains: [
       "Un sentiment d'appartenance à votre organisation",
@@ -145,8 +145,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Caisses de retraites, associations, collectivités locales",
     color: COLORS[0],
     flyers: [
-      { src: "/images/affiche/seniors/senior-1.webp", alt: "Affiche Uvibes — seniors qui se rencontrent" },
-      { src: "/images/affiche/seniors/senior-2.webp", alt: "Affiche Uvibes — lien entre seniors" },
+      { src: "/images/affiche/seniors/seniors-1.webp", alt: "Affiche Uvibes — seniors qui se rencontrent" },
+      { src: "/images/affiche/seniors/seniors-2.webp", alt: "Affiche Uvibes — lien entre seniors" },
     ],
     gains: [
       "Un sentiment d'appartenance à votre caisse de retraite",
@@ -163,8 +163,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Collectivités, hôpitaux, cliniques, associations — parents isolés, aidants, personnes en parcours de soin",
     color: COLORS[1],
     flyers: [
-      { src: "/images/affiche/echanges-pairs/aidant-1.webp", alt: "Affiche Uvibes — échanges entre pairs" },
-      { src: "/images/affiche/echanges-pairs/aidant-2.webp", alt: "Affiche Uvibes — soutien entre pairs" },
+      { src: "/images/affiche/echanges-pairs/echanges-pairs-1.webp", alt: "Affiche Uvibes — échanges entre pairs" },
+      { src: "/images/affiche/echanges-pairs/echanges-pairs-2.webp", alt: "Affiche Uvibes — soutien entre pairs" },
     ],
     gains: [
       "La création d'un collectif jusqu'ici inexistant",
@@ -182,7 +182,7 @@ export const collectifs: Collectif[] = [
     subtitle: "Entreprises, établissements publics, collectivités et organisations internationales",
     color: COLORS[2],
     flyers: [
-      { src: "/images/affiche/international/ineternation.webp", alt: "Affiche Uvibes — international" },
+      { src: "/images/affiche/international/international-1.webp", alt: "Affiche Uvibes — international" },
       { src: "/images/affiche/international/international-2.webp", alt: "Affiche Uvibes — échanges interculturels" },
     ],
     gains: [
@@ -201,8 +201,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Clubs sportifs, fédérations et organisateurs de compétitions",
     color: COLORS[3],
     flyers: [
-      { src: "/images/affiche/sport/joueur.webp", alt: "Affiche Uvibes — clubs sportifs" },
-      { src: "/images/affiche/sport/supporter.webp", alt: "Affiche Uvibes — esprit d'équipe" },
+      { src: "/images/affiche/sport/sport-1.webp", alt: "Affiche Uvibes — clubs sportifs" },
+      { src: "/images/affiche/sport/sport-2.webp", alt: "Affiche Uvibes — esprit d'équipe" },
     ],
     gains: [
       "Une expérience spectateur plus différenciante et engageante",
@@ -220,9 +220,9 @@ export const collectifs: Collectif[] = [
     subtitle: "France Travail, Missions Locales, Cap Emploi, APEC, AFPA, structures d'insertion",
     color: COLORS[4],
     flyers: [
-      { src: "/images/affiche/insertion/chercheur-1.webp", alt: "Affiche Uvibes — insertion professionnelle" },
-      { src: "/images/affiche/insertion/chercheur-2.webp", alt: "Affiche Uvibes — recherche d'emploi" },
-      { src: "/images/affiche/insertion/recruteur.webp", alt: "Affiche Uvibes — compétences relationnelles emploi" },
+      { src: "/images/affiche/insertion/insertion-1.webp", alt: "Affiche Uvibes — insertion professionnelle" },
+      { src: "/images/affiche/insertion/insertion-2.webp", alt: "Affiche Uvibes — recherche d'emploi" },
+      { src: "/images/affiche/insertion/insertion-3.webp", alt: "Affiche Uvibes — compétences relationnelles emploi" },
     ],
     gains: [
       "Le développement des compétences relationnelles et comportementales",
@@ -240,8 +240,8 @@ export const collectifs: Collectif[] = [
     subtitle: "Résidences étudiantes, hôtels, résidences seniors, bailleurs sociaux, sociétés de gestion immobilière, coopératives d'habitat et autres gestionnaires de lieu de vie",
     color: COLORS[5],
     flyers: [
-      { src: "/images/affiche/lieu-de-vie/crous.webp", alt: "Affiche Uvibes — résidence étudiante" },
-      { src: "/images/affiche/lieu-de-vie/voisin.webp", alt: "Affiche Uvibes — relations de voisinage" },
+      { src: "/images/affiche/lieu-de-vie/lieu-de-vie-1.webp", alt: "Affiche Uvibes — résidence étudiante" },
+      { src: "/images/affiche/lieu-de-vie/lieu-de-vie-2.webp", alt: "Affiche Uvibes — relations de voisinage" },
     ],
     gains: [
       "Une hausse de l'attractivité et la valeur perçue de vos lieux de vie",
@@ -258,10 +258,10 @@ export const collectifs: Collectif[] = [
     name: "Santé et médico-social",
     subtitle: "Hôpitaux, cliniques, Ehpad, maisons de santé, Instituts médico-éducatifs, Associations de patients, Centres de rééducation et de soins de suite",
     color: COLORS[2],
-    // TODO affiches Santé dédiées — placeholders « aidant » (contexte soin) en attendant
+    // Affiches Santé dédiées dans /images/affiche/sante/ (déposer sante-1.webp & sante-2.webp)
     flyers: [
-      { src: "/images/affiche/echanges-pairs/aidant-1.webp", alt: "Affiche Uvibes — patients et proches" },
-      { src: "/images/affiche/echanges-pairs/aidant-2.webp", alt: "Affiche Uvibes — soutien entre pairs en santé" },
+      { src: "/images/affiche/sante/sante-1.webp", alt: "Affiche Uvibes — patients et proches" },
+      { src: "/images/affiche/sante/sante-2.webp", alt: "Affiche Uvibes — soutien entre pairs en santé" },
     ],
     gains: [
       "Une expérience plus agréable pour les patients et leurs proches pendant les temps d'attente, sans sollicitation supplémentaire de vos équipes.",

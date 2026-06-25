@@ -59,7 +59,7 @@ export default function SolutionPage() {
         </div>
         <FeaturesCard />
         {/* Pont vers les offres : la tarification vit désormais sur sa propre page /tarifs */}
-        <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
+        <div style={{ background: "linear-gradient(165deg, #FD6E00 0%, #FF7A38 14%, #FF6098 42%, #E6007E 70%, #C20057 100%)", position: "relative", overflow: "hidden" }}>
           {/* Couche avant = crème de FeaturesCard (#FFF6EC) pour une transition sans couture */}
           <WaveSeparator position="top" color="#FFF6EC" />
           <section className="sol-tarifs-bridge">

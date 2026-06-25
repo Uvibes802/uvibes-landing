@@ -1,7 +1,8 @@
 /* ── SolutionThemes — premium editorial ───────────────────────── */
 
 .sth-section {
-  background: linear-gradient(160deg, #FFF6EC 0%, #FFFBF4 50%, #FFF0F8 100%);
+  /* Même dégradé symétrique que .shiw-section → raccord invisible entre les deux */
+  background: linear-gradient(180deg, #FFF4EF 0%, #FFEFF7 50%, #FFF4EF 100%);
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
   scroll-margin-top: 70px;
   position: relative;
@@ -83,8 +84,8 @@
   -webkit-text-fill-color: #D90A5C;
 }
 .sth-heading-sub {
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-style: normal;
   font-weight: 400;
   background: linear-gradient(100deg, #FD6E00 0%, #E6007E 60%, #9C1AE6 100%);
   -webkit-background-clip: text;
@@ -232,8 +233,8 @@
   font-size: 15px;
   line-height: 1.5;
   color: var(--accent, #FD6E00);
-  font-style: italic;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-style: normal;
+  font-family: var(--font-instrument), "Pacifico", cursive;
 }
 .sth-card-qdot {
   width: 5px; height: 5px;

@@ -318,6 +318,9 @@ export default function PricingTable({ locale = "fr" }: { locale?: string }) {
   // Tranches de tarification (4 tranches éditables en admin) — affichées au dépli
   const [apiPlans, setApiPlans] = useState<PlanApi[]>([]);
   const [openTiers, setOpenTiers] = useState<string | null>(null);
+  // « Ce qui est inclus » repliable : ouvert d'office en desktop (via CSS), replié
+  // en mobile pour éviter des cartes interminables ; ce state ne pilote que le mobile.
+  const [openIncluded, setOpenIncluded] = useState<Record<string, boolean>>({});
   const { devisEnabled } = useDevisStatus();
   useEffect(() => {
     fetch("/api/plans").then((r) => r.json()).then(setApiPlans).catch(() => {});
@@ -439,34 +442,48 @@ export default function PricingTable({ locale = "fr" }: { locale?: string }) {
                   )}
                 </div>
 
-                {/* Label héritage */}
-                <div className={`pt-card-inherit-label v-mono${f ? " --featured" : ""}`}>
-                  {meta.inherit
-                    ? (pt ? pt.everythingInFn(meta.inherit) : `Tout ${meta.inherit} :`)
-                    : (pt ? pt.included : "Ce qui est inclus")}
-                </div>
+                {/* « Ce qui est inclus » — repliable (desktop ouvert via CSS, mobile au clic) */}
+                {(() => {
+                  const inclOpen = openIncluded[plan.name] ?? false;
+                  return (
+                <div className={`pt-card-included${inclOpen ? " --open" : ""}`}>
+                  {/* Label héritage = bouton de dépli sur mobile */}
+                  <button
+                    type="button"
+                    className={`pt-card-inherit-label v-mono${f ? " --featured" : ""}`}
+                    aria-expanded={inclOpen}
+                    onClick={() => setOpenIncluded((s) => ({ ...s, [plan.name]: !inclOpen }))}
+                  >
+                    <span>{meta.inherit
+                      ? (pt ? pt.everythingInFn(meta.inherit) : `Tout ${meta.inherit} :`)
+                      : (pt ? pt.included : "Ce qui est inclus")}</span>
+                    <ChevronDown size={14} className="pt-card-incl-arrow" aria-hidden="true" />
+                  </button>
 
-                {/* Liste features */}
-                <ul className="pt-card-list">
-                  {FEATURES_LIST.map((feat, fi) => {
-                    const included = plan.values[fi] ?? false;
-                    const fresh = meta.inherit ? freshFn(fi) : included;
-                    return (
-                      <li
-                        key={fi}
-                        className={`pt-card-feat${!included ? " --off" : ""}${fresh && included ? " --fresh" : ""}`}
-                      >
-                        <span className="pt-card-feat-icon">
-                          {included
-                            ? <Check size={15} strokeWidth={2.6} />
-                            : <X size={15} strokeWidth={1.8} />
-                          }
-                        </span>
-                        <span>{feat.name}</span>
-                      </li>
-                    );
-                  })}
-                </ul>
+                  {/* Liste features */}
+                  <ul className="pt-card-list">
+                    {FEATURES_LIST.map((feat, fi) => {
+                      const included = plan.values[fi] ?? false;
+                      const fresh = meta.inherit ? freshFn(fi) : included;
+                      return (
+                        <li
+                          key={fi}
+                          className={`pt-card-feat${!included ? " --off" : ""}${fresh && included ? " --fresh" : ""}`}
+                        >
+                          <span className="pt-card-feat-icon">
+                            {included
+                              ? <Check size={15} strokeWidth={2.6} />
+                              : <X size={15} strokeWidth={1.8} />
+                            }
+                          </span>
+                          <span>{feat.name}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                  );
+                })()}
               </div>
             );
           })}

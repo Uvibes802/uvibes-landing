@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import nodemailer from "nodemailer";
+import { createMailTransport, MAIL_FROM, MAIL_TO_ADMIN, emailShell } from "@/lib/mailer";
 import { escapeHtml } from "@/lib/escapeHtml";
 import { buildIcsEvent } from "@/lib/ics";
 
@@ -35,10 +35,7 @@ export async function POST(req: NextRequest) {
 
   // Email de confirmation au client
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: { type: "OAuth2", user: process.env.EMAIL_USER, clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET, refreshToken: process.env.GOOGLE_REFRESH_TOKEN },
-    });
+    const transporter = createMailTransport();
     const dateFormatted = new Date(date).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
     // Fichier .ics joint → ajout en 1 clic à l'agenda (Apple Calendar, Google, Outlook)
@@ -53,20 +50,15 @@ export async function POST(req: NextRequest) {
 
     // Destinataire de la notification directrice (configurable en CMS, sinon le compte d'envoi)
     const notifSetting = await prisma.cmsContent.findUnique({ where: { cle: "rdv-notif-email" } });
-    const directriceEmail = (notifSetting?.valeur || process.env.EMAIL_USER) ?? "";
+    const directriceEmail = (notifSetting?.valeur || MAIL_TO_ADMIN) ?? "";
 
     // Les deux emails partent en parallèle (chaque envoi SMTP est lent).
     await Promise.all([
     transporter.sendMail({
-      from: `"Uvibes" <${process.env.EMAIL_USER}>`,
+      from: MAIL_FROM,
       to: email,
       subject: `Confirmation de rendez-vous Uvibes — ${dateFormatted} à ${heure}`,
-      html: `
-        <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#4A1530">
-          <div style="background:linear-gradient(135deg,#FD6E00,#D90A5C);padding:32px;border-radius:12px 12px 0 0">
-            <h1 style="color:#fff;margin:0;font-size:24px">Uvibes</h1>
-          </div>
-          <div style="padding:32px;background:#FFFBF4;border-radius:0 0 12px 12px;border:1px solid rgba(74,21,48,.09)">
+      html: emailShell(`
             <h2>Bonjour ${escapeHtml(nom)},</h2>
             <p>Votre demande de rendez-vous a bien été enregistrée. Nous confirmerons rapidement.</p>
             <table style="width:100%;border-collapse:collapse;margin:24px 0">
@@ -75,13 +67,12 @@ export async function POST(req: NextRequest) {
               <tr style="background:#FFF6EC"><td style="padding:12px;border:1px solid #E0AEC4">Sujet</td><td style="padding:12px;border:1px solid #E0AEC4"><strong>${escapeHtml(sujet)}</strong></td></tr>
             </table>
             <p style="color:#B0507E;font-size:13px">Ajoutez ce rendez-vous à votre agenda avec le fichier joint. Une question ? Contactez-nous sur uvibes.fr</p>
-          </div>
-        </div>`,
+        `),
       attachments: [icsAttachment],
     }),
     // Notifier la directrice (immédiat, à chaque prise de RDV) + .ics pour l'agenda
     transporter.sendMail({
-      from: `"Uvibes CRM" <${process.env.EMAIL_USER}>`,
+      from: MAIL_FROM,
       to: directriceEmail,
       subject: `📅 Nouveau RDV — ${nom} — ${dateFormatted} ${heure}`,
       html: `

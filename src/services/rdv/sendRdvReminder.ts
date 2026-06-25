@@ -1,18 +1,5 @@
-import nodemailer from "nodemailer";
+import { createMailTransport, MAIL_FROM, emailShell } from "@/lib/mailer";
 import { escapeHtml } from "@/lib/escapeHtml";
-
-function createTransport() {
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: process.env.EMAIL_USER,
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-    },
-  });
-}
 
 interface RdvReminderParams {
   to: string;
@@ -23,7 +10,7 @@ interface RdvReminderParams {
 }
 
 export async function sendRdvReminder({ to, nom, date, heure, sujet }: RdvReminderParams) {
-  const transporter = createTransport();
+  const transporter = createMailTransport();
 
   const dateLisible = new Date(date).toLocaleDateString("fr-FR", {
     weekday: "long",
@@ -32,12 +19,7 @@ export async function sendRdvReminder({ to, nom, date, heure, sujet }: RdvRemind
     year: "numeric",
   });
 
-  const html = `
-    <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#4A1530">
-      <div style="background:linear-gradient(135deg,#FD6E00,#D90A5C);padding:32px;border-radius:12px 12px 0 0">
-        <h1 style="color:#fff;margin:0;font-size:24px">Uvibes</h1>
-      </div>
-      <div style="padding:32px;background:#FFFBF4;border-radius:0 0 12px 12px;border:1px solid rgba(74,21,48,.09)">
+  const html = emailShell(`
         <h2 style="margin-top:0">Rappel de votre rendez-vous</h2>
         <p>Bonjour ${escapeHtml(nom)},</p>
         <p>Nous vous rappelons votre rendez-vous avec l'équipe Uvibes&nbsp;:</p>
@@ -50,12 +32,10 @@ export async function sendRdvReminder({ to, nom, date, heure, sujet }: RdvRemind
         <p>À très bientôt&nbsp;!</p>
         <hr style="border:none;border-top:1px dashed rgba(74,21,48,.16);margin:24px 0"/>
         <p style="color:#B0507E;font-size:13px">L'équipe Uvibes — uvibes.fr</p>
-      </div>
-    </div>
-  `;
+  `);
 
   await transporter.sendMail({
-    from: `"Uvibes" <${process.env.EMAIL_USER}>`,
+    from: MAIL_FROM,
     to,
     subject: `Rappel : votre rendez-vous Uvibes le ${dateLisible}`,
     html,

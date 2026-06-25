@@ -470,16 +470,31 @@ h5 {
 }
 
 .v-serif {
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-style: normal;
   font-weight: 400;
-  /* Mode néon sur les mots en italique — glow qui respire doucement (aucun reflow) */
-  text-shadow: 0 0 8px rgba(255,225,90,.55), 0 0 20px rgba(255,160,60,.32);
+}
+/* Néon réservé aux mots des sections hero (accueil + tarifs) — ailleurs la
+   police cursive reste mais sans halo, pour ne pas surcharger le reste du site.
+   Le halo reprend les teintes du dégradé (orange→rose), pas du jaune. */
+.hero-section .v-serif,
+.th-section .v-serif {
+  text-shadow: 0 0 8px rgba(253,110,0,.5), 0 0 22px rgba(230,0,126,.34);
   animation: vSerifGlow 5s ease-in-out infinite;
 }
+/* Pacifico est déjà cursif : on force le droit (pas d'italique synthétique),
+   double sélecteur pour passer devant les classes composant qui remettent italic. */
+.v-serif.v-serif { font-style: normal; }
+
+/* ── Anti-« mots orphelins » global ──────────────────────────────
+   text-wrap:pretty évite qu'un seul mot tombe seul sur la dernière ligne
+   d'un paragraphe ; balance équilibre les lignes des titres. Ignoré
+   silencieusement par les navigateurs qui ne le supportent pas. */
+p, li, figcaption, blockquote, .dv-card-sub, .oe-subtitle { text-wrap: pretty; }
+h1, h2, h3, h4, .uv-section-title, .soc-title, .str-title, .rdv-title { text-wrap: balance; }
 @keyframes vSerifGlow {
-  0%, 100% { text-shadow: 0 0 7px rgba(255,225,90,.42), 0 0 18px rgba(255,160,60,.24); }
-  50%      { text-shadow: 0 0 13px rgba(255,225,90,.72), 0 0 28px rgba(255,160,60,.44); }
+  0%, 100% { text-shadow: 0 0 7px rgba(253,110,0,.38), 0 0 18px rgba(230,0,126,.26); }
+  50%      { text-shadow: 0 0 14px rgba(253,110,0,.66), 0 0 30px rgba(230,0,126,.46); }
 }
 
 .v-mono {

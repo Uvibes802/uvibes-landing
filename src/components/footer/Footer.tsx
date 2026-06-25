@@ -248,14 +248,13 @@ export default function Footer({ locale = "fr" }: { locale?: string }) {
               <div key={col.label} className="ft-nav-col">
                 <div className="ft-nav-label-wrap">
                   <p className="v-mono ft-nav-label">
-                    <span className="ft-nav-label-dot" aria-hidden="true" />
                     {col.label}
                   </p>
                   <VibrationLine
                     className="ft-nav-underline"
-                    width={48} height={8}
-                    amplitude={2.2} freq={2}
-                    stroke="rgba(255,255,255,.5)" strokeWidth={1.5}
+                    width={110} height={16}
+                    amplitude={4.5} freq={3}
+                    stroke="rgba(255,255,255,.7)" strokeWidth={2}
                     speed={5}
                   />
                 </div>

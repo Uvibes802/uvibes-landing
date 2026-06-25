@@ -14,7 +14,14 @@ function useInView<T extends HTMLElement>(threshold = 0.4) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold });
+    // Seuils fins (0, 0.05, … 1) : l'observer se redéclenche en continu pendant le
+    // scroll, donc le couvercle se referme dès que la carte passe sous le seuil —
+    // pas seulement quand elle a totalement quitté l'écran.
+    const steps = Array.from({ length: 21 }, (_, i) => i / 20);
+    const io = new IntersectionObserver(
+      ([e]) => setInView(e.intersectionRatio >= threshold),
+      { threshold: steps },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, [threshold]);
@@ -333,13 +340,39 @@ const THEMES_BY_LOCALE: Record<string, string[]> = {
 // Jauge demi-cercle — rayon 90, donc demi-circonférence ≈ 282.7
 const GAUGE_LEN = 282.7;
 const GAUGE_PCT = 0.87; // 87 % — écho du score moyen de bien-être affiché
+// Mini-sparkline : tendance des dernières semaines (hauteurs en %), monte jusqu'à 87
+const BARO_TREND = [54, 60, 57, 66, 72, 81, 87];
 
 export default function SolutionStrategie({ locale = "fr" }: { locale?: string }) {
   const THEMES = THEMES_BY_LOCALE[locale] ?? THEMES_FR;
   const str = STR_TXT[locale];
   const [ref, vis] = useIntersectionOnce<HTMLElement>({ threshold: 0.08 });
   const [baroRef, baroInView] = useInView<HTMLDivElement>(0.5);
-  const [macRef, macInView] = useInView<HTMLDivElement>(0.35);
+  const [macRef, macInView] = useInView<HTMLDivElement>(0.28);
+
+  // Le score grimpe de 0 à 87 quand le baromètre entre dans le viewport
+  const [baroNum, setBaroNum] = useState(0);
+  useEffect(() => {
+    if (!baroInView) { setBaroNum(0); return; }
+    const target = Math.round(GAUGE_PCT * 100);
+    const start = performance.now();
+    let raf = requestAnimationFrame(function tick(now) {
+      const p = Math.min((now - start) / 1300, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setBaroNum(Math.round(target * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [baroInView]);
+
+  // Le mockup « flippe » toutes les ~2,8 s pour changer d'écran (3 écrans pour l'instant)
+  const BARO_FACES = 3;
+  const [face, setFace] = useState(0);
+  useEffect(() => {
+    if (!baroInView) return;
+    const id = setInterval(() => setFace((f) => (f + 1) % BARO_FACES), 2800);
+    return () => clearInterval(id);
+  }, [baroInView]);
 
   return (
     <section id="strategie" className={`str-section${vis ? " str-vis" : ""}`} ref={ref}>
@@ -366,7 +399,8 @@ export default function SolutionStrategie({ locale = "fr" }: { locale?: string }
                 : <>Transformez chaque participation en source d&apos;insights. Grâce à de courtes enquêtes personnalisables, recueillez des données anonymisées sur les sujets qui comptent pour votre organisation et disposez d&apos;une meilleure compréhension des attentes et des dynamiques de votre collectif.</>}
             </p>
             <p className="str-themes-label">{str ? str.themesLabel : "Exemples de thématiques"}</p>
-            {/* Ruban horizontal qui défile les thématiques en rotation */}
+            {/* Marquee de pastilles : les thématiques défilent en chips dégradées,
+                avec un fondu doux aux deux bords. */}
             <div className="str-ribbon" role="list" aria-label={str ? str.themesLabel : "Exemples de thématiques"}>
               <div className="str-ribbon-track">
                 {[...THEMES, ...THEMES].map((t, i) => (
@@ -376,39 +410,71 @@ export default function SolutionStrategie({ locale = "fr" }: { locale?: string }
             </div>
           </article>
 
-          {/* 02 — Le baromètre bien-être (titre déplacé en notification, cf. carte 03) */}
+          {/* 02 — Le baromètre bien-être */}
           <article className="str-card str-card--barometre" ref={baroRef}>
+            <h3 className="str-card-title">{str ? str.baroTitle : "Le baromètre bien-être"}</h3>
             <p className="str-card-body">
               {str
                 ? str.baroBody
                 : <>Recueillez l&apos;évaluation du bien-être de votre collectif à chaque expérience. Ces évaluations anonymisées et agrégées vous permettent de suivre son évolution dans le temps et d&apos;objectiver l&apos;impact des actions menées.</>}
             </p>
-            {/* Jauge demi-cercle dans un mockup iPhone — se remplit quand la carte entre dans le viewport */}
-            <div className="str-iphone">
+            {/* Mockup iPhone — flotte et « flippe » toutes les ~2,8 s pour changer d'écran.
+                Les écrans sont des placeholders : remplacer par les vraies images plus tard. */}
+            <div className="str-iphone str-iphone--float">
               <span className="str-iphone-notch" aria-hidden="true" />
               <div className="str-iphone-screen">
-                <div className={`str-gauge${baroInView ? " str-gauge--filled" : ""}`}>
-                  <svg className="str-gauge-svg" viewBox="0 0 200 110" aria-hidden="true">
-                    <defs>
-                      <linearGradient id="strGaugeGrad" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0%" stopColor="#E6007E" />
-                        <stop offset="100%" stopColor="#FD6E00" />
-                      </linearGradient>
-                    </defs>
-                    <path className="str-gauge-track" d="M10,100 A90,90 0 0 1 190,100" strokeWidth="14" strokeLinecap="round" />
-                    <path
-                      className="str-gauge-fill"
-                      d="M10,100 A90,90 0 0 1 190,100"
-                      stroke="url(#strGaugeGrad)"
-                      strokeWidth="14"
-                      strokeLinecap="round"
-                      strokeDasharray={GAUGE_LEN}
-                      strokeDashoffset={baroInView ? GAUGE_LEN * (1 - GAUGE_PCT) : GAUGE_LEN}
-                    />
-                  </svg>
-                  <div className="str-gauge-readout">
-                    <span className="str-gauge-num v-serif">87%</span>
-                    <span className="str-gauge-label">{str ? str.baroTitle : "Bien-être moyen ressenti"}</span>
+                <div className="str-flip-stage">
+                  <div className="str-flip-card" key={face}>
+                    {/* Écran 0 — jauge bien-être */}
+                    {face === 0 && (
+                      <div className="str-face str-face--gauge">
+                        <div className="str-gauge">
+                          <svg className="str-gauge-svg" viewBox="0 0 200 110" aria-hidden="true">
+                            <defs>
+                              <linearGradient id="strGaugeGrad" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stopColor="#E6007E" />
+                                <stop offset="100%" stopColor="#FD6E00" />
+                              </linearGradient>
+                            </defs>
+                            <path className="str-gauge-track" d="M10,100 A90,90 0 0 1 190,100" strokeWidth="14" strokeLinecap="round" />
+                            <path className="str-gauge-fill str-gauge-fill--static" d="M10,100 A90,90 0 0 1 190,100" stroke="url(#strGaugeGrad)" strokeWidth="14" strokeLinecap="round" strokeDasharray={GAUGE_LEN} strokeDashoffset={GAUGE_LEN * (1 - GAUGE_PCT)} />
+                            <circle className="str-gauge-dot str-gauge-dot--on" cx="182.6" cy="64.3" r="6" fill="#FD6E00" />
+                          </svg>
+                          <div className="str-gauge-readout">
+                            <span className="str-gauge-num v-serif">{baroNum}%</span>
+                          </div>
+                        </div>
+                        <span className="str-face-label">Bien-être moyen</span>
+                      </div>
+                    )}
+                    {/* Écran 1 — tendance (sparkline) */}
+                    {face === 1 && (
+                      <div className="str-face str-face--trend">
+                        <div className="str-baro-trend str-baro-trend--on" aria-hidden="true">
+                          {BARO_TREND.map((h, i) => (
+                            <span key={i} className="str-baro-bar" style={{ "--h": `${h}%`, "--i": i } as React.CSSProperties} />
+                          ))}
+                        </div>
+                        <span className="str-baro-delta" aria-hidden="true">↑ +6 pts ce mois</span>
+                        <span className="str-face-label">Tendance positive</span>
+                      </div>
+                    )}
+                    {/* Écran 2 — ressenti du collectif (placeholder) */}
+                    {face === 2 && (
+                      <div className="str-face str-face--mood">
+                        <div className="str-mood-row" aria-hidden="true">
+                          <span className="str-mood str-mood--1">😍</span>
+                          <span className="str-mood str-mood--2">🙂</span>
+                          <span className="str-mood str-mood--3">😐</span>
+                        </div>
+                        <div className="str-mood-bars" aria-hidden="true">
+                          <span style={{ "--h": "78%" } as React.CSSProperties} />
+                          <span style={{ "--h": "54%" } as React.CSSProperties} />
+                          <span style={{ "--h": "22%" } as React.CSSProperties} />
+                        </div>
+                        <span className="str-face-label">Ressenti du collectif</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -423,10 +489,6 @@ export default function SolutionStrategie({ locale = "fr" }: { locale?: string }
                 ? str.pilotageBody
                 : <>Accédez à plus de 20 indicateurs de suivi pour piloter efficacement votre programme. Visualisez en temps réel le nombre d&apos;inscrits, le taux de participation, le taux de réengagement et de nombreux autres indicateurs clés.</>}
             </p>
-            <div className="str-stat">
-              <span className="str-stat-num v-serif">20+</span>
-              <span className="str-stat-label">{str ? str.statLabel : <>indicateurs suivis<br />en temps réel</>}</span>
-            </div>
             {/* Mockup MacBook — le couvercle s'ouvre quand la carte entre dans le viewport
                 et se referme quand on la dépasse (cf. useInView, répétable) */}
             <div className={`str-macbook${macInView ? " str-macbook--open" : ""}`} ref={macRef}>

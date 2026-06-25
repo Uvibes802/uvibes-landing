@@ -26,23 +26,41 @@
 .crm-shell::before {
   content: '';
   position: fixed;
-  top: -120px; right: -120px;
-  width: 500px; height: 500px;
+  top: -140px; right: -120px;
+  width: 560px; height: 560px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(253,110,0,.07), transparent);
+  background: radial-gradient(closest-side, rgba(253,110,0,.16), transparent 70%);
+  filter: blur(20px);
   pointer-events: none;
   z-index: 0;
+  animation: crmBlobA 26s ease-in-out infinite;
 }
 .crm-shell::after {
   content: '';
   position: fixed;
-  bottom: -80px; left: 240px;
-  width: 400px; height: 400px;
+  bottom: -100px; left: 220px;
+  width: 460px; height: 460px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(217,10,92,.06), transparent);
+  background: radial-gradient(closest-side, rgba(217,10,92,.14), transparent 70%);
+  filter: blur(20px);
   pointer-events: none;
   z-index: 0;
+  animation: crmBlobB 30s ease-in-out infinite;
 }
+@keyframes crmBlobA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,40px) scale(1.12); } }
+@keyframes crmBlobB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(48px,-32px) scale(1.1); } }
+@media (prefers-reduced-motion: reduce) {
+  .crm-shell::before, .crm-shell::after { animation: none; }
+}
+
+/* Blobs colorés animés supplémentaires (déco, derrière le contenu) */
+.crm-shell-deco { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.crm-deco-blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .5; }
+.crm-deco-blob--1 { width: 340px; height: 340px; top: 30%; left: 40%;
+  background: radial-gradient(closest-side, rgba(255,176,40,.4), transparent 70%); animation: crmBlobA 22s ease-in-out infinite; }
+.crm-deco-blob--2 { width: 300px; height: 300px; top: 60%; right: 12%;
+  background: radial-gradient(closest-side, rgba(0,175,221,.28), transparent 70%); animation: crmBlobB 28s ease-in-out infinite reverse; }
+@media (prefers-reduced-motion: reduce) { .crm-deco-blob { animation: none; } }
 
 /* ── Sidebar macOS glass ──────────────────────────────────────── */
 .crm-sidebar {
@@ -59,7 +77,11 @@
   z-index: 50;
   overflow-y: auto;
   transition: width 200ms ease;
+  /* On masque la barre de scroll du menu (le défilement reste possible) */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge ancien */
 }
+.crm-sidebar::-webkit-scrollbar { width: 0; height: 0; display: none; } /* Chrome/Safari */
 
 /* ── Sidebar repliée — icônes seules ──────────────────────────── */
 .crm-sidebar.--collapsed { width: var(--crm-sidebar-w-collapsed); overflow-x: hidden; }
@@ -192,6 +214,8 @@ body.crm-sidebar-collapsed .crm-main { margin-left: var(--crm-sidebar-w-collapse
   flex-direction: column;
   min-height: 100svh;
   transition: margin-left 200ms ease;
+  position: relative;
+  z-index: 1; /* au-dessus des blobs déco du shell */
 }
 
 .crm-topbar {
@@ -438,11 +462,39 @@ table.crm-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 
 /* ── Login page macOS ─────────────────────────────────────────── */
 .crm-login-page {
+  position: relative;
   min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #F5F5F7;
+  /* fond dégradé doux (esprit site) au lieu du gris plat */
+  background: linear-gradient(145deg, #FFFBF4 0%, #FFF1F6 50%, #FFF0FB 100%);
+}
+
+/* Lien retour au site — coin haut gauche, visible sur tous les écrans */
+.crm-login-back {
+  position: absolute;
+  top: clamp(14px, 3vw, 26px);
+  left: clamp(14px, 3vw, 26px);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(217, 10, 92, 0.16);
+  font-family: var(--font-prompt, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b4455;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+.crm-login-back:hover {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, #FD6E00, #D90A5C);
 }
 
 .crm-login-card {
@@ -515,14 +567,107 @@ table.crm-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 .crm-pipe-card-sub { font-size: 11.5px; color: var(--crm-muted); }
 .crm-pipe-card-ca { font-size: 11.5px; font-weight: 600; color: var(--crm-accent); margin-top: 3px; }
 
+/* ── Bouton flottant + voile mobile (cachés en desktop) ──────── */
+.crm-mob-fab { display: none; }
+.crm-mob-backdrop { display: none; }
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .crm-metrics { grid-template-columns: repeat(2, 1fr); }
   .crm-detail-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .crm-sidebar { transform: translateX(-100%); }
+  /* La sidebar devient un panneau coulissant (comme le menu mobile du site) */
+  .crm-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.32s cubic-bezier(.2,.7,.2,1);
+    z-index: 160;
+    box-shadow: 8px 0 40px rgba(0,0,0,.18);
+    width: var(--crm-sidebar-w);
+  }
+  .crm-sidebar.--mobile-open { transform: translateX(0); }
+  body.crm-sidebar-collapsed .crm-main { margin-left: 0; }
   .crm-main { margin-left: 0; }
   .crm-metrics { grid-template-columns: 1fr 1fr; }
   .crm-content { padding: 14px; }
+
+  /* Voile sombre derrière le panneau ouvert */
+  .crm-mob-backdrop {
+    display: block;
+    position: fixed; inset: 0; z-index: 150;
+    background: rgba(10,5,3,.45);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .crm-mob-backdrop.--in { opacity: 1; pointer-events: auto; }
+
+  /* Bouton flottant gradient (ouvre/ferme) */
+  .crm-mob-fab {
+    display: flex; align-items: center; justify-content: center;
+    position: fixed; bottom: 20px; right: 20px; z-index: 170;
+    width: 54px; height: 54px; border-radius: 50%; border: none; cursor: pointer;
+    background: linear-gradient(135deg, #fd6e00, #d90a5c); color: #fff;
+    box-shadow: 0 6px 20px rgba(217,10,92,.45), 0 2px 8px rgba(0,0,0,.2);
+  }
+  .crm-mob-fab:active { transform: scale(0.94); }
 }
+
+/* ── Cloche de notifications (messages de contact) ────────────────── */
+.crm-notif { position: fixed; top: 11px; right: 20px; z-index: 120; }
+.crm-notif-btn {
+  position: relative; width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  background: rgba(255,255,255,.85); border: 1px solid rgba(0,0,0,.06);
+  color: #6b4455; box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: color .18s ease, transform .18s ease;
+}
+.crm-notif-btn:hover { color: var(--crm-accent); transform: translateY(-1px); }
+.crm-notif-badge {
+  position: absolute; top: -3px; right: -3px; min-width: 17px; height: 17px; padding: 0 4px;
+  border-radius: 999px; background: linear-gradient(135deg, #FD6E00, #D90A5C); color: #fff;
+  font-size: 10px; font-weight: 700; display: grid; place-items: center;
+  box-shadow: 0 2px 6px rgba(217,10,92,.5);
+}
+.crm-notif-panel {
+  position: absolute; top: calc(100% + 8px); right: 0; width: min(360px, 88vw);
+  background: #fff; border-radius: 16px; border: 1px solid rgba(0,0,0,.07);
+  box-shadow: 0 24px 60px -20px rgba(74,21,48,.32); overflow: hidden;
+  animation: crmNotifIn .16s cubic-bezier(.2,.7,.2,1);
+}
+@keyframes crmNotifIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.crm-notif-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,.06);
+  font-size: 13px; font-weight: 700; color: var(--crm-text);
+}
+.crm-notif-readall { background: none; border: none; cursor: pointer; font-size: 11.5px; color: var(--crm-accent); font-weight: 600; }
+.crm-notif-list { max-height: 380px; overflow-y: auto; }
+.crm-notif-empty { padding: 26px 14px; text-align: center; color: var(--crm-muted); font-size: 13px; }
+.crm-notif-item {
+  display: flex; flex-direction: column; gap: 3px; width: 100%; text-align: left;
+  padding: 11px 14px; background: none; border: none; border-left: 3px solid transparent;
+  border-bottom: 1px solid rgba(0,0,0,.04); cursor: pointer; transition: background .12s ease;
+}
+.crm-notif-item:hover { background: rgba(253,110,0,.05); }
+.crm-notif-item.--unread { background: rgba(253,110,0,.07); border-left-color: var(--crm-accent); }
+.crm-notif-item-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; color: var(--crm-text); }
+.crm-notif-time { font-size: 11px; color: var(--crm-muted); flex-shrink: 0; }
+.crm-notif-item-email { font-size: 11.5px; color: var(--crm-accent); }
+.crm-notif-item-msg {
+  font-size: 12px; color: var(--crm-muted); line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+@media (max-width: 768px) { .crm-notif { top: 10px; right: 14px; } }
+
+/* ── Carte générique (composer newsletter, etc.) ─────────────────── */
+.crm-card {
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03), 0 18px 44px -28px rgba(217,10,92,.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.crm-card-title { font-size: 16px; font-weight: 700; color: var(--crm-text); margin: 0 0 4px; }

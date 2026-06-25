@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
+import WaveSeparator from "@/components/shared/WaveSeparator";
 import { PASSEPORTS_EN } from "@/data/passeport/passeportExperienceEn";
 import { PASSEPORTS_ES } from "@/data/passeport/passeportExperienceEs";
 import { PASSEPORTS_DE } from "@/data/passeport/passeportExperienceDe";
@@ -523,11 +524,14 @@ export default function PasseportExperience({ locale = "fr" }: { locale?: string
   const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id));
 
   return (
+   <div className="pp-gradient-wrap" style={{ background: "linear-gradient(135deg, #FD6E00 0%, #FF8530 8%, #FFB870 20%, #FFB0A0 35%, #FF88B8 52%, #FF5898 70%, #E6007E 88%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
+    {/* Vague du haut — accordée au fond clair (#FFFBF4) de la section précédente */}
+    <WaveSeparator position="top" color="#FFFBF4" />
     <section className={`pp-section${vis ? " pp-vis" : ""}`} ref={ref}>
-      {/* Ondes de fond — identité Uvibes */}
+      {/* Ondes de fond — blanches translucides sur le dégradé saturé */}
       <div className="pp-waves" aria-hidden="true">
-        <GradientVibrationLine id="pp-w1" width={1800} height={70} amplitude={26} freq={5} strokeWidth={18} speed={12} colorFrom="#FD6E00" colorTo="#E6007E" style={{ width: "100%" }} />
-        <GradientVibrationLine id="pp-w2" width={1800} height={70} amplitude={20} freq={7} strokeWidth={12} speed={16} colorFrom="#00AFDD" colorTo="#D90A5C" style={{ width: "100%" }} />
+        <GradientVibrationLine id="pp-w1" width={1800} height={70} amplitude={26} freq={5} strokeWidth={18} speed={12} colorFrom="#FFFFFF" colorTo="#FFE456" style={{ width: "100%" }} />
+        <GradientVibrationLine id="pp-w2" width={1800} height={70} amplitude={20} freq={7} strokeWidth={12} speed={16} colorFrom="#FFE456" colorTo="#FFFFFF" style={{ width: "100%" }} />
       </div>
 
       {/* ── En-tête ── */}
@@ -561,8 +565,8 @@ export default function PasseportExperience({ locale = "fr" }: { locale?: string
               freq={7}
               strokeWidth={2.5}
               speed={11}
-              colorFrom="#FD6E00"
-              colorTo="#E6007E"
+              colorFrom="#FFFFFF"
+              colorTo="#FFE456"
               style={{ width: "100%", height: "100%" }}
             />
           </div>
@@ -591,5 +595,8 @@ export default function PasseportExperience({ locale = "fr" }: { locale?: string
       {/* ── Paquet de passeports — un seul carousel, défilement manuel ── */}
       <PassportCarousel items={PASSEPORTS_LIST} openId={openId} toggle={toggle} locale={locale} />
     </section>
+    {/* Vague du bas — accordée au fond clair (#FFFBF4) de la section suivante */}
+    <WaveSeparator position="bottom" color="#FFFBF4" />
+   </div>
   );
 }

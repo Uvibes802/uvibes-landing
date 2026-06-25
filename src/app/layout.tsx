@@ -7,7 +7,7 @@ import GARouteTracker from "@/components/analytics/GARouteTracker";
 import { getMaintenanceStatus } from "@/lib/maintenanceState";
 import { OG_IMAGE_DEFAULT, PAGE_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
-import { Instrument_Serif, Prompt, Roboto_Mono } from "next/font/google";
+import { Pacifico, Prompt, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -23,10 +23,9 @@ const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
-// Serif réservé aux mots en italique (accents) — réintroduit à la demande
-const instrumentSerif = Instrument_Serif({
+// Police d'accent — script ronde et joueuse (mots en italique, grands chiffres)
+const accentFont = Pacifico({
   weight: ["400"],
-  style: ["normal", "italic"],
   subsets: ["latin"],
   variable: "--font-instrument",
 });
@@ -71,34 +70,39 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isMaintenanceMode = getMaintenanceStatus();
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 
   return (
     <html lang="fr">
       <head>
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('consent', 'default', {
-                'analytics_storage': 'denied'
-              });
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                page_path: window.location.pathname
-              });
-              console.log('Google Analytics initialized with denied consent');
-            `,
-          }}
-        />
+        {/* Google Analytics — chargé uniquement si l'ID est défini (sinon rien) */}
+        {gaId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('consent', 'default', {
+                    'analytics_storage': 'denied'
+                  });
+                  gtag('config', '${gaId}', {
+                    page_path: window.location.pathname
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
-      <body className={`${prompt.variable} ${robotoMono.variable} ${instrumentSerif.variable}`}>
+      <body className={`${prompt.variable} ${robotoMono.variable} ${accentFont.variable}`}>
         {/* Lien d'évitement clavier — masqué jusqu'au focus (accessibilité) */}
         <a href="#main-content" className="skip-link">Aller au contenu</a>
         {/* Menu et CookieConsent se masquent eux-mêmes sur /admin & /devis (garde-fou client usePathname) */}

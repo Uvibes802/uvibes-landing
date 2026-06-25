@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { prisma } from "@/lib/prisma";
+import { createMailTransport, MAIL_FROM, MAIL_TO_ADMIN } from "@/lib/mailer";
 import { escapeHtml } from "@/lib/escapeHtml";
 
 // Rate limiting : max 5 requêtes par minute par IP pour éviter le spam
@@ -41,21 +42,29 @@ export async function POST(req: Request) {
       ? categories.map((c: string) => escapeHtml(c)).join(", ")
       : "Toutes";
 
-  // Authentification Gmail via OAuth2 — credentials dans .env.local
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: process.env.EMAIL_USER,
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-    },
-  });
+  // On enregistre le message en base → il apparaît en notification dans le dashboard
+  // (best-effort : même si l'email échoue, la trace reste).
+  try {
+    await prisma.contactMessage.create({
+      data: {
+        nom: String(lastname ?? "").slice(0, 200),
+        prenom: firstname ? String(firstname).slice(0, 200) : null,
+        email: String(email ?? "").slice(0, 320),
+        organisation: organisation ? String(organisation).slice(0, 200) : null,
+        categories: Array.isArray(categories) && categories.length > 0 ? categories.join(", ") : null,
+        message: String(message ?? "").slice(0, 5000),
+      },
+    });
+  } catch (e) {
+    console.error("[contact] enregistrement DB échoué:", (e as Error).message);
+  }
+
+  // Envoi via le relais SMTP Brevo (cf. src/lib/mailer.ts)
+  const transporter = createMailTransport();
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
+    from: MAIL_FROM,
+    to: MAIL_TO_ADMIN,
     replyTo: email,
     subject: `Nouveau message de ${lastname} ${firstname} via le site Uvibes`,
     html: `

@@ -2,7 +2,6 @@
 
 import { useIntersectionOnce } from "@/hooks/useIntersectionOnce";
 import { getVideoUrl } from "@/utils/videoUrl";
-import VibrationLine from "@/components/shared/VibrationLine";
 import GradientVibrationLine from "@/components/shared/GradientVibrationLine";
 import "@/styles/uvibes/whyName.css";
 
@@ -146,16 +145,16 @@ const WN_TXT: Record<string, {
   },
 };
 
-// Une révélation : grande lettre/mot → connecteur animé → sens
-function Reveal({ big, word, note, wave }: {
+// Une carte « décodage » : grande lettre/mot + son sens, dans un écrin clair
+function DecodeCard({ big, word, note, wave }: {
   big: string; word: React.ReactNode; note: React.ReactNode; wave?: boolean;
 }) {
   return (
-    <div className={`uvn-rev${wave ? " uvn-rev--wave" : ""}`}>
-      <span className="uvn-rev-big v-serif">
+    <article className="uvn-card">
+      <span className={`uvn-card-letter v-serif${wave ? " uvn-card-letter--vibes" : ""}`}>
         {big}
         {wave && (
-          <span className="uvn-rev-line" aria-hidden="true">
+          <span className="uvn-card-wave" aria-hidden="true">
             <GradientVibrationLine
               id="uvn-vibes-wave"
               width={260} height={40} amplitude={9} freq={6}
@@ -166,16 +165,9 @@ function Reveal({ big, word, note, wave }: {
           </span>
         )}
       </span>
-      <span className="uvn-rev-arrow" aria-hidden="true">
-        <span className="uvn-rev-arrow-dot" />
-        <span className="uvn-rev-arrow-dot" />
-        <span className="uvn-rev-arrow-dot" />
-      </span>
-      <span className="uvn-rev-mean">
-        <span className="uvn-rev-word v-serif">{word}</span>
-        <span className="uvn-rev-note">{note}</span>
-      </span>
-    </div>
+      <span className="uvn-card-word v-serif">{word}</span>
+      <span className="uvn-card-note">{note}</span>
+    </article>
   );
 }
 
@@ -185,6 +177,14 @@ export default function WhyName({ locale = "fr" }: { locale?: string }) {
 
   return (
     <section className={`uvn-section${vis ? " uvn-vis" : ""}`} ref={ref}>
+      {/* Fond — ondes de vibration épaisses (même motif que la section thématiques) */}
+      <div className="uvn-waves" aria-hidden="true">
+        <GradientVibrationLine id="uvn-w1" width={1800} height={70} amplitude={32} freq={5} strokeWidth={24} speed={9} colorFrom="#FD6E00" colorTo="#E6007E" style={{ width: "100%" }} />
+        <GradientVibrationLine id="uvn-w2" width={1800} height={70} amplitude={26} freq={7} strokeWidth={16} speed={13} colorFrom="#00AFDD" colorTo="#D90A5C" style={{ width: "100%" }} />
+        <GradientVibrationLine id="uvn-w3" width={1800} height={70} amplitude={36} freq={4} strokeWidth={20} speed={11} colorFrom="#E6007E" colorTo="#FD6E00" style={{ width: "100%" }} />
+        <GradientVibrationLine id="uvn-w4" width={1800} height={70} amplitude={24} freq={6} strokeWidth={14} speed={15} colorFrom="#D90A5C" colorTo="#00AFDD" style={{ width: "100%" }} />
+      </div>
+
       {/* Particules flottantes */}
       <div className="uvn-particles" aria-hidden="true">
         {PARTS.map((_, i) => (
@@ -220,28 +220,26 @@ export default function WhyName({ locale = "fr" }: { locale?: string }) {
           </p>
         </div>
 
-        {/* Décodage du nom — deux révélations animées + punchline */}
-        <div className="uvn-decode">
-          <span className="uvn-decode-glow" aria-hidden="true" />
-
-          <Reveal
+        {/* Décodage du nom — 2 cartes claires côte à côte (U / Vibes) + punchline */}
+        <div className="uvn-cards">
+          <DecodeCard
             big="U"
             word="You"
             note={wn ? wn.uNote : <>toi — celui qui vit l&apos;expérience</>}
           />
-          <Reveal
+          <DecodeCard
             big="Vibes"
             wave
             word={wn ? wn.vibesWord : "vibrations"}
             note={wn ? wn.vibesNote : <>ces ondes qui naissent quand on se connecte, même à un inconnu</>}
           />
-
-          <p className="uvn-punch v-serif">
-            {wn ? wn.punch : (
-              <>Uvibes, ce sont les bonnes ondes qui relient un <em className="uv-em-rose">collectif</em>.</>
-            )}
-          </p>
         </div>
+
+        <p className="uvn-punch v-serif">
+          {wn ? wn.punch : (
+            <>Uvibes, ce sont les bonnes ondes qui relient un <em className="uv-em-rose">collectif</em>.</>
+          )}
+        </p>
 
         {/* Médias — paire de polaroïds vidéo centrée */}
         <div className="uvn-media">
@@ -266,12 +264,6 @@ export default function WhyName({ locale = "fr" }: { locale?: string }) {
             quelqu&apos;un de son collectif — l&apos;émerveillement se crée, les conversations prennent vie.</>
           )}
         </p>
-      </div>
-
-      {/* Ligne de vibration bas de section */}
-      <div className="uvn-vib" aria-hidden="true">
-        <VibrationLine width={1800} height={50} amplitude={18} freq={8} stroke="rgba(253,110,0,.22)" strokeWidth={1.5} speed={16} />
-        <VibrationLine width={1800} height={50} amplitude={11} freq={13} stroke="rgba(217,10,92,.14)" strokeWidth={1} speed={22} />
       </div>
     </section>
   );

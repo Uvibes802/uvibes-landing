@@ -1,10 +1,14 @@
 /* ── PasseportExperience ──────────────────────────────────────── */
 
+/* Wrapper dégradé saturé (le fond vit ici) encadré de 2 vagues */
+.pp-gradient-wrap { position: relative; }
+
 .pp-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
-  background: linear-gradient(160deg, #fdf6ef 0%, #fef9f6 50%, #fdf0f8 100%);
+  /* padding vertical généreux : dépasse la hauteur des vagues (92px) */
+  padding: clamp(6rem, 10vw, 8rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: transparent;
 }
 
 /* ── Ondes de vibration en fond — identité Uvibes ── */
@@ -44,7 +48,7 @@
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: rgba(255,255,255,.85);
   font-family: var(--font-roboto-mono), monospace;
 }
 
@@ -52,7 +56,7 @@
   display: inline-block;
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--orange);
+  background: #fff;
   flex-shrink: 0;
 }
 
@@ -61,28 +65,21 @@
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.04em;
-  background: linear-gradient(100deg, #FD6E00 0%, #E6007E 60%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
   margin: 0 0 1rem;
+  text-shadow: 0 2px 18px rgba(120,0,40,.22);
 }
 
 .pp-title-em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  background: linear-gradient(100deg, #FD6E00 0%, #E6007E 60%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: #FFE456; /* accent jaune lumineux — cohérent hero/équipe */
 }
 
 .pp-lead {
   font-size: clamp(14px, 1.4vw, 16px);
   line-height: 1.7;
-  color: #6b4455;
+  color: rgba(255,255,255,.92);
   margin: 0 0 2rem;
   font-family: var(--text-font);
 }
@@ -131,10 +128,10 @@
   box-shadow: 0 0 0 5px rgba(253, 110, 0, 0.1);
   margin-bottom: 4px;
 }
-/* Variation chaude par étape (pas de bleu — palette 100% chaude) */
-.pp-trio-step:nth-child(1) .pp-trio-dot { background: linear-gradient(135deg, #FD6E00, #FF9248); }
-.pp-trio-step:nth-child(2) .pp-trio-dot { background: linear-gradient(135deg, #F62570, #E6007E); }
-.pp-trio-step:nth-child(3) .pp-trio-dot { background: linear-gradient(135deg, #E6007E, #D90A5C); }
+/* Pastilles blanches lumineuses sur le dégradé saturé */
+.pp-trio-step:nth-child(1) .pp-trio-dot,
+.pp-trio-step:nth-child(2) .pp-trio-dot,
+.pp-trio-step:nth-child(3) .pp-trio-dot { background: #fff; box-shadow: 0 0 0 5px rgba(255,255,255,.18); }
 
 .pp-trio-verb {
   font-family: var(--font-prompt), sans-serif;
@@ -142,19 +139,16 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.05;
-  background: linear-gradient(135deg, var(--orange), var(--rose));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
 }
 
 .pp-trio-sub {
   max-width: 190px;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-style: normal;
   font-size: 14px;
   line-height: 1.35;
-  color: rgba(26, 23, 21, 0.55);
+  color: rgba(255,255,255,.82);
 }
 
 @media (max-width: 600px) {
@@ -166,7 +160,7 @@
 .pp-subline {
   font-size: 13px;
   letter-spacing: 0.05em;
-  color: #6b4455;
+  color: rgba(255,255,255,.82);
   font-family: var(--text-font);
   margin: 0;
 }
@@ -217,31 +211,18 @@
   border: none;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, #FD6E00, #E6007E);
-  color: #fff;
+  /* Flèches blanches sur le dégradé saturé */
+  background: #fff;
+  color: #E6007E;
   cursor: pointer;
-  box-shadow: 0 10px 24px -10px rgba(217,10,92,.55);
+  box-shadow: 0 10px 24px -10px rgba(0,0,0,.35);
   transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
 }
 .pp-nav-btn:hover:not(:disabled) { transform: scale(1.08); }
-.pp-nav-btn:disabled { opacity: .32; cursor: default; box-shadow: none; }
+.pp-nav-btn:disabled { opacity: .42; cursor: default; box-shadow: none; }
 
-/* Barre de progression du défilement */
-.pp-progress {
-  position: absolute;
-  left: 58px; right: 58px; bottom: 0;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(26,23,21,.08);
-  overflow: hidden;
-}
-.pp-progress-fill {
-  height: 100%;
-  width: 100%;
-  transform-origin: left;
-  background: linear-gradient(90deg, #FD6E00, #E6007E);
-  transition: transform 0.15s ease;
-}
+/* Barre de progression du défilement — retirée à la demande */
+.pp-progress { display: none; }
 
 /* ── Carte — document passeport ── */
 .pp-card {
@@ -341,9 +322,9 @@
 
 .pp-card-tagline {
   font-size: 12.5px;
-  font-style: italic;
+  font-style: normal;
   color: #6b4455;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   margin: 0;
   line-height: 1.35;
 }

@@ -11,13 +11,13 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 0 clamp(1.5rem, 5vw, 3.5rem);
-  /* Voile clair toujours présent (même avant scroll) : sans lui, le texte
-     sombre du logo/des liens devient illisible sur une photo de hero claire
-     (ex. pages articles), quelle que soit sa couleur. */
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  border-bottom: 1px solid transparent;
+  /* Voile clair frosté toujours présent (même avant scroll) : garde le logo et
+     les liens sombres lisibles sur tout type de hero — clair, photo sombre, ou
+     dégradé saturé (RDV, articles). Avant : 0.16 → quasi invisible sur fond foncé. */
+  background: rgba(250, 246, 241, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(26, 23, 21, 0.05);
   transition: background 400ms cubic-bezier(.2,.7,.2,1),
               border-color 400ms cubic-bezier(.2,.7,.2,1);
 }
@@ -198,24 +198,58 @@
   border-color: transparent;
 }
 
-/* Switcher de langue dans le sheet mobile — liste de liens texte sous les CTA */
-.v-sheet-lang-list {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
-}
+/* Switcher de langue dans le sheet mobile — menu déroulant */
+.v-sheet-lang-dd { margin-top: 14px; position: relative; }
 
-.v-sheet-lang {
+.v-sheet-lang-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 16px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(217, 10, 92, 0.16);
+  background: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-prompt), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(74, 21, 48, 0.9);
+  cursor: pointer;
+  transition: border-color 0.18s ease;
+}
+.v-sheet-lang-dd.--open .v-sheet-lang-trigger { border-color: var(--orange); }
+.v-sheet-lang-globe { font-size: 16px; }
+.v-sheet-lang-current { flex: 1; text-align: left; }
+.v-sheet-lang-caret { color: var(--rose); transition: transform 0.2s ease; }
+.v-sheet-lang-dd.--open .v-sheet-lang-caret { transform: rotate(180deg); }
+
+.v-sheet-lang-menu {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  /* 10 langues tiennent en 5 lignes → pas de scroll */
+  padding: 6px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(217, 10, 92, 0.12);
+  box-shadow: 0 14px 34px -16px rgba(74, 21, 48, 0.3);
+}
+.v-sheet-lang-opt {
   display: block;
   text-align: center;
+  padding: 10px 10px;
+  border-radius: 10px;
   font-family: var(--font-prompt), sans-serif;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
-  /* opacité relevée (0.6 → 0.75) pour passer le contraste AA (4.5:1) sur le sheet clair */
-  color: rgba(74, 21, 48, 0.78);
-  text-decoration: underline;
-  text-decoration-color: rgba(74, 21, 48, 0.4);
+  color: rgba(74, 21, 48, 0.85);
+  text-decoration: none;
+  transition: all 0.16s ease;
+}
+.v-sheet-lang-opt:hover, .v-sheet-lang-opt:active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange), var(--rose));
 }
 
 /* ── Mobile — caché par défaut ──────────────────────────────────── */
@@ -223,8 +257,8 @@
 
 /* ── Responsive ─────────────────────────────────────────────────── */
 
-/* Tablet 769–1080px — liens et boutons resserrés */
-@media (min-width: 769px) and (max-width: 1080px) {
+/* Petit desktop 1025–1200px — liens et boutons resserrés (au-delà de 1200 = plein large) */
+@media (min-width: 1025px) and (max-width: 1200px) {
   .v-nav {
     padding: 0 clamp(1rem, 3vw, 2rem);
   }
@@ -234,7 +268,7 @@
   }
 
   .v-nav-link {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .v-nav-connexion {
@@ -248,11 +282,14 @@
   }
 }
 
-@media (max-width: 768px) {
-  /* Masquer toute la navbar en mobile */
+/* Tablette + mobile (≤ 1024px) : la barre horizontale devient trop serrée
+   (logo + 5 liens + langue + connexion + CTA) → on bascule sur le système
+   propre FAB + bottom sheet, cohérent sur toutes les pages. */
+@media (max-width: 1024px) {
+  /* Masquer toute la navbar horizontale */
   .v-nav { display: none; }
 
-  /* Afficher le système mobile */
+  /* Afficher le système mobile/tablette */
   .v-mobile { display: block; }
 
   /* ── Backdrop ─────────────────────────────────────────────────── */
@@ -333,17 +370,22 @@
     font-family: var(--font-prompt), sans-serif;
     font-size: 28px;
     font-weight: 700;
-    color: var(--ink);
     text-decoration: none;
     padding: 0.8rem 0;
     border-bottom: 1px dashed rgba(42, 34, 29, 0.14);
     letter-spacing: -0.03em;
-    transition: color 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease;
   }
+  /* Mêmes couleurs et même ordre que la section thématiques (cycle uvibes). */
+  .v-sheet-links li:nth-child(1) .v-sheet-link { color: #FFB800; } /* jaune-orangé */
+  .v-sheet-links li:nth-child(2) .v-sheet-link { color: #FD6E00; } /* orange */
+  .v-sheet-links li:nth-child(3) .v-sheet-link { color: #E6007E; } /* magenta */
+  .v-sheet-links li:nth-child(4) .v-sheet-link { color: #D90A5C; } /* rose */
+  .v-sheet-links li:nth-child(5) .v-sheet-link { color: #FD6E00; } /* orange */
+  .v-sheet-links li:nth-child(6) .v-sheet-link { color: #FFB800; } /* jaune-orangé */
 
-  /* orange vif accessible (passe AA texte large ≥ 3:1) */
-  .v-sheet-link.--active { color: #EF6500; }
-  .v-sheet-link:hover    { color: #EF6500; }
+  .v-sheet-link.--active { filter: saturate(1.2) brightness(1.05); }
+  .v-sheet-link:hover, .v-sheet-link:active { transform: translateX(4px); }
 
   .v-sheet-dot {
     width: 8px;

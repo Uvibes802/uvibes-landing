@@ -112,8 +112,6 @@ export default function CookieConsent() {
         window.gtag("consent", "update", {
           analytics_storage: "granted",
         });
-        // Config is optional here if already in layout, but safe to re-run or rely on layout's config picking up the updated consent
-        console.log("Google Analytics consent restored: granted");
       }
     }
   }, [GA_ID]);
@@ -138,7 +136,6 @@ export default function CookieConsent() {
       window.gtag("config", GA_ID, {
          page_path: window.location.pathname
       });
-      console.log("Cookie consent accepted: GA granted");
     }
   };
 
@@ -150,7 +147,6 @@ export default function CookieConsent() {
       window.gtag("consent", "update", {
         analytics_storage: "denied",
       });
-      console.log("Cookie consent refused: GA denied");
     }
   };
 

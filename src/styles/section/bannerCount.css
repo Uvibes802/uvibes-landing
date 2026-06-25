@@ -139,7 +139,17 @@
   color: rgba(255,255,255,.88);
   font-style: italic;
   white-space: nowrap;
-  transition: opacity 300ms ease;
+  /* Chaque mot entre en glissant/basculant depuis le bas (key change → rejoue) */
+  transform-origin: left center;
+  animation: bcFillerIn 0.6s cubic-bezier(.2,.75,.25,1) both;
+}
+@keyframes bcFillerIn {
+  0%   { opacity: 0; transform: translateY(0.55em) rotateX(-55deg); filter: blur(3px); }
+  60%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner-count-filler { animation: none; }
 }
 
 /* ── Séparateur ──────────────────────────────────────────────── */

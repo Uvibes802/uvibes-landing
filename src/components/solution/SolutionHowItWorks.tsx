@@ -495,7 +495,7 @@ export default function SolutionHowItWorks({ locale = "fr" }: { locale?: string 
           <p className="shiw-subtitle">
             {shiw
               ? shiw.subtitle
-              : <>De l&apos;activation des échanges à la mesure des résultats&nbsp;: une méthode complète pour renforcer votre organisation.</>}
+              : <>De l&apos;activation des échanges à la mesure des résultats&nbsp;:<br />une méthode complète pour renforcer votre organisation.</>}
           </p>
         </header>
 

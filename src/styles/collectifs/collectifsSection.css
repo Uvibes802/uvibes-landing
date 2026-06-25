@@ -126,7 +126,8 @@
   font-size: clamp(44px, 6.5vw, 96px);
   font-weight: 700;
   letter-spacing: -0.05em;
-  line-height: 1;
+  /* léger air pour ne pas rogner le jambage du « g » de « organisation » (cursif) */
+  line-height: 1.06;
   /* orange vif accessible (passe AA texte large ≥ 3:1) — cohérent avec les autres titres */
   color: #EF6500;
   font-family: var(--font-prompt), sans-serif;
@@ -135,11 +136,12 @@
 .collectifs-title-serif {
   display: inline-block;
   padding-right: 0.18em;
-  padding-bottom: 0.14em;
-  line-height: 1.1;
-  font-style: italic;
+  /* jambage du « g » : on lui laisse de la place sous la ligne de base */
+  padding-bottom: 0.24em;
+  line-height: 1.15;
+  font-style: normal;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   background: linear-gradient(90deg, var(--orange), var(--rose));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -283,13 +285,13 @@
 
 .collectif-panel-hero {
   position: relative;
-  z-index: 2; /* au-dessus du body → les affiches peuvent chevaucher la séparation */
-  padding: 44px 44px 0;
+  z-index: 2;
+  padding: 44px 44px 36px; /* padding bas → les affiches restent contenues dans le panneau */
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 30px;
   align-items: flex-end;
-  overflow: visible; /* laisse les affiches déborder sur le body */
+  overflow: hidden; /* rien ne déborde sur le body */
   background: linear-gradient(135deg, var(--c-color), color-mix(in srgb, var(--c-color) 80%, transparent));
   color: #fff;
 }
@@ -358,7 +360,10 @@
   align-self: flex-end;
   flex-shrink: 0;
   position: relative;
-  margin-bottom: -18px; /* les affiches chevauchent la séparation et reposent sur le body */
+  /* On pousse les affiches sous la ligne de séparation : leur bas (parfois un
+     bord vide/blanc) passe derrière la séparation et est masqué par
+     l'overflow:hidden du hero → toutes les affiches s'affichent proprement. */
+  margin-bottom: -52px;
 }
 
 .collectif-panel-flyer-wrap {
@@ -369,7 +374,8 @@
   padding: 0;
   background: transparent;
   cursor: zoom-in;
-  border-radius: 9px;
+  /* bas carré → l'affiche colle à la ligne de séparation ; haut arrondi */
+  border-radius: 9px 9px 0 0;
   overflow: hidden;
   box-shadow: 0 16px 28px -8px rgba(0, 0, 0, 0.28);
   transition: transform 0.3s ease;
@@ -401,16 +407,17 @@
 .collectif-panel-flyer-img {
   display: block;
   width: 130px;
-  height: auto;
+  /* hauteur figée un peu plus courte que le ratio naturel → on rogne le bas
+     (bord transparent/feathered de certaines affiches) ; la lightbox garde l'image entière */
+  height: 168px;
   object-fit: cover;
+  object-position: top center;
 }
 
-.collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child) {
-  transform: translateY(-12px);
-}
-
+/* Toutes les affiches ancrées au ras de la ligne de séparation (plus de
+   surélévation du milieu) — seul le survol les soulève légèrement. */
 .collectif-panel-flyers .collectif-panel-flyer-wrap:nth-child(2):not(:last-child):hover {
-  transform: translateY(-16px);
+  transform: translateY(-4px);
 }
 
 .collectif-panel-body {

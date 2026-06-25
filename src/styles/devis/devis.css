@@ -193,7 +193,7 @@
   margin-bottom: 6px;
 }
 
-.dv-input, .dv-select, .dv-textarea {
+.dv-input, .dv-textarea {
   width: 100%;
   padding: 12px 14px;
   border: 1.5px solid rgba(0,0,0,.1);
@@ -206,27 +206,10 @@
   font-family: inherit;
   box-sizing: border-box;
 }
-.dv-input:focus, .dv-select:focus, .dv-textarea:focus {
+.dv-input:focus, .dv-textarea:focus {
   border-color: #FD6E00;
   background: #fff;
   box-shadow: 0 0 0 3px rgba(253,110,0,.1);
-}
-
-/* Select custom : chevron brand, plus de flèche native */
-.dv-select {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  padding-right: 42px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23D90A5C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-}
-.dv-select:focus {
-  background-color: #fff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23FD6E00' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
 }
 
 .dv-input.--error { border-color: #D90A5C; }
@@ -514,7 +497,9 @@
 .dv-plan-ht { font-size: 10px; font-weight: 600; color: #9a7585; letter-spacing: 0.04em; }
 .dv-plan-toggle {
   margin-top: 0.6rem;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: none;
   border: none;
   padding: 0;
@@ -522,11 +507,13 @@
   font-size: 11px;
   letter-spacing: 0.02em;
   color: var(--rose, #D90A5C);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
   cursor: pointer;
 }
 .dv-plan-toggle:hover { color: var(--orange, #FD6E00); }
+/* Flèche à droite du texte — pivote quand l'offre est ouverte */
+.dv-plan-toggle svg { transition: transform 0.25s ease; }
+.dv-plan-card.--open .dv-plan-toggle svg { transform: rotate(180deg); }
 .dv-plan-features {
   list-style: none;
   margin: 0.6rem 0 0;
@@ -546,5 +533,7 @@
   line-height: 1.35;
   color: #5c3b49;
 }
+/* La partie entre parenthèses reste d'un bloc → passe à la ligne entière, jamais coupée */
+.dv-feat-paren { white-space: nowrap; }
 .dv-plan-features li svg { color: var(--orange, #FD6E00); flex-shrink: 0; margin-top: 1px; }
 .dv-plan-card.--open { align-items: stretch; text-align: left; }

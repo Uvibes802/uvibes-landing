@@ -333,3 +333,16 @@ model RdvReservation {
   statut       String   @default("EN_ATTENTE") // EN_ATTENTE | CONFIRME | ANNULE
   noteAdmin    String?
 }
+
+// Messages du formulaire de contact — affichés en notifications dans le dashboard
+model ContactMessage {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  nom          String
+  prenom       String?
+  email        String
+  organisation String?
+  categories   String?  // catégories d'intérêt, séparées par des virgules
+  message      String
+  lu           Boolean  @default(false)
+}

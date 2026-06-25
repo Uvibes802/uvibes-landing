@@ -35,7 +35,7 @@ export default function TarifsPage() {
       <main>
         <PricingTable />
         {/* Section petites structures + footer, sur le dégradé commun */}
-        <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 18%, #FF6098 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden" }}>
+        <div style={{ background: "linear-gradient(165deg, #FD6E00 0%, #FF7A38 14%, #FF6098 42%, #E6007E 70%, #C20057 100%)", position: "relative", overflow: "hidden" }}>
           {/* Couche avant = crème du bas de PricingTable (#FFF0F5) → la wave prolonge
               la section précédente, comme les waves des autres pages (cf. /solution). */}
           <WaveSeparator position="top" color="#FFF0F5" />

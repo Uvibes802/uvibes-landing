@@ -36,6 +36,11 @@ export default function CrmLoginPage() {
 
   return (
     <div className="crm-login-page">
+      {/* Retour au site public — visible sur tous les écrans */}
+      <Link href="/" className="crm-login-back">
+        <span aria-hidden="true">←</span> Retour au site
+      </Link>
+
       <div className="crm-login-card">
         <Link href="/" className="crm-login-logo" aria-label="Retour au site Uvibes">
           <Image src="/images/favicon.png" alt="Uvibes" width={44} height={38} />

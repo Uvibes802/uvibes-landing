@@ -177,9 +177,9 @@
 }
 
 .ct-title-serif {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  font-family: var(--font-instrument), "Instrument Serif", serif;
+  font-family: var(--font-instrument), "Pacifico", cursive;
   color: #FFE456;
   font-size: clamp(38px, 4.5vw, 72px);
   text-shadow: 0 2px 12px rgba(0,0,0,.18);

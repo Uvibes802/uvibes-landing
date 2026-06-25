@@ -81,8 +81,8 @@
 .vs-t-rose    { color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,.2); }
 
 .vs-t-gradient {
-  font-family: var(--font-instrument), "Instrument Serif", serif;
-  font-style: italic;
+  font-family: var(--font-instrument), "Pacifico", cursive;
+  font-style: normal;
   color: #E6007E;
   -webkit-text-fill-color: #E6007E;
 }
@@ -194,7 +194,10 @@
 }
 
 .vs-card-avatar-img {
-  object-fit: cover;
+  /* Logo de l'organisation : contenu entier sur fond blanc (pas rogné) */
+  object-fit: contain;
+  background: #fff;
+  padding: 5px;
   border: 2px solid rgba(255,255,255,.5);
 }
 
@@ -269,7 +272,8 @@
 .vs-polaroid {
   position: absolute;
   z-index: 2;
-  top: clamp(140px, 17vw, 220px);
+  /* Centrée verticalement dans la section, même si le commentaire est long */
+  top: 50%;
   right: clamp(8%, 10vw, 14%);
   width: clamp(190px, 17vw, 240px);
   margin: 0;
@@ -277,10 +281,10 @@
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 18px 40px -10px rgba(120,5,50,.45), 0 2px 6px rgba(0,0,0,.18);
-  transform: rotate(5deg);
+  transform: translateY(-50%) rotate(5deg);
   transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
 }
-.vs-polaroid:hover { transform: rotate(2deg) scale(1.02); }
+.vs-polaroid:hover { transform: translateY(-50%) rotate(2deg) scale(1.02); }
 
 .vs-polaroid-img {
   display: block;

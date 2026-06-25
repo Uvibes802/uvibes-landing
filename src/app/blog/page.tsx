@@ -83,7 +83,7 @@ export default async function BlogPage() {
       </section>
       </main>
 
-      <div style={{ background: "linear-gradient(160deg, #FD6E00 0%, #FF6030 15%, #FF80B0 45%, #E6007E 70%, #D90A5C 100%)", position: "relative", overflow: "hidden", paddingTop: "100px" }}>
+      <div style={{ background: "linear-gradient(165deg, #FD6E00 0%, #FF7A38 14%, #FF6098 42%, #E6007E 70%, #C20057 100%)", position: "relative", overflow: "hidden", paddingTop: "100px" }}>
         {/* Séparateur wavy animé (cohérent avec les autres sections) */}
         <WaveSeparator position="top" />
         <Footer />

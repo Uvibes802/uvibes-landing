@@ -1,11 +1,20 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Select from "@/components/shared/Select";
 import "@/styles/devis/devis.css";
+
+// Affiche un libellé en gardant sa partie entre parenthèses insécable : elle
+// bascule en entier à la ligne suivante au lieu d'être coupée (ex. « (1 000 vibes) »).
+function FeatLabel({ text }: { text: string }) {
+  const m = text.match(/^(.*?)\s*(\([^)]*\))\s*$/);
+  if (!m) return <>{text}</>;
+  return <>{m[1]}{" "}<span className="dv-feat-paren">{m[2]}</span></>;
+}
 
 const TYPES_COLLECTIF = [
   "Entreprise", "Établissement d'enseignement", "Association",
@@ -256,15 +265,15 @@ export default function DevisFormStepper() {
 
           <div className="dv-field">
             <label className="dv-label" htmlFor="dv-type">Type d&apos;organisation *</label>
-            <select
+            <Select
               id="dv-type"
-              className={`dv-select${errors.typeCollectif ? " --error" : ""}`}
+              ariaLabel="Type d'organisation"
+              placeholder="Sélectionnez…"
               value={form.typeCollectif}
-              onChange={(e) => set("typeCollectif", e.target.value)}
-            >
-              <option value="">Sélectionnez...</option>
-              {TYPES_COLLECTIF.map((t) => <option key={t} value={t}>{t}</option>)}
-            </select>
+              onChange={(v) => set("typeCollectif", v)}
+              options={TYPES_COLLECTIF.map((t) => ({ value: t, label: t }))}
+              error={!!errors.typeCollectif}
+            />
             {errors.typeCollectif && <p className="dv-error-msg">{errors.typeCollectif}</p>}
           </div>
 
@@ -324,7 +333,7 @@ export default function DevisFormStepper() {
                   {open && (
                     <ul className="dv-plan-features">
                       {(PLAN_FEATURES[p.slug] ?? []).map((f) => (
-                        <li key={f}><Check size={12} strokeWidth={3} />{f}</li>
+                        <li key={f}><Check size={12} strokeWidth={3} /><FeatLabel text={f} /></li>
                       ))}
                     </ul>
                   )}
@@ -334,6 +343,7 @@ export default function DevisFormStepper() {
                     onClick={(e) => { e.stopPropagation(); setOpenPlan(open ? null : p.slug); }}
                   >
                     {open ? "Masquer le contenu" : "Voir le contenu de l'offre"}
+                    <ChevronDown size={13} strokeWidth={2.5} aria-hidden="true" />
                   </button>
                 </div>
                 );
@@ -353,7 +363,7 @@ export default function DevisFormStepper() {
                   </div>
                   <ul className="dv-plan-trial-features">
                     {(PLAN_FEATURES[p.slug] ?? []).map((f) => (
-                      <li key={f}><Check size={12} strokeWidth={3} />{f}</li>
+                      <li key={f}><Check size={12} strokeWidth={3} /><FeatLabel text={f} /></li>
                     ))}
                   </ul>
                 </div>
